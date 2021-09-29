@@ -11,11 +11,11 @@ Below you will find some information on how to perform common tasks.
   - [Folder Structure](#folder-structure)
   - [Available Scripts](#available-scripts)
     - [`install`](#install)
-    - [`yarn start:blog`](#yarn-startblog)
-    - [`yarn build:blog`](#yarn-buildblog)
-    - [`yarn build:dep:blog`](#yarn-builddepblog)
-    - [`yarn test:blog`](#yarn-testblog)
-    - [`yarn release:blog`](#yarn-releaseblog)
+    - [`yarn start:admin`](#yarn-startadmin)
+    - [`yarn build:admin`](#yarn-buildadmin)
+    - [`yarn build:dep:admin`](#yarn-builddepadmin)
+    - [`yarn test:admin`](#yarn-testadmin)
+    - [`yarn release:admin`](#yarn-releaseadmin)
     - [`yarn start:common`](#yarn-startcommon)
     - [`yarn build:common`](#yarn-buildcommon)
     - [`yarn build:dep:common`](#yarn-builddepcommon)
@@ -74,7 +74,7 @@ monorepo/
   node_modules/
   package.json
   packages/
-    blog/
+    admin/
       node_modules/
       package.json
       ...
@@ -107,7 +107,7 @@ yarn `command`
 
 which will do whatever `command` does, and must be defined on `scripts` section in [`package.json`](./package.json)
 
-### `yarn start:blog`
+### `yarn start:admin`
 
 Runs the Main web application in the development mode.
 Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
@@ -115,24 +115,24 @@ Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `yarn build:blog`
+### `yarn build:admin`
 
 Generates the build folder of the compiled files for Main web application
 The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
-### `yarn build:dep:blog`
+### `yarn build:dep:admin`
 
-Same as `yarn build:blog` but it moves the files to the root directory.
+Same as `yarn build:admin` but it moves the files to the root directory.
 
-### `yarn test:blog`
+### `yarn test:admin`
 
 Launches the test runner for the Main web application.
 See the section about [running tests](#running-tests) for more information.
 
-### `yarn release:blog`
+### `yarn release:admin`
 
-It launches a release for Blog application.
+It launches a release for Admin application.
 If there is any commit since the last release starting with:
 
 - `fix` will do a patch bump
@@ -276,8 +276,8 @@ export const ButtonExample: React.FunctionComponent = () => {
 ### `ButtonAndMore.tsx`
 
 ```js
-import React from "react";
-import { ButtonExample } from "./ButtonExample"; // Import a component from another file
+import React from 'react';
+import { ButtonExample } from './ButtonExample'; // Import a component from another file
 
 export const ButtonAndMore: React.FunctionComponent = () => {
   <>
@@ -306,12 +306,10 @@ This project setup uses [Emotion](https://emotion.sh/docs/introduction) for styl
 ### `Button.tsx`
 
 ```js
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-export const Button: React.FunctionComponent = (props) => (
-  <StyledButton {...props} />
-);
+export const Button: React.FunctionComponent = props => <StyledButton {...props} />;
 
 const StyledButton = styled.button`
   background: white;
@@ -321,13 +319,11 @@ const StyledButton = styled.button`
 ### `RedButton.tsx`
 
 ```js
-import React from "react";
-import styled from "@emotion/styled";
-import { Button } from "./Button";
+import React from 'react';
+import styled from '@emotion/styled';
+import { Button } from './Button';
 
-export const RedButton: React.FunctionComponent = (props) => (
-  <RedStyledButton {...props} />
-);
+export const RedButton: React.FunctionComponent = props => <RedStyledButton {...props} />;
 
 const RedStyledButton = styled(Button)`
   background: red;
@@ -379,7 +375,7 @@ When you load the app in the browser and inspect the `<input>`, you will see its
 Having access to the `NODE_ENV` is also useful for performing actions conditionally:
 
 ```js
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   analytics.disable();
 }
 ```
@@ -494,9 +490,9 @@ To create tests, add `it()` (or `test()`) blocks with the name of the test and i
 Jest provides a built-in `expect()` global function for making assertions. A basic test could look like this:
 
 ```js
-import sum from "./sum";
+import sum from './sum';
 
-it("sums numbers", () => {
+it('sums numbers', () => {
   expect(sum(1, 2)).toEqual(3);
   expect(sum(2, 2)).toEqual(4);
 });
@@ -512,12 +508,12 @@ There is a broad spectrum of component testing techniques. They range from a “
 Different projects choose different testing tradeoffs based on how often components change, and how much logic they contain. If you haven’t decided on a testing strategy yet, we recommend that you start with creating simple smoke tests for your components:
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
+it('renders without crashing', () => {
+  const div = document.createElement('div');
   ReactDOM.render(<App />, div);
 });
 ```
@@ -529,11 +525,11 @@ When you encounter bugs caused by changing components, you will gain a deeper in
 If you’d like to test components in isolation from the child components they render, we recommend using [`render()` rendering API](https://testing-library.com/docs/react-testing-library/api/#render) from [Testing Library](https://testing-library.com/). You can write a smoke test with it too:
 
 ```js
-import { render } from "@testing-library/react";
-import React from "react";
-import { Component } from "./Component";
-describe("Flex", () => {
-  it("renders component", () => {
+import { render } from '@testing-library/react';
+import React from 'react';
+import { Component } from './Component';
+describe('Flex', () => {
+  it('renders component', () => {
     const renderInstance = render(<Component />);
     expect(renderInstance.asFragment().firstChild).toBeDefined();
   });
@@ -547,11 +543,11 @@ You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testi
 Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
 
 ```js
-import React from "react";
-import { shallow } from "enzyme";
-import App from "./App";
+import React from 'react';
+import { shallow } from 'enzyme';
+import App from './App';
 
-it("renders welcome message", () => {
+it('renders welcome message', () => {
   const wrapper = shallow(<App />);
   const welcome = <h2>Welcome to React</h2>;
   // expect(wrapper.contains(welcome)).to.equal(true);
@@ -569,8 +565,8 @@ We recommend that you use `expect()` for assertions and `jest.fn()` for spies. I
 However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
 
 ```js
-import sinon from "sinon";
-import { expect } from "chai";
+import sinon from 'sinon';
+import { expect } from 'chai';
 ```
 
 and then use them in your tests like you normally do.
@@ -622,7 +618,7 @@ yarn error when installing dependencies in workspace
 
 ```bash
 error An unexpected error occurred: "expected workspace package to exist for \"eslint\"".
-info If you think this is a bug, please open a bug report with the information provided in "/Users/user/Documents/yourcompany/monorepo-starter/packages/blog/yarn-error.log"
+info If you think this is a bug, please open a bug report with the information provided in "/Users/user/Documents/yourcompany/monorepo-starter/packages/whemotion-admin/yarn-error.log"
 ```
 
 ## How to fix it

@@ -8,11 +8,11 @@
     "packages/*"
   ],
   "scripts": {
-    "start:blog": "yarn workspace @yisuses/whemotion-blog start",
-    "build:blog": "yarn workspace @yisuses/whemotion-blog build",
-    "build:dep:blog": "yarn build:blog && mkdir -p dist && mv packages/blog/build dist/blog",
-    "test:blog": "yarn workspace @yisuses/whemotion-blog test",
-    "release:blog": "yarn --cwd packages/blog run standard-version",
+    "start:admin": "yarn workspace @yisuses/whemotion-admin start",
+    "build:admin": "yarn workspace @yisuses/whemotion-admin build",
+    "build:dep:admin": "yarn build:admin && mkdir -p dist && mv packages/admin/build dist/admin",
+    "test:admin": "yarn workspace @yisuses/whemotion-admin test",
+    "release:admin": "yarn --cwd packages/admin run standard-version",
     "start:common": "yarn workspace @yisuses/whemotion-common start",
     "build:common": "yarn workspace @yisuses/whemotion-common build",
     "build:dep:common": "yarn build:common && mkdir -p dist && mv packages/common/build dist/common",

@@ -10,7 +10,7 @@ async function doRelease() {
       name: 'package',
       message: 'Select package',
       choices: [
-        { title: 'Blog', value: 'blog' },
+        { title: 'Admin', value: 'admin' },
         { title: 'Common', value: 'common' },
         { title: 'All', value: '' },
       ],

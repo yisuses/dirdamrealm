@@ -1,7 +1,7 @@
 {
-  "name": "@yisuses/whemotion-blog",
+  "name": "@yisuses/whemotion-admin",
   "version": "0.0.1",
-  "description": "White Emotion Blog",
+  "description": "White Emotion Admin panel",
   "private": true,
   "dependencies": {
     "@yisuses/whemotion-common": "*",
