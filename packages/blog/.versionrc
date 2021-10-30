@@ -1,7 +1,7 @@
 {
   "path": ".",
-  "tag-prefix": "@yisuses-admin@",
-  "releaseCommitMessageFormat": "chore(release): @yisuses-admin@{{currentTag}}",
+  "tag-prefix": "@whe-blog@",
+  "releaseCommitMessageFormat": "chore(release): @whe-blog@{{currentTag}}",
   "types": [
     {
       "type": "feat",

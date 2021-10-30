@@ -1,7 +1,7 @@
 {
   "path": ".",
-  "tag-prefix": "@yisuses-common@",
-  "releaseCommitMessageFormat": "chore(release): @yisuses-common@{{currentTag}}",
+  "tag-prefix": "@whe-common@",
+  "releaseCommitMessageFormat": "chore(release): @whe-common@{{currentTag}}",
   "types": [
     {
       "type": "feat",

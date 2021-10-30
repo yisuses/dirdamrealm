@@ -12,6 +12,7 @@ async function doRelease() {
       choices: [
         { title: 'Admin', value: 'admin' },
         { title: 'Common', value: 'common' },
+        { title: 'Blog', value: 'blog' },
         { title: 'All', value: '' },
       ],
     },
