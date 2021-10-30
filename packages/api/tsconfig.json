@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": false,
+    "outDir": "build",
+    "target": "es6"
+  },
+  "extends": "../../tsconfig.json",
+  "include": ["src"]
+}

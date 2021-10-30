@@ -26,6 +26,11 @@ Below you will find some information on how to perform common tasks.
     - [`yarn build:dep:blog`](#yarn-builddepblog)
     - [`yarn test:blog`](#yarn-testblog)
     - [`yarn release:blog`](#yarn-releaseblog)
+    - [`yarn start:api`](#yarn-startapi)
+    - [`yarn build:api`](#yarn-buildapi)
+    - [`yarn build:api:blog`](#yarn-buildapiblog)
+    - [`yarn test:api`](#yarn-testapi)
+    - [`yarn release:api`](#yarn-releaseapi)
     - [`yarn clean`](#yarn-clean)
     - [`yarn clean:install`](#yarn-cleaninstall)
     - [`yarn build`](#yarn-build)
@@ -201,6 +206,37 @@ See the section about [running tests](#running-tests) for more information.
 ### `yarn release:blog`
 
 It launches a release for Blog package.
+
+- `fix` will do a patch bump
+- `feat` will do a minor bump
+- `!` will do a major bump.
+
+### `yarn start:api`
+
+Runs the API in the development mode.
+Open [http://localhost:3002](http://localhost:3002) to see a default API Response in browser.
+
+The page will reload if you make edits.
+You will also see any lint errors in the console.
+
+### `yarn build:api`
+
+Generates the build folder of the compiled files for API package
+The build is minified and the filenames include the hashes.
+It will generate a static folder that can be deployed anywhere.
+
+### `yarn build:api:blog`
+
+Same as `yarn build:api` but it moves the files to the root directory.
+
+### `yarn test:api`
+
+Launches the test runner for the API package.
+See the section about [running tests](#running-tests) for more information.
+
+### `yarn release:api`
+
+It launches a release for API package.
 
 - `fix` will do a patch bump
 - `feat` will do a minor bump

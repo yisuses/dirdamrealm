@@ -1,5 +1,5 @@
 import packageJson from './package.json'
-const packageName = packageJson.name.split('@whe/').pop()
+const packageName = packageJson.name.replace('@whe/', '')
 
 export default {
   preset: 'ts-jest',
