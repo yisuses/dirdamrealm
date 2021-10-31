@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './logo.svg'
 import { AppHeader, AppLink, AppLogo, AppWrapper } from './App.style'
-import { Button } from '@yisuses/whemotion-common'
+import { Button } from '@whe/common'
 
 export const App: React.FC = () => (
   <AppWrapper>
