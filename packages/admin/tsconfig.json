@@ -1,9 +1,5 @@
 {
   "extends": "./tsconfig.paths.json",
-  "include": [
-    "src"
-  ],
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true
-  }
+  "include": ["src"],
+  "files": ["../common/src/global.d.ts"]
 }

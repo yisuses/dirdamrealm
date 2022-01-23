@@ -1,4 +1,4 @@
-import { pathsToModuleNameMapper } from 'ts-jest/utils'
+import { pathsToModuleNameMapper } from 'ts-jest'
 // Load the config which holds the path aliases.
 import { compilerOptions } from './tsconfig.paths.json'
 

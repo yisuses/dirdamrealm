@@ -11,8 +11,6 @@ export interface CustomButtonProps extends ButtonProps {
 /**
  * Main Buttom component for the application
  */
-export const Button: React.FC<CustomButtonProps> = ({ text, children, ...props }) => (
-  <StyledButton data-testid="testButton" {...props}>
-    {text || children}
-  </StyledButton>
+export const Button = ({ text, children, ...props }: CustomButtonProps) => (
+  <StyledButton {...props}>{text || children}</StyledButton>
 )
