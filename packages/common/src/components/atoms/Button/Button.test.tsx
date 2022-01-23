@@ -1,16 +1,16 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Button } from './Button'
 
 describe('Button', () => {
   test('it renders successfully', () => {
-    const { getByTestId } = render(<Button text="hola" />)
-    const buttonElement = getByTestId(/testButton/i)
+    render(<Button text="hola" />)
+    const buttonElement = screen.getByText(/hola/i)
     expect(buttonElement).toBeInTheDocument()
   })
 
   test('it renders text property', () => {
-    const { getByText } = render(<Button text="hola" />)
-    const buttonElement = getByText(/hola/i)
+    render(<Button text="hola" />)
+    const buttonElement = screen.getByText(/hola/i)
     expect(buttonElement).toBeInTheDocument()
   })
 })
