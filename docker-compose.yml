@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: whe_postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=wheblog
+      - POSTGRES_PASSWORD=wheblog
+      - POSTGRES_DB=wheblog
+    volumes:
+      - strapidata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  strapidata:
