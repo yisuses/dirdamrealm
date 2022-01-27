@@ -1,7 +1,7 @@
 {
   "path": ".",
-  "tag-prefix": "@whe-blog@",
-  "releaseCommitMessageFormat": "chore(release): @whe-blog@{{currentTag}}",
+  "tag-prefix": "@whe-api@",
+  "releaseCommitMessageFormat": "chore(release): @whe-api@{{currentTag}}",
   "types": [
     {
       "type": "feat",
