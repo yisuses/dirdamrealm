@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "writers",
+  "info": {
+    "singularName": "writer",
+    "pluralName": "writers",
+    "displayName": "Writer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "mappedBy": "writer"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "writer"
+    },
+    "avatar": {
+      "type": "string"
+    }
+  }
+}
