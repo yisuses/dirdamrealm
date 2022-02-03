@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@whe/common": "*",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
     "next": "12.0.10",
     "react-dom": "17.0.2",
     "react": "17.0.2"
