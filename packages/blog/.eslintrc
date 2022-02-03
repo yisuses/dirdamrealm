@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "../../.eslintrc",
+    // Add specific rules for react
+    "plugin:react/recommended",
+    // Add specific rules for nextjs
+    "plugin:@next/next/core-web-vitals"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/no-unescaped-entities": "off",
+    // next/image might not be yet a good move as of NextJs v11.
+    // https://github.com/vercel/next.js/discussions/16832
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": ["function"],
+        "format": ["camelCase", "PascalCase"]
+      }
+    ]
+  }
+}
