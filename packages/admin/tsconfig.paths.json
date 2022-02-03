@@ -3,6 +3,9 @@
   "include": ["src"],
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {}
+    "paths": {
+      "@whe/common/*": ["../common/src/*"],
+      "@whe/common": ["../common/src/index"]
+    }
   }
 }

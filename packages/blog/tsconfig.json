@@ -2,8 +2,13 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@whe/common/*": ["../common/src/*"],
+      "@whe/common": ["../common/src/index"]
+    }
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "src"]
+  "include": ["next-env.d.ts", "src"],
+  "files": ["../common/src/global.d.ts"]
 }

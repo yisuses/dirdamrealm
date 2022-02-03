@@ -17,20 +17,20 @@
     "@emotion/styled": "11.6.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "6.4.16",
-    "@storybook/addon-essentials": "6.4.16",
-    "@storybook/addon-links": "6.4.16",
+    "@storybook/addon-actions": "6.4.18",
+    "@storybook/addon-essentials": "6.4.18",
+    "@storybook/addon-links": "6.4.18",
     "@storybook/builder-webpack5": "6.5.0-alpha.22",
     "@storybook/manager-webpack5": "6.5.0-alpha.22",
-    "@storybook/node-logger": "6.4.16",
+    "@storybook/node-logger": "6.4.18",
     "@storybook/preset-create-react-app": "4.0.0",
-    "@storybook/react": "6.4.16",
-    "@testing-library/jest-dom": "5.16.1",
+    "@storybook/react": "6.4.18",
+    "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
     "@types/jest": "27.4.0",
     "typescript": "4.5.5",
     "ts-node": "10.4.0",
-    "webpack": "5.67.0"
+    "webpack": "5.68.0"
   }
 }
