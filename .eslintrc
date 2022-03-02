@@ -111,11 +111,30 @@
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
-        "sonarjs/no-duplicate-string": "off",
-        "sonarjs/no-all-duplicated-branches": "off",
         "@typescript-eslint/consistent-type-exports": "off",
         "@typescript-eslint/consistent-type-imports": "off",
         "import/order": "off"
+      }
+    },
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "warn",
+          {
+            "selector": "variable",
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": ["function"],
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "parameter",
+            "format": ["camelCase", "PascalCase"],
+            "leadingUnderscore": "allow"
+          }
+        ]
       }
     },
     {

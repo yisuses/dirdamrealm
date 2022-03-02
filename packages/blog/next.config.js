@@ -73,9 +73,6 @@ const nextConfig = {
   // Replace terser by swc
   swcMinify: true,
   experimental: {
-    // React 18 related
-    // @link https://nextjs.org/docs/advanced-features/react-18
-    reactRoot: true,
     concurrentFeatures: false, // buggy with sentry
     serverComponents: false, // buggy with sentry
 
