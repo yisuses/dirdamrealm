@@ -1,14 +1,21 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "src",
     "incremental": true,
     "jsx": "preserve",
     "paths": {
       "@whe/common/*": ["../common/src/*"],
-      "@whe/common": ["../common/src/index"]
+      "@whe/common": ["../common/src/index"],
+      "@/themes/*": ["./themes/*"],
+      "@/public/*": ["./public/*"],
+      "@/features/*": ["./features/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/config/*": ["./config/*"],
+      "@/core/*": ["./core/*"]
     }
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "src"],
+  "exclude": [".next"],
+  "include": ["next-env.d.ts", "src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"],
   "files": ["../common/src/global.d.ts"]
 }

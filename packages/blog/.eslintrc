@@ -1,4 +1,6 @@
 {
+  "root": true,
+  "ignorePatterns": [".next", "**/.out"],
   "extends": [
     "../../.eslintrc",
     // Add specific rules for react
@@ -6,6 +8,12 @@
     // Add specific rules for nextjs
     "plugin:@next/next/core-web-vitals"
   ],
+  "plugins": ["testing-library"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
@@ -13,13 +21,6 @@
     "react/no-unescaped-entities": "off",
     // next/image might not be yet a good move as of NextJs v11.
     // https://github.com/vercel/next.js/discussions/16832
-    "@next/next/no-img-element": "off",
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": ["function"],
-        "format": ["camelCase", "PascalCase"]
-      }
-    ]
+    "@next/next/no-img-element": "off"
   }
 }

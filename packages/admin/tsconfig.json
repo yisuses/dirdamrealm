@@ -1,5 +1,0 @@
-{
-  "extends": "./tsconfig.paths.json",
-  "include": ["src"],
-  "files": ["../common/src/global.d.ts"]
-}

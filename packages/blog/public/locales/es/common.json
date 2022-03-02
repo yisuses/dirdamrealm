@@ -1,0 +1,10 @@
+{
+  "actions": {
+    "save": "Guardar",
+    "update": "Actualizar",
+    "delete": "Borrar",
+    "cancel": "Cancelar",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar"
+  }
+}

@@ -1,11 +1,14 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es2021": true,
     "node": true
   },
   "ignorePatterns": ["**/node_modules", "**/dist", "**/build"],
+  "parser": "@typescript-eslint/parser",
   "extends": [
+    "eslint:recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
     "eslint:recommended",
@@ -13,14 +16,21 @@
     "plugin:prettier/recommended", // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
     "plugin:@typescript-eslint/recommended" // Uses the recommended rules from @typescript-eslint/eslint-plugin
   ],
-  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true // Allows for the parsing of JSX
     },
     "ecmaVersion": 12, // Allows for the parsing of modern ECMAScript features
     "sourceType": "module", // Allows for the use of imports
-    "project": "./tsconfig.json"
+    "project": ["tsconfig.json"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
   },
   "plugins": ["jest", "react", "@typescript-eslint"],
   "rules": {
@@ -48,16 +58,16 @@
       },
       {
         "selector": "variable",
-        "format": ["camelCase"],
+        "format": ["camelCase", "PascalCase"],
         "leadingUnderscore": "allow"
       },
       {
         "selector": ["function"],
-        "format": ["camelCase"]
+        "format": ["camelCase", "PascalCase"]
       },
       {
         "selector": "parameter",
-        "format": ["camelCase"],
+        "format": ["camelCase", "PascalCase"],
         "leadingUnderscore": "allow"
       },
       {
@@ -91,11 +101,6 @@
         "format": ["PascalCase"]
       }
     ]
-  },
-  "settings": {
-    "react": {
-      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-    }
   },
   "overrides": [
     {
