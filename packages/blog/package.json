@@ -9,26 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@whe/common": "*",
     "@emotion/react": "11.8.1",
     "@emotion/styled": "11.8.1",
+    "@whe/common": "*",
     "i18next": "21.6.12",
     "ky": "0.30.0",
     "next": "12.1.0",
     "next-i18next": "10.5.0",
     "next-secure-headers": "2.2.0",
-    "react-dom": "17.0.2",
     "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-i18next": "11.15.5",
     "react-query": "3.34.16"
   },
   "devDependencies": {
+    "@svgr/webpack": "6.2.1",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
-    "@svgr/webpack": "6.2.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-node": "0.3.6",
     "eslint-import-resolver-typescript": "2.5.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jest": "26.1.1",
@@ -40,7 +41,6 @@
     "eslint-plugin-regexp": "1.5.1",
     "eslint-plugin-sonarjs": "0.12.0",
     "eslint-plugin-testing-library": "5.0.5",
-    "eslint-import-resolver-node": "0.3.6",
     "picocolors": "1.0.0",
     "typescript": "4.6.2"
   }
