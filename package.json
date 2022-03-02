@@ -32,7 +32,7 @@
     "release": "node scripts/release.js",
     "clean": "node scripts/clean.js",
     "build": "yarn clean && run-s build:dep:*",
-    "test": "jest",
+    "test": "yarn workspaces foreach -ptv run test",
     "test:watch": "jest --watch",
     "test:ci": "yarn test --silent --ci=true --coverage --coverageReporters=cobertura --coverageReporters=lcov",
     "lint": "eslint --fix packages/**/*.{ts,tsx}",
