@@ -8996,6 +8996,8 @@ __metadata:
     "@strapi/plugin-i18n": 4.1.2
     "@strapi/plugin-users-permissions": 4.1.2
     "@strapi/strapi": 4.1.2
+    "@types/jest": 27.4.1
+    jest: 27.5.1
     pg: 8.7.3
     strapi-plugin-ckeditor5: 2.0.0-rc.2
   languageName: unknown
@@ -9084,6 +9086,7 @@ __metadata:
     eslint-plugin-storybook: 0.5.7
     eslint-plugin-testing-library: 5.0.5
     framer-motion: ^6.2.8
+    jest: 27.5.1
     ts-jest: 27.1.3
     ts-node: 10.6.0
     typescript: 4.6.2

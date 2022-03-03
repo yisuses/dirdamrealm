@@ -8,10 +8,12 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.17.0"
+    "@babel/eslint-parser": "7.17.0",
+    "@types/jest": "27.4.1",
+    "jest": "27.5.1"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.1.2",
