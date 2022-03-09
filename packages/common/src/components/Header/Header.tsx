@@ -2,22 +2,25 @@ import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import {
   Box,
   Flex,
-  Avatar,
   Link,
   IconButton,
-  Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
-  Stack,
   useColorMode,
   HStack,
+  Divider,
+  Center,
+  Image,
+  useMediaQuery,
+  Text,
 } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import logoLG from '../../assets/images/WE-logo-DESKTOP.png'
+import logoSM from '../../assets/images/WE-logo-MOBILE.png'
 
 export const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -30,67 +33,73 @@ export const NavLink = ({ children }: { children: ReactNode }) => (
     }}
     href={'#'}
   >
-    {children}
+    <Text>{children}</Text>
   </Link>
 )
 
-const Links = ['Dashboard', 'Projects', 'Team']
+export type HeaderProps = {
+  categories: string[]
+}
 
-export function Simple() {
+export function Header({ categories }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)')
+
   return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
-            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
-          </HStack>
-          <Flex alignItems={'center'}>
-            <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
-            <Menu>
-              <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
-        </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
+    <Box
+      bg={useColorModeValue('gray.100', 'gray.900')}
+      pr={{ base: 4, md: 8 }}
+      pl={{ base: 2, md: 8 }}
+      h={{ base: '60px', md: '80px' }}
+    >
+      <Flex h="full" alignItems="center" justifyContent="space-between">
+        <HStack alignItems="center">
+          <Box>
+            <Image
+              maxHeight={`${isLargerThan1024 ? 65 : 45}px`}
+              objectFit="cover"
+              src={isLargerThan1024 ? logoLG : logoSM}
+              alt="White Emotion Logo"
+            />
           </Box>
-        ) : null}
-      </Box>
-
-      <Box p={4}>Main Content Here</Box>
-    </>
+        </HStack>
+        <Flex alignItems="center">
+          <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
+            {categories.map(link => (
+              <NavLink key={link}>{link}</NavLink>
+            ))}
+          </HStack>
+          <Menu>
+            <MenuButton as={IconButton} display={{ md: 'none' }} variant="link" cursor="pointer" minW={0}>
+              <IconButton
+                size={'sm'}
+                icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                aria-label="Open Menu"
+                onClick={isOpen ? onClose : onOpen}
+                bg={useColorModeValue('gray.100', 'gray.900')}
+              />
+            </MenuButton>
+            <MenuList minWidth="max-content" fontSize={isLargerThan1024 ? 'md' : 'sm'}>
+              {categories.map(link => (
+                <MenuItem key={link}>
+                  <NavLink>{link}</NavLink>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+          <Center h={{ base: '20px', md: '40px' }} w={{ base: '5px', md: '20px' }}>
+            <Divider orientation="vertical" borderColor={useColorModeValue('gray.400', 'gray.600')} />
+          </Center>
+          <IconButton
+            size={'sm'}
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            aria-label="Toggle theme"
+            bg={useColorModeValue('gray.100', 'gray.900')}
+            onClick={toggleColorMode}
+          />
+        </Flex>
+      </Flex>
+    </Box>
   )
 }

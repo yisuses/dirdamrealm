@@ -1,11 +1,11 @@
+import { ChakraProvider } from '@chakra-ui/react'
 import type { EmotionCache } from '@emotion/react'
 import { CacheProvider } from '@emotion/react'
-import { ThemeProvider as MuiThemeProvider } from '@mui/material'
 import type { FC } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { createEmotionCache } from '@/core/nextjs/create-emotion-cache'
-import { muiTheme } from '@/themes/mui.theme'
+import { chakraTheme } from '@/themes/chakra.theme'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,11 +26,9 @@ export const AppProviders: FC<Props> = props => {
   const { emotionCache = clientSideEmotionCache } = props
   return (
     <CacheProvider value={emotionCache}>
-      <MuiThemeProvider theme={muiTheme}>
-        {/* Mui CssBaseline disabled in this example as tailwind provides its own */}
-        {/* <CssBaseline /> */}
+      <ChakraProvider theme={chakraTheme}>
         <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
-      </MuiThemeProvider>
+      </ChakraProvider>
     </CacheProvider>
   )
 }

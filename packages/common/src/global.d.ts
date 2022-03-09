@@ -292,3 +292,8 @@ type VideoPropsWithoutRef = React.VideoHTMLAttributes<HTMLVideoElement>
 type WebViewProps = React.DetailedHTMLProps<React.WebViewHTMLAttributes<HTMLWebViewElement>, HTMLWebViewElement>
 /** Equivalent to `React.WebViewHTMLAttributes<HTMLWebViewElement>` */
 type WebViewPropsWithoutRef = React.WebViewHTMLAttributes<HTMLWebViewElement>
+
+declare module '*.png' {
+  const value: any
+  export = value
+}

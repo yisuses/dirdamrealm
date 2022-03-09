@@ -1,13 +1,15 @@
 import { Story, Meta } from '@storybook/react'
-import { Simple } from './Header'
+import { Header, HeaderProps } from './Header'
 
 export default {
   title: 'Header',
-  component: Simple,
+  component: Header,
   argTypes: {},
 } as Meta
 
-const Template: Story = args => <Simple {...args} />
+const Template: Story<HeaderProps> = args => <Header {...args} />
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  categories: ['Dashboard', 'Projects', 'Team'],
+}
