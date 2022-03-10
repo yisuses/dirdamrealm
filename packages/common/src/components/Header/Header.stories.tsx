@@ -12,6 +12,6 @@ const Template: Story<HeaderProps> = args => <Header {...args} />
 export const Default = Template.bind({})
 Default.args = {
   categories: ['Dashboard', 'Projects', 'Team'],
-  logoSM: 'logoSM',
-  logoLG: 'logoLG',
+  logoSMpath: 'logoSM',
+  logoLGpath: 'logoLG',
 }

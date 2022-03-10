@@ -1,10 +1,12 @@
-import { Image } from '@chakra-ui/react'
+import { useMediaQuery } from '@chakra-ui/react'
 import { Header } from '@whe/common'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)')
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,12 +16,9 @@ const Home: NextPage = () => {
       </Head>
       <Header
         categories={['Deportes', 'Cultura', 'Economía', 'Tecnología']}
-        logoSM={
-          <Image maxHeight={'45px'} objectFit="cover" src="/images/WE-logo-MOBILE.png" alt="White Emotion Logo" />
-        }
-        logoLG={
-          <Image maxHeight={'70px'} objectFit="cover" src="/images/WE-logo-DESKTOP.png" alt="White Emotion Logo" />
-        }
+        logoSMpath="/images/WE-logo-MOBILE.png"
+        logoLGpath="/images/WE-logo-DESKTOP.png"
+        size={isLargerThan1024 ? 'lg' : 'sm'}
       />
 
       <main className={styles.main}>CONTENT</main>

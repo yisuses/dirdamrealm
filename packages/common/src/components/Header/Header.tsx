@@ -11,24 +11,25 @@ import {
   useDisclosure,
   useColorModeValue,
   useColorMode,
+  Image,
   HStack,
   Divider,
   Center,
-  useMediaQuery,
   Text,
 } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 export type HeaderProps = {
   categories: string[]
-  logoSM?: ReactNode
-  logoLG?: ReactNode
+  logoSMpath?: string
+  logoLGpath?: string
+  logoAlt?: string
+  size: 'sm' | 'lg'
 }
 
-export function Header({ categories, logoLG, logoSM }: HeaderProps) {
+export function Header({ categories, logoLGpath, logoSMpath, size = 'sm' }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
-  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)')
 
   return (
     <Box
@@ -39,7 +40,14 @@ export function Header({ categories, logoLG, logoSM }: HeaderProps) {
     >
       <Flex h="full" alignItems="center" justifyContent="space-between">
         <HStack alignItems="center">
-          <Box>{isLargerThan1024 ? logoLG : logoSM}</Box>
+          <Box>
+            <Image
+              maxHeight={size === 'sm' ? '45px' : '70px'}
+              objectFit="cover"
+              src={size === 'sm' ? logoSMpath : logoLGpath}
+              alt="White Emotion Logo"
+            />
+          </Box>
         </HStack>
         <Flex alignItems="center">
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
@@ -57,7 +65,7 @@ export function Header({ categories, logoLG, logoSM }: HeaderProps) {
                 bg={useColorModeValue('gray.100', 'gray.900')}
               />
             </MenuButton>
-            <MenuList minWidth="max-content" fontSize={isLargerThan1024 ? 'md' : 'sm'}>
+            <MenuList minWidth="max-content" fontSize={size === 'sm' ? 'sm' : 'md'}>
               {categories.map(link => (
                 <MenuItem key={link}>
                   <NavLink>{link}</NavLink>
