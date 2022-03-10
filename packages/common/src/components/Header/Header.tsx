@@ -14,34 +14,18 @@ import {
   HStack,
   Divider,
   Center,
-  Image,
   useMediaQuery,
   Text,
 } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import logoLG from '../../assets/images/WE-logo-DESKTOP.png'
-import logoSM from '../../assets/images/WE-logo-MOBILE.png'
-
-export const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}
-  >
-    <Text>{children}</Text>
-  </Link>
-)
 
 export type HeaderProps = {
   categories: string[]
+  logoSM?: ReactNode
+  logoLG?: ReactNode
 }
 
-export function Header({ categories }: HeaderProps) {
+export function Header({ categories, logoLG, logoSM }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
   const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)')
@@ -55,14 +39,7 @@ export function Header({ categories }: HeaderProps) {
     >
       <Flex h="full" alignItems="center" justifyContent="space-between">
         <HStack alignItems="center">
-          <Box>
-            <Image
-              maxHeight={`${isLargerThan1024 ? 65 : 45}px`}
-              objectFit="cover"
-              src={isLargerThan1024 ? logoLG : logoSM}
-              alt="White Emotion Logo"
-            />
-          </Box>
+          <Box>{isLargerThan1024 ? logoLG : logoSM}</Box>
         </HStack>
         <Flex alignItems="center">
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
@@ -103,3 +80,18 @@ export function Header({ categories }: HeaderProps) {
     </Box>
   )
 }
+
+const NavLink = ({ children }: { children: ReactNode }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={'md'}
+    _hover={{
+      textDecoration: 'none',
+      bg: useColorModeValue('gray.200', 'gray.700'),
+    }}
+    href={'#'}
+  >
+    <Text>{children}</Text>
+  </Link>
+)
