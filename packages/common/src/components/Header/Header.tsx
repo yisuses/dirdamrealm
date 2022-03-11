@@ -11,7 +11,6 @@ import {
   useDisclosure,
   useColorModeValue,
   useColorMode,
-  Image,
   HStack,
   Divider,
   Center,
@@ -21,13 +20,11 @@ import { ReactNode } from 'react'
 
 export type HeaderProps = {
   categories: string[]
-  logoSMpath?: string
-  logoLGpath?: string
-  logoAlt?: string
+  logo?: ReactNode
   size: 'sm' | 'lg'
 }
 
-export function Header({ categories, logoLGpath, logoSMpath, size = 'sm' }: HeaderProps) {
+export function Header({ categories, logo, size = 'sm' }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -36,18 +33,11 @@ export function Header({ categories, logoLGpath, logoSMpath, size = 'sm' }: Head
       bg={useColorModeValue('gray.100', 'gray.900')}
       pr={{ base: 4, md: 8 }}
       pl={{ base: 2, md: 8 }}
-      h={{ base: '60px', md: '80px' }}
+      h={{ base: '60px', lg: '80px' }}
     >
       <Flex h="full" alignItems="center" justifyContent="space-between">
         <HStack alignItems="center">
-          <Box>
-            <Image
-              maxHeight={size === 'sm' ? '45px' : '70px'}
-              objectFit="cover"
-              src={size === 'sm' ? logoSMpath : logoLGpath}
-              alt="White Emotion Logo"
-            />
-          </Box>
+          <Box>{logo}</Box>
         </HStack>
         <Flex alignItems="center">
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">

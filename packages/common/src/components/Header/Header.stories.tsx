@@ -4,7 +4,6 @@ import { Header, HeaderProps } from './Header'
 export default {
   title: 'Header',
   component: Header,
-  argTypes: {},
 } as Meta
 
 const Template: Story<HeaderProps> = args => <Header {...args} />
@@ -12,6 +11,5 @@ const Template: Story<HeaderProps> = args => <Header {...args} />
 export const Default = Template.bind({})
 Default.args = {
   categories: ['Dashboard', 'Projects', 'Team'],
-  logoSMpath: 'logoSM',
-  logoLGpath: 'logoLG',
+  logo: 'logo',
 }
