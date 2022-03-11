@@ -54,7 +54,11 @@
         "selector": "default",
         "format": ["camelCase"],
         "leadingUnderscore": "forbid",
-        "trailingUnderscore": "forbid"
+        "trailingUnderscore": "forbid",
+        "filter": {
+          "regex": "^(\\d+|\\dx\\w+)$",
+          "match": false
+        }
       },
       {
         "selector": "variable",
@@ -86,7 +90,11 @@
           "snake_case",
           // Env variables are generally uppercase
           "UPPER_CASE"
-        ]
+        ],
+        "filter": {
+          "regex": "^(\\d+|\\dx\\w+)$",
+          "match": false
+        }
       },
       {
         "selector": ["typeAlias", "interface"],

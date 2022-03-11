@@ -1,42 +1,50 @@
 import { Box, useMediaQuery } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { Header } from '@whe/common'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import { GlobalStyles } from '@/components'
+import { getUpMedia } from '@/themes/emotion.theme'
 
 interface MainLayoutProps {
   children: ReactNode
 }
 
-{
-  /* <Image
-maxHeight={size === 'sm' ? '45px' : '70px'}
-objectFit="cover"
-src={size === 'sm' ? logoSMpath : logoLGpath}
-alt="White Emotion Logo"
-/> */
-}
-
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const [isLargerThan992] = useMediaQuery('(min-width: 992px)')
+  const [isBiggerThanLG] = useMediaQuery(getUpMedia('lg'))
 
   const logo = (
-    <Image
-      alt="White Emotion Logo"
-      src={isLargerThan992 ? '/images/WE-logo-DESKTOP.png' : '/images/WE-logo-MOBILE.png'}
-      width={isLargerThan992 ? '256px' : '45px'}
-      height={isLargerThan992 ? '80x' : '45px'}
-      objectFit="contain"
-      layout="fixed"
-    />
+    <MyImage>
+      <span className="desktop">
+        <Image
+          alt="White Emotion Logo"
+          src={'/images/WE-logo-DESKTOP.png'}
+          width={'256px'}
+          height={'80px'}
+          objectFit="contain"
+          layout="fixed"
+        />
+      </span>
+      <span className="mobile">
+        <Image
+          alt="White Emotion Logo"
+          src={'/images/WE-logo-MOBILE.png'}
+          width={'45px'}
+          height={'45px'}
+          objectFit="contain"
+          layout="fixed"
+        />
+      </span>
+    </MyImage>
   )
+
   return (
     <>
       <GlobalStyles />
       <Header
         categories={['Deportes', 'Cultura', 'Economía', 'Tecnología']}
         logo={logo}
-        size={isLargerThan992 ? 'lg' : 'sm'}
+        size={isBiggerThanLG ? 'lg' : 'sm'}
       />
       <Box as="main" height="100vh" p={{ base: 0, md: 4 }} maxW={{ base: 'full', lg: '1440px' }} margin="0 auto">
         {children}
@@ -46,3 +54,21 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
     </>
   )
 }
+
+const MyImage = styled.div`
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: inline-block;
+  }
+
+  ${({ theme }) => theme.media.up.lg} {
+    .desktop {
+      display: inline-block;
+    }
+    .mobile {
+      display: none;
+    }
+  }
+`

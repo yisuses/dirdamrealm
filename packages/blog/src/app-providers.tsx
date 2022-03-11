@@ -5,7 +5,7 @@ import { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { createEmotionCache } from '@/core/nextjs/create-emotion-cache'
-import { chakraTheme } from '@/themes/chakra.theme'
+import theme from '@/themes/emotion.theme'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +26,7 @@ type AppProvidersProps = {
 export const AppProviders = ({ children, emotionCache = clientSideEmotionCache }: AppProvidersProps) => {
   return (
     <CacheProvider value={emotionCache}>
-      <ChakraProvider theme={chakraTheme}>
+      <ChakraProvider theme={theme}>
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       </ChakraProvider>
     </CacheProvider>
