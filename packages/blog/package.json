@@ -10,13 +10,14 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.7",
-    "@chakra-ui/react": "^1.8.6",
-    "@chakra-ui/theme-tools": "^1.3.6",
+    "@chakra-ui/icons": "1.1.7",
+    "@chakra-ui/react": "1.8.6",
+    "@chakra-ui/theme-tools": "1.3.6",
     "@emotion/react": "11.8.1",
     "@emotion/styled": "11.8.1",
     "@whe/common": "*",
-    "framer-motion": "^6.2.8",
+    "@fontsource/roboto": "4.5.3",
+    "framer-motion": "6.2.8",
     "i18next": "21.6.13",
     "ky": "0.30.0",
     "next": "12.1.0",

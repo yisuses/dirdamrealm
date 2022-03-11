@@ -1,7 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import type { EmotionCache } from '@emotion/react'
 import { CacheProvider } from '@emotion/react'
-import type { FC } from 'react'
+import { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { createEmotionCache } from '@/core/nextjs/create-emotion-cache'
@@ -18,16 +18,16 @@ const queryClient = new QueryClient({
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
-type Props = {
+type AppProvidersProps = {
+  children: ReactNode
   emotionCache?: EmotionCache
 }
 
-export const AppProviders: FC<Props> = props => {
-  const { emotionCache = clientSideEmotionCache } = props
+export const AppProviders = ({ children, emotionCache = clientSideEmotionCache }: AppProvidersProps) => {
   return (
     <CacheProvider value={emotionCache}>
       <ChakraProvider theme={chakraTheme}>
-        <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       </ChakraProvider>
     </CacheProvider>
   )

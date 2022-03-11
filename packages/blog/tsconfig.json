@@ -12,7 +12,9 @@
       "@/features/*": ["./features/*"],
       "@/pages/*": ["./pages/*"],
       "@/config/*": ["./config/*"],
-      "@/core/*": ["./core/*"]
+      "@/core/*": ["./core/*"],
+      "@/components/*": ["./components/*"],
+      "@/components": ["./components"]
     }
   },
   "exclude": [".next"],
