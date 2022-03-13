@@ -1,76 +1,40 @@
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Flex,
-  Link,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useDisclosure,
-  useColorModeValue,
-  useColorMode,
-  HStack,
-  Divider,
-  Center,
-  Text,
-} from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Flex, IconButton, useColorModeValue, useColorMode, HStack, Divider, Center } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import { HeaderDropdown } from './HeaderDropdown'
+import { HeaderLink } from './HeaderLink'
 
 export type HeaderProps = {
-  categories: string[]
+  categories: ReactNode[]
   logo?: ReactNode
-  size: 'sm' | 'lg'
 }
 
-export function Header({ categories, logo, size = 'sm' }: HeaderProps) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+export function Header({ categories, logo }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Box
-      bg={useColorModeValue('gray.100', 'gray.900')}
-      pr={{ base: 4, md: 8 }}
-      pl={{ base: 2, md: 8 }}
-      h={{ base: '60px', lg: '80px' }}
-    >
+    <Box bg={'transparent.200'} pr={{ base: 4, md: 8 }} pl={{ base: 2, md: 8 }} h={{ base: '60px', lg: '80px' }}>
       <Flex h="full" alignItems="center" justifyContent="space-between">
-        <HStack alignItems="center">
-          <Box>{logo}</Box>
-        </HStack>
+        {logo && (
+          <HStack alignItems="center">
+            <Box>{logo}</Box>
+          </HStack>
+        )}
         <Flex alignItems="center">
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
-            {categories.map(link => (
-              <NavLink key={link}>{link}</NavLink>
+            {categories.map((category, index) => (
+              <HeaderLink key={index}>{category}</HeaderLink>
             ))}
           </HStack>
-          <Menu>
-            <MenuButton as={IconButton} display={{ md: 'none' }} variant="link" cursor="pointer" minW={0}>
-              <IconButton
-                size={'sm'}
-                icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                aria-label="Open Menu"
-                onClick={isOpen ? onClose : onOpen}
-                bg={useColorModeValue('gray.100', 'gray.900')}
-              />
-            </MenuButton>
-            <MenuList minWidth="max-content" fontSize={size === 'sm' ? 'sm' : 'md'}>
-              {categories.map(link => (
-                <MenuItem key={link}>
-                  <NavLink>{link}</NavLink>
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
+          <HeaderDropdown categories={categories} />
           <Center h={{ base: '20px', md: '40px' }} w={{ base: '5px', md: '20px' }}>
             <Divider orientation="vertical" borderColor={useColorModeValue('gray.400', 'gray.600')} />
           </Center>
           <IconButton
-            size={'sm'}
+            size="sm"
             icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             aria-label="Toggle theme"
-            bg={useColorModeValue('gray.100', 'gray.900')}
+            bg="transparent"
             onClick={toggleColorMode}
           />
         </Flex>
@@ -78,18 +42,3 @@ export function Header({ categories, logo, size = 'sm' }: HeaderProps) {
     </Box>
   )
 }
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}
-  >
-    <Text>{children}</Text>
-  </Link>
-)

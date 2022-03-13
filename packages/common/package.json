@@ -11,7 +11,9 @@
     "build": "yarn clean && yarn build-storybook -o build",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "clean": "rm -rf ./build"
+    "clean": "rm -rf ./build",
+    "gen:theme-typings": "chakra-cli tokens ./src/theme/chakra.theme.ts",
+    "postinstall": "yarn gen:theme-typings"
   },
   "dependencies": {
     "@chakra-ui/icons": "1.1.7",
@@ -23,6 +25,7 @@
     "framer-motion": "6.2.8"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "1.9.0",
     "@chakra-ui/storybook-addon": "1.0.3",
     "@storybook/addon-actions": "6.4.19",
     "@storybook/addon-essentials": "6.4.19",
