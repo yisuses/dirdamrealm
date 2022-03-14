@@ -1,3 +1,4 @@
+import { ConfigColorMode } from '@chakra-ui/react'
 import chakraTheme, { breakpoints } from './chakra.theme'
 
 export function getUpMedia(size: keyof typeof breakpoints): string {
@@ -18,6 +19,9 @@ function getUpMediaQuery(size: keyof typeof breakpoints): string {
 
 const theme = {
   ...chakraTheme,
+  config: {
+    initialColorMode: 'light' as ConfigColorMode,
+  },
   media: {
     down: {
       sm: getDownMediaQuery('sm'),

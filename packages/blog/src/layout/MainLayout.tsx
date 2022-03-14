@@ -1,10 +1,9 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useColorModeValue } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { Header } from '@whe/common'
 import Image from 'next/image'
-import Link from 'next/link'
 import { ReactNode } from 'react'
-import { GlobalStyles } from '@/components'
+import { GlobalStyles, NavLink } from '@/components'
 
 interface MainLayoutProps {
   children: ReactNode
@@ -16,7 +15,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <span className="desktop">
         <Image
           alt="White Emotion Logo"
-          src="/images/WE-logo-DESKTOP.png"
+          src={useColorModeValue('/images/WE-logo-DESKTOP_DARK.svg', '/images/WE-logo-DESKTOP_WHITE.svg')}
           width="256px"
           height="80px"
           objectFit="contain"
@@ -26,7 +25,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <span className="mobile">
         <Image
           alt="White Emotion Logo"
-          src="/images/WE-logo-MOBILE.png"
+          src={useColorModeValue('/images/WE-logo-MOBILE_DARK.svg', '/images/WE-logo-MOBILE_WHITE.svg')}
           width="45px"
           height="45px"
           objectFit="contain"
@@ -42,9 +41,9 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
     { label: 'Economía', href: '/economia' },
     { label: 'Tecnología', href: '/tecnologia' },
   ].map((category, index) => (
-    <Link href={category.href} key={index}>
-      {category.label}
-    </Link>
+    <NavLink href={category.href} key={index}>
+      <>{category.label}</>
+    </NavLink>
   ))
 
   return (
