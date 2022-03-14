@@ -1,4 +1,4 @@
-import theme from '../src/theme/theme'
+import theme from '../src/themes/emotion.theme'
 import '@fontsource/roboto'
 
 export const parameters = {
@@ -12,18 +12,5 @@ export const parameters = {
   chakra: {
     theme,
   },
+  layout: 'fullscreen',
 }
-
-const StoryTemplate = ({ children, ...rest }) => (
-  <div style={{ margin: 10, marginTop: 40 }} {...rest}>
-    {children}
-  </div>
-)
-
-export const decorators = [
-  Story => (
-    <StoryTemplate>
-      <Story />
-    </StoryTemplate>
-  ),
-]

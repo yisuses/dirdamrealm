@@ -1,13 +1,34 @@
+import styled from '@emotion/styled'
 import { Story, Meta } from '@storybook/react'
-import { Simple } from './Header'
+import { Header, HeaderProps } from './Header'
 
 export default {
   title: 'Header',
-  component: Simple,
-  argTypes: {},
+  component: Header,
+  argTypes: {
+    categories: {
+      control: false,
+    },
+  },
+  decorators: [
+    Story => (
+      <StyledTemplate>
+        <Story />
+      </StyledTemplate>
+    ),
+  ],
 } as Meta
 
-const Template: Story = args => <Simple {...args} />
+const Template: Story<HeaderProps> = args => <Header {...args} />
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  categories: ['Dashboard', 'Projects', 'Team'],
+  logo: 'logo',
+}
+
+const StyledTemplate = styled.div`
+  padding-top: 50px;
+  height: 500px;
+  background: radial-gradient(circle, tomato, white);
+`

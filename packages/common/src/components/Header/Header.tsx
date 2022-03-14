@@ -1,96 +1,44 @@
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Flex,
-  Avatar,
-  Link,
-  IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  useColorMode,
-  HStack,
-} from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Flex, IconButton, useColorModeValue, useColorMode, HStack, Divider, Center } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import { HeaderDropdown } from './HeaderDropdown'
+import { HeaderLink } from './HeaderLink'
 
-export const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}
-  >
-    {children}
-  </Link>
-)
+export type HeaderProps = {
+  categories: ReactNode[]
+  logo?: ReactNode
+}
 
-const Links = ['Dashboard', 'Projects', 'Team']
-
-export function Simple() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+export function Header({ categories, logo }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode()
+
   return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
-            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
+    <Box bg={'transparent.200'} pr={{ base: 4, md: 8 }} pl={{ base: 2, md: 8 }} h={{ base: '60px', lg: '80px' }}>
+      <Flex h="full" alignItems="center" justifyContent="space-between">
+        {logo && (
+          <HStack alignItems="center">
+            <Box>{logo}</Box>
           </HStack>
-          <Flex alignItems={'center'}>
-            <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
-            <Menu>
-              <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
+        )}
+        <Flex alignItems="center">
+          <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
+            {categories.map((category, index) => (
+              <HeaderLink key={index}>{category}</HeaderLink>
+            ))}
+          </HStack>
+          <HeaderDropdown categories={categories} />
+          <Center h={{ base: '20px', md: '40px' }} w={{ base: '5px', md: '20px' }}>
+            <Divider orientation="vertical" borderColor={useColorModeValue('gray.400', 'gray.600')} />
+          </Center>
+          <IconButton
+            size="sm"
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            aria-label="Toggle theme"
+            bg="transparent"
+            onClick={toggleColorMode}
+          />
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-
-      <Box p={4}>Main Content Here</Box>
-    </>
+      </Flex>
+    </Box>
   )
 }

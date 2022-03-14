@@ -37,7 +37,8 @@
     "test:ci": "yarn test --silent --ci=true --coverage --coverageReporters=cobertura --coverageReporters=lcov",
     "lint": "eslint --fix packages/**/*.{ts,tsx}",
     "ncu": "ncu --deep",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postInstall": "patch-package"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.1",
@@ -46,6 +47,7 @@
     "lint-staged": "12.3.5",
     "npm-check-updates": "12.5.2",
     "npm-run-all": "4.1.5",
+    "patch-package": "6.4.7",
     "prettier": "2.5.1",
     "prompts": "2.4.2",
     "standard-version": "9.3.2",

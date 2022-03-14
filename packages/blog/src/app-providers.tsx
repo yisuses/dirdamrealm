@@ -1,11 +1,11 @@
+import { ChakraProvider } from '@chakra-ui/react'
 import type { EmotionCache } from '@emotion/react'
 import { CacheProvider } from '@emotion/react'
-import { ThemeProvider as MuiThemeProvider } from '@mui/material'
-import type { FC } from 'react'
+import { emotionTheme } from '@whe/common'
+import { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { createEmotionCache } from '@/core/nextjs/create-emotion-cache'
-import { muiTheme } from '@/themes/mui.theme'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,19 +18,17 @@ const queryClient = new QueryClient({
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
-type Props = {
+type AppProvidersProps = {
+  children: ReactNode
   emotionCache?: EmotionCache
 }
 
-export const AppProviders: FC<Props> = props => {
-  const { emotionCache = clientSideEmotionCache } = props
+export const AppProviders = ({ children, emotionCache = clientSideEmotionCache }: AppProvidersProps) => {
   return (
     <CacheProvider value={emotionCache}>
-      <MuiThemeProvider theme={muiTheme}>
-        {/* Mui CssBaseline disabled in this example as tailwind provides its own */}
-        {/* <CssBaseline /> */}
-        <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
-      </MuiThemeProvider>
+      <ChakraProvider theme={emotionTheme}>
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      </ChakraProvider>
     </CacheProvider>
   )
 }
