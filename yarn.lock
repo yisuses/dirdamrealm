@@ -3220,6 +3220,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/lora@npm:4.5.4":
+  version: 4.5.4
+  resolution: "@fontsource/lora@npm:4.5.4"
+  checksum: d1e6ca3e1bc6ada61f37e671a163ead7d408ed5f9596f481eb7e4455e241624e7055b36b2b0c2d4356ce088ba7a2311ee457ae4af57c9ea5b8cbd1c9af614a85
+  languageName: node
+  linkType: hard
+
 "@fontsource/roboto@npm:4.5.3":
   version: 4.5.3
   resolution: "@fontsource/roboto@npm:4.5.3"
@@ -8118,6 +8125,7 @@ __metadata:
     "@chakra-ui/theme-tools": 1.3.6
     "@emotion/react": 11.8.1
     "@emotion/styled": 11.8.1
+    "@fontsource/lora": 4.5.4
     "@fontsource/roboto": 4.5.3
     "@storybook/addon-actions": 6.4.19
     "@storybook/addon-essentials": 6.4.19

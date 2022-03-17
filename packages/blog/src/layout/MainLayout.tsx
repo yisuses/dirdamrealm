@@ -1,6 +1,6 @@
 import { Box, useColorModeValue } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import { Header } from '@whe/common'
+import { Header, Footer } from '@whe/common'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import { GlobalStyles, NavLink } from '@/components'
@@ -53,7 +53,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <Box as="main" height="100vh" p={{ base: 0, md: 4 }} maxW={{ base: 'full', lg: '1440px' }} margin="0 auto">
         {children}
       </Box>
-      <footer>FOOTER</footer>
+      <Footer />
     </>
   )
 }

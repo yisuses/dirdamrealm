@@ -10,7 +10,7 @@ export const breakpoints = {
 }
 
 const fonts = {
-  body: 'Roboto, sans-serif',
+  body: 'Lora, sans-serif',
   heading: 'Roboto, sans-serif',
 }
 
@@ -20,6 +20,12 @@ const colors = {
     '200': 'rgba(0,0,0,0.2)',
     '500': 'rgba(0,0,0,0.5)',
     full: 'transparent',
+  },
+  gray: {
+    '50': '#E5E5E5',
+    '800': '#343A40',
+    '900': '#212529',
+    '950': '#495057',
   },
 }
 

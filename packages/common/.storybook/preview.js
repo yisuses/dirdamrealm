@@ -1,5 +1,6 @@
 import theme from '../src/themes/emotion.theme'
 import '@fontsource/roboto'
+import '@fontsource/lora'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
