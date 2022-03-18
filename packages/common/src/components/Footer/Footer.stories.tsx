@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Story, Meta } from '@storybook/react'
-import { Footer } from './Footer'
+import { Footer, FooterProps } from './Footer'
 
 export default {
   title: 'Footer',
@@ -19,10 +19,13 @@ export default {
   ],
 } as Meta
 
-const Template: Story = args => <Footer {...args} />
+const Template: Story<FooterProps> = args => <Footer {...args}>Footer</Footer>
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  version: '1.0',
+  copyright: '© 2022 White Emotion. All rights reserved',
+}
 
 const StyledTemplate = styled.div`
   padding-top: 50px;

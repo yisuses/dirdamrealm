@@ -85,6 +85,9 @@ const nextConfig = {
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
     externalDir: true,
   },
+  publicRuntimeConfig: {
+    version: packageJson.version,
+  },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization
   images: {

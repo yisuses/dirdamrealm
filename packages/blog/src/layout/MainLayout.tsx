@@ -1,9 +1,9 @@
 import { Box, useColorModeValue } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import { Header, Footer } from '@whe/common'
+import { Header } from '@whe/common'
 import Image from 'next/image'
 import { ReactNode } from 'react'
-import { GlobalStyles, NavLink } from '@/components'
+import { GlobalStyles, NavLink, WheFooter } from '@/components'
 
 interface MainLayoutProps {
   children: ReactNode
@@ -35,25 +35,32 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
     </LogoContainer>
   )
 
-  const categoryLinks = [
+  const categories = [
     { label: 'Deportes', href: '/deportes' },
     { label: 'Cultura', href: '/cultura' },
     { label: 'Economía', href: '/economia' },
     { label: 'Tecnología', href: '/tecnologia' },
-  ].map((category, index) => (
-    <NavLink href={category.href} key={index}>
-      <>{category.label}</>
+  ]
+  const categoryLinks = categories.map(({ href, label }, index) => (
+    <NavLink href={href} key={index}>
+      <>{label}</>
     </NavLink>
   ))
 
   return (
     <>
       <GlobalStyles />
-      <Header categories={categoryLinks} logo={logo} />
-      <Box as="main" height="100vh" p={{ base: 0, md: 4 }} maxW={{ base: 'full', lg: '1440px' }} margin="0 auto">
+      <Header links={categoryLinks} logo={logo} />
+      <Box
+        as="main"
+        minH={{ base: 'calc(100vh - 332px)', lg: 'calc(100vh - 352px)' }}
+        p={{ base: 0, lg: 4 }}
+        maxW={{ base: 'full', lg: '1440px' }}
+        margin="0 auto"
+      >
         {children}
       </Box>
-      <Footer />
+      <WheFooter categories={categories} />
     </>
   )
 }

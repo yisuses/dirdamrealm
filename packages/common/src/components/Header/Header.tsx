@@ -5,11 +5,11 @@ import { HeaderDropdown } from './HeaderDropdown'
 import { HeaderLink } from './HeaderLink'
 
 export type HeaderProps = {
-  categories: ReactNode[]
+  links: ReactNode[]
   logo?: ReactNode
 }
 
-export function Header({ categories, logo }: HeaderProps) {
+export function Header({ links, logo }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
@@ -22,11 +22,11 @@ export function Header({ categories, logo }: HeaderProps) {
         )}
         <Flex alignItems="center">
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
-            {categories.map((category, index) => (
-              <HeaderLink key={index}>{category}</HeaderLink>
+            {links.map((link, index) => (
+              <HeaderLink key={index}>{link}</HeaderLink>
             ))}
           </HStack>
-          <HeaderDropdown categories={categories} />
+          <HeaderDropdown categories={links} />
           <Center h={{ base: '20px', md: '40px' }} w={{ base: '5px', md: '20px' }}>
             <Divider orientation="vertical" borderColor={useColorModeValue('gray.400', 'gray.600')} />
           </Center>
