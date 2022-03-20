@@ -1,3 +1,11 @@
 {
-  "pageTitle": "Emoción Blanca"
+  "pageTitle": "Emoción Blanca",
+  "footer": {
+    "contact": "Contacto",
+    "categories": "Categorías",
+    "share": "Comparte la emoción",
+    "subscribe": "Suscribirse",
+    "version": "Versión {{versionNumber}}",
+    "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados."
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "pageTitle": "White Emotion"
+  "pageTitle": "White Emotion",
+  "footer": {
+    "contact": "Contact",
+    "categories": "Categories",
+    "share": "Share",
+    "subscribe": "Subscribe",
+    "version": "Version {{versionNumber}}",
+    "copyright": "\u00A9 {{year}} White Emotion. All rights reserved."
+  }
 }

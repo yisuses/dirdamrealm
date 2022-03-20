@@ -1,5 +1,6 @@
 import { SimpleGrid, Stack } from '@chakra-ui/react'
 import { Footer } from '@whe/common'
+import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 import { FaTwitter, FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa'
 
@@ -17,6 +18,7 @@ interface WheFooterProps {
 }
 
 export function WheFooter({ categories }: WheFooterProps) {
+  const { t } = useTranslation('common')
   const socials = [
     { label: 'Twitter', href: 'https://twitter.com/whe_io', icon: FaTwitter },
     { label: 'Youtube', href: 'https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw', icon: FaYoutube },
@@ -25,16 +27,19 @@ export function WheFooter({ categories }: WheFooterProps) {
   ]
 
   return (
-    <Footer version={`Version ${publicRuntimeConfig?.version}`} copyright="© 2022 White Emotion. All rights reserved">
+    <Footer
+      version={t('footer.version', { versionNumber: publicRuntimeConfig?.version })}
+      copyright={t('footer.copyright', { year: new Date().getFullYear() })}
+    >
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
         <Stack align="flex-start">
-          <FooterListHeader>Contacto</FooterListHeader>
+          <FooterListHeader>{t('footer.contact')}</FooterListHeader>
           <FooterListLink href={'#'}>José Madrid Pérez</FooterListLink>
           <FooterListLink href={'#'}>josem@halamadrid.com</FooterListLink>
         </Stack>
 
         <Stack align="flex-start">
-          <FooterListHeader>Categorías</FooterListHeader>
+          <FooterListHeader>{t('footer.categories')}</FooterListHeader>
           {categories.map(({ label, href }, index) => (
             <FooterListLink key={index} href={href}>
               {label}
@@ -43,7 +48,7 @@ export function WheFooter({ categories }: WheFooterProps) {
         </Stack>
 
         <Stack>
-          <FooterListHeader>Difunde la palabra</FooterListHeader>
+          <FooterListHeader>{t('footer.share')}</FooterListHeader>
           <Stack direction="row" spacing={6} paddingBottom="2">
             {socials.map(({ label, href, icon: Icon }, index) => (
               <FooterSocialButton key={index} label={label} href={href}>
@@ -51,7 +56,7 @@ export function WheFooter({ categories }: WheFooterProps) {
               </FooterSocialButton>
             ))}
           </Stack>
-          <FooterListLink href="#">Suscribirse</FooterListLink>
+          <FooterListLink href="#">{t('footer.subscribe')}</FooterListLink>
         </Stack>
       </SimpleGrid>
     </Footer>
