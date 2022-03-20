@@ -8082,6 +8082,7 @@ __metadata:
     "@types/node": 17.0.21
     "@types/react": 17.0.39
     "@whe/common": "*"
+    country-flag-icons: 1.4.24
     eslint: 8.10.0
     eslint-config-next: 12.1.0
     eslint-config-prettier: 8.5.0
@@ -8141,6 +8142,7 @@ __metadata:
     "@types/jest": 27.4.1
     "@typescript-eslint/eslint-plugin": 5.14.0
     "@typescript-eslint/parser": 5.14.0
+    country-flag-icons: 1.4.24
     eslint: 8.10.0
     eslint-config-prettier: 8.5.0
     eslint-import-resolver-typescript: 2.5.0
@@ -11353,6 +11355,13 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: 4be63e7117955fd88333d7460e4c466a90f556df6ef34efd59034d2463484e339666c41f02b523d574a797ec61f4a91918c5b89a316db2ea2f834e0d2d09465b
+  languageName: node
+  linkType: hard
+
+"country-flag-icons@npm:1.4.24":
+  version: 1.4.24
+  resolution: "country-flag-icons@npm:1.4.24"
+  checksum: 186fb0b10a6162d165ed359902f61c330e5045a189fdd2d3df4cd1781999071f43bbb88ff308d082a758407cd910a6178e1d36facb1a0688701a9d41d0c8fa90
   languageName: node
   linkType: hard
 

@@ -17,6 +17,7 @@
     "@emotion/styled": "11.8.1",
     "@fontsource/roboto": "4.5.3",
     "@whe/common": "*",
+    "country-flag-icons": "1.4.24",
     "framer-motion": "6.2.8",
     "i18next": "21.6.13",
     "ky": "0.30.0",

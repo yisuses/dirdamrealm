@@ -7,9 +7,10 @@ import { HeaderLink } from './HeaderLink'
 export type HeaderProps = {
   links: ReactNode[]
   logo?: ReactNode
+  language?: ReactNode
 }
 
-export function Header({ links, logo }: HeaderProps) {
+export function Header({ links, logo, language }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
@@ -37,6 +38,7 @@ export function Header({ links, logo }: HeaderProps) {
             bg="transparent"
             onClick={toggleColorMode}
           />
+          {language}
         </Flex>
       </Flex>
     </Box>
