@@ -17,7 +17,7 @@ export function Header({ links, logo, language }: HeaderProps) {
     <Box
       position="absolute"
       width="100%"
-      bg="transparent.300"
+      bg="transparent.800"
       zIndex="overlay"
       pr={{ base: 4, md: 8 }}
       pl={{ base: 2, md: 8 }}
@@ -41,10 +41,11 @@ export function Header({ links, logo, language }: HeaderProps) {
           </Center>
           <IconButton
             size="sm"
-            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            icon={colorMode === 'light' ? <MoonIcon color="white" /> : <SunIcon />}
             aria-label="Toggle theme"
             bg="transparent"
             onClick={toggleColorMode}
+            _hover={{ bg: 'whiteAlpha.300' }}
           />
           {language}
         </Flex>

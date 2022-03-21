@@ -42,7 +42,15 @@ export function WheHeader({ categories }: WheHeaderProps) {
   )
 
   logo = (
-    <Text color="white" fontFamily="spartan" fontWeight="700" fontSize="22px" bg="transparent.300" p="6">
+    <Text
+      color="white"
+      fontFamily="spartan"
+      fontWeight="700"
+      fontSize={{ base: '14px', md: '20px', lg: '22px' }}
+      height={{ base: '60px', lg: '80px' }}
+      alignItems="center"
+      display="flex"
+    >
       WHITE EMOTION
     </Text>
   )
