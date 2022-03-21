@@ -20,10 +20,10 @@ interface WheFooterProps {
 export function WheFooter({ categories }: WheFooterProps) {
   const { t } = useTranslation('common')
   const socials = [
-    { label: 'Twitter', href: 'https://twitter.com/whe_io', icon: FaTwitter },
-    { label: 'Youtube', href: 'https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw', icon: FaYoutube },
-    { label: 'Instagram', href: 'https://www.instagram.com/whe_io/', icon: FaInstagram },
-    { label: 'Linkedin', href: 'https://www.linkedin.com/company/whe-io/', icon: FaLinkedin },
+    { label: 'Twitter', href: 'https://twitter.com/', icon: FaTwitter },
+    { label: 'Youtube', href: 'https://www.youtube.com/channel/', icon: FaYoutube },
+    { label: 'Instagram', href: 'https://www.instagram.com/', icon: FaInstagram },
+    { label: 'Linkedin', href: 'https://www.linkedin.com/', icon: FaLinkedin },
   ]
 
   return (

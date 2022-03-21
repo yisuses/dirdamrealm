@@ -21,7 +21,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <Box
         as="main"
         minH={{ base: 'calc(100vh - 332px)', lg: 'calc(100vh - 352px)' }}
-        p={{ base: 0, lg: 4 }}
+        p={{ base: 0 }}
         maxW={{ base: 'full', lg: '1440px' }}
         margin="0 auto"
       >

@@ -14,7 +14,15 @@ export function Header({ links, logo, language }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Box bg={'transparent.200'} pr={{ base: 4, md: 8 }} pl={{ base: 2, md: 8 }} h={{ base: '60px', lg: '80px' }}>
+    <Box
+      position="absolute"
+      width="100%"
+      bg="transparent.300"
+      zIndex="overlay"
+      pr={{ base: 4, md: 8 }}
+      pl={{ base: 2, md: 8 }}
+      h={{ base: '60px', lg: '80px' }}
+    >
       <Flex h="full" alignItems="center" justifyContent="space-between">
         {logo && (
           <HStack alignItems="center">

@@ -3234,6 +3234,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/spartan@npm:4.5.4":
+  version: 4.5.4
+  resolution: "@fontsource/spartan@npm:4.5.4"
+  checksum: c43ee6c9bce0179defc53b6b714cd2f5903f11cde1bd227e54c54447788249be123e96a698395ce61e7ef08d2b2a40ff83517d4ba2ebf9869f07bed616121db2
+  languageName: node
+  linkType: hard
+
 "@formatjs/ecma402-abstract@npm:1.9.3":
   version: 1.9.3
   resolution: "@formatjs/ecma402-abstract@npm:1.9.3"
@@ -8128,6 +8135,7 @@ __metadata:
     "@emotion/styled": 11.8.1
     "@fontsource/lora": 4.5.4
     "@fontsource/roboto": 4.5.3
+    "@fontsource/spartan": 4.5.4
     "@storybook/addon-actions": 6.4.19
     "@storybook/addon-essentials": 6.4.19
     "@storybook/addon-links": 6.4.19
@@ -8142,7 +8150,6 @@ __metadata:
     "@types/jest": 27.4.1
     "@typescript-eslint/eslint-plugin": 5.14.0
     "@typescript-eslint/parser": 5.14.0
-    country-flag-icons: 1.4.24
     eslint: 8.10.0
     eslint-config-prettier: 8.5.0
     eslint-import-resolver-typescript: 2.5.0

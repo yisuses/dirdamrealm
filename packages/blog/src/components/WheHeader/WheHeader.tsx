@@ -1,4 +1,4 @@
-import { useColorModeValue, IconButton, Icon } from '@chakra-ui/react'
+import { useColorModeValue, IconButton, Icon, Text } from '@chakra-ui/react'
 import { Header } from '@whe/common'
 import { GB, ES } from 'country-flag-icons/react/3x2'
 import Image from 'next/image'
@@ -16,7 +16,7 @@ interface WheHeaderProps {
 export function WheHeader({ categories }: WheHeaderProps) {
   const router = useRouter()
 
-  const logo = (
+  let logo = (
     <LogoContainer>
       <span className="desktop">
         <Image
@@ -39,6 +39,12 @@ export function WheHeader({ categories }: WheHeaderProps) {
         />
       </span>
     </LogoContainer>
+  )
+
+  logo = (
+    <Text color="white" fontFamily="spartan" fontWeight="700" fontSize="22px" bg="transparent.300" p="6">
+      WHITE EMOTION
+    </Text>
   )
 
   const categoryLinks = categories.map(({ href, label }, index) => (
