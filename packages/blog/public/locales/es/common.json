@@ -7,5 +7,6 @@
     "subscribe": "Suscribirse",
     "version": "Versión {{versionNumber}}",
     "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados."
-  }
+  },
+  "categories": {}
 }

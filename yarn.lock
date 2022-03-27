@@ -8090,6 +8090,7 @@ __metadata:
     "@types/react": 17.0.39
     "@whe/common": "*"
     country-flag-icons: 1.4.24
+    date-fns: 2.28.0
     eslint: 8.10.0
     eslint-config-next: 12.1.0
     eslint-config-prettier: 8.5.0
@@ -11776,6 +11777,13 @@ __metadata:
   version: 2.24.0
   resolution: "date-fns@npm:2.24.0"
   checksum: f930419e356cf6a6a02c7ed6c6e438df61b4011861002a3dc94a4efc83bc96a7f30ea3cc2e7231c421604c3d5131f9ffb097bf8e7f81a59d68f556864490664f
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:2.28.0":
+  version: 2.28.0
+  resolution: "date-fns@npm:2.28.0"
+  checksum: a0516b2e4f99b8bffc6cc5193349f185f195398385bdcaf07f17c2c4a24473c99d933eb0018be4142a86a6d46cb0b06be6440ad874f15e795acbedd6fd727a1f
   languageName: node
   linkType: hard
 
