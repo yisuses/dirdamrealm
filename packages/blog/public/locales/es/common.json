@@ -8,5 +8,11 @@
     "version": "Versión {{versionNumber}}",
     "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados."
   },
+  "header": {
+    "logo": "Logotipo de White Emotion",
+    "menuButtonClosed": "Abrir menú",
+    "menuButtonOpen": "Cerrar menú",
+    "changeLanguage": "Cambiar idioma"
+  },
   "categories": {}
 }

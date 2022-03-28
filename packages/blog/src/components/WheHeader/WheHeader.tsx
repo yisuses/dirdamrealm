@@ -1,10 +1,12 @@
 import { useColorModeValue, IconButton, Icon, Text } from '@chakra-ui/react'
 import { Header } from '@whe/common'
 import { GB, ES } from 'country-flag-icons/react/3x2'
-import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
+import Image, { ImageProps } from 'next/image'
 import { useRouter } from 'next/router'
 import { NavLink } from '../NavLink/NavLink'
 import { LogoContainer } from './WheHeader.styles'
+import { WheHeaderDropdown } from './WheHeaderDropdown'
 
 interface WheHeaderProps {
   categories: {
@@ -15,44 +17,57 @@ interface WheHeaderProps {
 
 export function WheHeader({ categories }: WheHeaderProps) {
   const router = useRouter()
+  const { t } = useTranslation('common')
 
+  const logoProps: Partial<ImageProps> = {
+    alt: t('header.logo'),
+    objectFit: 'contain',
+    layout: 'fixed',
+  }
   let logo = (
     <LogoContainer>
-      <span className="desktop">
-        <Image
-          alt="White Emotion Logo"
-          src={useColorModeValue('/images/WE-logo-DESKTOP_DARK.svg', '/images/WE-logo-DESKTOP_WHITE.svg')}
-          width="256px"
-          height="80px"
-          objectFit="contain"
-          layout="fixed"
-        />
-      </span>
-      <span className="mobile">
-        <Image
-          alt="White Emotion Logo"
-          src={useColorModeValue('/images/WE-logo-MOBILE_DARK.svg', '/images/WE-logo-MOBILE_WHITE.svg')}
-          width="45px"
-          height="45px"
-          objectFit="contain"
-          layout="fixed"
-        />
-      </span>
+      <Image
+        className="desktop"
+        {...logoProps}
+        src={useColorModeValue('/images/WE-logo-DESKTOP_DARK.svg', '/images/WE-logo-DESKTOP_WHITE.svg')}
+        width="256px"
+        height="80px"
+      />
+      <Image
+        className="mobile"
+        {...logoProps}
+        src={useColorModeValue('/images/WE-logo-MOBILE_DARK.svg', '/images/WE-logo-MOBILE_WHITE.svg')}
+        width="45px"
+        height="45px"
+      />
     </LogoContainer>
   )
 
   logo = (
-    <Text
-      color="white"
-      fontFamily="spartan"
-      fontWeight="700"
-      fontSize={{ base: '14px', md: '20px', lg: '22px' }}
-      height={{ base: '60px', lg: '80px' }}
-      alignItems="center"
-      display="flex"
-    >
-      WHITE EMOTION
-    </Text>
+    <>
+      <Text
+        display={{ base: 'none', md: 'flex' }}
+        color="white"
+        fontFamily="spartan"
+        fontWeight="700"
+        fontSize={{ base: '14px', md: '20px', lg: '22px' }}
+        height={{ base: '60px', lg: '80px' }}
+        alignItems="center"
+      >
+        WHITE EMOTION
+      </Text>
+      <Text
+        color="white"
+        fontFamily="spartan"
+        fontWeight="700"
+        fontSize={{ base: '14px', md: '20px', lg: '22px' }}
+        height={{ base: '60px', lg: '80px' }}
+        alignItems="center"
+        display={{ base: 'flex', md: 'none' }}
+      >
+        W.E.
+      </Text>
+    </>
   )
 
   const categoryLinks = categories.map(({ href, label }, index) => (
@@ -65,7 +80,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
     <IconButton
       size="sm"
       icon={router.locale === 'es' ? <Icon as={ES} /> : <Icon as={GB} />}
-      aria-label="Toggle theme"
+      aria-label={t('header.changeLanguage')}
       bg="transparent"
       onClick={() => {
         router.push(router.asPath, undefined, { locale: router.locale === 'es' ? 'en' : 'es' })
@@ -73,5 +88,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
     />
   )
 
-  return <Header links={categoryLinks} logo={logo} language={language} />
+  const menu = <WheHeaderDropdown menuItems={categoryLinks} buttonProps={{ marginRight: '10px' }} />
+
+  return <Header links={categoryLinks} logo={logo} menu={menu} language={language} />
 }

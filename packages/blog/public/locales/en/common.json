@@ -7,5 +7,12 @@
     "subscribe": "Subscribe",
     "version": "Version {{versionNumber}}",
     "copyright": "\u00A9 {{year}} White Emotion. All rights reserved."
-  }
+  },
+  "header": {
+    "logo": "White Emotion logo",
+    "menuButtonClosed": "Open menu",
+    "menuButtonOpen": "Close menu",
+    "changeLanguage": "Change language"
+  },
+  "categories": {}
 }
