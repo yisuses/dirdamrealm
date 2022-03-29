@@ -11,7 +11,7 @@
   "header": {
     "logo": "White Emotion logo",
     "menuButtonClosed": "Open menu",
-    "menuButtonOpen": "Close menu",
+    "menuButtonOpened": "Close menu",
     "changeLanguage": "Change language"
   },
   "categories": {}

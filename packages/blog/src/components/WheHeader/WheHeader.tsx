@@ -1,4 +1,4 @@
-import { useColorModeValue, IconButton, Icon, Text } from '@chakra-ui/react'
+import { IconButton, Icon, Text } from '@chakra-ui/react'
 import { Header } from '@whe/common'
 import { GB, ES } from 'country-flag-icons/react/3x2'
 import { useTranslation } from 'next-i18next'
@@ -6,7 +6,7 @@ import Image, { ImageProps } from 'next/image'
 import { useRouter } from 'next/router'
 import { NavLink } from '../NavLink/NavLink'
 import { LogoContainer } from './WheHeader.styles'
-import { WheHeaderDropdown } from './WheHeaderDropdown'
+import { WheHeaderMenu } from './WheHeaderMenu'
 
 interface WheHeaderProps {
   categories: {
@@ -26,20 +26,12 @@ export function WheHeader({ categories }: WheHeaderProps) {
   }
   let logo = (
     <LogoContainer>
-      <Image
-        className="desktop"
-        {...logoProps}
-        src={useColorModeValue('/images/WE-logo-DESKTOP_DARK.svg', '/images/WE-logo-DESKTOP_WHITE.svg')}
-        width="256px"
-        height="80px"
-      />
-      <Image
-        className="mobile"
-        {...logoProps}
-        src={useColorModeValue('/images/WE-logo-MOBILE_DARK.svg', '/images/WE-logo-MOBILE_WHITE.svg')}
-        width="45px"
-        height="45px"
-      />
+      <span className="desktop">
+        <Image {...logoProps} src="/images/WE-logo-DESKTOP_WHITE.svg" width="256px" height="80px" />
+      </span>
+      <span className="mobile">
+        <Image {...logoProps} src="/images/WE-logo-MOBILE_WHITE.svg" width="45px" height="45px" />
+      </span>
     </LogoContainer>
   )
 
@@ -88,7 +80,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
     />
   )
 
-  const menu = <WheHeaderDropdown menuItems={categoryLinks} buttonProps={{ marginRight: '10px' }} />
+  const menu = <WheHeaderMenu menuItems={categoryLinks} />
 
   return <Header links={categoryLinks} logo={logo} menu={menu} language={language} />
 }
