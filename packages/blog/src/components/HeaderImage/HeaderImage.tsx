@@ -1,4 +1,5 @@
-import { Box, Tag, TagLabel, Text, Flex, Divider, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Text, Flex, Divider, useBreakpointValue } from '@chakra-ui/react'
+import { Tag } from '@whe/common'
 import { format } from 'date-fns'
 import Image from 'next/image'
 
@@ -28,17 +29,11 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         <Flex gap="10px">
           {categories.map((label, index) => (
             <Tag
+              mb={{ base: '8px', md: '10px', lg: '15px' }}
               key={`${label}-${index}`}
               size={isMinWidthMd ? 'md' : 'sm'}
-              variant="outline"
-              boxShadow="none"
-              bgColor="blackAlpha.500"
-              mb={{ base: '8px', md: '10px', lg: '15px' }}
-            >
-              <TagLabel fontFamily="Roboto" textTransform="uppercase" color="white" fontSize={10} fontWeight={700}>
-                {label}
-              </TagLabel>
-            </Tag>
+              label={label}
+            />
           ))}
         </Flex>
         <Text
