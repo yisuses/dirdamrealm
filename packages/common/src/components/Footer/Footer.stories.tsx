@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import { Story, Meta } from '@storybook/react'
-import { Header, HeaderProps } from './Header'
+import { Footer, FooterProps } from './Footer'
 
 export default {
-  title: 'Header',
-  component: Header,
+  title: 'Footer',
+  component: Footer,
   argTypes: {
     categories: {
       control: false,
@@ -19,16 +19,17 @@ export default {
   ],
 } as Meta
 
-const Template: Story<HeaderProps> = args => <Header {...args} />
+const Template: Story<FooterProps> = args => <Footer {...args}>Footer</Footer>
 
 export const Default = Template.bind({})
 Default.args = {
-  links: ['Dashboard', 'Projects', 'Team'],
-  logo: 'logo',
+  version: '1.0',
+  copyright: '© 2022 White Emotion. All rights reserved',
 }
 
 const StyledTemplate = styled.div`
   padding-top: 50px;
-  height: 500px;
-  background: radial-gradient(circle, tomato, white);
+  height: 800px;
+  display: flex;
+  align-items: flex-end;
 `

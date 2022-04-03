@@ -3220,10 +3220,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/lora@npm:4.5.4":
+  version: 4.5.4
+  resolution: "@fontsource/lora@npm:4.5.4"
+  checksum: d1e6ca3e1bc6ada61f37e671a163ead7d408ed5f9596f481eb7e4455e241624e7055b36b2b0c2d4356ce088ba7a2311ee457ae4af57c9ea5b8cbd1c9af614a85
+  languageName: node
+  linkType: hard
+
 "@fontsource/roboto@npm:4.5.3":
   version: 4.5.3
   resolution: "@fontsource/roboto@npm:4.5.3"
   checksum: 5c25485184dcb9162834ef2633528b8c21812ae4bbb37e9a32f07b4db93226361d6b60fe71c61b60aeea7e9fe69be6c9d80b05eea477ec71f166a0fd3feb3df5
+  languageName: node
+  linkType: hard
+
+"@fontsource/spartan@npm:4.5.4":
+  version: 4.5.4
+  resolution: "@fontsource/spartan@npm:4.5.4"
+  checksum: c43ee6c9bce0179defc53b6b714cd2f5903f11cde1bd227e54c54447788249be123e96a698395ce61e7ef08d2b2a40ff83517d4ba2ebf9869f07bed616121db2
   languageName: node
   linkType: hard
 
@@ -8075,6 +8089,8 @@ __metadata:
     "@types/node": 17.0.21
     "@types/react": 17.0.39
     "@whe/common": "*"
+    country-flag-icons: 1.4.24
+    date-fns: 2.28.0
     eslint: 8.10.0
     eslint-config-next: 12.1.0
     eslint-config-prettier: 8.5.0
@@ -8118,7 +8134,9 @@ __metadata:
     "@chakra-ui/theme-tools": 1.3.6
     "@emotion/react": 11.8.1
     "@emotion/styled": 11.8.1
+    "@fontsource/lora": 4.5.4
     "@fontsource/roboto": 4.5.3
+    "@fontsource/spartan": 4.5.4
     "@storybook/addon-actions": 6.4.19
     "@storybook/addon-essentials": 6.4.19
     "@storybook/addon-links": 6.4.19
@@ -8148,6 +8166,7 @@ __metadata:
     eslint-plugin-testing-library: 5.0.6
     framer-motion: 6.2.8
     jest: 27.5.1
+    react-icons: 4.3.1
     ts-jest: 27.1.3
     ts-node: 10.7.0
     typescript: 4.6.2
@@ -11347,6 +11366,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"country-flag-icons@npm:1.4.24":
+  version: 1.4.24
+  resolution: "country-flag-icons@npm:1.4.24"
+  checksum: 186fb0b10a6162d165ed359902f61c330e5045a189fdd2d3df4cd1781999071f43bbb88ff308d082a758407cd910a6178e1d36facb1a0688701a9d41d0c8fa90
+  languageName: node
+  linkType: hard
+
 "cp-file@npm:^7.0.0":
   version: 7.0.0
   resolution: "cp-file@npm:7.0.0"
@@ -11751,6 +11777,13 @@ __metadata:
   version: 2.24.0
   resolution: "date-fns@npm:2.24.0"
   checksum: f930419e356cf6a6a02c7ed6c6e438df61b4011861002a3dc94a4efc83bc96a7f30ea3cc2e7231c421604c3d5131f9ffb097bf8e7f81a59d68f556864490664f
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:2.28.0":
+  version: 2.28.0
+  resolution: "date-fns@npm:2.28.0"
+  checksum: a0516b2e4f99b8bffc6cc5193349f185f195398385bdcaf07f17c2c4a24473c99d933eb0018be4142a86a6d46cb0b06be6440ad874f15e795acbedd6fd727a1f
   languageName: node
   linkType: hard
 
@@ -22405,6 +22438,15 @@ __metadata:
     react-native:
       optional: true
   checksum: ac9b903e411c2f1cdc544119678c6d902058acb6449534cb4bf751bf4caeaca8d935d66a85bd347709e8b010a0cd10b34ac88500ee077dbf7b9024acb512a019
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:4.3.1":
+  version: 4.3.1
+  resolution: "react-icons@npm:4.3.1"
+  peerDependencies:
+    react: "*"
+  checksum: 2cc608acdd3e906aa3aaee290b8398220639677c949382d86e554020e5dab6a9f1ed7484418aa5272cb5c5c018e1fc9a323d433d901697a76530029f9ecb1263
   languageName: node
   linkType: hard
 

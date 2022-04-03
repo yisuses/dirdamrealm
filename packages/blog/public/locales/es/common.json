@@ -1,10 +1,18 @@
 {
-  "actions": {
-    "save": "Guardar",
-    "update": "Actualizar",
-    "delete": "Borrar",
-    "cancel": "Cancelar",
-    "zoomIn": "Acercar",
-    "zoomOut": "Alejar"
-  }
+  "pageTitle": "Emoción Blanca",
+  "footer": {
+    "contact": "Contacto",
+    "categories": "Categorías",
+    "share": "Comparte la emoción",
+    "subscribe": "Suscribirse",
+    "version": "Versión {{versionNumber}}",
+    "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados."
+  },
+  "header": {
+    "logo": "Logotipo de White Emotion",
+    "menuButtonClosed": "Abrir menú",
+    "menuButtonOpened": "Cerrar menú",
+    "changeLanguage": "Cambiar idioma"
+  },
+  "categories": {}
 }

@@ -85,6 +85,9 @@ const nextConfig = {
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
     externalDir: true,
   },
+  publicRuntimeConfig: {
+    version: packageJson.version,
+  },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization
   images: {
@@ -95,7 +98,7 @@ const nextConfig = {
     // https://nextjs.org/docs/api-reference/next/image#caching-behavior
     minimumCacheTTL: 60,
     // Allowed domains for next/image
-    domains: ['source.unsplash.com'],
+    domains: ['source.unsplash.com', 'images.unsplash.com'],
   },
 
   typescript: {
