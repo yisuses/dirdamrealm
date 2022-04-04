@@ -13,6 +13,7 @@ interface HeaderImageProps {
 
 export function HeaderImage({ imgSrc, categories, title, subtitle, date }: HeaderImageProps) {
   const isMinWidthMd = useBreakpointValue({ md: true })
+  const renderedCategories = categories.slice(0, 3)
   return (
     <Box height={{ base: 250, md: 400, lg: 600 }} position="relative">
       <Image src={imgSrc} layout="fill" objectFit="cover" />
@@ -27,7 +28,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         borderRadius="5px"
       >
         <Flex gap="10px">
-          {categories.map((label, index) => (
+          {renderedCategories.map((label, index) => (
             <Tag
               mb={{ base: '8px', md: '10px', lg: '15px' }}
               key={`${label}-${index}`}

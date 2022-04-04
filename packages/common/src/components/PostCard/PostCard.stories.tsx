@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { Story, Meta } from '@storybook/react'
 import { PostCard, PostCardProps } from './PostCard'
 
@@ -9,8 +10,25 @@ export default {
       control: false,
     },
   },
-  decorators: [Story => <Story />],
+  decorators: [
+    Story => (
+      <StyledContainer>
+        <Story />
+      </StyledContainer>
+    ),
+  ],
 } as Meta
+
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+`
 
 const Template: Story<PostCardProps> = args => <PostCard {...args} />
 
