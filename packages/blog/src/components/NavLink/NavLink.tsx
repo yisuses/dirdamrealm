@@ -10,7 +10,6 @@ interface NavLinkProps {
 export const NavLink = ({ children, href }: NavLinkProps) => {
   const child = Children.only(children)
   const router = useRouter()
-
   return (
     <Link href={href}>
       {cloneElement(child as ReactElement, {

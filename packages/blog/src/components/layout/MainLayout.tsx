@@ -1,19 +1,15 @@
 import { Box } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+
 import { GlobalStyles, WheFooter, WheHeader } from '@/components'
+import { useGetCategories } from 'hooks'
 
 interface MainLayoutProps {
   children: ReactNode
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const categories = [
-    { label: 'Deportes', href: '/deportes' },
-    { label: 'Cultura', href: '/cultura' },
-    { label: 'Economía', href: '/economia' },
-    { label: 'Tecnología', href: '/tecnologia' },
-  ]
-
+  const categories = useGetCategories()
   return (
     <>
       <GlobalStyles />

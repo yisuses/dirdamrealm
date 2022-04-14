@@ -29,6 +29,9 @@ export const HeaderLink = ({ children, href }: { children: ReactNode; href?: str
       bg: 'orange.300',
       transition: 'width 0.2s',
     }}
+    height="30px"
+    display="flex"
+    alignItems="center"
   >
     <Text color="white">{children}</Text>
   </Link>
