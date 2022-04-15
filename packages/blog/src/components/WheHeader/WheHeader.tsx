@@ -1,16 +1,16 @@
-import { IconButton, Icon, Text } from '@chakra-ui/react'
+import { Text, Button } from '@chakra-ui/react'
 import { Header } from '@whe/common'
-import { GB, ES } from 'country-flag-icons/react/3x2'
 import { useTranslation } from 'next-i18next'
 import Image, { ImageProps } from 'next/image'
 import { useRouter } from 'next/router'
+
 import { NavLink } from '../NavLink/NavLink'
 import { LogoContainer } from './WheHeader.styles'
 import { WheHeaderMenu } from './WheHeaderMenu'
 
 interface WheHeaderProps {
   categories: {
-    href: string
+    url: string
     label: string
   }[]
 }
@@ -62,22 +62,26 @@ export function WheHeader({ categories }: WheHeaderProps) {
     </>
   )
 
-  const categoryLinks = categories.map(({ href, label }, index) => (
-    <NavLink href={href} key={index}>
+  const categoryLinks = categories.map(({ url, label }, index) => (
+    <NavLink href={url} key={index}>
       <>{label}</>
     </NavLink>
   ))
 
   const language = (
-    <IconButton
+    <Button
       size="sm"
-      icon={router.locale === 'es' ? <Icon as={ES} /> : <Icon as={GB} />}
       aria-label={t('header.changeLanguage')}
       bg="transparent"
       onClick={() => {
         router.push(router.asPath, undefined, { locale: router.locale === 'es' ? 'en' : 'es' })
       }}
-    />
+      color="white"
+      _hover={{ backgroundColor: 'transparent' }}
+      _active={{ backgroundColor: 'transparent' }}
+    >
+      {router.locale === 'es' ? 'ES' : 'EN'}
+    </Button>
   )
 
   const menu = <WheHeaderMenu menuItems={categoryLinks} />

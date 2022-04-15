@@ -6,14 +6,12 @@
  */
 import 'react-i18next'
 import type common from '../../public/locales/en/common.json'
-import type home from '../../public/locales/en/home.json'
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {
     defaultNS: 'common'
     resources: {
       common: typeof common
-      home: typeof home
     }
   }
 }

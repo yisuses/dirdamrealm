@@ -13,7 +13,7 @@ const { publicRuntimeConfig } = getConfig()
 interface WheFooterProps {
   categories: {
     label: string
-    href: string
+    url: string
   }[]
 }
 
@@ -40,8 +40,8 @@ export function WheFooter({ categories }: WheFooterProps) {
 
         <Stack align="flex-start">
           <FooterListHeader>{t('footer.categories')}</FooterListHeader>
-          {categories.map(({ label, href }, index) => (
-            <FooterListLink key={index} href={href}>
+          {categories.map(({ label, url }, index) => (
+            <FooterListLink key={index} href={url}>
               {label}
             </FooterListLink>
           ))}

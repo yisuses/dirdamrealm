@@ -1,4 +1,5 @@
-import { Box, Tag, TagLabel, Text, Flex, Divider, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Text, Flex, Divider, useBreakpointValue } from '@chakra-ui/react'
+import { Tag } from '@whe/common'
 import { format } from 'date-fns'
 import Image from 'next/image'
 
@@ -12,6 +13,7 @@ interface HeaderImageProps {
 
 export function HeaderImage({ imgSrc, categories, title, subtitle, date }: HeaderImageProps) {
   const isMinWidthMd = useBreakpointValue({ md: true })
+  const renderedCategories = categories.slice(0, 3)
   return (
     <Box height={{ base: 250, md: 400, lg: 600 }} position="relative">
       <Image src={imgSrc} layout="fill" objectFit="cover" />
@@ -26,19 +28,13 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         borderRadius="5px"
       >
         <Flex gap="10px">
-          {categories.map((label, index) => (
+          {renderedCategories.map((label, index) => (
             <Tag
+              mb={{ base: '8px', md: '10px', lg: '15px' }}
               key={`${label}-${index}`}
               size={isMinWidthMd ? 'md' : 'sm'}
-              variant="outline"
-              boxShadow="none"
-              bgColor="blackAlpha.500"
-              mb={{ base: '8px', md: '10px', lg: '15px' }}
-            >
-              <TagLabel fontFamily="Roboto" textTransform="uppercase" color="white" fontSize={10} fontWeight={700}>
-                {label}
-              </TagLabel>
-            </Tag>
+              label={label}
+            />
           ))}
         </Flex>
         <Text
@@ -48,6 +44,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
           color="white"
           textShadow={`0px 4px 3px rgb(0 0 0 / 40%), 0px 8px 13px rgb(0 0 0 / 10%), 0px 18px 23px rgb(0 0 0 / 10%);`}
           mb={{ base: '8px', md: '10px', lg: '15px' }}
+          noOfLines={2}
         >
           {title}
         </Text>
@@ -61,7 +58,9 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
             m="0 15px"
             opacity={1}
           />
-          <Text display={{ base: 'none', md: 'block' }}>{subtitle}</Text>
+          <Text display={{ base: 'none', md: 'block' }} noOfLines={2}>
+            {subtitle}
+          </Text>
         </Flex>
       </Box>
     </Box>
