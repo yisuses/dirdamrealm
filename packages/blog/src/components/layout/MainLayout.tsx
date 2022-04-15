@@ -16,7 +16,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <WheHeader categories={categories} />
       <Box
         as="main"
-        minH={{ base: 'calc(100vh - 332px)', lg: 'calc(100vh - 352px)' }}
+        minH={{ base: 'calc(100vh - 272px)' }}
         p={{ base: 0 }}
         maxW={{ base: 'full', lg: '1440px' }}
         margin="0 auto"

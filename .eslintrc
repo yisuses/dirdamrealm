@@ -83,6 +83,14 @@
         "format": ["camelCase"]
       },
       {
+        "selector": "enum",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "enumMember",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+      },
+      {
         "selector": "objectLiteralProperty",
         "format": [
           "camelCase",

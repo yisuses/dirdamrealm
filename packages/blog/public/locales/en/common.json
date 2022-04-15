@@ -14,5 +14,11 @@
     "menuButtonOpened": "Close menu",
     "changeLanguage": "Change language"
   },
-  "categories": {}
+  "categories": {
+    "ENG": "Engineering",
+    "SPO": "Sports",
+    "NEW": "News",
+    "HIS": "History and thinking",
+    "MAC": "Music and cinema"
+  }
 }
