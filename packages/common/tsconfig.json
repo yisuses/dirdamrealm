@@ -1,4 +1,13 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"]
+  "include": [
+    "src",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.mjs",
+    "**/*.json",
+    "../blog/src/components/Metadata"
+  ]
 }

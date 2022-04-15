@@ -8119,6 +8119,7 @@ __metadata:
     react-dom: 17.0.2
     react-i18next: 11.15.6
     react-query: 3.34.16
+    schema-dts: 1.1.0
     ts-jest: ^27.1.3
     typescript: 4.6.2
   languageName: unknown
@@ -23868,6 +23869,15 @@ __metadata:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
+  languageName: node
+  linkType: hard
+
+"schema-dts@npm:1.1.0":
+  version: 1.1.0
+  resolution: "schema-dts@npm:1.1.0"
+  peerDependencies:
+    typescript: ">=4.1.0"
+  checksum: 546af6d8707790d666f64665b755a683166675c11195406e78e2ac875e7b6f1f550b4306449c8b00a5ef0384a487a7837eac7b8b3f00c2ca2c8f231d931507d4
   languageName: node
   linkType: hard
 
