@@ -37,7 +37,7 @@ export const categoriesMock: CategoryResponse = {
       id: 4,
       attributes: {
         name: 'News',
-        description: 'Current news arround the World',
+        description: 'Current news around the world',
         createdAt: '2022-04-15T20:08:36.107Z',
         updatedAt: '2022-04-15T20:08:36.107Z',
         code: 'NEW',
