@@ -1,5 +1,3 @@
-export { GlobalStyles } from './GlobalStyles/GlobalStyles'
-export { NavLink } from './NavLink/NavLink'
-export { WheFooter } from './WheFooter/WheFooter'
-export { WheHeader } from './WheHeader/WheHeader'
-export { HeaderImage } from './home'
+export * from './common'
+export * from './home'
+export * from './layout'

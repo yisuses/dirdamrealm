@@ -4,7 +4,7 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category",
+    "displayName": "Category",
     "description": ""
   },
   "options": {
@@ -18,6 +18,17 @@
     },
     "description": {
       "type": "text",
+      "required": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^[A-Z]*"
+    },
+    "main": {
+      "type": "boolean",
+      "default": false,
       "required": true
     }
   }
