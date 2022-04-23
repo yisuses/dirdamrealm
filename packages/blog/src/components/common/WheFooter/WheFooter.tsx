@@ -31,7 +31,7 @@ export function WheFooter({ categories }: WheFooterProps) {
       version={t('footer.version', { versionNumber: publicRuntimeConfig?.version })}
       copyright={t('footer.copyright', { year: new Date().getFullYear() })}
     >
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
         <Stack align="flex-start">
           <FooterListHeader>{t('footer.contact')}</FooterListHeader>
           <FooterListLink href={'#'}>José Madrid Pérez</FooterListLink>

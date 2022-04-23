@@ -14,7 +14,7 @@ export function Header({ links, logo, menu, language }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Box
+    <Flex
       position="absolute"
       width="100%"
       bg="transparent.800"
@@ -22,8 +22,15 @@ export function Header({ links, logo, menu, language }: HeaderProps) {
       pr={{ base: 4, md: 8 }}
       pl={{ base: 2, md: 8 }}
       h={{ base: '60px', lg: '80px' }}
+      justifyContent="center"
     >
-      <Flex h="full" alignItems="center" justifyContent="space-between">
+      <Flex
+        h="full"
+        alignItems="center"
+        justifyContent="space-between"
+        w={{ base: '100%', lg: '1440px' }}
+        maxW={{ base: '100%', lg: '1440px' }}
+      >
         <Flex h="full" alignItems="center">
           {menu}
           {logo && (
@@ -52,6 +59,6 @@ export function Header({ links, logo, menu, language }: HeaderProps) {
           {language}
         </Flex>
       </Flex>
-    </Box>
+    </Flex>
   )
 }

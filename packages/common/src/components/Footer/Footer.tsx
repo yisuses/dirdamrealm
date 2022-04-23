@@ -10,7 +10,7 @@ export interface FooterProps {
 export function Footer({ children, version, copyright }: FooterProps) {
   return (
     <Box bg="gray.900" color="gray.50" w="full">
-      <Container as={Stack} maxW="6xl" py={10}>
+      <Container as={Stack} maxW="6xl" p="1rem">
         {children}
       </Container>
       <Box bg="gray.800" color="gray.50">

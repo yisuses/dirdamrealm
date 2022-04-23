@@ -45,6 +45,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
         fontSize={{ base: '14px', md: '20px', lg: '22px' }}
         height={{ base: '60px', lg: '80px' }}
         alignItems="center"
+        pl={{ base: '1rem', lg: '2rem' }}
       >
         WHITE EMOTION
       </Text>
@@ -56,6 +57,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
         height={{ base: '60px', lg: '80px' }}
         alignItems="center"
         display={{ base: 'flex', md: 'none' }}
+        pl="rem"
       >
         W.E.
       </Text>

@@ -15,14 +15,14 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
   const isMinWidthMd = useBreakpointValue({ md: true })
   const renderedCategories = categories.slice(0, 3)
   return (
-    <Box height={{ base: 250, md: 400, lg: 600 }} position="relative">
+    <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
       <Image src={imgSrc} layout="fill" objectFit="cover" />
       <Box
         position="absolute"
-        top={{ base: '45%', md: '50%' }}
-        ml={{ base: '15px', md: '70px' }}
-        mr={{ base: '15px', md: '70px' }}
-        maxWidth="530px"
+        top={{ base: '45%', lg: '50%' }}
+        ml={{ base: '15px', lg: '70px' }}
+        mr={{ base: '15px', lg: '70px' }}
+        maxWidth={{ base: '100%', lg: '530px' }}
         bg="rgba(0,0,0,0.25)"
         p="10px"
         borderRadius="5px"
@@ -39,19 +39,19 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         </Flex>
         <Text
           fontWeight={700}
-          fontSize={{ base: 'px', md: '26px', lg: '36px' }}
-          lineHeight={{ base: '26px', md: '36px', lg: '46px' }}
+          fontSize={{ base: '20px', lg: '30px' }}
+          lineHeight={{ base: '28px', lg: '40px' }}
           color="white"
           textShadow={`0px 4px 3px rgb(0 0 0 / 40%), 0px 8px 13px rgb(0 0 0 / 10%), 0px 18px 23px rgb(0 0 0 / 10%);`}
-          mb={{ base: '8px', md: '10px', lg: '15px' }}
+          mb={{ base: '8px', lg: '15px' }}
           noOfLines={2}
         >
           {title}
         </Text>
-        <Flex alignItems="flex-start" color="white" fontSize="12px">
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems="flex-start" color="white" fontSize="12px">
           <Text>{format(date, 'dd.MM.yyyy')}</Text>
           <Divider
-            display={{ base: 'none', md: 'block' }}
+            display={{ base: 'none', lg: 'block' }}
             orientation="horizontal"
             w="45px"
             pt="9px"
