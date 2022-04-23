@@ -1,8 +1,17 @@
-interface StrapiResponse<T> {
-  data: {
-    id: number
-    attributes: T
-  }[]
+type StrapiDataItem<T> = {
+  id: number
+  attributes: T
+}
+
+type StrapiData<T> = {
+  data: StrapiDataItem<T>
+}
+
+type StrapiMultipleData<T> = {
+  data: StrapiDataItem<T>[]
+}
+
+type StrapiMeta = {
   meta: {
     pagination: {
       page: number
@@ -12,3 +21,5 @@ interface StrapiResponse<T> {
     }
   }
 }
+
+type StrapiResponse<T> = StrapiMultipleData<T> & StrapiMeta

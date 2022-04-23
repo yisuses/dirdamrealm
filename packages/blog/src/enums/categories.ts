@@ -4,4 +4,5 @@ export enum CategoryCode {
   NEW = 'NEW',
   HIS = 'HIS',
   MAC = 'MAC',
+  TRA = 'TRA',
 }
