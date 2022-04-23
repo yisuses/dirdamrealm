@@ -1,0 +1,7 @@
+{
+  "errorPage": {
+    "title": "Error",
+    "description": "Ups, algo no ha ido como debía...",
+    "goToHomePage": "Ir a la página de inicio"
+  }
+}

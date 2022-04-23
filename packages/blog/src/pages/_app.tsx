@@ -22,7 +22,7 @@ function App({ Component, pageProps, globalProps }: CustomAppProps) {
 
 App.getInitialProps = async (): Promise<AppInitialProps> => {
   // get initial categories
-  await queryClient.prefetchQuery('categories', () => getCategories())
+  await queryClient.prefetchQuery('categories', getCategories)
 
   return {
     globalProps: {
