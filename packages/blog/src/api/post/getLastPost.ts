@@ -16,7 +16,7 @@ export async function getLastPost(lang: AppLocales = 'en'): Promise<Post | undef
     .get<PostResponse>(apiUrl(`/api/posts?${query}`))
     .then(({ data: response }) => {
       const postData = response.data[0]
-      return postData ? postMapper(postData.id, postData.attributes, lang) : undefined
+      return postData ? postMapper(postData, lang) : undefined
     })
     .catch(() => {
       throw new Error('Error retrieving last post.')

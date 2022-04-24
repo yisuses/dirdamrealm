@@ -1,3 +1,3 @@
-export const categoryMapper = (id: number, categoryEntity: CategoryResponseEntity): Category => {
-  return { id, ...categoryEntity }
+export const categoryMapper = (categoryEntity: StrapiDataItem<CategoryResponseEntity>): Category => {
+  return { id: categoryEntity.id, ...categoryEntity.attributes }
 }
