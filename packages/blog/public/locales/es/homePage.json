@@ -3,5 +3,8 @@
     "title": "Inicio",
     "description": "Página de inicio de Emoción Blanca",
     "noPublishedArticles": "No hay artículos publicados."
+  },
+  "lastPosts": {
+    "title": "Últimas entradas"
   }
 }

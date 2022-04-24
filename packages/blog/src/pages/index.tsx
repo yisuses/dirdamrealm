@@ -1,5 +1,4 @@
 import type { GetServerSideProps } from 'next'
-import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { getLastPost } from 'api'
 import {
@@ -10,14 +9,13 @@ import {
 } from '../components'
 
 const HomePage = ({ lastPost }: HomePageProps) => {
-  const { i18n } = useTranslation()
   const headerPost: HomePageComponentProps['headerPost'] = lastPost
     ? {
         imgUrl: lastPost.imgUrl,
         date: lastPost.publishedAt,
-        title: lastPost[`title_${i18n.language as AppLocales}`],
-        subtitle: lastPost[`summary_${i18n.language as AppLocales}`],
-        categories: lastPost.categories.data.map(category => category.attributes.code),
+        title: lastPost.title,
+        subtitle: lastPost.summary,
+        categories: lastPost.categories.map(category => category.code),
       }
     : undefined
   return <HomePageComponent headerPost={headerPost} />

@@ -2,14 +2,14 @@ import { Box } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 import { GlobalStyles, WheFooter, WheHeader } from '@/components'
-import { useGetCategories } from 'hooks'
+import { useGetMainCategories } from 'hooks'
 
 interface MainLayoutProps {
   children: ReactNode
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const categories = useGetCategories()
+  const categories = useGetMainCategories()
   return (
     <>
       <GlobalStyles />

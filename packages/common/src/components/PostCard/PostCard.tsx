@@ -11,11 +11,11 @@ type PostCardCommonProps = {
 
 type PostCardWithImageProps = PostCardCommonProps & {
   image: ReactNode
-  imageUrl: never
+  imageUrl?: never
 }
 
 type PostCardWithImageUrlProps = PostCardCommonProps & {
-  image: never
+  image?: never
   imageUrl: string
 }
 

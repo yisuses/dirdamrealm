@@ -2,6 +2,7 @@ import { parseISO } from 'date-fns'
 import { useTranslation } from 'next-i18next'
 import { Metadata } from '@/components/common'
 import { HeaderImage } from '../HeaderImage'
+import { LastPosts } from '../LastPosts'
 
 export type HeaderPostProps = {
   imgUrl: string
@@ -28,8 +29,9 @@ export function HomePage({ headerPost }: HomePageProps) {
           subtitle={headerPost.subtitle}
         />
       ) : (
-        <div>t{'homePage.noPublishedArticles'}</div>
+        <div>{t('homePage.noPublishedArticles')}</div>
       )}
+      <LastPosts posts={[]} />
     </>
   )
 }

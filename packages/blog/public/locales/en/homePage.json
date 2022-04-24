@@ -3,5 +3,8 @@
     "title": "Home",
     "description": "White Emotion home page",
     "noPublishedArticles": "No published articles"
+  },
+  "lastPosts": {
+    "title": "Last posts"
   }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-type Post = {
+type PostResponseEntity = {
   title_en: string
   title_es: string
   summary_en: string
@@ -10,7 +10,19 @@ type Post = {
   createdAt: string
   updatedAt: string
   publishedAt: string
-  categories: StrapiMultipleData<Category>
+  categories: StrapiMultipleData<CategoryResponseEntity>
 }
 
-type PostResponse = StrapiResponse<Post>
+type PostResponse = StrapiResponse<PostResponseEntity>
+
+type Post = {
+  id: number
+  title: string
+  summary: string
+  imgUrl: string
+  publishedAt: string
+  categories: Category[]
+  content?: string
+  createdAt?: string
+  updatedAt?: string
+}
