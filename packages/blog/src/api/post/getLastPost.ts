@@ -10,13 +10,13 @@ export async function getLastPost(lang: AppLocales = 'en'): Promise<Post | undef
     pagination: { pageSize: 1, page: 1 },
     populate: 'categories',
     publicationState: 'live',
-    fields: [`title_${lang}`, `summary_${lang}`, 'imgUrl', 'publishedAt'],
+    locale: lang,
   })
   return axios
     .get<PostResponse>(apiUrl(`/api/posts?${query}`))
     .then(({ data: response }) => {
       const postData = response.data[0]
-      return postData ? postMapper(postData, lang) : undefined
+      return postData ? postMapper(postData) : undefined
     })
     .catch(() => {
       throw new Error('Error retrieving last post.')

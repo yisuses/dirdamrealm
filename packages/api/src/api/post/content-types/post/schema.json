@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "title_en": {
+    "title": {
       "type": "string",
       "required": true,
       "pluginOptions": {
@@ -25,7 +25,7 @@
         }
       }
     },
-    "summary_en": {
+    "summary": {
       "type": "text",
       "required": true,
       "pluginOptions": {
@@ -34,7 +34,7 @@
         }
       }
     },
-    "content_en": {
+    "content": {
       "type": "richtext",
       "required": true,
       "pluginOptions": {
@@ -68,34 +68,6 @@
       "inversedBy": "posts"
     },
     "imgUrl": {
-      "type": "text",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "content_es": {
-      "type": "richtext",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "title_es": {
-      "type": "string",
-      "required": true,
-      "unique": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "summary_es": {
       "type": "text",
       "required": true,
       "pluginOptions": {

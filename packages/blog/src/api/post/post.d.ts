@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 type PostResponseEntity = {
-  title_en: string
-  title_es: string
-  summary_en: string
-  summary_es: string
-  content_en: string
-  content_es: string
+  title: string
+  summary: string
+  content: string
   imgUrl: string
   createdAt: string
   updatedAt: string
