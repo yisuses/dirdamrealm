@@ -9,8 +9,8 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
     imgUrl: postAttributes.imgUrl,
     publishedAt: postAttributes.publishedAt,
     categories: postAttributes.categories.data.map(category => categoryMapper(category)),
-    ...(postAttributes.content && { content: postAttributes.content }),
-    ...(postAttributes.createdAt && { content: postAttributes.createdAt }),
-    ...(postAttributes.updatedAt && { content: postAttributes.updatedAt }),
+    content: postAttributes.content,
+    createdAt: postAttributes.createdAt,
+    updatedAt: postAttributes.updatedAt,
   }
 }
