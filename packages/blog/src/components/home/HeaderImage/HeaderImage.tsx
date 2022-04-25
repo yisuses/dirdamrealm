@@ -42,9 +42,9 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         <Text
           fontWeight={700}
           fontSize={{ base: '20px', lg: '30px' }}
-          lineHeight={{ base: '28px', lg: '40px' }}
+          lineHeight={{ base: '35px', lg: '50px' }}
           color="white"
-          textShadow={`0px 4px 3px rgb(0 0 0 / 40%), 0px 8px 13px rgb(0 0 0 / 10%), 0px 18px 23px rgb(0 0 0 / 10%);`}
+          textShadow="0px 4px 3px rgb(0 0 0 / 40%), 0px 0px 0px rgb(0 0 0 / 10%), 0px 0px 0px rgb(0 0 0 / 10%)"
           mb={{ base: '8px', lg: '15px' }}
           noOfLines={2}
         >

@@ -35,7 +35,7 @@ export function WheFooter({ categories }: WheFooterProps) {
         <Stack align="flex-start">
           <FooterListHeader>{t('footer.contact')}</FooterListHeader>
           <FooterListLink href={'#'}>José Madrid Pérez</FooterListLink>
-          <FooterListLink href={'#'}>josem@halamadrid.com</FooterListLink>
+          <FooterListLink href={`mailto:${'1956josemadrid@gmail.com'}`}>{t('footer.sendAMail')}</FooterListLink>
         </Stack>
 
         <Stack align="flex-start">

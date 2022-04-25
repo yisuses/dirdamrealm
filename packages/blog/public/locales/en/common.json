@@ -6,7 +6,8 @@
     "share": "Share",
     "subscribe": "Subscribe",
     "version": "Version {{versionNumber}}",
-    "copyright": "\u00A9 {{year}} White Emotion. All rights reserved."
+    "copyright": "\u00A9 {{year}} White Emotion. All rights reserved.",
+    "sendAMail": "Send an e-mail"
   },
   "header": {
     "logo": "White Emotion logo",
