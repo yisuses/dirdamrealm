@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { Tag } from '../Tag/Tag'
 
 type PostCardCommonProps = {
-  categories: string[]
+  categories: { key: string; label: string }[]
   date: string
   title: string
   description: string
@@ -35,9 +35,9 @@ export function PostCard({ categories, date, description, imageUrl, title, image
           justifyContent="flex-end"
         >
           {categories
-            .sort((a, b) => a.length - b.length)
-            .map((label, index) => (
-              <Tag key={index} label={label} />
+            .sort((a, b) => a.label.length - b.label.length)
+            .map(({ key, label }) => (
+              <Tag key={key} label={label} />
             ))}
         </Flex>
         {imageUrl && (

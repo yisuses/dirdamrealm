@@ -15,7 +15,7 @@ export function LastPosts({ posts }: LastPostsProps) {
         {posts.map(post => (
           <PostCard
             key={post.id}
-            categories={post.categories.map(category => category.code)}
+            categories={post.categories.map(category => ({ key: category.code, label: category.name }))}
             date={post.publishedAt}
             imageUrl={post.imgUrl}
             title={post.title}
