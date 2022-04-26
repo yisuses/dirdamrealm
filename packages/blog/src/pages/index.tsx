@@ -1,6 +1,6 @@
 import type { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getLastPost } from 'api'
+import { getLastPosts } from 'api'
 import {
   withErrorComponent,
   WithErrorProps,
@@ -8,7 +8,8 @@ import {
   HomePageProps as HomePageComponentProps,
 } from '../components'
 
-const HomePage = ({ lastPost }: HomePageProps) => {
+const HomePage = ({ lastPosts }: HomePageProps) => {
+  const lastPost = lastPosts?.[0]
   const headerPost: HomePageComponentProps['headerPost'] = lastPost
     ? {
         imgUrl: lastPost.imgUrl,
@@ -18,17 +19,17 @@ const HomePage = ({ lastPost }: HomePageProps) => {
         categories: lastPost.categories.map(category => category.code),
       }
     : undefined
-  return <HomePageComponent headerPost={headerPost} />
+  return <HomePageComponent headerPost={headerPost} lastEntries={lastPosts?.slice(1) || []} />
 }
 
 export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
-  const lastPostRequest = getLastPost(locale as AppLocales)
+  const lastPostsRequest = getLastPosts(locale as AppLocales)
 
-  const [responseLastPost] = await Promise.all([lastPostRequest])
+  const [responseLastPost] = await Promise.all([lastPostsRequest])
 
   return {
     props: {
-      lastPost: responseLastPost,
+      lastPosts: responseLastPost,
       ...(locale && (await serverSideTranslations(locale, ['common', 'homePage']))),
     },
   }
@@ -37,5 +38,5 @@ export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorPro
 export default withErrorComponent<HomePageProps>(HomePage)
 
 export type HomePageProps = {
-  lastPost?: Post
+  lastPosts?: Post[]
 }

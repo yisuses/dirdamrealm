@@ -14,8 +14,9 @@ export type HeaderPostProps = {
 
 export interface HomePageProps {
   headerPost?: HeaderPostProps
+  lastEntries: Post[]
 }
-export function HomePage({ headerPost }: HomePageProps) {
+export function HomePage({ headerPost, lastEntries }: HomePageProps) {
   const { t } = useTranslation('homePage')
   return (
     <>
@@ -31,7 +32,7 @@ export function HomePage({ headerPost }: HomePageProps) {
       ) : (
         <div>{t('homePage.noPublishedArticles')}</div>
       )}
-      <LastPosts posts={[]} />
+      <LastPosts posts={lastEntries} />
     </>
   )
 }
