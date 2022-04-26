@@ -25,7 +25,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         ml={{ base: '15px', lg: '70px' }}
         mr={{ base: '15px', lg: '70px' }}
         maxWidth={{ base: '100%', lg: '530px' }}
-        bg="rgba(0,0,0,0.25)"
+        bg="transparent.500"
         p="10px"
         borderRadius="5px"
       >
