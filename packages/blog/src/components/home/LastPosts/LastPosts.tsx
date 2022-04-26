@@ -11,7 +11,7 @@ export function LastPosts({ posts }: LastPostsProps) {
   return (
     <Flex flexDir="column" mt={130}>
       <Heading>{t('lastPosts.title')}</Heading>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} mt={8}>
+      <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} spacing={8} mt={8}>
         {posts.map(post => (
           <PostCard
             key={post.id}
