@@ -1,6 +1,7 @@
-import { Box, Text, Flex, Divider, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Text, Flex, Divider } from '@chakra-ui/layout'
+import { useBreakpointValue } from '@chakra-ui/media-query'
 import { Tag } from '@whe/common'
-import { format } from 'date-fns'
+import format from 'date-fns/format'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 

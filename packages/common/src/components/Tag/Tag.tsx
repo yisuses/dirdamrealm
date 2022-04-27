@@ -1,4 +1,4 @@
-import { Tag as ChakraTag, TagProps as ChakraTagProps, TagLabel } from '@chakra-ui/react'
+import { Tag as ChakraTag, TagProps as ChakraTagProps, TagLabel } from '@chakra-ui/tag'
 
 interface TagProps extends ChakraTagProps {
   label: string

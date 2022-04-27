@@ -1,4 +1,4 @@
-import { Flex, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Flex, Heading, SimpleGrid } from '@chakra-ui/layout'
 import { PostCard } from '@whe/common'
 import { useTranslation } from 'next-i18next'
 

@@ -1,4 +1,4 @@
-import { parseISO } from 'date-fns'
+import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 import { Metadata } from '@/components/common'
 import { HeaderImage } from '../HeaderImage'

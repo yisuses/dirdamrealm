@@ -1,4 +1,4 @@
-import { ConfigColorMode } from '@chakra-ui/react'
+import { ConfigColorMode } from '@chakra-ui/color-mode'
 import chakraTheme, { breakpoints } from './chakra.theme'
 
 export function getUpMedia(size: keyof typeof breakpoints): string {

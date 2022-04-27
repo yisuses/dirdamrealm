@@ -1,18 +1,12 @@
+import { IconButton } from '@chakra-ui/button'
+import { CloseButton } from '@chakra-ui/close-button'
+import { useColorModeValue } from '@chakra-ui/color-mode'
+import { useDisclosure } from '@chakra-ui/hooks'
 import { HamburgerIcon } from '@chakra-ui/icons'
-import {
-  MenuProps,
-  MenuButtonProps,
-  useDisclosure,
-  useColorModeValue,
-  Box,
-  CloseButton,
-  Drawer,
-  DrawerContent,
-  Flex,
-  Text,
-  IconButton,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Flex, Text, VStack } from '@chakra-ui/layout'
+import { MenuProps, MenuButtonProps } from '@chakra-ui/menu'
+import { Drawer, DrawerContent } from '@chakra-ui/modal'
+
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 

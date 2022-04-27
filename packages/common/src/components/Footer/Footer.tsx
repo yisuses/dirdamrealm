@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Text, Flex } from '@chakra-ui/react'
+import { Box, Container, Stack, Text, Flex } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
 export interface FooterProps {

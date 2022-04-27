@@ -7,6 +7,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "sideEffects": false,
   "scripts": {
     "start:admin": "yarn workspace @whe/admin start",
     "build:admin": "yarn workspace @whe/admin build",

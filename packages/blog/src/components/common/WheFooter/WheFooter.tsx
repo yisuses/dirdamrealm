@@ -1,8 +1,11 @@
-import { SimpleGrid, Stack } from '@chakra-ui/react'
+import { SimpleGrid, Stack, Text } from '@chakra-ui/layout'
 import { Footer } from '@whe/common'
 import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
-import { FaTwitter, FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import FacebookIcon from '../../../../public/icon/facebook.svg'
+import InstagramIcon from '../../../../public/icon/instagram.svg'
+import LinkedinIcon from '../../../../public/icon/linkedin.svg'
+import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
@@ -20,10 +23,10 @@ interface WheFooterProps {
 export function WheFooter({ categories }: WheFooterProps) {
   const { t } = useTranslation('common')
   const socials = [
-    { label: 'Twitter', href: 'https://twitter.com/', icon: FaTwitter },
-    { label: 'Youtube', href: 'https://www.youtube.com/channel/', icon: FaYoutube },
-    { label: 'Instagram', href: 'https://www.instagram.com/', icon: FaInstagram },
-    { label: 'Linkedin', href: 'https://www.linkedin.com/', icon: FaLinkedin },
+    { label: 'Twitter', href: 'https://twitter.com/', icon: TwitterIcon },
+    { label: 'Youtube', href: 'https://www.youtube.com/channel/', icon: FacebookIcon },
+    { label: 'Instagram', href: 'https://www.instagram.com/', icon: InstagramIcon },
+    { label: 'Linkedin', href: 'https://www.linkedin.com/', icon: LinkedinIcon },
   ]
 
   return (
@@ -34,7 +37,9 @@ export function WheFooter({ categories }: WheFooterProps) {
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
         <Stack align="flex-start">
           <FooterListHeader>{t('footer.contact')}</FooterListHeader>
-          <FooterListLink href={'#'}>José Madrid Pérez</FooterListLink>
+          <Text fontWeight="400" fontSize="xs" mb={2} color="gray.50">
+            José Madrid Pérez
+          </Text>
           <FooterListLink href={`mailto:${'1956josemadrid@gmail.com'}`}>{t('footer.sendAMail')}</FooterListLink>
         </Stack>
 
@@ -48,11 +53,11 @@ export function WheFooter({ categories }: WheFooterProps) {
         </Stack>
 
         <Stack>
-          <FooterListHeader>{t('footer.share')}</FooterListHeader>
+          <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
           <Stack direction="row" spacing={6} paddingBottom="2">
             {socials.map(({ label, href, icon: Icon }, index) => (
               <FooterSocialButton key={index} label={label} href={href}>
-                <Icon />
+                <Icon width={30} height={30} />
               </FooterSocialButton>
             ))}
           </Stack>

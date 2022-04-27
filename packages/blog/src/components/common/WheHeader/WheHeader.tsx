@@ -1,4 +1,5 @@
-import { Text, Button } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/button'
+import { Text } from '@chakra-ui/layout'
 import { Header } from '@whe/common'
 import { useTranslation } from 'next-i18next'
 import Image, { ImageProps } from 'next/image'
@@ -40,7 +41,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
       <Text
         display={{ base: 'none', md: 'flex' }}
         color="white"
-        fontFamily="spartan"
+        fontFamily="spartan, sans-serif"
         fontWeight="700"
         fontSize={{ base: '14px', md: '20px', lg: '22px' }}
         height={{ base: '60px', lg: '80px' }}
@@ -51,7 +52,7 @@ export function WheHeader({ categories }: WheHeaderProps) {
       </Text>
       <Text
         color="white"
-        fontFamily="spartan"
+        fontFamily="spartan, sans-serif"
         fontWeight="700"
         fontSize={{ base: '14px', md: '20px', lg: '22px' }}
         height={{ base: '60px', lg: '80px' }}

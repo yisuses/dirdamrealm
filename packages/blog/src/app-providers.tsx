@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/provider'
 import { emotionTheme } from '@whe/common'
 import { AppProps } from 'next/app'
 import { ReactNode, useState } from 'react'

@@ -1,4 +1,4 @@
-import { ColorModeScript } from '@chakra-ui/react'
+import { ColorModeScript } from '@chakra-ui/color-mode'
 import { emotionTheme } from '@whe/common'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 

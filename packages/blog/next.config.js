@@ -141,7 +141,7 @@ const nextConfig = {
 
     config.module.rules.push({
       test: /\.svg$/,
-      issuer: /\.(js|ts)x?$/,
+      issuer: { and: [/\.(js|ts)x?$/] },
       use: [
         {
           loader: '@svgr/webpack',
@@ -150,6 +150,14 @@ const nextConfig = {
             svgo: true,
             // @link https://github.com/svg/svgo#configuration
             svgoConfig: {
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: { removeViewBox: false },
+                  },
+                },
+              ],
               multipass: false,
               datauri: 'base64',
               js2svg: {

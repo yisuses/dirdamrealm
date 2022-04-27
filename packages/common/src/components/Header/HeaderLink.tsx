@@ -1,7 +1,12 @@
-import { Link, Text } from '@chakra-ui/react'
+import { Link, Text } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
-export const HeaderLink = ({ children, href }: { children: ReactNode; href?: string }) => (
+interface HeaderLinkProps {
+  children: ReactNode
+  href?: string
+}
+
+export const HeaderLink = ({ children, href }: HeaderLinkProps) => (
   <Link
     px={2}
     fontWeight="700"

@@ -1,5 +1,7 @@
+import { IconButton } from '@chakra-ui/button'
+import { useColorModeValue, useColorMode } from '@chakra-ui/color-mode'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, useColorModeValue, useColorMode, HStack, Divider, Center } from '@chakra-ui/react'
+import { Box, Flex, HStack, Divider, Center } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 import { HeaderLink } from './HeaderLink'
 

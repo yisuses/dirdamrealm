@@ -1,3 +1,6 @@
+// import '@fontsource/roboto'
+// import '@fontsource/lora'
+// import '@fontsource/spartan'
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
