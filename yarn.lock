@@ -4067,16 +4067,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@patternfly/react-icons@npm:4.57.2":
-  version: 4.57.2
-  resolution: "@patternfly/react-icons@npm:4.57.2"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  checksum: 1432d6426cde80895b552966582869096197e628600ca1d04d382c8882034241e1a117377cdb8b8a31d91166873edb4ed5c311b2617b3d74aeb33568a867e752
-  languageName: node
-  linkType: hard
-
 "@pmmmwh/react-refresh-webpack-plugin@npm:^0.5.1":
   version: 0.5.5
   resolution: "@pmmmwh/react-refresh-webpack-plugin@npm:0.5.5"
@@ -8144,7 +8134,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@whe/blog@workspace:packages/blog"
   dependencies:
-    "@chakra-ui/icons": 1.1.7
     "@chakra-ui/react": 1.8.8
     "@chakra-ui/theme-tools": 1.3.6
     "@emotion/react": 11.9.0
@@ -8153,7 +8142,6 @@ __metadata:
     "@fontsource/roboto": 4.5.5
     "@fontsource/spartan": 4.5.8
     "@next/bundle-analyzer": 12.1.5
-    "@patternfly/react-icons": 4.57.2
     "@svgr/webpack": 6.2.1
     "@types/jest": 27.4.1
     "@types/node": 17.0.27
@@ -8183,7 +8171,6 @@ __metadata:
     ky: 0.30.0
     next: 12.1.5
     next-i18next: 11.0.0
-    next-images: 1.8.4
     next-secure-headers: 2.2.0
     nextjs-progressbar: 0.0.14
     patch-package: 6.4.7
@@ -8242,7 +8229,6 @@ __metadata:
     eslint-plugin-testing-library: 5.3.1
     framer-motion: 6.3.2
     jest: 28.0.1
-    react-icons: 4.3.1
     ts-jest: 27.1.4
     ts-node: 10.7.0
     typescript: 4.6.3
@@ -20110,18 +20096,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-images@npm:1.8.4":
-  version: 1.8.4
-  resolution: "next-images@npm:1.8.4"
-  dependencies:
-    file-loader: ^6.2.0
-    url-loader: ^4.1.0
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: f7d59ff211d6ff93f274a899df85ebabc20630e18fc3c471f81ab64fa1ea856ef445da5d7dae34a4be36ef002e63e8e446cddf8e70043a6c6e40fd36e1aabdf5
-  languageName: node
-  linkType: hard
-
 "next-secure-headers@npm:2.2.0":
   version: 2.2.0
   resolution: "next-secure-headers@npm:2.2.0"
@@ -22918,15 +22892,6 @@ __metadata:
     react-native:
       optional: true
   checksum: 666594e20dcff000294e904b6ea36f4e5fa2d3b7cebf8c78f04ec3b96ff52d9ad2931adb0d6865ccbd870cc8a782f76a77dfc134653647c8fd73c4217a65e0e6
-  languageName: node
-  linkType: hard
-
-"react-icons@npm:4.3.1":
-  version: 4.3.1
-  resolution: "react-icons@npm:4.3.1"
-  peerDependencies:
-    react: "*"
-  checksum: 2cc608acdd3e906aa3aaee290b8398220639677c949382d86e554020e5dab6a9f1ed7484418aa5272cb5c5c018e1fc9a323d433d901697a76530029f9ecb1263
   languageName: node
   linkType: hard
 
@@ -27007,7 +26972,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-loader@npm:^4.1.0, url-loader@npm:^4.1.1":
+"url-loader@npm:^4.1.1":
   version: 4.1.1
   resolution: "url-loader@npm:4.1.1"
   dependencies:
