@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-const prompts = require('prompts')
-const { spawn } = require('child_process')
+import { spawn } from 'child_process'
+import prompts from 'prompts'
 
 async function doRelease() {
   const response = await prompts([
@@ -31,7 +29,7 @@ async function doRelease() {
     {
       type: 'confirm',
       name: 'confirmation',
-      message: (prev, { package, type }) => `Release ${package}${type ? ':' + type : ''}?`,
+      message: (prev, { package: pckg, type }) => `Release ${pckg}${type ? ':' + type : ''}?`,
       initial: true,
     },
   ])

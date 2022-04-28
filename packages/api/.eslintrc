@@ -21,10 +21,7 @@
   "rules": {
     "@typescript-eslint/no-var-requires": 0,
     "prettier/prettier": 0,
-    "indent": ["error", 2, { "SwitchCase": 1 }],
     "linebreak-style": ["error", "unix"],
-    "no-console": 0,
-    "quotes": ["error", "single"],
-    "semi": ["error", "never"]
+    "no-console": 0
   }
 }

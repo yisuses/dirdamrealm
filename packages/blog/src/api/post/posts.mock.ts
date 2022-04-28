@@ -3,12 +3,9 @@ export const lastPost: PostResponse = {
     {
       id: 2,
       attributes: {
-        title_en: 'A new travel agency',
-        title_es: 'A new travel agency',
-        summary_en: 'This is the beginning of my new business, now I venture to organize trips and safaris',
-        summary_es: 'This is the beginning of my new business, now I venture to organize trips and safaris',
-        content_en: '',
-        content_es: '',
+        title: 'A new travel agency',
+        summary: 'This is the beginning of my new business, now I venture to organize trips and safaris',
+        content: '',
         imgUrl:
           'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=868&q=80',
         createdAt: '2022-04-23T18:52:26.557Z',
@@ -20,7 +17,7 @@ export const lastPost: PostResponse = {
               id: 4,
               attributes: {
                 name: 'News',
-                description: 'Current news arround the World',
+                description: 'Current news around the World',
                 createdAt: '2022-04-15T20:08:36.107Z',
                 updatedAt: '2022-04-15T20:08:36.107Z',
                 code: 'NEW',

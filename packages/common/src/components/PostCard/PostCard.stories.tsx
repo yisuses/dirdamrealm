@@ -34,7 +34,7 @@ const Template: Story<PostCardProps> = args => <PostCard {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  categories: ['Travel'],
+  categories: [{ key: '1', label: 'Travel' }],
   imageUrl:
     'https://images.unsplash.com/photo-1547994770-e5d8509b114d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   date: '2019-12-12',
@@ -46,16 +46,15 @@ Default.args = {
 export const MultipleCategories = Template.bind({})
 MultipleCategories.args = {
   categories: [
-    '1 Travel',
-    '2 Lifestyle',
-    '3 Lifestyle',
-    '8 Paranormal activity',
-    '4 Lifestyle',
-    '6 Lifestyle',
-    '7 Lifestyle',
-    '8 Paranormal activity',
-    '8 Paranormal activity',
-    '8 Paranormal activity',
+    { key: '1', label: 'Travel' },
+    { key: '2', label: 'Lifestyle' },
+    { key: '3', label: 'Lifestyle' },
+    { key: '8', label: 'Paranormal activity' },
+    { key: '4', label: 'Lifestyle' },
+    { key: '6', label: 'Lifestyle' },
+    { key: '7', label: 'Lifestyle' },
+    { key: '9', label: 'Paranormal activity' },
+    { key: '5', label: 'Paranormal activity' },
   ],
   imageUrl:
     'https://images.unsplash.com/photo-1547994770-e5d8509b114d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',

@@ -1,4 +1,4 @@
-# Monorepo starter
+# White Emotion
 
 Welcome to the project!
 
@@ -6,16 +6,11 @@ Below you will find some information on how to perform common tasks.
 
 ## Table of Contents
 
-- [Monorepo starter](#monorepo-starter)
+- [White Emotion](#white-emotion)
   - [Table of Contents](#table-of-contents)
   - [Folder Structure](#folder-structure)
   - [Available Scripts](#available-scripts)
     - [`install`](#install)
-    - [`yarn start:admin`](#yarn-startadmin)
-    - [`yarn build:admin`](#yarn-buildadmin)
-    - [`yarn build:dep:admin`](#yarn-builddepadmin)
-    - [`yarn test:admin`](#yarn-testadmin)
-    - [`yarn release:admin`](#yarn-releaseadmin)
     - [`yarn start:common`](#yarn-startcommon)
     - [`yarn build:common`](#yarn-buildcommon)
     - [`yarn build:dep:common`](#yarn-builddepcommon)
@@ -84,7 +79,11 @@ monorepo/
   node_modules/
   package.json
   packages/
-    admin/
+    api/
+      node_modules/
+      package.json
+      ...
+    blog/
       node_modules/
       package.json
       ...
@@ -116,38 +115,6 @@ yarn `command`
 ```
 
 which will do whatever `command` does, and must be defined on `scripts` section in [`package.json`](./package.json)
-
-### `yarn start:admin`
-
-Runs the Main web application in the development mode.
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
-
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
-### `yarn build:admin`
-
-Generates the build folder of the compiled files for Main web application
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
-
-### `yarn build:dep:admin`
-
-Same as `yarn build:admin` but it moves the files to the root directory.
-
-### `yarn test:admin`
-
-Launches the test runner for the Main web application.
-See the section about [running tests](#running-tests) for more information.
-
-### `yarn release:admin`
-
-It launches a release for Admin application.
-If there is any commit since the last release starting with:
-
-- `fix` will do a patch bump
-- `feat` will do a minor bump
-- `!` will do a major bump.
 
 ### `yarn start:common`
 
@@ -690,7 +657,7 @@ yarn error when installing dependencies in workspace
 
 ```bash
 error An unexpected error occurred: "expected workspace package to exist for \"eslint\"".
-info If you think this is a bug, please open a bug report with the information provided in "/Users/user/Documents/yourcompany/monorepo-starter/packages/admin/yarn-error.log"
+info If you think this is a bug, please open a bug report with the information provided in "/Users/user/Documents/coding/white-emotion/packages/admin/yarn-error.log"
 ```
 
 ## How to fix it
