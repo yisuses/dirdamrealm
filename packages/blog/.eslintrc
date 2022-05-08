@@ -8,7 +8,7 @@
     // Add specific rules for nextjs
     "plugin:@next/next/core-web-vitals"
   ],
-  "plugins": ["testing-library"],
+  "plugins": ["testing-library", "storybook"],
   "env": {
     "browser": true,
     "es6": true,

@@ -1,11 +1,11 @@
 import { SimpleGrid, Stack, Text } from '@chakra-ui/layout'
-import { Footer } from '@whe/common'
 import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import InstagramIcon from '../../../../public/icon/instagram.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
+import { Footer } from '../Footer/Footer'
 
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'

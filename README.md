@@ -11,11 +11,6 @@ Below you will find some information on how to perform common tasks.
   - [Folder Structure](#folder-structure)
   - [Available Scripts](#available-scripts)
     - [`install`](#install)
-    - [`yarn start:common`](#yarn-startcommon)
-    - [`yarn build:common`](#yarn-buildcommon)
-    - [`yarn build:dep:common`](#yarn-builddepcommon)
-    - [`yarn test:common`](#yarn-testcommon)
-    - [`yarn release:common`](#yarn-releasecommon)
     - [`yarn start:blog`](#yarn-startblog)
     - [`yarn build:blog`](#yarn-buildblog)
     - [`yarn build:dep:blog`](#yarn-builddepblog)
@@ -87,10 +82,6 @@ monorepo/
       node_modules/
       package.json
       ...
-    common/
-      node_modules/
-      package.json
-      ...
   [...configFiles]
 ```
 
@@ -115,37 +106,6 @@ yarn `command`
 ```
 
 which will do whatever `command` does, and must be defined on `scripts` section in [`package.json`](./package.json)
-
-### `yarn start:common`
-
-Runs the Common components library in the development mode.
-Open [http://localhost:9000](http://localhost:9000) to view it in the browser.
-
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
-### `yarn build:common`
-
-Generates the build folder of the compiled files for Common components library
-The build is minified and the filenames include the hashes.
-It will generate a static folder that can be deployed anywhere.
-
-### `yarn build:dep:common`
-
-Same as `yarn build:common` but it moves the files to the root directory.
-
-### `yarn test:common`
-
-Launches the test runner for the Common components library.
-See the section about [running tests](#running-tests) for more information.
-
-### `yarn release:common`
-
-It launches a release for Common library.
-
-- `fix` will do a patch bump
-- `feat` will do a minor bump
-- `!` will do a major bump.
 
 ### `yarn start:blog`
 

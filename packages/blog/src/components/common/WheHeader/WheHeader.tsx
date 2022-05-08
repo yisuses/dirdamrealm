@@ -1,10 +1,10 @@
 import { Button } from '@chakra-ui/button'
 import { Text } from '@chakra-ui/layout'
-import { Header } from '@whe/common'
 import { useTranslation } from 'next-i18next'
 import Image, { ImageProps } from 'next/image'
 import { useRouter } from 'next/router'
 
+import { Header } from '../Header/Header'
 import { NavLink } from '../NavLink/NavLink'
 import { LogoContainer } from './WheHeader.styles'
 import { WheHeaderMenu } from './WheHeaderMenu'

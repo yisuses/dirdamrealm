@@ -5,8 +5,6 @@
     "incremental": true,
     "jsx": "preserve",
     "paths": {
-      "@whe/common/*": ["../common/src/*"],
-      "@whe/common": ["../common/src/index"],
       "@/themes/*": ["./themes/*"],
       "@/public/*": ["./public/*"],
       "@/features/*": ["./features/*"],
