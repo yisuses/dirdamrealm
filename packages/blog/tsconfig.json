@@ -16,6 +16,5 @@
     }
   },
   "exclude": [".next", "next-env.d.ts"],
-  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"],
-  "files": ["../common/src/global.d.ts"]
+  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"]
 }
