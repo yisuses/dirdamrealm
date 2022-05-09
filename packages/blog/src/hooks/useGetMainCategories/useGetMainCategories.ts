@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import { useQueryClient } from 'react-query'
 
-import { seoName } from 'utils'
+import { seoName } from '@/utils'
 
 export function useGetMainCategories(): { label: string; url: string }[] {
   const { t } = useTranslation('common')

@@ -19,17 +19,20 @@ export default {
   ],
 } as Meta
 
-const Template: Story<FooterProps> = args => <Footer {...args}>Footer</Footer>
+const Template: Story<FooterProps> = args => <Footer {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  version: '1.0',
-  copyright: '© 2022 White Emotion. All rights reserved',
+  categories: [
+    { url: '/dashboard', label: 'Dashboard' },
+    { url: '/projects', label: 'Projects' },
+    { url: '/team', label: 'Team' },
+  ],
 }
 
 const StyledTemplate = styled.div`
   padding-top: 50px;
-  height: 800px;
+  height: 400px;
   display: flex;
   align-items: flex-end;
 `

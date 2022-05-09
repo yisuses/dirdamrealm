@@ -5,14 +5,17 @@
     "incremental": true,
     "jsx": "preserve",
     "paths": {
-      "@/themes/*": ["./themes/*"],
-      "@/public/*": ["./public/*"],
-      "@/features/*": ["./features/*"],
-      "@/pages/*": ["./pages/*"],
+      "@/components/*": ["./components/*"],
+      "@/components": ["./components"],
       "@/config/*": ["./config/*"],
       "@/core/*": ["./core/*"],
-      "@/components/*": ["./components/*"],
-      "@/components": ["./components"]
+      "@/core": ["./core"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/hooks": ["./hooks"],
+      "@/pages/*": ["./pages/*"],
+      "@/themes/*": ["./themes/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/utils": ["./utils"]
     }
   },
   "exclude": [".next", "next-env.d.ts"],

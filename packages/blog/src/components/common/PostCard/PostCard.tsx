@@ -2,7 +2,8 @@ import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Image } from '@chakra-ui/image'
 import { Text, Box, Flex } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
-import { Tag } from '../Tag/Tag'
+
+import { Tag } from '@/components'
 
 type PostCardCommonProps = {
   categories: { key: string; label: string }[]

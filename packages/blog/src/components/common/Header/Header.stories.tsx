@@ -23,8 +23,11 @@ const Template: Story<HeaderProps> = args => <Header {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  links: ['Dashboard', 'Projects', 'Team'],
-  logo: 'logo',
+  categories: [
+    { url: '/dashboard', label: 'Dashboard' },
+    { url: '/projects', label: 'Projects' },
+    { url: '/team', label: 'Team' },
+  ],
 }
 
 const StyledTemplate = styled.div`

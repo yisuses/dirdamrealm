@@ -7,14 +7,13 @@
   "workspaces": [
     "packages/*"
   ],
-  "sideEffects": false,
   "scripts": {
     "blog": "yarn workspace @whe/blog",
     "start:blog": "yarn blog dev",
     "storybook": "yarn blog start:storybook",
     "build:storybook": "yarn blog build:storybook",
     "build:blog": "yarn blog build",
-    "build:dep:blog": "yarn build:blog && mkdir -p dist/blog && cp -r packages/blog/{.next,public,package.json,next.config.js,next-i18next.config.js} dist/blog",
+    "build:dep:blog": "yarn build:blog && mkdir -p dist/blog && cp -r yarn.lock packages/blog/{.next,public,package.json,next.config.js,next-i18next.config.js} dist/blog",
     "build:dep:storybook": "yarn build:storybook && mkdir -p dist && mv packages/blog/build dist/storybook",
     "test:blog": "yarn blog test",
     "release:blog": "yarn --cwd packages/blog run standard-version",
@@ -39,7 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "16.2.4",
     "@commitlint/config-conventional": "16.2.4",
-    "husky": "7.0.4",
+    "husky": "8.0.1",
     "lint-staged": "12.4.1",
     "npm-check-updates": "12.5.11",
     "npm-run-all": "4.1.5",

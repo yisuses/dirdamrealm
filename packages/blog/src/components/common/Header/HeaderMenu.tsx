@@ -15,7 +15,7 @@ type HeaderDropdownProps = Omit<MenuProps, 'children'> & {
   buttonProps?: MenuButtonProps
 }
 
-export const WheHeaderMenu = ({ menuItems }: HeaderDropdownProps) => {
+export const HeaderMenu = ({ menuItems }: HeaderDropdownProps) => {
   const { t } = useTranslation('common')
   const { isOpen, onOpen, onClose } = useDisclosure()
 

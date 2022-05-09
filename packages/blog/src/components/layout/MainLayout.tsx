@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
-import { GlobalStyles, WheFooter, WheHeader } from '@/components'
-import { useGetMainCategories } from 'hooks'
+import { GlobalStyles, Footer, Header } from '@/components'
+import { useGetMainCategories } from '@/hooks'
 
 interface MainLayoutProps {
   children: ReactNode
@@ -13,7 +13,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
       <GlobalStyles />
-      <WheHeader categories={categories} />
+      <Header categories={categories} />
       <Box
         as="main"
         minH={{ base: 'calc(100vh - 272px)' }}
@@ -23,7 +23,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       >
         {children}
       </Box>
-      <WheFooter categories={categories} />
+      <Footer categories={categories} />
     </>
   )
 }

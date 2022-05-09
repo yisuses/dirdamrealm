@@ -1,19 +1,78 @@
-import { IconButton } from '@chakra-ui/button'
-import { useColorModeValue, useColorMode } from '@chakra-ui/color-mode'
+import { Button, IconButton } from '@chakra-ui/button'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Flex, HStack, Divider, Center } from '@chakra-ui/layout'
-import { ReactNode } from 'react'
-import { HeaderLink } from './HeaderLink'
+import { Box, Center, Divider, Flex, HStack, Text } from '@chakra-ui/layout'
+import { useColorMode, useColorModeValue } from '@chakra-ui/system'
+import { useTranslation } from 'next-i18next'
+import Image, { ImageProps } from 'next/image'
+import { useRouter } from 'next/router'
 
-export type HeaderProps = {
-  links: ReactNode[]
-  logo?: ReactNode
-  menu?: ReactNode
-  language?: ReactNode
+import { NavLink } from '../NavLink'
+import { LogoContainer } from './Header.styles'
+import { HeaderLink } from './HeaderLink'
+import { HeaderMenu } from './HeaderMenu'
+
+export interface HeaderProps {
+  categories: {
+    url: string
+    label: string
+  }[]
 }
 
-export function Header({ links, logo, menu, language }: HeaderProps) {
+export function Header({ categories }: HeaderProps) {
+  const router = useRouter()
+  const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
+
+  const logoProps: Partial<ImageProps> = {
+    alt: t('header.logo'),
+    objectFit: 'contain',
+    layout: 'fixed',
+  }
+  let logo = (
+    <LogoContainer>
+      <span className="desktop">
+        <Image {...logoProps} src="/images/WE-logo-DESKTOP_WHITE.svg" width="256px" height="80px" />
+      </span>
+      <span className="mobile">
+        <Image {...logoProps} src="/images/WE-logo-MOBILE_WHITE.svg" width="45px" height="45px" />
+      </span>
+    </LogoContainer>
+  )
+
+  logo = (
+    <>
+      <Text
+        display={{ base: 'none', md: 'flex' }}
+        color="white"
+        fontFamily="spartan, sans-serif"
+        fontWeight="700"
+        fontSize={{ base: '14px', md: '20px', lg: '22px' }}
+        height={{ base: '60px', lg: '80px' }}
+        alignItems="center"
+        pl={{ base: '1rem', lg: '2rem' }}
+      >
+        WHITE EMOTION
+      </Text>
+      <Text
+        color="white"
+        fontFamily="spartan, sans-serif"
+        fontWeight="700"
+        fontSize={{ base: '14px', md: '20px', lg: '22px' }}
+        height={{ base: '60px', lg: '80px' }}
+        alignItems="center"
+        display={{ base: 'flex', md: 'none' }}
+        pl="rem"
+      >
+        W.E.
+      </Text>
+    </>
+  )
+
+  const categoryLinks = categories.map(({ url, label }, index) => (
+    <NavLink href={url} key={index}>
+      <>{label}</>
+    </NavLink>
+  ))
 
   return (
     <Flex
@@ -34,7 +93,7 @@ export function Header({ links, logo, menu, language }: HeaderProps) {
         maxW={{ base: '100%', lg: '1440px' }}
       >
         <Flex h="full" alignItems="center">
-          {menu}
+          <HeaderMenu menuItems={categoryLinks} />
           {logo && (
             <HStack alignItems="center">
               <Box>{logo}</Box>
@@ -43,8 +102,8 @@ export function Header({ links, logo, menu, language }: HeaderProps) {
         </Flex>
         <Flex alignItems="center">
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
-            {links.map((link, index) => (
-              <HeaderLink key={index}>{link}</HeaderLink>
+            {categoryLinks.map(link => (
+              <HeaderLink key={link.key}>{link}</HeaderLink>
             ))}
           </HStack>
           <Center display={{ base: 'none' }} h={{ md: '40px' }} w={{ md: '20px' }}>
@@ -58,7 +117,19 @@ export function Header({ links, logo, menu, language }: HeaderProps) {
             onClick={toggleColorMode}
             _hover={{ bg: 'whiteAlpha.300' }}
           />
-          {language}
+          <Button
+            size="sm"
+            aria-label={t('header.changeLanguage')}
+            bg="transparent"
+            onClick={() => {
+              router.push(router.asPath, undefined, { locale: router.locale === 'es' ? 'en' : 'es' })
+            }}
+            color="white"
+            _hover={{ backgroundColor: 'transparent' }}
+            _active={{ backgroundColor: 'transparent' }}
+          >
+            {router.locale === 'es' ? 'ES' : 'EN'}
+          </Button>
         </Flex>
       </Flex>
     </Flex>
