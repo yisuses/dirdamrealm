@@ -3,10 +3,11 @@
   "footer": {
     "contact": "Contact",
     "categories": "Categories",
-    "share": "Share",
+    "inOtherMedia": "In other media",
     "subscribe": "Subscribe",
     "version": "Version {{versionNumber}}",
-    "copyright": "\u00A9 {{year}} White Emotion. All rights reserved."
+    "copyright": "\u00A9 {{year}} White Emotion. All rights reserved.",
+    "sendAMail": "Send an e-mail"
   },
   "header": {
     "logo": "White Emotion logo",
@@ -18,7 +19,8 @@
     "ENG": "Engineering",
     "SPO": "Sports",
     "NEW": "News",
-    "HIS": "History and thinking",
-    "MAC": "Music and cinema"
+    "HIS": "History and thoughts",
+    "MAC": "Music and cinema",
+    "TRA": "Travel"
   }
 }

@@ -3,10 +3,11 @@
   "footer": {
     "contact": "Contacto",
     "categories": "Categorías",
-    "share": "Comparte la emoción",
+    "inOtherMedia": "En otros medios",
     "subscribe": "Suscribirse",
     "version": "Versión {{versionNumber}}",
-    "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados."
+    "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados.",
+    "sendAMail": "Enviar un correo electrónico"
   },
   "header": {
     "logo": "Logotipo de White Emotion",
@@ -19,6 +20,7 @@
     "SPO": "Deportes",
     "NEW": "Actualidad",
     "HIS": "Historia y pensamiento",
-    "MAC": "Música y cine"
+    "MAC": "Música y cine",
+    "TRA": "Viajes"
   }
 }

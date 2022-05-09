@@ -5,19 +5,19 @@
     "incremental": true,
     "jsx": "preserve",
     "paths": {
-      "@whe/common/*": ["../common/src/*"],
-      "@whe/common": ["../common/src/index"],
-      "@/themes/*": ["./themes/*"],
-      "@/public/*": ["./public/*"],
-      "@/features/*": ["./features/*"],
-      "@/pages/*": ["./pages/*"],
+      "@/components/*": ["./components/*"],
+      "@/components": ["./components"],
       "@/config/*": ["./config/*"],
       "@/core/*": ["./core/*"],
-      "@/components/*": ["./components/*"],
-      "@/components": ["./components"]
+      "@/core": ["./core"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/hooks": ["./hooks"],
+      "@/pages/*": ["./pages/*"],
+      "@/themes/*": ["./themes/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/utils": ["./utils"]
     }
   },
-  "exclude": [".next"],
-  "include": ["next-env.d.ts", "src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"],
-  "files": ["../common/src/global.d.ts"]
+  "exclude": [".next", "next-env.d.ts"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"]
 }

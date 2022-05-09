@@ -1,6 +1,6 @@
 type ECategoryCode = `${import('../../enums/categories').CategoryCode}`
 
-interface Category {
+interface CategoryResponseEntity {
   code: ECategoryCode
   main: boolean
   name: string
@@ -9,4 +9,8 @@ interface Category {
   updatedAt: string
 }
 
-type CategoryResponse = StrapiResponse<Category>
+type CategoryResponse = StrapiResponse<CategoryResponseEntity>
+
+type Category = CategoryResponseEntity & {
+  id: number
+}

@@ -47,7 +47,7 @@ export const categoriesMock: CategoryResponse = {
     {
       id: 5,
       attributes: {
-        name: 'History and thinking',
+        name: 'History and thoughts',
         description: 'Personal thoughts and historic events',
         createdAt: '2022-04-15T20:09:25.750Z',
         updatedAt: '2022-04-15T20:09:25.750Z',

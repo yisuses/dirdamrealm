@@ -1,3 +1,8 @@
 {
-  "errorPage": { "title": "Error", "description": "Ooops, something went wrong...", "goToHomePage": "Go to home page" }
+  "errorPage": {
+    "title": "Error",
+    "description": "Ooops, something went wrong...",
+    "goToHomePage": "Go to home page",
+    "refreshPage": "Refresh page"
+  }
 }

@@ -6,13 +6,10 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_USER=wheblog
-      - POSTGRES_PASSWORD=wheblog
-      - POSTGRES_DB=wheblog
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=admin
     volumes:
-      - strapidata:/var/lib/postgresql/data
+      - ./strapidata:/var/lib/postgresql/data
     ports:
       - 5432:5432
-
-volumes:
-  strapidata:
