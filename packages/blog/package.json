@@ -11,7 +11,7 @@
     "start:storybook": "start-storybook -p 9000",
     "clean:storybook": "rm -rf ./build",
     "build:storybook": "yarn clean:storybook && yarn build-storybook -o build",
-    "gen:theme-typings": "chakra-cli tokens ./src/theme/chakra.theme.ts",
+    "gen:theme-typings": "chakra-cli tokens ./src/themes/chakra.theme.ts",
     "postinstall": "yarn gen:theme-typings"
   },
   "dependencies": {
