@@ -1,4 +1,6 @@
-FROM node:18-alpine as node
+FROM strapi/strapi as node
+
+WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3003
@@ -10,15 +12,9 @@ ARG DATABASE_SSL_SELF
 
 FROM node as builder
 
-WORKDIR /app
 COPY . .
 RUN yarn install --immutable
-RUN yarn build:dep:api
-
-FROM node
-
-WORKDIR /app
-COPY --from=builder /app/dist/api /app
+RUN yarn build:api
 
 ENTRYPOINT ["yarn", "start:api"]
 
