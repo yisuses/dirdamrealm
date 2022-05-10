@@ -1,0 +1,14 @@
+**/.vscode
+**/node_modules
+**/dist
+**/build
+**/.history
+**/.github
+**/__mocks__
+**/.cache
+**/.env
+**/example.env
+**/.strapi-updater.json
+**/.yarnrc
+**/.yarn/cache
+**/.yarn/*.gz
