@@ -20,6 +20,8 @@ FROM node
 WORKDIR /app
 COPY --from=builder /app/dist/api /app
 
+ENTRYPOINT ["yarn", "start:api"]
+
 
 
 
