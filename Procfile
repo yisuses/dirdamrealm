@@ -1,2 +1,1 @@
-web: yarn install --immutable
-web: yarn build:dep:api
+web: yarn start:api
