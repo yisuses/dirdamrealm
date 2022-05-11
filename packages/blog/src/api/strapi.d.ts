@@ -4,7 +4,7 @@ type StrapiDataItem<T> = {
 }
 
 type StrapiData<T> = {
-  data: StrapiDataItem<T>
+  data: StrapiDataItem<T> | null
 }
 
 type StrapiMultipleData<T> = {

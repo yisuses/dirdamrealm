@@ -8,7 +8,7 @@ export async function getLastPosts(lang: AppLocales = 'en'): Promise<Post[] | un
   const query = stringify({
     sort: ['publishedAt:asc'],
     pagination: { pageSize: 20, page: 1 },
-    populate: 'categories',
+    populate: 'categories,coverImage',
     publicationState: 'live',
     locale: lang,
   })
