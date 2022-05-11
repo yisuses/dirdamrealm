@@ -55,12 +55,6 @@
       "target": "api::tag.tag",
       "inversedBy": "posts"
     },
-    "comments": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::comment.comment",
-      "mappedBy": "post"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
@@ -75,6 +69,24 @@
           "localized": true
         }
       }
+    },
+    "coverImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "post"
     }
   }
 }
