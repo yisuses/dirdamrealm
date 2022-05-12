@@ -12,7 +12,7 @@ const HomePage = ({ lastPosts }: HomePageProps) => {
   const lastPost = lastPosts?.[0]
   const headerPost: HomePageComponentProps['headerPost'] = lastPost
     ? {
-        imgUrl: lastPost.coverImage?.url || lastPost.imgUrl,
+        imgUrl: lastPost.coverImage?.url || lastPost.imgUrl || 'https://picsum.photos/1440/600',
         date: lastPost.publishedAt,
         title: lastPost.title,
         subtitle: lastPost.summary,
