@@ -14,6 +14,7 @@ type MediaFormat = {
     resource_type: string
   }
 }
+type FormatType = 'small' | 'medium' | 'large' | 'thumbnail'
 
 type MediaResponseEntity = {
   name: string
@@ -21,7 +22,7 @@ type MediaResponseEntity = {
   caption: string
   width: number
   height: number
-  formats: Record<string, MediaFormat>
+  formats: Record<FormatType, MediaFormat>
   hash: string
   ext: string
   mime: string
