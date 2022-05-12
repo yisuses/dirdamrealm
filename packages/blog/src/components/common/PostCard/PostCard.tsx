@@ -26,13 +26,13 @@ export type PostCardProps = PostCardWithImageProps | PostCardWithImageUrlProps
 
 export function PostCard({ categories, date, description, imageUrl, title, image }: PostCardProps) {
   return (
-    <Flex direction="column" w={{ base: '240px', md: '310px' }} h="450px" gap="15px">
-      <Box w={{ base: '240px', md: '310px' }} h={{ base: '210px', md: '280px' }} position="relative">
+    <Flex direction="column" w="100%" h="450px" gap="15px">
+      <Box w="100%" h="280px" position="relative">
         <Flex
           pl="20px"
           position="absolute"
           top="20px"
-          right="20px"
+          right="24px"
           flexWrap="wrap"
           gap="10px"
           justifyContent="flex-end"
@@ -43,15 +43,7 @@ export function PostCard({ categories, date, description, imageUrl, title, image
               <Tag key={key} label={label} />
             ))}
         </Flex>
-        {imageUrl && (
-          <Image
-            borderRadius="5px"
-            h={{ base: '210px', md: '280px' }}
-            objectFit="cover"
-            src={imageUrl}
-            alt={`${title} image`}
-          />
-        )}
+        {imageUrl && <Image borderRadius="4px" h="280px" objectFit="cover" src={imageUrl} alt={`${title} image`} />}
         {image}
       </Box>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>

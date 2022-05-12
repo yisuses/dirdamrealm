@@ -54,7 +54,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
           color="white"
           textShadow="0px 4px 3px rgb(0 0 0 / 40%), 0px 0px 0px rgb(0 0 0 / 10%), 0px 0px 0px rgb(0 0 0 / 10%)"
           mb={{ base: '8px', lg: '16px' }}
-          noOfLines={2}
+          noOfLines={{ base: 1, lg: 2 }}
         >
           {title}
         </Text>
@@ -74,7 +74,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
             m="0 16px"
             opacity={1}
           />
-          <Text noOfLines={{ base: 2, md: 3, lg: 6 }} fontStyle="italic" fontFamily="spartan">
+          <Text noOfLines={{ base: 2, md: 3, lg: 5 }} fontStyle="italic" fontFamily="spartan">
             {subtitle}
           </Text>
         </Flex>

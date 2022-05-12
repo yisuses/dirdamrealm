@@ -3,7 +3,7 @@ type PostResponseEntity = {
   title: string
   summary: string
   content: string
-  imgUrl: string
+  imgUrl?: string
   createdAt: string
   updatedAt: string
   publishedAt: string
@@ -17,7 +17,7 @@ type Post = {
   id: number
   title: string
   summary: string
-  imgUrl: string
+  imgUrl?: string
   publishedAt: string
   categories: Category[]
   content?: string
