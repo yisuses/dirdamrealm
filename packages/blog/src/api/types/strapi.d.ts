@@ -23,3 +23,4 @@ type StrapiMeta = {
 }
 
 type StrapiResponse<T> = StrapiMultipleData<T> & StrapiMeta
+type StrapiSingleResponse<T> = StrapiData<T> & StrapiMeta

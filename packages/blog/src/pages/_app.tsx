@@ -7,7 +7,7 @@ import NextNProgress from 'nextjs-progressbar'
 import { dehydrate, QueryClient } from 'react-query'
 
 import { MainLayout } from '@/components'
-import { getCategories } from 'api'
+import { getCategories, getAbout } from 'api'
 import { AppProviders } from 'app-providers'
 
 const queryClient = new QueryClient()
@@ -26,6 +26,7 @@ function App({ Component, pageProps, globalProps }: CustomAppProps) {
 App.getInitialProps = async (): Promise<AppInitialProps> => {
   // get initial categories
   await queryClient.prefetchQuery('categories', getCategories)
+  await queryClient.prefetchQuery('about', getAbout)
 
   return {
     globalProps: {
