@@ -4,7 +4,7 @@ import HttpApi from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 const ns = ['common']
-const supportedLngs = ['en', 'es']
+const supportedLngs = ['es', 'en']
 
 i18n
   .use(HttpApi)
@@ -12,8 +12,8 @@ i18n
   .use(initReactI18next)
   .init({
     debug: true,
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: 'es',
+    fallbackLng: 'es',
     interpolation: {
       escapeValue: false,
     },

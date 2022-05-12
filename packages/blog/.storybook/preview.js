@@ -9,10 +9,10 @@ import i18n from './i18next'
 
 export const parameters = {
   i18n,
-  locale: 'en',
+  locale: 'es',
   locales: {
-    en: { title: 'English', right: 'EN' },
     es: { title: 'Spanish', right: 'ES' },
+    en: { title: 'English', right: 'EN' },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {

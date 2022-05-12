@@ -4,7 +4,7 @@ import { stringify } from 'qs'
 import { postMapper } from 'api/mapper'
 import { apiUrl } from 'utils'
 
-export async function getLastPosts(lang: AppLocales = 'en'): Promise<Post[] | undefined> {
+export async function getLastPosts(lang: AppLocales = 'es'): Promise<Post[] | undefined> {
   const query = stringify({
     sort: ['publishedAt:asc'],
     pagination: { pageSize: 20, page: 1 },
