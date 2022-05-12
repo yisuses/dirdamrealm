@@ -26,11 +26,17 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         ml={{ base: '15px', lg: '70px' }}
         mr={{ base: '15px', lg: '70px' }}
         maxWidth={{ base: '100%', lg: '530px' }}
-        bg="transparent.500"
-        p="10px"
+        bg="black.500"
+        p="25px"
         borderRadius="5px"
-        boxShadow="0px 10px 13px -7px #000000, 0px 2px 20px 17px rgb(0 0 0 / 30%)"
-        backgroundColor="rgba(0, 0, 0, .8)"
+        boxShadow="2px 2px 32px #0007"
+        backgroundColor="blackAlpha.800"
+        css={{
+          '@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none))': {
+            backdropFilter: 'blur(5px)',
+            backgroundColor: 'rgba(0,0,0,0.7)',
+          },
+        }}
       >
         <Flex gap="10px">
           {renderedCategories.map((code, index) => (
@@ -69,7 +75,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
             m="0 15px"
             opacity={1}
           />
-          <Text noOfLines={{ base: 3, md: 4, lg: 7 }} fontStyle="italic" fontFamily="spartan">
+          <Text noOfLines={{ base: 2, md: 3, lg: 6 }} fontStyle="italic" fontFamily="spartan">
             {subtitle}
           </Text>
         </Flex>
