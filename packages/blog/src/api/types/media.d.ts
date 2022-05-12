@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-type MediaFormat = {
+type MediaFormatResponseEntity = {
   ext: string
   url: string
   hash: string
@@ -15,6 +15,7 @@ type MediaFormat = {
   }
 }
 type FormatType = 'small' | 'medium' | 'large' | 'thumbnail'
+type MediaFormat = Omit<MediaFormatResponseEntity, 'provider_metadata'>
 
 type MediaResponseEntity = {
   name: string
@@ -22,7 +23,7 @@ type MediaResponseEntity = {
   caption: string
   width: number
   height: number
-  formats: Record<FormatType, MediaFormat>
+  formats: Record<FormatType, MediaFormatResponseEntity>
   hash: string
   ext: string
   mime: string

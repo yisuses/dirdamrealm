@@ -6,5 +6,13 @@ export const mediaMapper = (mediaEntity: StrapiDataItem<MediaResponseEntity>): M
     attributes: { provider_metadata, ...mediaEntityAttributes },
   } = mediaEntity
 
-  return { id, ...mediaEntityAttributes }
+  const mappedMediaFormatAttributes = Object.fromEntries<MediaFormat>(
+    Object.entries(mediaEntityAttributes.formats).map(format => {
+      const [formatType, formatAttributes] = format
+      const { provider_metadata, ...tempFormatAttributes } = formatAttributes
+      return [formatType, tempFormatAttributes]
+    }),
+  ) as Record<FormatType, MediaFormat>
+
+  return { id, ...mediaEntityAttributes, formats: mappedMediaFormatAttributes }
 }
