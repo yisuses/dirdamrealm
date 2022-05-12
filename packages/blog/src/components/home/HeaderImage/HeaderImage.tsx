@@ -29,6 +29,8 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         bg="transparent.500"
         p="10px"
         borderRadius="5px"
+        boxShadow="0px 10px 13px -7px #000000, 0px 2px 20px 17px rgb(0 0 0 / 30%)"
+        backgroundColor="rgba(0, 0, 0, .8)"
       >
         <Flex gap="10px">
           {renderedCategories.map((code, index) => (
@@ -51,8 +53,14 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         >
           {title}
         </Text>
-        <Flex flexDirection={{ base: 'column', lg: 'row' }} alignItems="flex-start" color="white" fontSize="12px">
-          <Text>{format(date, 'dd.MM.yyyy')}</Text>
+        <Flex
+          flexDirection={{ base: 'column', lg: 'row' }}
+          alignItems="flex-start"
+          color="white"
+          fontWeight="600"
+          fontSize={{ base: '12px', lg: '14px' }}
+        >
+          <Text mb={{ base: 2, lg: 0 }}>{format(date, 'dd.MM.yyyy')}</Text>
           <Divider
             display={{ base: 'none', lg: 'block' }}
             orientation="horizontal"
@@ -61,7 +69,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
             m="0 15px"
             opacity={1}
           />
-          <Text display={{ base: 'none', md: 'block' }} noOfLines={2}>
+          <Text noOfLines={{ base: 3, md: 4, lg: 7 }} fontStyle="italic" fontFamily="spartan">
             {subtitle}
           </Text>
         </Flex>
