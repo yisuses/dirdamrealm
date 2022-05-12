@@ -20,6 +20,7 @@ export const FooterSocialButton = ({ children, label, href }: FooterSocialButton
       p={0.5}
       as="a"
       href={href}
+      target="_blank"
       display="inline-flex"
       alignItems="center"
       justifyContent="center"

@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query'
 
 import { seoName } from '@/utils'
 
-export function useGetMainCategories(): { label: string; url: string }[] {
+export function useGetMainCategories() {
   const { t } = useTranslation('common')
   const queryClient = useQueryClient()
   const categories = queryClient.getQueryData<Category[]>('categories')

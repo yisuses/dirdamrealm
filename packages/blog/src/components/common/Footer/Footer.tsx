@@ -17,17 +17,18 @@ export interface FooterProps {
     label: string
     url: string
   }[]
+  about: About
 }
 
-export function Footer({ categories }: FooterProps) {
+export function Footer({ categories, about }: FooterProps) {
   const { t } = useTranslation('common')
 
-  const socials = [
-    { label: 'Twitter', href: 'https://twitter.com/', icon: TwitterIcon },
-    { label: 'Youtube', href: 'https://www.youtube.com/channel/', icon: FacebookIcon },
-    { label: 'Instagram', href: 'https://www.instagram.com/', icon: InstagramIcon },
-    { label: 'Linkedin', href: 'https://www.linkedin.com/', icon: LinkedinIcon },
-  ]
+  const socials: { label: string; href: string; icon: React.FC<React.SVGProps<SVGSVGElement>> }[] = []
+
+  if (about.twitter) socials.push({ label: 'Twitter', href: about.twitter, icon: TwitterIcon })
+  if (about.facebook) socials.push({ label: 'Facebook', href: about.facebook, icon: FacebookIcon })
+  if (about.instagram) socials.push({ label: 'Instagram', href: about.instagram, icon: InstagramIcon })
+  if (about.linkedin) socials.push({ label: 'Linkedin', href: about.linkedin, icon: LinkedinIcon })
 
   return (
     <Box bg="gray.900" color="gray.50" w="full">
@@ -35,10 +36,12 @@ export function Footer({ categories }: FooterProps) {
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
           <Stack align="flex-start">
             <FooterListHeader>{t('footer.contact')}</FooterListHeader>
-            <Text fontWeight="400" fontSize="xs" mb={2} color="gray.50">
-              José Madrid Pérez
-            </Text>
-            <FooterListLink href={`mailto:${'1956josemadrid@gmail.com'}`}>{t('footer.sendAMail')}</FooterListLink>
+            {about.name && (
+              <Text fontWeight="400" fontSize="xs" mb={2} color="gray.50">
+                {about.name}
+              </Text>
+            )}
+            {about.email && <FooterListLink href={`mailto:${about.email}`}>{t('footer.sendAMail')}</FooterListLink>}
           </Stack>
 
           <Stack align="flex-start">
@@ -52,13 +55,15 @@ export function Footer({ categories }: FooterProps) {
 
           <Stack>
             <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
-            <Stack direction="row" spacing={6} paddingBottom="2">
-              {socials.map(({ label, href, icon: Icon }, index) => (
-                <FooterSocialButton key={index} label={label} href={href}>
-                  <Icon width={30} height={30} />
-                </FooterSocialButton>
-              ))}
-            </Stack>
+            {socials.length && (
+              <Stack direction="row" spacing={6} paddingBottom="2">
+                {socials.map(({ label, href, icon: Icon }, index) => (
+                  <FooterSocialButton key={index} label={label} href={href}>
+                    <Icon width={30} height={30} />
+                  </FooterSocialButton>
+                ))}
+              </Stack>
+            )}
             <FooterListLink href="#">{t('footer.subscribe')}</FooterListLink>
           </Stack>
         </SimpleGrid>
