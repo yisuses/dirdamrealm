@@ -44,24 +44,25 @@ export function Header({ categories }: HeaderProps) {
       <Text
         display={{ base: 'none', md: 'flex' }}
         color="white"
-        fontFamily="spartan, sans-serif"
+        fontFamily="spartan"
         fontWeight="700"
-        fontSize={{ base: '14px', md: '20px', lg: '22px' }}
-        height={{ base: '60px', lg: '80px' }}
+        fontSize={{ md: '20px', lg: '24px' }}
+        height={{ md: '60px', lg: '80px' }}
         alignItems="center"
-        pl={{ base: '1rem', lg: '2rem' }}
+        pl={{ md: 0, lg: '1rem' }}
+        letterSpacing={{ md: '0px', lg: '4px' }}
       >
         WHITE EMOTION
       </Text>
       <Text
         color="white"
-        fontFamily="spartan, sans-serif"
+        fontFamily="spartan"
         fontWeight="700"
-        fontSize={{ base: '14px', md: '20px', lg: '22px' }}
-        height={{ base: '60px', lg: '80px' }}
+        fontSize="14px"
+        height="60px"
         alignItems="center"
         display={{ base: 'flex', md: 'none' }}
-        pl="rem"
+        pl="1rem"
       >
         W.E.
       </Text>
@@ -78,12 +79,18 @@ export function Header({ categories }: HeaderProps) {
     <Flex
       position="absolute"
       width="100%"
-      bg="transparent.800"
+      bg="blackAlpha.800"
       zIndex="overlay"
       pr={{ base: 4, md: 8 }}
       pl={{ base: 2, md: 8 }}
       h={{ base: '60px', lg: '80px' }}
       justifyContent="center"
+      css={{
+        '@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none))': {
+          backdropFilter: 'blur(5px)',
+          backgroundColor: 'rgba(0,0,0,0.7)',
+        },
+      }}
     >
       <Flex
         h="full"
@@ -101,7 +108,7 @@ export function Header({ categories }: HeaderProps) {
           )}
         </Flex>
         <Flex alignItems="center">
-          <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
+          <HStack as="nav" spacing={{ md: 0, lg: 4 }} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
             {categoryLinks.map(link => (
               <HeaderLink key={link.key}>{link}</HeaderLink>
             ))}

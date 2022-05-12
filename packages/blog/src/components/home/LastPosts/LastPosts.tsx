@@ -17,7 +17,7 @@ export function LastPosts({ posts }: LastPostsProps) {
             key={post.id}
             categories={post.categories.map(category => ({ key: category.code, label: category.name }))}
             date={post.publishedAt}
-            imageUrl={post.imgUrl}
+            imageUrl={post.coverImage?.url || post.imgUrl}
             title={post.title}
             description={post.summary}
           />

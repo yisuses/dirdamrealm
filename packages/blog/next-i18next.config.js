@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   i18n: {
     defaultLocale: 'es',
-    locales: ['en', 'es'],
+    locales: ['es', 'en'],
   },
   // By default set suspense to false to prevent timeouts on vercel
   // when using getServerSideTranslations

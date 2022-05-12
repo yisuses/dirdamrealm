@@ -8,6 +8,7 @@ type PostResponseEntity = {
   updatedAt: string
   publishedAt: string
   categories: StrapiMultipleData<CategoryResponseEntity>
+  coverImage?: StrapiData<MediaResponseEntity>
 }
 
 type PostResponse = StrapiResponse<PostResponseEntity>
@@ -22,4 +23,5 @@ type Post = {
   content?: string
   createdAt?: string
   updatedAt?: string
+  coverImage: Media | null
 }

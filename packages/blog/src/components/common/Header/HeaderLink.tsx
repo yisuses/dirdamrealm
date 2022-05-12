@@ -8,9 +8,9 @@ interface HeaderLinkProps {
 
 export const HeaderLink = ({ children, href }: HeaderLinkProps) => (
   <Link
-    px={2}
+    px={{ md: 2, lg: 3 }}
     fontWeight="700"
-    fontSize={12}
+    fontSize={{ md: 12 }}
     _hover={{
       textDecoration: 'none',
       '::after': {
