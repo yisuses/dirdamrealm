@@ -8,8 +8,6 @@ async function doRelease() {
       name: 'package',
       message: 'Select package',
       choices: [
-        { title: 'Admin', value: 'admin' },
-        { title: 'Common', value: 'common' },
         { title: 'Blog', value: 'blog' },
         { title: 'API', value: 'api' },
         { title: 'All', value: '' },

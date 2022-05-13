@@ -1,5 +1,7 @@
 # White Emotion
 
+![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=whemotion)
+
 Welcome to the project!
 
 Below you will find some information on how to perform common tasks.
@@ -36,7 +38,7 @@ Below you will find some information on how to perform common tasks.
   - [Importing a Component](#importing-a-component)
     - [`ButtonExample.tsx`](#buttonexampletsx)
     - [`ButtonAndMore.tsx`](#buttonandmoretsx)
-  - [Styling with Emotion](#styling-with-emotion)
+  - [Styling with Emotion and Chakra UI](#styling-with-emotion-and-chakra-ui)
     - [`Button.tsx`](#buttontsx)
     - [`RedButton.tsx`](#redbuttontsx)
   - [Adding Custom Environment Variables](#adding-custom-environment-variables)
@@ -61,7 +63,6 @@ Below you will find some information on how to perform common tasks.
     - [Editor Integration](#editor-integration)
   - [Developing Components in Isolation](#developing-components-in-isolation)
   - [Troubleshooting](#troubleshooting)
-  - [How to fix it](#how-to-fix-it)
   - [Usefull VSCode extensions](#usefull-vscode-extensions)
 
 ## Folder Structure
@@ -179,7 +180,7 @@ Removes `node_modules` folder and executes installation command.
 
 ### `yarn build`
 
-Generates builds for Common components library and Main web application
+Generates builds for API and Blog applications
 
 ### `yarn test`
 
@@ -298,17 +299,21 @@ Learn more about ES6 modules:
 - [Exploring ES6: Modules](http://exploringjs.com/es6/ch_modules.html)
 - [Understanding ES6: Modules](https://leanpub.com/understandinges6/read#leanpub-auto-encapsulating-code-with-modules)
 
-## Styling with Emotion
+## Styling with Emotion and Chakra UI
 
-This project setup uses [Emotion](https://emotion.sh/docs/introduction) for styling. This library allow us to write styles in js files and extending styles with a lot of flexibility.
+This project setup uses [Chakra UI](https://chakra-ui.com/) and [Emotion](https://emotion.sh/docs/introduction) for styling. This library allow us to write styles in js files and extending styles with a lot of flexibility.
 
 ### `Button.tsx`
 
-```js
+```tsx
 import React from 'react';
 import styled from '@emotion/styled';
 
-export const Button: React.FunctionComponent = props => <StyledButton {...props} />;
+interface ButtonProps {
+  ...
+}
+
+export const Button = (props: ButtonProps) => <StyledButton {...props} />;
 
 const StyledButton = styled.button`
   background: white;
@@ -317,12 +322,16 @@ const StyledButton = styled.button`
 
 ### `RedButton.tsx`
 
-```js
+```tsx
 import React from 'react';
 import styled from '@emotion/styled';
 import { Button } from './Button';
 
-export const RedButton: React.FunctionComponent = props => <RedStyledButton {...props} />;
+interface RedButtonProps {
+  ...
+}
+
+export const RedButton = (props: RedButtonProps) => <RedStyledButton {...props} />;
 
 const RedStyledButton = styled(Button)`
   background: red;
@@ -352,13 +361,13 @@ const MyComponent = () => (
       You are running this application in <b>{process.env.NODE_ENV}</b> mode.
     </small>
     <form>
-      <input type="hidden" defaultValue={process.env.REACT_APP_SECRET_CODE} />
+      <input type="hidden" defaultValue={process.env.ANOTHER_ENV_VARIABLE} />
     </form>
   </div>
 );
 ```
 
-During the build, `process.env.REACT_APP_SECRET_CODE` will be replaced with the current value of the `REACT_APP_SECRET_CODE` environment variable. Remember that the `NODE_ENV` variable will be set for you automatically.
+During the build, `process.env.ANOTHER_ENV_VARIABLE` will be replaced with the current value of the `ANOTHER_ENV_VARIABLE` environment variable. Remember that the `NODE_ENV` variable will be set for you automatically.
 
 When you load the app in the browser and inspect the `<input>`, you will see its value set to `abcdef`, and the bold text will show the environment provided when using `npm start`:
 
@@ -379,7 +388,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-The above form is looking for a variable called `REACT_APP_SECRET_CODE` from the environment. In order to consume this
+The above form is looking for a variable called `ANOTHER_ENV_VARIABLE` from the environment. In order to consume this
 value, we need to have it defined in the environment. This can be done using two ways: either in your shell or in a `.env` file.
 
 ### Adding Temporary Environment Variables In Your Shell
@@ -390,7 +399,7 @@ life of the shell session.
 #### Windows (cmd.exe)
 
 ```cmd
-set REACT_APP_SECRET_CODE=abcdef&&npm start
+set ANOTHER_ENV_VARIABLE=abcdef&&yarn start
 ```
 
 (Note: the lack of whitespace is intentional.)
@@ -398,7 +407,7 @@ set REACT_APP_SECRET_CODE=abcdef&&npm start
 #### Linux, OS X (Bash)
 
 ```bash
-REACT_APP_SECRET_CODE=abcdef npm start
+ANOTHER_ENV_VARIABLE=abcdef yarn start
 ```
 
 ### Adding Development Environment Variables In `.env`
@@ -406,7 +415,7 @@ REACT_APP_SECRET_CODE=abcdef npm start
 To define permanent environment variables, create a file called `.env` in the root of your project:
 
 ```text
-REACT_APP_SECRET_CODE=abcdef
+ANOTHER_ENV_VARIABLE=abcdef
 ```
 
 These variables will act as the defaults if the machine does not explicitly set them.
@@ -414,15 +423,6 @@ Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) f
 
 > Note: If you are defining environment variables for development, your CI and/or hosting platform will most likely need
 > these defined as well. Consult their documentation how to do this. For example, see the documentation for [Travis CI](https://docs.travis-ci.com/user/environment-variables/) or [Heroku](https://devcenter.heroku.com/articles/config-vars).
-
-For each Create React App bootstrapped application you will need to set a port number in the `.env` file which is ignored from `.gitignore`, so you **must** create one per project like
-
-```text
-PORT=XXXXX
-# more environment variables
-```
-
-being the port number different if you want to start multiple applications at the same time in local development mode.
 
 ## Using HTTPS in Development
 
@@ -433,7 +433,7 @@ To do this, set the `HTTPS` environment variable to `true`, then start the dev s
 ### Windows (cmd.exe)
 
 ```cmd
-set HTTPS=true&&npm start
+set HTTPS=true&&yarn start
 ```
 
 (Note: the lack of whitespace is intentional.)
@@ -441,7 +441,7 @@ set HTTPS=true&&npm start
 ### Linux, OS X (Bash)
 
 ```bash
-HTTPS=true npm start
+HTTPS=true yarn start
 ```
 
 Note that the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
@@ -464,11 +464,11 @@ Jest will look for test files with any of the following popular naming conventio
 
 The `.test.js` / `.spec.js` files (or the `__tests__` folders) can be located at any depth under the `src` top level folder in every package.
 
-We recommend to put the test files next to the code they are testing so that relative imports appear shorter. For example, if `App.test.js` and `App.js` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. Colocation also helps find tests more quickly in larger projects.
+We recommend to put the test files next to the code they are testing so that relative imports appear shorter. For example, if `App.test.js` and `App.js` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. This also helps find tests more quickly in larger projects.
 
 ### Command Line Interface
 
-When you run `yarn test:watch`, Jest will launch in the watch mode. Every time you save a file, it will re-run the tests, just like `yarn start` recompiles the code.
+When you run `yarn test:watch`, Jest will launch in the watch mode. Every time you save a file, it will re-run the tests, just like `yarn start` rebuilds the code.
 
 The watcher includes an interactive command-line interface with the ability to run all tests, or focus on a search pattern. It is designed this way so that you can keep it open and enjoy fast re-runs. You can learn the commands from the “Watch Usage” note that the watcher prints after every run:
 
@@ -525,9 +525,9 @@ If you’d like to test components in isolation from the child components they r
 
 ```js
 import { render } from '@testing-library/react';
-import React from 'react';
 import { Component } from './Component';
-describe('Flex', () => {
+
+describe('Component', () => {
   it('renders component', () => {
     const renderInstance = render(<Component />);
     expect(renderInstance.asFragment().firstChild).toBeDefined();
@@ -537,38 +537,13 @@ describe('Flex', () => {
 
 Unlike the previous smoke test using `ReactDOM.render()`, this test only renders `<App>` and doesn’t go deeper. For example, even if `<App>` itself renders a `<Button>` that throws, this test will pass. Shallow rendering is great for isolated unit tests, but you may still want to create some full rendering tests to ensure the components integrate correctly. Enzyme supports [full rendering with `mount()`](http://airbnb.io/enzyme/docs/api/mount.html), and you can also use it for testing state changes and component lifecycle.
 
-You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testing techniques. Enzyme documentation uses Chai and Sinon for assertions but you don’t have to use them because Jest provides built-in `expect()` and `jest.fn()` for spies.
-
-Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
-
-```js
-import React from 'react';
-import { shallow } from 'enzyme';
-import App from './App';
-
-it('renders welcome message', () => {
-  const wrapper = shallow(<App />);
-  const welcome = <h2>Welcome to React</h2>;
-  // expect(wrapper.contains(welcome)).to.equal(true);
-  expect(wrapper.contains(welcome)).toEqual(true);
-});
-```
+You can read the [React Testing Library documentation](https://testing-library.com/docs/react-testing-library/intro/) for more testing techniques.
 
 All Jest matchers are [extensively documented here](http://facebook.github.io/jest/docs/api.html#expect-value).
-Nevertheless you can use a third-party assertion library like [Chai](http://chaijs.com/) if you want to, as described below.
 
 ### Using Third Party Assertion Libraries
 
 We recommend that you use `expect()` for assertions and `jest.fn()` for spies. If you are having issues with them please [file those against Jest](https://github.com/facebook/jest/issues/new), and we’ll fix them. We intend to keep making them better for React, supporting, for example, [pretty-printing React elements as JSX](https://github.com/facebook/jest/pull/1566).
-
-However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
-
-```js
-import sinon from 'sinon';
-import { expect } from 'chai';
-```
-
-and then use them in your tests like you normally do.
 
 ### Initializing Test Environment
 
@@ -613,22 +588,10 @@ We are using [Storybook](https://storybook.js.org/) to build isolated components
 
 ## Troubleshooting
 
-yarn error when installing dependencies in workspace
-
-```bash
-error An unexpected error occurred: "expected workspace package to exist for \"eslint\"".
-info If you think this is a bug, please open a bug report with the information provided in "/Users/user/Documents/coding/white-emotion/packages/admin/yarn-error.log"
-```
-
-## How to fix it
-
-<https://github.com/yarnpkg/yarn/issues/8405>
-
 ## Usefull VSCode extensions
 
 This is a list of recommended VSCode extensions that can help you to the development of this project:
 
-- [Bracket pair colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer): visual hints for knowing which bracket or curly brace is the closing one
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint): must for enable auto linting while developing
 - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph): Git Graphical integration in VSCode
 - [Gitlens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): God
