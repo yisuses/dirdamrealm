@@ -7,6 +7,23 @@
   "workspaces": [
     "packages/*"
   ],
+  "contributors": [
+    {
+      "name": "Borja González",
+      "email": "borja@bgon.es",
+      "url": "https://github.com/bgonp"
+    },
+    {
+      "name": "Paula Guijarro",
+      "email": "paulaguijarro@gmail.com",
+      "url": "https://github.com/PaulaGuijarro"
+    },
+    {
+      "name": "Saúl de León",
+      "email": "sauldeleonguerrero@gmail.com",
+      "url": "https://github.com/sauldeleon"
+    }
+  ],
   "scripts": {
     "blog": "yarn workspace @whe/blog",
     "start:blog": "yarn blog dev",

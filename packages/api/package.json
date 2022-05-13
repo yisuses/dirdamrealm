@@ -2,7 +2,7 @@
   "name": "@whe/api",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "White Emotion CMS",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -12,19 +12,16 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.17.0",
-    "@types/jest": "27.5.0",
+    "@types/jest": "27.5.1",
     "jest": "28.1.0"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.1.9",
-    "@strapi/plugin-users-permissions": "4.1.9",
+    "@strapi/plugin-i18n": "4.1.10",
+    "@strapi/plugin-users-permissions": "4.1.10",
     "@strapi/provider-upload-cloudinary": "4.1.10",
-    "@strapi/strapi": "4.1.9",
+    "@strapi/strapi": "4.1.10",
     "pg": "8.7.3",
     "strapi-plugin-ckeditor5": "2.1.1-rc.1"
-  },
-  "author": {
-    "name": "A Strapi developer"
   },
   "strapi": {
     "uuid": "c6339d1d-43d6-4060-b0be-b227dc61b706"
