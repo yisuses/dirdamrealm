@@ -2,28 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.2.0](https://github.com/yisuses/whemotion/compare/v1.1.0...v1.2.0) (2022-05-13)
-
-## 1.1.0 (2022-05-13)
+### 0.0.2 (2022-05-13)
 
 
 ### Features
 
-* add about info ([56efdb9](https://github.com/yisuses/whemotion/commit/56efdb98b6d565fcca82c754900e8d869a04d11c))
 * add about info in frontend ([b0b1d8b](https://github.com/yisuses/whemotion/commit/b0b1d8b8453e48e3b496ca650c3a4dd49c7ad19a))
 * add active styles ([1ebde63](https://github.com/yisuses/whemotion/commit/1ebde631da298e716b07e74d6df0bd316a25bc03))
 * add api connection ([b26505c](https://github.com/yisuses/whemotion/commit/b26505ca83237260474076446aa3be0a905e05f8))
 * add better categories ([2a7f20b](https://github.com/yisuses/whemotion/commit/2a7f20bab46986fe8bb56e3dcf04cee058e2072e))
 * add chakra ([dd4a263](https://github.com/yisuses/whemotion/commit/dd4a2637c1b25ca299f1003fa0b9d7bd9ae5e050))
-* add cloudinary integration ([2a3412d](https://github.com/yisuses/whemotion/commit/2a3412d51b752542a47d4e0c03719ca355455e83))
 * add database model ([543fe25](https://github.com/yisuses/whemotion/commit/543fe2599d4b9f53082f9702390ad87712a12d05))
 * add drawer lateral menu ([e185e3e](https://github.com/yisuses/whemotion/commit/e185e3e5a6df0a6fd31180b253a2309921ccf440))
-* add footer ([c229763](https://github.com/yisuses/whemotion/commit/c22976323c4f8267db189f63215d06746e8f6cac))
 * add footer translations ([55549a3](https://github.com/yisuses/whemotion/commit/55549a3631b8e660026b3375e5b23275216a02c3))
 * add Header image ([5fe418c](https://github.com/yisuses/whemotion/commit/5fe418c482e552351faf564500358e64fd420be1))
 * add header to blog ([27cbc1e](https://github.com/yisuses/whemotion/commit/27cbc1efcdd193ed3f80d8e9d1b6c47c38e9b10d))
 * add initial entries ([fb173b8](https://github.com/yisuses/whemotion/commit/fb173b843f97a4b5ac1896b74f72be74bdc09d3b))
-* add initial monorepo configuration ([c8f0da0](https://github.com/yisuses/whemotion/commit/c8f0da0afe70ab942cd575a6a94d6a25aafb016a))
 * add label name to post card ([71398b4](https://github.com/yisuses/whemotion/commit/71398b437e6d3901c9b76177f188026bcae34473))
 * add logo dark mode ([c3981fd](https://github.com/yisuses/whemotion/commit/c3981fdcb487246174f04e5ccde0a556432965a6))
 * add main layout ([1f99328](https://github.com/yisuses/whemotion/commit/1f99328f1934eb8328414c47c788f13b601fd1b5))
@@ -31,13 +25,8 @@ All notable changes to this project will be documented in this file. See [standa
 * add Post Card ([3837417](https://github.com/yisuses/whemotion/commit/3837417c039fe5fd1cd599e529530b90f5985952))
 * add post conection to database ([dbc1e3f](https://github.com/yisuses/whemotion/commit/dbc1e3f314cb5ce087d4389d70ccbddbd477d16b))
 * add properties to HeaderImage ([0eb50e8](https://github.com/yisuses/whemotion/commit/0eb50e8d04b3c1a47166bb0017a24e0b980e5b72))
-* add theme font ([2b6d564](https://github.com/yisuses/whemotion/commit/2b6d5644bd76c59040298bcba08caf726bd4c52a))
-* add wysiwyg for strapi ([fb7284c](https://github.com/yisuses/whemotion/commit/fb7284ce5cf39a33cf7f8d59e6a4662d64f5bcc7))
 * **api:** add api into monorepo ([0f28c51](https://github.com/yisuses/whemotion/commit/0f28c51ef13581ce4c2399da52b45ce91b46fc39))
-* **api:** replace api for strapi ([b985b48](https://github.com/yisuses/whemotion/commit/b985b48ce530e14c8644b0a25afe4f7ed5d2d152))
 * **blog:** add blog package ([74e8fe4](https://github.com/yisuses/whemotion/commit/74e8fe43cb51193c568f8d12eb84c371addacef0))
-* **blog:** initial blog with CRA ([4251ee9](https://github.com/yisuses/whemotion/commit/4251ee9a5361efcf8683a5905ffdaf65976bc09e))
-* **common:** initial storybook configuration ([d9d5564](https://github.com/yisuses/whemotion/commit/d9d556429d1c8ebb3a2eefc67317eafee654de20))
 * conditional about ([46f0f92](https://github.com/yisuses/whemotion/commit/46f0f927b79503f351ac69afca49e533e460fcd1))
 * configure i18n ([be421af](https://github.com/yisuses/whemotion/commit/be421af9b970aa9529ea66744af46827ec58c6e1))
 * create LastPosts component ([d98ac11](https://github.com/yisuses/whemotion/commit/d98ac11f833b523e61b7e4cf87ba2cb7051a340d))
@@ -53,7 +42,6 @@ All notable changes to this project will be documented in this file. See [standa
 * improve typings ([7abc150](https://github.com/yisuses/whemotion/commit/7abc150538b8b5a0cb7ad70667bee5a7c3507c22))
 * improve typings and header props ([2929e2b](https://github.com/yisuses/whemotion/commit/2929e2b3a0d5db71972274030c6c3215890d198b))
 * make imgUrl optional in Post Entity ([c47396c](https://github.com/yisuses/whemotion/commit/c47396cd6484eecc3b0689abbd8cfe66923c58d5))
-* optimization ([db3b02e](https://github.com/yisuses/whemotion/commit/db3b02e456dd6ced048a418bf47f08adc0e942ef))
 * optimization ([409ec7e](https://github.com/yisuses/whemotion/commit/409ec7ee956121008689809965f807949a223d0c))
 * refactor footer ([1f43048](https://github.com/yisuses/whemotion/commit/1f43048bb9d82cb765423c6d636d8ac35b2d93c2))
 * styling main header ([65cc736](https://github.com/yisuses/whemotion/commit/65cc73660a9e6d2bb8a93b74a27bdad13e37f426))
@@ -63,11 +51,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* add dockerfile ([379ccf0](https://github.com/yisuses/whemotion/commit/379ccf0dafde85e7c10aeb093a85968f561876b9))
-* add react 17 for strapi ([2440824](https://github.com/yisuses/whemotion/commit/24408241f7776c532d4bca295a86fc8dea8cc8ee))
-* add yarn improvements ([625473d](https://github.com/yisuses/whemotion/commit/625473dfa4e79d75a35494c1f5d65158a0efcf2f))
-* added entrypoint ([2af1f06](https://github.com/yisuses/whemotion/commit/2af1f066c001534592c6b2fd898f6b8f1300002b))
-* added entrypoint v2 ([26027df](https://github.com/yisuses/whemotion/commit/26027dfdc31e2c2d268c617bd90c8b07701e87f5))
 * default locale ([847b463](https://github.com/yisuses/whemotion/commit/847b4631a70195b1b57292eb15276d409db1fc53))
 * downgrade to react 17 ([22d2890](https://github.com/yisuses/whemotion/commit/22d289002add24674d3aa22487d02b985e36fab1))
 * fonts ([a61e441](https://github.com/yisuses/whemotion/commit/a61e4417126821807078e3685fe3e154c739da37))
@@ -78,11 +61,51 @@ All notable changes to this project will be documented in this file. See [standa
 * postMapper ([1ea558f](https://github.com/yisuses/whemotion/commit/1ea558f59991ec99f72be06a7b0416d68ffeaf07))
 * postMapper ([44d158c](https://github.com/yisuses/whemotion/commit/44d158cc9a8fc32145e23a153951697122688e3f))
 * production build ([bf96b3a](https://github.com/yisuses/whemotion/commit/bf96b3a7308d686729d58ca29d401526560990f2))
-* readded configuration from package.json ([5e2eeed](https://github.com/yisuses/whemotion/commit/5e2eeed00d3bd4bc79cb0c9247581a3609896f13))
 * remove dependency from tsconfig ([14ce03c](https://github.com/yisuses/whemotion/commit/14ce03c68a55bf0adfc6b1320e97cd97a3d4f38f))
-* remove install state ([e4cfc64](https://github.com/yisuses/whemotion/commit/e4cfc648dcdfc432091166b4452ce79ca2270609))
-* remove invalid range ([fa8b640](https://github.com/yisuses/whemotion/commit/fa8b640b05775645d1ad69c65f8e8c46f8f07aa2))
 * remove warning ([1af8c61](https://github.com/yisuses/whemotion/commit/1af8c6166d08f39fd9eb72b0444542eeedda71b1))
 * resolutions of typings ([ea8833c](https://github.com/yisuses/whemotion/commit/ea8833c5ac8c968ffc6f9064fc818a6b8e583ed6))
-* resolutions of typings ([0cdb3a4](https://github.com/yisuses/whemotion/commit/0cdb3a4e030aa532ec13721255afaf3abfe66eb9))
 * responsive styles ([805c97e](https://github.com/yisuses/whemotion/commit/805c97e0a79581d7afa6e38f8a449e85e483b864))
+
+
+### Tests
+
+* fix tests ([a87bacb](https://github.com/yisuses/whemotion/commit/a87bacb7bcaff978228ceddb20c4be0b3c846380))
+
+
+### Refactors
+
+* add folder page architecture ([48d99c3](https://github.com/yisuses/whemotion/commit/48d99c3134fb304712c3f3813b69a0cec856aaf2))
+* add Metadata and refactor components ([eee3499](https://github.com/yisuses/whemotion/commit/eee3499e36fd77a336c05f844110a4720f676b9e))
+* add storybook into blog ([a5b520c](https://github.com/yisuses/whemotion/commit/a5b520c78c6f804407929abbfeb35fcaa01dd322))
+* remove common package ([3d13d1c](https://github.com/yisuses/whemotion/commit/3d13d1caaf7f8da5c1beecb4cebf759a2157c0cb))
+
+
+### Styling
+
+* header background ([736455d](https://github.com/yisuses/whemotion/commit/736455dfeb723bed3262f2b0b5229a152d3e6a45))
+* header improvements ([e076300](https://github.com/yisuses/whemotion/commit/e0763001abcdfa23cc4a2395deee69bdc174ff72))
+* improved description styles ([8f761c9](https://github.com/yisuses/whemotion/commit/8f761c9192b0b7ae6ddfe13b29f35c4a76d88142))
+* improved description styles again ([8bbbccc](https://github.com/yisuses/whemotion/commit/8bbbccc5e292af1a0c8c1ea73755e6fedff9ba40))
+* improved Header styles ([46dae71](https://github.com/yisuses/whemotion/commit/46dae717ae7404f63d5cbb20cd5640c83a2fb936))
+* improved last posts ([4ff09b0](https://github.com/yisuses/whemotion/commit/4ff09b0dff9f44101fe41f96dfb04694cdec0e1c))
+* improved last posts ([092b188](https://github.com/yisuses/whemotion/commit/092b188456bbe2071c365491023a3e6129da9ddc))
+* post card improvements ([fff6680](https://github.com/yisuses/whemotion/commit/fff6680f0c900b69d3d72bafd46b9a0a693289a4))
+
+
+### Chore
+
+* add badges ([ab65124](https://github.com/yisuses/whemotion/commit/ab651241af952ed17541923607313851bd74bd95))
+* add next configuration ([1ed44a0](https://github.com/yisuses/whemotion/commit/1ed44a0a492e2fe346e70630126644d728fb363b))
+* add next configuration ([d1b6670](https://github.com/yisuses/whemotion/commit/d1b6670a78a25af2dbb5ac202684e0b4d4b5303a))
+* cleanup ([f1f49f7](https://github.com/yisuses/whemotion/commit/f1f49f7cf353bb007e977c7df57e53f3b4fd97c6))
+* improve monorepo ([f540a8f](https://github.com/yisuses/whemotion/commit/f540a8fe1a4eb6dff4275899e6926d58ea11181f))
+* improve monorepo ([05c2510](https://github.com/yisuses/whemotion/commit/05c25109d8b0195f0847012083b016fb35821f85))
+* update configuration ([0cce7d6](https://github.com/yisuses/whemotion/commit/0cce7d6dc390a971fb982bf185ba0ee2ab1aaa9b))
+* update dependencies ([c758abe](https://github.com/yisuses/whemotion/commit/c758abe493bfa2e77e21a060f034b2d76957c669))
+* update dependencies ([bd32384](https://github.com/yisuses/whemotion/commit/bd32384c5182cd4502f5d3b840903ba148d199e2))
+* update dependencies ([1f8dc88](https://github.com/yisuses/whemotion/commit/1f8dc880b257f05318ea977ad58355772f5caebd))
+* update dependencies ([43edc21](https://github.com/yisuses/whemotion/commit/43edc21b9f5a32203e43314764c982a6227aa83c))
+* update dependencies ([d07cf67](https://github.com/yisuses/whemotion/commit/d07cf670d7a30162956f9832c95b415667e6f3c3))
+* update dependencies ([4b9fd55](https://github.com/yisuses/whemotion/commit/4b9fd5560a3d4156d529e46a9e38e0e28c411c74))
+* update dependencies and improve eslint ([a926721](https://github.com/yisuses/whemotion/commit/a926721a0cc38d50c7c4e0b6de19e92d7399f921))
+* upgrade to yarn v3 ([9a4dd2a](https://github.com/yisuses/whemotion/commit/9a4dd2acc4ff07b673a55a86de40bd370a26252d))
