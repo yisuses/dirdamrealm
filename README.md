@@ -1,6 +1,20 @@
 # White Emotion
 
+![](https://img.shields.io/github/license/yisuses/whemotion)
+![](https://img.shields.io/github/last-commit/yisuses/whemotion)
+
+![](https://img.shields.io/github/checks-status/yisuses/whemotion/main)
+![](https://img.shields.io/github/deployments/yisuses/whemotion/production)
 ![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=whemotion)
+![Railway](https://img.shields.io/badge/Railway-deployed-brightgreen)
+
+![](https://img.shields.io/github/package-json/v/yisuses/whemotion?color=green&filename=packages%2Fapi%2Fpackage.json&label=API)
+![](https://img.shields.io/github/package-json/v/yisuses/whemotion?color=green&filename=packages%2Fblog%2Fpackage.json&label=BLOG)
+
+![](https://img.shields.io/github/package-json/dependency-version/yisuses/whemotion/next?filename=packages%2Fblog%2Fpackage.json)
+![](https://img.shields.io/github/package-json/dependency-version/yisuses/whemotion/react?filename=packages%2Fblog%2Fpackage.json)
+![](https://img.shields.io/github/package-json/dependency-version/yisuses/whemotion/@strapi/strapi?filename=packages%2Fapi%2Fpackage.json)
+![](https://img.shields.io/badge/Storybook-ready-ff69b4)
 
 Welcome to the project!
 
