@@ -1,6 +1,6 @@
 {
   "name": "@whe/blog",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "White Emotion Next.JS Blog",
   "scripts": {
@@ -13,7 +13,8 @@
     "clean:storybook": "rm -rf ./build",
     "build:storybook": "yarn clean:storybook && yarn build-storybook -o build",
     "gen:theme-typings": "chakra-cli tokens ./src/themes/chakra.theme.ts",
-    "postinstall": "yarn gen:theme-typings"
+    "postinstall": "yarn gen:theme-typings",
+    "release": "standard-version"
   },
   "dependencies": {
     "@chakra-ui/icons": "1.1.7",
@@ -79,6 +80,7 @@
     "jest": "28.1.0",
     "patch-package": "6.4.7",
     "picocolors": "1.0.0",
+    "standard-version": "9.3.2",
     "storybook-addon-next": "1.6.2",
     "storybook-react-i18next": "1.0.20",
     "ts-jest": "28.0.2",
