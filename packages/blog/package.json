@@ -27,6 +27,7 @@
     "@fontsource/spartan": "4.5.8",
     "axios": "0.27.2",
     "date-fns": "2.28.0",
+    "editorjs-react-renderer": "3.1.1",
     "framer-motion": "6.3.3",
     "i18next": "21.8.2",
     "ky": "0.30.0",
