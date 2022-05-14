@@ -17,13 +17,13 @@
     "jest": "28.1.0"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.1.10",
-    "@strapi/plugin-users-permissions": "4.1.10",
-    "@strapi/provider-upload-cloudinary": "4.1.10",
-    "@strapi/strapi": "4.1.10",
+    "@strapi/plugin-i18n": "4.1.11",
+    "@strapi/plugin-users-permissions": "4.1.11",
+    "@strapi/provider-upload-cloudinary": "4.1.11",
+    "@strapi/strapi": "4.1.11",
     "pg": "8.7.3",
     "standard-version": "9.3.2",
-    "strapi-plugin-ckeditor5": "2.1.1-rc.1"
+    "strapi-plugin-react-editorjs": "2.0.1"
   },
   "strapi": {
     "uuid": "c6339d1d-43d6-4060-b0be-b227dc61b706"
@@ -32,5 +32,8 @@
     "node": ">=12.x.x <=16.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
 }
