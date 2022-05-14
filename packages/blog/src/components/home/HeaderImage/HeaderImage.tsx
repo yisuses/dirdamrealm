@@ -1,5 +1,4 @@
 import { Box, Text, Flex, Divider } from '@chakra-ui/layout'
-import { useBreakpointValue } from '@chakra-ui/media-query'
 import format from 'date-fns/format'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
@@ -14,12 +13,11 @@ interface HeaderImageProps {
 }
 
 export function HeaderImage({ imgSrc, categories, title, subtitle, date }: HeaderImageProps) {
-  const isMinWidthMd = useBreakpointValue({ md: true })
   const { t } = useTranslation('common')
   const renderedCategories = categories.slice(0, 3)
   return (
     <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
-      <Image src={imgSrc} layout="fill" objectFit="cover" />
+      <Image src={imgSrc} layout="fill" objectFit="cover" priority />
       <Box
         position="absolute"
         top={{ base: '45%', lg: '50%' }}
@@ -42,7 +40,7 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
             <Tag
               mb={{ base: '8px', md: '12px', lg: '16px' }}
               key={`${code}-${index}`}
-              size={isMinWidthMd ? 'md' : 'sm'}
+              size="md"
               label={t(`categories.${code}` as const)}
             />
           ))}
