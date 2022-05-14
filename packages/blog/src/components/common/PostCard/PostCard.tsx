@@ -43,7 +43,9 @@ export function PostCard({ categories, date, description, imageUrl, title, image
               <Tag key={key} label={label} />
             ))}
         </Flex>
-        {imageUrl && <Image borderRadius="4px" h="280px" objectFit="cover" src={imageUrl} alt={`${title} image`} />}
+        {imageUrl && (
+          <Image borderRadius="4px" h="280px" w="100%" objectFit="cover" src={imageUrl} alt={`${title} image`} />
+        )}
         {image}
       </Box>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
