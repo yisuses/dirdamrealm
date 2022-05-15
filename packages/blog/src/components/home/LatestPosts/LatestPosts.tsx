@@ -33,7 +33,7 @@ export function LatestPosts({ categories, posts }: LatestPostsProps) {
     categories.map(category => ({
       id: category.id,
       code: category.code,
-      name: (locale && category.locale?.[locale as AppLocales]) || category.name,
+      name: category.name,
     })),
   )
 
@@ -80,7 +80,7 @@ export function LatestPosts({ categories, posts }: LatestPostsProps) {
             key={post.id}
             categories={post.categories.map(category => ({
               key: category.code,
-              label: (locale && category.locale?.[locale as AppLocales]) || category.name,
+              label: category.name,
             }))}
             date={format(parseISO(post.publishedAt), 'dd.MM.yyyy')}
             imageUrl={post.coverImage?.url || post.imgUrl || 'https://picsum.photos/1440/600'}

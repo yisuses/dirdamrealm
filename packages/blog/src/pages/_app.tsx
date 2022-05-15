@@ -2,7 +2,7 @@ import '@fontsource/roboto'
 import '@fontsource/lora'
 import '@fontsource/spartan'
 import { appWithTranslation } from 'next-i18next'
-import type { AppProps } from 'next/app'
+import type { AppContext, AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 import { dehydrate, QueryClient } from 'react-query'
 
@@ -23,9 +23,9 @@ function App({ Component, pageProps, globalProps }: CustomAppProps) {
   )
 }
 
-App.getInitialProps = async (): Promise<AppInitialProps> => {
+App.getInitialProps = async ({ router }: AppContext): Promise<AppInitialProps> => {
   // get initial categories
-  await queryClient.prefetchQuery('categories', getCategories)
+  await queryClient.prefetchQuery('categories', () => getCategories(router.locale as AppLocales))
   await queryClient.prefetchQuery('about', getAbout)
 
   return {

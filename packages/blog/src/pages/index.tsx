@@ -24,7 +24,7 @@ const HomePage = ({ latestPosts, categories }: HomePageProps) => {
 
 export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
   const latestPostsRequest = getLatestPosts({ lang: locale as AppLocales })
-  const categoriesRequest = getCategories()
+  const categoriesRequest = getCategories(locale as AppLocales)
 
   const [responseLatestPost, categoriesResponse] = await Promise.all([latestPostsRequest, categoriesRequest])
 
