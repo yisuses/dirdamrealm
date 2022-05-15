@@ -1,6 +1,5 @@
 import { Box, Text, Flex, Divider } from '@chakra-ui/layout'
 import format from 'date-fns/format'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { Tag } from '../../common/Tag/Tag'
 
@@ -9,11 +8,10 @@ interface HeaderImageProps {
   title: string
   subtitle: string
   date: Date
-  categories: ECategoryCode[]
+  categories: { code: string; name: string }[]
 }
 
 export function HeaderImage({ imgSrc, categories, title, subtitle, date }: HeaderImageProps) {
-  const { t } = useTranslation('common')
   const renderedCategories = categories.slice(0, 3)
   return (
     <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
@@ -36,13 +34,8 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         }}
       >
         <Flex gap="10px">
-          {renderedCategories.map((code, index) => (
-            <Tag
-              mb={{ base: '8px', md: '12px', lg: '16px' }}
-              key={`${code}-${index}`}
-              size="md"
-              label={t(`categories.${code}` as const)}
-            />
+          {renderedCategories.map(({ name, code }) => (
+            <Tag mb={{ base: '8px', md: '12px', lg: '16px' }} key={`${code}}`} size="md" label={name} />
           ))}
         </Flex>
         <Text

@@ -26,7 +26,7 @@ export type PostCardProps = PostCardWithImageProps | PostCardWithImageUrlProps
 
 export function PostCard({ categories, date, description, imageUrl, title, image }: PostCardProps) {
   return (
-    <Flex direction="column" w="100%" h="450px" gap="15px">
+    <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
       <Box w="100%" h="280px" position="relative">
         <Flex
           pl="20px"

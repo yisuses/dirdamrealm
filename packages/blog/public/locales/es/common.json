@@ -16,11 +16,6 @@
     "changeLanguage": "Cambiar idioma"
   },
   "categories": {
-    "ENG": "Ingeniería",
-    "SPO": "Deportes",
-    "NEW": "Actualidad",
-    "HIS": "Historia y pensamiento",
-    "MAC": "Música y cine",
-    "TRA": "Viajes"
+    "all": "Todas"
   }
 }
