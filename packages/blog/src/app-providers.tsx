@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/provider'
 import { AppProps } from 'next/app'
 import { ReactNode, useState } from 'react'
 import { DefaultOptions, Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
-import emotionTheme from './themes/emotion.theme'
+import emotionTheme from '@themes/emotion.theme'
 
 type AppProvidersProps = {
   children: ReactNode

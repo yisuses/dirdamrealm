@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { categoryMapper } from 'api/mapper'
-import { apiUrl } from 'utils'
+import { categoryMapper } from '@api/mapper'
+import { apiUrl } from '@utils'
 
 export async function getCategories() {
   return axios

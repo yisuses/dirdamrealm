@@ -1,6 +1,7 @@
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
-import { Metadata } from '@/components/common'
+
+import { Metadata } from '@components/common'
 import { HeaderImage } from '../HeaderImage'
 import { LatestPosts } from '../LatestPosts'
 
@@ -14,10 +15,10 @@ export type HeaderPostProps = {
 
 export interface HomePageProps {
   headerPost?: HeaderPostProps
-  lastEntries: Post[]
+  latestPosts: Post[]
   categories: Category[]
 }
-export function HomePage({ headerPost, lastEntries, categories }: HomePageProps) {
+export function HomePage({ headerPost, latestPosts, categories }: HomePageProps) {
   const { t } = useTranslation('homePage')
   return (
     <>
@@ -33,7 +34,7 @@ export function HomePage({ headerPost, lastEntries, categories }: HomePageProps)
       ) : (
         <div>{t('homePage.noPublishedArticles')}</div>
       )}
-      <LatestPosts categories={categories} posts={lastEntries} />
+      <LatestPosts categories={categories} posts={latestPosts} />
     </>
   )
 }

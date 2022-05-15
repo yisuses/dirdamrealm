@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import { aboutMapper } from 'api/mapper'
-import { apiUrl } from 'utils'
+import { aboutMapper } from '@api/mapper'
+import { apiUrl } from '@utils'
 
 export async function getAbout() {
   return axios

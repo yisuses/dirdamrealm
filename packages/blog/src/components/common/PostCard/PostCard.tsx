@@ -3,7 +3,7 @@ import { Image } from '@chakra-ui/image'
 import { Text, Box, Flex } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
-import { Tag } from '@/components'
+import { Tag } from '@components'
 
 type PostCardCommonProps = {
   categories: { key: string; label: string }[]

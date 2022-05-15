@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useQueryClient } from 'react-query'
 
-import { seoName } from '@/utils'
+import { seoName } from '@utils'
 
 export function useGetMainCategories() {
   const { locale } = useRouter()
