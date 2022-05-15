@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
-import { postMapper } from 'api/mapper'
-import { apiUrl } from 'utils'
+import { postMapper } from '@api/mapper'
+import { apiUrl } from '@utils'
 
 type GetLatestPostParams = {
   lang: AppLocales

@@ -1,7 +1,7 @@
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 
-import { Metadata } from '@/components/common'
+import { Metadata } from '@components/common'
 import { HeaderImage } from '../HeaderImage'
 import { LatestPosts } from '../LatestPosts'
 

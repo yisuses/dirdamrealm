@@ -6,8 +6,8 @@ import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 import { dehydrate, QueryClient } from 'react-query'
 
-import { MainLayout } from '@/components'
-import { getCategories, getAbout } from 'api'
+import { getCategories, getAbout } from '@api'
+import { MainLayout } from '@components'
 import { AppProviders } from 'app-providers'
 
 const queryClient = new QueryClient()

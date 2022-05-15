@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
-import { GlobalStyles, Footer, Header } from '@/components'
-import { useGetMainCategories, useGetAbout } from '@/hooks'
+import { GlobalStyles, Footer, Header } from '@components'
+import { useGetMainCategories, useGetAbout } from '@hooks'
 
 interface MainLayoutProps {
   children: ReactNode

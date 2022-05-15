@@ -58,9 +58,10 @@ module.exports = {
       ...config.resolve,
       alias: {
         ...config.resolve.alias,
-        '@/components': resolve('../src/components'),
-        '@/hooks': resolve('../src/hooks'),
-        '@/utils': resolve('../src/utils'),
+        '@components': resolve('../src/components'),
+        '@api': resolve('../src/api'),
+        '@hooks': resolve('../src/hooks'),
+        '@utils': resolve('../src/utils'),
       },
       fallback: {
         ...(config.resolve || {}).fallback,

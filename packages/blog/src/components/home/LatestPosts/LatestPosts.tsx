@@ -5,9 +5,9 @@ import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { getLatestPosts } from 'api'
 
-import { PostCard } from '../../common/PostCard/PostCard'
+import { getLatestPosts } from '@api'
+import { PostCard } from '@components/common'
 
 interface LatestPostsProps {
   categories: Category[]
