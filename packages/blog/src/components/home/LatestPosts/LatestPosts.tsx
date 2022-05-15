@@ -43,16 +43,25 @@ export function LatestPosts({ categories, posts }: LatestPostsProps) {
       <HStack spacing="20px" mt="20px" overflow="auto">
         {renderedCategories.map(category => (
           <Text
+            tabIndex={0}
+            role="button"
             py={1}
             key={category.id}
             fontFamily="Lora"
-            fontSize="xs"
+            fontSize="sm"
             fontWeight={700}
             color={selectedCategory === category.code ? 'orange.300' : useColorModeValue('gray.750', 'gray.50')}
             _hover={{ cursor: 'pointer', color: 'orange.300' }}
+            _focus={{ color: 'orange.300' }}
+            _focusWithin={{ outline: 'none' }}
             transition="color 0.2s ease-in-out"
             whiteSpace="nowrap"
             onClick={() => setSelectedCategory(category.code)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setSelectedCategory(category.code)
+              }
+            }}
           >
             {category.name}
           </Text>
