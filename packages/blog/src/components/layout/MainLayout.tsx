@@ -3,13 +3,17 @@ import { ReactNode } from 'react'
 
 import { GlobalStyles, Footer, Header } from '@components'
 import { useGetMainCategories, useGetAbout } from '@hooks'
+import { seoName } from '@utils'
 
 interface MainLayoutProps {
   children: ReactNode
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const categories = useGetMainCategories()
+  const categories = useGetMainCategories().map(category => ({
+    label: category.name,
+    url: `/${seoName(category.name)}`,
+  }))
   const about = useGetAbout()
   return (
     <>

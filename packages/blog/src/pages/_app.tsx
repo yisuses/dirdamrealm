@@ -24,9 +24,8 @@ function App({ Component, pageProps, globalProps }: CustomAppProps) {
 }
 
 App.getInitialProps = async ({ router }: AppContext): Promise<AppInitialProps> => {
-  // get initial categories
-  await queryClient.prefetchQuery('categories', () => getCategories(router.locale as AppLocales))
-  await queryClient.prefetchQuery('about', getAbout)
+  await queryClient.prefetchQuery(['categories'], () => getCategories(router.locale as AppLocales))
+  await queryClient.prefetchQuery(['about'], getAbout)
 
   return {
     globalProps: {

@@ -2,34 +2,32 @@ import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 
 import { Metadata } from '@components/common'
+import { useGetCategories } from '@hooks'
 import { HeaderImage } from '../HeaderImage'
 import { LatestPosts } from '../LatestPosts'
 
-export type HeaderPostProps = {
-  imgUrl: string
-  date: string
-  title: string
-  subtitle: string
-  categories: Category[]
+export interface HomePageProps {
+  latestPosts: Post[]
 }
 
-export interface HomePageProps {
-  headerPost?: HeaderPostProps
-  latestPosts: Post[]
-  categories: Category[]
-}
-export function HomePage({ headerPost, latestPosts, categories }: HomePageProps) {
+export function HomePage({ latestPosts }: HomePageProps) {
   const { t } = useTranslation('homePage')
+
+  const categories = useGetCategories()
+  const lastPost = latestPosts?.[0]
+
+  //TODO ldjson
+
   return (
     <>
       <Metadata name={t('homePage.title')} description={t('homePage.description')} />
-      {headerPost ? (
+      {lastPost ? (
         <HeaderImage
-          imgSrc={headerPost.imgUrl}
-          date={parseISO(headerPost.date)}
-          categories={headerPost.categories}
-          title={headerPost.title}
-          subtitle={headerPost.subtitle}
+          imgSrc={lastPost.coverImage?.url || lastPost.imgUrl || 'https://picsum.photos/1440/600'}
+          date={parseISO(lastPost.publishedAt)}
+          categories={lastPost.categories}
+          title={lastPost.title}
+          subtitle={lastPost.summary}
         />
       ) : (
         <div>{t('homePage.noPublishedArticles')}</div>
