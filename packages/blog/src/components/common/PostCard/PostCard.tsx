@@ -51,10 +51,10 @@ export function PostCard({ categories, date, description, imageUrl, title, image
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
         {date}
       </Text>
-      <Text fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2}>
+      <Text fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2} title={title}>
         {title}
       </Text>
-      <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3}>
+      <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3} title={description}>
         {description}
       </Text>
     </Flex>
