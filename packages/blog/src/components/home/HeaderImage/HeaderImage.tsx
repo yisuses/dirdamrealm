@@ -1,18 +1,21 @@
 import { Box, Text, Flex, Divider } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import Image from 'next/image'
-import { Tag } from '../../common/Tag/Tag'
+import { useRouter } from 'next/router'
+
+import { Tag } from '@components/common/Tag/Tag'
 
 interface HeaderImageProps {
   imgSrc: string
   title: string
   subtitle: string
   date: Date
-  categories: { code: string; name: string }[]
+  categories: Category[]
 }
 
 export function HeaderImage({ imgSrc, categories, title, subtitle, date }: HeaderImageProps) {
   const renderedCategories = categories.slice(0, 3)
+  const { locale: appLocale } = useRouter()
   return (
     <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
       <Image src={imgSrc} layout="fill" objectFit="cover" priority />
@@ -34,8 +37,13 @@ export function HeaderImage({ imgSrc, categories, title, subtitle, date }: Heade
         }}
       >
         <Flex gap="10px">
-          {renderedCategories.map(({ name, code }) => (
-            <Tag mb={{ base: '8px', md: '12px', lg: '16px' }} key={`${code}}`} size="md" label={name} />
+          {renderedCategories.map(({ name, locale, code }) => (
+            <Tag
+              mb={{ base: '8px', md: '12px', lg: '16px' }}
+              key={`${code}}`}
+              size="md"
+              label={(locale && locale?.[appLocale as AppLocales]) || name}
+            />
           ))}
         </Flex>
         <Text

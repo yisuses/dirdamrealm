@@ -78,7 +78,10 @@ export function LatestPosts({ categories, posts }: LatestPostsProps) {
         {renderedPosts.map(post => (
           <PostCard
             key={post.id}
-            categories={post.categories.map(category => ({ key: category.code, label: category.name }))}
+            categories={post.categories.map(category => ({
+              key: category.code,
+              label: (locale && category.locale?.[locale as AppLocales]) || category.name,
+            }))}
             date={format(parseISO(post.publishedAt), 'dd.MM.yyyy')}
             imageUrl={post.coverImage?.url || post.imgUrl || 'https://picsum.photos/1440/600'}
             title={post.title}
