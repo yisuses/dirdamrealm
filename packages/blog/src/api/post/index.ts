@@ -1,1 +1,1 @@
-export * from './getLastPosts'
+export * from './getLatestPosts'

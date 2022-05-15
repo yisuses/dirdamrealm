@@ -4,6 +4,8 @@ import { format, parseISO } from 'date-fns'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
+import { getLatestPosts } from 'api'
 
 import { PostCard } from '../../common/PostCard/PostCard'
 
@@ -15,16 +17,17 @@ interface LatestPostsProps {
 export function LatestPosts({ categories, posts }: LatestPostsProps) {
   const { t } = useTranslation(['common', 'homePage'])
   const { locale } = useRouter()
-  const [selectedCategory, setSelectedCategory] = useState<string | ''>('')
-  const [renderedPosts, setRenderedPosts] = useState(posts)
+  const [selectedCategory, setSelectedCategory] = useState<string>()
+  const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
+  const { data: queriedPosts } = useQuery(
+    ['latestPosts', { selectedCategory }],
+    async () => getLatestPosts({ lang: locale as AppLocales, category: selectedCategory }),
+    { enabled: selectedCategory !== undefined, refetchOnWindowFocus: false },
+  )
 
   useEffect(() => {
-    setRenderedPosts(
-      selectedCategory
-        ? posts.filter(post => post.categories.map(category => category.code).includes(selectedCategory))
-        : posts,
-    )
-  }, [selectedCategory])
+    setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== posts[0]?.id) : renderedPosts)
+  }, [queriedPosts])
 
   const renderedCategories = [{ id: -1, code: '', name: t(`common:categories.all`) }].concat(
     categories.map(category => ({
