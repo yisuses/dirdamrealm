@@ -14,28 +14,35 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "description": {
       "type": "text",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "code": {
       "type": "string",
       "required": true,
       "unique": true,
-      "regex": "^[A-Z]*"
+      "regex": "^[A-Z]*",
+      "pluginOptions": {}
     },
     "main": {
       "type": "boolean",
       "default": false,
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "posts": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::post.post",
       "mappedBy": "categories"
+    },
+    "locale": {
+      "type": "json"
     }
   }
 }

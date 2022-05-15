@@ -1,3 +1,3 @@
 export * from './HeaderImage'
 export * from './HomePage'
-export * from './LastPosts'
+export * from './LatestPosts'

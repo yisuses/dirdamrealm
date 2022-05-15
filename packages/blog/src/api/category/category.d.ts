@@ -1,9 +1,8 @@
-type ECategoryCode = `${import('../../enums/categories').CategoryCode}`
-
 interface CategoryResponseEntity {
-  code: ECategoryCode
+  code: string
   main: boolean
   name: string
+  locale?: Record<AppLocales, string>
   description: string
   createdAt: string
   updatedAt: string
