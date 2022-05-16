@@ -7,12 +7,14 @@ import Image, { ImageProps } from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import { buildCategoryPath } from '@utils/urlBuilder'
 import { LogoContainer } from './Header.styles'
 import { HeaderMenu } from './HeaderMenu'
 
 export interface HeaderProps {
   categories: {
     url: string
+    code: string
     label: string
   }[]
 }
@@ -74,7 +76,7 @@ export function Header({ categories }: HeaderProps) {
     </NextLink>
   ))
 
-  const categoryHeaderLinks = categories.map(({ url, label }, index) => (
+  const categoryHeaderLinks = categories.map(({ url, label, code }, index) => (
     <NextLink href={url} key={index} passHref>
       <Link
         href={url}
@@ -82,7 +84,7 @@ export function Header({ categories }: HeaderProps) {
         pt="5px"
         fontWeight="700"
         fontSize={{ md: 12 }}
-        color="white"
+        color={router.asPath === buildCategoryPath(code, label) ? 'orange.300' : 'white'}
         _hover={{
           textDecoration: 'none',
           '::after': {

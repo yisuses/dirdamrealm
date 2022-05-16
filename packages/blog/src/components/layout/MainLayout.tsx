@@ -12,6 +12,7 @@ interface MainLayoutProps {
 export const MainLayout = ({ children }: MainLayoutProps) => {
   const categories = useGetMainCategories().map(category => ({
     label: category.name,
+    code: category.code,
     url: buildCategoryPath(category.code, category.name),
   }))
   const about = useGetAbout()

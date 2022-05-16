@@ -16,6 +16,7 @@ export interface FooterProps {
   categories: {
     label: string
     url: string
+    code: string
   }[]
   about: About
 }
