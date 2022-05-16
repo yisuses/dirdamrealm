@@ -1,0 +1,10 @@
+{
+  "categoryPage": {
+    "title": "Categoría: {{categoryName}}",
+    "description": "Emoción Blanca: Página de la categoría {{categoryName}}",
+    "noPublishedArticles": "No se han publicado artículos para esta categoría"
+  },
+  "latestPosts": {
+    "title": "Últimas entradas de {{categoryName}}"
+  }
+}

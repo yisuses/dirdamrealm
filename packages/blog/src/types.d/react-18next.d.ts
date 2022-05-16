@@ -5,6 +5,7 @@
  * @link https://react.i18next.com/latest/typescript
  */
 import 'react-i18next'
+import type categoryPage from '../../public/locales/en/categoryPage.json'
 import type common from '../../public/locales/en/common.json'
 import type errorPage from '../../public/locales/en/errorPage.json'
 import type homePage from '../../public/locales/en/homePage.json'
@@ -15,6 +16,7 @@ declare module 'react-i18next' {
     defaultNS: 'common'
     resources: {
       common: typeof common
+      categoryPage: typeof categoryPage
       homePage: typeof homePage
       errorPage: typeof errorPage
       notFoundPage: typeof notFoundPage

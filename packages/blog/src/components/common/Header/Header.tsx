@@ -71,7 +71,7 @@ export function Header({ categories }: HeaderProps) {
 
   const categoryLinks = categories.map(({ url, label }, index) => (
     <NavLink href={url} key={index}>
-      <>{label}</>
+      {label}
     </NavLink>
   ))
 

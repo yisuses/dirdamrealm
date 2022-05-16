@@ -9,6 +9,7 @@ interface CategoryResponseEntity {
 }
 
 type CategoryResponse = StrapiResponse<CategoryResponseEntity>
+type CategorySingleResponse = StrapiSingleResponse<CategoryResponseEntity>
 
 type Category = CategoryResponseEntity & {
   id: number

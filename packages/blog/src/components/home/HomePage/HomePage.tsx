@@ -1,10 +1,8 @@
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 
-import { Metadata } from '@components/common'
+import { Metadata, HeaderImage, LatestPosts } from '@components/common'
 import { useGetCategories } from '@hooks'
-import { HeaderImage } from '../HeaderImage'
-import { LatestPosts } from '../LatestPosts'
 
 export interface HomePageProps {
   latestPosts: Post[]
@@ -32,7 +30,7 @@ export function HomePage({ latestPosts }: HomePageProps) {
       ) : (
         <div>{t('homePage.noPublishedArticles')}</div>
       )}
-      <LatestPosts categories={categories} posts={latestPosts} />
+      <LatestPosts title={t('latestPosts.title')} categories={categories} posts={latestPosts} />
     </>
   )
 }
