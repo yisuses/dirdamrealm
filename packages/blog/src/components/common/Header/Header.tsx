@@ -1,14 +1,13 @@
 import { Button, IconButton } from '@chakra-ui/button'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Center, Divider, Flex, HStack, Text } from '@chakra-ui/layout'
+import { Box, Center, Divider, Flex, HStack, Link, Text } from '@chakra-ui/layout'
 import { useColorMode, useColorModeValue } from '@chakra-ui/system'
 import { useTranslation } from 'next-i18next'
 import Image, { ImageProps } from 'next/image'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
-import { NavLink } from '../NavLink'
 import { LogoContainer } from './Header.styles'
-import { HeaderLink } from './HeaderLink'
 import { HeaderMenu } from './HeaderMenu'
 
 export interface HeaderProps {
@@ -52,7 +51,7 @@ export function Header({ categories }: HeaderProps) {
         pl={{ md: 0, lg: '1rem' }}
         letterSpacing={{ md: '0px', lg: '4px' }}
       >
-        WHITE EMOTION
+        <NextLink href="/">WHITE EMOTION</NextLink>
       </Text>
       <Text
         color="white"
@@ -64,15 +63,52 @@ export function Header({ categories }: HeaderProps) {
         display={{ base: 'flex', md: 'none' }}
         pl="1rem"
       >
-        W.E.
+        <NextLink href="/">W.E.</NextLink>
       </Text>
     </>
   )
 
-  const categoryLinks = categories.map(({ url, label }, index) => (
-    <NavLink href={url} key={index}>
+  const categoryMenuLinks = categories.map(({ url, label }, index) => (
+    <NextLink href={url} key={index}>
       {label}
-    </NavLink>
+    </NextLink>
+  ))
+
+  const categoryHeaderLinks = categories.map(({ url, label }, index) => (
+    <NextLink href={url} key={index} passHref>
+      <Link
+        href={url}
+        px={{ md: 2, lg: 3 }}
+        pt="5px"
+        fontWeight="700"
+        fontSize={{ md: 12 }}
+        color="white"
+        _hover={{
+          textDecoration: 'none',
+          '::after': {
+            width: '100%',
+          },
+        }}
+        _active={{
+          '::after': {
+            width: 'calc(100% + 10px)',
+            marginLeft: '-5px',
+            transition: 'none',
+          },
+        }}
+        _after={{
+          content: '""',
+          display: 'block',
+          width: 0,
+          height: '2px',
+          marginTop: '3px',
+          bg: 'orange.300',
+          transition: 'width 0.2s',
+        }}
+      >
+        {label}
+      </Link>
+    </NextLink>
   ))
 
   return (
@@ -100,7 +136,7 @@ export function Header({ categories }: HeaderProps) {
         maxW={{ base: '100%', lg: '1440px' }}
       >
         <Flex h="full" alignItems="center">
-          <HeaderMenu menuItems={categoryLinks} />
+          <HeaderMenu menuItems={categoryMenuLinks} />
           {logo && (
             <HStack alignItems="center">
               <Box>{logo}</Box>
@@ -109,9 +145,7 @@ export function Header({ categories }: HeaderProps) {
         </Flex>
         <Flex alignItems="center">
           <HStack as="nav" spacing={{ md: 0, lg: 4 }} display={{ base: 'none', md: 'flex' }} alignItems="flex-end">
-            {categoryLinks.map(link => (
-              <HeaderLink key={link.key}>{link}</HeaderLink>
-            ))}
+            {categoryHeaderLinks}
           </HStack>
           <Center display={{ base: 'none' }} h={{ md: '40px' }} w={{ md: '20px' }}>
             <Divider orientation="vertical" borderColor={useColorModeValue('gray.400', 'gray.600')} />
