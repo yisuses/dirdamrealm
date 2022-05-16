@@ -1,15 +1,15 @@
-import type { GetServerSideProps } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { getLatestPosts } from '@api'
 import { withErrorComponent, WithErrorProps, HomePage as HomePageComponent } from '@components'
 
-const HomePage = ({ latestPosts }: HomePageProps) => {
+const HomePage: NextPage<HomePageProps> = ({ latestPosts }) => {
   return <HomePageComponent latestPosts={latestPosts || []} />
 }
 
 export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
-  const latestPostsRequest = getLatestPosts({ lang: locale as AppLocales })
+  const latestPostsRequest = getLatestPosts({ locale: locale as AppLocales })
 
   const [responseLatestPost] = await Promise.all([latestPostsRequest])
 

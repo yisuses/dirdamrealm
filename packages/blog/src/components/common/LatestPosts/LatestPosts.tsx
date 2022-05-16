@@ -10,18 +10,19 @@ import { getLatestPosts } from '@api'
 import { PostCard } from '@components/common'
 
 interface LatestPostsProps {
-  categories: Category[]
+  title: string
+  categories?: Category[]
   posts: Post[]
 }
 
-export function LatestPosts({ categories, posts }: LatestPostsProps) {
-  const { t } = useTranslation(['common', 'homePage'])
+export function LatestPosts({ title, categories, posts }: LatestPostsProps) {
+  const { t } = useTranslation('common')
   const { locale } = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string>()
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
   const { data: queriedPosts } = useQuery(
     ['latestPosts', { selectedCategory }],
-    async () => getLatestPosts({ lang: locale as AppLocales, category: selectedCategory }),
+    async () => getLatestPosts({ locale: locale as AppLocales, category: selectedCategory }),
     {
       enabled: selectedCategory !== undefined,
       refetchOnWindowFocus: false,
@@ -33,44 +34,48 @@ export function LatestPosts({ categories, posts }: LatestPostsProps) {
     setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== posts[0]?.id) : renderedPosts)
   }, [queriedPosts])
 
-  const renderedCategories = [{ id: -1, code: '', name: t(`common:categories.all`) }].concat(
-    categories.map(({ id, code, name }) => ({ id, code, name })),
-  )
+  const renderedCategories = categories
+    ? [{ id: -1, code: '', name: t(`categories.all`) }].concat(
+        categories.map(({ id, code, name }) => ({ id, code, name })),
+      )
+    : []
 
   return (
     <Flex flexDir="column" mt={{ base: '60px', md: '130px' }} mb="60px" px="20px">
-      <Heading fontFamily="Lora">{t('homePage:lastPosts.title')}</Heading>
-      <HStack spacing="20px" mt="20px" overflow="auto">
-        {renderedCategories.map(({ id, code, name }) => (
-          <Text
-            tabIndex={0}
-            role="button"
-            py={1}
-            key={id}
-            fontFamily="Lora"
-            fontSize="sm"
-            fontWeight={700}
-            color={
-              (!selectedCategory && id === -1) || selectedCategory === code
-                ? 'orange.300'
-                : useColorModeValue('gray.750', 'gray.50')
-            }
-            _hover={{ cursor: 'pointer', color: 'orange.300' }}
-            _focus={{ color: 'orange.300' }}
-            _focusWithin={{ outline: 'none' }}
-            transition="color 0.2s ease-in-out"
-            whiteSpace="nowrap"
-            onClick={() => setSelectedCategory(code)}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setSelectedCategory(code)
+      <Heading fontFamily="Lora">{title}</Heading>
+      {Boolean(renderedCategories.length) && (
+        <HStack spacing="20px" mt="20px" overflow="auto">
+          {renderedCategories.map(({ id, code, name }) => (
+            <Text
+              tabIndex={0}
+              role="button"
+              py={1}
+              key={id}
+              fontFamily="Lora"
+              fontSize="sm"
+              fontWeight={700}
+              color={
+                (!selectedCategory && id === -1) || selectedCategory === code
+                  ? 'orange.300'
+                  : useColorModeValue('gray.750', 'gray.50')
               }
-            }}
-          >
-            {name}
-          </Text>
-        ))}
-      </HStack>
+              _hover={{ cursor: 'pointer', color: 'orange.300' }}
+              _focus={{ color: 'orange.300' }}
+              _focusWithin={{ outline: 'none' }}
+              transition="color 0.2s ease-in-out"
+              whiteSpace="nowrap"
+              onClick={() => setSelectedCategory(code)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setSelectedCategory(code)
+                }
+              }}
+            >
+              {name}
+            </Text>
+          ))}
+        </HStack>
+      )}
       <SimpleGrid
         gridTemplateColumns={{
           base: 'repeat(auto-fill, minmax(100%, 1fr))',
