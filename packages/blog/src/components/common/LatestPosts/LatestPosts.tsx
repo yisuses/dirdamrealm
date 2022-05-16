@@ -1,103 +1,35 @@
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Flex, Heading, HStack, SimpleGrid, Text } from '@chakra-ui/layout'
+import { SimpleGrid } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 
-import { getLatestPosts } from '@api'
 import { PostCard } from '@components/common'
 
 interface LatestPostsProps {
-  title: string
-  categories?: Category[]
   posts: Post[]
 }
 
-export function LatestPosts({ title, categories, posts }: LatestPostsProps) {
-  const { t } = useTranslation('common')
-  const { locale } = useRouter()
-  const [selectedCategory, setSelectedCategory] = useState<string>()
-  const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
-  const { data: queriedPosts } = useQuery(
-    ['latestPosts', { selectedCategory }],
-    async () => getLatestPosts({ locale: locale as AppLocales, category: selectedCategory }),
-    {
-      enabled: selectedCategory !== undefined,
-      refetchOnWindowFocus: false,
-      staleTime: 30000,
-    },
-  )
-
-  useEffect(() => {
-    setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== posts[0]?.id) : renderedPosts)
-  }, [queriedPosts])
-
-  const renderedCategories = categories
-    ? [{ id: -1, code: '', name: t(`categories.all`) }].concat(
-        categories.map(({ id, code, name }) => ({ id, code, name })),
-      )
-    : []
-
+export function LatestPosts({ posts }: LatestPostsProps) {
   return (
-    <Flex flexDir="column" mt={{ base: '60px', md: '130px' }} mb="60px" px="20px">
-      <Heading fontFamily="Lora">{title}</Heading>
-      {Boolean(renderedCategories.length) && (
-        <HStack spacing="20px" mt="20px" overflow="auto">
-          {renderedCategories.map(({ id, code, name }) => (
-            <Text
-              tabIndex={0}
-              role="button"
-              py={1}
-              key={id}
-              fontFamily="Lora"
-              fontSize="sm"
-              fontWeight={700}
-              color={
-                (!selectedCategory && id === -1) || selectedCategory === code
-                  ? 'orange.300'
-                  : useColorModeValue('gray.750', 'gray.50')
-              }
-              _hover={{ cursor: 'pointer', color: 'orange.300' }}
-              _focus={{ color: 'orange.300' }}
-              _focusWithin={{ outline: 'none' }}
-              transition="color 0.2s ease-in-out"
-              whiteSpace="nowrap"
-              onClick={() => setSelectedCategory(code)}
-              onKeyDown={e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  setSelectedCategory(code)
-                }
-              }}
-            >
-              {name}
-            </Text>
-          ))}
-        </HStack>
-      )}
-      <SimpleGrid
-        gridTemplateColumns={{
-          base: 'repeat(auto-fill, minmax(100%, 1fr))',
-          md: 'repeat(auto-fill, minmax(280px, 1fr))',
-        }}
-        spacing={8}
-        mt={8}
-      >
-        {renderedPosts.map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl }) => (
-          <PostCard
-            key={id}
-            categories={categories.map(category => ({
-              key: category.code,
-              label: category.name,
-            }))}
-            date={format(parseISO(publishedAt), 'dd.MM.yyyy')}
-            imageUrl={coverImage?.formats.small.url || imgUrl || 'https://picsum.photos/1440/600'}
-            title={title}
-            description={summary}
-          />
-        ))}
-      </SimpleGrid>
-    </Flex>
+    <SimpleGrid
+      gridTemplateColumns={{
+        base: 'repeat(auto-fill, minmax(100%, 1fr))',
+        md: 'repeat(auto-fill, minmax(280px, 1fr))',
+      }}
+      spacing={8}
+      mt={8}
+    >
+      {posts.map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl }) => (
+        <PostCard
+          key={id}
+          categories={categories.map(category => ({
+            key: category.code,
+            label: category.name,
+          }))}
+          date={format(parseISO(publishedAt), 'dd.MM.yyyy')}
+          imageUrl={coverImage?.formats.small.url || imgUrl || 'https://picsum.photos/1440/600'}
+          title={title}
+          description={summary}
+        />
+      ))}
+    </SimpleGrid>
   )
 }
