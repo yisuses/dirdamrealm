@@ -85,6 +85,9 @@ export function Header({ categories }: HeaderProps) {
         fontWeight="700"
         fontSize={{ md: 12 }}
         color={router.asPath === buildCategoryPath(code, label) ? 'orange.300' : 'white'}
+        _focus={{
+          boxShadow: 'none',
+        }}
         _hover={{
           textDecoration: 'none',
           '::after': {

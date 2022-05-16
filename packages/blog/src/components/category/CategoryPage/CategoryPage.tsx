@@ -1,7 +1,8 @@
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 
-import { HeaderImage, LatestPosts, Metadata } from '@components/common'
+import { HeaderImage, Metadata } from '@components/common'
+import { CategoryLatestPosts } from '../CategoryLatestPosts'
 
 export interface CategoryPageProps {
   category: Category
@@ -30,7 +31,10 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
       ) : (
         <div>{t('categoryPage.noPublishedArticles')}</div>
       )}
-      <LatestPosts title={t('latestPosts.title', { categoryName: category.name })} posts={latestPosts} />
+      <CategoryLatestPosts
+        posts={latestPosts.slice(1)}
+        title={t('latestPosts.title', { categoryName: category.name })}
+      />
     </>
   )
 }
