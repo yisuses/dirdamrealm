@@ -14,7 +14,8 @@ const { publicRuntimeConfig } = getConfig()
 
 export interface FooterProps {
   categories: {
-    label: string
+    name: string
+    localizedName: string
     url: string
     code: string
   }[]
@@ -49,9 +50,9 @@ export function Footer({ categories, about }: FooterProps) {
 
           <Stack align="flex-start">
             <FooterListHeader>{t('footer.categories')}</FooterListHeader>
-            {categories.map(({ label, url }, index) => (
+            {categories.map(({ localizedName, url }, index) => (
               <FooterListLink key={index} href={url}>
-                {label}
+                {localizedName}
               </FooterListLink>
             ))}
           </Stack>

@@ -22,7 +22,7 @@ export function LatestPosts({ posts }: LatestPostsProps) {
           key={id}
           categories={categories.map(category => ({
             key: category.code,
-            label: category.name,
+            label: category.localizedName,
           }))}
           date={format(parseISO(publishedAt), 'dd.MM.yyyy')}
           imageUrl={coverImage?.formats.small.url || imgUrl || 'https://picsum.photos/1440/600'}

@@ -11,7 +11,8 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   const categories = useGetMainCategories().map(category => ({
-    label: category.name,
+    localizedName: category.localizedName,
+    name: category.name,
     code: category.code,
     url: buildCategoryPath(category.code, category.name),
   }))
@@ -22,7 +23,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <Header categories={categories} />
       <Box
         as="main"
-        minH={{ base: 'calc(100vh - 272px)' }}
+        minH={{ base: 'calc(100vh - 272px)', md: 'calc(100vh - 250px)' }}
         p={{ base: 0 }}
         maxW={{ base: 'full', lg: '1440px' }}
         margin="0 auto"

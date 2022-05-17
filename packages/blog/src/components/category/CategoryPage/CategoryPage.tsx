@@ -17,8 +17,8 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
   return (
     <>
       <Metadata
-        name={t('categoryPage.title', { categoryName: category.name })}
-        description={t('categoryPage.description', { categoryName: category.name })}
+        name={t('categoryPage.title', { categoryName: category.localizedName })}
+        description={t('categoryPage.description', { categoryName: category.localizedName })}
       />
       {lastPost ? (
         <HeaderImage
@@ -33,7 +33,7 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
       )}
       <CategoryLatestPosts
         posts={latestPosts.slice(1)}
-        title={t('latestPosts.title', { categoryName: category.name })}
+        title={t('latestPosts.title', { categoryName: category.localizedName })}
       />
     </>
   )

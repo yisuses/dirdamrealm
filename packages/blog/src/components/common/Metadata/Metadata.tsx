@@ -10,7 +10,7 @@ export function Metadata({ name, description, imageUrl, ldJson }: MetaDataProps)
   const { t } = useTranslation('common')
   const { asPath: currentPath } = useRouter()
 
-  const title = `${t('pageTitle')} : ${name}`
+  const title = `${t('pageTitle')} - ${name}`
   const ogImage = imageUrl ? imageUrl : `${publicRuntimeConfig.BASE_URL}/images/WE-logo-DESKTOP_WHITE.svg`
 
   return (
