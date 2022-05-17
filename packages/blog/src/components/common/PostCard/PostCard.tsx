@@ -1,6 +1,6 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Image } from '@chakra-ui/image'
-import { Text, Box, Flex } from '@chakra-ui/layout'
+import { Text, Box, Flex, Link as ChakraLink } from '@chakra-ui/layout'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
@@ -54,10 +54,18 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
         {date}
       </Text>
-      <Link href={buildPostPath(String(id), title)}>
-        <Text fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2} title={title}>
-          {title}
-        </Text>
+      <Link href={buildPostPath(String(id), title)} passHref>
+        <ChakraLink>
+          <Text
+            fontSize="lg"
+            color={useColorModeValue('gray.950', 'white')}
+            fontWeight={700}
+            noOfLines={2}
+            title={title}
+          >
+            {title}
+          </Text>
+        </ChakraLink>
       </Link>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3} title={description}>
         {description}

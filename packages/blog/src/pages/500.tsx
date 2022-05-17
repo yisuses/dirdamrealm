@@ -1,8 +1,9 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 import { Error as ErrorComponent } from '@components'
 
-function Custom404Page() {
-  return <ErrorComponent statusCode={404} />
+function Custom500Page() {
+  return <ErrorComponent statusCode={500} />
 }
 
 export const getStaticProps = async ({ locale }: { locale: string }) => ({
@@ -11,4 +12,4 @@ export const getStaticProps = async ({ locale }: { locale: string }) => ({
   },
 })
 
-export default Custom404Page
+export default Custom500Page

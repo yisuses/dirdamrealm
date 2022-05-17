@@ -11,6 +11,8 @@
       "@api": ["./api"],
       "@hooks/*": ["./hooks/*"],
       "@hooks": ["./hooks"],
+      "@pages/*": ["./pages/*"],
+      "@pages": ["./pages"],
       "@themes/*": ["./themes/*"],
       "@utils/*": ["./utils/*"],
       "@utils": ["./utils"]
