@@ -24,7 +24,7 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
         <HeaderImage
           imgSrc={lastPost.coverImage?.url || lastPost.imgUrl || 'https://picsum.photos/1440/600'}
           date={parseISO(lastPost.publishedAt)}
-          categories={lastPost.categories}
+          categories={lastPost.categories || []}
           title={lastPost.title}
           subtitle={lastPost.summary}
         />

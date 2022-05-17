@@ -1,11 +1,14 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Image } from '@chakra-ui/image'
 import { Text, Box, Flex } from '@chakra-ui/layout'
+import Link from 'next/link'
 import { ReactNode } from 'react'
 
 import { Tag } from '@components'
+import { buildPostPath } from '@utils'
 
 type PostCardCommonProps = {
+  id: number
   categories: { key: string; label: string }[]
   date: string
   title: string
@@ -24,7 +27,7 @@ type PostCardWithImageUrlProps = PostCardCommonProps & {
 
 export type PostCardProps = PostCardWithImageProps | PostCardWithImageUrlProps
 
-export function PostCard({ categories, date, description, imageUrl, title, image }: PostCardProps) {
+export function PostCard({ id, categories, date, description, imageUrl, title, image }: PostCardProps) {
   return (
     <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
       <Box w="100%" h="280px" position="relative">
@@ -51,9 +54,11 @@ export function PostCard({ categories, date, description, imageUrl, title, image
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
         {date}
       </Text>
-      <Text fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2} title={title}>
-        {title}
-      </Text>
+      <Link href={buildPostPath(String(id), title)}>
+        <Text fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2} title={title}>
+          {title}
+        </Text>
+      </Link>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3} title={description}>
         {description}
       </Text>
