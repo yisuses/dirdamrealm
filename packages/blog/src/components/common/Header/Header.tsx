@@ -83,6 +83,7 @@ export function Header({ categories }: HeaderProps) {
         href={url}
         px={{ md: 2, lg: 3 }}
         pt="5px"
+        fontFamily="Roboto"
         fontWeight="700"
         fontSize={{ md: 12 }}
         color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
@@ -166,6 +167,7 @@ export function Header({ categories }: HeaderProps) {
           />
           <Button
             size="sm"
+            fontFamily="Roboto"
             aria-label={t('header.changeLanguage')}
             bg="transparent"
             onClick={() => {
