@@ -3,15 +3,18 @@ type PostResponseEntity = {
   title: string
   summary: string
   content: string
+  locale: AppLocales
   imgUrl?: string
   createdAt: string
   updatedAt: string
   publishedAt: string
-  categories: StrapiMultipleData<CategoryResponseEntity>
+  categories?: StrapiMultipleData<CategoryResponseEntity>
   coverImage?: StrapiData<MediaResponseEntity>
+  localizations?: StrapiMultipleData<PostResponseEntity>
 }
 
 type PostResponse = StrapiResponse<PostResponseEntity>
+type PostSingleResponse = StrapiSingleResponse<PostResponseEntity>
 
 type Post = {
   id: number
@@ -19,9 +22,11 @@ type Post = {
   summary: string
   imgUrl?: string
   publishedAt: string
-  categories: Category[]
+  categories: Category[] | null
   content?: string
   createdAt?: string
   updatedAt?: string
   coverImage: Media | null
+  localizations: Post[] | null
+  locale: AppLocales
 }

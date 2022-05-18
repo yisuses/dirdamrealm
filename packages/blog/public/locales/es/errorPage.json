@@ -4,5 +4,10 @@
     "description": "Ups, algo no ha ido como debía...",
     "goToHomePage": "Ir a la página de inicio",
     "refreshPage": "Recarga la página"
+  },
+  "notFoundPage": {
+    "title": "No encontrado",
+    "description": "Lo sentimos, el contenido que estás buscando no existe.",
+    "goToHomePage": "Ir a inicio"
   }
 }

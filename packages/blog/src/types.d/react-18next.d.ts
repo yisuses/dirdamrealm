@@ -9,7 +9,7 @@ import type categoryPage from '../../public/locales/en/categoryPage.json'
 import type common from '../../public/locales/en/common.json'
 import type errorPage from '../../public/locales/en/errorPage.json'
 import type homePage from '../../public/locales/en/homePage.json'
-import type notFoundPage from '../../public/locales/en/notFoundPage.json'
+import type postPage from '../../public/locales/en/postPage.json'
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {
@@ -19,7 +19,7 @@ declare module 'react-i18next' {
       categoryPage: typeof categoryPage
       homePage: typeof homePage
       errorPage: typeof errorPage
-      notFoundPage: typeof notFoundPage
+      postPage: typeof postPage
     }
   }
 }

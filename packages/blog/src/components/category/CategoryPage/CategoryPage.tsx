@@ -17,14 +17,14 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
   return (
     <>
       <Metadata
-        name={t('categoryPage.title', { categoryName: category.name })}
-        description={t('categoryPage.description', { categoryName: category.name })}
+        name={t('categoryPage.title', { categoryName: category.localizedName })}
+        description={t('categoryPage.description', { categoryName: category.localizedName })}
       />
       {lastPost ? (
         <HeaderImage
           imgSrc={lastPost.coverImage?.url || lastPost.imgUrl || 'https://picsum.photos/1440/600'}
           date={parseISO(lastPost.publishedAt)}
-          categories={lastPost.categories}
+          categories={lastPost.categories || []}
           title={lastPost.title}
           subtitle={lastPost.summary}
         />
@@ -33,7 +33,7 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
       )}
       <CategoryLatestPosts
         posts={latestPosts.slice(1)}
-        title={t('latestPosts.title', { categoryName: category.name })}
+        title={t('latestPosts.title', { categoryName: category.localizedName })}
       />
     </>
   )

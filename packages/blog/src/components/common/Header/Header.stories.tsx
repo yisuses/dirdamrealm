@@ -24,9 +24,9 @@ const Template: Story<HeaderProps> = args => <Header {...args} />
 export const Default = Template.bind({})
 Default.args = {
   categories: [
-    { url: '/dashboard', label: 'Dashboard', code: 'DASH' },
-    { url: '/projects', label: 'Projects', code: 'PROJ' },
-    { url: '/team', label: 'Team', code: 'TEAM' },
+    { url: '/dashboard', name: 'Dashboard', localizedName: 'Dashboard', code: 'DASH' },
+    { url: '/projects', name: 'Projects', localizedName: 'Projects', code: 'PROJ' },
+    { url: '/team', name: 'Team', localizedName: 'Team', code: 'TEAM' },
   ],
 }
 

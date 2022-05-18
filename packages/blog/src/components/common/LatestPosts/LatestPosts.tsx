@@ -20,10 +20,15 @@ export function LatestPosts({ posts }: LatestPostsProps) {
       {posts.map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl }) => (
         <PostCard
           key={id}
-          categories={categories.map(category => ({
-            key: category.code,
-            label: category.name,
-          }))}
+          id={id}
+          categories={
+            categories
+              ? categories.map(category => ({
+                  key: category.code,
+                  label: category.localizedName,
+                }))
+              : []
+          }
           date={format(parseISO(publishedAt), 'dd.MM.yyyy')}
           imageUrl={coverImage?.formats.small.url || imgUrl || 'https://picsum.photos/1440/600'}
           title={title}

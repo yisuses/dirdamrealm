@@ -1,4 +1,4 @@
-import { Error } from '../../../pages/_error.page'
+import { Error } from '../Error'
 
 export interface WithErrorProps {
   error?: boolean

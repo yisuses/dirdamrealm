@@ -4,5 +4,10 @@
     "description": "Ooops, something went wrong...",
     "goToHomePage": "Go to home page",
     "refreshPage": "Refresh page"
+  },
+  "notFoundPage": {
+    "title": "Not found",
+    "description": "Sorry, the content you are looking for could not be found.",
+    "goToHomePage": "Go to Homepage"
   }
 }

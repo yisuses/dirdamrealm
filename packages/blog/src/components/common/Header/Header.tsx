@@ -15,7 +15,8 @@ export interface HeaderProps {
   categories: {
     url: string
     code: string
-    label: string
+    name: string
+    localizedName: string
   }[]
 }
 
@@ -70,13 +71,13 @@ export function Header({ categories }: HeaderProps) {
     </>
   )
 
-  const categoryMenuLinks = categories.map(({ url, label }, index) => (
+  const categoryMenuLinks = categories.map(({ url, localizedName }, index) => (
     <NextLink href={url} key={index}>
-      {label}
+      {localizedName}
     </NextLink>
   ))
 
-  const categoryHeaderLinks = categories.map(({ url, label, code }, index) => (
+  const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }, index) => (
     <NextLink href={url} key={index} passHref>
       <Link
         href={url}
@@ -84,7 +85,7 @@ export function Header({ categories }: HeaderProps) {
         pt="5px"
         fontWeight="700"
         fontSize={{ md: 12 }}
-        color={router.asPath === buildCategoryPath(code, label) ? 'orange.300' : 'white'}
+        color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
         _focus={{
           boxShadow: 'none',
         }}
@@ -111,7 +112,7 @@ export function Header({ categories }: HeaderProps) {
           transition: 'width 0.2s',
         }}
       >
-        {label}
+        {localizedName}
       </Link>
     </NextLink>
   ))

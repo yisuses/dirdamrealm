@@ -13,7 +13,7 @@ export async function getLatestPosts({ locale = 'es', category }: GetLatestPostP
   const query = stringify({
     sort: ['publishedAt:desc'],
     pagination: { pageSize: 8, page: 1 },
-    populate: 'categories,coverImage',
+    populate: ['categories', 'coverImage'],
     publicationState: 'live',
     locale,
     filters: {
@@ -22,7 +22,7 @@ export async function getLatestPosts({ locale = 'es', category }: GetLatestPostP
   })
   return axios
     .get<PostResponse>(apiUrl(`/api/posts?${query}`))
-    .then(({ data: response }) => response.data.map(post => postMapper(post, locale)))
+    .then(({ data: response }) => response.data.map(postMapper))
     .catch(() => {
       throw new Error('Error retrieving latest posts.')
     })

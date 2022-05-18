@@ -30,7 +30,6 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   )
 
   useEffect(() => {
-    console.log('use effect')
     setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== posts[0]?.id) : renderedPosts)
   }, [queriedPosts])
 

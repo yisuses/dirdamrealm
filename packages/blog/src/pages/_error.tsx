@@ -1,14 +1,24 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Error as ErrorComponent } from '../components'
+import { NextPage } from 'next'
 
-export function Error() {
-  return <ErrorComponent />
+const Error: NextPage<ErrorProps> = () => {
+  return <div />
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common', 'errorPage'])),
-  },
-})
+Error.getInitialProps = ({ res, err }) => {
+  const statusCode = res ? res.statusCode : err && err.statusCode ? err.statusCode : 404
+
+  if (res && statusCode >= 500 && statusCode < 600) {
+    res.writeHead(302, {
+      Location: '/error',
+    })
+    res.end()
+  }
+
+  return { statusCode: statusCode ?? 404 }
+}
+
+interface ErrorProps {
+  statusCode: number
+}
 
 export default Error
