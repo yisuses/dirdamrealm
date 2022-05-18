@@ -35,7 +35,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
 
   const renderedCategories = categories
     ? [{ id: -1, code: '', name: t(`categories.all`) }].concat(
-        categories.map(({ id, code, name }) => ({ id, code, name })),
+        categories.map(({ id, code, localizedName }) => ({ id, code, name: localizedName })),
       )
     : []
 
