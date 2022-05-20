@@ -1,4 +1,3 @@
-import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 
 import { HeaderImage, Metadata } from '@components/common'
@@ -20,17 +19,7 @@ export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
         name={t('categoryPage.title', { categoryName: category.localizedName })}
         description={t('categoryPage.description', { categoryName: category.localizedName })}
       />
-      {lastPost ? (
-        <HeaderImage
-          imgSrc={lastPost.coverImage?.url || lastPost.imgUrl || 'https://picsum.photos/1440/600'}
-          date={parseISO(lastPost.publishedAt)}
-          categories={lastPost.categories || []}
-          title={lastPost.title}
-          subtitle={lastPost.summary}
-        />
-      ) : (
-        <div>{t('categoryPage.noPublishedArticles')}</div>
-      )}
+      {lastPost ? <HeaderImage post={lastPost} showPostInfo /> : <div>{t('categoryPage.noPublishedArticles')}</div>}
       <CategoryLatestPosts
         posts={latestPosts.slice(1)}
         title={t('latestPosts.title', { categoryName: category.localizedName })}

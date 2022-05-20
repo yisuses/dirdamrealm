@@ -1,4 +1,5 @@
 export * from './error'
 export * from './generateUrl'
+export * from './image'
 export * from './seoName'
 export * from './urlBuilder'

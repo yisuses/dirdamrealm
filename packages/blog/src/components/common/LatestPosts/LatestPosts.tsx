@@ -2,6 +2,7 @@ import { SimpleGrid } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
 
 import { PostCard } from '@components/common'
+import { getImageUrlFromMedia } from '@utils'
 
 interface LatestPostsProps {
   posts: Post[]
@@ -30,7 +31,7 @@ export function LatestPosts({ posts }: LatestPostsProps) {
               : []
           }
           date={format(parseISO(publishedAt), 'dd.MM.yyyy')}
-          imageUrl={coverImage?.formats.small.url || imgUrl || 'https://picsum.photos/1440/600'}
+          imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl })}
           title={title}
           description={summary}
         />
