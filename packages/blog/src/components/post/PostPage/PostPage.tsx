@@ -1,3 +1,4 @@
+import Blocks from 'editorjs-blocks-react-renderer'
 import { useTranslation } from 'next-i18next'
 
 import { HeaderImage, Metadata } from '@components/common'
@@ -15,6 +16,8 @@ export function PostPage({ post }: PostPageProps) {
       <Metadata name={t('postPage.title', { postName: post.title })} description={post.summary} />
 
       <HeaderImage post={post} />
+
+      <Blocks data={post.content} />
     </>
   )
 }

@@ -1,6 +1,15 @@
 const packageJson = require('./package.json')
 const pc = require('picocolors')
 const { i18n } = require('./next-i18next.config')
+const { withSentryConfig } = require('@sentry/nextjs')
+
+const trueEnv = ['true', '1', 'yes']
+
+const NEXTJS_SENTRY_DEBUG = trueEnv.includes(process.env?.NEXTJS_SENTRY_DEBUG ?? 'false')
+const NEXTJS_DISABLE_SENTRY = trueEnv.includes(process.env?.NEXTJS_DISABLE_SENTRY ?? 'false')
+const NEXTJS_SENTRY_UPLOAD_DRY_RUN = trueEnv.includes(process.env?.NEXTJS_SENTRY_UPLOAD_DRY_RUN ?? 'false')
+const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
+const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
 
 /**
  * A way to allow CI optimization when the build done there is not used
@@ -127,7 +136,7 @@ const nextConfig = {
     },
      */
 
-  webpack: (config, { isServer }) => {
+  webpack: (config, { webpack, isServer }) => {
     if (!isServer) {
       // Swap sentry/node by sentry/browser
       config.resolve.alias['@sentry/node'] = '@sentry/browser'
@@ -138,6 +147,12 @@ const nextConfig = {
       // @see https://github.com/prisma/prisma/issues/6925#issuecomment-905935585
       config.externals.push('_http_common')
     }
+
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __SENTRY_DEBUG__: NEXTJS_SENTRY_DEBUG,
+      }),
+    )
 
     config.module.rules.push({
       test: /\.svg$/,
@@ -183,7 +198,7 @@ const nextConfig = {
   },
 }
 
-let config
+let config = nextConfig
 
 if (tmModules.length > 0) {
   const withNextTranspileModules = require('next-transpile-modules')(tmModules, {
@@ -191,8 +206,6 @@ if (tmModules.length > 0) {
     debug: false,
   })
   config = withNextTranspileModules(nextConfig)
-} else {
-  config = nextConfig
 }
 
 if (process.env.ANALYZE === 'true') {
@@ -201,6 +214,23 @@ if (process.env.ANALYZE === 'true') {
     enabled: true,
   })
   config = withBundleAnalyzer(config)
+}
+
+if (!NEXTJS_DISABLE_SENTRY) {
+  // @ts-ignore because sentry does not match nextjs current definitions
+  config = withSentryConfig(config, {
+    // Additional config options for the Sentry Webpack plugin. Keep in mind that
+    // the following options are set automatically, and overriding them is not
+    // recommended:
+    //   release, url, org, project, authToken, configFile, stripPrefix,
+    //   urlPrefix, include, ignore
+    // For all available options, see:
+    // https://github.com/getsentry/sentry-webpack-plugin#options.
+    // silent: isProd, // Suppresses all logs
+    dryRun: NEXTJS_SENTRY_UPLOAD_DRY_RUN,
+    project: NEXTJS_SENTRY_PROJECT,
+    org: NEXTJS_SENTRY_ORG,
+  })
 }
 
 module.exports = config

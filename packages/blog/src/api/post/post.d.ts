@@ -23,7 +23,7 @@ type Post = {
   imgUrl?: string
   publishedAt: string
   categories: Category[] | null
-  content?: string
+  content: import('editorjs-blocks-react-renderer').DataProp
   createdAt?: string
   updatedAt?: string
   coverImage: Media | null

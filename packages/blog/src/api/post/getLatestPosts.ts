@@ -23,7 +23,8 @@ export async function getLatestPosts({ locale = 'es', category }: GetLatestPostP
   return axios
     .get<PostResponse>(apiUrl(`/api/posts?${query}`))
     .then(({ data: response }) => response.data.map(postMapper))
-    .catch(() => {
+    .catch(err => {
+      console.error(err)
       throw new Error('Error retrieving latest posts.')
     })
 }

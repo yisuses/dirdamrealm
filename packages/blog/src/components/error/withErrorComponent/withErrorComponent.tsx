@@ -1,4 +1,4 @@
-import { Error } from '../Error'
+import { ErrorPage } from '../ErrorPage'
 
 export interface WithErrorProps {
   error?: boolean
@@ -9,6 +9,6 @@ export const withErrorComponent = <P extends Record<string, unknown>>(
   Component: React.ComponentType<P>,
 ): React.FC<P & WithErrorProps> => {
   return function WithErrorComponent({ error, statusCode, ...props }: WithErrorProps) {
-    return error ? <Error statusCode={statusCode || 500} /> : <Component {...(props as P)} />
+    return error ? <ErrorPage statusCode={statusCode || 500} /> : <Component {...(props as P)} />
   }
 }

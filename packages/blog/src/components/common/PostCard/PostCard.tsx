@@ -6,7 +6,7 @@ import NextLink from 'next/link'
 import { Tag, shimmer } from '@components'
 import { buildPostPath, toBase64 } from '@utils'
 
-type PostCardProps = {
+export type PostCardProps = {
   id: number
   categories: { key: string; label: string }[]
   date: string
@@ -52,8 +52,6 @@ export function PostCard({ id, categories, date, description, imageUrl, title }:
           <Link>
             <NextImage
               src={imageUrl!}
-              height="280px"
-              width="100%"
               objectFit="cover"
               alt={`${title} image`}
               layout="fill"
