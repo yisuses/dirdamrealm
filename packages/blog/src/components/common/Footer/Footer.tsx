@@ -35,9 +35,13 @@ export function Footer({ categories, about }: FooterProps) {
   return (
     <Box bg="gray.900" color="gray.50" w="full">
       <Container as={Stack} maxW="6xl" p="1rem">
-        <SimpleGrid columns={{ base: 1, md: about.display ? 3 : 2 }} spacing={8}>
+        <SimpleGrid
+          columns={{ base: 1, md: about.display ? 3 : 2 }}
+          spacing={8}
+          justifyItems={{ base: 'center', md: 'start' }}
+        >
           {about.display && (
-            <Stack align="flex-start">
+            <Stack align={{ base: 'center', md: 'flex-start' }}>
               <FooterListHeader>{t('footer.contact')}</FooterListHeader>
               {about.name && (
                 <Text fontWeight="400" fontSize="xs" mb={2} color="gray.50">
@@ -48,7 +52,7 @@ export function Footer({ categories, about }: FooterProps) {
             </Stack>
           )}
 
-          <Stack align="flex-start">
+          <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.categories')}</FooterListHeader>
             {categories.map(({ localizedName, url }, index) => (
               <FooterListLink key={index} href={url}>
@@ -57,7 +61,7 @@ export function Footer({ categories, about }: FooterProps) {
             ))}
           </Stack>
 
-          <Stack>
+          <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
             {about.display && socials.length && (
               <Stack direction="row" spacing={6} paddingBottom="2">
