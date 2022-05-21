@@ -22,7 +22,7 @@
     "@strapi/provider-upload-cloudinary": "4.1.11",
     "@strapi/strapi": "4.1.11",
     "pg": "8.7.3",
-    "standard-version": "9.3.2",
+    "standard-version": "9.5.0",
     "strapi-plugin-react-editorjs": "2.0.1"
   },
   "strapi": {

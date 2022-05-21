@@ -1,3 +1,3 @@
-export * from './about'
-export * from './category'
-export * from './post'
+export { getAbout } from './about'
+export { getCategories } from './category'
+export { getLatestPosts, getPostById } from './post'

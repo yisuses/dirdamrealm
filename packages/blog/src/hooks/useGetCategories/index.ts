@@ -1,1 +1,1 @@
-export * from './useGetCategories'
+export { useGetCategories } from './useGetCategories'
