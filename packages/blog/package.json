@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "2.0.0",
-    "@chakra-ui/react": "2.0.2",
+    "@chakra-ui/react": "2.1.0",
     "@chakra-ui/theme-tools": "2.0.0",
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "2.0.0",
-    "@chakra-ui/storybook-addon": "2.0.2",
+    "@chakra-ui/storybook-addon": "3.0.0",
     "@next/bundle-analyzer": "12.1.6",
     "@storybook/addon-actions": "6.5.3",
     "@storybook/addon-essentials": "6.5.3",
