@@ -8,7 +8,6 @@ interface ContentImageBlockData {
 }
 
 export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
-  console.log(data)
   return (
     <Box w="100%" h={`${data.file.height}px`} position="relative" display="flex" justifyContent="center" my="32px">
       <NextImage
