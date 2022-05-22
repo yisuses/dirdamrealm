@@ -10,6 +10,7 @@ const NEXTJS_DISABLE_SENTRY = trueEnv.includes(process.env?.NEXTJS_DISABLE_SENTR
 const NEXTJS_SENTRY_UPLOAD_DRY_RUN = trueEnv.includes(process.env?.NEXTJS_SENTRY_UPLOAD_DRY_RUN ?? 'false')
 const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
 const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
+const NEXTJS_SENTRY_AUTH_TOKEN = process.env?.NEXTJS_SENTRY_AUTH_TOKEN ?? 'auth_token'
 
 /**
  * A way to allow CI optimization when the build done there is not used
@@ -230,6 +231,7 @@ if (!NEXTJS_DISABLE_SENTRY) {
     dryRun: NEXTJS_SENTRY_UPLOAD_DRY_RUN,
     project: NEXTJS_SENTRY_PROJECT,
     org: NEXTJS_SENTRY_ORG,
+    authToken: NEXTJS_SENTRY_AUTH_TOKEN,
   })
 }
 
