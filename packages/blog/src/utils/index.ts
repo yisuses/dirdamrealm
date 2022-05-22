@@ -1,6 +1,7 @@
 export { ApiError, NotFoundError, handlePageError } from './error'
 export { apiUrl } from './generateUrl'
+export { buildCategoryPath, buildPostPath } from './urlBuilder'
 export { getImageUrlFromMedia } from './image'
+export { getReadingTime } from './getReadingTime'
 export { seoName } from './seoName'
 export { toBase64 } from './toBase64'
-export { buildCategoryPath, buildPostPath } from './urlBuilder'
