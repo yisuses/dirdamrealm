@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      API_URL: ${{ env.API_URL }}
-      NEXTJS_SENTRY_AUTH_TOKEN: ${{ env.SENTRY_AUTH }}
-      NEXTJS_SENTRY_ORG: ${{ env.NEXTJS_SENTRY_ORG }}
-      NEXTJS_SENTRY_PROJECT: ${{ env.NEXTJS_SENTRY_PROJECT }}
-      SENTRY_DSN: ${{ env.SENTRY_DSN }}
+      API_URL: ${{ secrets.API_URL }}
+      NEXTJS_SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH }}
+      NEXTJS_SENTRY_ORG: ${{ secrets.NEXTJS_SENTRY_ORG }}
+      NEXTJS_SENTRY_PROJECT: ${{ secrets.NEXTJS_SENTRY_PROJECT }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       SENTRY_RELEASE: ${{ github.sha }}
 
     strategy:
