@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: preview
     env:
       API_URL: ${{ secrets.API_URL }}
       NEXTJS_SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH }}
