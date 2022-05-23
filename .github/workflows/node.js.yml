@@ -20,6 +20,7 @@ jobs:
       NEXTJS_SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       SENTRY_AUTH: ${{ secrets.SENTRY_AUTH }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_LOG_LEVEL: ${{ secrets.SENTRY_LOG_LEVEL }}
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       SENTRY_RELEASE: ${{ github.sha }}
