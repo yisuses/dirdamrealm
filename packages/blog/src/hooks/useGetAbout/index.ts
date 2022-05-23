@@ -1,1 +1,1 @@
-export * from './useGetAbout'
+export { useGetAbout } from './useGetAbout'

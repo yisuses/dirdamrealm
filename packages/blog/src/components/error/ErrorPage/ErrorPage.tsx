@@ -3,10 +3,14 @@ import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 
 interface ErrorProps {
-  statusCode?: number
+  statusCode?: number | null
+  error?: Error
+  message?: string
+  errorId?: string
+  children?: never
 }
 
-export function Error({ statusCode = 500 }: ErrorProps) {
+export function ErrorPage({ statusCode = 500 }: ErrorProps) {
   const { t } = useTranslation('errorPage')
   return (
     <Flex direction="column" alignItems="center" justifyContent="center" pt="40" textAlign="center">

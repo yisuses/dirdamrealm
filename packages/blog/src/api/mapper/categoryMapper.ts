@@ -2,6 +2,7 @@ export const categoryMapper = (
   categoryEntity: StrapiDataItem<CategoryResponseEntity>,
   locale: AppLocales,
 ): Category => {
-  const localizedName = categoryEntity.attributes.locale?.[locale] || categoryEntity.attributes.name
-  return { id: categoryEntity.id, ...categoryEntity.attributes, localizedName }
+  const { id, attributes } = categoryEntity
+  const localizedName = attributes.locale?.[locale] || attributes.name
+  return { id, ...attributes, localizedName }
 }

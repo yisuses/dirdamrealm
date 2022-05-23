@@ -120,20 +120,12 @@ export function Header({ categories }: HeaderProps) {
 
   return (
     <Flex
-      position="absolute"
       width="100%"
       bg="blackAlpha.800"
-      zIndex="overlay"
       pr={{ base: 4, md: 8 }}
       pl={{ base: 2, md: 8 }}
       h={{ base: '60px', lg: '80px' }}
       justifyContent="center"
-      css={{
-        '@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none))': {
-          backdropFilter: 'blur(5px)',
-          backgroundColor: 'rgba(0,0,0,0.7)',
-        },
-      }}
     >
       <Flex
         h="full"

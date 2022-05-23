@@ -1,36 +1,37 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Image } from '@chakra-ui/image'
-import { Text, Box, Flex, Link as ChakraLink } from '@chakra-ui/layout'
-import Link from 'next/link'
-import { ReactNode } from 'react'
+import { Text, Box, Flex, Link } from '@chakra-ui/layout'
+import NextImage from 'next/image'
+import NextLink from 'next/link'
 
-import { Tag } from '@components'
-import { buildPostPath } from '@utils'
+import { Tag, shimmer } from '@components'
+import { buildPostPath, toBase64 } from '@utils'
 
-type PostCardCommonProps = {
+export type PostCardProps = {
   id: number
   categories: { key: string; label: string }[]
   date: string
   title: string
   description: string
-}
-
-type PostCardWithImageProps = PostCardCommonProps & {
-  image: ReactNode
-  imageUrl?: never
-}
-
-type PostCardWithImageUrlProps = PostCardCommonProps & {
-  image?: never
   imageUrl: string
 }
 
-export type PostCardProps = PostCardWithImageProps | PostCardWithImageUrlProps
-
-export function PostCard({ id, categories, date, description, imageUrl, title, image }: PostCardProps) {
+export function PostCard({ id, categories, date, description, imageUrl, title }: PostCardProps) {
+  const postLink = buildPostPath(String(id), title)
   return (
     <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
-      <Box w="100%" h="280px" position="relative">
+      <Box
+        w="100%"
+        h="280px"
+        position="relative"
+        overflow="hidden"
+        borderRadius="4px"
+        _hover={{
+          img: {
+            transform: 'scale(1.1,1.1) rotate(1deg)',
+            transition: 'all 1s',
+          },
+        }}
+      >
         <Flex
           pl="20px"
           position="absolute"
@@ -39,6 +40,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
           flexWrap="wrap"
           gap="10px"
           justifyContent="flex-end"
+          zIndex={1}
         >
           {categories
             .sort((a, b) => a.label.length - b.label.length)
@@ -46,27 +48,28 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
               <Tag key={key} label={label} />
             ))}
         </Flex>
-        {imageUrl && (
-          <Image borderRadius="4px" h="280px" w="100%" objectFit="cover" src={imageUrl} alt={`${title} image`} />
-        )}
-        {image}
+        <NextLink href={postLink} passHref>
+          <Link>
+            <NextImage
+              src={imageUrl!}
+              objectFit="cover"
+              alt={`${title} image`}
+              layout="fill"
+              style={{ transition: 'all .5s' }}
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(280, 280))}`}
+            />
+          </Link>
+        </NextLink>
       </Box>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
         {date}
       </Text>
-      <Link href={buildPostPath(String(id), title)} passHref>
-        <ChakraLink>
-          <Text
-            fontSize="lg"
-            color={useColorModeValue('gray.950', 'white')}
-            fontWeight={700}
-            noOfLines={2}
-            title={title}
-          >
-            {title}
-          </Text>
-        </ChakraLink>
-      </Link>
+      <NextLink href={postLink} passHref>
+        <Link fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2} title={title}>
+          {title}
+        </Link>
+      </NextLink>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3} title={description}>
         {description}
       </Text>

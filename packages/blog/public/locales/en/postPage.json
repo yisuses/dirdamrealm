@@ -1,5 +1,6 @@
 {
   "postPage": {
-    "title": "{{postName}}"
+    "title": "{{postName}}",
+    "readingTime": "{{minutes}} min reading time"
   }
 }
