@@ -20,6 +20,8 @@ jobs:
       NEXTJS_SENTRY_PROJECT: ${{ secrets.NEXTJS_SENTRY_PROJECT }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       SENTRY_RELEASE: ${{ github.sha }}
+      SENTRY_ORG: ${{ secrets.NEXTJS_SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.NEXTJS_SENTRY_PROJECT }}
 
     strategy:
       matrix:
