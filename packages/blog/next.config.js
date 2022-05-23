@@ -5,12 +5,14 @@ const { withSentryConfig } = require('@sentry/nextjs')
 
 const trueEnv = ['true', '1', 'yes']
 
-const NEXTJS_SENTRY_DEBUG = trueEnv.includes(process.env?.NEXTJS_SENTRY_DEBUG ?? 'false')
 const NEXTJS_DISABLE_SENTRY = trueEnv.includes(process.env?.NEXTJS_DISABLE_SENTRY ?? 'false')
-const NEXTJS_SENTRY_UPLOAD_DRY_RUN = trueEnv.includes(process.env?.NEXTJS_SENTRY_UPLOAD_DRY_RUN ?? 'false')
-const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
-const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
 const NEXTJS_SENTRY_AUTH_TOKEN = process.env?.NEXTJS_SENTRY_AUTH_TOKEN ?? 'auth_token'
+const NEXTJS_SENTRY_DEBUG = trueEnv.includes(process.env?.NEXTJS_SENTRY_DEBUG ?? 'false')
+const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
+const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
+const NEXTJS_SENTRY_RELEASE =
+  (process.env?.NEXTJS_SENTRY_RELEASE || process.env?.VERCEL_GIT_COMMIT_SHA) ?? 'development'
+const NEXTJS_SENTRY_UPLOAD_DRY_RUN = trueEnv.includes(process.env?.NEXTJS_SENTRY_UPLOAD_DRY_RUN ?? 'false')
 
 /**
  * A way to allow CI optimization when the build done there is not used
@@ -232,6 +234,7 @@ if (!NEXTJS_DISABLE_SENTRY) {
     project: NEXTJS_SENTRY_PROJECT,
     org: NEXTJS_SENTRY_ORG,
     authToken: NEXTJS_SENTRY_AUTH_TOKEN,
+    release: NEXTJS_SENTRY_RELEASE,
   })
 }
 

@@ -16,14 +16,11 @@ jobs:
     env:
       API_URL: ${{ secrets.API_URL }}
       NEXTJS_SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH }}
+      NEXTJS_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      NEXTJS_SENTRY_LOG_LEVEL: ${{ secrets.SENTRY_LOG_LEVEL }}
       NEXTJS_SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       NEXTJS_SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-      SENTRY_AUTH: ${{ secrets.SENTRY_AUTH }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      SENTRY_LOG_LEVEL: ${{ secrets.SENTRY_LOG_LEVEL }}
-      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-      SENTRY_RELEASE: ${{ github.sha }}
+      NEXTJS_SENTRY_RELEASE: ${{ github.sha }}
 
     strategy:
       matrix:
@@ -31,12 +28,6 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Setup Sentry CLI
-        uses: mathieu-bour/setup-sentry-cli@1.2.0
-        with:
-          token: ${{ secrets.SENTRY_AUTH }}
-          organization: ${{ secrets.SENTRY_ORG }}
-          project: ${{ secrets.SENTRY_PROJECT }}
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
