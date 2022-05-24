@@ -3,6 +3,7 @@ import { DataProp } from 'editorjs-blocks-react-renderer'
 import { ApiError } from '@utils'
 import { categoryMapper } from './categoryMapper'
 import { mediaMapper } from './mediaMapper'
+import { writerMapper } from './writerMapper'
 
 export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post => {
   const { id, attributes } = postEntity
@@ -38,6 +39,13 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
     errors.push(`Failed to parse categories from post ${id}. Cause: ${(err as Error).message}`)
   }
 
+  let parsedWriter: Writer | null = null
+  try {
+    parsedWriter = attributes.writer?.data ? writerMapper(attributes.writer.data) : null
+  } catch (err) {
+    errors.push(`Failed to parse writer from post ${id}. Cause: ${(err as Error).message}`)
+  }
+
   if (errors.length) {
     throw new ApiError(errors.join('\n'))
   }
@@ -49,5 +57,6 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
     localizations: parsedLocalizations,
     coverImage: parsedCoverImage,
     content: parsedContent,
+    writer: parsedWriter,
   }
 }
