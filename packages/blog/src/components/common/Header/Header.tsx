@@ -3,12 +3,10 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { Box, Center, Divider, Flex, HStack, Link, Text } from '@chakra-ui/layout'
 import { useColorMode, useColorModeValue } from '@chakra-ui/system'
 import { useTranslation } from 'next-i18next'
-import Image, { ImageProps } from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 import { buildCategoryPath } from '@utils/urlBuilder'
-import { LogoContainer } from './Header.styles'
 import { HeaderMenu } from './HeaderMenu'
 
 export interface HeaderProps {
@@ -25,23 +23,7 @@ export function Header({ categories }: HeaderProps) {
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
 
-  const logoProps: Partial<ImageProps> = {
-    alt: t('header.logo'),
-    objectFit: 'contain',
-    layout: 'fixed',
-  }
-  let logo = (
-    <LogoContainer>
-      <span className="desktop">
-        <Image {...logoProps} src="/images/WE-logo-DESKTOP_WHITE.svg" width="256px" height="80px" />
-      </span>
-      <span className="mobile">
-        <Image {...logoProps} src="/images/WE-logo-MOBILE_WHITE.svg" width="45px" height="45px" />
-      </span>
-    </LogoContainer>
-  )
-
-  logo = (
+  const logo = (
     <>
       <Text
         display={{ base: 'none', md: 'flex' }}
@@ -71,12 +53,6 @@ export function Header({ categories }: HeaderProps) {
     </>
   )
 
-  const categoryMenuLinks = categories.map(({ url, localizedName }, index) => (
-    <NextLink href={url} key={index}>
-      {localizedName}
-    </NextLink>
-  ))
-
   const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }, index) => (
     <NextLink href={url} key={index} passHref>
       <Link
@@ -84,8 +60,8 @@ export function Header({ categories }: HeaderProps) {
         px={{ md: 2, lg: 3 }}
         pt="5px"
         fontFamily="Roboto"
-        fontWeight="700"
-        fontSize={{ md: 12 }}
+        fontWeight={{ md: 700, lg: 400 }}
+        fontSize={{ md: 12, lg: 16 }}
         color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
         _focus={{
           boxShadow: 'none',
@@ -135,7 +111,7 @@ export function Header({ categories }: HeaderProps) {
         maxW={{ base: '100%', lg: '1440px' }}
       >
         <Flex h="full" alignItems="center">
-          <HeaderMenu menuItems={categoryMenuLinks} />
+          <HeaderMenu categories={categories} />
           {logo && (
             <HStack alignItems="center">
               <Box>{logo}</Box>

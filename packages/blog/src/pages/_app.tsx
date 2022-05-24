@@ -1,5 +1,3 @@
-import '@fontsource/roboto'
-import '@fontsource/lora'
 import '@fontsource/spartan'
 import { appWithTranslation } from 'next-i18next'
 import type { AppContext, AppProps } from 'next/app'

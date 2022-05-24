@@ -3,8 +3,8 @@ import { Text, Box, Flex, Link } from '@chakra-ui/layout'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 
-import { Tag, shimmer } from '@components'
-import { buildPostPath, toBase64 } from '@utils'
+import { Tag } from '@components'
+import { buildBlurDataUrl, buildPostPath } from '@utils'
 
 export type PostCardProps = {
   id: number
@@ -57,7 +57,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title }:
               layout="fill"
               style={{ transition: 'all .5s' }}
               placeholder="blur"
-              blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(280, 280))}`}
+              blurDataURL={buildBlurDataUrl(280, 280)}
             />
           </Link>
         </NextLink>
