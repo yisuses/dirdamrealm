@@ -6,18 +6,28 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { Box, Flex, Text, VStack } from '@chakra-ui/layout'
 import { MenuProps, MenuButtonProps } from '@chakra-ui/menu'
 import { Drawer, DrawerContent } from '@chakra-ui/modal'
-
 import { useTranslation } from 'next-i18next'
-import { ReactNode } from 'react'
+import NextLink from 'next/link'
 
 type HeaderDropdownProps = Omit<MenuProps, 'children'> & {
-  menuItems: ReactNode[]
+  categories: {
+    url: string
+    code: string
+    name: string
+    localizedName: string
+  }[]
   buttonProps?: MenuButtonProps
 }
 
-export const HeaderMenu = ({ menuItems }: HeaderDropdownProps) => {
+export const HeaderMenu = ({ categories }: HeaderDropdownProps) => {
   const { t } = useTranslation('common')
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const menuLinks = categories.map(({ url, localizedName }, index) => (
+    <NextLink href={url} key={index} onClick={onClose} legacyBehavior={false}>
+      {localizedName}
+    </NextLink>
+  ))
 
   return (
     <>
@@ -31,21 +41,15 @@ export const HeaderMenu = ({ menuItems }: HeaderDropdownProps) => {
         size="xs"
       >
         <DrawerContent>
-          <Box
-            transition="3s ease"
-            bg={useColorModeValue('white', 'gray.900')}
-            w={{ base: 'full' }}
-            pos="fixed"
-            h="full"
-          >
+          <Box transition="3s ease" bg={useColorModeValue('white', 'gray.900')} w="full" pos="fixed" h="full">
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
               <Text
-                display={{ base: 'flex' }}
+                display="flex"
                 color={useColorModeValue('black', 'white')}
                 fontFamily="spartan"
                 fontWeight="700"
-                fontSize={{ base: '14px', md: '20px', lg: '22px' }}
-                height={{ base: '60px', lg: '80px' }}
+                fontSize="14px"
+                height="60px"
                 alignItems="center"
               >
                 WHITE EMOTION
@@ -57,7 +61,7 @@ export const HeaderMenu = ({ menuItems }: HeaderDropdownProps) => {
               />
             </Flex>
             <VStack spacing="24px" align="flex-start" mx="8">
-              {menuItems.map((menuItem, index) => (
+              {menuLinks.map((menuItem, index) => (
                 <Box key={index}>{menuItem}</Box>
               ))}
             </VStack>

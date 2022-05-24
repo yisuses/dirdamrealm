@@ -53,12 +53,6 @@ export function Header({ categories }: HeaderProps) {
     </>
   )
 
-  const categoryMenuLinks = categories.map(({ url, localizedName }, index) => (
-    <NextLink href={url} key={index}>
-      {localizedName}
-    </NextLink>
-  ))
-
   const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }, index) => (
     <NextLink href={url} key={index} passHref>
       <Link
@@ -117,7 +111,7 @@ export function Header({ categories }: HeaderProps) {
         maxW={{ base: '100%', lg: '1440px' }}
       >
         <Flex h="full" alignItems="center">
-          <HeaderMenu menuItems={categoryMenuLinks} />
+          <HeaderMenu categories={categories} />
           {logo && (
             <HStack alignItems="center">
               <Box>{logo}</Box>
