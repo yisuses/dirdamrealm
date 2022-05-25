@@ -2,15 +2,17 @@ import { Button } from '@chakra-ui/button'
 import { VisuallyHidden } from '@chakra-ui/visually-hidden'
 import { ReactNode } from 'react'
 
-interface FooterSocialButtonProps {
+interface SocialButtonProps {
   children: ReactNode
   label: string
   href: string
 }
 
-export const FooterSocialButton = ({ children, label, href }: FooterSocialButtonProps) => {
+export const SocialButton = ({ children, label, href }: SocialButtonProps) => {
   return (
     <Button
+      href={href}
+      target="_blank"
       bg="whiteAlpha.100"
       rounded="full"
       w={8}
@@ -19,8 +21,6 @@ export const FooterSocialButton = ({ children, label, href }: FooterSocialButton
       minW={8}
       p={0.5}
       as="a"
-      href={href}
-      target="_blank"
       display="inline-flex"
       alignItems="center"
       justifyContent="center"
