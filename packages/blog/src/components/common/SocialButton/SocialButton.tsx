@@ -5,12 +5,14 @@ import { ReactNode } from 'react'
 interface SocialButtonProps {
   children: ReactNode
   label: string
-  href: string
+  href?: string
+  onClick?: () => void
 }
 
-export const SocialButton = ({ children, label, href }: SocialButtonProps) => {
+export const SocialButton = ({ children, label, href, onClick }: SocialButtonProps) => {
   return (
     <Button
+      as="a"
       href={href}
       target="_blank"
       bg="whiteAlpha.100"
@@ -20,15 +22,15 @@ export const SocialButton = ({ children, label, href }: SocialButtonProps) => {
       cursor="pointer"
       minW={8}
       p={0.5}
-      as="a"
       display="inline-flex"
       alignItems="center"
       justifyContent="center"
       transition="all 0.2s ease-in"
       _hover={{
         bg: 'whiteAlpha.200',
-        color: 'white',
+        transform: 'scale(1.1) translateY(-2px)',
       }}
+      onClick={onClick}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       {children}

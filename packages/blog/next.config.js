@@ -99,7 +99,8 @@ const nextConfig = {
   },
   publicRuntimeConfig: {
     version: packageJson.version,
-    API_URL: process.env.API_URL || 'http://localhost:3003',
+    API_URL: process.env.API_URL ?? 'http://localhost:3003',
+    BASE_URL: process.env.BASE_URL ?? 'http://localhost:3000',
   },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization

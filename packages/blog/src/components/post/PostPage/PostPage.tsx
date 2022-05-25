@@ -6,9 +6,11 @@ import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 import { Content, HeaderImage, Metadata, SocialButton } from '@components/common'
+import { blogUrl, fixedEncodeURIComponent } from '@utils'
 import { getReadingTime } from '@utils/getReadingTime'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
+import ShareIcon from '../../../../public/icon/share.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 export interface PostPageProps {
@@ -20,27 +22,47 @@ export function PostPage({ post }: PostPageProps) {
   const { asPath } = useRouter()
   //TODO ldjson
 
-  const shareButtons: {
+  const shareButtonsData: {
     label: string
-    href: string
     icon: React.FC<React.SVGProps<SVGSVGElement>>
+    href?: string
+    onClick?: () => void
   }[] = [
     {
-      label: 'Twitter',
-      href: `https://twitter.com/intent/tweet?text=${post.title}&url=${asPath}`,
+      label: t('postPage.share', { socialNetwork: 'Twitter' }),
+      href: `https://twitter.com/intent/tweet?text=${post.title}&url=${fixedEncodeURIComponent(blogUrl(asPath))}`,
       icon: TwitterIcon,
     },
-    { label: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${asPath}`, icon: FacebookIcon },
     {
-      label: 'Linkedin',
-      href: `https://www.linkedin.com/shareArticle?mini=true&url=${asPath}&title=${post.title}`,
+      label: t('postPage.share', { socialNetwork: 'Facebook' }),
+      href: `https://www.facebook.com/sharer/sharer.php?u=${fixedEncodeURIComponent(blogUrl(asPath))}`,
+      icon: FacebookIcon,
+    },
+    {
+      label: t('postPage.share', { socialNetwork: 'Linkedin' }),
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${fixedEncodeURIComponent(blogUrl(asPath))}`,
       icon: LinkedinIcon,
+    },
+    {
+      label: t('postPage.share', { socialNetwork: '...' }),
+      icon: ShareIcon,
+      onClick: () => navigator.share({ url: blogUrl(asPath), text: post.title, title: post.title }),
     },
   ]
 
+  const socialButtons = shareButtonsData.map(({ label, href, icon: Icon, onClick }, index) => (
+    <SocialButton key={index} label={label} href={href} onClick={onClick}>
+      <Icon width={24} height={24} />
+    </SocialButton>
+  ))
+
   return (
     <>
-      <Metadata name={t('postPage.title', { postName: post.title })} description={post.summary} />
+      <Metadata
+        name={t('postPage.title', { postName: post.title })}
+        description={post.summary}
+        imageUrl={post.coverImage?.url}
+      />
 
       <HeaderImage post={post} />
 
@@ -55,32 +77,46 @@ export function PostPage({ post }: PostPageProps) {
             >
               {post.title}
             </Heading>
-            <Flex fontSize="14px" direction={{ base: 'column', md: 'row' }} mt={6} alignItems="center">
+            <Flex
+              fontSize="14px"
+              direction={{ base: 'column', md: 'row' }}
+              mt={6}
+              alignItems={{ base: 'flex-start', md: 'center' }}
+            >
               <Text as="i" display="block">
                 {t('postPage.author', { name: post.writer?.name })}
               </Text>
-              <Flex mt={{ base: '8px', md: 0 }} height="fit-content">
-                <Center h="22px" display={{ base: 'none', md: 'flex' }}>
-                  <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
-                </Center>
-                <Text>{format(parseISO(post.publishedAt), 'dd.MM.yyyy')}</Text>
-                <Center h="22px">
-                  <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
-                </Center>
-                <Text>{t('postPage.readingTime', { minutes: getReadingTime(post.content) })}</Text>
+              <Flex
+                mt={{ base: '8px', md: 0 }}
+                height="fit-content"
+                justifyContent="space-between"
+                alignItems="center"
+                width={{ base: '100%', md: 'auto' }}
+                grow={1}
+                wrap="wrap"
+              >
+                <Flex height="fit-content">
+                  <Center h="22px" display={{ base: 'none', md: 'flex' }}>
+                    <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
+                  </Center>
+                  <Text>{format(parseISO(post.publishedAt), 'dd.MM.yyyy')}</Text>
+                  <Center h="22px">
+                    <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
+                  </Center>
+                  <Text>{t('postPage.readingTime', { minutes: getReadingTime(post.content) })}</Text>
+                </Flex>
+                <Stack direction="row" spacing={2} ml={{ base: 0, md: 'auto' }}>
+                  {socialButtons}
+                </Stack>
               </Flex>
-              <Stack direction="row" spacing={3}>
-                {shareButtons.map(({ label, href, icon: Icon }, index) => (
-                  <SocialButton key={index} label={label} href={href}>
-                    <Icon width={24} height={24} />
-                  </SocialButton>
-                ))}
-              </Stack>
             </Flex>
           </Box>
           <Flex direction="column" width="100%" justifyContent="center" mt="52px">
             <Content content={post.content} />
           </Flex>
+          <Stack direction="row" spacing={2} ml="auto" pt={8}>
+            {socialButtons}
+          </Stack>
         </Flex>
       </Flex>
     </>
