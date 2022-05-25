@@ -19,9 +19,10 @@ export interface PostPageProps {
 
 export function PostPage({ post }: PostPageProps) {
   const { t } = useTranslation('postPage')
-  const { asPath } = useRouter()
+  const { asPath, locale, defaultLocale } = useRouter()
   //TODO ldjson
 
+  const postUrl = fixedEncodeURIComponent(blogUrl(asPath, locale as string, defaultLocale))
   const shareButtonsData: {
     label: string
     icon: React.FC<React.SVGProps<SVGSVGElement>>
@@ -30,23 +31,23 @@ export function PostPage({ post }: PostPageProps) {
   }[] = [
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
-      href: `https://twitter.com/intent/tweet?text=${post.title}&url=${fixedEncodeURIComponent(blogUrl(asPath))}`,
+      href: `https://twitter.com/intent/tweet?text=${post.title}&url=${postUrl}`,
       icon: TwitterIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Facebook' }),
-      href: `https://www.facebook.com/sharer/sharer.php?u=${fixedEncodeURIComponent(blogUrl(asPath))}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${postUrl}`,
       icon: FacebookIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Linkedin' }),
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${fixedEncodeURIComponent(blogUrl(asPath))}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`,
       icon: LinkedinIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => navigator.share({ url: blogUrl(asPath), text: post.title, title: post.title }),
+      onClick: () => navigator.share({ url: postUrl, text: post.title, title: post.title }),
     },
   ]
 

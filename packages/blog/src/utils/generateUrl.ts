@@ -32,6 +32,6 @@ export function apiUrl(base: string, ...params: (Record<string, string | number 
   return populateUrl(publicRuntimeConfig.API_URL, base, ...params)
 }
 
-export function blogUrl(base: string, ...params: (Record<string, string | number | boolean> | string)[]) {
-  return populateUrl(publicRuntimeConfig.BASE_URL, base, ...params)
+export function blogUrl(base: string, locale: string, defaultLocale = 'es') {
+  return `${publicRuntimeConfig.BASE_URL}${locale === defaultLocale ? '' : '/' + locale}${base}`
 }

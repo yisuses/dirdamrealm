@@ -4,6 +4,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { BlogPosting } from 'schema-dts'
 
+import { blogUrl } from '@utils'
+
 const { publicRuntimeConfig } = getConfig()
 
 export function Metadata({ name, description, imageUrl, ldJson }: MetaDataProps) {
@@ -23,11 +25,7 @@ export function Metadata({ name, description, imageUrl, ldJson }: MetaDataProps)
       <meta property="og:image" key="og:image" content={ogImage} />
       <meta property="og:description" key="og:description" content={description} />
       <meta property="og:type" key="og:type" content="website" />
-      <meta
-        property="og:url"
-        key="og:url"
-        content={`${publicRuntimeConfig.BASE_URL}${locale === defaultLocale ? '' : '/' + locale}${asPath}`}
-      />
+      <meta property="og:url" key="og:url" content={blogUrl(asPath, locale as string, defaultLocale)} />
       <meta name="keywords" content="football, travel, work, life, balance, music, politics, news" />
       <link rel="icon" href="/favicon.ico" />
       {ldJson && (
