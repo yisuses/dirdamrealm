@@ -72,7 +72,7 @@ const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: !disableSourceMaps,
   i18n,
-  optimizeFonts: true,
+  optimizeFonts: false,
 
   httpAgentOptions: {
     // @link https://nextjs.org/blog/next-11-1#builds--data-fetching
