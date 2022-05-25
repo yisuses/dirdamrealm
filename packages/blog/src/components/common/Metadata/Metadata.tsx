@@ -4,11 +4,11 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { BlogPosting } from 'schema-dts'
 
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
 
 export function Metadata({ name, description, imageUrl, ldJson }: MetaDataProps) {
   const { t } = useTranslation('common')
-  const { asPath: currentPath } = useRouter()
+  const { asPath } = useRouter()
 
   const title = `${t('pageTitle')} - ${name}`
   const ogImage = imageUrl ? imageUrl : `${publicRuntimeConfig.BASE_URL}/images/WE-logo-DESKTOP_WHITE.svg`
@@ -23,7 +23,7 @@ export function Metadata({ name, description, imageUrl, ldJson }: MetaDataProps)
       <meta property="og:image" key="og:image" content={ogImage} />
       <meta property="og:description" key="og:description" content={description} />
       <meta property="og:type" key="og:type" content="website" />
-      <meta property="og:url" key="og:url" content={`${serverRuntimeConfig.BASE_URL}${currentPath}`} />
+      <meta property="og:url" key="og:url" content={`${publicRuntimeConfig.BASE_URL}${asPath}`} />
       <meta name="keywords" content="football, travel, work, life, balance, music, politics, news" />
       <link rel="icon" href="/favicon.ico" />
       {ldJson && (
