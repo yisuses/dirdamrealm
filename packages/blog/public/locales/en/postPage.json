@@ -2,6 +2,7 @@
   "postPage": {
     "title": "{{postName}}",
     "readingTime": "{{minutes}} min reading time",
-    "author": "by {{name}}"
+    "author": "by {{name}}",
+    "share": "Share on {{socialNetwork}}"
   }
 }

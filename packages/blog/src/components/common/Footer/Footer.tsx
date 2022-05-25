@@ -2,13 +2,13 @@ import { SimpleGrid, Stack, Text, Box, Flex, Container } from '@chakra-ui/layout
 import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 
+import { SocialButton } from '@components'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import InstagramIcon from '../../../../public/icon/instagram.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
-import { FooterSocialButton } from './FooterSocialButton'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -66,9 +66,9 @@ export function Footer({ categories, about }: FooterProps) {
             {about.display && socials.length && (
               <Stack direction="row" spacing={6} paddingBottom="2">
                 {socials.map(({ label, href, icon: Icon }, index) => (
-                  <FooterSocialButton key={index} label={label} href={href}>
+                  <SocialButton key={index} label={label} href={href}>
                     <Icon width={30} height={30} />
-                  </FooterSocialButton>
+                  </SocialButton>
                 ))}
               </Stack>
             )}

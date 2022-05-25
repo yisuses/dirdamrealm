@@ -2,6 +2,7 @@
   "postPage": {
     "title": "{{postName}}",
     "readingTime": "{{minutes}} min de lectura",
-    "author": "por {{name}}"
+    "author": "por {{name}}",
+    "share": "Compartir en {{socialNetwork}}"
   }
 }
