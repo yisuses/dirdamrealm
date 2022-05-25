@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import '@fontsource/roboto'
-import '@fontsource/lora'
 import '@fontsource/spartan'
 
 import theme from '../src/themes/emotion.theme'

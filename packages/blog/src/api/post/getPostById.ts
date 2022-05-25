@@ -10,7 +10,7 @@ type GetPostByIdParams = {
 
 export async function getPostById({ id }: GetPostByIdParams): Promise<Post | undefined> {
   const query = stringify({
-    populate: ['categories', 'coverImage', 'localizations'],
+    populate: ['categories', 'coverImage', 'localizations', 'writer'],
   })
   return axios
     .get<PostSingleResponse>(apiUrl(`/api/posts/${id}?${query}`))

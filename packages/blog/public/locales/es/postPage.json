@@ -1,6 +1,7 @@
 {
   "postPage": {
     "title": "{{postName}}",
-    "readingTime": "{{minutes}} min de lectura"
+    "readingTime": "{{minutes}} min de lectura",
+    "author": "por {{name}}"
   }
 }

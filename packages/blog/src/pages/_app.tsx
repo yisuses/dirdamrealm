@@ -14,7 +14,7 @@ function App({ Component, pageProps, globalProps }: CustomAppProps) {
   return (
     <AppProviders globalProps={globalProps}>
       <MainLayout>
-        <NextNProgress options={{ showSpinner: false }} />
+        <NextNProgress color="#F6AD55" />
         <Component {...pageProps} globalProps={globalProps} />
       </MainLayout>
     </AppProviders>

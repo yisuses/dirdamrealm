@@ -11,6 +11,7 @@ type PostResponseEntity = {
   categories?: StrapiMultipleData<CategoryResponseEntity>
   coverImage?: StrapiData<MediaResponseEntity>
   localizations?: StrapiMultipleData<PostResponseEntity>
+  writer?: StrapiData<WriterResponseEntity>
 }
 
 type PostResponse = StrapiResponse<PostResponseEntity>
@@ -29,4 +30,5 @@ type Post = {
   coverImage: Media | null
   localizations: Post[] | null
   locale: AppLocales
+  writer: Writer | null
 }

@@ -3328,20 +3328,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/lora@npm:4.5.9":
-  version: 4.5.9
-  resolution: "@fontsource/lora@npm:4.5.9"
-  checksum: 597866242aeb4aa99dba24a06875bfc7f67e243e4d2171179ce9f9c0f7d9680ed5c9e971900733f6d87a3715bb8ae96b6adbf25d1591da98019da2fe106245b7
-  languageName: node
-  linkType: hard
-
-"@fontsource/roboto@npm:4.5.7":
-  version: 4.5.7
-  resolution: "@fontsource/roboto@npm:4.5.7"
-  checksum: 3f9afc7f4c77e517e804e65823db5aea2513e8352fbc26cf7ea8b8b11e7dc6eff48d7a2855ed71e3a6b727446b2bf137629e2389fe3d676be45d95dd9992b558
-  languageName: node
-  linkType: hard
-
 "@fontsource/spartan@npm:4.5.8":
   version: 4.5.8
   resolution: "@fontsource/spartan@npm:4.5.8"
@@ -8160,8 +8146,6 @@ __metadata:
     "@chakra-ui/theme-tools": 2.0.0
     "@emotion/react": 11.9.0
     "@emotion/styled": 11.8.1
-    "@fontsource/lora": 4.5.9
-    "@fontsource/roboto": 4.5.7
     "@fontsource/spartan": 4.5.8
     "@next/bundle-analyzer": 12.1.6
     "@sentry/nextjs": 6.19.7
@@ -8182,7 +8166,6 @@ __metadata:
     axios: 0.27.2
     date-fns: 2.28.0
     editorjs-blocks-react-renderer: 1.2.4
-    editorjs-react-renderer: 3.2.0
     eslint: 8.16.0
     eslint-config-next: 12.1.6
     eslint-config-prettier: 8.5.0
@@ -8204,7 +8187,6 @@ __metadata:
     i18next-browser-languagedetector: 6.1.4
     i18next-http-backend: 1.4.0
     jest: 28.1.0
-    ky: 0.30.0
     next: 12.1.6
     next-i18next: 11.0.0
     next-secure-headers: 2.2.0
@@ -12759,18 +12741,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"editorjs-react-renderer@npm:3.2.0":
-  version: 3.2.0
-  resolution: "editorjs-react-renderer@npm:3.2.0"
-  dependencies:
-    buffer: ^6.0.3
-    classnames: ^2.3.1
-    html-react-parser: ^1.4.0
-    react: ^17.0.2
-  checksum: 3aa481f6016b63d2d6709df18628ddc7e4a9c82af5a7231804559307a96d9a23499972cf75c958a5ded36e41d5a7fce711bd72af2edf427db649068d8017b4e1
-  languageName: node
-  linkType: hard
-
 "ee-first@npm:1.1.1":
   version: 1.1.1
   resolution: "ee-first@npm:1.1.1"
@@ -15952,7 +15922,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-react-parser@npm:1.4.12, html-react-parser@npm:^1.4.0, html-react-parser@npm:^1.4.5":
+"html-react-parser@npm:1.4.12, html-react-parser@npm:^1.4.5":
   version: 1.4.12
   resolution: "html-react-parser@npm:1.4.12"
   dependencies:
@@ -18684,13 +18654,6 @@ __metadata:
   version: 2.0.0
   resolution: "kuler@npm:2.0.0"
   checksum: 9e10b5a1659f9ed8761d38df3c35effabffbd19fc6107324095238e4ef0ff044392cae9ac64a1c2dda26e532426485342226b93806bd97504b174b0dcf04ed81
-  languageName: node
-  linkType: hard
-
-"ky@npm:0.30.0":
-  version: 0.30.0
-  resolution: "ky@npm:0.30.0"
-  checksum: d6ec6461e18cd2e4abb809b0574ff704c2e17bd61248843471c2492dd9486dfeadd4d139a5a6ec194b0175f9bc7b8c634685880d1ac646553a9f440c0982e8d3
   languageName: node
   linkType: hard
 
