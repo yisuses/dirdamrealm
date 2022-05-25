@@ -71,7 +71,7 @@ export const HeaderMenu = ({ categories }: HeaderDropdownProps) => {
       <IconButton
         size="sm"
         color="white"
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: 'flex', lg: 'none' }}
         onClick={onOpen}
         variant="outline"
         aria-label={t('header.menuButtonClosed')}
