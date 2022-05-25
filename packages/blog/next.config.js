@@ -199,6 +199,7 @@ const nextConfig = {
   serverRuntimeConfig: {
     // to bypass https://github.com/zeit/next.js/issues/8251
     PROJECT_ROOT: __dirname,
+    BASE_URL: process.env.BASE_URL ?? 'http://localhost:3000',
   },
 }
 
