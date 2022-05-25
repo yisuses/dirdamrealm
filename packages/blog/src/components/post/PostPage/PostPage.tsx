@@ -21,29 +21,38 @@ export function PostPage({ post }: PostPageProps) {
 
       <HeaderImage post={post} />
 
-      <Flex direction="column" my="100px">
-        <Flex mb={8}>
-          <Box mr="70px" ml="50px" minW="295px" w="295px"></Box>
-          <Box w="860px">
-            <Heading size="2xl" as="h1" mt={8} fontFamily="Lora">
+      <Flex justifyContent="center" mx="16px" my={{ base: '40px', md: '100px' }}>
+        <Flex direction="column" justifyContent="flex-start" width="100%" maxW="860px">
+          <Box>
+            <Heading
+              as="h1"
+              fontSize={{ base: '30px', md: '50px' }}
+              lineHeight={{ base: '40px', md: '60px' }}
+              fontFamily="Lora"
+            >
               {post.title}
             </Heading>
-            <Text as="i" mt={8} display="block">
-              {t('postPage.author', { name: post.writer?.name })}
-            </Text>
+            <Flex fontSize="14px" direction={{ base: 'column', md: 'row' }} mt={6}>
+              <Text as="i" display="block">
+                {t('postPage.author', { name: post.writer?.name })}
+              </Text>
+              <Flex ml={{ base: 0, md: '48px' }} mt={{ base: '8px', md: 0 }} height="fit-content">
+                <Text>{format(parseISO(post.publishedAt), 'dd.MM.yyyy')}</Text>
+                <Center h="22px">
+                  <DividerLine
+                    orientation="horizontal"
+                    w={{ base: '20px', md: '40px', lg: '60px' }}
+                    mx="20px"
+                    borderColor="blackAlpha.800"
+                  />
+                </Center>
+                <Text>{t('postPage.readingTime', { minutes: getReadingTime(post.content) })}</Text>
+              </Flex>
+            </Flex>
           </Box>
-        </Flex>
-        <Flex direction="row" width="100%" justifyContent="flex-start" mt="52px">
-          <Flex fontSize={14} mr="70px" ml="50px" height="fit-content" minW="295px" w="295px">
-            <Text>{format(parseISO(post.publishedAt), 'dd.MM.yyyy')}</Text>
-            <Center h="20px">
-              <DividerLine orientation="horizontal" w="80px" mx="20px" borderColor="blackAlpha.800" />
-            </Center>
-            <Text>{t('postPage.readingTime', { minutes: getReadingTime(post.content) })}</Text>
-          </Flex>
-          <Box w="860px">
+          <Flex direction="column" width="100%" justifyContent="center" mt="52px">
             <Content content={post.content} />
-          </Box>
+          </Flex>
         </Flex>
       </Flex>
     </>
