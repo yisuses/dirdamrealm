@@ -33,5 +33,5 @@ export function apiUrl(path: string, ...params: (Record<string, string | number 
 }
 
 export function blogUrl(path: string, locale: string) {
-  return `${publicRuntimeConfig.BASE_URL}/${locale}${path}`
+  return `https://eb5d-2-138-152-35.ngrok.io/${locale}${path}`
 }

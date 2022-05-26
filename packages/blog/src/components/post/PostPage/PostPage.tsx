@@ -15,14 +15,16 @@ import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 export interface PostPageProps {
   post: Post
+  about: About
 }
 
-export function PostPage({ post }: PostPageProps) {
+export function PostPage({ post, about }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath, locale } = useRouter()
   //TODO ldjson
 
   const postUrl = fixedEncodeURIComponent(blogUrl(asPath, locale as string))
+  const postSocialTitle = t('postPage.shareTitle', { title: post.title })
   const shareButtonsData: {
     label: string
     icon: React.FC<React.SVGProps<SVGSVGElement>>
@@ -31,7 +33,7 @@ export function PostPage({ post }: PostPageProps) {
   }[] = [
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
-      href: `https://twitter.com/intent/tweet?text=${post.title}&url=${postUrl}`,
+      href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${postUrl}`,
       icon: TwitterIcon,
     },
     {
@@ -47,7 +49,7 @@ export function PostPage({ post }: PostPageProps) {
     {
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => navigator.share({ url: postUrl, text: post.title, title: post.title }),
+      onClick: () => navigator.share({ url: postUrl, text: postSocialTitle, title: post.title }),
     },
   ]
 
@@ -57,12 +59,30 @@ export function PostPage({ post }: PostPageProps) {
     </SocialButton>
   ))
 
+  const extraMetaTags = [
+    { name: 'og:updated_time', content: post.publishedAt },
+    { name: 'article:published_time', content: post.publishedAt },
+    { name: 'article:modified_time', content: post.updatedAt || '' },
+    { name: 'article:section', content: post.categories?.[0].localizedName || '' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: post.title },
+    { name: 'twitter:description', content: post.summary },
+    { name: 'twitter:creator', content: post.writer?.twitter || about.twitter || '' },
+    {
+      name: 'twitter:image',
+      content: post.coverImage && post.coverImage.formats.small.url ? post.coverImage.formats.small.url : '',
+    },
+    { name: 'twitter:image:alt', content: post.coverImage ? post.coverImage.caption : '' },
+  ]
+
   return (
     <>
       <Metadata
+        type="article"
         name={t('postPage.title', { postName: post.title })}
         description={post.summary}
         imageUrl={post.coverImage?.url}
+        extraMetaTags={extraMetaTags}
       />
 
       <HeaderImage post={post} />

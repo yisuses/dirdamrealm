@@ -3,6 +3,7 @@
     "title": "{{postName}}",
     "readingTime": "{{minutes}} min reading time",
     "author": "by {{name}}",
-    "share": "Share on {{socialNetwork}}"
+    "share": "Share on {{socialNetwork}}",
+    "shareTitle": "Check the new article at White Emotion: {{title}}"
   }
 }

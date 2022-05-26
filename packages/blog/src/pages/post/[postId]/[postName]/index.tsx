@@ -2,12 +2,12 @@ import { ParsedUrlQuery } from 'querystring'
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { getPostById } from '@api'
+import { getAbout, getPostById } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
-import { buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
+import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post }) => {
-  return <PostPageComponent post={post} />
+const PostPage: NextPage<PostPageProps> = ({ post, about }) => {
+  return <PostPageComponent post={post} about={about} />
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -21,16 +21,26 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   locale,
 }) => {
   let post: Post | undefined = undefined
+  let about: About | undefined = undefined
 
   try {
     if (!params?.postId || !/^[0-9]+$/.test(params.postId)) {
       throw new NotFoundError(`Post id should be numeric. ${params!.postId} was sent instead.`)
     }
 
-    post = await getPostById({ id: Number(params.postId) })
+    const postRequest = getPostById({ id: Number(params.postId) })
+    const aboutRequest = getAbout()
+
+    const [responsePost, responseAbout] = await Promise.all([postRequest, aboutRequest])
+    post = responsePost
+    about = responseAbout
 
     if (!post) {
       throw new NotFoundError(`Post with id '${params!.postId}' not found.`)
+    }
+
+    if (!about) {
+      throw new ApiError(`Problem retrieving about data when loading post '${params!.postId}'`)
     }
 
     if (post.locale !== locale) {
@@ -76,6 +86,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   return {
     props: {
       post,
+      about,
       ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
     },
   }
@@ -85,4 +96,5 @@ export default withErrorComponent<PostPageProps>(PostPage)
 
 export type PostPageProps = {
   post: Post
+  about: About
 }

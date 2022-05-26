@@ -3,6 +3,7 @@
     "title": "{{postName}}",
     "readingTime": "{{minutes}} min de lectura",
     "author": "por {{name}}",
-    "share": "Compartir en {{socialNetwork}}"
+    "share": "Compartir en {{socialNetwork}}",
+    "shareTitle": "Nueva entrada en Emoción Blanca: {{title}}"
   }
 }

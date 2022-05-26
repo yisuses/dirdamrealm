@@ -27,10 +27,10 @@ export function Footer({ categories, about }: FooterProps) {
 
   const socials: { label: string; href: string; icon: React.FC<React.SVGProps<SVGSVGElement>> }[] = []
 
-  if (about.twitter) socials.push({ label: 'Twitter', href: about.twitter, icon: TwitterIcon })
-  if (about.facebook) socials.push({ label: 'Facebook', href: about.facebook, icon: FacebookIcon })
-  if (about.instagram) socials.push({ label: 'Instagram', href: about.instagram, icon: InstagramIcon })
-  if (about.linkedin) socials.push({ label: 'Linkedin', href: about.linkedin, icon: LinkedinIcon })
+  if (about.twitterUrl) socials.push({ label: 'Twitter', href: about.twitterUrl, icon: TwitterIcon })
+  if (about.facebookUrl) socials.push({ label: 'Facebook', href: about.facebookUrl, icon: FacebookIcon })
+  if (about.instagramUrl) socials.push({ label: 'Instagram', href: about.instagramUrl, icon: InstagramIcon })
+  if (about.linkedinUrl) socials.push({ label: 'Linkedin', href: about.linkedinUrl, icon: LinkedinIcon })
 
   return (
     <Box bg="gray.900" color="gray.50" w="full">
