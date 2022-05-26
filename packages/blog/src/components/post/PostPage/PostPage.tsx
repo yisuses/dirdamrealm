@@ -19,10 +19,10 @@ export interface PostPageProps {
 
 export function PostPage({ post }: PostPageProps) {
   const { t } = useTranslation('postPage')
-  const { asPath, locale, defaultLocale } = useRouter()
+  const { asPath, locale } = useRouter()
   //TODO ldjson
 
-  const postUrl = fixedEncodeURIComponent(blogUrl(asPath, locale as string, defaultLocale))
+  const postUrl = fixedEncodeURIComponent(blogUrl(asPath, locale as string))
   const shareButtonsData: {
     label: string
     icon: React.FC<React.SVGProps<SVGSVGElement>>

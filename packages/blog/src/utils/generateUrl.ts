@@ -28,10 +28,10 @@ function populateUrl(base: string, path: string, ...params: (Record<string, stri
   return url.toString()
 }
 
-export function apiUrl(base: string, ...params: (Record<string, string | number | boolean> | string)[]) {
-  return populateUrl(publicRuntimeConfig.API_URL, base, ...params)
+export function apiUrl(path: string, ...params: (Record<string, string | number | boolean> | string)[]) {
+  return populateUrl(publicRuntimeConfig.API_URL, path, ...params)
 }
 
-export function blogUrl(base: string, locale: string, defaultLocale = 'es') {
-  return `${publicRuntimeConfig.BASE_URL}${locale === defaultLocale ? '' : '/' + locale}${base}`
+export function blogUrl(path: string, locale: string) {
+  return `${publicRuntimeConfig.BASE_URL}/${locale}${path}`
 }
