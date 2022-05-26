@@ -11,7 +11,7 @@ const NEXTJS_SENTRY_DEBUG = trueEnv.includes(process.env?.NEXTJS_SENTRY_DEBUG ??
 const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
 const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
 const NEXTJS_SENTRY_RELEASE =
-  (process.env?.NEXTJS_SENTRY_RELEASE || process.env?.VERCEL_GIT_COMMIT_SHA) ?? 'development'
+  (process.env?.VERCEL_GIT_COMMIT_SHA || process.env?.NEXTJS_SENTRY_RELEASE) ?? 'development'
 const NEXTJS_SENTRY_UPLOAD_DRY_RUN = trueEnv.includes(process.env?.NEXTJS_SENTRY_UPLOAD_DRY_RUN ?? 'false')
 
 /**
@@ -100,7 +100,7 @@ const nextConfig = {
   publicRuntimeConfig: {
     version: packageJson.version,
     API_URL: process.env.API_URL ?? 'http://localhost:3003',
-    BASE_URL: process.env.VERCEL_URL ?? process.env.BASE_URL ?? 'http://localhost:3000',
+    BASE_URL: process.env.BASE_URL ?? process.env.VERCEL_URL ?? 'http://localhost:3000',
   },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization
