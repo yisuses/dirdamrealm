@@ -4,6 +4,7 @@ type WriterResponseEntity = {
   updatedAt: string
   avatar: string | null
   twitter: string | null
+  personalUrl: string | null
 }
 
 type WriterResponse = StrapiData<WriterResponseEntity>

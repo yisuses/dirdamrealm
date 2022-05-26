@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { BlogPosting } from 'schema-dts'
 
-import { blogUrl } from '@utils'
+import { publicUrl } from '@utils'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -33,7 +33,7 @@ export function Metadata({
       <meta name="apple-mobile-web-app-capable" content="yes" />
 
       <meta property="og:site_name" key="og:site_name" content="White emotion" />
-      <meta property="og:url" key="og:url" content={blogUrl(asPath, locale as string)} />
+      <meta property="og:url" key="og:url" content={publicUrl(`/${locale}${asPath}`)} />
       <meta property="og:title" key="og:title" content={title} />
       <meta property="og:image" key="og:image" content={ogImage} />
       <meta property="og:description" key="og:description" content={description} />

@@ -35,6 +35,9 @@
     "twitter": {
       "type": "string",
       "unique": false
+    },
+    "personalUrl": {
+      "type": "string"
     }
   }
 }

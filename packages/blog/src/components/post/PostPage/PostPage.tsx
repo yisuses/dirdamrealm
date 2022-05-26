@@ -4,10 +4,11 @@ import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { BlogPosting } from 'schema-dts'
 
 import { Content, HeaderImage, Metadata, SocialButton } from '@components/common'
-import { blogUrl, fixedEncodeURIComponent } from '@utils'
-import { getReadingTime } from '@utils/getReadingTime'
+import { publicUrl, fixedEncodeURIComponent } from '@utils'
+import { getReadingTime, getPlainText } from '@utils'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
@@ -21,9 +22,8 @@ export interface PostPageProps {
 export function PostPage({ post, about }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath, locale } = useRouter()
-  //TODO ldjson
 
-  const postUrl = fixedEncodeURIComponent(blogUrl(asPath, locale as string))
+  const postUrl = fixedEncodeURIComponent(publicUrl(`/${locale}${asPath}`))
   const postSocialTitle = t('postPage.shareTitle', { title: post.title })
   const shareButtonsData: {
     label: string
@@ -75,6 +75,44 @@ export function PostPage({ post, about }: PostPageProps) {
     { name: 'twitter:image:alt', content: post.coverImage ? post.coverImage.caption : '' },
   ]
 
+  const ldJson: BlogPosting = {
+    '@type': 'BlogPosting',
+    image: post.coverImage && post.coverImage.formats.medium.url ? post.coverImage.formats.medium.url : '',
+    url: postUrl,
+    headline: post.title,
+    alternativeHeadline: post.summary,
+    dateCreated: post.createdAt,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    inLanguage: post.locale,
+    isFamilyFriendly: true,
+    copyrightYear: parseISO(post.publishedAt).getFullYear(),
+    author: {
+      '@type': 'Person',
+      name: post.writer?.name,
+      url: post.writer?.personalUrl || '',
+    },
+    creator: {
+      '@type': 'Person',
+      name: post.writer?.name,
+      url: post.writer?.personalUrl || '',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'White Emotion',
+      url: 'https://whemotion.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: publicUrl('/images/WElogo.png'),
+        width: '500',
+        height: '500',
+      },
+    },
+    // keywords: post.tags?.map(({ name }) => name) || [],
+    articleSection: post.categories?.[0].localizedName || '',
+    articleBody: getPlainText(post.content),
+  }
+
   return (
     <>
       <Metadata
@@ -83,6 +121,7 @@ export function PostPage({ post, about }: PostPageProps) {
         description={post.summary}
         imageUrl={post.coverImage?.url}
         extraMetaTags={extraMetaTags}
+        ldJson={ldJson}
       />
 
       <HeaderImage post={post} />
