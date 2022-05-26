@@ -21,7 +21,6 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   locale,
 }) => {
   let post: Post | undefined = undefined
-  let finalLocale: AppLocales = 'es'
 
   try {
     if (!params?.postId || !/^[0-9]+$/.test(params.postId)) {
@@ -34,9 +33,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       throw new NotFoundError(`Post with id '${params!.postId}' not found.`)
     }
 
-    finalLocale = (locale || post.locale) as AppLocales
-
-    if (post.locale !== finalLocale) {
+    if (post.locale !== locale) {
       // we are in a different locale. Switch for the localized entry if exists
       const postInLocaleId = post.localizations?.find(post => post.locale === locale)?.id || undefined
       if (postInLocaleId) {
@@ -79,7 +76,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   return {
     props: {
       post,
-      ...(finalLocale && (await serverSideTranslations(finalLocale, ['common', 'postPage']))),
+      ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
     },
   }
 }
