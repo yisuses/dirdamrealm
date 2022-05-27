@@ -4,6 +4,7 @@ import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 import { BlogPosting } from 'schema-dts'
 
 import { Content, HeaderImage, Metadata, SocialButton } from '@components/common'
@@ -30,6 +31,12 @@ export interface PostPageProps {
 export function PostPage({ post, about }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
+
+  const [nativeNavigator, setNativeNavigator] = useState<Navigator>()
+  useEffect(() => {
+    setNativeNavigator(navigator)
+  }, [])
+
   const generateLocalePublicUrl = useGetLocalePublicUrl()
   const {
     id,
@@ -71,11 +78,11 @@ export function PostPage({ post, about }: PostPageProps) {
     },
   ]
 
-  if (navigator.share !== undefined) {
+  if (nativeNavigator && nativeNavigator.share !== undefined) {
     shareButtonsData.push({
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => navigator.share({ url: generateLocalePublicUrl(asPath) }),
+      onClick: () => nativeNavigator.share({ url: generateLocalePublicUrl(asPath) }),
     })
   }
 
