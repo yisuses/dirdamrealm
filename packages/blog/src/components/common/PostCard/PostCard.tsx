@@ -51,7 +51,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title }:
         <NextLink href={postLink} passHref>
           <Link>
             <NextImage
-              src={imageUrl!}
+              src={imageUrl}
               objectFit="cover"
               alt={`${title} image`}
               layout="fill"

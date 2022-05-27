@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { BlogPosting } from 'schema-dts'
+import { BlogPosting, ItemList, WebPage } from 'schema-dts'
 
 import { publicUrl } from '@utils'
 
@@ -43,17 +43,19 @@ export function Metadata({
         <meta key={name} name={name} content={content} />
       ))}
 
-      {ldJson && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org/',
-              ...ldJson,
-            }),
-          }}
-        />
-      )}
+      {ldJson &&
+        ldJson.map((ldJsonItem, index) => (
+          <script
+            key={`ldJson-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org/',
+                ...ldJsonItem,
+              }),
+            }}
+          />
+        ))}
     </Head>
   )
 }
@@ -65,5 +67,5 @@ export interface MetaDataProps {
   type?: string
   keywords?: string
   extraMetaTags?: { name: string; content: string }[]
-  ldJson?: BlogPosting
+  ldJson?: (WebPage | BlogPosting | ItemList)[]
 }

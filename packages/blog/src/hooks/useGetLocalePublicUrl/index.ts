@@ -1,0 +1,1 @@
+export { useGetLocalePublicUrl } from './useGetLocalePublicUrl'
