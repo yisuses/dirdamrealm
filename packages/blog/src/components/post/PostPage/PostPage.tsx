@@ -4,10 +4,19 @@ import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { BlogPosting } from 'schema-dts'
 
 import { Content, HeaderImage, Metadata, SocialButton } from '@components/common'
-import { blogUrl, fixedEncodeURIComponent } from '@utils'
-import { getReadingTime } from '@utils/getReadingTime'
+import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
+import {
+  fixedEncodeURIComponent,
+  publicUrl,
+  buildPostPath,
+  getImageUrlFromMedia,
+  getImageDataFromMedia,
+  getReadingTime,
+  getPlainText,
+} from '@utils'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
@@ -15,14 +24,30 @@ import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 export interface PostPageProps {
   post: Post
+  about: About
 }
 
-export function PostPage({ post }: PostPageProps) {
+export function PostPage({ post, about }: PostPageProps) {
   const { t } = useTranslation('postPage')
-  const { asPath, locale } = useRouter()
-  //TODO ldjson
+  const { asPath } = useRouter()
+  const generateLocalePublicUrl = useGetLocalePublicUrl()
+  const {
+    id,
+    title,
+    content,
+    coverImage,
+    imgUrl,
+    locale: postLocale,
+    createdAt,
+    publishedAt,
+    updatedAt,
+    categories,
+    summary,
+    writer,
+  } = post
+  const postUrl = fixedEncodeURIComponent(generateLocalePublicUrl(asPath))
+  const postSocialTitle = t('postPage.shareTitle', { title })
 
-  const postUrl = fixedEncodeURIComponent(blogUrl(asPath, locale as string))
   const shareButtonsData: {
     label: string
     icon: React.FC<React.SVGProps<SVGSVGElement>>
@@ -31,7 +56,7 @@ export function PostPage({ post }: PostPageProps) {
   }[] = [
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
-      href: `https://twitter.com/intent/tweet?text=${post.title}&url=${postUrl}`,
+      href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${postUrl}`,
       icon: TwitterIcon,
     },
     {
@@ -47,7 +72,7 @@ export function PostPage({ post }: PostPageProps) {
     {
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => navigator.share({ url: postUrl, text: post.title, title: post.title }),
+      onClick: () => navigator.share({ url: postUrl, text: postSocialTitle, title: title }),
     },
   ]
 
@@ -57,12 +82,78 @@ export function PostPage({ post }: PostPageProps) {
     </SocialButton>
   ))
 
+  const extraMetaTags = [
+    { name: 'og:updated_time', content: publishedAt },
+    { name: 'article:published_time', content: publishedAt },
+    { name: 'article:modified_time', content: updatedAt || '' },
+    { name: 'article:section', content: categories?.[0].localizedName || '' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: summary },
+    { name: 'twitter:creator', content: writer?.twitter || about.twitter || '' },
+    {
+      name: 'twitter:image',
+      content: getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl }),
+    },
+    { name: 'twitter:image:alt', content: coverImage ? coverImage.caption : '' },
+  ]
+
+  const ldJson: BlogPosting = {
+    '@type': 'BlogPosting',
+    headline: title,
+    name: title,
+    alternativeHeadline: summary,
+    dateCreated: createdAt,
+    datePublished: publishedAt,
+    dateModified: updatedAt,
+    inLanguage: postLocale,
+    isFamilyFriendly: true,
+    copyrightYear: parseISO(publishedAt).getFullYear(),
+    ...(coverImage && {
+      image: {
+        '@type': 'ImageObject',
+        url: getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl }),
+        width: getImageDataFromMedia({ media: coverImage, format: 'medium' })?.width.toString() || '',
+        height: getImageDataFromMedia({ media: coverImage, format: 'medium' })?.height.toString() || '',
+      },
+      thumbnailUrl: getImageUrlFromMedia({ media: coverImage, format: 'small' }),
+    }),
+    author: {
+      '@type': 'Person',
+      name: writer?.name,
+      url: writer?.personalUrl || '',
+    },
+    creator: {
+      '@type': 'Person',
+      name: writer?.name,
+      url: writer?.personalUrl || '',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'White Emotion',
+      url: 'https://whemotion.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: publicUrl('/images/WElogo.png'),
+        width: '500',
+        height: '500',
+      },
+    },
+    mainEntityOfPage: generateLocalePublicUrl(buildPostPath(id.toString(), title)),
+    // keywords: post.tags?.map(({ name }) => name) || [],
+    articleSection: categories?.[0].localizedName || '',
+    articleBody: getPlainText(content),
+  }
+
   return (
     <>
       <Metadata
-        name={t('postPage.title', { postName: post.title })}
-        description={post.summary}
-        imageUrl={post.coverImage?.url}
+        type="article"
+        name={t('postPage.title', { postName: title })}
+        description={summary}
+        imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl })}
+        extraMetaTags={extraMetaTags}
+        ldJson={[ldJson]}
       />
 
       <HeaderImage post={post} />
@@ -76,7 +167,7 @@ export function PostPage({ post }: PostPageProps) {
               lineHeight={{ base: '44px', md: '64px' }}
               fontFamily="Lora"
             >
-              {post.title}
+              {title}
             </Heading>
             <Flex
               fontSize="14px"
@@ -85,7 +176,7 @@ export function PostPage({ post }: PostPageProps) {
               alignItems={{ base: 'flex-start', md: 'center' }}
             >
               <Text as="i" display="block">
-                {t('postPage.author', { name: post.writer?.name })}
+                {t('postPage.author', { name: writer?.name })}
               </Text>
               <Flex
                 mt={{ base: '8px', md: 0 }}
@@ -100,11 +191,11 @@ export function PostPage({ post }: PostPageProps) {
                   <Center h="22px" display={{ base: 'none', md: 'flex' }}>
                     <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
                   </Center>
-                  <Text>{format(parseISO(post.publishedAt), 'dd.MM.yyyy')}</Text>
+                  <Text>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
                   <Center h="22px">
                     <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
                   </Center>
-                  <Text>{t('postPage.readingTime', { minutes: getReadingTime(post.content) })}</Text>
+                  <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
                 </Flex>
                 <Stack direction="row" spacing={2} ml={{ base: 0, md: 'auto' }}>
                   {socialButtons}
@@ -113,7 +204,7 @@ export function PostPage({ post }: PostPageProps) {
             </Flex>
           </Box>
           <Flex direction="column" width="100%" justifyContent="center" mt="52px">
-            <Content content={post.content} />
+            <Content content={content} />
           </Flex>
           <Stack direction="row" spacing={2} ml="auto" pt={8}>
             {socialButtons}

@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496.158 496.158" style="enable-background:new 0 0 496.158 496.158">
-  <path d="M0 248.085C0 111.064 111.07.003 248.076.003c137.012 0 248.082 111.061 248.082 248.082 0 137.002-111.07 248.07-248.082 248.07C111.07 496.155 0 385.087 0 248.085z" fill="currentColor"/>
-  <circle style="fill:#fff" cx="146.489" cy="248.969" r="43.807"/>
-  <circle style="fill:#fff" cx="310.749" cy="153.319" r="43.807"/>
-  <circle style="fill:#fff" cx="310.749" cy="342.839" r="43.807"/>
-  <path transform="scale(-1) rotate(59.789 346.699 -397.678)" style="fill:#fff" d="M214.155 104.29h28.933v190.068h-28.933z"/>
-  <path transform="scale(-1) rotate(30.211 1092.863 -847.005)" style="fill:#fff" d="M133.608 280.528h190.068v28.933H133.608z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496.158 496.158" fill="currentColor">
+  <mask id="mask">
+    <rect fill="white" width="100%" height="100%" />
+    <circle fill="black" cx="146.489" cy="248.969" r="43.807" />
+    <circle fill="black" cx="310.749" cy="153.319" r="43.807" />
+    <circle fill="black" cx="310.749" cy="342.839" r="43.807" />
+    <path
+      fill="black"
+      transform="scale(-1) rotate(59.789 346.699 -397.678)"
+      d="M214.155 104.29h28.933v190.068h-28.933z"
+    />
+    <path
+      fill="black"
+      transform="scale(-1) rotate(30.211 1092.863 -847.005)"
+      d="M133.608 280.528h190.068v28.933H133.608z"
+    />
+  </mask>
+  <circle mask="url(#mask)" cx="248.969" cy="248.969" r="230.969" />
 </svg>

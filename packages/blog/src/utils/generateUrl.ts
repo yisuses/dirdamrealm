@@ -32,6 +32,6 @@ export function apiUrl(path: string, ...params: (Record<string, string | number 
   return populateUrl(publicRuntimeConfig.API_URL, path, ...params)
 }
 
-export function blogUrl(path: string, locale: string) {
-  return `${publicRuntimeConfig.BASE_URL}/${locale}${path}`
+export function publicUrl(path: string) {
+  return `${publicRuntimeConfig.BASE_URL}${path}`
 }
