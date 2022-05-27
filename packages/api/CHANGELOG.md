@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/yisuses/whemotion/compare/@whe-api@0.1.1...@whe-api@0.2.0) (2022-05-27)
+
+
+### Features
+
+* add dynamic translations for categories ([4943e14](https://github.com/yisuses/whemotion/commit/4943e140386afd91ff81ff69175781bf675928b8))
+
+
+### Bug Fixes
+
+* dependencies ([0213030](https://github.com/yisuses/whemotion/commit/02130307abc44d9529615b93794364618868a3df))
+
+
+### Chore
+
+* delete unused files ([fd30a3e](https://github.com/yisuses/whemotion/commit/fd30a3e156926813215565e08b5b1d694d8e0e92))
+* update dependencies ([2ff01bc](https://github.com/yisuses/whemotion/commit/2ff01bcee4b73f71c5c67eb88c94efa7b572e2fe))
+* update dependencies ([75abdf2](https://github.com/yisuses/whemotion/commit/75abdf23d1c2a4ccfa88a3c87e66e003533b9e21))
+
 ### 0.1.1 (2022-05-13)
 
 
