@@ -4,6 +4,6 @@
     "readingTime": "{{minutes}} min de lectura",
     "author": "por {{name}}",
     "share": "Compartir en {{socialNetwork}}",
-    "shareTitle": "Nueva entrada en Emoción Blanca: {{title}}"
+    "shareTitle": "Mira lo que he visto en Emoción Blanca: {{title}}"
   }
 }
