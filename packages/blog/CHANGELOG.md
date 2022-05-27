@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/yisuses/whemotion/compare/@whe-blog@0.0.2...@whe-blog@0.1.0) (2022-05-27)
+
+
+### Features
+
+* add Category page ([5fb95a2](https://github.com/yisuses/whemotion/commit/5fb95a214e0f2a6674f37ff65cbddb914460aad3))
+* add dynamic translations for categories ([4943e14](https://github.com/yisuses/whemotion/commit/4943e140386afd91ff81ff69175781bf675928b8))
+* add post page ([bc3c4a8](https://github.com/yisuses/whemotion/commit/bc3c4a814d0b9bcc887ff2e99d55fc5e6411e972))
+* filter latest post by category ([90b2e8b](https://github.com/yisuses/whemotion/commit/90b2e8b262d45e3478015861fa9346b6d0e02ac0))
+* improve error handling ([998738e](https://github.com/yisuses/whemotion/commit/998738e176fad35cc18234ef130cd7d72d824845))
+* latest posts optimization ([b0212a5](https://github.com/yisuses/whemotion/commit/b0212a55de783f837816b83b9f00b85ebc11e23e))
+* logo is link to homepage ([f0cd027](https://github.com/yisuses/whemotion/commit/f0cd027cad882053a8cd3a3fb19e0ed3bf04295e))
+
+
+### Bug Fixes
+
+* a11y options ([e492f30](https://github.com/yisuses/whemotion/commit/e492f30d84953ed6b405ef5241f4b3157429c0b1))
+* categgory tags trasnlations ([5cad034](https://github.com/yisuses/whemotion/commit/5cad03446de59c67fd9bc5e5d64275c51b85553b))
+* category page latests posts ([4301302](https://github.com/yisuses/whemotion/commit/430130283cca5fbe42c873b16f93ba8739bff0ab))
+* category translation in filter ([9be7590](https://github.com/yisuses/whemotion/commit/9be759009c4b2c04487b6cce3ba3e30bb5a1ce8b))
+* category url title and css fixes ([1b1e643](https://github.com/yisuses/whemotion/commit/1b1e6432c36f38afb35378848cf905122ff272a1))
+* dependencies ([0213030](https://github.com/yisuses/whemotion/commit/02130307abc44d9529615b93794364618868a3df))
+* disable optimization ([#48](https://github.com/yisuses/whemotion/issues/48)) ([379f254](https://github.com/yisuses/whemotion/commit/379f2543dbeaa9a0db52568c2d2c401e87bb9ea9))
+* eader font ([784bcd4](https://github.com/yisuses/whemotion/commit/784bcd4709abe3288bb6d1348ec10da8c0980aea))
+* handle undefined locale ([#54](https://github.com/yisuses/whemotion/issues/54)) ([9551fc2](https://github.com/yisuses/whemotion/commit/9551fc2ec04df93066259a0833cb6b9f0a3fe767))
+* improve categories translations in mappers ([d39b6be](https://github.com/yisuses/whemotion/commit/d39b6be5948e898dc887b76b442d1a3396f1cf2d))
+* improve code legibility ([10f1117](https://github.com/yisuses/whemotion/commit/10f1117b63dbc2d3f3ba47e1e10067a4edf8c66a))
+* linkedin share url ([#53](https://github.com/yisuses/whemotion/issues/53)) ([80901ec](https://github.com/yisuses/whemotion/commit/80901ec1fe9d193b014f43cada0774522f7c3902))
+* location metadata url ([#51](https://github.com/yisuses/whemotion/issues/51)) ([8799f10](https://github.com/yisuses/whemotion/commit/8799f106b9b8312177a36b731c2791d3786521e9))
+* remove unused property ([b2d1834](https://github.com/yisuses/whemotion/commit/b2d1834bc27cc706b2176f6c34e466ec8b723aed))
+* tsconfig aliases ([b28b6cd](https://github.com/yisuses/whemotion/commit/b28b6cd2793102d98798f8da069117207830cc94))
+* typings ([c577d14](https://github.com/yisuses/whemotion/commit/c577d146eaf0d1be0df04d57f8a3fb38adfa0132))
+* width in postcard ([9d2aeb8](https://github.com/yisuses/whemotion/commit/9d2aeb879d224efd675af12328831af0d9a19bef))
+
+
+### Styling
+
+* set active header category ([056c76b](https://github.com/yisuses/whemotion/commit/056c76bbcca9ffe2e53e58d25cfeb04a95aa0c0d))
+
+
+### Chore
+
+* delete unused files ([fd30a3e](https://github.com/yisuses/whemotion/commit/fd30a3e156926813215565e08b5b1d694d8e0e92))
+* fix vercel env ([#56](https://github.com/yisuses/whemotion/issues/56)) ([11caa43](https://github.com/yisuses/whemotion/commit/11caa43751f13a0a9cccf78263905551a629accf))
+* improve env ([#55](https://github.com/yisuses/whemotion/issues/55)) ([2958cd5](https://github.com/yisuses/whemotion/commit/2958cd509bd2b69ccfec2a4e3a64dfce0da23b84))
+* update dependencies ([2ff01bc](https://github.com/yisuses/whemotion/commit/2ff01bcee4b73f71c5c67eb88c94efa7b572e2fe))
+* update dependencies ([75abdf2](https://github.com/yisuses/whemotion/commit/75abdf23d1c2a4ccfa88a3c87e66e003533b9e21))
+
 ### 0.0.2 (2022-05-13)
 
 

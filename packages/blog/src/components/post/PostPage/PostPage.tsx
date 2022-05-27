@@ -72,7 +72,7 @@ export function PostPage({ post, about }: PostPageProps) {
     {
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => navigator.share({ url: postUrl, text: postSocialTitle, title: title }),
+      onClick: () => navigator.share({ url: generateLocalePublicUrl(asPath) }),
     },
   ]
 

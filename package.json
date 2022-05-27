@@ -53,10 +53,10 @@
     "postInstall": "patch-package"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.0",
+    "@commitlint/cli": "17.0.1",
     "@commitlint/config-conventional": "17.0.0",
     "husky": "8.0.1",
-    "lint-staged": "12.4.1",
+    "lint-staged": "12.4.2",
     "npm-check-updates": "13.0.3",
     "npm-run-all": "4.1.5",
     "patch-package": "6.4.7",
