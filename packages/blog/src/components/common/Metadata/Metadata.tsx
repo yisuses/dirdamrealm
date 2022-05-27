@@ -31,6 +31,8 @@ export function Metadata({
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta property="og:locale" content="es_ES" />
+      <meta property="og:locale:alternate" content="en_GB" />
 
       <meta property="og:site_name" key="og:site_name" content="White emotion" />
       <meta property="og:url" key="og:url" content={publicUrl(`/${locale}${asPath}`)} />
