@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { BlogPosting, ItemList, WebPage } from 'schema-dts'
 
-import { publicUrl } from '@utils'
+import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -18,10 +18,11 @@ export function Metadata({
   ldJson,
 }: MetaDataProps) {
   const { t } = useTranslation('common')
-  const { asPath, locale } = useRouter()
+  const getLocalePublicUrl = useGetLocalePublicUrl()
+  const { asPath } = useRouter()
 
   const title = `${t('pageTitle')} - ${name}`
-  const ogImage = imageUrl ? imageUrl : `${publicRuntimeConfig.BASE_URL}/images/WE-logo-DESKTOP_WHITE.svg`
+  const ogImage = imageUrl || `${publicRuntimeConfig.BASE_URL}/images/WElogo.png`
 
   return (
     <Head>
@@ -35,7 +36,7 @@ export function Metadata({
       <meta property="og:locale:alternate" content="en_GB" />
 
       <meta property="og:site_name" key="og:site_name" content="White emotion" />
-      <meta property="og:url" key="og:url" content={publicUrl(`/${locale}${asPath}`)} />
+      <meta property="og:url" key="og:url" content={getLocalePublicUrl(asPath)} />
       <meta property="og:title" key="og:title" content={title} />
       <meta property="og:image" key="og:image" content={ogImage} />
       <meta property="og:description" key="og:description" content={description} />
