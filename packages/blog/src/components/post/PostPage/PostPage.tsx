@@ -69,12 +69,15 @@ export function PostPage({ post, about }: PostPageProps) {
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`,
       icon: LinkedinIcon,
     },
-    {
+  ]
+
+  if (navigator.share !== undefined) {
+    shareButtonsData.push({
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
       onClick: () => navigator.share({ url: generateLocalePublicUrl(asPath) }),
-    },
-  ]
+    })
+  }
 
   const socialButtons = shareButtonsData.map(({ label, href, icon: Icon, onClick }, index) => (
     <SocialButton key={index} label={label} href={href} onClick={onClick}>
