@@ -11,7 +11,7 @@ interface ContentImageBlockData {
 
 export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
   return (
-    <Box w="100%" h={`${data.file.height}px`} position="relative" display="flex" justifyContent="center" my="32px">
+    <Box w="100%" position="relative" display="flex" justifyContent="center" my="32px">
       <NextImage
         src={data.file.url}
         alt={data.caption}
