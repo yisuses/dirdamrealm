@@ -16,5 +16,5 @@ export function getImageUrlFromMedia({
   format = 'large',
   fallback = '/images/WElogo.png',
 }: GetImageUrlFromMediaParams) {
-  return media ? media.formats[format].url : fallback
+  return media ? media.formats[format].url : fallback || '/images/WElogo.png'
 }

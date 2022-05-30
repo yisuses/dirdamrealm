@@ -15,7 +15,7 @@ export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
       <NextImage
         src={data.file.url}
         alt={data.caption}
-        objectFit="cover"
+        objectFit="contain"
         height={`${data.file.height}px`}
         width={`${data.file.width}px`}
         placeholder="blur"
