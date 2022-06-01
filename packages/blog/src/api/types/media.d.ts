@@ -48,7 +48,7 @@ type Media = {
   caption: string
   width: number
   height: number
-  formats: Record<FormatType, MediaFormat>
+  formats: Record<FormatType, MediaFormat | undefined>
   hash: string
   ext: string
   mime: string

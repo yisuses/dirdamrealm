@@ -16,5 +16,30 @@ export function getImageUrlFromMedia({
   format = 'large',
   fallback = '/images/WElogo.png',
 }: GetImageUrlFromMediaParams) {
-  return media ? media.formats[format].url : fallback || '/images/WElogo.png'
+  try {
+    if (media) {
+      const preferredFormat = media.formats[format]
+      if (preferredFormat) {
+        return preferredFormat.url
+      } else {
+        //search for the following format available
+        const nextAvailableFormatKeys = Object.keys(media.formats) as FormatType[]
+        if (nextAvailableFormatKeys.length > 0) {
+          nextAvailableFormatKeys.forEach(formatKey => {
+            const nextAvailableFormatData = media.formats[formatKey]
+            if (nextAvailableFormatData) {
+              return nextAvailableFormatData.url
+            }
+          })
+          return media.url
+        } else {
+          return media.url
+        }
+      }
+    }
+    return fallback || '/images/WElogo.png'
+  } catch {
+    console.error(`There was an error loading the image. ${media ? media.id : ''}, ${format}, ${fallback}`)
+    return '/images/WElogo.png'
+  }
 }
