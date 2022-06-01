@@ -25,13 +25,14 @@ export function getImageUrlFromMedia({
         //search for the following format available
         const nextAvailableFormatKeys = Object.keys(media.formats) as FormatType[]
         if (nextAvailableFormatKeys.length > 0) {
+          let nextAvailableFormat: string | undefined
           nextAvailableFormatKeys.forEach(formatKey => {
             const nextAvailableFormatData = media.formats[formatKey]
             if (nextAvailableFormatData) {
-              return nextAvailableFormatData.url
+              nextAvailableFormat = nextAvailableFormatData.url
             }
           })
-          return media.url
+          return nextAvailableFormat ? nextAvailableFormat : media.url
         } else {
           return media.url
         }
