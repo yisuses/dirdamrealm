@@ -40,18 +40,18 @@ export function HeaderImage({
         {showPostInfo && (
           <Box
             position="absolute"
-            top={{ base: '45%', lg: '50%' }}
-            ml={{ base: '15px', lg: '70px' }}
-            mr={{ base: '15px', lg: '70px' }}
+            bottom="30px"
+            left="30px"
+            right={{ base: '30px', lg: 'unset' }}
             maxWidth={{ base: '100%', lg: '530px' }}
             p="24px"
             borderRadius="5px"
             boxShadow="2px 2px 32px #0007"
-            backgroundColor="blackAlpha.800"
+            backgroundColor="whiteAlpha.900"
             css={{
               '@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none))': {
                 backdropFilter: 'blur(5px)',
-                backgroundColor: 'rgba(0,0,0,0.7)',
+                backgroundColor: 'rgba(255,255,255,0.8)',
               },
             }}
           >
@@ -70,8 +70,6 @@ export function HeaderImage({
                 fontWeight={700}
                 fontSize={{ base: '16px', lg: '32px' }}
                 lineHeight={{ base: '20px', lg: '40px' }}
-                color="white"
-                textShadow="0px 4px 3px rgb(0 0 0 / 40%), 0px 0px 0px rgb(0 0 0 / 10%), 0px 0px 0px rgb(0 0 0 / 10%)"
                 mb={{ base: '8px', lg: '16px' }}
                 noOfLines={{ base: 1, lg: 2 }}
                 _hover={{
@@ -86,24 +84,27 @@ export function HeaderImage({
             <Flex
               flexDirection={{ base: 'column', lg: 'row' }}
               alignItems="flex-start"
-              color="white"
               fontWeight="600"
               fontSize={{ base: '12px', lg: '14px' }}
             >
-              <Text mb={{ base: 2, lg: 0 }}>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
+              <Text mb={{ base: 2, lg: 0 }} lineHeight="24px">
+                {format(parseISO(publishedAt), 'dd.MM.yyyy')}
+              </Text>
               <Divider
                 display={{ base: 'none', lg: 'block' }}
                 orientation="horizontal"
                 w="45px"
-                pt="8px"
+                pt="12px"
                 m="0 16px"
                 opacity={1}
+                borderColor="currentColor"
               />
               <Text
                 fontSize={{ base: '12px', lg: '16px' }}
                 noOfLines={{ base: 2, md: 3, lg: 5 }}
                 fontStyle="italic"
-                fontFamily="spartan"
+                fontFamily="Roboto"
+                fontWeight={500}
               >
                 {summary}
               </Text>
