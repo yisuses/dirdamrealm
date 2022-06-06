@@ -54,6 +54,7 @@ export function HeaderImage({
                 backgroundColor: 'rgba(255,255,255,0.8)',
               },
             }}
+            color="gray.800"
           >
             <Flex gap="10px">
               {renderedCategories.map(({ name, locale, code }) => (
