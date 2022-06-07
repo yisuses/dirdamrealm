@@ -10,6 +10,8 @@ type PostResponseEntity = {
   publishedAt: string
   categories?: StrapiMultipleData<CategoryResponseEntity>
   coverImage?: StrapiData<MediaResponseEntity>
+  coverImageAuthor: string | null
+  coverImageSourceUrl: string | null
   localizations?: StrapiMultipleData<PostResponseEntity>
   writer?: StrapiData<WriterResponseEntity>
 }
@@ -28,6 +30,8 @@ type Post = {
   createdAt?: string
   updatedAt?: string
   coverImage: Media | null
+  coverImageAuthor: string | null
+  coverImageSourceUrl: string | null
   localizations: Post[] | null
   locale: AppLocales
   writer: Writer | null

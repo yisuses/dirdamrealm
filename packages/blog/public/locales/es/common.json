@@ -15,6 +15,9 @@
     "menuButtonOpened": "Cerrar menú",
     "changeLanguage": "Cambiar idioma"
   },
+  "coverImage": {
+    "author": "Imagen de <link></link>"
+  },
   "categories": {
     "all": "Todas"
   }
