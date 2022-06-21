@@ -13,14 +13,14 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.18.2",
-    "@types/jest": "27.5.1",
-    "jest": "28.1.0"
+    "@types/jest": "28.1.2",
+    "jest": "28.1.1"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.1.12",
-    "@strapi/plugin-users-permissions": "4.1.12",
-    "@strapi/provider-upload-cloudinary": "4.1.12",
-    "@strapi/strapi": "4.1.12",
+    "@strapi/plugin-i18n": "4.2.0",
+    "@strapi/plugin-users-permissions": "4.2.0",
+    "@strapi/provider-upload-cloudinary": "4.2.0",
+    "@strapi/strapi": "4.2.0",
     "pg": "8.7.3",
     "standard-version": "9.5.0",
     "strapi-plugin-react-editorjs": "2.0.1"
