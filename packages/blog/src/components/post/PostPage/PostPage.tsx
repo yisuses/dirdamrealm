@@ -169,7 +169,7 @@ export function PostPage({ post, about, relatedPosts }: PostPageProps) {
 
       <HeaderImage post={post} />
 
-      <Flex justifyContent="center" mx="16px" my={{ base: '40px' }}>
+      <Flex justifyContent="center" mx="16px" mt={{ base: '40px' }}>
         <Flex direction="column" justifyContent="flex-start" width="100%" maxW="65ch">
           <Box>
             <Heading
@@ -237,7 +237,7 @@ export function PostPage({ post, about, relatedPosts }: PostPageProps) {
       </Flex>
 
       {relatedPosts && relatedPosts?.length > 0 && (
-        <Flex flexDir="column" mt={{ base: '60px', md: '130px' }} mb="60px" px="20px">
+        <Flex flexDir="column" mt={{ base: '60px' }} mb="60px" px="20px">
           <Heading fontFamily="Lora">{t('postPage.relatedPosts')}</Heading>
           <PostGrid posts={relatedPosts} />
         </Flex>
