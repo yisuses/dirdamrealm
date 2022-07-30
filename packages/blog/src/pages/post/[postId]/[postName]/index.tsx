@@ -2,12 +2,12 @@ import { ParsedUrlQuery } from 'querystring'
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { getAbout, getPostById } from '@api'
+import { getAbout, getLatestPosts, getPostById } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post, about }) => {
-  return <PostPageComponent post={post} about={about} />
+const PostPage: NextPage<PostPageProps> = ({ post, about, relatedPosts }) => {
+  return <PostPageComponent post={post} about={about} relatedPosts={relatedPosts} />
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -32,6 +32,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     const aboutRequest = getAbout()
 
     const [responsePost, responseAbout] = await Promise.all([postRequest, aboutRequest])
+
     post = responsePost
     about = responseAbout
 
@@ -83,9 +84,20 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     return handlePageError(error as Error, res)
   }
 
+  let relatedPosts: Post[] | undefined = undefined
+  if (post?.categories?.length) {
+    const relatedPostsRequest = getLatestPosts({
+      locale: locale as AppLocales,
+      category: post?.categories?.[0]?.code,
+    })
+    const [responseRelatedPost] = await Promise.all([relatedPostsRequest])
+    relatedPosts = responseRelatedPost
+  }
+
   return {
     props: {
       post,
+      relatedPosts,
       about,
       ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
     },
@@ -96,5 +108,6 @@ export default withErrorComponent<PostPageProps>(PostPage)
 
 export type PostPageProps = {
   post: Post
+  relatedPosts: Post[] | undefined
   about: About
 }
