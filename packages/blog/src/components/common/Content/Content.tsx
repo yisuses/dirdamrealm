@@ -4,6 +4,7 @@ import { ContentHeader } from './ContentHeader'
 import { ContentImage } from './ContentImage'
 import { ContentList } from './ContentList'
 import { ContentParagraph } from './ContentParagraph'
+import { ContentQuote } from './ContentQuote'
 
 interface ContentProps {
   content: DataProp
@@ -18,6 +19,7 @@ export function Content({ content }: ContentProps) {
         image: ContentImage,
         list: ContentList,
         paragraph: ContentParagraph,
+        quote: ContentQuote,
       }}
     />
   )
