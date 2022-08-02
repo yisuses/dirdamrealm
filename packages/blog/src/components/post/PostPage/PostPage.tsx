@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { BlogPosting } from 'schema-dts'
 
-import { Content, HeaderImage, Metadata, SocialButton } from '@components/common'
+import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@components/common'
 import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
@@ -25,10 +25,11 @@ import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 export interface PostPageProps {
   post: Post
+  relatedPosts: Post[] | undefined
   about: About
 }
 
-export function PostPage({ post, about }: PostPageProps) {
+export function PostPage({ post, about, relatedPosts }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
 
@@ -168,7 +169,7 @@ export function PostPage({ post, about }: PostPageProps) {
 
       <HeaderImage post={post} />
 
-      <Flex justifyContent="center" mx="16px" my={{ base: '40px', md: '100px' }}>
+      <Flex justifyContent="center" mx="16px" mt={{ base: '40px' }}>
         <Flex direction="column" justifyContent="flex-start" width="100%" maxW="65ch">
           <Box>
             <Heading
@@ -213,14 +214,34 @@ export function PostPage({ post, about }: PostPageProps) {
               </Flex>
             </Flex>
           </Box>
+
           <Flex direction="column" width="100%" justifyContent="center" mt="52px">
             <Content content={content} />
           </Flex>
-          <Stack direction="row" spacing={2} ml="auto" pt={8}>
-            {socialButtons}
-          </Stack>
+
+          <Flex direction="row">
+            <Stack direction="row" spacing={2} mt="40px">
+              {categories?.map(category => (
+                <Tag key={category.code} label={category.localizedName} />
+              ))}
+            </Stack>
+            <Stack direction="row" spacing={2} ml="auto" pt={8}>
+              {socialButtons}
+            </Stack>
+          </Flex>
+
+          <Center height="80px">
+            <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
+          </Center>
         </Flex>
       </Flex>
+
+      {relatedPosts && relatedPosts?.length > 0 && (
+        <Flex flexDir="column" mt={{ base: '60px' }} mb="60px" px="20px">
+          <Heading fontFamily="Lora">{t('postPage.relatedPosts')}</Heading>
+          <PostGrid posts={relatedPosts} />
+        </Flex>
+      )}
     </>
   )
 }

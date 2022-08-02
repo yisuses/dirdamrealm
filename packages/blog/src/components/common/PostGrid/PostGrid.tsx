@@ -4,11 +4,11 @@ import { format, parseISO } from 'date-fns'
 import { PostCard } from '@components/common'
 import { getImageUrlFromMedia } from '@utils'
 
-interface LatestPostsProps {
+interface PostGridProps {
   posts: Post[]
 }
 
-export function LatestPosts({ posts }: LatestPostsProps) {
+export function PostGrid({ posts }: PostGridProps) {
   return (
     <SimpleGrid
       gridTemplateColumns={{
