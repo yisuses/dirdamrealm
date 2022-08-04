@@ -238,7 +238,7 @@ export function PostPage({ post, about, relatedPosts }: PostPageProps) {
 
       {relatedPosts && relatedPosts?.length > 0 && (
         <Flex flexDir="column" mt={{ base: '60px' }} mb="60px" px="20px">
-          <Heading fontFamily="Lora">{t('postPage.relatedPosts')}</Heading>
+          <Heading fontFamily="Lora">{t('postPage.sameCategoryPosts')}</Heading>
           <PostGrid posts={relatedPosts} />
         </Flex>
       )}

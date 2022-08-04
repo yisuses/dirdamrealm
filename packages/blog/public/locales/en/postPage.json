@@ -5,6 +5,6 @@
     "author": "by {{name}}",
     "share": "Share on {{socialNetwork}}",
     "shareTitle": "Check this article at White Emotion: {{title}}",
-    "relatedPosts": "Related posts"
+    "sameCategoryPosts": "Also in this category..."
   }
 }

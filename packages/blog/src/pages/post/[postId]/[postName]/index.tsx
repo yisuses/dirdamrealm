@@ -91,7 +91,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       category: post?.categories?.[0]?.code,
     })
     const [responseRelatedPost] = await Promise.all([relatedPostsRequest])
-    relatedPosts = responseRelatedPost
+    relatedPosts = responseRelatedPost?.filter(relatedPost => relatedPost.id !== post?.id)
   }
 
   return {
