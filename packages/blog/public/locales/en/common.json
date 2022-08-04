@@ -20,5 +20,10 @@
   },
   "categories": {
     "all": "All"
+  },
+  "cookieBanner": {
+    "message": "White Emotion uses cookies to ensure you get the best experience on our website.",
+    "accept": "Accept",
+    "acceptCookies": "Accept cookies"
   }
 }
