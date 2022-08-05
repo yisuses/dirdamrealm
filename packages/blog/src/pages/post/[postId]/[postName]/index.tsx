@@ -89,6 +89,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     const sameCategoryPostsRequest = getLatestPosts({
       locale: locale as AppLocales,
       category: post?.categories?.[0]?.code,
+      limit: 4,
     })
     const [responsesameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
     sameCategoryPosts = responsesameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
