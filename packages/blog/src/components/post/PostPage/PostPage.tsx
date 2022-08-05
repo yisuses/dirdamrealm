@@ -25,11 +25,11 @@ import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 export interface PostPageProps {
   post: Post
-  relatedPosts: Post[] | undefined
+  sameCategoryPosts: Post[] | undefined
   about: About
 }
 
-export function PostPage({ post, about, relatedPosts }: PostPageProps) {
+export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
 
@@ -236,10 +236,10 @@ export function PostPage({ post, about, relatedPosts }: PostPageProps) {
         </Flex>
       </Flex>
 
-      {relatedPosts && relatedPosts?.length > 0 && (
+      {sameCategoryPosts && sameCategoryPosts?.length > 0 && (
         <Flex flexDir="column" mt={{ base: '60px' }} mb="60px" px="20px">
           <Heading fontFamily="Lora">{t('postPage.sameCategoryPosts')}</Heading>
-          <PostGrid posts={relatedPosts} />
+          <PostGrid posts={sameCategoryPosts} />
         </Flex>
       )}
     </>
