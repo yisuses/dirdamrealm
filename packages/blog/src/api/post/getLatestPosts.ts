@@ -7,12 +7,17 @@ import { apiUrl } from '@utils'
 type GetLatestPostParams = {
   locale: AppLocales
   category?: string
+  limit?: number
 }
 
-export async function getLatestPosts({ locale = 'es', category }: GetLatestPostParams): Promise<Post[] | undefined> {
+export async function getLatestPosts({
+  locale = 'es',
+  category,
+  limit,
+}: GetLatestPostParams): Promise<Post[] | undefined> {
   const query = stringify({
     sort: ['publishedAt:desc'],
-    pagination: { pageSize: 8, page: 1 },
+    pagination: { pageSize: limit || 8, page: 1 },
     populate: ['categories', 'coverImage'],
     publicationState: 'live',
     locale,

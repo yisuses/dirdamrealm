@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
-import { GlobalStyles, Footer, Header } from '@components'
+import { GlobalStyles, Footer, Header, CookieBanner } from '@components'
 import { useGetMainCategories, useGetAbout } from '@hooks'
 import { buildCategoryPath } from '@utils'
 
@@ -20,6 +20,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
       <GlobalStyles />
+      <CookieBanner />
       <Header categories={categories} />
       <Box
         as="main"

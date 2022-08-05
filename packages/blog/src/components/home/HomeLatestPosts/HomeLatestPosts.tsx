@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 
 import { getLatestPosts } from '@api'
-import { LatestPosts } from '@components/common'
+import { PostGrid } from '@components/common'
 
 interface HomeLatestPostsProps {
   title: string
@@ -75,7 +75,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
           ))}
         </HStack>
       )}
-      <LatestPosts posts={renderedPosts} />
+      <PostGrid posts={renderedPosts} />
     </Flex>
   )
 }

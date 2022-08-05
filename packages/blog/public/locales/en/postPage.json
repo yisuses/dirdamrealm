@@ -4,6 +4,7 @@
     "readingTime": "{{minutes}} min reading time",
     "author": "by {{name}}",
     "share": "Share on {{socialNetwork}}",
-    "shareTitle": "Check this article at White Emotion: {{title}}"
+    "shareTitle": "Check this article at White Emotion: {{title}}",
+    "sameCategoryPosts": "Also in this category"
   }
 }
