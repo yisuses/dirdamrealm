@@ -6,8 +6,8 @@ import { getAbout, getLatestPosts, getPostById } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post, about, relatedPosts }) => {
-  return <PostPageComponent post={post} about={about} relatedPosts={relatedPosts} />
+const PostPage: NextPage<PostPageProps> = ({ post, about, sameCategoryPosts }) => {
+  return <PostPageComponent post={post} about={about} sameCategoryPosts={sameCategoryPosts} />
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -84,20 +84,21 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     return handlePageError(error as Error, res)
   }
 
-  let relatedPosts: Post[] | undefined = undefined
+  let sameCategoryPosts: Post[] | undefined = undefined
   if (post?.categories?.length) {
-    const relatedPostsRequest = getLatestPosts({
+    const sameCategoryPostsRequest = getLatestPosts({
       locale: locale as AppLocales,
       category: post?.categories?.[0]?.code,
+      limit: 4,
     })
-    const [responseRelatedPost] = await Promise.all([relatedPostsRequest])
-    relatedPosts = responseRelatedPost
+    const [responsesameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
+    sameCategoryPosts = responsesameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
   }
 
   return {
     props: {
       post,
-      relatedPosts,
+      sameCategoryPosts,
       about,
       ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
     },
@@ -108,6 +109,6 @@ export default withErrorComponent<PostPageProps>(PostPage)
 
 export type PostPageProps = {
   post: Post
-  relatedPosts: Post[] | undefined
+  sameCategoryPosts: Post[] | undefined
   about: About
 }

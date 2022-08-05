@@ -1,4 +1,5 @@
 export * from './Content'
+export * from './CookieBanner'
 export * from './Footer'
 export * from './GlobalStyles'
 export * from './Header'
