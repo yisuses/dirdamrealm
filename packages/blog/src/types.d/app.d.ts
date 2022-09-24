@@ -3,3 +3,5 @@ interface GlobalProps {
 }
 
 type AppLocales = 'en' | 'es'
+
+type PostCategoryCodes = 'ENG' | 'HIS' | 'MAC' | 'NEW' | 'SPO' | 'TRA'

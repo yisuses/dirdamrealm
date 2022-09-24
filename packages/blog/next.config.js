@@ -85,7 +85,6 @@ const nextConfig = {
   // Replace terser by swc
   swcMinify: true,
   experimental: {
-    concurrentFeatures: false, // buggy with sentry
     serverComponents: false, // buggy with sentry
 
     // Prefer loading of ES Modules over CommonJS
@@ -128,17 +127,15 @@ const nextConfig = {
     return [{ source: '/(.*)', headers: secureHeaders }]
   },
 
-  /**
-     * @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
-     async rewrites() {
-      return [
-        {
-          source: `/`,
-          destination: '/demo',
-        },
-      ];
-    },
-     */
+  // @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
+  async rewrites() {
+    return [
+      {
+        source: '/categoria/:path*',
+        destination: '/category/:path*',
+      },
+    ]
+  },
 
   webpack: (config, { webpack, isServer }) => {
     if (!isServer) {

@@ -19,6 +19,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   params,
   res,
   locale,
+  defaultLocale,
 }) => {
   let post: Post | undefined = undefined
   let about: About | undefined = undefined
@@ -52,15 +53,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
         const postInLocalePath = buildPostPath(String(postInLocale.id), postInLocale.title)
         return {
           redirect: {
-            destination: postInLocalePath,
-            permanent: true,
-          },
-        }
-      } else {
-        // no localized entry exists. Redirect to the home page
-        return {
-          redirect: {
-            destination: '/',
+            destination: `${locale !== defaultLocale ? `/${locale}` : ''}${postInLocalePath}`,
             permanent: true,
           },
         }
@@ -91,8 +84,8 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       category: post?.categories?.[0]?.code,
       limit: 4,
     })
-    const [responsesameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
-    sameCategoryPosts = responsesameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
+    const [responseSameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
+    sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
   }
 
   return {

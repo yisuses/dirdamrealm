@@ -21,7 +21,11 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
   const { data: queriedPosts } = useQuery(
     ['latestPosts', { selectedCategory }],
-    async () => getLatestPosts({ locale: locale as AppLocales, category: selectedCategory }),
+    async () =>
+      getLatestPosts({
+        category: selectedCategory,
+        locale: locale as AppLocales,
+      }),
     {
       enabled: selectedCategory !== undefined,
       refetchOnWindowFocus: false,

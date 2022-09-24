@@ -19,11 +19,21 @@
     "author": "Imagen de <link></link>"
   },
   "categories": {
-    "all": "Todas"
+    "all": "Todas",
+    "ENG": "Ingeniería",
+    "HIS": "Historia y pensamiento",
+    "MAC": "Música y Cine",
+    "NEW": "Noticias",
+    "SPO": "Deportes",
+    "TRA": "Viajes"
   },
   "cookieBanner": {
     "message": "Emoción Blanca utiliza cookies para ofrecerte la mejor experiencia en nuestra web.",
     "accept": "Aceptar",
     "acceptCookies": "Aceptar cookies"
+  },
+  "localization": {
+    "en": "Inglés",
+    "es": "Español"
   }
 }

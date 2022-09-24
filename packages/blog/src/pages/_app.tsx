@@ -35,7 +35,7 @@ App.getInitialProps = async ({ router }: AppContext): Promise<AppInitialProps> =
 export default appWithTranslation(App)
 
 export interface AppInitialProps {
-  globalProps: GlobalProps
+  globalProps?: GlobalProps
 }
 
 export type CustomAppProps = AppProps & AppInitialProps

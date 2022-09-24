@@ -8,7 +8,7 @@ import emotionTheme from '@themes/emotion.theme'
 type AppProvidersProps = {
   children: ReactNode
   globalProps?: GlobalProps
-  pageProps?: AppProps['pageProps']
+  pageProps?: AppProps<{ dehydratedState: unknown }>['pageProps']
   queryClientConfig?: {
     queryCache?: QueryCache
     mutationCache?: MutationCache

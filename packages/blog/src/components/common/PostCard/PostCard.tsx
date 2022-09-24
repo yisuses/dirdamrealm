@@ -13,9 +13,11 @@ export type PostCardProps = {
   title: string
   description: string
   imageUrl: string
+  locale: string
+  isSameLocale: boolean
 }
 
-export function PostCard({ id, categories, date, description, imageUrl, title }: PostCardProps) {
+export function PostCard({ id, categories, date, description, imageUrl, title, isSameLocale, locale }: PostCardProps) {
   const postLink = buildPostPath(String(id), title)
   return (
     <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
@@ -44,6 +46,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title }:
         >
           {categories
             .sort((a, b) => a.label.length - b.label.length)
+            .concat(!isSameLocale ? { key: 'lang', label: locale } : [])
             .map(({ key, label }) => (
               <Tag key={key} label={label} />
             ))}
