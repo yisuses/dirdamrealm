@@ -34,7 +34,6 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
           },
         }}
       >
-        {/* {!isSameLocale && <Ribbon>{locale}</Ribbon>} */}
         <Flex
           pl="20px"
           position="absolute"
