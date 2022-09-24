@@ -1,7 +1,6 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Flex, Heading, HStack, Text } from '@chakra-ui/layout'
 import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 
@@ -16,12 +15,11 @@ interface HomeLatestPostsProps {
 
 export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsProps) {
   const { t } = useTranslation('common')
-  const { locale } = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string>()
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
   const { data: queriedPosts } = useQuery(
     ['latestPosts', { selectedCategory }],
-    async () => getLatestPosts({ locale: locale as AppLocales, category: selectedCategory }),
+    async () => getLatestPosts({ category: selectedCategory }),
     {
       enabled: selectedCategory !== undefined,
       refetchOnWindowFocus: false,

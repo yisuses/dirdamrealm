@@ -85,7 +85,6 @@ const nextConfig = {
   // Replace terser by swc
   swcMinify: true,
   experimental: {
-    concurrentFeatures: false, // buggy with sentry
     serverComponents: false, // buggy with sentry
 
     // Prefer loading of ES Modules over CommonJS
