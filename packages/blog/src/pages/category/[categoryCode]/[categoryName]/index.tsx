@@ -19,6 +19,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
   params,
   res,
   locale,
+  defaultLocale,
 }) => {
   let categories: Category[] = []
   try {
@@ -32,15 +33,15 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
       throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)
     }
 
-    const seoFriendlyName = seoName(categories[0].name)
+    const seoFriendlyName = seoName(categories[0].localizedName)
     const categoryNameNotCorrect = params?.categoryName !== seoFriendlyName
 
     if (categoryNameNotCorrect) {
-      const categoryPath = buildCategoryPath(params.categoryCode, categories[0].name)
+      const categoryPath = buildCategoryPath(params.categoryCode, categories[0].localizedName)
 
       return {
         redirect: {
-          destination: categoryPath,
+          destination: `${locale !== defaultLocale ? `/${locale}` : ''}${categoryPath}`,
           permanent: true,
         },
       }

@@ -9,7 +9,9 @@ const HomePage: NextPage<HomePageProps> = ({ latestPosts }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
-  const latestPostsRequest = getLatestPosts({ limit: 9 })
+  const latestPostsRequest = getLatestPosts({
+    locale: locale as AppLocales,
+  })
 
   const [responseLatestPost] = await Promise.all([latestPostsRequest])
 

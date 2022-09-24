@@ -127,17 +127,15 @@ const nextConfig = {
     return [{ source: '/(.*)', headers: secureHeaders }]
   },
 
-  /**
-     * @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
-     async rewrites() {
-      return [
-        {
-          source: `/`,
-          destination: '/demo',
-        },
-      ];
-    },
-     */
+  // @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
+  async rewrites() {
+    return [
+      {
+        source: '/categoria/:path*',
+        destination: '/category/:path*',
+      },
+    ]
+  },
 
   webpack: (config, { webpack, isServer }) => {
     if (!isServer) {

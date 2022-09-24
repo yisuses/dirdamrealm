@@ -26,7 +26,7 @@ export function HomePage({ latestPosts }: HomePageProps) {
       <Metadata name={t('homePage.title')} description={t('homePage.description')} ldJson={[ldJson]} />
       {lastPost ? <HeaderImage post={lastPost} showPostInfo /> : <div>{t('homePage.noPublishedArticles')}</div>}
 
-      <HomeLatestPosts title={t('latestPosts.title')} categories={categories} posts={latestPosts} />
+      <HomeLatestPosts title={t('latestPosts.title')} categories={categories} posts={latestPosts.slice(0, 9)} />
     </>
   )
 }

@@ -19,11 +19,21 @@
     "author": "Image by <link></link>"
   },
   "categories": {
-    "all": "All"
+    "all": "All",
+    "ENG": "Engineering",
+    "HIS": "History and thoughts",
+    "MAC": "Music and Cinema",
+    "NEW": "News",
+    "SPO": "Sports",
+    "TRA": "Travel"
   },
   "cookieBanner": {
     "message": "White Emotion uses cookies to ensure you get the best experience on our website.",
     "accept": "Accept",
     "acceptCookies": "Accept cookies"
+  },
+  "localization": {
+    "en": "en",
+    "es": "sp"
   }
 }

@@ -2,12 +2,13 @@
 import { Box, Text, Flex, Divider, Link, LinkProps } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
-import { Trans } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Tag } from '@components/common/Tag/Tag'
+import { Ribbon } from '@components/common/Ribbon'
+import { Tag } from '@components/common/Tag'
 import { getImageUrlFromMedia } from '@utils/image'
 import { buildPostPath } from '@utils/urlBuilder'
 
@@ -23,10 +24,22 @@ const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
 )
 
 export function HeaderImage({
-  post: { id, categories, title, summary, publishedAt, coverImage, imgUrl, coverImageAuthor, coverImageSourceUrl },
+  post: {
+    id,
+    categories,
+    title,
+    summary,
+    publishedAt,
+    coverImage,
+    imgUrl,
+    coverImageAuthor,
+    coverImageSourceUrl,
+    locale,
+  },
   showPostInfo,
 }: HeaderImageProps) {
   const { locale: appLocale } = useRouter()
+  const { t } = useTranslation('common')
   const renderedCategories = categories?.slice(0, 3) || []
   return (
     <Box>
@@ -56,7 +69,8 @@ export function HeaderImage({
             }}
             color="gray.800"
           >
-            <Flex gap="10px">
+            {appLocale !== locale && <Ribbon>{t(`localization.${locale}`)}</Ribbon>}
+            <Flex gap="10px" justifyContent="end">
               {renderedCategories.map(({ name, locale, code }) => (
                 <Tag
                   mb={{ base: '8px', md: '12px', lg: '16px' }}

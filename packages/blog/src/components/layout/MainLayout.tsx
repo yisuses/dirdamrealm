@@ -14,7 +14,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
     localizedName: category.localizedName,
     name: category.name,
     code: category.code,
-    url: buildCategoryPath(category.code, category.name),
+    url: buildCategoryPath(category.code, category.localizedName),
   }))
   const about = useGetAbout()
   return (

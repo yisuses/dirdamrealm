@@ -1,5 +1,6 @@
 import { SimpleGrid } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 import { PostCard } from '@components/common'
@@ -11,6 +12,7 @@ interface PostGridProps {
 
 export function PostGrid({ posts }: PostGridProps) {
   const { locale } = useRouter()
+  const { t } = useTranslation('common')
 
   return (
     <SimpleGrid
@@ -24,14 +26,14 @@ export function PostGrid({ posts }: PostGridProps) {
       {posts.map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl, locale: postLocale }) => (
         <PostCard
           isSameLocale={locale === postLocale}
-          locale={postLocale}
+          locale={t(`localization.${postLocale}`)}
           key={id}
           id={id}
           categories={
             categories
-              ? categories.map(category => ({
-                  key: category.code,
-                  label: category.localizedName,
+              ? categories.map(({ code, localizedName }) => ({
+                  key: code,
+                  label: t(`categories.${code as PostCategoryCodes}`) || localizedName,
                 }))
               : []
           }
