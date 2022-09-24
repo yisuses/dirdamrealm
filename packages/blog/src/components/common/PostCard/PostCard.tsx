@@ -3,7 +3,7 @@ import { Text, Box, Flex, Link } from '@chakra-ui/layout'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 
-import { Tag, Ribbon } from '@components'
+import { Tag } from '@components'
 import { buildBlurDataUrl, buildPostPath } from '@utils'
 
 export type PostCardProps = {
@@ -34,7 +34,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
           },
         }}
       >
-        {!isSameLocale && <Ribbon>{locale}</Ribbon>}
+        {/* {!isSameLocale && <Ribbon>{locale}</Ribbon>} */}
         <Flex
           pl="20px"
           position="absolute"
@@ -47,6 +47,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
         >
           {categories
             .sort((a, b) => a.label.length - b.label.length)
+            .concat(!isSameLocale ? { key: 'lang', label: locale } : [])
             .map(({ key, label }) => (
               <Tag key={key} label={label} />
             ))}

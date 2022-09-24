@@ -7,7 +7,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Ribbon } from '@components/common/Ribbon'
+// import { Ribbon } from '@components/common/Ribbon'
 import { Tag } from '@components/common/Tag'
 import { getImageUrlFromMedia } from '@utils/image'
 import { buildPostPath } from '@utils/urlBuilder'
@@ -69,16 +69,19 @@ export function HeaderImage({
             }}
             color="gray.800"
           >
-            {appLocale !== locale && <Ribbon>{t(`localization.${locale}`)}</Ribbon>}
+            {/* {appLocale !== locale && <Ribbon>{t(`localization.${locale}`)}</Ribbon>} */}
             <Flex gap="10px" justifyContent="end">
-              {renderedCategories.map(({ name, locale, code }) => (
-                <Tag
-                  mb={{ base: '8px', md: '12px', lg: '16px' }}
-                  key={code}
-                  size="md"
-                  label={(locale && locale?.[appLocale as AppLocales]) || name}
-                />
-              ))}
+              {renderedCategories
+                .sort((a, b) => a.name.length - b.name.length)
+                .concat(appLocale !== locale ? ({ code: 'ENG', name: t(`localization.${locale}`) } as Category) : [])
+                .map(({ name, locale, code }) => (
+                  <Tag
+                    mb={{ base: '8px', md: '12px', lg: '16px' }}
+                    key={code}
+                    size="md"
+                    label={(locale && locale?.[appLocale as AppLocales]) || name}
+                  />
+                ))}
             </Flex>
             <NextLink href={buildPostPath(String(id), title)} passHref>
               <Link

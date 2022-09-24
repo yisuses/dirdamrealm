@@ -13,7 +13,6 @@ export function Ribbon({ children }: RibbonProps) {
         position="absolute"
         display="block"
         width={75}
-        p="0"
         backgroundColor="orange.300"
         boxShadow="0 5px 10px rgba(0,0,0,.2)"
         color="#fff"

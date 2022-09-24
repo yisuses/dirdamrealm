@@ -11,6 +11,7 @@ const HomePage: NextPage<HomePageProps> = ({ latestPosts }) => {
 export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
   const latestPostsRequest = getLatestPosts({
     locale: locale as AppLocales,
+    limit: 50,
   })
 
   const [responseLatestPost] = await Promise.all([latestPostsRequest])
