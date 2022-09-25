@@ -1,11 +1,13 @@
 import { Button, IconButton } from '@chakra-ui/button'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { useDisclosure } from '@chakra-ui/hooks'
+import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
 import { Box, Center, Divider, Flex, HStack, Link } from '@chakra-ui/layout'
 import { useColorMode } from '@chakra-ui/system'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import { Modal } from '@components'
 import { buildCategoryPath } from '@utils/urlBuilder'
 import { HeaderMenu } from './HeaderMenu'
 
@@ -22,6 +24,7 @@ export function Header({ categories }: HeaderProps) {
   const router = useRouter()
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
+  const { isOpen: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
 
   const logo = (
     <NextLink href="/">
@@ -86,6 +89,14 @@ export function Header({ categories }: HeaderProps) {
     <>
       <IconButton
         size="sm"
+        icon={<SearchIcon color="white" />}
+        aria-label="Search"
+        bg="transparent"
+        onClick={onOpenSearchModal}
+        _hover={{ bg: 'whiteAlpha.300' }}
+      />
+      <IconButton
+        size="sm"
         icon={colorMode === 'light' ? <MoonIcon color="white" /> : <SunIcon />}
         aria-label="Toggle theme"
         bg="transparent"
@@ -111,6 +122,8 @@ export function Header({ categories }: HeaderProps) {
 
   return (
     <Flex width="100%" bg="blackAlpha.800" pr={{ base: 4, lg: 8 }} pl={{ base: 2, lg: 8 }} justifyContent="center">
+      {isSearchModalOpen && <Modal onClose={onCloseSearchModal}>Search Modal!</Modal>}
+
       <Flex
         h="full"
         alignItems="center"
