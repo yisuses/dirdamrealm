@@ -18,6 +18,7 @@ export default class Document extends NextDocument {
           <ColorModeScript initialColorMode={emotionTheme.config.initialColorMode} />
           <Main />
           <NextScript />
+          <div id="modal-root"></div>
         </body>
       </Html>
     )

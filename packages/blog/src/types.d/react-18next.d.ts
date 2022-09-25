@@ -10,7 +10,6 @@ import type common from '../../public/locales/en/common.json'
 import type errorPage from '../../public/locales/en/errorPage.json'
 import type homePage from '../../public/locales/en/homePage.json'
 import type postPage from '../../public/locales/en/postPage.json'
-import type searchPage from '../../public/locales/en/searchPage.json'
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {
@@ -21,7 +20,6 @@ declare module 'react-i18next' {
       homePage: typeof homePage
       errorPage: typeof errorPage
       postPage: typeof postPage
-      searchPage: typeof searchPage
     }
   }
 }
