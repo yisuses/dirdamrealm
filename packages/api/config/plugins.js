@@ -13,15 +13,34 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  search:{
+  search: {
     enabled: true,
     config: {
       provider: 'algolia',
+      prefix: `whemotion_${env('NODE_ENV')}_`,
       providerOptions: {
         apiKey: env('ALGOLIA_PROVIDER_ADMIN_API_KEY'),
         applicationId: env('ALGOLIA_PROVIDER_APPLICATION_ID'),
       },
-      contentTypes: [{ name: 'api::post.post' }, { name: 'api::category.category' }],
+      contentTypes: [
+        {
+          name: 'api::post.post',
+          index: 'post',
+          fields: [
+            'title',
+            'summary',
+            'categories',
+            'content',
+            'createdAt',
+            'publishedAt',
+            'locale',
+            'writer',
+            'coverImage',
+            'imgUrl',
+            'coverImageSourceUrl',
+          ],
+        },
+      ],
     },
-  }
+  },
 })
