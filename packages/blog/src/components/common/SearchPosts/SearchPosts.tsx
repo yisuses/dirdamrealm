@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
 import { useDebounce } from '@hooks/useDebounce'
+import { SearchPostResultItem } from './SearchPostResultItem'
 
 export function SearchPosts() {
   const [searchValue, setSearchValue] = useState<string>('')
@@ -35,8 +36,8 @@ export function SearchPosts() {
       </FormControl>
       {debouncedValue && (
         <div>
-          {searchResults.map((result, index) => {
-            return <p key={index}>{result.title}</p>
+          {searchResults.map((post, index) => {
+            return <SearchPostResultItem key={index} post={post} />
           })}
         </div>
       )}
