@@ -4,6 +4,7 @@ const { i18n } = require('./next-i18next.config')
 const { withSentryConfig } = require('@sentry/nextjs')
 
 const trueEnv = ['true', '1', 'yes']
+const isProd = process.env.NODE_ENV === 'production'
 
 const NEXTJS_DISABLE_SENTRY = trueEnv.includes(process.env?.NEXTJS_DISABLE_SENTRY ?? 'false')
 const NEXTJS_SENTRY_AUTH_TOKEN = process.env?.NEXTJS_SENTRY_AUTH_TOKEN ?? 'auth_token'
@@ -13,6 +14,10 @@ const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-nam
 const NEXTJS_SENTRY_RELEASE =
   (process.env?.VERCEL_GIT_COMMIT_SHA || process.env?.NEXTJS_SENTRY_RELEASE) ?? 'development'
 const NEXTJS_SENTRY_UPLOAD_DRY_RUN = trueEnv.includes(process.env?.NEXTJS_SENTRY_UPLOAD_DRY_RUN ?? 'false')
+const ALGOLIA_PROVIDER_APPLICATION_ID = process.env?.ALGOLIA_PROVIDER_APPLICATION_ID ?? ''
+const ALGOLIA_PROVIDER_SEARCH_API_KEY = process.env?.ALGOLIA_PROVIDER_SEARCH_API_KEY ?? ''
+const ALGOLIA_PROVIDER_INDEX_PREFIX =
+  process.env?.ALGOLIA_PROVIDER_INDEX_PREFIX ?? (isProd ? 'whemotion_production' : 'whemotion_development')
 
 /**
  * A way to allow CI optimization when the build done there is not used
@@ -26,8 +31,6 @@ if (disableSourceMaps) {
 
 const NEXTJS_IGNORE_ESLINT = process.env.NEXTJS_IGNORE_ESLINT === '1' || false
 const NEXTJS_IGNORE_TYPECHECK = process.env.NEXTJS_IGNORE_TYPECHECK === '1' || false
-
-const isProd = process.env.NODE_ENV === 'production'
 
 // Tell webpack to compile those packages
 // @link https://www.npmjs.com/package/next-transpile-modules
@@ -100,6 +103,9 @@ const nextConfig = {
     version: packageJson.version,
     API_URL: process.env.API_URL ?? 'http://localhost:3003',
     BASE_URL: process.env.BASE_URL ?? process.env.VERCEL_URL ?? 'http://localhost:3000',
+    ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
+    ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
+    ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
   },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization

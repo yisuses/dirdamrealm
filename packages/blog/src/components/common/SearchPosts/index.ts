@@ -1,0 +1,1 @@
+export { SearchPosts } from './SearchPosts'
