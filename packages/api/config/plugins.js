@@ -19,7 +19,7 @@ module.exports = ({ env }) => ({
       provider: 'algolia',
       prefix: `whemotion_${env('NODE_ENV')}_`,
       providerOptions: {
-        apiKey: env('ALGOLIA_PROVIDER_SEARCH_API_KEY'),
+        apiKey: env('ALGOLIA_PROVIDER_ADMIN_API_KEY'),
         applicationId: env('ALGOLIA_PROVIDER_APPLICATION_ID'),
       },
       contentTypes: [
