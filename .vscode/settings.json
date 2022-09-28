@@ -3,5 +3,6 @@
     {
       "pattern": "./packages/*/"
     }
-  ]
+  ],
+  "cSpell.words": ["algoliasearch"]
 }

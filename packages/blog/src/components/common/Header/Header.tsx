@@ -7,7 +7,7 @@ import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Modal } from '@components'
+import { Modal, SearchPosts } from '@components'
 import { buildCategoryPath } from '@utils/urlBuilder'
 import { HeaderMenu } from './HeaderMenu'
 
@@ -122,7 +122,11 @@ export function Header({ categories }: HeaderProps) {
 
   return (
     <Flex width="100%" bg="blackAlpha.800" pr={{ base: 4, lg: 8 }} pl={{ base: 2, lg: 8 }} justifyContent="center">
-      {isSearchModalOpen && <Modal onClose={onCloseSearchModal}>Search Modal!</Modal>}
+      {isSearchModalOpen && (
+        <Modal onClose={onCloseSearchModal}>
+          <SearchPosts />
+        </Modal>
+      )}
 
       <Flex
         h="full"

@@ -36,3 +36,17 @@ type Post = {
   locale: AppLocales
   writer: Writer | null
 }
+
+type AlgoliaPost = {
+  title: string
+  summary: string
+  content: string
+  createdAt: string
+  publishedAt: string
+  locale: string
+  imgUrl: string | null
+  coverImageSourceUrl: string | null
+  categories: CategoryResponseEntity[]
+  writer: WriterResponseEntity
+  coverImage: MediaResponseEntity
+}

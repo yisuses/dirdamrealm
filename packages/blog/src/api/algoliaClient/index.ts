@@ -1,0 +1,1 @@
+export { getAlgoliaClient } from './getAlgoliaClient'
