@@ -13,7 +13,11 @@
     "logo": "White Emotion logo",
     "menuButtonClosed": "Open menu",
     "menuButtonOpened": "Close menu",
-    "changeLanguage": "Change language"
+    "changeLanguage": "Change language",
+    "search": {
+      "title": "Search post",
+      "placeholder": "Title..."
+    }
   },
   "coverImage": {
     "author": "Image by <link></link>"

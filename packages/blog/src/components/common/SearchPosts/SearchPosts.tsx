@@ -6,16 +6,21 @@ import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
 import { useDebounce } from '@hooks/useDebounce'
 import { SearchPostResultItem } from './SearchPostResultItem'
 
-export function SearchPosts() {
+type SearchPostsProps = {
+  inputTitle: string
+  inputPlaceholder: string
+}
+
+export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) {
   const [searchValue, setSearchValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(searchValue, 500)
-  const [searchResults, setSearchResults] = useState<AlgoliaPost[]>([])
+  const [postResults, setPostResults] = useState<AlgoliaPost[]>([])
 
   useEffect(() => {
     if (debouncedValue.length) {
       getAlgoliaPosts({ query: debouncedValue })
         .then(({ hits }) => {
-          setSearchResults(hits)
+          setPostResults(hits)
         })
         .catch(err => {
           console.log(err)
@@ -26,19 +31,19 @@ export function SearchPosts() {
   return (
     <div>
       <FormControl>
-        <FormLabel>Search</FormLabel>
+        <FormLabel>{inputTitle}</FormLabel>
         <Input
           size="sm"
-          placeholder="Search post"
+          placeholder={inputPlaceholder}
           onChange={event => setSearchValue(event.target.value)}
           value={searchValue}
         />
       </FormControl>
       {debouncedValue && (
         <div>
-          {searchResults.map((post, index) => {
-            return <SearchPostResultItem key={index} post={post} />
-          })}
+          {postResults.map((post, index) => (
+            <SearchPostResultItem key={index} post={post} />
+          ))}
         </div>
       )}
     </div>

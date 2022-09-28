@@ -124,7 +124,7 @@ export function Header({ categories }: HeaderProps) {
     <Flex width="100%" bg="blackAlpha.800" pr={{ base: 4, lg: 8 }} pl={{ base: 2, lg: 8 }} justifyContent="center">
       {isSearchModalOpen && (
         <Modal onClose={onCloseSearchModal}>
-          <SearchPosts />
+          <SearchPosts inputTitle={t('header.search.title')} inputPlaceholder={t('header.search.placeholder')} />
         </Modal>
       )}
 

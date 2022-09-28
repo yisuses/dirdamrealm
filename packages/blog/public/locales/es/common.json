@@ -13,7 +13,11 @@
     "logo": "Logotipo de White Emotion",
     "menuButtonClosed": "Abrir menú",
     "menuButtonOpened": "Cerrar menú",
-    "changeLanguage": "Cambiar idioma"
+    "changeLanguage": "Cambiar idioma",
+    "search": {
+      "title": "Buscar entrada",
+      "placeholder": "Título..."
+    }
   },
   "coverImage": {
     "author": "Imagen de <link></link>"
