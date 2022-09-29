@@ -1,6 +1,7 @@
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useQuery } from 'react-query'
 
 import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
 import { useDebounce } from '@hooks/useDebounce'
@@ -13,20 +14,18 @@ type SearchPostsProps = {
 
 export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) {
   const [searchValue, setSearchValue] = useState<string>('')
-  const debouncedValue = useDebounce<string>(searchValue, 500)
-  const [postResults, setPostResults] = useState<AlgoliaPost[]>([])
+  const debouncedValue = useDebounce<string>(searchValue, 200)
 
-  useEffect(() => {
-    if (debouncedValue.length) {
-      getAlgoliaPosts({ query: debouncedValue })
-        .then(({ hits }) => {
-          setPostResults(hits.filter(hit => hit.publishedAt))
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-  }, [debouncedValue])
+  const { data: postResults } = useQuery(
+    ['algoliaPosts', { debouncedValue }],
+    async () => getAlgoliaPosts({ query: debouncedValue }).then(({ hits }) => hits.filter(hit => hit.publishedAt)),
+    {
+      enabled: debouncedValue.length > 0,
+      refetchOnWindowFocus: false,
+      staleTime: 30000,
+      onError: err => console.log(err),
+    },
+  )
 
   return (
     <div>
@@ -39,13 +38,11 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
           value={searchValue}
         />
       </FormControl>
-      {debouncedValue && (
-        <div>
-          {postResults.map((post, index) => (
-            <SearchPostResultItem key={index} post={post} />
-          ))}
-        </div>
-      )}
+      <div>
+        {postResults?.map((post, index) => (
+          <SearchPostResultItem key={index} post={post} />
+        ))}
+      </div>
     </div>
   )
 }
