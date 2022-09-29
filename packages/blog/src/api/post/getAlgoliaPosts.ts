@@ -7,9 +7,9 @@ export type GetAlgoliaPostProps = {
   query: string
 }
 
-export function getAlgoliaPosts({ query }: GetAlgoliaPostProps) {
-  const indexName = `${publicRuntimeConfig.ALGOLIA_INDEX_PREFIX}_post`
+const indexName = `${publicRuntimeConfig.ALGOLIA_INDEX_PREFIX}_post`
+const index = getAlgoliaClient().initIndex(indexName)
 
-  const index = getAlgoliaClient().initIndex(indexName)
+export function getAlgoliaPosts({ query }: GetAlgoliaPostProps) {
   return index.search<AlgoliaPost>(query)
 }
