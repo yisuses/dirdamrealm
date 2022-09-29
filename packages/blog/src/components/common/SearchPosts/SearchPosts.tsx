@@ -20,7 +20,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
     if (debouncedValue.length) {
       getAlgoliaPosts({ query: debouncedValue })
         .then(({ hits }) => {
-          setPostResults(hits)
+          setPostResults(hits.filter(hit => hit.publishedAt))
         })
         .catch(err => {
           console.log(err)
