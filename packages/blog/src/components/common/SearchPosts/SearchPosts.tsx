@@ -14,7 +14,7 @@ type SearchPostsProps = {
 
 export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) {
   const [searchValue, setSearchValue] = useState<string>('')
-  const debouncedValue = useDebounce<string>(searchValue, 200)
+  const debouncedValue = useDebounce<string>(searchValue, 300)
 
   const { data: postResults } = useQuery(
     ['algoliaPosts', { debouncedValue }],
