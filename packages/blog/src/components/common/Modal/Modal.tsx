@@ -1,5 +1,6 @@
 import { CloseIcon } from '@chakra-ui/icons'
 import { Box } from '@chakra-ui/layout'
+import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -11,6 +12,7 @@ export type ModalProps = {
 
 export function Modal({ onClose, children, title }: ModalProps) {
   const [isBrowser, setIsBrowser] = useState(false)
+  const { events } = useRouter()
   const modalWrapperRef = useRef<HTMLDivElement>(null)
 
   const backDropHandler = (e: MouseEvent) => {
@@ -19,20 +21,28 @@ export function Modal({ onClose, children, title }: ModalProps) {
     }
   }
 
+  const preventScrollHandler = (e?: TouchEvent) => {
+    e?.preventDefault?.()
+  }
+
+  const handleCloseClick = (e?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e?.preventDefault?.()
+    onClose()
+  }
+
   useEffect(() => {
     setIsBrowser(true)
     window.addEventListener('mousedown', backDropHandler)
+    document.addEventListener('touchmove', preventScrollHandler)
+    events.on('routeChangeStart', handleCloseClick)
     document.body.style.overflow = 'hidden'
     return () => {
       window.removeEventListener('mousedown', backDropHandler)
+      document.removeEventListener('touchmove', preventScrollHandler)
+      events.off('routeChangeStart', close)
       document.body.style.overflow = 'unset'
     }
   }, [])
-
-  const handleCloseClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault()
-    onClose()
-  }
 
   const modalContent = (
     <Box
