@@ -11,5 +11,5 @@ const indexName = `${publicRuntimeConfig.ALGOLIA_INDEX_PREFIX}_post`
 const index = getAlgoliaClient().initIndex(indexName)
 
 export function getAlgoliaPosts({ query }: GetAlgoliaPostProps) {
-  return index.search<AlgoliaPost>(query)
+  return index.search<AlgoliaPostEntity>(query)
 }
