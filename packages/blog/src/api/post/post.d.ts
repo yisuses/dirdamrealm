@@ -19,6 +19,21 @@ type PostResponseEntity = {
 type PostResponse = StrapiResponse<PostResponseEntity>
 type PostSingleResponse = StrapiSingleResponse<PostResponseEntity>
 
+type AlgoliaPostEntity = {
+  objectID: string
+  title: string
+  summary: string
+  content: string
+  createdAt: string
+  publishedAt: string
+  locale: string
+  imgUrl: string | null
+  coverImageSourceUrl: string | null
+  categories: (CategoryResponseEntity & { id: number })[]
+  writer: Writer
+  coverImage: Media
+}
+
 type Post = {
   id: number
   title: string
@@ -35,18 +50,4 @@ type Post = {
   localizations: Post[] | null
   locale: AppLocales
   writer: Writer | null
-}
-
-type AlgoliaPost = {
-  title: string
-  summary: string
-  content: string
-  createdAt: string
-  publishedAt: string
-  locale: string
-  imgUrl: string | null
-  coverImageSourceUrl: string | null
-  categories: CategoryResponseEntity[]
-  writer: WriterResponseEntity
-  coverImage: MediaResponseEntity
 }

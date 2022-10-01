@@ -5,7 +5,7 @@ import { useQuery } from 'react-query'
 
 import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
 import { useDebounce } from '@hooks/useDebounce'
-import { SearchPostResultItem } from './SearchPostResultItem'
+import { SearchPostResultItem } from './SearchPostItem'
 
 type SearchPostsProps = {
   inputTitle: string
