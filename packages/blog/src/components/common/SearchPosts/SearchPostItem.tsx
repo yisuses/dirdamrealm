@@ -47,23 +47,16 @@ export function SearchPostResultItem({
           <Text fontSize={{ base: 'sm', md: 'md', lg: 'xl' }} fontWeight={600}>
             {title}
           </Text>
-          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" noOfLines={1}>
+          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" noOfLines={2}>
             {summary}
           </Text>
-          <Box
-            marginTop="auto"
-            display="flex"
-            flexDir={{ base: 'row-reverse', lg: 'column' }}
-            justifyContent={{ base: 'space-between' }}
-          >
-            <Box display={{ base: 'hidden', lg: 'block' }}>
+          <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">
+            <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
+            <Box display={{ base: 'none', lg: 'flex' }}>
               {categories.map(({ name, code }) => (
                 <Tag size="sm" key={code} label={name} />
               ))}
             </Box>
-            <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} mt={{ base: 0, lg: '8px' }}>
-              {format(parseISO(publishedAt), 'dd.MM.yyyy')}
-            </Text>
           </Box>
         </Box>
       </Box>
