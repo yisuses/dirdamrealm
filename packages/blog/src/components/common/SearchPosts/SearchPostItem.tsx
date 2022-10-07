@@ -56,7 +56,7 @@ export function SearchPostResultItem({
             flexDir={{ base: 'row-reverse', lg: 'column' }}
             justifyContent={{ base: 'space-between' }}
           >
-            <Box>
+            <Box display={{ base: 'hidden', lg: 'block' }}>
               {categories.map(({ name, code }) => (
                 <Tag size="sm" key={code} label={name} />
               ))}
