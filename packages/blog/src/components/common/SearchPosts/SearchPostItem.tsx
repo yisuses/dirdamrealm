@@ -16,7 +16,7 @@ export function SearchPostResultItem({
 }: SearchPostItemProps) {
   return (
     <NextLink href={buildPostPath(objectID, title)}>
-      <Box display="flex" alignItems="center" py="16px" _hover={{ cursor: 'pointer' }}>
+      <Box display="flex" alignItems="center" py={{ base: '8px', lg: '16px' }} _hover={{ cursor: 'pointer' }}>
         <Box
           position="relative"
           height={{ base: '80px', lg: '120px' }}
@@ -42,28 +42,21 @@ export function SearchPostResultItem({
           flexDir="column"
           height={{ base: '80px', lg: '120px' }}
           flexGrow={1}
-          pt="8px"
+          pt={{ base: 0, lg: '8px' }}
         >
-          <Text fontSize={{ base: 'md', lg: 'xl' }} fontWeight={600}>
+          <Text fontSize={{ base: 'sm', md: 'md', lg: 'xl' }} fontWeight={600}>
             {title}
           </Text>
-          <Text fontSize="sm" fontStyle="italic" noOfLines={1}>
+          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" noOfLines={2}>
             {summary}
           </Text>
-          <Box
-            marginTop="auto"
-            display="flex"
-            flexDir={{ base: 'row-reverse', lg: 'column' }}
-            justifyContent={{ base: 'space-between' }}
-          >
-            <Box>
+          <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">
+            <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
+            <Box display={{ base: 'none', lg: 'flex' }}>
               {categories.map(({ name, code }) => (
-                <Tag key={code} label={name} />
+                <Tag size="sm" key={code} label={name} />
               ))}
             </Box>
-            <Text fontSize="sm" mt={{ base: 0, lg: '8px' }}>
-              {format(parseISO(publishedAt), 'dd.MM.yyyy')}
-            </Text>
           </Box>
         </Box>
       </Box>

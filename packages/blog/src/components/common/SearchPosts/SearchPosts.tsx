@@ -1,5 +1,6 @@
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
+import { Box } from '@chakra-ui/layout'
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 
@@ -28,7 +29,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
   )
 
   return (
-    <div>
+    <Box overflow="hidden">
       <FormControl>
         <FormLabel>{inputTitle}</FormLabel>
         <Input
@@ -36,13 +37,24 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
           placeholder={inputPlaceholder}
           onChange={event => setSearchValue(event.target.value)}
           value={searchValue}
+          _placeholder={{
+            color: 'whiteAlpha.700',
+          }}
         />
       </FormControl>
-      <div>
-        {postResults?.map((post, index) => (
-          <SearchPostResultItem key={index} post={post} />
-        ))}
-      </div>
-    </div>
+      <Box
+        width="100%"
+        height={{ base: 'calc(100vh - 115px)', md: '470px' }}
+        display="flex"
+        flexDir="column"
+        flexShrink={0}
+      >
+        <Box pr="17px" boxSizing="content-box" width="100%" height="auto" overflowY="auto">
+          {postResults?.map((post, index) => (
+            <SearchPostResultItem key={index} post={post} />
+          ))}
+        </Box>
+      </Box>
+    </Box>
   )
 }

@@ -72,6 +72,7 @@ const secureHeaders = createSecureHeaders({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: true,
   reactStrictMode: true,
   productionBrowserSourceMaps: !disableSourceMaps,
   i18n,

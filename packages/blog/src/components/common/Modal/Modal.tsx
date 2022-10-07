@@ -1,3 +1,4 @@
+import { useColorModeValue } from '@chakra-ui/color-mode'
 import { CloseIcon } from '@chakra-ui/icons'
 import { Box } from '@chakra-ui/layout'
 import { useRouter } from 'next/router'
@@ -61,9 +62,10 @@ export function Modal({ onClose, children, title }: ModalProps) {
         width={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
         height={{ base: '100%', md: '600px' }}
         zIndex={1000}
+        boxShadow="0px 0px 5px 0px rgba(0,0,0,.6)"
       >
         <Box
-          bg="white"
+          bg={useColorModeValue('white', 'gray.800')}
           width={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
           height={{ base: '100%', md: '600px' }}
           borderRadius={{ base: '0', md: '5px' }}
