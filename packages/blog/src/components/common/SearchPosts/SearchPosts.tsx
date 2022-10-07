@@ -37,6 +37,9 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
           placeholder={inputPlaceholder}
           onChange={event => setSearchValue(event.target.value)}
           value={searchValue}
+          _placeholder={{
+            color: 'whiteAlpha.700',
+          }}
         />
       </FormControl>
       <Box
