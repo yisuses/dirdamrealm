@@ -1,7 +1,7 @@
 import { DataProp } from 'editorjs-blocks-react-renderer'
 
 import { ApiError } from '@utils'
-import { categoryMapper } from './categoryMapper'
+import { categoryMapper, algoliaCategoryMapper } from './categoryMapper'
 import { mediaMapper } from './mediaMapper'
 import { writerMapper } from './writerMapper'
 
@@ -58,5 +58,42 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
     coverImage: parsedCoverImage,
     content: parsedContent,
     writer: parsedWriter,
+  }
+}
+
+export const algoliaPostMapper = (postEntity: AlgoliaPostEntity): Post => {
+  const parsedContent: DataProp = { time: new Date().getTime(), version: '', blocks: [] }
+
+  const errors = []
+
+  let parsedCategories: Category[] | null = null
+  try {
+    parsedCategories = postEntity.categories
+      ? postEntity.categories.map(category => algoliaCategoryMapper(category, postEntity.locale))
+      : null
+  } catch (err) {
+    errors.push(`Failed to parse algolia categories from post ${postEntity.objectID}. Cause: ${(err as Error).message}`)
+  }
+
+  if (errors.length) {
+    throw new ApiError(errors.join('\n'))
+  }
+
+  return {
+    id: Number(postEntity.objectID),
+    title: postEntity.title,
+    summary: postEntity.summary,
+    imgUrl: postEntity.imgUrl || '',
+    publishedAt: postEntity.publishedAt,
+    createdAt: postEntity.createdAt,
+    updatedAt: '',
+    content: parsedContent,
+    coverImage: postEntity.coverImage,
+    coverImageAuthor: '',
+    coverImageSourceUrl: postEntity.coverImageSourceUrl,
+    localizations: null,
+    locale: postEntity.locale,
+    writer: postEntity.writer,
+    categories: parsedCategories,
   }
 }
