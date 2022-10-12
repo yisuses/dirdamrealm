@@ -1,5 +1,6 @@
 import { Box, Text } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 
@@ -14,6 +15,8 @@ type SearchPostItemProps = {
 export function SearchPostResultItem({
   post: { objectID, title, coverImage, summary, categories, publishedAt },
 }: SearchPostItemProps) {
+  const { t } = useTranslation('common')
+
   return (
     <NextLink href={buildPostPath(objectID, title)}>
       <Box display="flex" alignItems="center" py={{ base: '8px', lg: '16px' }} _hover={{ cursor: 'pointer' }}>
@@ -53,8 +56,8 @@ export function SearchPostResultItem({
           <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">
             <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
             <Box display={{ base: 'none', lg: 'flex' }}>
-              {categories.map(({ name, code }) => (
-                <Tag size="sm" key={code} label={name} />
+              {categories.map(({ code }) => (
+                <Tag size="sm" key={code} label={t(`categories.${code as PostCategoryCodes}`)} />
               ))}
             </Box>
           </Box>

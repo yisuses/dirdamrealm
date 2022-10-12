@@ -29,6 +29,13 @@ export interface PostPageProps {
   about: About
 }
 
+type ShareButtonProps = {
+  label: string
+  icon: React.FC<React.SVGProps<SVGSVGElement>>
+  href?: string
+  onClick?: () => void
+}
+
 export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
@@ -54,14 +61,9 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     writer,
   } = post
   const postUrl = fixedEncodeURIComponent(generateLocalePublicUrl(asPath))
-  const postSocialTitle = t('postPage.shareTitle', { title })
+  const postSocialTitle = encodeURIComponent(t('postPage.shareTitle', { title }))
 
-  const shareButtonsData: {
-    label: string
-    icon: React.FC<React.SVGProps<SVGSVGElement>>
-    href?: string
-    onClick?: () => void
-  }[] = [
+  const shareButtonsData: ShareButtonProps[] = [
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
       href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${postUrl}`,
@@ -109,6 +111,8 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     { name: 'twitter:image:alt', content: coverImage ? coverImage.caption : '' },
   ]
 
+  const imageData = getImageDataFromMedia({ media: coverImage, format: 'medium' })
+
   const ldJson: BlogPosting = {
     '@type': 'BlogPosting',
     headline: title,
@@ -124,8 +128,8 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
       image: {
         '@type': 'ImageObject',
         url: getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl }),
-        width: getImageDataFromMedia({ media: coverImage, format: 'medium' })?.width.toString() || '',
-        height: getImageDataFromMedia({ media: coverImage, format: 'medium' })?.height.toString() || '',
+        width: imageData?.width.toString() || '',
+        height: imageData?.height.toString() || '',
       },
       thumbnailUrl: getImageUrlFromMedia({ media: coverImage, format: 'small' }),
     }),
