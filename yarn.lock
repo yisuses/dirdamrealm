@@ -10180,6 +10180,7 @@ __metadata:
     "@typescript-eslint/parser": 5.38.0
     algoliasearch: 4.14.2
     axios: 0.27.2
+    body-scroll-lock: 3.1.5
     css-loader: 6.7.1
     date-fns: 2.29.3
     editorjs-blocks-react-renderer: 1.3.0
@@ -11626,6 +11627,13 @@ __metadata:
     type-is: ~1.6.18
     unpipe: 1.0.0
   checksum: 12fffdeac82fe20dddcab7074215d5156e7d02a69ae90cbe9fee1ca3efa2f28ef52097cbea76685ee0a1509c71d85abd0056a08e612c09077cad6277a644cf88
+  languageName: node
+  linkType: hard
+
+"body-scroll-lock@npm:3.1.5":
+  version: 3.1.5
+  resolution: "body-scroll-lock@npm:3.1.5"
+  checksum: 52c25b81d6e7a87cfbdd7870363c3e20a439dbc76535b735916e2df907abbce95c0da0d2c7a2cfe88f49775d53bbc4bd09445ffda2d61b999efa3f0b1dedfc5e
   languageName: node
   linkType: hard
 

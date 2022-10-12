@@ -1,90 +1,56 @@
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { CloseIcon } from '@chakra-ui/icons'
-import { Box } from '@chakra-ui/layout'
+import { useBreakpointValue } from '@chakra-ui/media-query'
+import {
+  Modal as ChakraModal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+} from '@chakra-ui/modal'
+import { useColorModeValue } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { ReactNode, useEffect, useState, useRef } from 'react'
-import { createPortal } from 'react-dom'
+import { ReactNode, useEffect, useState } from 'react'
 
 export type ModalProps = {
   onClose: () => void
+  isOpen: boolean
   children?: ReactNode
   title?: string
 }
 
-export function Modal({ onClose, children, title }: ModalProps) {
+export function Modal({ isOpen, onClose, children, title }: ModalProps) {
   const [isBrowser, setIsBrowser] = useState(false)
   const { events } = useRouter()
-  const modalWrapperRef = useRef<HTMLDivElement>(null)
-
-  const backDropHandler = (e: MouseEvent) => {
-    if (!modalWrapperRef?.current?.contains(e.target as Node)) {
-      onClose()
-    }
-  }
-
-  const preventScrollHandler = (e?: TouchEvent) => {
-    e?.preventDefault?.()
-  }
-
-  const handleCloseClick = (e?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e?.preventDefault?.()
-    onClose()
-  }
+  const modalSize = useBreakpointValue({
+    base: 'full',
+    md: 'xl',
+  })
 
   useEffect(() => {
     setIsBrowser(true)
-    window.addEventListener('mousedown', backDropHandler)
-    document.addEventListener('touchmove', preventScrollHandler)
-    events.on('routeChangeStart', handleCloseClick)
-    document.body.style.overflow = 'hidden'
+    events.on('routeChangeStart', onClose)
     return () => {
-      window.removeEventListener('mousedown', backDropHandler)
-      document.removeEventListener('touchmove', preventScrollHandler)
-      events.off('routeChangeStart', close)
-      document.body.style.overflow = 'unset'
+      events.off('routeChangeStart', onClose)
     }
   }, [])
 
-  const modalContent = (
-    <Box
-      position="absolute"
-      top={0}
-      left={0}
-      width="100%"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      backgroundColor="rgba(0, 0, 0, 0.5)"
-    >
-      <Box
-        ref={modalWrapperRef}
-        width={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
-        height={{ base: '100%', md: '600px' }}
-        zIndex={1000}
-        boxShadow="0px 0px 5px 0px rgba(0,0,0,.6)"
+  const chakraModal = (
+    <ChakraModal isOpen={isOpen} onClose={onClose} size={modalSize}>
+      <ModalOverlay />
+      <ModalContent
+        bg={useColorModeValue('white', 'gray.800')}
+        minWidth={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
+        height={{ md: '700px' }}
       >
-        <Box
-          bg={useColorModeValue('white', 'gray.800')}
-          width={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
-          height={{ base: '100%', md: '600px' }}
-          borderRadius={{ base: '0', md: '5px' }}
-          padding="15px"
-        >
-          <Box display="flex" justifyContent="flex-end">
-            <a href="#" onClick={handleCloseClick}>
-              <CloseIcon />
-            </a>
-          </Box>
-          {title && <Box paddingTop="10px">{title}</Box>}
-          <Box paddingTop="10px">{children}</Box>
-        </Box>
-      </Box>
-    </Box>
+        {title && <ModalHeader>{title}</ModalHeader>}
+        <ModalCloseButton zIndex={20} onClick={onClose} />
+        <ModalBody>{children}</ModalBody>
+      </ModalContent>
+    </ChakraModal>
   )
 
   if (isBrowser) {
-    return createPortal(modalContent, document.getElementById('modal-root')!)
+    return chakraModal
   } else {
     return null
   }
