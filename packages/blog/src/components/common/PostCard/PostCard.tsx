@@ -19,6 +19,7 @@ export type PostCardProps = {
 
 export function PostCard({ id, categories, date, description, imageUrl, title, isSameLocale, locale }: PostCardProps) {
   const postLink = buildPostPath(String(id), title)
+
   return (
     <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
       <Box

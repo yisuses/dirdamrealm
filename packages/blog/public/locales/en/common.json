@@ -16,7 +16,8 @@
     "changeLanguage": "Change language",
     "search": {
       "title": "Search post",
-      "placeholder": "Title..."
+      "inputTitle": "Title",
+      "inputPlaceholder": "Post title"
     }
   },
   "coverImage": {

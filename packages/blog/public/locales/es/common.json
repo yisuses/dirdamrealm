@@ -15,8 +15,9 @@
     "menuButtonOpened": "Cerrar menú",
     "changeLanguage": "Cambiar idioma",
     "search": {
-      "title": "Buscar entrada",
-      "placeholder": "Título..."
+      "title": "Búsqueda de entradas",
+      "inputTitle": "Título",
+      "inputPlaceholder": "Título de la entrada"
     }
   },
   "coverImage": {

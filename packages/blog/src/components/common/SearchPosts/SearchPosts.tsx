@@ -1,7 +1,7 @@
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useQuery } from 'react-query'
 
 import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
@@ -16,6 +16,7 @@ type SearchPostsProps = {
 export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) {
   const [searchValue, setSearchValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(searchValue, 300)
+  const searchResultsRef = useRef<HTMLDivElement>(null)
 
   const { data: postResults } = useQuery(
     ['algoliaPosts', { debouncedValue }],
@@ -28,23 +29,24 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
     },
   )
 
+  const searchResultOffset = searchResultsRef.current?.offsetTop
   return (
     <Box overflow="hidden">
       <FormControl>
         <FormLabel>{inputTitle}</FormLabel>
         <Input
-          size="sm"
+          variant="flushed"
+          size="md"
           placeholder={inputPlaceholder}
           onChange={event => setSearchValue(event.target.value)}
           value={searchValue}
-          _placeholder={{
-            color: 'whiteAlpha.700',
-          }}
         />
       </FormControl>
       <Box
+        mt="12px"
+        ref={searchResultsRef}
         width="100%"
-        height={{ base: 'calc(100vh - 115px)', md: '470px' }}
+        height={{ base: `calc(100vh - ${searchResultOffset}px - 12px - 90px)`, md: '520px' }}
         display="flex"
         flexDir="column"
         flexShrink={0}
