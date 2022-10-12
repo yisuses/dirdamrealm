@@ -11,7 +11,7 @@ import { AppProviders } from 'app-providers'
 
 const queryClient = new QueryClient()
 
-function MyApp({ Component, pageProps, globalProps }: CustomAppProps) {
+function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
   return (
     <AppProviders globalProps={globalProps}>
       <MainLayout>
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps, globalProps }: CustomAppProps) {
   )
 }
 
-MyApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
+BlogApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
   await queryClient.prefetchQuery(['categories'], () =>
     getCategories({ locale: appContext.router.locale as AppLocales }),
   )
@@ -37,7 +37,7 @@ MyApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps>
   }
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(BlogApp)
 
 export interface AppInitialProps {
   globalProps?: GlobalProps
