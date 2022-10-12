@@ -22,6 +22,7 @@ export function PostGrid({ posts }: PostGridProps) {
       }}
       spacing={8}
       mt={8}
+      justifyItems="center"
     >
       {posts.map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl, locale: postLocale }) => (
         <PostCard

@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/yisuses/whemotion/compare/@whe-blog@0.1.0...@whe-blog@0.2.0) (2022-10-12)
+
+
+### Features
+
+* add blockquote styles ([#68](https://github.com/yisuses/whemotion/issues/68)) ([9d2d17a](https://github.com/yisuses/whemotion/commit/9d2d17ab0c99c972942f4ecc3968c8ea3921add5))
+* add cookie banner ([#71](https://github.com/yisuses/whemotion/issues/71)) ([f640ce8](https://github.com/yisuses/whemotion/commit/f640ce85d2ab756df52bc52311e599ec3def56ee))
+* add coverImage source parameters ([#66](https://github.com/yisuses/whemotion/issues/66)) ([696fb6c](https://github.com/yisuses/whemotion/commit/696fb6c66dd5931a4c4e5cab8ddc5bc462d40cc0))
+* add related posts and category tags ([#69](https://github.com/yisuses/whemotion/issues/69)) ([0f08f0b](https://github.com/yisuses/whemotion/commit/0f08f0bd70e95edb283d6d0ca3b209cd490f72d1))
+* add search result item ([#79](https://github.com/yisuses/whemotion/issues/79)) ([6d2778b](https://github.com/yisuses/whemotion/commit/6d2778bedd0c9198d8d8ec195e5b2f8ef90c09da))
+* enable algolia integration ([#74](https://github.com/yisuses/whemotion/issues/74)) ([7e8ef85](https://github.com/yisuses/whemotion/commit/7e8ef859f5aa6481bc81cee470d6fecca30599bd))
+* enable algolia search ([#76](https://github.com/yisuses/whemotion/issues/76)) ([884a8fd](https://github.com/yisuses/whemotion/commit/884a8fdb719086851bca31f5c2e4ccafb7fe4fb7))
+* improve metadata urls and default image ([#59](https://github.com/yisuses/whemotion/issues/59)) ([07e5928](https://github.com/yisuses/whemotion/commit/07e592838dd5359dfce87a77a24bc38d83ed31f2))
+
+
+### Bug Fixes
+
+* added config to allow load page from website ([#62](https://github.com/yisuses/whemotion/issues/62)) ([7223565](https://github.com/yisuses/whemotion/commit/72235657b02ce751ac8bb3d025d34251f1e9ff77))
+* height in content image ([#63](https://github.com/yisuses/whemotion/issues/63)) ([956d3fa](https://github.com/yisuses/whemotion/commit/956d3fa84c6f9ef20eb033841a2f617fe2228eba))
+* hide non published posts ([#78](https://github.com/yisuses/whemotion/issues/78)) ([ac7cbdb](https://github.com/yisuses/whemotion/commit/ac7cbdb498a29a87b9aa54a9a628d48fdb86c435))
+* navigator is undefined ([#61](https://github.com/yisuses/whemotion/issues/61)) ([fff2e25](https://github.com/yisuses/whemotion/commit/fff2e25ca463bac8440ac8b13135c485fa7a9d9a))
+* next available format for image ([#65](https://github.com/yisuses/whemotion/issues/65)) ([fec87a1](https://github.com/yisuses/whemotion/commit/fec87a11c13ec3b3693a8e462f5deb7fa8ef5149))
+* remove navigator sharing if not present ([#60](https://github.com/yisuses/whemotion/issues/60)) ([a5f65b5](https://github.com/yisuses/whemotion/commit/a5f65b5117b573628552bd30bf58ce67c7a93b4f))
+* scroll in modal ([#81](https://github.com/yisuses/whemotion/issues/81)) ([b345fa9](https://github.com/yisuses/whemotion/commit/b345fa9cc479a4f4ec6a0d4621212928ae65bac7))
+* scroll in modal results and dark theme color ([#80](https://github.com/yisuses/whemotion/issues/80)) ([09610bf](https://github.com/yisuses/whemotion/commit/09610bf697dc4f8e2cf8c2ae2060cf212381937c))
+* translation in cards ([acdc930](https://github.com/yisuses/whemotion/commit/acdc93020eb3b0c2d5c5407eefb08b3983ed1cb3))
+* update mappers ([7ee70e0](https://github.com/yisuses/whemotion/commit/7ee70e0aaa71006d0ae0a0194eabe8e66218173d))
+
+
+### Styling
+
+* create ContentList and ContentHeader ([#64](https://github.com/yisuses/whemotion/issues/64)) ([0fd6aa1](https://github.com/yisuses/whemotion/commit/0fd6aa18b0685bc0787f2e085f1850147a11bbb4))
+
+
+### Chore
+
+* update dependencies ([#67](https://github.com/yisuses/whemotion/issues/67)) ([84a6994](https://github.com/yisuses/whemotion/commit/84a69946542339a9dbbbf26b8b8b3d71311b6ed0))
+
 ## [0.1.0](https://github.com/yisuses/whemotion/compare/@whe-blog@0.0.2...@whe-blog@0.1.0) (2022-05-27)
 
 

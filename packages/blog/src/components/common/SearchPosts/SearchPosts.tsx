@@ -20,7 +20,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
 
   const { data: postResults } = useQuery(
     ['algoliaPosts', { debouncedValue }],
-    () => getAlgoliaPosts({ query: debouncedValue }).then(({ hits }) => hits.filter(hit => hit.publishedAt)),
+    () => getAlgoliaPosts({ query: debouncedValue }).then(posts => posts.filter(post => post.publishedAt)),
     {
       enabled: debouncedValue.length > 0,
       refetchOnWindowFocus: false,

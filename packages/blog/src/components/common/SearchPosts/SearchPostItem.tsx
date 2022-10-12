@@ -1,5 +1,6 @@
 import { Box, Text } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 
@@ -8,14 +9,16 @@ import { buildPostPath } from '@utils/urlBuilder'
 import { Tag } from '../Tag'
 
 type SearchPostItemProps = {
-  post: AlgoliaPostEntity
+  post: Post
 }
 
 export function SearchPostResultItem({
-  post: { objectID, title, coverImage, summary, categories, publishedAt },
+  post: { id, title, coverImage, summary, categories, publishedAt },
 }: SearchPostItemProps) {
+  const { t } = useTranslation('common')
+
   return (
-    <NextLink href={buildPostPath(objectID, title)}>
+    <NextLink href={buildPostPath(id, title)}>
       <Box display="flex" alignItems="center" py={{ base: '8px', lg: '16px' }} _hover={{ cursor: 'pointer' }}>
         <Box
           position="relative"
@@ -53,8 +56,8 @@ export function SearchPostResultItem({
           <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">
             <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
             <Box display={{ base: 'none', lg: 'flex' }}>
-              {categories.map(({ name, code }) => (
-                <Tag size="sm" key={code} label={name} />
+              {categories?.map(({ code, localizedName }) => (
+                <Tag size="sm" key={code} label={t(`categories.${code as PostCategoryCodes}`) || localizedName} />
               ))}
             </Box>
           </Box>

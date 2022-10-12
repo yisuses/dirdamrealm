@@ -29,6 +29,9 @@ export function Metadata({
       <title>{title}</title>
       <link rel="icon" href="/favicon.ico" />
 
+      <meta itemProp="name" content={title} />
+      <meta itemProp="description" content={description} />
+      <meta itemProp="image" content={ogImage} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       <meta name="title" content={title} />
       <meta name="description" content={description} />
