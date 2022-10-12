@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/yisuses/whemotion/compare/@whe-api@0.2.0...@whe-api@0.3.0) (2022-10-12)
+
+
+### Features
+
+* add coverImage source parameters ([#66](https://github.com/yisuses/whemotion/issues/66)) ([696fb6c](https://github.com/yisuses/whemotion/commit/696fb6c66dd5931a4c4e5cab8ddc5bc462d40cc0))
+* enable algolia integration ([#74](https://github.com/yisuses/whemotion/issues/74)) ([7e8ef85](https://github.com/yisuses/whemotion/commit/7e8ef859f5aa6481bc81cee470d6fecca30599bd))
+* enable algolia search ([#76](https://github.com/yisuses/whemotion/issues/76)) ([884a8fd](https://github.com/yisuses/whemotion/commit/884a8fdb719086851bca31f5c2e4ccafb7fe4fb7))
+* improve algolia index configuration ([#75](https://github.com/yisuses/whemotion/issues/75)) ([a8fdab1](https://github.com/yisuses/whemotion/commit/a8fdab16a6c8729e3d0f0a60c1e10e4a3cf606c2))
+
+
+### Bug Fixes
+
+* algolia api keys ([#77](https://github.com/yisuses/whemotion/issues/77)) ([425d5ee](https://github.com/yisuses/whemotion/commit/425d5ee31b88f91f4840720c78a8202ff618e0d1))
+* translation in cards ([acdc930](https://github.com/yisuses/whemotion/commit/acdc93020eb3b0c2d5c5407eefb08b3983ed1cb3))
+
+
+### Chore
+
+* update dependencies ([#67](https://github.com/yisuses/whemotion/issues/67)) ([84a6994](https://github.com/yisuses/whemotion/commit/84a69946542339a9dbbbf26b8b8b3d71311b6ed0))
+
 ## [0.2.0](https://github.com/yisuses/whemotion/compare/@whe-api@0.1.1...@whe-api@0.2.0) (2022-05-27)
 
 
