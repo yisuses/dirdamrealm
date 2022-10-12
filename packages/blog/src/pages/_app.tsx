@@ -1,6 +1,7 @@
 import '@fontsource/spartan'
 import { appWithTranslation } from 'next-i18next'
 import type { AppContext, AppProps } from 'next/app'
+import App from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 import { dehydrate, QueryClient } from 'react-query'
 
@@ -10,7 +11,7 @@ import { AppProviders } from 'app-providers'
 
 const queryClient = new QueryClient()
 
-function App({ Component, pageProps, globalProps }: CustomAppProps) {
+function MyApp({ Component, pageProps, globalProps }: CustomAppProps) {
   return (
     <AppProviders globalProps={globalProps}>
       <MainLayout>
@@ -21,18 +22,22 @@ function App({ Component, pageProps, globalProps }: CustomAppProps) {
   )
 }
 
-App.getInitialProps = async ({ router }: AppContext): Promise<AppInitialProps> => {
-  await queryClient.prefetchQuery(['categories'], () => getCategories({ locale: router.locale as AppLocales }))
+MyApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
+  await queryClient.prefetchQuery(['categories'], () =>
+    getCategories({ locale: appContext.router.locale as AppLocales }),
+  )
   await queryClient.prefetchQuery(['about'], getAbout)
+  const appProps = await App.getInitialProps(appContext)
 
   return {
     globalProps: {
       dehydratedState: dehydrate(queryClient),
     },
+    ...appProps,
   }
 }
 
-export default appWithTranslation(App)
+export default appWithTranslation(MyApp)
 
 export interface AppInitialProps {
   globalProps?: GlobalProps
