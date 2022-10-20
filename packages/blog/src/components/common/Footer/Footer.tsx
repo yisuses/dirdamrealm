@@ -1,5 +1,5 @@
-import { SimpleGrid, Stack, Text, Box, Flex, Container } from '@chakra-ui/layout'
-import { useTranslation } from 'next-i18next'
+import { SimpleGrid, Stack, Text, Box, Container, Link, LinkProps } from '@chakra-ui/layout'
+import { Trans, useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 
 import { SocialButton } from '@components'
@@ -21,6 +21,12 @@ export interface FooterProps {
   }[]
   about: About
 }
+
+const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
+  <Link href={href} title={label} target="_blank" rel="noreferrer" {...rest}>
+    {label}
+  </Link>
+)
 
 export function Footer({ categories, about }: FooterProps) {
   const { t } = useTranslation('common')
@@ -72,15 +78,32 @@ export function Footer({ categories, about }: FooterProps) {
                 ))}
               </Stack>
             )}
-            <FooterListLink href="#">{t('footer.subscribe')}</FooterListLink>
+            {/* TODO: suscriptions: <FooterListLink href="#">{t('footer.subscribe')}</FooterListLink> */}
           </Stack>
         </SimpleGrid>
       </Container>
       <Box bg="gray.800" color="gray.50">
-        <Flex p={4} justifyContent="space-between" fontSize="sm">
-          <Text>{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
-          <Text>{t('footer.version', { versionNumber: publicRuntimeConfig?.version })}</Text>
-        </Flex>
+        <Container as={Stack} width="100%" maxW="100%" p={4}>
+          <SimpleGrid
+            columns={{ base: 1, md: about.display ? 3 : 2 }}
+            spacing={8}
+            justifyItems={{ base: 'center' }}
+            fontSize="sm"
+          >
+            <Text justifySelf="start">{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
+            <Text>
+              <Trans
+                i18nKey="footer.theme"
+                components={{
+                  link: (
+                    <TransLink href="https://www.figma.com/community/file/1036294505314600437" label="SimpleSmart" />
+                  ),
+                }}
+              />
+            </Text>
+            <Text justifySelf="end">{t('footer.version', { versionNumber: publicRuntimeConfig?.version })}</Text>
+          </SimpleGrid>
+        </Container>
       </Box>
     </Box>
   )
