@@ -40,7 +40,7 @@ export function Footer({ categories, about }: FooterProps) {
 
   return (
     <Box bg="gray.900" color="gray.50" w="full">
-      <Container as={Stack} maxW="6xl" p="1rem">
+      <Container as={Stack} maxW="9xl" p="1rem">
         <SimpleGrid
           columns={{ base: 1, md: about.display ? 3 : 2 }}
           spacing={8}
@@ -64,11 +64,13 @@ export function Footer({ categories, about }: FooterProps) {
 
           <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.categories')}</FooterListHeader>
-            {categories.map(({ localizedName, url }, index) => (
-              <FooterListLink key={index} href={url}>
-                {localizedName}
-              </FooterListLink>
-            ))}
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing="8px" justifyItems={{ base: 'center', md: 'normal' }}>
+              {categories.map(({ localizedName, url }, index) => (
+                <FooterListLink key={index} href={url}>
+                  {localizedName}
+                </FooterListLink>
+              ))}
+            </SimpleGrid>
           </Stack>
 
           <Stack align={{ base: 'center', md: 'flex-start' }}>

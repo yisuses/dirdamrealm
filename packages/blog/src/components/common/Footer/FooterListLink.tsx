@@ -11,12 +11,12 @@ interface FooterListLinkProps {
 
 export const FooterListLink = ({ href, children, target, forceAnchor }: FooterListLinkProps) => {
   return forceAnchor ? (
-    <Link href={href} fontWeight="400" fontSize="xs" mb={2} color="gray.50">
+    <Link href={href} fontWeight="400" fontSize="xs" color="gray.50">
       {children}
     </Link>
   ) : (
     <NextLink href={href} target={target} passHref>
-      <Link fontWeight="400" fontSize="xs" mb={2} color="gray.50">
+      <Link fontWeight="400" fontSize="xs" color="gray.50">
         {children}
       </Link>
     </NextLink>
