@@ -54,7 +54,11 @@ export function Footer({ categories, about }: FooterProps) {
                   {about.name}
                 </Text>
               )}
-              {about.email && <FooterListLink href={`mailto:${about.email}`}>{t('footer.sendAMail')}</FooterListLink>}
+              {about.email && (
+                <FooterListLink href={`mailto:${about.email}`} forceAnchor>
+                  {t('footer.sendAMail')}
+                </FooterListLink>
+              )}
             </Stack>
           )}
 
