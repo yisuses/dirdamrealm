@@ -160,6 +160,8 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     articleBody: getPlainText(content),
   }
 
+  const dividerLine = <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
+
   return (
     <>
       <Metadata
@@ -180,6 +182,7 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
               as="h1"
               fontSize={{ base: '32px', md: '52px' }}
               lineHeight={{ base: '44px', md: '64px' }}
+              textAlign={{ base: 'center', md: 'left' }}
               fontFamily="Lora"
             >
               {title}
@@ -190,29 +193,24 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
               mt={6}
               alignItems={{ base: 'flex-start', md: 'center' }}
             >
-              <Text as="i" display="block">
-                {t('postPage.author', { name: writer?.name })}
-              </Text>
               <Flex
                 mt={{ base: '8px', md: 0 }}
                 height="fit-content"
-                justifyContent="space-between"
-                alignItems="center"
                 width={{ base: '100%', md: 'auto' }}
                 grow={1}
                 wrap="wrap"
+                direction={{ base: 'column', md: 'row' }}
+                alignItems={{ base: 'center' }}
               >
-                <Flex height="fit-content">
-                  <Center h="22px" display={{ base: 'none', md: 'flex' }}>
-                    <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
-                  </Center>
-                  <Text>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
-                  <Center h="22px">
-                    <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
-                  </Center>
-                  <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
-                </Flex>
-                <Stack direction="row" spacing={2} ml={{ base: 0, md: 'auto' }}>
+                <Text as="i" display="block">
+                  {t('postPage.author', { name: writer?.name })}
+                </Text>
+                <Center h="22px">{dividerLine}</Center>
+                <Text>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
+                <Center h="22px">{dividerLine}</Center>
+                <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
+                <Center h="22px">{dividerLine}</Center>
+                <Stack direction="row" spacing={2} ml={{ base: 0 }}>
                   {socialButtons}
                 </Stack>
               </Flex>
