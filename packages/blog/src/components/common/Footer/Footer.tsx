@@ -83,7 +83,7 @@ export function Footer({ categories, about }: FooterProps) {
         </SimpleGrid>
       </Container>
       <Box bg="gray.800" color="gray.50">
-        <Container as={Stack} width="100%" p={4}>
+        <Container as={Stack} width="100%" maxW="100%" p={4}>
           <SimpleGrid
             columns={{ base: 1, md: about.display ? 3 : 2 }}
             spacing={8}
