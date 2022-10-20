@@ -5,6 +5,7 @@
     "categories": "Categories",
     "inOtherMedia": "In other media",
     "subscribe": "Subscribe",
+    "theme": "Theme by <link></link>",
     "version": "Version {{versionNumber}}",
     "copyright": "\u00A9 {{year}} White Emotion. All rights reserved.",
     "sendAMail": "Send an e-mail"

@@ -17,7 +17,7 @@ interface HeaderImageProps {
 }
 
 const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
-  <Link href={href} target="_blank" title={label} rel="noreferrer" {...rest}>
+  <Link href={href} title={label} target="_blank" rel="noreferrer" {...rest}>
     {label}
   </Link>
 )
@@ -133,7 +133,7 @@ export function HeaderImage({
           <Trans
             i18nKey="coverImage.author"
             components={{
-              link: <TransLink href={coverImageSourceUrl} target="_blank" rel="noreferrer" label={coverImageAuthor} />,
+              link: <TransLink href={coverImageSourceUrl} label={coverImageAuthor} />,
             }}
           />
         </Text>
