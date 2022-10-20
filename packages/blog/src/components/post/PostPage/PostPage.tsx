@@ -1,4 +1,5 @@
 /* eslint-disable import/no-duplicates */
+import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Text, Box, Divider as DividerLine, Flex, Center, Heading, Stack } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
@@ -160,7 +161,14 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     articleBody: getPlainText(content),
   }
 
-  const dividerLine = <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor="blackAlpha.800" />
+  const dividerLine = (
+    <DividerLine
+      orientation="horizontal"
+      w="20px"
+      mx="16px"
+      borderColor={useColorModeValue('blackAlpha.800', 'white')}
+    />
+  )
 
   return (
     <>
