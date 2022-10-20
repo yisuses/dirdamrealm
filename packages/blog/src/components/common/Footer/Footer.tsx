@@ -1,4 +1,4 @@
-import { SimpleGrid, Stack, Text, Box, Flex, Container, Link, LinkProps } from '@chakra-ui/layout'
+import { SimpleGrid, Stack, Text, Box, Container, Link, LinkProps } from '@chakra-ui/layout'
 import { Trans, useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 
@@ -83,18 +83,27 @@ export function Footer({ categories, about }: FooterProps) {
         </SimpleGrid>
       </Container>
       <Box bg="gray.800" color="gray.50">
-        <Flex p={4} justifyContent="space-between" fontSize="sm">
-          <Text>{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
-          <Text>
-            <Trans
-              i18nKey="footer.theme"
-              components={{
-                link: <TransLink href="https://www.figma.com/community/file/1036294505314600437" label="SimpleSmart" />,
-              }}
-            />
-          </Text>
-          <Text>{t('footer.version', { versionNumber: publicRuntimeConfig?.version })}</Text>
-        </Flex>
+        <Container as={Stack} width="100%" p={4}>
+          <SimpleGrid
+            columns={{ base: 1, md: about.display ? 3 : 2 }}
+            spacing={8}
+            justifyItems={{ base: 'center' }}
+            fontSize="sm"
+          >
+            <Text justifySelf="start">{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
+            <Text>
+              <Trans
+                i18nKey="footer.theme"
+                components={{
+                  link: (
+                    <TransLink href="https://www.figma.com/community/file/1036294505314600437" label="SimpleSmart" />
+                  ),
+                }}
+              />
+            </Text>
+            <Text justifySelf="end">{t('footer.version', { versionNumber: publicRuntimeConfig?.version })}</Text>
+          </SimpleGrid>
+        </Container>
       </Box>
     </Box>
   )
