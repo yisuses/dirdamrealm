@@ -1,9 +1,10 @@
 import { Button, IconButton } from '@chakra-ui/button'
 import { useDisclosure } from '@chakra-ui/hooks'
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Center, Divider, Flex, HStack, Link } from '@chakra-ui/layout'
+import { Box, Divider, Flex, HStack, Link, Text } from '@chakra-ui/layout'
 import { useColorMode } from '@chakra-ui/system'
 import { useTranslation } from 'next-i18next'
+import NextImage from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -28,22 +29,33 @@ export function Header({ categories }: HeaderProps) {
 
   const logo = (
     <NextLink href="/">
-      <Center
-        color="white"
-        fontFamily="spartan"
-        fontWeight="700"
-        fontSize={{ md: '20px', lg: '24px' }}
-        height={{ md: '60px', lg: '80px' }}
-        alignItems="center"
-        pl={{ md: 0, xl: '1rem' }}
+      <Box
         py={{ base: '1rem', md: 0 }}
-        letterSpacing={{ md: '0px', lg: '4px' }}
-        whiteSpace="nowrap"
+        height={{ base: '60px', lg: '80px' }}
         cursor="pointer"
-        marginRight={{ md: 0, lg: '-4px' }}
+        display="flex"
+        alignItems="center"
       >
-        WHITE EMOTION
-      </Center>
+        <Box
+          position="relative"
+          width={{ base: '20px', md: '32px', lg: '40px' }}
+          height={{ base: '25px', md: '40px', lg: '50px' }}
+          mr={{ base: '10px', md: '20px' }}
+        >
+          <NextImage src="/images/RMLogo.png" layout="fill" objectFit="cover" priority />
+        </Box>
+        <Text
+          fontFamily="spartan"
+          fontWeight="700"
+          color="white"
+          fontSize={{ md: '18px', lg: '24px' }}
+          height={{ base: '22px', lg: '60px' }}
+          lineHeight={{ base: '30px', md: '30px', lg: '70px' }}
+          letterSpacing={{ base: '0px', lg: '4px' }}
+        >
+          WHITE EMOTION
+        </Text>
+      </Box>
     </NextLink>
   )
 
@@ -94,6 +106,7 @@ export function Header({ categories }: HeaderProps) {
         bg="transparent"
         onClick={onOpenSearchModal}
         _hover={{ bg: 'whiteAlpha.300' }}
+        px={{ base: 2, sm: 4 }}
       />
       <IconButton
         size="sm"
@@ -102,6 +115,7 @@ export function Header({ categories }: HeaderProps) {
         bg="transparent"
         onClick={toggleColorMode}
         _hover={{ bg: 'whiteAlpha.300' }}
+        px={{ base: 2, sm: 4 }}
       />
       <Button
         size="sm"
@@ -114,6 +128,7 @@ export function Header({ categories }: HeaderProps) {
         color="white"
         _hover={{ backgroundColor: 'transparent' }}
         _active={{ backgroundColor: 'transparent' }}
+        px={{ base: 2, sm: 4 }}
       >
         {router.locale === 'es' ? 'ES' : 'EN'}
       </Button>
@@ -145,14 +160,15 @@ export function Header({ categories }: HeaderProps) {
         >
           <HeaderMenu categories={categories} />
           {logo}
-          <Box display={{ base: 'block', lg: 'none' }}>{actionButtons}</Box>
+          <Box display={{ base: 'block', lg: 'none' }} height="26px">
+            {actionButtons}
+          </Box>
         </Flex>
         <Divider orientation="horizontal" w={400} display={{ base: 'none', lg: 'block', xl: 'none' }} />
         <Flex
           alignItems="center"
           display={{ base: 'none', lg: 'flex' }}
           justifyContent={{ lg: 'space-between', xl: 'flex-end' }}
-          width="100%"
         >
           <HStack as="nav" spacing={4} py={{ lg: 4, xl: 0 }} alignItems="flex-end">
             {categoryHeaderLinks}
