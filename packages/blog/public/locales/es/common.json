@@ -7,7 +7,7 @@
     "subscribe": "Suscribirse",
     "theme": "Tema de <link></link>",
     "version": "Versión {{versionNumber}}",
-    "copyright": "\u00A9 {{year}} White Emotion. Todos los derechos reservados.",
+    "copyright": "\u00A9 {{year}} White Emotion.",
     "sendAMail": "Enviar un correo electrónico"
   },
   "header": {

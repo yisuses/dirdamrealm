@@ -92,11 +92,13 @@ export function Footer({ categories, about }: FooterProps) {
         <Container as={Stack} width="100%" maxW="100%" p={4}>
           <SimpleGrid
             columns={{ base: 1, md: about.display ? 3 : 2 }}
-            spacing={8}
+            spacing={{ base: 2, md: 8 }}
             justifyItems={{ base: 'center' }}
             fontSize="sm"
           >
-            <Text justifySelf="start">{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
+            <Text justifySelf={{ base: 'inherit', md: 'start' }}>
+              {t('footer.copyright', { year: new Date().getFullYear() })}
+            </Text>
             <Text>
               <Trans
                 i18nKey="footer.theme"
@@ -107,7 +109,9 @@ export function Footer({ categories, about }: FooterProps) {
                 }}
               />
             </Text>
-            <Text justifySelf="end">{t('footer.version', { versionNumber: publicRuntimeConfig?.version })}</Text>
+            <Text justifySelf={{ base: 'inherit', md: 'end' }}>
+              {t('footer.version', { versionNumber: publicRuntimeConfig?.version })}
+            </Text>
           </SimpleGrid>
         </Container>
       </Box>
