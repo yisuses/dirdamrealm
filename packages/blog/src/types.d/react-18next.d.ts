@@ -4,14 +4,14 @@
  * you can opt out by commenting the following code.
  * @link https://react.i18next.com/latest/typescript
  */
-import 'react-i18next'
-import type categoryPage from '../../public/locales/en/categoryPage.json'
-import type common from '../../public/locales/en/common.json'
-import type errorPage from '../../public/locales/en/errorPage.json'
-import type homePage from '../../public/locales/en/homePage.json'
-import type postPage from '../../public/locales/en/postPage.json'
+import 'i18next'
+import categoryPage from '../../public/locales/en/categoryPage.json'
+import common from '../../public/locales/en/common.json'
+import errorPage from '../../public/locales/en/errorPage.json'
+import homePage from '../../public/locales/en/homePage.json'
+import postPage from '../../public/locales/en/postPage.json'
 
-declare module 'react-i18next' {
+declare module 'i18next' {
   interface CustomTypeOptions {
     defaultNS: 'common'
     resources: {

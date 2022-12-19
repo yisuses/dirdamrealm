@@ -14,10 +14,9 @@ export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
     <Box w="100%" position="relative" display="flex" flexDirection="column" justifyContent="center" my="32px">
       <NextImage
         src={data.file.url}
-        alt={data.caption}
-        objectFit="contain"
-        height={`${data.file.height}px`}
-        width={`${data.file.width}px`}
+        alt={data.caption || 'image caption'}
+        height={data.file.height}
+        width={data.file.width}
         placeholder="blur"
         blurDataURL={buildBlurDataUrl(data.file.height, data.file.width)}
       />

@@ -40,12 +40,8 @@ export function Footer({ categories, about }: FooterProps) {
 
   return (
     <Box bg="gray.900" color="gray.50" w="full">
-      <Container as={Stack} maxW="9xl" p="1rem">
-        <SimpleGrid
-          columns={{ base: 1, md: about.display ? 3 : 2 }}
-          spacing={8}
-          justifyItems={{ base: 'center', md: 'start' }}
-        >
+      <Container as={Stack} maxW="8xl" p="1rem">
+        <SimpleGrid columns={{ base: 1, md: about.display ? 3 : 2 }} spacing={8} justifyItems={{ base: 'center' }}>
           {about.display && (
             <Stack align={{ base: 'center', md: 'flex-start' }}>
               <FooterListHeader>{t('footer.contact')}</FooterListHeader>

@@ -1,6 +1,6 @@
-import { Flex, Heading, Link as ChakraLink, Text } from '@chakra-ui/layout'
+import { Flex, Heading, Link, Text } from '@chakra-ui/layout'
 import { useTranslation } from 'next-i18next'
-import Link from 'next/link'
+import NextLink from 'next/link'
 
 interface ErrorProps {
   statusCode?: number | null
@@ -18,13 +18,15 @@ export function ErrorPage({ statusCode = 500 }: ErrorProps) {
         {t('errorPage.title')}
       </Heading>
       <Text fontSize={{ base: 'xl', md: '2xl' }} mt="2rem">
-        <Link href="/" passHref>
-          {statusCode !== 404 ? (
-            <ChakraLink onClick={() => window.location.reload()}>{t('errorPage.refreshPage')}</ChakraLink>
-          ) : (
-            <ChakraLink>{t('errorPage.goToHomePage')}</ChakraLink>
-          )}
-        </Link>
+        {statusCode !== 404 ? (
+          <Link as={NextLink} href="/" onClick={() => window.location.reload()}>
+            {t('errorPage.refreshPage')}
+          </Link>
+        ) : (
+          <Link as={NextLink} href="/">
+            {t('errorPage.goToHomePage')}
+          </Link>
+        )}
       </Text>
       <Text fontSize={{ base: 'lg', md: 'xl' }} mt="1rem">
         {t('errorPage.description')}
