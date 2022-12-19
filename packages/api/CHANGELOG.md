@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/yisuses/whemotion/compare/@whe-api@1.0.0...@whe-api@1.1.0) (2022-12-19)
+
+
+### Chore
+
+* update dependencies ([9c07ed9](https://github.com/yisuses/whemotion/commit/9c07ed9f3651d5891a3a73036252139d8dc2830f))
+
 ## [1.0.0](https://github.com/yisuses/whemotion/compare/@whe-api@0.2.0...@whe-api@1.0.0) (2022-10-20)
 
 

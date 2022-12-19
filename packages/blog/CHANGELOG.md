@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/yisuses/whemotion/compare/@whe-blog@1.0.0...@whe-blog@1.1.0) (2022-12-19)
+
+
+### Features
+
+* add real madrid logo ([#87](https://github.com/yisuses/whemotion/issues/87)) ([df037ef](https://github.com/yisuses/whemotion/commit/df037efd9567163b81ae8fe111735e85866de6aa))
+* fix email link ([#85](https://github.com/yisuses/whemotion/issues/85)) ([e7c7b8e](https://github.com/yisuses/whemotion/commit/e7c7b8e47a62bf6c7d0999cba96e27681866397e))
+* fix styles ([7c5a1d7](https://github.com/yisuses/whemotion/commit/7c5a1d7036f6becbe932debb491181c3e3c1929f))
+* improve post styles ([#86](https://github.com/yisuses/whemotion/issues/86)) ([5432342](https://github.com/yisuses/whemotion/commit/54323426aa83548e48cb72327e04202cb49f4883))
+
+
+### Chore
+
+* remove unused property ([29a1b8f](https://github.com/yisuses/whemotion/commit/29a1b8f8db2d8527f7e9b73fe19299504a0aa040))
+* update dependencies ([9c07ed9](https://github.com/yisuses/whemotion/commit/9c07ed9f3651d5891a3a73036252139d8dc2830f))
+
 ## [1.0.0](https://github.com/yisuses/whemotion/compare/@whe-blog@0.1.0...@whe-blog@1.0.0) (2022-10-20)
 
 

@@ -45,9 +45,10 @@ export function HeaderImage({
       <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
         <Image
           src={getImageUrlFromMedia({ media: coverImage, fallback: imgUrl })}
-          layout="fill"
-          objectFit="cover"
+          fill
           priority
+          alt={t('coverImage.imageAlt', { title })}
+          style={{ objectFit: 'cover' }}
         />
         {showPostInfo && (
           <Box
@@ -81,22 +82,22 @@ export function HeaderImage({
                   />
                 ))}
             </Flex>
-            <NextLink href={buildPostPath(String(id), title)} passHref>
-              <Link
-                fontWeight={700}
-                fontSize={{ base: '16px', lg: '32px' }}
-                lineHeight={{ base: '20px', lg: '40px' }}
-                mb={{ base: '8px', lg: '16px' }}
-                noOfLines={{ base: 1, lg: 2 }}
-                _hover={{
-                  textDecorationColor: 'white',
-                  textDecoration: 'underline',
-                  textShadow: 'none',
-                }}
-              >
-                {title}
-              </Link>
-            </NextLink>
+            <Link
+              as={NextLink}
+              href={buildPostPath(String(id), title)}
+              fontWeight={700}
+              fontSize={{ base: '16px', lg: '32px' }}
+              lineHeight={{ base: '20px', lg: '40px' }}
+              mb={{ base: '8px', lg: '16px' }}
+              noOfLines={{ base: 1, lg: 2 }}
+              _hover={{
+                textDecorationColor: 'white',
+                textDecoration: 'underline',
+                textShadow: 'none',
+              }}
+            >
+              {title}
+            </Link>
             <Flex
               flexDirection={{ base: 'column', lg: 'row' }}
               alignItems="flex-start"

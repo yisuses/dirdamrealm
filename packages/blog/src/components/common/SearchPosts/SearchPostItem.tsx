@@ -34,8 +34,8 @@ export function SearchPostResultItem({
               media: coverImage,
               format: 'thumbnail',
             })}
-            layout="fill"
-            objectFit="cover"
+            alt={t('postSearch.imageAlt', { title })}
+            fill
             priority
           />
         </Box>

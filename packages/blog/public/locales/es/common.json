@@ -12,6 +12,7 @@
   },
   "header": {
     "logo": "Logotipo de White Emotion",
+    "rmLogo": "Logo no oficial del Real Madrid C.F.",
     "menuButtonClosed": "Abrir menú",
     "menuButtonOpened": "Cerrar menú",
     "changeLanguage": "Cambiar idioma",
@@ -22,7 +23,11 @@
     }
   },
   "coverImage": {
-    "author": "Imagen de <link></link>"
+    "author": "Imagen de <link></link>",
+    "imageAlt": "Imagen de la entrada \"{{title}}\""
+  },
+  "postSearch": {
+    "imageAlt": "Imagen de la entrada \"{{title}}\""
   },
   "categories": {
     "all": "Todas",

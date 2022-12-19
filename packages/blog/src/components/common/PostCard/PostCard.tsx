@@ -52,28 +52,34 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
               <Tag key={key} label={label} />
             ))}
         </Flex>
-        <NextLink href={postLink} passHref>
-          <Link>
-            <NextImage
-              src={imageUrl}
-              objectFit="cover"
-              alt={`${title} image`}
-              layout="fill"
-              style={{ transition: 'all .5s' }}
-              placeholder="blur"
-              blurDataURL={buildBlurDataUrl(280, 280)}
-            />
-          </Link>
-        </NextLink>
+        <Link as={NextLink} href={postLink} position="relative" display="block" width="100%" height="100%">
+          <NextImage
+            src={imageUrl}
+            alt={`${title} image`}
+            fill
+            style={{ transition: 'all .5s', objectFit: 'cover' }}
+            placeholder="blur"
+            blurDataURL={buildBlurDataUrl(280, 280)}
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+          />
+        </Link>
       </Box>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
         {date}
       </Text>
-      <NextLink href={postLink} passHref>
-        <Link fontSize="lg" color={useColorModeValue('gray.950', 'white')} fontWeight={700} noOfLines={2} title={title}>
-          {title}
-        </Link>
-      </NextLink>
+      <Link
+        as={NextLink}
+        href={postLink}
+        fontSize="lg"
+        color={useColorModeValue('gray.950', 'white')}
+        fontWeight={700}
+        noOfLines={2}
+        title={title}
+      >
+        {title}
+      </Link>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3} title={description}>
         {description}
       </Text>

@@ -42,7 +42,14 @@ export function Header({ categories }: HeaderProps) {
           height={{ base: '25px', md: '40px', lg: '50px' }}
           mr={{ base: '10px', md: '20px' }}
         >
-          <NextImage src="/images/RMLogo.png" layout="fill" objectFit="cover" priority />
+          <NextImage
+            src="/images/RMLogo.png"
+            fill
+            alt={t('header.rmLogo')}
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+          />
         </Box>
         <Text
           fontFamily="spartan"
@@ -53,48 +60,50 @@ export function Header({ categories }: HeaderProps) {
           lineHeight={{ base: '30px', md: '30px', lg: '70px' }}
           letterSpacing={{ base: '0px', lg: '4px' }}
         >
-          WHITE EMOTION
+          <span>WHITE EMOTION</span>
         </Text>
       </Box>
     </NextLink>
   )
 
   const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }, index) => (
-    <NextLink href={url} key={index} passHref>
-      <Link
-        px={{ md: 2, lg: 3 }}
-        pt="5px"
-        fontFamily="Roboto"
-        color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
-        _focus={{
-          boxShadow: 'none',
-        }}
-        _hover={{
-          textDecoration: 'none',
-          '::after': {
-            width: '100%',
-          },
-        }}
-        _active={{
-          '::after': {
-            width: 'calc(100% + 10px)',
-            marginLeft: '-5px',
-            transition: 'none',
-          },
-        }}
-        _after={{
-          content: '""',
-          display: 'block',
-          width: 0,
-          height: '2px',
-          marginTop: '3px',
-          bg: 'orange.300',
-          transition: 'width 0.2s',
-        }}
-      >
-        {localizedName}
-      </Link>
-    </NextLink>
+    <Link
+      as={NextLink}
+      href={url}
+      key={index}
+      px={{ md: 2, lg: 3 }}
+      pt="5px"
+      fontFamily="Roboto"
+      color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
+      display="block"
+      _focus={{
+        boxShadow: 'none',
+      }}
+      _hover={{
+        textDecoration: 'none',
+        '::after': {
+          width: '100%',
+        },
+      }}
+      _active={{
+        '::after': {
+          width: 'calc(100% + 10px)',
+          marginLeft: '-5px',
+          transition: 'none',
+        },
+      }}
+      _after={{
+        content: '""',
+        display: 'block',
+        width: 0,
+        height: '2px',
+        marginTop: '3px',
+        bg: 'orange.300',
+        transition: 'width 0.2s',
+      }}
+    >
+      {localizedName}
+    </Link>
   ))
 
   const actionButtons = (

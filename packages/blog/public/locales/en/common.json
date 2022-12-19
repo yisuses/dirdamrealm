@@ -1,5 +1,6 @@
 {
   "pageTitle": "White Emotion",
+  "defaultAltImage": "",
   "footer": {
     "contact": "Contact",
     "categories": "Categories",
@@ -12,6 +13,7 @@
   },
   "header": {
     "logo": "White Emotion logo",
+    "rmLogo": "Real Madrid F.C. non official logo",
     "menuButtonClosed": "Open menu",
     "menuButtonOpened": "Close menu",
     "changeLanguage": "Change language",
@@ -22,7 +24,11 @@
     }
   },
   "coverImage": {
-    "author": "Image by <link></link>"
+    "author": "Image by <link></link>",
+    "imageAlt": "Image for the \"{{title}}\" post"
+  },
+  "postSearch": {
+    "imageAlt": "Image for the \"{{title}}\" post"
   },
   "categories": {
     "all": "All",
