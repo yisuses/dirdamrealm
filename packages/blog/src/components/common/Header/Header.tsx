@@ -4,11 +4,10 @@ import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
 import { Box, Divider, Flex, HStack, Link, Text } from '@chakra-ui/layout'
 import { useColorMode } from '@chakra-ui/system'
 import { useTranslation } from 'next-i18next'
-import NextImage from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
-import { Modal, SearchPosts } from '@components'
+import { Modal, SearchPosts, HeaderLogo } from '@components'
 import { buildCategoryPath } from '@utils/urlBuilder'
 import { HeaderMenu } from './HeaderMenu'
 
@@ -42,14 +41,7 @@ export function Header({ categories }: HeaderProps) {
           height={{ base: '25px', md: '40px', lg: '50px' }}
           mr={{ base: '10px', md: '20px' }}
         >
-          <NextImage
-            src="/images/RMLogo.png"
-            fill
-            alt={t('header.rmLogo')}
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-          />
+          <HeaderLogo color="#fafafa" />
         </Box>
         <Text
           fontFamily="spartan"
