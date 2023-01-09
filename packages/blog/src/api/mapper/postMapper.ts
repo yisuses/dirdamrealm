@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs'
 import { DataProp } from 'editorjs-blocks-react-renderer'
 
 import { ApiError } from '@utils'
@@ -73,10 +74,11 @@ export const algoliaPostMapper = (postEntity: AlgoliaPostEntity): Post => {
       : null
   } catch (err) {
     errors.push(`Failed to parse algolia categories from post ${postEntity.objectID}. Cause: ${(err as Error).message}`)
+    parsedCategories = []
   }
 
   if (errors.length) {
-    throw new ApiError(errors.join('\n'))
+    Sentry.captureException(errors.join('\n'))
   }
 
   return {
