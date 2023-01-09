@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
+import * as Sentry from '@sentry/nextjs'
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -29,20 +30,27 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       throw new NotFoundError(`Post id should be numeric. ${params!.postId} was sent instead.`)
     }
 
-    const postRequest = getPostById({ id: Number(params.postId) })
-    const aboutRequest = getAbout()
+    try {
+      const postRequest = getPostById({ id: Number(params.postId) })
+      const aboutRequest = getAbout()
 
-    const [responsePost, responseAbout] = await Promise.all([postRequest, aboutRequest])
-
-    post = responsePost
-    about = responseAbout
+      const [responsePost, responseAbout] = await Promise.all([postRequest, aboutRequest])
+      post = responsePost
+      about = responseAbout
+    } catch (error) {
+      Sentry.captureException(error)
+    }
 
     if (!post) {
-      throw new NotFoundError(`Post with id '${params!.postId}' not found.`)
+      const errMessage = `Post with id '${params!.postId}' not found.`
+      Sentry.captureException(errMessage)
+      throw new NotFoundError(errMessage)
     }
 
     if (!about) {
-      throw new ApiError(`Problem retrieving about data when loading post '${params!.postId}'`)
+      const errMessage = `Problem retrieving about data when loading post '${params!.postId}'`
+      Sentry.captureException(errMessage)
+      throw new ApiError(errMessage)
     }
 
     if (post.locale !== locale) {
