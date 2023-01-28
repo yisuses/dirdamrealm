@@ -252,13 +252,13 @@ export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageP
               </Heading>
               {comments.map(comment => (
                 <Box key={comment.id} bg="gray.100" borderRadius="md" my={2} p={5} boxShadow="sm">
-                  <Text fontWeight="bold" mr={3}>
+                  <Text fontSize="lg" fontWeight="bold">
                     {comment.author}
                   </Text>
-                  <Text fontWeight="bold" color="cyan.600" mr={3}>
+                  <Text fontWeight="bold" color="cyan.600">
                     {intlFormatDistance(new Date(comment.createdAt), new Date(), { locale })}
                   </Text>
-                  <Text fontWeight="normal" my={5}>
+                  <Text fontWeight="normal" mt={5} mb={2}>
                     {comment.text}
                   </Text>
                 </Box>

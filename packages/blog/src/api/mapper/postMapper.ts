@@ -30,14 +30,14 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
   try {
     parsedLocalizations = attributes.localizations ? attributes.localizations.data.map(post => postMapper(post)) : null
   } catch (err) {
-    errors.push(`Failed to parse categories from post ${id}. Cause: ${(err as Error).message}`)
+    errors.push(`Failed to parse localizations from post ${id}. Cause: ${(err as Error).message}`)
   }
 
   let parsedCoverImage: Media | null = null
   try {
     parsedCoverImage = attributes.coverImage?.data ? mediaMapper(attributes.coverImage.data) : null
   } catch (err) {
-    errors.push(`Failed to parse categories from post ${id}. Cause: ${(err as Error).message}`)
+    errors.push(`Failed to parse coverImage from post ${id}. Cause: ${(err as Error).message}`)
   }
 
   let parsedWriter: Writer | null = null

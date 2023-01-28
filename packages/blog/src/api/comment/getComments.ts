@@ -10,7 +10,7 @@ type GetCommentsParams = {
 
 export async function getComments({ ids }: GetCommentsParams) {
   const query = stringify({
-    sort: ['createdAt:asc'],
+    sort: ['createdAt:desc'],
     populate: {
       post: {
         fields: ['id'],

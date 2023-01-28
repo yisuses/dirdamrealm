@@ -87,19 +87,23 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
 
   let sameCategoryPosts: Post[] | undefined = undefined
   if (post?.categories?.length) {
-    const sameCategoryPostsRequest = getLatestPosts({
-      locale: locale as AppLocales,
-      category: post?.categories?.[0]?.code,
-      limit: 4,
-    })
-    const [responseSameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
-    sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
+    try {
+      const sameCategoryPostsRequest = getLatestPosts({
+        locale: locale as AppLocales,
+        category: post?.categories?.[0]?.code,
+        limit: 4,
+      })
+      const [responseSameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
+      sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
+    } catch (error) {
+      Sentry.captureException(error)
+    }
   }
 
   let comments: Commentary[] = []
-
   try {
-    comments = await getComments({ ids: [post.id] })
+    const ids = post.localizations ? post.localizations.map(localization => localization.id) : [post.id]
+    comments = await getComments({ ids })
   } catch (error) {
     Sentry.captureException(error)
   }
