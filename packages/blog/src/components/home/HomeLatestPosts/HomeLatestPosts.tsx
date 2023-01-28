@@ -1,7 +1,7 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Flex, Heading, HStack, Text } from '@chakra-ui/layout'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 

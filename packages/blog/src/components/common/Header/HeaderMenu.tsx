@@ -6,8 +6,8 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { Box, Flex, Text, VStack } from '@chakra-ui/layout'
 import { MenuProps, MenuButtonProps } from '@chakra-ui/menu'
 import { Drawer, DrawerContent } from '@chakra-ui/modal'
-import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 type HeaderDropdownProps = Omit<MenuProps, 'children'> & {
   categories: {

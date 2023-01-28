@@ -1,8 +1,8 @@
 import { Box, Text } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 import { getImageUrlFromMedia } from '@utils/image'
 import { buildPostPath } from '@utils/urlBuilder'

@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/layout'
 import { format, parseISO } from 'date-fns'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import { PostCard } from '@components/common'
 import { getImageUrlFromMedia } from '@utils'
