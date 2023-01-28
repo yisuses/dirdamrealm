@@ -1,6 +1,6 @@
 import { Flex, Heading, Link, Text } from '@chakra-ui/layout'
-import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 interface ErrorProps {
   statusCode?: number | null

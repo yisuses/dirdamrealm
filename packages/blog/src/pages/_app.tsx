@@ -1,7 +1,7 @@
 import '@fontsource/spartan'
-import { appWithTranslation } from 'next-i18next'
 import type { AppContext, AppProps } from 'next/app'
 import App from 'next/app'
+import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar'
 import { dehydrate, QueryClient } from 'react-query'
 

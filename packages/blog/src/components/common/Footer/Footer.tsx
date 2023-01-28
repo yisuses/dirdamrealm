@@ -1,6 +1,6 @@
 import { SimpleGrid, Stack, Text, Box, Container, Link, LinkProps } from '@chakra-ui/layout'
-import { Trans, useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
+import { Trans, useTranslation } from 'next-i18next'
 
 import { SocialButton } from '@components'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
