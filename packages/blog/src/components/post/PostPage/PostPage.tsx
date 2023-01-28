@@ -282,22 +282,27 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
           <Center height="80px">
             <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
           </Center>
-          <Flex direction="column">
-            <Heading fontFamily="Lora">{t('postPage.comments')}</Heading>
-            {comments.map(comment => (
-              <Box key={comment.id} bg="white" borderRadius="xl" my={4} p={5} boxShadow="sm">
-                <Text fontWeight="bold" mr={3}>
-                  {comment.name}
-                </Text>
-                <Text fontWeight="bold" color="grayish_blue" mr={3}>
-                  {intlFormatDistance(comment.date, new Date(), { locale })}
-                </Text>
-                <Text color="grayish_blue" fontWeight="normal" my={5}>
-                  {comment.text}
-                </Text>
-              </Box>
-            ))}
-          </Flex>
+
+          {comments.length && (
+            <Flex direction="column">
+              <Heading fontFamily="Lora" mb={6}>
+                {t('postPage.comments')}
+              </Heading>
+              {comments.map(comment => (
+                <Box key={comment.id} bg="gray.100" borderRadius="md" my={2} p={5} boxShadow="sm">
+                  <Text fontWeight="bold" mr={3}>
+                    {comment.name}
+                  </Text>
+                  <Text fontWeight="bold" color="cyan.600" mr={3}>
+                    {intlFormatDistance(comment.date, new Date(), { locale })}
+                  </Text>
+                  <Text fontWeight="normal" my={5}>
+                    {comment.text}
+                  </Text>
+                </Box>
+              ))}
+            </Flex>
+          )}
         </Flex>
       </Flex>
 
