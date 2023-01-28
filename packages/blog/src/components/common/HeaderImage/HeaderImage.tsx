@@ -2,10 +2,10 @@
 import { Box, Text, Flex, Divider, Link, LinkProps } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
-import { Trans, useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import { Trans, useTranslation } from 'next-i18next'
 
 import { Tag } from '@components/common/Tag'
 import { getImageUrlFromMedia } from '@utils/image'
