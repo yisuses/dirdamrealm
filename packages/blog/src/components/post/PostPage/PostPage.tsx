@@ -26,6 +26,7 @@ import TwitterIcon from '../../../../public/icon/twitter.svg'
 
 export interface PostPageProps {
   post: Post
+  comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
   about: About
 }
@@ -37,7 +38,7 @@ type ShareButtonProps = {
   onClick?: () => void
 }
 
-export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
+export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath, locale } = useRouter()
 
@@ -170,45 +171,6 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     />
   )
 
-  const comments = [
-    { id: 1, name: 'saul', text: 'Este es un comentario de prueba', email: 'saul@saul.com', date: new Date() },
-    {
-      id: 2,
-      name: 'saul',
-      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
-      email: 'saul@saul.com',
-      date: new Date(),
-    },
-    {
-      id: 3,
-      name: 'saul',
-      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
-      email: 'saul@saul.com',
-      date: new Date(),
-    },
-    {
-      id: 4,
-      name: 'saul',
-      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
-      email: 'saul@saul.com',
-      date: new Date(),
-    },
-    {
-      id: 5,
-      name: 'saul',
-      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
-      email: 'saul@saul.com',
-      date: new Date(),
-    },
-    {
-      id: 6,
-      name: 'saul',
-      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
-      email: 'saul@saul.com',
-      date: new Date(),
-    },
-  ]
-
   return (
     <>
       <Metadata
@@ -283,7 +245,7 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
             <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
           </Center>
 
-          {comments.length && (
+          {comments.length > 0 && (
             <Flex direction="column">
               <Heading fontFamily="Lora" mb={6}>
                 {t('postPage.comments')}
@@ -291,10 +253,10 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
               {comments.map(comment => (
                 <Box key={comment.id} bg="gray.100" borderRadius="md" my={2} p={5} boxShadow="sm">
                   <Text fontWeight="bold" mr={3}>
-                    {comment.name}
+                    {comment.author}
                   </Text>
                   <Text fontWeight="bold" color="cyan.600" mr={3}>
-                    {intlFormatDistance(comment.date, new Date(), { locale })}
+                    {intlFormatDistance(new Date(comment.createdAt), new Date(), { locale })}
                   </Text>
                   <Text fontWeight="normal" my={5}>
                     {comment.text}

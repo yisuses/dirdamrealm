@@ -3,12 +3,12 @@ import * as Sentry from '@sentry/nextjs'
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { getAbout, getLatestPosts, getPostById } from '@api'
+import { getAbout, getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post, about, sameCategoryPosts }) => {
-  return <PostPageComponent post={post} about={about} sameCategoryPosts={sameCategoryPosts} />
+const PostPage: NextPage<PostPageProps> = ({ post, comments, about, sameCategoryPosts }) => {
+  return <PostPageComponent post={post} comments={comments} about={about} sameCategoryPosts={sameCategoryPosts} />
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -96,9 +96,18 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
   }
 
+  let comments: Commentary[] = []
+
+  try {
+    comments = await getComments({ ids: [post.id] })
+  } catch (error) {
+    Sentry.captureException(error)
+  }
+
   return {
     props: {
       post,
+      comments,
       sameCategoryPosts,
       about,
       ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
@@ -110,6 +119,7 @@ export default withErrorComponent<PostPageProps>(PostPage)
 
 export type PostPageProps = {
   post: Post
+  comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
   about: About
 }
