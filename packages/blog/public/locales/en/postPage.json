@@ -6,6 +6,7 @@
     "share": "Share on {{socialNetwork}}",
     "shareTitle": "Check this article at White Emotion: {{title}}",
     "sameCategoryPosts": "Also in this category",
-    "comments": "Comments"
+    "comments": "Comments",
+    "noComments": "There are no comments yet... Do you want to be the first?"
   }
 }

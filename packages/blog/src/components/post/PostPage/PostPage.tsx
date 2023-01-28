@@ -2,7 +2,6 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Text, Box, Divider as DividerLine, Flex, Center, Heading, Stack } from '@chakra-ui/layout'
 import format from 'date-fns/format'
-import intlFormatDistance from 'date-fns/intlFormatDistance'
 import parseISO from 'date-fns/parseISO'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -23,6 +22,7 @@ import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
+import { PostComments } from '../PostComments'
 
 export interface PostPageProps {
   post: Post
@@ -40,7 +40,7 @@ type ShareButtonProps = {
 
 export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageProps) {
   const { t } = useTranslation('postPage')
-  const { asPath, locale } = useRouter()
+  const { asPath } = useRouter()
 
   const [nativeNavigator, setNativeNavigator] = useState<Navigator>()
   useEffect(() => {
@@ -225,11 +225,9 @@ export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageP
               </Flex>
             </Flex>
           </Box>
-
           <Flex direction="column" width="100%" justifyContent="center" mt="52px">
             <Content content={content} />
           </Flex>
-
           <Flex direction="row">
             <Stack direction="row" spacing={2} mt="40px">
               {categories?.map(category => (
@@ -240,31 +238,11 @@ export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageP
               {socialButtons}
             </Stack>
           </Flex>
-
           <Center height="80px">
             <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
           </Center>
 
-          {comments.length > 0 && (
-            <Flex direction="column">
-              <Heading fontFamily="Lora" mb={6}>
-                {t('postPage.comments')}
-              </Heading>
-              {comments.map(comment => (
-                <Box key={comment.id} bg="gray.100" borderRadius="md" my={2} p={5} boxShadow="sm">
-                  <Text fontSize="lg" fontWeight="bold">
-                    {comment.author}
-                  </Text>
-                  <Text fontWeight="bold" color="cyan.600">
-                    {intlFormatDistance(new Date(comment.createdAt), new Date(), { locale })}
-                  </Text>
-                  <Text fontWeight="normal" mt={5} mb={2}>
-                    {comment.text}
-                  </Text>
-                </Box>
-              ))}
-            </Flex>
-          )}
+          <PostComments comments={comments} />
         </Flex>
       </Flex>
 

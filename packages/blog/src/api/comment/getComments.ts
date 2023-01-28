@@ -11,13 +11,10 @@ type GetCommentsParams = {
 export async function getComments({ ids }: GetCommentsParams) {
   const query = stringify({
     sort: ['createdAt:desc'],
-    populate: {
+    filters: {
       post: {
-        fields: ['id'],
-        filters: {
-          id: {
-            $in: ids,
-          },
+        id: {
+          $in: ids,
         },
       },
     },

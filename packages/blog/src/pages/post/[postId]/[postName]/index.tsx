@@ -102,7 +102,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
 
   let comments: Commentary[] = []
   try {
-    const ids = post.localizations ? post.localizations.map(localization => localization.id) : [post.id]
+    const ids = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
     comments = await getComments({ ids })
   } catch (error) {
     Sentry.captureException(error)
