@@ -2,6 +2,7 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Text, Box, Divider as DividerLine, Flex, Center, Heading, Stack } from '@chakra-ui/layout'
 import format from 'date-fns/format'
+import intlFormatDistance from 'date-fns/intlFormatDistance'
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
@@ -13,7 +14,6 @@ import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
   publicUrl,
-  buildPostPath,
   getImageUrlFromMedia,
   getImageDataFromMedia,
   getReadingTime,
@@ -39,7 +39,7 @@ type ShareButtonProps = {
 
 export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
   const { t } = useTranslation('postPage')
-  const { asPath } = useRouter()
+  const { asPath, locale } = useRouter()
 
   const [nativeNavigator, setNativeNavigator] = useState<Navigator>()
   useEffect(() => {
@@ -48,7 +48,6 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
 
   const generateLocalePublicUrl = useGetLocalePublicUrl()
   const {
-    id,
     title,
     content,
     coverImage,
@@ -61,23 +60,24 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     summary,
     writer,
   } = post
-  const postUrl = fixedEncodeURIComponent(generateLocalePublicUrl(asPath))
+  const postUrl = generateLocalePublicUrl(asPath)
+  const encodedPostUrl = fixedEncodeURIComponent(postUrl)
   const postSocialTitle = encodeURIComponent(t('postPage.shareTitle', { title }))
 
   const shareButtonsData: ShareButtonProps[] = [
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
-      href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${postUrl}`,
+      href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${encodedPostUrl}`,
       icon: TwitterIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Facebook' }),
-      href: `https://www.facebook.com/sharer/sharer.php?u=${postUrl}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl}`,
       icon: FacebookIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Linkedin' }),
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedPostUrl}`,
       icon: LinkedinIcon,
     },
   ]
@@ -86,7 +86,7 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     shareButtonsData.push({
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => nativeNavigator.share({ url: generateLocalePublicUrl(asPath) }),
+      onClick: () => nativeNavigator.share({ url: postUrl }),
     })
   }
 
@@ -155,7 +155,7 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
         height: '500',
       },
     },
-    mainEntityOfPage: generateLocalePublicUrl(buildPostPath(id.toString(), title)),
+    mainEntityOfPage: postUrl,
     // keywords: post.tags?.map(({ name }) => name) || [],
     articleSection: categories?.[0].localizedName || '',
     articleBody: getPlainText(content),
@@ -169,6 +169,45 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
       borderColor={useColorModeValue('blackAlpha.800', 'white')}
     />
   )
+
+  const comments = [
+    { id: 1, name: 'saul', text: 'Este es un comentario de prueba', email: 'saul@saul.com', date: new Date() },
+    {
+      id: 2,
+      name: 'saul',
+      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
+      email: 'saul@saul.com',
+      date: new Date(),
+    },
+    {
+      id: 3,
+      name: 'saul',
+      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
+      email: 'saul@saul.com',
+      date: new Date(),
+    },
+    {
+      id: 4,
+      name: 'saul',
+      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
+      email: 'saul@saul.com',
+      date: new Date(),
+    },
+    {
+      id: 5,
+      name: 'saul',
+      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
+      email: 'saul@saul.com',
+      date: new Date(),
+    },
+    {
+      id: 6,
+      name: 'saul',
+      text: 'Bacon ipsum dolor amet in meatball nulla tongue aliqua laborum shank brisket t-bone tri-tip sunt kielbasa meatloaf. Qui sint picanha eiusmod flank bacon turkey jerky chislic ullamco cow aute biltong pastrami. Short loin leberkas laborum labore. Cupim ad magna shank, shankle short ribs est spare ribs ut. Exercitation dolore officia et deserunt.',
+      email: 'saul@saul.com',
+      date: new Date(),
+    },
+  ]
 
   return (
     <>
@@ -243,6 +282,22 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
           <Center height="80px">
             <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
           </Center>
+          <Flex direction="column">
+            <Heading fontFamily="Lora">{t('postPage.comments')}</Heading>
+            {comments.map(comment => (
+              <Box key={comment.id} bg="white" borderRadius="xl" my={4} p={5} boxShadow="sm">
+                <Text fontWeight="bold" mr={3}>
+                  {comment.name}
+                </Text>
+                <Text fontWeight="bold" color="grayish_blue" mr={3}>
+                  {intlFormatDistance(comment.date, new Date(), { locale })}
+                </Text>
+                <Text color="grayish_blue" fontWeight="normal" my={5}>
+                  {comment.text}
+                </Text>
+              </Box>
+            ))}
+          </Flex>
         </Flex>
       </Flex>
 
