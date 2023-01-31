@@ -7,6 +7,13 @@
     "shareTitle": "Mira lo que he visto en Emoción Blanca: {{title}}",
     "sameCategoryPosts": "También en esta categoría",
     "comments": "Comentarios",
-    "noComments": "Todavía no hay comentarios... ¿Quieres ser el primero?"
+    "noComments": "Todavía no hay comentarios... ¿Quieres ser el primero?",
+    "newComment": {
+      "name": "Tu nombre",
+      "comment": "Comentario",
+      "required": "Esto es obligatorio.",
+      "minLength": "El tamaño mínimo es de 4 caracteres.",
+      "addComment": "Añadir"
+    }
   }
 }

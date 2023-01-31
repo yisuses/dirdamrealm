@@ -29,6 +29,7 @@ export interface PostPageProps {
   comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
   about: About
+  postCommentIds: number[]
 }
 
 type ShareButtonProps = {
@@ -38,7 +39,7 @@ type ShareButtonProps = {
   onClick?: () => void
 }
 
-export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageProps) {
+export function PostPage({ post, about, comments, sameCategoryPosts, postCommentIds }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
 
@@ -49,6 +50,7 @@ export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageP
 
   const generateLocalePublicUrl = useGetLocalePublicUrl()
   const {
+    id,
     title,
     content,
     coverImage,
@@ -242,7 +244,7 @@ export function PostPage({ post, about, comments, sameCategoryPosts }: PostPageP
             <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
           </Center>
 
-          <PostComments comments={comments} />
+          <PostComments postId={id} comments={comments} postIds={postCommentIds} />
         </Flex>
       </Flex>
 

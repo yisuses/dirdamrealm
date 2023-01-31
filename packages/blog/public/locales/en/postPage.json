@@ -7,6 +7,13 @@
     "shareTitle": "Check this article at White Emotion: {{title}}",
     "sameCategoryPosts": "Also in this category",
     "comments": "Comments",
-    "noComments": "There are no comments yet... Do you want to be the first?"
+    "noComments": "There are no comments yet... Do you want to be the first?",
+    "newComment": {
+      "name": "Your name",
+      "comment": "Comment",
+      "required": "This is required.",
+      "minLength": "Minimum length should be 4.",
+      "addComment": "Add comment"
+    }
   }
 }

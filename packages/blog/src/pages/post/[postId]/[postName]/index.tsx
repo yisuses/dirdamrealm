@@ -7,8 +7,16 @@ import { getAbout, getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post, comments, about, sameCategoryPosts }) => {
-  return <PostPageComponent post={post} comments={comments} about={about} sameCategoryPosts={sameCategoryPosts} />
+const PostPage: NextPage<PostPageProps> = ({ post, comments, about, sameCategoryPosts, postCommentIds }) => {
+  return (
+    <PostPageComponent
+      post={post}
+      comments={comments}
+      about={about}
+      sameCategoryPosts={sameCategoryPosts}
+      postCommentIds={postCommentIds}
+    />
+  )
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -101,9 +109,10 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   }
 
   let comments: Commentary[] = []
+  let postIds: number[] = []
   try {
-    const ids = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
-    comments = await getComments({ ids })
+    postIds = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
+    comments = await getComments({ ids: postIds })
   } catch (error) {
     Sentry.captureException(error)
   }
@@ -114,6 +123,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       comments,
       sameCategoryPosts,
       about,
+      postCommentIds: postIds,
       ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
     },
   }
@@ -126,4 +136,5 @@ export type PostPageProps = {
   comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
   about: About
+  postCommentIds: number[]
 }
