@@ -1,14 +1,21 @@
 import { Button } from '@chakra-ui/button'
+import { useColorModeValue } from '@chakra-ui/color-mode'
 import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Text, Box, Flex, Heading } from '@chakra-ui/layout'
 import { Textarea } from '@chakra-ui/textarea'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
+import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRef } from 'react'
+// eslint-disable-next-line import/no-named-as-default
+import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { addComment, getComments } from '@api/comment'
+import { getComments, addCommentValidate } from '@api/comment'
+
+const { publicRuntimeConfig } = getConfig()
 
 interface PostCommentsProps {
   postId: number
@@ -17,9 +24,10 @@ interface PostCommentsProps {
 }
 
 interface SubmitCommentValues {
-  name: string
+  author: string
   text: string
   postId: number
+  captcha: string
 }
 
 export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
@@ -31,8 +39,9 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     register,
     reset,
     formState: { errors },
-  } = useForm<SubmitCommentValues>({ defaultValues: { name: '', text: '', postId } })
+  } = useForm<SubmitCommentValues>({ defaultValues: { postId, author: '', text: '', captcha: '' } })
 
+  const captchaRef = useRef<ReCAPTCHA>(null)
   const { data, refetch } = useQuery({
     initialData: comments,
     queryKey: ['postComments', postIds],
@@ -40,63 +49,98 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     enabled: false,
   })
   const { mutate, isLoading } = useMutation<unknown, unknown, SubmitCommentValues>({
-    mutationFn: ({ name, text }) => addComment({ postId, author: name, text }),
+    mutationFn: ({ author, text, captcha }) => addCommentValidate({ postId, author, text, captcha }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['postComments', postIds] })
       refetch()
     },
   })
 
+  const submitNewComment = (values: SubmitCommentValues) => {
+    const captcha = captchaRef?.current?.getValue()
+    if (captcha) {
+      mutate(
+        { ...values, captcha },
+        {
+          onSuccess: () => {
+            captchaRef?.current?.reset()
+            reset()
+          },
+        },
+      )
+    }
+  }
+
   return (
     <Flex direction="column">
       <Heading fontFamily="Lora" mb={6}>
         {t('postPage.comments')}
       </Heading>
-      <form onSubmit={handleSubmit(values => mutate(values, { onSuccess: () => reset() }))}>
-        <FormControl isInvalid={!!errors.name}>
-          <FormLabel>{t('postPage.newComment.name')}</FormLabel>
-          <Input
-            type="text"
-            {...register('name', {
-              required: t('postPage.newComment.required'),
-              minLength: { value: 4, message: t('postPage.newComment.minLength') },
-            })}
-          />
-          {errors?.name?.message && <FormErrorMessage>{`${errors.name.message}`}</FormErrorMessage>}
-        </FormControl>
-        <FormControl isInvalid={!!errors.text}>
-          <FormLabel>{t('postPage.newComment.comment')}</FormLabel>
-          <Textarea
-            resize="none"
-            size="sm"
-            {...register('text', {
-              required: t('postPage.newComment.required'),
-              minLength: { value: 4, message: t('postPage.newComment.minLength') },
-            })}
-          />
-          {errors?.text?.message && <FormErrorMessage>{`${errors.text.message}`}</FormErrorMessage>}
-        </FormControl>
-        <Button
-          disabled={isLoading}
-          isLoading={isLoading}
-          loadingText="Adding"
-          colorScheme="blue"
-          variant="outline"
-          type="submit"
-        >
-          {t('postPage.newComment.addComment')}
-        </Button>
-      </form>
+      <Box
+        padding="16px"
+        border="1px solid"
+        borderColor={useColorModeValue('blue.400', 'blue.200')}
+        borderRadius="md"
+        mb="8px"
+      >
+        <form onSubmit={handleSubmit(submitNewComment)}>
+          <FormControl isInvalid={!!errors.author}>
+            <FormLabel>{t('postPage.newComment.name')}</FormLabel>
+            <Input
+              type="text"
+              background={useColorModeValue('inherit', 'gray.900')}
+              {...register('author', {
+                required: t('postPage.newComment.required'),
+                minLength: { value: 4, message: t('postPage.newComment.minLength') },
+              })}
+            />
+            {errors?.author?.message && <FormErrorMessage>{`${errors.author.message}`}</FormErrorMessage>}
+          </FormControl>
+          <FormControl isInvalid={!!errors.text} my={4}>
+            <FormLabel>{t('postPage.newComment.comment')}</FormLabel>
+            <Textarea
+              resize="none"
+              size="sm"
+              fontSize="md"
+              background={useColorModeValue('inherit', 'gray.900')}
+              borderRadius="md"
+              {...register('text', {
+                required: t('postPage.newComment.required'),
+                minLength: { value: 4, message: t('postPage.newComment.minLength') },
+              })}
+            />
+            {errors?.text?.message && <FormErrorMessage>{`${errors.text.message}`}</FormErrorMessage>}
+          </FormControl>
+          <ReCAPTCHA size="normal" ref={captchaRef} sitekey={publicRuntimeConfig.RECAPTCHA_KEY} />
+          <Button
+            mt={4}
+            disabled={isLoading}
+            isLoading={isLoading}
+            loadingText="Adding"
+            colorScheme="blue"
+            type="submit"
+          >
+            {t('postPage.newComment.addComment')}
+          </Button>
+        </form>
+      </Box>
       {(data || comments).length > 0 ? (
         (data || comments).map(comment => (
-          <Box key={comment.id} bg="blackAlpha.50" borderRadius="md" my={2} p={5} boxShadow="sm">
-            <Text fontSize="lg" fontWeight="bold" color="blue.600">
+          <Box
+            key={comment.id}
+            bg={useColorModeValue('blackAlpha.50', 'whiteAlpha.50')}
+            borderRadius="md"
+            my={2}
+            p={5}
+            boxShadow="sm"
+          >
+            <Text fontSize="lg" fontWeight="bold" color={useColorModeValue('blue.600', 'blue.300')}>
               {comment.author}
             </Text>
-            <Text fontWeight="bold" color="blackAlpha.500">
+            <Text fontWeight="bold" color={useColorModeValue('blackAlpha.500', 'whiteAlpha.500')}>
               {intlFormatDistance(new Date(comment.createdAt), new Date(), { locale })}
             </Text>
-            <Text fontWeight="normal" mt={5} mb={2}>
+            <Text fontWeight="normal" mt={5} mb={2} color={useColorModeValue('black', 'white')}>
               {comment.text}
             </Text>
           </Box>
