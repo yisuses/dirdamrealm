@@ -15,10 +15,7 @@ export async function addComment({ postId, author, text }: AddCommentProps) {
       text,
     },
   }
-  return axios
-    .post<CommentResponse>(apiUrl(`/api/comments`), saveData)
-    .then(({ data: response }) => console.log(response))
-    .catch(error => {
-      throw new Error('Error adding comment.', error)
-    })
+  return axios.post<CommentResponse>(apiUrl(`/api/comments`), saveData).catch(error => {
+    throw new Error('Error adding comment.', error)
+  })
 }

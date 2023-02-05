@@ -4,7 +4,7 @@ export interface AddCommentValidateProps {
   postId: number
   author: string
   text: string
-  captcha: string
+  captcha: string | null
 }
 
 export async function addCommentValidate({ postId, author, text, captcha }: AddCommentValidateProps) {

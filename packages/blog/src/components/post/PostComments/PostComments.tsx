@@ -8,7 +8,7 @@ import intlFormatDistance from 'date-fns/intlFormatDistance'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 // eslint-disable-next-line import/no-named-as-default
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
@@ -27,7 +27,7 @@ interface SubmitCommentValues {
   author: string
   text: string
   postId: number
-  captcha: string
+  captcha: string | null
 }
 
 export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
@@ -38,8 +38,9 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     handleSubmit,
     register,
     reset,
+    setValue,
     formState: { errors },
-  } = useForm<SubmitCommentValues>({ defaultValues: { postId, author: '', text: '', captcha: '' } })
+  } = useForm<SubmitCommentValues>({ defaultValues: { postId, author: '', text: '', captcha: null } })
 
   const captchaRef = useRef<ReCAPTCHA>(null)
   const { data, refetch } = useQuery({
@@ -56,18 +57,19 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     },
   })
 
+  useEffect(() => {
+    register('captcha', { required: t('postPage.newComment.required') })
+  }, [register])
+
   const submitNewComment = (values: SubmitCommentValues) => {
     const captcha = captchaRef?.current?.getValue()
     if (captcha) {
-      mutate(
-        { ...values, captcha },
-        {
-          onSuccess: () => {
-            captchaRef?.current?.reset()
-            reset()
-          },
+      mutate(values, {
+        onSuccess: () => {
+          captchaRef?.current?.reset()
+          reset()
         },
-      )
+      })
     }
   }
 
@@ -76,54 +78,6 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
       <Heading fontFamily="Lora" mb={6}>
         {t('postPage.comments')}
       </Heading>
-      <Box
-        padding="16px"
-        border="1px solid"
-        borderColor={useColorModeValue('blue.400', 'blue.200')}
-        borderRadius="md"
-        mb="8px"
-      >
-        <form onSubmit={handleSubmit(submitNewComment)}>
-          <FormControl isInvalid={!!errors.author}>
-            <FormLabel>{t('postPage.newComment.name')}</FormLabel>
-            <Input
-              type="text"
-              background={useColorModeValue('inherit', 'gray.900')}
-              {...register('author', {
-                required: t('postPage.newComment.required'),
-                minLength: { value: 4, message: t('postPage.newComment.minLength') },
-              })}
-            />
-            {errors?.author?.message && <FormErrorMessage>{`${errors.author.message}`}</FormErrorMessage>}
-          </FormControl>
-          <FormControl isInvalid={!!errors.text} my={4}>
-            <FormLabel>{t('postPage.newComment.comment')}</FormLabel>
-            <Textarea
-              resize="none"
-              size="sm"
-              fontSize="md"
-              background={useColorModeValue('inherit', 'gray.900')}
-              borderRadius="md"
-              {...register('text', {
-                required: t('postPage.newComment.required'),
-                minLength: { value: 4, message: t('postPage.newComment.minLength') },
-              })}
-            />
-            {errors?.text?.message && <FormErrorMessage>{`${errors.text.message}`}</FormErrorMessage>}
-          </FormControl>
-          <ReCAPTCHA size="normal" ref={captchaRef} sitekey={publicRuntimeConfig.RECAPTCHA_KEY} hl={locale} />
-          <Button
-            mt={4}
-            disabled={isLoading}
-            isLoading={isLoading}
-            loadingText="Adding"
-            colorScheme="blue"
-            type="submit"
-          >
-            {t('postPage.newComment.addComment')}
-          </Button>
-        </form>
-      </Box>
       {(data || comments).length > 0 ? (
         (data || comments).map(comment => (
           <Box
@@ -148,6 +102,66 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
       ) : (
         <Text>{t('postPage.noComments')}</Text>
       )}
+      <Box
+        padding="16px"
+        border="1px solid"
+        borderColor={useColorModeValue('blue.400', 'blue.200')}
+        borderRadius="md"
+        my="8px"
+      >
+        <form onSubmit={handleSubmit(submitNewComment)}>
+          <FormControl isInvalid={!!errors.author}>
+            <FormLabel>{t('postPage.newComment.name')}</FormLabel>
+            <Input
+              type="text"
+              background={useColorModeValue('inherit', 'gray.900')}
+              aria-invalid={errors.author ? 'true' : 'false'}
+              {...register('author', {
+                required: t('postPage.newComment.required'),
+                minLength: { value: 4, message: t('postPage.newComment.minLength') },
+                maxLength: { value: 40, message: t('postPage.newComment.maxNameLength') },
+              })}
+            />
+            {errors?.author?.message && <FormErrorMessage>{`${errors.author.message}`}</FormErrorMessage>}
+          </FormControl>
+          <FormControl isInvalid={!!errors.text} my={4}>
+            <FormLabel>{t('postPage.newComment.comment')}</FormLabel>
+            <Textarea
+              resize="none"
+              aria-invalid={errors.text ? 'true' : 'false'}
+              size="sm"
+              fontSize="md"
+              background={useColorModeValue('inherit', 'gray.900')}
+              borderRadius="md"
+              {...register('text', {
+                required: t('postPage.newComment.required'),
+                minLength: { value: 4, message: t('postPage.newComment.minLength') },
+              })}
+            />
+            {errors?.text?.message && <FormErrorMessage>{`${errors.text.message}`}</FormErrorMessage>}
+          </FormControl>
+          <FormControl isInvalid={!!errors.captcha} my={4}>
+            <ReCAPTCHA
+              size="normal"
+              ref={captchaRef}
+              sitekey={publicRuntimeConfig.RECAPTCHA_KEY}
+              hl={locale}
+              onChange={value => setValue('captcha', value, { shouldValidate: true })}
+            />
+            {errors?.captcha?.message && <FormErrorMessage>{`${errors.captcha.message}`}</FormErrorMessage>}
+          </FormControl>
+          <Button
+            mt={4}
+            disabled={isLoading}
+            isLoading={isLoading}
+            loadingText="Adding"
+            colorScheme="blue"
+            type="submit"
+          >
+            {t('postPage.newComment.addComment')}
+          </Button>
+        </form>
+      </Box>
     </Flex>
   )
 }

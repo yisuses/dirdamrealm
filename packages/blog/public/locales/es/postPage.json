@@ -11,8 +11,10 @@
     "newComment": {
       "name": "Tu nombre",
       "comment": "Comentario",
-      "required": "Esto es obligatorio.",
+      "required": "Campo obligatorio.",
       "minLength": "El tamaño mínimo es de 4 caracteres.",
+      "maxNameLength": "El tamaño máximo es de 40 caracteres.",
+      "noSpecialChars": "No se admiten caracteres especiales.",
       "addComment": "Añadir"
     }
   }

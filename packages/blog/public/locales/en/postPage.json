@@ -11,8 +11,10 @@
     "newComment": {
       "name": "Your name",
       "comment": "Comment",
-      "required": "This is required.",
+      "required": "Required field.",
       "minLength": "Minimum length should be 4.",
+      "maxNameLength": "Maximun length should be 40.",
+      "noSpecialChars": "No special characters allowed.",
       "addComment": "Add comment"
     }
   }
