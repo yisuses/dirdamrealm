@@ -111,7 +111,7 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
             />
             {errors?.text?.message && <FormErrorMessage>{`${errors.text.message}`}</FormErrorMessage>}
           </FormControl>
-          <ReCAPTCHA size="normal" ref={captchaRef} sitekey={publicRuntimeConfig.RECAPTCHA_KEY} />
+          <ReCAPTCHA size="normal" ref={captchaRef} sitekey={publicRuntimeConfig.RECAPTCHA_KEY} hl={locale} />
           <Button
             mt={4}
             disabled={isLoading}
