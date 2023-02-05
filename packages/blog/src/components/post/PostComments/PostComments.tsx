@@ -39,7 +39,7 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     register,
     reset,
     setValue,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<SubmitCommentValues>({ defaultValues: { postId, author: '', text: '', captcha: null } })
 
   const captchaRef = useRef<ReCAPTCHA>(null)
@@ -152,11 +152,12 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
           </FormControl>
           <Button
             mt={4}
-            disabled={isLoading}
             isLoading={isLoading}
-            loadingText="Adding"
+            loadingText={t('postPage.newComment.adding')}
             colorScheme="blue"
             type="submit"
+            opacity={isDirty ? 1 : 0.5}
+            pointerEvents={isDirty ? 'inherit' : 'none'}
           >
             {t('postPage.newComment.addComment')}
           </Button>
