@@ -18,7 +18,8 @@ const ALGOLIA_PROVIDER_APPLICATION_ID = process.env?.ALGOLIA_PROVIDER_APPLICATIO
 const ALGOLIA_PROVIDER_SEARCH_API_KEY = process.env?.ALGOLIA_PROVIDER_SEARCH_API_KEY ?? ''
 const ALGOLIA_PROVIDER_INDEX_PREFIX =
   process.env?.ALGOLIA_PROVIDER_INDEX_PREFIX ?? (isProd ? 'whemotion_production' : 'whemotion_development')
-
+const RECAPTCHA_KEY = process.env?.RECAPTCHA_KEY ?? ''
+const RECAPTCHA_SECRET_KEY = process.env?.RECAPTCHA_SECRET_KEY ?? ''
 /**
  * A way to allow CI optimization when the build done there is not used
  * to deliver an image or deploy the files.
@@ -105,6 +106,20 @@ const nextConfig = {
     ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
     ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
     ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
+    RECAPTCHA_KEY,
+  },
+
+  serverRuntimeConfig: {
+    // to bypass https://github.com/zeit/next.js/issues/8251
+    PROJECT_ROOT: __dirname,
+    BASE_URL: process.env.BASE_URL ?? 'http://localhost:3000',
+    RECAPTCHA_SECRET_KEY,
+  },
+
+  env: {
+    APP_NAME: packageJson.name,
+    APP_VERSION: packageJson.version,
+    BUILD_TIME: new Date().toISOString(),
   },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization
@@ -192,16 +207,6 @@ const nextConfig = {
     })
 
     return config
-  },
-  env: {
-    APP_NAME: packageJson.name,
-    APP_VERSION: packageJson.version,
-    BUILD_TIME: new Date().toISOString(),
-  },
-  serverRuntimeConfig: {
-    // to bypass https://github.com/zeit/next.js/issues/8251
-    PROJECT_ROOT: __dirname,
-    BASE_URL: process.env.BASE_URL ?? 'http://localhost:3000',
   },
 }
 

@@ -3,12 +3,20 @@ import * as Sentry from '@sentry/nextjs'
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { getAbout, getLatestPosts, getPostById } from '@api'
+import { getAbout, getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post, about, sameCategoryPosts }) => {
-  return <PostPageComponent post={post} about={about} sameCategoryPosts={sameCategoryPosts} />
+const PostPage: NextPage<PostPageProps> = ({ post, comments, about, sameCategoryPosts, postCommentIds }) => {
+  return (
+    <PostPageComponent
+      post={post}
+      comments={comments}
+      about={about}
+      sameCategoryPosts={sameCategoryPosts}
+      postCommentIds={postCommentIds}
+    />
+  )
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -87,20 +95,35 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
 
   let sameCategoryPosts: Post[] | undefined = undefined
   if (post?.categories?.length) {
-    const sameCategoryPostsRequest = getLatestPosts({
-      locale: locale as AppLocales,
-      category: post?.categories?.[0]?.code,
-      limit: 4,
-    })
-    const [responseSameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
-    sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
+    try {
+      const sameCategoryPostsRequest = getLatestPosts({
+        locale: locale as AppLocales,
+        category: post?.categories?.[0]?.code,
+        limit: 4,
+      })
+      const [responseSameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
+      sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
+    } catch (error) {
+      Sentry.captureException(error)
+    }
+  }
+
+  let comments: Commentary[] = []
+  let postIds: number[] = []
+  try {
+    postIds = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
+    comments = await getComments({ ids: postIds })
+  } catch (error) {
+    Sentry.captureException(error)
   }
 
   return {
     props: {
       post,
+      comments,
       sameCategoryPosts,
       about,
+      postCommentIds: postIds,
       ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
     },
   }
@@ -110,6 +133,8 @@ export default withErrorComponent<PostPageProps>(PostPage)
 
 export type PostPageProps = {
   post: Post
+  comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
   about: About
+  postCommentIds: number[]
 }

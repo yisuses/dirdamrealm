@@ -5,6 +5,17 @@
     "author": "by {{name}}",
     "share": "Share on {{socialNetwork}}",
     "shareTitle": "Check this article at White Emotion: {{title}}",
-    "sameCategoryPosts": "Also in this category"
+    "sameCategoryPosts": "Also in this category",
+    "comments": "Comments",
+    "noComments": "There are no comments.",
+    "newComment": {
+      "name": "Your name",
+      "comment": "Comment",
+      "required": "Required field.",
+      "minLength": "Minimum length should be 4 characters.",
+      "maxNameLength": "Maximun length should be 40 characters.",
+      "addComment": "Add comment",
+      "adding": "Adding"
+    }
   }
 }

@@ -13,7 +13,6 @@ import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
   publicUrl,
-  buildPostPath,
   getImageUrlFromMedia,
   getImageDataFromMedia,
   getReadingTime,
@@ -23,11 +22,14 @@ import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
+import { PostComments } from '../PostComments'
 
 export interface PostPageProps {
   post: Post
+  comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
   about: About
+  postCommentIds: number[]
 }
 
 type ShareButtonProps = {
@@ -37,7 +39,7 @@ type ShareButtonProps = {
   onClick?: () => void
 }
 
-export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
+export function PostPage({ post, about, comments, sameCategoryPosts, postCommentIds }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
 
@@ -61,23 +63,24 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     summary,
     writer,
   } = post
-  const postUrl = fixedEncodeURIComponent(generateLocalePublicUrl(asPath))
+  const postUrl = generateLocalePublicUrl(asPath)
+  const encodedPostUrl = fixedEncodeURIComponent(postUrl)
   const postSocialTitle = encodeURIComponent(t('postPage.shareTitle', { title }))
 
   const shareButtonsData: ShareButtonProps[] = [
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
-      href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${postUrl}`,
+      href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${encodedPostUrl}`,
       icon: TwitterIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Facebook' }),
-      href: `https://www.facebook.com/sharer/sharer.php?u=${postUrl}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl}`,
       icon: FacebookIcon,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Linkedin' }),
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedPostUrl}`,
       icon: LinkedinIcon,
     },
   ]
@@ -86,7 +89,7 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
     shareButtonsData.push({
       label: t('postPage.share', { socialNetwork: '...' }),
       icon: ShareIcon,
-      onClick: () => nativeNavigator.share({ url: generateLocalePublicUrl(asPath) }),
+      onClick: () => nativeNavigator.share({ url: postUrl }),
     })
   }
 
@@ -155,7 +158,7 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
         height: '500',
       },
     },
-    mainEntityOfPage: generateLocalePublicUrl(buildPostPath(id.toString(), title)),
+    mainEntityOfPage: postUrl,
     // keywords: post.tags?.map(({ name }) => name) || [],
     articleSection: categories?.[0].localizedName || '',
     articleBody: getPlainText(content),
@@ -224,11 +227,9 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
               </Flex>
             </Flex>
           </Box>
-
           <Flex direction="column" width="100%" justifyContent="center" mt="52px">
             <Content content={content} />
           </Flex>
-
           <Flex direction="row">
             <Stack direction="row" spacing={2} mt="40px">
               {categories?.map(category => (
@@ -239,10 +240,11 @@ export function PostPage({ post, about, sameCategoryPosts }: PostPageProps) {
               {socialButtons}
             </Stack>
           </Flex>
-
           <Center height="80px">
             <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
           </Center>
+
+          <PostComments postId={id} comments={comments} postIds={postCommentIds} />
         </Flex>
       </Flex>
 

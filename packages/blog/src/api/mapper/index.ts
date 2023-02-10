@@ -1,5 +1,6 @@
 export { aboutMapper } from './aboutMapper'
 export { categoryMapper } from './categoryMapper'
+export { commentMapper } from './commentMapper'
 export { mediaMapper } from './mediaMapper'
 export { postMapper } from './postMapper'
 export { writerMapper } from './writerMapper'
