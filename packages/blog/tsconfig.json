@@ -7,6 +7,8 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@components": ["./components"],
+      "@core/*": ["./core/*"],
+      "@core": ["./core"],
       "@api/*": ["./api/*"],
       "@api": ["./api"],
       "@hooks/*": ["./hooks/*"],

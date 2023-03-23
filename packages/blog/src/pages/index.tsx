@@ -1,8 +1,8 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { getLatestPosts } from '@api'
 import { withErrorComponent, WithErrorProps, HomePage as HomePageComponent } from '@components'
+import { getServerTranslations } from '@core/i18n'
 
 const HomePage: NextPage<HomePageProps> = ({ latestPosts }) => {
   return <HomePageComponent latestPosts={latestPosts || []} />
@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorPro
   return {
     props: {
       latestPosts: responseLatestPost,
-      ...(locale && (await serverSideTranslations(locale, ['common', 'homePage']))),
+      ...(locale && (await getServerTranslations(locale, ['common', 'homePage']))),
     },
   }
 }

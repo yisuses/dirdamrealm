@@ -1,6 +1,5 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
 import { ErrorPage } from '@components'
+import { getServerTranslations } from '@core/i18n'
 
 function Custom500Page() {
   return <ErrorPage statusCode={500} />
@@ -8,7 +7,7 @@ function Custom500Page() {
 
 export const getStaticProps = async ({ locale }: { locale: string }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['common', 'errorPage'])),
+    ...(await getServerTranslations(locale, ['common', 'errorPage'])),
   },
 })
 

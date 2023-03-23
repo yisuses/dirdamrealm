@@ -1,10 +1,10 @@
 import { ParsedUrlQuery } from 'querystring'
 import * as Sentry from '@sentry/nextjs'
 import type { GetServerSideProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { getAbout, getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
+import { getServerTranslations } from '@core/i18n'
 import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
 const PostPage: NextPage<PostPageProps> = ({ post, comments, about, sameCategoryPosts, postCommentIds }) => {
@@ -124,7 +124,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       sameCategoryPosts,
       about,
       postCommentIds: postIds,
-      ...(locale && (await serverSideTranslations(locale, ['common', 'postPage']))),
+      ...(locale && (await getServerTranslations(locale, ['common', 'postPage']))),
     },
   }
 }

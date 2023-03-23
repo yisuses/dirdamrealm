@@ -1,4 +1,4 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { getServerTranslations } from '@core/i18n'
 import Custom500Page from './500'
 
 function CustomErrorPage() {
@@ -7,7 +7,7 @@ function CustomErrorPage() {
 
 export const getStaticProps = async ({ locale }: { locale: string }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['common', 'errorPage'])),
+    ...(await getServerTranslations(locale, ['common', 'errorPage'])),
   },
 })
 
