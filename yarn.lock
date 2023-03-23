@@ -11005,13 +11005,11 @@ __metadata:
     "@storybook/preset-create-react-app": 4.1.2
     "@storybook/react": 6.5.16
     "@svgr/webpack": 6.5.1
-    "@testing-library/jest-dom": 5.16.5
     "@types/jest": 29.5.0
     "@types/node": 18.15.5
     "@types/react": 18.0.28
     "@types/react-dom": 18.0.11
     "@types/react-google-recaptcha": ^2
-    "@types/testing-library__jest-dom": ^5
     "@typescript-eslint/eslint-plugin": 5.56.0
     "@typescript-eslint/parser": 5.56.0
     algoliasearch: 4.15.0
