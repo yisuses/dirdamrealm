@@ -1,9 +1,9 @@
 import { ParsedUrlQuery } from 'querystring'
 import type { GetServerSideProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { getCategories, getLatestPosts } from '@api'
 import { withErrorComponent, WithErrorProps, CategoryPage as CategoryPageComponent } from '@components'
+import { getServerTranslations } from '@core/i18n'
 import { buildCategoryPath, handlePageError, NotFoundError, seoName } from '@utils'
 
 const CategoryPage: NextPage<CategoryPageProps> = ({ latestPosts, category }) => {
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
     props: {
       category: categories[0],
       latestPosts: responseLatestPost || [],
-      ...(locale && (await serverSideTranslations(locale, ['common', 'categoryPage']))),
+      ...(locale && (await getServerTranslations(locale, ['common', 'categoryPage']))),
     },
   }
 }

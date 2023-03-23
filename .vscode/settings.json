@@ -4,5 +4,6 @@
       "pattern": "./packages/*/"
     }
   ],
-  "cSpell.words": ["algoliasearch"]
+  "cSpell.words": ["algoliasearch"],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

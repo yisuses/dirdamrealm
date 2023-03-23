@@ -19,6 +19,9 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript-plugin',
+  },
   webpackFinal: async (config, { isServer }) => {
     const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'))
     fileLoaderRule.exclude = /\.svg$/
