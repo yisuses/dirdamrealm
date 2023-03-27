@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
+import { QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps } from 'next'
 
 import { getCategories } from '@api'
@@ -14,12 +15,18 @@ export const getServerSideProps: GetServerSideProps<Record<string, never> | With
   res,
   locale,
 }) => {
+  const queryClient = new QueryClient()
   try {
     if (!params?.categoryCode || !/^[A-Z]+$/.test(params.categoryCode)) {
       throw new NotFoundError(`Category code must be uppercase. ${params!.categoryCode} was sent instead.`)
     }
 
-    const categories = await getCategories({ locale: locale as AppLocales, code: params.categoryCode })
+    const categoryCode = params.categoryCode
+    const categoriesKey = `category${categoryCode}`
+    queryClient.prefetchQuery([categoriesKey], () =>
+      getCategories({ locale: locale as AppLocales, code: categoryCode }),
+    )
+    const categories = await queryClient.ensureQueryData<Category[]>([categoriesKey])
 
     if (categories.length !== 1) {
       throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)

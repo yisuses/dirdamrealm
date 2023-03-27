@@ -1,18 +1,18 @@
 import { ParsedUrlQuery } from 'querystring'
 import * as Sentry from '@sentry/nextjs'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 
-import { getAbout, getLatestPosts, getPostById, getComments } from '@api'
+import { getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
-import { ApiError, buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
+import { buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
 
-const PostPage: NextPage<PostPageProps> = ({ post, comments, about, sameCategoryPosts, postCommentIds }) => {
+const PostPage: NextPage<PostPageProps> = ({ post, comments, sameCategoryPosts, postCommentIds }) => {
   return (
     <PostPageComponent
       post={post}
       comments={comments}
-      about={about}
       sameCategoryPosts={sameCategoryPosts}
       postCommentIds={postCommentIds}
     />
@@ -31,34 +31,30 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   defaultLocale,
 }) => {
   let post: Post | undefined = undefined
-  let about: About | undefined = undefined
+  const queryClient = new QueryClient()
 
   try {
     if (!params?.postId || !/^[0-9]+$/.test(params.postId)) {
       throw new NotFoundError(`Post id should be numeric. ${params!.postId} was sent instead.`)
     }
 
+    const postId = Number(params.postId)
     try {
-      const postRequest = getPostById({ id: Number(params.postId) })
-      const aboutRequest = getAbout()
-
-      const [responsePost, responseAbout] = await Promise.all([postRequest, aboutRequest])
-      post = responsePost
-      about = responseAbout
+      const postKey = `post${postId}`
+      queryClient.prefetchQuery([postKey], () => getPostById({ id: postId }))
+      post = await queryClient.ensureQueryData([postKey])
     } catch (error) {
       Sentry.captureException(error)
     }
 
     if (!post) {
-      const errMessage = `Post with id '${params!.postId}' not found.`
+      const errMessage = `Post with id '${params.postId}' not found.`
       Sentry.captureException(errMessage)
       throw new NotFoundError(errMessage)
-    }
-
-    if (!about) {
-      const errMessage = `Problem retrieving about data when loading post '${params!.postId}'`
+    } else if (!post?.publishedAt) {
+      const errMessage = `Post with id '${params.postId}' has not been released yet. It is on draft mode.`
       Sentry.captureException(errMessage)
-      throw new ApiError(errMessage)
+      throw new NotFoundError(errMessage)
     }
 
     if (post.locale !== locale) {
@@ -90,19 +86,26 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       }
     }
   } catch (error) {
+    Sentry.captureException(error)
     return handlePageError(error as Error, res)
   }
 
   let sameCategoryPosts: Post[] | undefined = undefined
   if (post?.categories?.length) {
     try {
-      const sameCategoryPostsRequest = getLatestPosts({
-        locale: locale as AppLocales,
-        category: post?.categories?.[0]?.code,
-        limit: 4,
-      })
-      const [responseSameCategoryPost] = await Promise.all([sameCategoryPostsRequest])
-      sameCategoryPosts = responseSameCategoryPost?.filter(sameCategoryPost => sameCategoryPost.id !== post?.id)
+      const postId = Number(params.postId)
+
+      const latestPostsCategoryKey = `latestPostsCategory${postId}`
+      queryClient.prefetchQuery([latestPostsCategoryKey], () =>
+        getLatestPosts({
+          locale: locale as AppLocales,
+          category: post?.categories?.[0]?.code,
+          limit: 4,
+        }),
+      )
+
+      const latestCategoryPosts = await queryClient.ensureQueryData<Post[] | undefined>([latestPostsCategoryKey])
+      sameCategoryPosts = latestCategoryPosts?.filter(categoryPost => categoryPost.id !== post?.id)
     } catch (error) {
       Sentry.captureException(error)
     }
@@ -112,7 +115,9 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   let postIds: number[] = []
   try {
     postIds = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
-    comments = await getComments({ ids: postIds })
+    const postCommentsKey = ['postComments', postIds.join()]
+    queryClient.prefetchQuery(postCommentsKey, () => getComments({ ids: postIds }))
+    comments = await queryClient.ensureQueryData(postCommentsKey)
   } catch (error) {
     Sentry.captureException(error)
   }
@@ -122,8 +127,8 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
       post,
       comments,
       sameCategoryPosts,
-      about,
       postCommentIds: postIds,
+      dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'postPage']))),
     },
   }
@@ -135,6 +140,5 @@ export type PostPageProps = {
   post: Post
   comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
-  about: About
   postCommentIds: number[]
 }

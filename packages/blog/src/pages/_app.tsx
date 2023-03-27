@@ -1,9 +1,8 @@
 import '@fontsource/spartan'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { AppContext, AppProps } from 'next/app'
-import App from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar'
-import { dehydrate, QueryClient } from 'react-query'
 
 import { getCategories, getAbout } from '@api'
 import { MainLayout } from '@components'
@@ -27,13 +26,11 @@ BlogApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProp
     getCategories({ locale: appContext.router.locale as AppLocales }),
   )
   await queryClient.prefetchQuery(['about'], getAbout)
-  const appProps = await App.getInitialProps(appContext)
 
   return {
     globalProps: {
       dehydratedState: dehydrate(queryClient),
     },
-    ...appProps,
   }
 }
 

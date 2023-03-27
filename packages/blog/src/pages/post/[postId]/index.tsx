@@ -1,4 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
+import * as Sentry from '@sentry/nextjs'
+import { QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps } from 'next'
 
 import { getPostById } from '@api'
@@ -13,15 +15,25 @@ export const getServerSideProps: GetServerSideProps<Record<string, never> | With
   params,
   res,
 }) => {
+  const queryClient = new QueryClient()
   try {
     if (!params?.postId || !/^[0-9]+$/.test(params.postId)) {
       throw new NotFoundError(`Post id should be numeric. ${params!.postId} was sent instead.`)
     }
 
-    const post = await getPostById({ id: Number(params.postId) })
+    const postId = Number(params.postId)
+    const postKey = `post${postId}`
+    queryClient.prefetchQuery([postKey], () => getPostById({ id: postId }))
+    const post = await queryClient.ensureQueryData<Post | undefined>([postKey])
 
     if (!post) {
-      throw new NotFoundError(`Post with code '${params!.postId}' not found`)
+      const errMessage = `Post with code '${params.postId}' not found`
+      Sentry.captureException(errMessage)
+      throw new NotFoundError(`Post with code '${params.postId}' not found`)
+    } else if (!post?.publishedAt) {
+      const errMessage = `Post with id '${params.postId}' has not been released yet. It is on draft mode.`
+      Sentry.captureException(errMessage)
+      throw new NotFoundError(errMessage)
     }
 
     const postPath = buildPostPath(params.postId, post.title)
