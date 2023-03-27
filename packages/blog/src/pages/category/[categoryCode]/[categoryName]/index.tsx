@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 
 import { getCategories, getLatestPosts } from '@api'
@@ -22,12 +23,18 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
   defaultLocale,
 }) => {
   let categories: Category[] = []
+  const queryClient = new QueryClient()
   try {
     if (!params?.categoryCode || !/^[A-Z]+$/.test(params.categoryCode)) {
       throw new NotFoundError(`Category code must be uppercase. ${params!.categoryCode} was sent instead.`)
     }
 
-    categories = await getCategories({ locale: locale as AppLocales, code: params.categoryCode })
+    const categoryCode = params.categoryCode
+    const categoriesKey = `category${categoryCode}`
+    queryClient.prefetchQuery([categoriesKey], () =>
+      getCategories({ locale: locale as AppLocales, code: categoryCode }),
+    )
+    categories = await queryClient.ensureQueryData([categoriesKey])
 
     if (categories.length !== 1) {
       throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)
@@ -58,6 +65,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
     props: {
       category: categories[0],
       latestPosts: responseLatestPost || [],
+      dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'categoryPage']))),
     },
   }

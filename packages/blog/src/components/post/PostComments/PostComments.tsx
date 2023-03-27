@@ -4,6 +4,7 @@ import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/form-contro
 import { Input } from '@chakra-ui/input'
 import { Text, Box, Flex, Heading } from '@chakra-ui/layout'
 import { Textarea } from '@chakra-ui/textarea'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
@@ -12,7 +13,6 @@ import { useRef, useEffect } from 'react'
 // eslint-disable-next-line import/no-named-as-default
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { getComments, addCommentValidate } from '@api/comment'
 
 const { publicRuntimeConfig } = getConfig()
@@ -43,16 +43,17 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
   } = useForm<SubmitCommentValues>({ defaultValues: { postId, author: '', text: '', captcha: null } })
 
   const captchaRef = useRef<ReCAPTCHA>(null)
+  const postCommentsKey = ['postComments', postIds.join()]
   const { data, refetch } = useQuery({
     initialData: comments,
-    queryKey: ['postComments', postIds],
+    queryKey: postCommentsKey,
     queryFn: () => getComments({ ids: postIds }),
     enabled: false,
   })
   const { mutate, isLoading } = useMutation<unknown, unknown, SubmitCommentValues>({
     mutationFn: ({ author, text, captcha }) => addCommentValidate({ postId, author, text, captcha }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['postComments', postIds] })
+      queryClient.invalidateQueries({ queryKey: postCommentsKey })
       refetch()
     },
   })

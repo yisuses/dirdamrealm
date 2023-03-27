@@ -11,15 +11,17 @@ import errorPage from '../../public/locales/en/errorPage.json'
 import homePage from '../../public/locales/en/homePage.json'
 import postPage from '../../public/locales/en/postPage.json'
 
+interface I18nNamespaces {
+  common: typeof common
+  categoryPage: typeof categoryPage
+  homePage: typeof homePage
+  errorPage: typeof errorPage
+  postPage: typeof postPage
+}
+
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'common'
-    resources: {
-      common: typeof common
-      categoryPage: typeof categoryPage
-      homePage: typeof homePage
-      errorPage: typeof errorPage
-      postPage: typeof postPage
-    }
+    defaultNS: keyof I18nNamespaces
+    resources: I18nNamespaces
   }
 }

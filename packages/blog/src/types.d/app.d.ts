@@ -1,5 +1,5 @@
 interface GlobalProps {
-  dehydratedState?: import('react-query').DehydratedState
+  dehydratedState?: import('@tanstack/react-query').DehydratedState
 }
 
 type AppLocales = 'en' | 'es'

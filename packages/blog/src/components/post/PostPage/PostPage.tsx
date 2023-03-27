@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import { BlogPosting } from 'schema-dts'
 
 import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@components/common'
+import { useGetAbout } from '@hooks/useGetAbout'
 import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
@@ -28,7 +29,6 @@ export interface PostPageProps {
   post: Post
   comments: Commentary[]
   sameCategoryPosts: Post[] | undefined
-  about: About
   postCommentIds: number[]
 }
 
@@ -39,9 +39,10 @@ type ShareButtonProps = {
   onClick?: () => void
 }
 
-export function PostPage({ post, about, comments, sameCategoryPosts, postCommentIds }: PostPageProps) {
+export function PostPage({ post, comments, sameCategoryPosts, postCommentIds }: PostPageProps) {
   const { t } = useTranslation('postPage')
   const { asPath } = useRouter()
+  const about = useGetAbout()
 
   const [nativeNavigator, setNativeNavigator] = useState<Navigator>()
   useEffect(() => {
@@ -107,7 +108,7 @@ export function PostPage({ post, about, comments, sameCategoryPosts, postComment
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: summary },
-    { name: 'twitter:creator', content: writer?.twitter || about.twitter || '' },
+    { name: 'twitter:creator', content: writer?.twitter || about?.twitter || '' },
     {
       name: 'twitter:image',
       content: getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl }),

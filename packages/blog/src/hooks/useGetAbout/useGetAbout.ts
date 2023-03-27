@@ -1,8 +1,8 @@
-import { useQueryClient } from 'react-query'
+import { useQueryClient } from '@tanstack/react-query'
 
 export function useGetAbout() {
   const queryClient = useQueryClient()
-  const about = queryClient.getQueryData<About>('about')
+  const about = queryClient.getQueryData<About>(['about'])
 
   return about
 }

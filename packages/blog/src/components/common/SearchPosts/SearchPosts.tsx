@@ -1,8 +1,8 @@
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
+import { useQuery } from '@tanstack/react-query'
 import { useState, useRef } from 'react'
-import { useQuery } from 'react-query'
 
 import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
 import { useDebounce } from '@hooks/useDebounce'

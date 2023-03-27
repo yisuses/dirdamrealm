@@ -1,9 +1,9 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Flex, Heading, HStack, Text } from '@chakra-ui/layout'
+import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 
 import { getLatestPosts } from '@api'
 import { PostGrid } from '@components/common'
@@ -21,7 +21,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
   const { data: queriedPosts } = useQuery(
     ['latestPosts', { selectedCategory }],
-    async () =>
+    () =>
       getLatestPosts({
         category: selectedCategory,
         locale: locale as AppLocales,

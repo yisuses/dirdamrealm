@@ -1,8 +1,15 @@
 import { ChakraProvider } from '@chakra-ui/provider'
+import {
+  DefaultOptions,
+  Hydrate,
+  MutationCache,
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AppProps } from 'next/app'
 import { ReactNode, useState } from 'react'
-import { DefaultOptions, Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import emotionTheme from '@themes/emotion.theme'
 
 type AppProvidersProps = {
