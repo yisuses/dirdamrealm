@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/modal'
 import { useColorModeValue } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 export type ModalProps = {
   onClose: () => void
@@ -19,7 +19,6 @@ export type ModalProps = {
 }
 
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
-  const [isBrowser, setIsBrowser] = useState(false)
   const { events } = useRouter()
   const modalSize = useBreakpointValue({
     base: 'full',
@@ -27,14 +26,13 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
   })
 
   useEffect(() => {
-    setIsBrowser(true)
     events.on('routeChangeStart', onClose)
     return () => {
       events.off('routeChangeStart', onClose)
     }
   }, [])
 
-  const chakraModal = (
+  return (
     <ChakraModal isOpen={isOpen} onClose={onClose} size={modalSize}>
       <ModalOverlay />
       <ModalContent
@@ -48,10 +46,4 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
       </ModalContent>
     </ChakraModal>
   )
-
-  if (isBrowser) {
-    return chakraModal
-  } else {
-    return null
-  }
 }
