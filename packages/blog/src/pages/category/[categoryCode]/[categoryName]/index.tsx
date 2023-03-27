@@ -57,14 +57,19 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
     return handlePageError(error as Error, res)
   }
 
-  const latestPostsRequest = getLatestPosts({ locale: locale as AppLocales, category: params.categoryCode })
-
-  const [responseLatestPost] = await Promise.all([latestPostsRequest])
+  const queryKey = `latestPostsCategoryPage${params.categoryCode}`
+  queryClient.prefetchQuery([queryKey], () =>
+    getLatestPosts({
+      locale: locale as AppLocales,
+      category: params.categoryCode,
+    }),
+  )
+  const latestPosts = await queryClient.ensureQueryData<Post[] | undefined>([queryKey])
 
   return {
     props: {
       category: categories[0],
-      latestPosts: responseLatestPost || [],
+      latestPosts: latestPosts || [],
       dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'categoryPage']))),
     },

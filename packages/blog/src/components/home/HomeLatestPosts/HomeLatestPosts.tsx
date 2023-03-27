@@ -19,12 +19,15 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   const { locale } = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string>()
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
+  const headerPost = posts[0]
+
   const { data: queriedPosts } = useQuery(
-    ['latestPosts', { selectedCategory }],
+    [`latestPosts${selectedCategory}`],
     () =>
       getLatestPosts({
         category: selectedCategory,
         locale: locale as AppLocales,
+        limit: 16,
       }),
     {
       enabled: selectedCategory !== undefined,
@@ -34,7 +37,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   )
 
   useEffect(() => {
-    setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== posts[0]?.id) : renderedPosts)
+    setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== headerPost.id) : renderedPosts)
   }, [queriedPosts])
 
   const renderedCategories = categories
@@ -79,7 +82,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
           ))}
         </HStack>
       )}
-      <PostGrid posts={renderedPosts} />
+      <PostGrid posts={renderedPosts.slice(0, 8)} />
     </Flex>
   )
 }

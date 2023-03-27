@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 
 import { getLatestPosts } from '@api'
@@ -9,16 +10,20 @@ const HomePage: NextPage<HomePageProps> = ({ latestPosts }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
-  const latestPostsRequest = getLatestPosts({
-    locale: locale as AppLocales,
-    limit: 18,
-  })
+  const queryClient = new QueryClient()
 
-  const [responseLatestPost] = await Promise.all([latestPostsRequest])
+  queryClient.prefetchQuery(['latestPostsHomePage'], () =>
+    getLatestPosts({
+      locale: locale as AppLocales,
+      limit: 18,
+    }),
+  )
+  const latestPosts = await queryClient.ensureQueryData<Post[] | undefined>(['latestPostsHomePage'])
 
   return {
     props: {
-      latestPosts: responseLatestPost,
+      latestPosts,
+      dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'homePage']))),
     },
   }
