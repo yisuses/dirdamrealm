@@ -1,5 +1,4 @@
 import { SimpleGrid } from '@chakra-ui/layout'
-import { format, parseISO } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
@@ -38,7 +37,7 @@ export function PostGrid({ posts }: PostGridProps) {
                 }))
               : []
           }
-          date={format(parseISO(publishedAt), 'dd.MM.yyyy')}
+          date={publishedAt}
           imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl })}
           title={title}
           description={summary}

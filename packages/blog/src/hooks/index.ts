@@ -1,5 +1,3 @@
 export * from './useDebounce'
-export * from './useGetAbout'
-export * from './useGetCategories'
-export * from './useGetMainCategories'
+export * from './useGetData'
 export * from './useGetLocalePublicUrl'

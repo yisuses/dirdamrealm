@@ -22,7 +22,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   const headerPost = posts[0]
 
   const { data: queriedPosts } = useQuery(
-    [`latestPosts${selectedCategory}`],
+    ['latestPosts', selectedCategory],
     () =>
       getLatestPosts({
         category: selectedCategory,

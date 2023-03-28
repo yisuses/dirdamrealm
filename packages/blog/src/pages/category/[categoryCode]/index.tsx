@@ -5,6 +5,7 @@ import type { GetServerSideProps } from 'next'
 import { getCategories } from '@api'
 import { withErrorComponent, WithErrorProps } from '@components'
 import { buildCategoryPath, handlePageError, NotFoundError } from '@utils'
+import { getCategoryCodeKey } from '@utils/constants'
 
 export interface UrlParams extends ParsedUrlQuery {
   categoryCode: string
@@ -22,11 +23,9 @@ export const getServerSideProps: GetServerSideProps<Record<string, never> | With
     }
 
     const categoryCode = params.categoryCode
-    const categoriesKey = `category${categoryCode}`
-    queryClient.prefetchQuery([categoriesKey], () =>
-      getCategories({ locale: locale as AppLocales, code: categoryCode }),
-    )
-    const categories = await queryClient.ensureQueryData<Category[]>([categoriesKey])
+    const categoriesKey = getCategoryCodeKey(categoryCode)
+    queryClient.prefetchQuery(categoriesKey, () => getCategories({ locale: locale as AppLocales, code: categoryCode }))
+    const categories = await queryClient.ensureQueryData<Category[]>(categoriesKey)
 
     if (categories.length !== 1) {
       throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)

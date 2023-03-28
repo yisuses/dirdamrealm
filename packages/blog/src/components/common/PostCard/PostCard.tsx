@@ -1,10 +1,15 @@
+/* eslint-disable import/no-duplicates */
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Text, Box, Flex, Link } from '@chakra-ui/layout'
+import format from 'date-fns/format'
+import parseISO from 'date-fns/parseISO'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
+import { useEffect, useState } from 'react'
 
 import { Tag } from '@components'
 import { buildBlurDataUrl, buildPostPath } from '@utils'
+import { DATE_FORMAT } from '@utils/constants'
 
 export type PostCardProps = {
   id: number
@@ -19,6 +24,11 @@ export type PostCardProps = {
 
 export function PostCard({ id, categories, date, description, imageUrl, title, isSameLocale, locale }: PostCardProps) {
   const postLink = buildPostPath(String(id), title)
+  const [parsedDate, setParsedDate] = useState<string>(date.split('T')[0])
+
+  useEffect(() => {
+    setParsedDate(format(parseISO(date), DATE_FORMAT))
+  }, [date])
 
   return (
     <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
@@ -67,7 +77,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
         </Link>
       </Box>
       <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
-        {date}
+        {parsedDate}
       </Text>
       <Link
         as={NextLink}

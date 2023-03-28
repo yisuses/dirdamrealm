@@ -7,6 +7,7 @@ import { getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
 import { buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
+import { getLatestPostsCategoryKey, getPostCommentsKey, getPostKey } from '@utils/constants'
 
 const PostPage: NextPage<PostPageProps> = ({ post, comments, sameCategoryPosts, postCommentIds }) => {
   return (
@@ -40,9 +41,9 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
 
     const postId = Number(params.postId)
     try {
-      const postKey = `post${postId}`
-      queryClient.prefetchQuery([postKey], () => getPostById({ id: postId }))
-      post = await queryClient.ensureQueryData([postKey])
+      const postKey = getPostKey(postId)
+      queryClient.prefetchQuery(postKey, () => getPostById({ id: postId }))
+      post = await queryClient.ensureQueryData(postKey)
     } catch (error) {
       Sentry.captureException(error)
     }
@@ -95,16 +96,15 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     try {
       const postId = Number(params.postId)
 
-      const latestPostsCategoryKey = `latestPostsCategory${postId}`
-      queryClient.prefetchQuery([latestPostsCategoryKey], () =>
+      const latestPostsCategoryKey = getLatestPostsCategoryKey(`${postId}`)
+      queryClient.prefetchQuery(latestPostsCategoryKey, () =>
         getLatestPosts({
           locale: locale as AppLocales,
           category: post?.categories?.[0]?.code,
           limit: 4,
         }),
       )
-
-      const latestCategoryPosts = await queryClient.ensureQueryData<Post[] | undefined>([latestPostsCategoryKey])
+      const latestCategoryPosts = await queryClient.ensureQueryData<Post[] | undefined>(latestPostsCategoryKey)
       sameCategoryPosts = latestCategoryPosts?.filter(categoryPost => categoryPost.id !== post?.id)
     } catch (error) {
       Sentry.captureException(error)
@@ -115,7 +115,7 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
   let postIds: number[] = []
   try {
     postIds = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
-    const postCommentsKey = ['postComments', postIds.join()]
+    const postCommentsKey = getPostCommentsKey(postIds)
     queryClient.prefetchQuery(postCommentsKey, () => getComments({ ids: postIds }))
     comments = await queryClient.ensureQueryData(postCommentsKey)
   } catch (error) {

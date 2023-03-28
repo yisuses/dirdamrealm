@@ -2,14 +2,12 @@ import { useTranslation } from 'next-i18next'
 import { WebPage } from 'schema-dts'
 
 import { Metadata, HeaderImage } from '@components/common'
-import { useGetCategories } from '@hooks'
+import { useGetData } from '@hooks'
 import { publicUrl } from '@utils'
+import { QUERY_CATEGORIES, QUERY_LATEST_POSTS } from '@utils/constants'
 import { HomeLatestPosts } from '../HomeLatestPosts'
-export interface HomePageProps {
-  latestPosts: Post[]
-}
 
-export function HomePage({ latestPosts }: HomePageProps) {
+export function HomePage() {
   const { t } = useTranslation('homePage')
 
   const ldJson: WebPage = {
@@ -18,9 +16,10 @@ export function HomePage({ latestPosts }: HomePageProps) {
     url: publicUrl(''),
   }
 
-  const categories = useGetCategories()
-  const headerPost = latestPosts[0]
-  const totalLatestPosts = latestPosts.slice(0, 9)
+  const latestPosts = useGetData<Post[]>(QUERY_LATEST_POSTS)
+  const categories = useGetData<Category[]>(QUERY_CATEGORIES, [])
+  const headerPost = latestPosts?.[0]
+  const totalLatestPosts = latestPosts?.slice(0, 9) ?? []
 
   return (
     <>

@@ -1,20 +1,30 @@
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ItemList, WebPage } from 'schema-dts'
 
 import { HeaderImage, Metadata } from '@components/common'
-import { useGetLocalePublicUrl } from '@hooks'
+import { useGetData, useGetLocalePublicUrl } from '@hooks'
 import { buildCategoryPath, buildPostPath } from '@utils'
+import { getCategoryCodeKey, getLatestPostsCategoryKey } from '@utils/constants'
 import { CategoryLatestPosts } from '../CategoryLatestPosts'
 
-export interface CategoryPageProps {
-  category: Category
-  latestPosts: Post[]
-}
-
-export function CategoryPage({ latestPosts, category }: CategoryPageProps) {
+export function CategoryPage() {
   const { t } = useTranslation('categoryPage')
   const generateLocalePublicUrl = useGetLocalePublicUrl()
+
+  const router = useRouter()
+  const { categoryCode } = router.query
+
+  const latestPostsCategoryKey = getLatestPostsCategoryKey(categoryCode as string)
+  const latestPosts = useGetData<Post[]>(latestPostsCategoryKey, [])
   const lastPost = latestPosts?.[0]
+  const categoriesKey = getCategoryCodeKey(categoryCode as string)
+  const categories = useGetData<Category[]>(categoriesKey)
+  if (!categories) {
+    return null
+  }
+
+  const category = categories[0]
 
   const ldJsonPage: WebPage = {
     '@type': 'WebPage',
