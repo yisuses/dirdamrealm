@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
+import * as Sentry from '@sentry/nextjs'
 import { QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps } from 'next'
 
@@ -28,7 +29,9 @@ export const getServerSideProps: GetServerSideProps<Record<string, never> | With
     const categories = await queryClient.ensureQueryData<Category[]>(categoriesKey)
 
     if (categories.length !== 1) {
-      throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)
+      const errMsg = `Category with code '${params!.categoryCode}' not found, or found multiple`
+      Sentry.captureException(errMsg)
+      throw new NotFoundError(errMsg)
     }
 
     const categoryPath = buildCategoryPath(params.categoryCode, categories[0].name)

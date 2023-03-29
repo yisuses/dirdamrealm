@@ -19,19 +19,12 @@ import {
   getReadingTime,
   getPlainText,
 } from '@utils'
-import { DATE_FORMAT, QUERY_ABOUT } from '@utils/constants'
+import { DATE_FORMAT, getLatestPostsCategoryKey, getPostCommentsKey, getPostKey, QUERY_ABOUT } from '@utils/constants'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
 import { PostComments } from '../PostComments'
-
-export interface PostPageProps {
-  post: Post
-  comments: Commentary[]
-  sameCategoryPosts: Post[] | undefined
-  postCommentIds: number[]
-}
 
 type ShareButtonProps = {
   label: string
@@ -40,10 +33,30 @@ type ShareButtonProps = {
   onClick?: () => void
 }
 
-export function PostPage({ post, comments, sameCategoryPosts, postCommentIds }: PostPageProps) {
+export function PostPage() {
   const { t } = useTranslation('postPage')
-  const { asPath } = useRouter()
+  const {
+    asPath,
+    query: { postId },
+  } = useRouter()
+
   const about = useGetData<About>(QUERY_ABOUT)
+
+  const postKey = getPostKey(Number(postId))
+  const post = useGetData<Post>(postKey)
+
+  if (!post) {
+    return null
+  }
+
+  const latestPostsCategoryKey = getLatestPostsCategoryKey(post.categories?.[0]?.code || '')
+  const latestCategoryPosts = useGetData<Post[]>(latestPostsCategoryKey)
+  const sameCategoryPosts = latestCategoryPosts?.filter(categoryPost => categoryPost.id !== post.id)
+
+  const postCommentIds = post.localizations
+    ? [...post.localizations.map(localization => localization.id), post.id]
+    : [post.id]
+  const comments = useGetData<Commentary[]>(getPostCommentsKey(postCommentIds), [])
 
   const [nativeNavigator, setNativeNavigator] = useState<Navigator>()
   useEffect(() => {

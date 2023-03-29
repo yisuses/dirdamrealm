@@ -12,14 +12,16 @@ export function CategoryPage() {
   const { t } = useTranslation('categoryPage')
   const generateLocalePublicUrl = useGetLocalePublicUrl()
 
-  const router = useRouter()
-  const { categoryCode } = router.query
+  const {
+    query: { categoryCode },
+  } = useRouter()
 
-  const latestPostsCategoryKey = getLatestPostsCategoryKey(categoryCode as string)
+  const latestPostsCategoryKey = getLatestPostsCategoryKey(String(categoryCode))
   const latestPosts = useGetData<Post[]>(latestPostsCategoryKey, [])
   const lastPost = latestPosts?.[0]
   const categoriesKey = getCategoryCodeKey(categoryCode as string)
   const categories = useGetData<Category[]>(categoriesKey)
+
   if (!categories) {
     return null
   }
