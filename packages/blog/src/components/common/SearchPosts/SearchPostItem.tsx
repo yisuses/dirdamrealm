@@ -1,9 +1,13 @@
+/* eslint-disable import/no-duplicates */
 import { Box, Text } from '@chakra-ui/layout'
-import { format, parseISO } from 'date-fns'
+import format from 'date-fns/format'
+import parseISO from 'date-fns/parseISO'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import { useEffect, useState } from 'react'
 
+import { DATE_FORMAT } from '@utils/constants'
 import { getImageUrlFromMedia } from '@utils/image'
 import { buildPostPath } from '@utils/urlBuilder'
 import { Tag } from '../Tag'
@@ -16,6 +20,12 @@ export function SearchPostResultItem({
   post: { id, title, coverImage, summary, categories, publishedAt },
 }: SearchPostItemProps) {
   const { t } = useTranslation('common')
+
+  const [parsedDate, setParsedDate] = useState<string>(publishedAt.split('T')[0])
+
+  useEffect(() => {
+    setParsedDate(format(parseISO(publishedAt), DATE_FORMAT))
+  }, [publishedAt])
 
   return (
     <NextLink href={buildPostPath(id, title)}>
@@ -54,7 +64,7 @@ export function SearchPostResultItem({
             {summary}
           </Text>
           <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">
-            <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
+            <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{parsedDate}</Text>
             <Box display={{ base: 'none', lg: 'flex' }}>
               {categories?.map(({ code, localizedName }) => (
                 <Tag size="sm" key={code} label={t(`categories.${code as PostCategoryCodes}`) || localizedName} />

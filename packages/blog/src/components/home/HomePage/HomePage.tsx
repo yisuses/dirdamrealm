@@ -2,18 +2,13 @@ import { useTranslation } from 'next-i18next'
 import { WebPage } from 'schema-dts'
 
 import { Metadata, HeaderImage } from '@components/common'
-import { useGetCategories } from '@hooks'
+import { useGetData } from '@hooks'
 import { publicUrl } from '@utils'
+import { QUERY_CATEGORIES, QUERY_LATEST_POSTS } from '@utils/constants'
 import { HomeLatestPosts } from '../HomeLatestPosts'
-export interface HomePageProps {
-  latestPosts: Post[]
-}
 
-export function HomePage({ latestPosts }: HomePageProps) {
+export function HomePage() {
   const { t } = useTranslation('homePage')
-
-  const categories = useGetCategories()
-  const lastPost = latestPosts?.[0]
 
   const ldJson: WebPage = {
     '@type': 'WebPage',
@@ -21,12 +16,19 @@ export function HomePage({ latestPosts }: HomePageProps) {
     url: publicUrl(''),
   }
 
+  const latestPosts = useGetData<Post[]>(QUERY_LATEST_POSTS)
+  const categories = useGetData<Category[]>(QUERY_CATEGORIES, [])
+  const headerPost = latestPosts?.[0]
+  const totalLatestPosts = latestPosts?.slice(0, 9) ?? []
+
   return (
     <>
       <Metadata name={t('homePage.title')} description={t('homePage.description')} ldJson={[ldJson]} />
-      {lastPost ? <HeaderImage post={lastPost} showPostInfo /> : <div>{t('homePage.noPublishedArticles')}</div>}
+      {headerPost ? <HeaderImage post={headerPost} showPostInfo /> : <div>{t('homePage.noPublishedArticles')}</div>}
 
-      <HomeLatestPosts title={t('latestPosts.title')} categories={categories} posts={latestPosts.slice(0, 9)} />
+      {totalLatestPosts.length > 0 && (
+        <HomeLatestPosts title={t('latestPosts.title')} categories={categories} posts={totalLatestPosts} />
+      )}
     </>
   )
 }

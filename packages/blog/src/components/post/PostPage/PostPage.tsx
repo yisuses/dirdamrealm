@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import { BlogPosting } from 'schema-dts'
 
 import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@components/common'
-import { useGetAbout } from '@hooks/useGetAbout'
+import { useGetData } from '@hooks'
 import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
@@ -19,18 +19,12 @@ import {
   getReadingTime,
   getPlainText,
 } from '@utils'
+import { DATE_FORMAT, getLatestPostsCategoryKey, getPostCommentsKey, getPostKey, QUERY_ABOUT } from '@utils/constants'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
 import TwitterIcon from '../../../../public/icon/twitter.svg'
 import { PostComments } from '../PostComments'
-
-export interface PostPageProps {
-  post: Post
-  comments: Commentary[]
-  sameCategoryPosts: Post[] | undefined
-  postCommentIds: number[]
-}
 
 type ShareButtonProps = {
   label: string
@@ -39,10 +33,30 @@ type ShareButtonProps = {
   onClick?: () => void
 }
 
-export function PostPage({ post, comments, sameCategoryPosts, postCommentIds }: PostPageProps) {
+export function PostPage() {
   const { t } = useTranslation('postPage')
-  const { asPath } = useRouter()
-  const about = useGetAbout()
+  const {
+    asPath,
+    query: { postId },
+  } = useRouter()
+
+  const about = useGetData<About>(QUERY_ABOUT)
+
+  const postKey = getPostKey(Number(postId))
+  const post = useGetData<Post>(postKey)
+
+  if (!post) {
+    return null
+  }
+
+  const latestPostsCategoryKey = getLatestPostsCategoryKey(post.categories?.[0]?.code || '')
+  const latestCategoryPosts = useGetData<Post[]>(latestPostsCategoryKey)
+  const sameCategoryPosts = latestCategoryPosts?.filter(categoryPost => categoryPost.id !== post.id)
+
+  const postCommentIds = post.localizations
+    ? [...post.localizations.map(localization => localization.id), post.id]
+    : [post.id]
+  const comments = useGetData<Commentary[]>(getPostCommentsKey(postCommentIds), [])
 
   const [nativeNavigator, setNativeNavigator] = useState<Navigator>()
   useEffect(() => {
@@ -64,6 +78,13 @@ export function PostPage({ post, comments, sameCategoryPosts, postCommentIds }: 
     summary,
     writer,
   } = post
+
+  const [parsedDate, setParsedDate] = useState<string>(publishedAt.split('T')[0])
+
+  useEffect(() => {
+    setParsedDate(format(parseISO(publishedAt), DATE_FORMAT))
+  }, [publishedAt])
+
   const postUrl = generateLocalePublicUrl(asPath)
   const encodedPostUrl = fixedEncodeURIComponent(postUrl)
   const postSocialTitle = encodeURIComponent(t('postPage.shareTitle', { title }))
@@ -101,7 +122,7 @@ export function PostPage({ post, comments, sameCategoryPosts, postCommentIds }: 
   ))
 
   const extraMetaTags = [
-    { name: 'og:updated_time', content: publishedAt },
+    { name: 'og:updated_time', content: parsedDate },
     { name: 'article:published_time', content: publishedAt },
     { name: 'article:modified_time', content: updatedAt || '' },
     { name: 'article:section', content: categories?.[0].localizedName || '' },
@@ -218,7 +239,7 @@ export function PostPage({ post, comments, sameCategoryPosts, postCommentIds }: 
                   {t('postPage.author', { name: writer?.name })}
                 </Text>
                 <Center h="22px">{dividerLine}</Center>
-                <Text>{format(parseISO(publishedAt), 'dd.MM.yyyy')}</Text>
+                <Text>{parsedDate}</Text>
                 <Center h="22px">{dividerLine}</Center>
                 <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
                 <Center h="22px">{dividerLine}</Center>

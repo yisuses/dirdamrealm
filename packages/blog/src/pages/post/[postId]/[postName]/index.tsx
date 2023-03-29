@@ -7,16 +7,10 @@ import { getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
 import { buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
+import { getLatestPostsCategoryKey, getPostCommentsKey, getPostKey } from '@utils/constants'
 
-const PostPage: NextPage<PostPageProps> = ({ post, comments, sameCategoryPosts, postCommentIds }) => {
-  return (
-    <PostPageComponent
-      post={post}
-      comments={comments}
-      sameCategoryPosts={sameCategoryPosts}
-      postCommentIds={postCommentIds}
-    />
-  )
+const PostPage: NextPage = () => {
+  return <PostPageComponent />
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -24,7 +18,7 @@ export interface UrlParams extends ParsedUrlQuery {
   postName: string
 }
 
-export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorProps, UrlParams> = async ({
+export const getServerSideProps: GetServerSideProps<Record<string, unknown> | WithErrorProps, UrlParams> = async ({
   params,
   res,
   locale,
@@ -40,19 +34,20 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
 
     const postId = Number(params.postId)
     try {
-      const postKey = `post${postId}`
-      queryClient.prefetchQuery([postKey], () => getPostById({ id: postId }))
-      post = await queryClient.ensureQueryData([postKey])
+      const postKey = getPostKey(postId)
+      queryClient.prefetchQuery(postKey, () => getPostById({ id: postId }))
+      post = await queryClient.ensureQueryData(postKey)
     } catch (error) {
       Sentry.captureException(error)
     }
 
+    let errMessage
     if (!post) {
-      const errMessage = `Post with id '${params.postId}' not found.`
-      Sentry.captureException(errMessage)
-      throw new NotFoundError(errMessage)
+      errMessage = `Post with id '${params.postId}' not found.`
     } else if (!post?.publishedAt) {
-      const errMessage = `Post with id '${params.postId}' has not been released yet. It is on draft mode.`
+      errMessage = `Post with id '${params.postId}' has not been released yet. It is on draft mode.`
+    }
+    if (!post || errMessage) {
       Sentry.captureException(errMessage)
       throw new NotFoundError(errMessage)
     }
@@ -90,55 +85,37 @@ export const getServerSideProps: GetServerSideProps<PostPageProps | WithErrorPro
     return handlePageError(error as Error, res)
   }
 
-  let sameCategoryPosts: Post[] | undefined = undefined
   if (post?.categories?.length) {
     try {
-      const postId = Number(params.postId)
-
-      const latestPostsCategoryKey = `latestPostsCategory${postId}`
-      queryClient.prefetchQuery([latestPostsCategoryKey], () =>
+      const latestPostsCategoryKey = getLatestPostsCategoryKey(post.categories[0].code)
+      await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
         getLatestPosts({
           locale: locale as AppLocales,
-          category: post?.categories?.[0]?.code,
+          category: post?.categories?.[0].code,
           limit: 4,
         }),
       )
-
-      const latestCategoryPosts = await queryClient.ensureQueryData<Post[] | undefined>([latestPostsCategoryKey])
-      sameCategoryPosts = latestCategoryPosts?.filter(categoryPost => categoryPost.id !== post?.id)
     } catch (error) {
       Sentry.captureException(error)
     }
   }
 
-  let comments: Commentary[] = []
-  let postIds: number[] = []
   try {
-    postIds = post.localizations ? [...post.localizations.map(localization => localization.id), post.id] : [post.id]
-    const postCommentsKey = ['postComments', postIds.join()]
-    queryClient.prefetchQuery(postCommentsKey, () => getComments({ ids: postIds }))
-    comments = await queryClient.ensureQueryData(postCommentsKey)
+    const postIds = post.localizations
+      ? [...post.localizations.map(localization => localization.id), post.id]
+      : [post.id]
+    const postCommentsKey = getPostCommentsKey(postIds)
+    await queryClient.prefetchQuery(postCommentsKey, () => getComments({ ids: postIds }))
   } catch (error) {
     Sentry.captureException(error)
   }
 
   return {
     props: {
-      post,
-      comments,
-      sameCategoryPosts,
-      postCommentIds: postIds,
       dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'postPage']))),
     },
   }
 }
 
-export default withErrorComponent<PostPageProps>(PostPage)
-
-export type PostPageProps = {
-  post: Post
-  comments: Commentary[]
-  sameCategoryPosts: Post[] | undefined
-  postCommentIds: number[]
-}
+export default withErrorComponent(PostPage)

@@ -6,9 +6,10 @@ import { getCategories, getLatestPosts } from '@api'
 import { withErrorComponent, WithErrorProps, CategoryPage as CategoryPageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
 import { buildCategoryPath, handlePageError, NotFoundError, seoName } from '@utils'
+import { getCategoryCodeKey, getLatestPostsCategoryKey } from '@utils/constants'
 
-const CategoryPage: NextPage<CategoryPageProps> = ({ latestPosts, category }) => {
-  return <CategoryPageComponent latestPosts={latestPosts} category={category} />
+const CategoryPage: NextPage = () => {
+  return <CategoryPageComponent />
 }
 
 export interface UrlParams extends ParsedUrlQuery {
@@ -16,7 +17,7 @@ export interface UrlParams extends ParsedUrlQuery {
   categoryName: string
 }
 
-export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErrorProps, UrlParams> = async ({
+export const getServerSideProps: GetServerSideProps<Record<string, unknown> | WithErrorProps, UrlParams> = async ({
   params,
   res,
   locale,
@@ -30,11 +31,9 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
     }
 
     const categoryCode = params.categoryCode
-    const categoriesKey = `category${categoryCode}`
-    queryClient.prefetchQuery([categoriesKey], () =>
-      getCategories({ locale: locale as AppLocales, code: categoryCode }),
-    )
-    categories = await queryClient.ensureQueryData([categoriesKey])
+    const categoriesKey = getCategoryCodeKey(categoryCode)
+    queryClient.prefetchQuery(categoriesKey, () => getCategories({ locale: locale as AppLocales, code: categoryCode }))
+    categories = await queryClient.ensureQueryData(categoriesKey)
 
     if (categories.length !== 1) {
       throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)
@@ -57,23 +56,20 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps | WithErro
     return handlePageError(error as Error, res)
   }
 
-  const latestPostsRequest = getLatestPosts({ locale: locale as AppLocales, category: params.categoryCode })
-
-  const [responseLatestPost] = await Promise.all([latestPostsRequest])
+  const latestPostsCategoryKey = getLatestPostsCategoryKey(params.categoryCode)
+  await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
+    getLatestPosts({
+      locale: locale as AppLocales,
+      category: params.categoryCode,
+    }),
+  )
 
   return {
     props: {
-      category: categories[0],
-      latestPosts: responseLatestPost || [],
       dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'categoryPage']))),
     },
   }
 }
 
-export default withErrorComponent<CategoryPageProps>(CategoryPage)
-
-export type CategoryPageProps = {
-  category: Category
-  latestPosts: Post[]
-}
+export default withErrorComponent(CategoryPage)

@@ -8,20 +8,19 @@ import { getCategories, getAbout } from '@api'
 import { MainLayout } from '@components'
 import { AppProviders } from 'app-providers'
 
-const queryClient = new QueryClient()
-
 function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
   return (
-    <AppProviders globalProps={globalProps}>
+    <AppProviders globalProps={globalProps} pageProps={pageProps}>
       <MainLayout>
         <NextNProgress color="#F6AD55" options={{ showSpinner: false }} />
-        <Component {...pageProps} globalProps={globalProps} />
+        <Component {...pageProps} />
       </MainLayout>
     </AppProviders>
   )
 }
 
 BlogApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
+  const queryClient = new QueryClient()
   await queryClient.prefetchQuery(['categories'], () =>
     getCategories({ locale: appContext.router.locale as AppLocales }),
   )

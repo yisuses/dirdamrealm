@@ -1,1 +1,0 @@
-export { useGetAbout } from './useGetAbout'

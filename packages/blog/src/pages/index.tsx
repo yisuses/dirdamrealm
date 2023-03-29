@@ -1,31 +1,31 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 
 import { getLatestPosts } from '@api'
-import { withErrorComponent, WithErrorProps, HomePage as HomePageComponent } from '@components'
+import { withErrorComponent, HomePage as HomePageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
+import { QUERY_LATEST_POSTS } from '@utils/constants'
 
-const HomePage: NextPage<HomePageProps> = ({ latestPosts }) => {
-  return <HomePageComponent latestPosts={latestPosts || []} />
+const HomePage: NextPage = () => {
+  return <HomePageComponent />
 }
 
-export const getServerSideProps: GetServerSideProps<HomePageProps | WithErrorProps> = async ({ locale }) => {
-  const latestPostsRequest = getLatestPosts({
-    locale: locale as AppLocales,
-    limit: 18,
-  })
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const queryClient = new QueryClient()
 
-  const [responseLatestPost] = await Promise.all([latestPostsRequest])
+  await queryClient.prefetchQuery(QUERY_LATEST_POSTS, () =>
+    getLatestPosts({
+      locale: locale as AppLocales,
+      limit: 18,
+    }),
+  )
 
   return {
     props: {
-      latestPosts: responseLatestPost,
+      dehydratedState: dehydrate(queryClient),
       ...(locale && (await getServerTranslations(locale, ['common', 'homePage']))),
     },
   }
 }
 
-export default withErrorComponent<HomePageProps>(HomePage)
-
-export type HomePageProps = {
-  latestPosts?: Post[]
-}
+export default withErrorComponent(HomePage)

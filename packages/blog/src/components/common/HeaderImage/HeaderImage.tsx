@@ -6,8 +6,10 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Trans, useTranslation } from 'next-i18next'
+import { useEffect, useState } from 'react'
 
 import { Tag } from '@components/common/Tag'
+import { DATE_FORMAT } from '@utils/constants'
 import { getImageUrlFromMedia } from '@utils/image'
 import { buildPostPath } from '@utils/urlBuilder'
 
@@ -40,6 +42,12 @@ export function HeaderImage({
   const { locale: appLocale } = useRouter()
   const { t } = useTranslation('common')
   const renderedCategories = categories?.slice(0, 3) || []
+  const [parsedDate, setParsedDate] = useState<string>(publishedAt.split('T')[0])
+
+  useEffect(() => {
+    setParsedDate(format(parseISO(publishedAt), DATE_FORMAT))
+  }, [publishedAt])
+
   return (
     <Box>
       <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
@@ -105,7 +113,7 @@ export function HeaderImage({
               fontSize={{ base: '12px', lg: '14px' }}
             >
               <Text mb={{ base: 2, lg: 0 }} lineHeight="24px">
-                {format(parseISO(publishedAt), 'dd.MM.yyyy')}
+                {parsedDate}
               </Text>
               <Divider
                 display={{ base: 'none', lg: 'block' }}

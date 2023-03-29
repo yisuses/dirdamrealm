@@ -2,21 +2,25 @@ import { Box } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
 import { GlobalStyles, Footer, Header, CookieBanner } from '@components'
-import { useGetMainCategories, useGetAbout } from '@hooks'
+import { useGetData } from '@hooks'
 import { buildCategoryPath } from '@utils'
+import { QUERY_ABOUT, QUERY_CATEGORIES } from '@utils/constants'
 
 interface MainLayoutProps {
   children: ReactNode
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const categories = useGetMainCategories().map(category => ({
-    localizedName: category.localizedName,
-    name: category.name,
-    code: category.code,
-    url: buildCategoryPath(category.code, category.localizedName),
-  }))
-  const about = useGetAbout()
+  const categories = useGetData<Category[]>(QUERY_CATEGORIES, [])
+    .filter(category => category.main)
+    .map(category => ({
+      localizedName: category.localizedName,
+      name: category.name,
+      code: category.code,
+      url: buildCategoryPath(category.code, category.localizedName),
+    }))
+  const about = useGetData<About>(QUERY_ABOUT)
+
   return (
     <>
       <GlobalStyles />
