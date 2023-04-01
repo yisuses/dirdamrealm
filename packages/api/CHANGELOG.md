@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/yisuses/whemotion/compare/@whe-api@1.1.0...@whe-api@1.1.1) (2023-04-01)
+
+
+### Features
+
+* add subscriber model ([fc7709c](https://github.com/yisuses/whemotion/commit/fc7709c1ecee197ece8adcf0f78d887abf091270))
+
+
+### Chore
+
+* update dependencies ([c9c5211](https://github.com/yisuses/whemotion/commit/c9c52116ef50a0fd3f0dd8eabfdd65ef8a89bf5f))
+
 ## [1.1.0](https://github.com/yisuses/whemotion/compare/@whe-api@1.0.0...@whe-api@1.1.0) (2022-12-19)
 
 
