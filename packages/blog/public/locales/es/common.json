@@ -7,7 +7,7 @@
     "subscribe": "Suscribirse",
     "theme": "Tema de <link></link>",
     "version": "Versión {{versionNumber}}",
-    "copyright": "\u00A9 {{year}} White Emotion.",
+    "copyright": "© {{year}} White Emotion.",
     "sendAMail": "Enviar un correo electrónico"
   },
   "header": {
@@ -17,8 +17,8 @@
     "menuButtonOpened": "Cerrar menú",
     "changeLanguage": "Cambiar idioma",
     "search": {
-      "title": "Búsqueda de entradas",
-      "inputTitle": "Título",
+      "title": "¿Estás buscando algo en concreto? (título)",
+      "inputTitle": "Buscar por entrada",
       "inputPlaceholder": "Título de la entrada"
     }
   },

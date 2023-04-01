@@ -8,7 +8,7 @@
     "subscribe": "Subscribe",
     "theme": "Theme by <link></link>",
     "version": "Version {{versionNumber}}",
-    "copyright": "\u00A9 {{year}} White Emotion.",
+    "copyright": "© {{year}} White Emotion.",
     "sendAMail": "Send an e-mail"
   },
   "header": {
@@ -18,8 +18,8 @@
     "menuButtonOpened": "Close menu",
     "changeLanguage": "Change language",
     "search": {
-      "title": "Search post",
-      "inputTitle": "Title",
+      "title": "Are you looking for something specific? (title)",
+      "inputTitle": "Search by post",
       "inputPlaceholder": "Post title"
     }
   },
