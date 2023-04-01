@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/yisuses/whemotion/compare/@whe-blog@1.1.0...@whe-blog@1.1.1) (2023-04-01)
+
+
+### Features
+
+* fix build problems ([66ce705](https://github.com/yisuses/whemotion/commit/66ce7051c909645be140d0a3f1ef52320add72af))
+* improve api calls using cache ([#95](https://github.com/yisuses/whemotion/issues/95)) ([cb97d07](https://github.com/yisuses/whemotion/commit/cb97d07b1d9d44c76dc42c4b72e4ff1254e7aa23))
+* improve modal ([#96](https://github.com/yisuses/whemotion/issues/96)) ([968e3f4](https://github.com/yisuses/whemotion/commit/968e3f4250ab652f89663e6d3542bbe714eb9b2a))
+* improve modal styles ([a5bb6ac](https://github.com/yisuses/whemotion/commit/a5bb6acadcaab2fccf88f3dc90b71e0ec1deae51))
+* update logo ([96ebec5](https://github.com/yisuses/whemotion/commit/96ebec5c370e40af0823f4b5b54e5ccec0a6736a))
+
+
+### Bug Fixes
+
+* algolia not parsing array relations correctly ([4462bff](https://github.com/yisuses/whemotion/commit/4462bff41402a2a425a8dba951dbf20f85892514))
+* crossOrigin property ([22fc1b0](https://github.com/yisuses/whemotion/commit/22fc1b0a42e69968c462a8b043af9000b8fe9952))
+* not found page ([ff77374](https://github.com/yisuses/whemotion/commit/ff773742dbf1656fa75b854ecb889aad3bd8f3a6))
+
+
+### Chore
+
+* update dependencies ([c9c5211](https://github.com/yisuses/whemotion/commit/c9c52116ef50a0fd3f0dd8eabfdd65ef8a89bf5f))
+
 ## [1.1.0](https://github.com/yisuses/whemotion/compare/@whe-blog@1.0.0...@whe-blog@1.1.0) (2022-12-19)
 
 
