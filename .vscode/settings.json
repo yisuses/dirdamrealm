@@ -5,5 +5,8 @@
     }
   ],
   "cSpell.words": ["algoliasearch"],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "i18n-ally.localesPaths": ["packages/blog/public/locales", "packages/blog/src/core/i18n"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sourceLanguage": "en"
 }

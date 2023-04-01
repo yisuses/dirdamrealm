@@ -31,22 +31,26 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
 
   const searchResultOffset = searchResultsRef.current?.offsetTop
   return (
-    <Box overflow="hidden">
+    <Box overflow="hidden" p="8">
       <FormControl>
-        <FormLabel>{inputTitle}</FormLabel>
+        <FormLabel fontWeight="600">{inputTitle}</FormLabel>
         <Input
-          variant="flushed"
+          variant="outline"
           size="md"
           placeholder={inputPlaceholder}
           onChange={event => setSearchValue(event.target.value)}
           value={searchValue}
+          px="8px"
+          _placeholder={{
+            fontStyle: 'italic',
+          }}
         />
       </FormControl>
       <Box
         mt="12px"
         ref={searchResultsRef}
         width="100%"
-        height={{ base: `calc(100vh - ${searchResultOffset}px - 12px - 90px)`, md: '520px' }}
+        height={{ base: `calc(100vh - ${searchResultOffset}px - 12px - 90px)`, md: '400px' }}
         display="flex"
         flexDir="column"
         flexShrink={0}

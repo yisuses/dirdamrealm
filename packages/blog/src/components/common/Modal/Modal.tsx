@@ -40,8 +40,12 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
         minWidth={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
         height={{ md: '700px' }}
       >
-        {title && <ModalHeader>{title}</ModalHeader>}
-        <ModalCloseButton zIndex={20} onClick={onClose} />
+        {title && (
+          <ModalHeader p={16} fontSize="2xl" fontWeight="bold" backgroundColor="blackAlpha.800" color="white">
+            {title}
+          </ModalHeader>
+        )}
+        <ModalCloseButton zIndex={20} onClick={onClose} color="white" />
         <ModalBody>{children}</ModalBody>
       </ModalContent>
     </ChakraModal>
