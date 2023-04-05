@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": [
+      "jest",
+      "@testing-library/jest-dom",
+      "@testing-library/jest-dom/extend-expect",
+      "jest-styled-components",
+      "node"
+    ],
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ES2020"],
+    "target": "ES2020"
+  },
+  "include": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
+    "**/*.test.tsx",
+    "**/*.spec.js",
+    "**/*.test.js",
+    "**/*.spec.jsx",
+    "**/*.test.jsx",
+    "**/*.d.ts"
+  ]
+}

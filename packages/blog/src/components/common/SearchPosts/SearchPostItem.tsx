@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
 import { DATE_FORMAT } from '@utils/constants'
-import { getImageUrlFromMedia } from '@utils/image'
+import { getImageUrlFromMedia } from '@utils/image/image'
 import { buildPostPath } from '@utils/urlBuilder'
 import { Tag } from '../Tag'
 

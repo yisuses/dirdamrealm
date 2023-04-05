@@ -1,5 +1,5 @@
 import { DataProp } from 'editorjs-blocks-react-renderer'
-import { stripTags } from './stripTags'
+import { stripTags } from '../stripTags/stripTags'
 
 export function getPlainText(content: DataProp) {
   const plainText = content.blocks
