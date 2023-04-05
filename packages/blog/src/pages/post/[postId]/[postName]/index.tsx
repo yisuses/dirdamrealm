@@ -87,12 +87,13 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
 
   if (post?.categories?.length) {
     try {
-      const latestPostsCategoryKey = getLatestPostsCategoryKey(post.categories[0].code)
+      const categoryCode = post.categories[0].code
+      const latestPostsCategoryKey = getLatestPostsCategoryKey(categoryCode)
       await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
         getLatestPosts({
           locale: locale as AppLocales,
-          category: post?.categories?.[0].code,
-          limit: 4,
+          category: categoryCode,
+          limit: 8,
         }),
       )
     } catch (error) {

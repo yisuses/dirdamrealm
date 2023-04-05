@@ -82,7 +82,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
           ))}
         </HStack>
       )}
-      <PostGrid posts={renderedPosts.slice(0, 8)} />
+      <PostGrid posts={renderedPosts} />
     </Flex>
   )
 }
