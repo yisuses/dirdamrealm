@@ -273,7 +273,7 @@ export function PostPage() {
       {sameCategoryPosts && sameCategoryPosts?.length > 0 && (
         <Flex flexDir="column" mt={{ base: '60px' }} mb="60px" px="20px">
           <Heading fontFamily="Lora">{t('postPage.sameCategoryPosts')}</Heading>
-          <PostGrid posts={sameCategoryPosts} />
+          <PostGrid posts={sameCategoryPosts} limit={4} />
         </Flex>
       )}
     </>

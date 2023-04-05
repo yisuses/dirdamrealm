@@ -7,9 +7,10 @@ import { getImageUrlFromMedia } from '@utils'
 
 interface PostGridProps {
   posts: Post[]
+  limit?: number
 }
 
-export function PostGrid({ posts }: PostGridProps) {
+export function PostGrid({ posts, limit = 8 }: PostGridProps) {
   const { locale } = useRouter()
   const { t } = useTranslation('common')
 
@@ -23,26 +24,28 @@ export function PostGrid({ posts }: PostGridProps) {
       mt={8}
       justifyItems="center"
     >
-      {posts.map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl, locale: postLocale }) => (
-        <PostCard
-          isSameLocale={locale === postLocale}
-          locale={t(`localization.${postLocale}`)}
-          key={id}
-          id={id}
-          categories={
-            categories
-              ? categories.map(({ code, localizedName }) => ({
-                  key: code,
-                  label: t(`categories.${code as PostCategoryCodes}`) || localizedName,
-                }))
-              : []
-          }
-          date={publishedAt}
-          imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl })}
-          title={title}
-          description={summary}
-        />
-      ))}
+      {posts
+        .slice(0, limit)
+        .map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl, locale: postLocale }) => (
+          <PostCard
+            isSameLocale={locale === postLocale}
+            locale={t(`localization.${postLocale}`)}
+            key={id}
+            id={id}
+            categories={
+              categories
+                ? categories.map(({ code, localizedName }) => ({
+                    key: code,
+                    label: t(`categories.${code as PostCategoryCodes}`) || localizedName,
+                  }))
+                : []
+            }
+            date={publishedAt}
+            imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl })}
+            title={title}
+            description={summary}
+          />
+        ))}
     </SimpleGrid>
   )
 }
