@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/layout'
 import { useQuery } from '@tanstack/react-query'
 import { useState, useRef } from 'react'
 
-import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
+import { getAlgoliaPosts } from '@api/post'
 import { useDebounce } from '@hooks/useDebounce'
 import { SearchPostResultItem } from './SearchPostItem'
 

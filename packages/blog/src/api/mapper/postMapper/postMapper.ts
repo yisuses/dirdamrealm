@@ -2,9 +2,9 @@ import * as Sentry from '@sentry/nextjs'
 import { DataProp } from 'editorjs-blocks-react-renderer'
 
 import { ApiError } from '@utils'
-import { categoryMapper, algoliaCategoryMapper } from './categoryMapper'
-import { mediaMapper } from './mediaMapper'
-import { writerMapper } from './writerMapper'
+import { categoryMapper, algoliaCategoryMapper } from '../categorymapper/categoryMapper'
+import { mediaMapper } from '../mediaMapper/mediaMapper'
+import { writerMapper } from '../writterMapper/writerMapper'
 
 export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post => {
   const { id, attributes } = postEntity
