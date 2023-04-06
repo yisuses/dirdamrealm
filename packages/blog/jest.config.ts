@@ -1,31 +1,18 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import path from 'path'
-import { getTsconfig } from 'get-tsconfig'
 import { pathsToModuleNameMapper } from 'ts-jest'
 import packageJson from './package.json'
+import { compilerOptions } from './tsconfig.json'
 
-const tsConfigFile = 'tsconfig.spec.json'
-
-const getTsConfigBasePaths = (tsConfigFile: string) => {
-  const parsedTsConfig = getTsconfig(tsConfigFile)
-  if (parsedTsConfig === null) {
-    throw new Error(`Cannot find tsconfig file: ${tsConfigFile}`)
-  }
-  const tsPaths = parsedTsConfig.config.compilerOptions?.paths
+const getTsConfigBasePaths = () => {
+  const tsPaths = compilerOptions.paths
   return tsPaths
     ? pathsToModuleNameMapper(tsPaths, {
         prefix: '<rootDir>/src',
       })
     : {}
 }
-
-console.log({
-  '^.+\\.(css|less|sass|scss)$': path.resolve(__dirname, './jest/file-mock.js'),
-  '^.+\\.(png|jpg|gif|ttf|woff|woff2|mp4)$': path.resolve(__dirname, './jest/file-mock.js'),
-  ...getTsConfigBasePaths(tsConfigFile),
-})
-console.log(__dirname)
 
 export default {
   displayName: `${packageJson.name}:unit`,
@@ -50,7 +37,7 @@ export default {
   moduleNameMapper: {
     '^.+\\.(css|less|sass|scss)$': path.resolve(__dirname, './jest/file-mock.js'),
     '^.+\\.(png|jpg|gif|ttf|woff|woff2|mp4)$': path.resolve(__dirname, './jest/file-mock.js'),
-    ...getTsConfigBasePaths(tsConfigFile),
+    ...getTsConfigBasePaths(),
   },
   collectCoverage: true,
   collectCoverageFrom: [

@@ -11103,7 +11103,6 @@ __metadata:
     eslint-plugin-storybook: 0.6.11
     eslint-plugin-testing-library: 5.10.2
     framer-motion: 10.8.5
-    get-tsconfig: 4.5.0
     html-react-parser: 3.0.13
     i18next: 22.4.13
     i18next-browser-languagedetector: 7.0.1
@@ -18286,13 +18285,6 @@ __metadata:
     call-bind: ^1.0.2
     get-intrinsic: ^1.1.1
   checksum: 9ceff8fe968f9270a37a1f73bf3f1f7bda69ca80f4f80850670e0e7b9444ff99323f7ac52f96567f8b5f5fbe7ac717a0d81d3407c7313e82810c6199446a5247
-  languageName: node
-  linkType: hard
-
-"get-tsconfig@npm:4.5.0":
-  version: 4.5.0
-  resolution: "get-tsconfig@npm:4.5.0"
-  checksum: 687ee2bd69a5a07db2e2edeb4d6c41c3debb38f6281a66beb643e3f5b520252e27fcbbb5702bdd9a5f05dcf8c1d2e0150a4d8a960ad75cbdea74e06a51e91b02
   languageName: node
   linkType: hard
 
