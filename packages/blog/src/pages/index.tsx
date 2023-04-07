@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { getLatestPosts } from '@api'
 import { withErrorComponent, HomePage as HomePageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
-import { QUERY_LATEST_POSTS } from '@utils/constants'
+import { getLatestPostsKey } from '@utils/constants'
 
 const HomePage: NextPage = () => {
   return <HomePageComponent />
@@ -13,7 +13,7 @@ const HomePage: NextPage = () => {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(QUERY_LATEST_POSTS, () =>
+  await queryClient.prefetchQuery(getLatestPostsKey('HomePage'), () =>
     getLatestPosts({
       locale: locale as AppLocales,
       limit: 18,

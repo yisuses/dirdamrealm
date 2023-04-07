@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 
 import { getLatestPosts } from '@api'
 import { PostGrid } from '@components/common'
+import { getLatestPostsKey } from '@utils/constants'
 
 interface HomeLatestPostsProps {
   title: string
@@ -22,7 +23,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   const headerPost = posts[0]
 
   const { data: queriedPosts } = useQuery(
-    ['latestPosts', selectedCategory],
+    getLatestPostsKey(selectedCategory),
     () =>
       getLatestPosts({
         category: selectedCategory,

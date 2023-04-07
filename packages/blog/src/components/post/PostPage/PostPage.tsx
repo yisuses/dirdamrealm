@@ -19,7 +19,7 @@ import {
   getReadingTime,
   getPlainText,
 } from '@utils'
-import { DATE_FORMAT, getLatestPostsCategoryKey, getPostCommentsKey, getPostKey, QUERY_ABOUT } from '@utils/constants'
+import { DATE_FORMAT, getLatestPostsKey, getPostCommentsKey, getPostKey, QUERY_ABOUT } from '@utils/constants'
 import FacebookIcon from '../../../../public/icon/facebook.svg'
 import LinkedinIcon from '../../../../public/icon/linkedin.svg'
 import ShareIcon from '../../../../public/icon/share.svg'
@@ -49,7 +49,7 @@ export function PostPage() {
     return null
   }
 
-  const latestPostsCategoryKey = getLatestPostsCategoryKey(post.categories?.[0]?.code || '')
+  const latestPostsCategoryKey = getLatestPostsKey(post.categories?.[0]?.code)
   const latestCategoryPosts = useGetData<Post[]>(latestPostsCategoryKey)
   const sameCategoryPosts = latestCategoryPosts?.filter(categoryPost => categoryPost.id !== post.id)
 

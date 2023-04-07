@@ -42,11 +42,13 @@ export default {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
+    '!coverage',
     '!*.config.js',
     '!jest.config.ts',
     '!*.d.ts',
     '!**/pages/*_*.tsx',
     '!.storybook/**',
+    '!**/utils/storybook/**',
     '!**/*.stories.tsx',
     '!**/src/index.ts',
     '!**/**.mock.{ts,tsx}',

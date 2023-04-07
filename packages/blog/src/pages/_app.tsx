@@ -6,6 +6,7 @@ import NextNProgress from 'nextjs-progressbar'
 
 import { getCategories, getAbout } from '@api'
 import { MainLayout } from '@components'
+import { QUERY_ABOUT, QUERY_CATEGORIES } from '@utils/constants'
 import { AppProviders } from 'app-providers'
 
 function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
@@ -21,10 +22,10 @@ function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
 
 BlogApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(['categories'], () =>
+  await queryClient.prefetchQuery(QUERY_CATEGORIES, () =>
     getCategories({ locale: appContext.router.locale as AppLocales }),
   )
-  await queryClient.prefetchQuery(['about'], getAbout)
+  await queryClient.prefetchQuery(QUERY_ABOUT, getAbout)
 
   return {
     globalProps: {

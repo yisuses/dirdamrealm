@@ -6,7 +6,7 @@ import { getCategories, getLatestPosts } from '@api'
 import { withErrorComponent, WithErrorProps, CategoryPage as CategoryPageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
 import { buildCategoryPath, handlePageError, NotFoundError, seoName } from '@utils'
-import { getCategoryCodeKey, getLatestPostsCategoryKey } from '@utils/constants'
+import { getCategoryCodeKey, getLatestPostsKey } from '@utils/constants'
 
 const CategoryPage: NextPage = () => {
   return <CategoryPageComponent />
@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
     return handlePageError(error as Error, res)
   }
 
-  const latestPostsCategoryKey = getLatestPostsCategoryKey(params.categoryCode)
+  const latestPostsCategoryKey = getLatestPostsKey(params.categoryCode)
   await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
     getLatestPosts({
       locale: locale as AppLocales,

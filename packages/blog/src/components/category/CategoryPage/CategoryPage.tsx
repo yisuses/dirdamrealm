@@ -5,7 +5,7 @@ import { ItemList, WebPage } from 'schema-dts'
 import { HeaderImage, Metadata } from '@components/common'
 import { useGetData, useGetLocalePublicUrl } from '@hooks'
 import { buildCategoryPath, buildPostPath } from '@utils'
-import { getCategoryCodeKey, getLatestPostsCategoryKey } from '@utils/constants'
+import { getCategoryCodeKey, getLatestPostsKey } from '@utils/constants'
 import { CategoryLatestPosts } from '../CategoryLatestPosts'
 
 export function CategoryPage() {
@@ -16,7 +16,7 @@ export function CategoryPage() {
     query: { categoryCode },
   } = useRouter()
 
-  const latestPostsCategoryKey = getLatestPostsCategoryKey(String(categoryCode))
+  const latestPostsCategoryKey = getLatestPostsKey(String(categoryCode))
   const latestPosts = useGetData<Post[]>(latestPostsCategoryKey, [])
   const lastPost = latestPosts?.[0]
   const categoriesKey = getCategoryCodeKey(categoryCode as string)
