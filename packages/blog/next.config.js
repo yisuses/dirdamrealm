@@ -175,37 +175,6 @@ const nextConfig = {
       }),
     )
 
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: { and: [/\.(js|ts)x?$/] },
-      use: [
-        {
-          loader: '@svgr/webpack',
-          // https://react-svgr.com/docs/webpack/#passing-options
-          options: {
-            svgo: true,
-            // @link https://github.com/svg/svgo#configuration
-            svgoConfig: {
-              plugins: [
-                {
-                  name: 'preset-default',
-                  params: {
-                    overrides: { removeViewBox: false },
-                  },
-                },
-              ],
-              multipass: false,
-              datauri: 'base64',
-              js2svg: {
-                indent: 2,
-                pretty: false,
-              },
-            },
-          },
-        },
-      ],
-    })
-
     return config
   },
 }

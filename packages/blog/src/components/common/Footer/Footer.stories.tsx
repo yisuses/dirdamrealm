@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import { Footer, FooterProps } from './Footer'
 
 export default {
@@ -19,7 +19,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story<FooterProps> = args => <Footer {...args} />
+const Template: StoryFn<FooterProps> = args => <Footer {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -28,6 +28,24 @@ Default.args = {
     { url: '/projects', name: 'Projects', localizedName: 'Projects', code: 'PROJ' },
     { url: '/team', name: 'Team', localizedName: 'Team', code: 'TEAM' },
   ],
+  about: {
+    id: 2,
+    email: 'bla',
+    instagram: 'bla',
+    instagramUrl: 'bla',
+    twitter: 'bla',
+    twitterUrl: 'bla',
+    name: 'bla',
+    display: true,
+    linkedin: 'bla',
+    linkedinUrl: 'bla',
+    facebook: 'bla',
+    facebookUrl: 'bla',
+    description: 'bla',
+    createdAt: 'bla',
+    updatedAt: 'bla',
+    locale: 'es',
+  },
 }
 
 const StyledTemplate = styled.div`

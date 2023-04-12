@@ -1,12 +1,13 @@
 import { SimpleGrid, Stack, Text, Box, Container, Link, LinkProps } from '@chakra-ui/layout'
+import FacebookLogo from '@iconify/icons-ion/logo-facebook'
+import InstagramLogo from '@iconify/icons-ion/logo-instagram'
+import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
+import TwitterLogo from '@iconify/icons-ion/logo-twitter'
+import { IconifyIcon, Icon } from '@iconify/react'
 import getConfig from 'next/config'
 import { Trans, useTranslation } from 'next-i18next'
 
 import { SocialButton } from '@components'
-import FacebookIcon from '../../../../public/icon/facebook.svg'
-import InstagramIcon from '../../../../public/icon/instagram.svg'
-import LinkedinIcon from '../../../../public/icon/linkedin.svg'
-import TwitterIcon from '../../../../public/icon/twitter.svg'
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
 
@@ -31,12 +32,12 @@ const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
 export function Footer({ categories, about }: FooterProps) {
   const { t } = useTranslation('common')
 
-  const socials: { label: string; href: string; icon: React.FC<React.SVGProps<SVGSVGElement>> }[] = []
+  const socials: { label: string; href: string; icon: IconifyIcon }[] = []
 
-  if (about.twitterUrl) socials.push({ label: 'Twitter', href: about.twitterUrl, icon: TwitterIcon })
-  if (about.facebookUrl) socials.push({ label: 'Facebook', href: about.facebookUrl, icon: FacebookIcon })
-  if (about.instagramUrl) socials.push({ label: 'Instagram', href: about.instagramUrl, icon: InstagramIcon })
-  if (about.linkedinUrl) socials.push({ label: 'Linkedin', href: about.linkedinUrl, icon: LinkedinIcon })
+  if (about.twitterUrl) socials.push({ label: 'Twitter', href: about.twitterUrl, icon: TwitterLogo })
+  if (about.facebookUrl) socials.push({ label: 'Facebook', href: about.facebookUrl, icon: FacebookLogo })
+  if (about.instagramUrl) socials.push({ label: 'Instagram', href: about.instagramUrl, icon: InstagramLogo })
+  if (about.linkedinUrl) socials.push({ label: 'Linkedin', href: about.linkedinUrl, icon: LinkedinLogo })
 
   return (
     <Box bg="gray.900" color="gray.50" w="full">
@@ -73,9 +74,9 @@ export function Footer({ categories, about }: FooterProps) {
             <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
             {about.display && socials.length && (
               <Stack direction="row" spacing={6} paddingBottom="2">
-                {socials.map(({ label, href, icon: Icon }, index) => (
+                {socials.map(({ label, href, icon }, index) => (
                   <SocialButton key={index} label={label} href={href}>
-                    <Icon width={30} height={30} />
+                    <Icon icon={icon} width={30} height={30} />
                   </SocialButton>
                 ))}
               </Stack>
