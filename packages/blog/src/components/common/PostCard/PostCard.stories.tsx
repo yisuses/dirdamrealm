@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import { PostCard, PostCardProps } from './PostCard'
 
 export default {
@@ -30,7 +30,7 @@ const StyledContainer = styled.div`
   margin-right: auto;
 `
 
-const Template: Story<PostCardProps> = args => <PostCard {...args} />
+const Template: StoryFn<PostCardProps> = args => <PostCard {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

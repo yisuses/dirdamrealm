@@ -11,7 +11,7 @@
     "test": "jest --passWithNoTests",
     "start:storybook": "storybook dev -p 9000",
     "clean:storybook": "rm -rf ./build",
-    "build:storybook": "yarn clean:storybook && yarn build-storybook -o build",
+    "build:storybook": "yarn clean:storybook && yarn storybook build -o build",
     "gen:theme-typings": "chakra-cli tokens ./src/themes/chakra.theme.ts",
     "postinstall": "yarn gen:theme-typings",
     "release": "standard-version"
