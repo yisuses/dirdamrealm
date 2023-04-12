@@ -1,6 +1,11 @@
 /* eslint-disable import/no-duplicates */
 import { useColorModeValue } from '@chakra-ui/color-mode'
 import { Text, Box, Divider as DividerLine, Flex, Center, Heading, Stack } from '@chakra-ui/layout'
+import FacebookLogo from '@iconify/icons-ion/logo-facebook'
+import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
+import TwitterLogo from '@iconify/icons-ion/logo-twitter'
+import ShareLogo from '@iconify/icons-ion/share-social-sharp'
+import { Icon, IconifyIcon } from '@iconify/react'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import { useRouter } from 'next/router'
@@ -20,15 +25,11 @@ import {
   getPlainText,
 } from '@utils'
 import { DATE_FORMAT, getLatestPostsKey, getPostCommentsKey, getPostKey, QUERY_ABOUT } from '@utils/constants'
-import FacebookIcon from '../../../../public/icon/facebook.svg'
-import LinkedinIcon from '../../../../public/icon/linkedin.svg'
-import ShareIcon from '../../../../public/icon/share.svg'
-import TwitterIcon from '../../../../public/icon/twitter.svg'
 import { PostComments } from '../PostComments'
 
 type ShareButtonProps = {
   label: string
-  icon: React.FC<React.SVGProps<SVGSVGElement>>
+  icon: IconifyIcon
   href?: string
   onClick?: () => void
 }
@@ -93,31 +94,31 @@ export function PostPage() {
     {
       label: t('postPage.share', { socialNetwork: 'Twitter' }),
       href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${encodedPostUrl}`,
-      icon: TwitterIcon,
+      icon: TwitterLogo,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Facebook' }),
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl}`,
-      icon: FacebookIcon,
+      icon: FacebookLogo,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Linkedin' }),
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedPostUrl}`,
-      icon: LinkedinIcon,
+      icon: LinkedinLogo,
     },
   ]
 
   if (nativeNavigator && nativeNavigator.share !== undefined) {
     shareButtonsData.push({
       label: t('postPage.share', { socialNetwork: '...' }),
-      icon: ShareIcon,
+      icon: ShareLogo,
       onClick: () => nativeNavigator.share({ url: postUrl }),
     })
   }
 
-  const socialButtons = shareButtonsData.map(({ label, href, icon: Icon, onClick }, index) => (
+  const socialButtons = shareButtonsData.map(({ label, href, icon, onClick }, index) => (
     <SocialButton key={index} label={label} href={href} onClick={onClick}>
-      <Icon width={24} height={24} />
+      <Icon icon={icon} width={24} height={24} />
     </SocialButton>
   ))
 
