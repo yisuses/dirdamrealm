@@ -12,18 +12,18 @@
     "release": "standard-version"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.21.3",
-    "@types/jest": "29.5.0",
+    "@babel/eslint-parser": "7.21.8",
+    "@types/jest": "29.5.1",
     "jest": "29.5.0"
   },
   "dependencies": {
     "@mattie-bundle/strapi-plugin-search": "1.0.0-alpha.3",
     "@mattie-bundle/strapi-provider-search-algolia": "1.0.0-alpha.3",
-    "@strapi/plugin-i18n": "4.9.0",
-    "@strapi/plugin-users-permissions": "4.9.0",
-    "@strapi/provider-email-nodemailer": "4.9.0",
-    "@strapi/provider-upload-cloudinary": "4.9.0",
-    "@strapi/strapi": "4.9.0",
+    "@strapi/plugin-i18n": "4.10.2",
+    "@strapi/plugin-users-permissions": "4.10.2",
+    "@strapi/provider-email-nodemailer": "4.10.2",
+    "@strapi/provider-upload-cloudinary": "4.10.2",
+    "@strapi/strapi": "4.10.2",
     "pg": "8.10.0",
     "standard-version": "9.5.0",
     "strapi-plugin-react-editorjs": "2.0.2"
