@@ -4,8 +4,9 @@ import { Box } from '@chakra-ui/layout'
 import { useQuery } from '@tanstack/react-query'
 import { useState, useRef } from 'react'
 
-import { getAlgoliaPosts } from '@api/post/getAlgoliaPosts'
+import { getAlgoliaPosts } from '@api/post'
 import { useDebounce } from '@hooks/useDebounce'
+import { getAlgoliaPostKey } from '@utils/constants'
 import { SearchPostResultItem } from './SearchPostItem'
 
 type SearchPostsProps = {
@@ -19,7 +20,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
   const searchResultsRef = useRef<HTMLDivElement>(null)
 
   const { data: postResults } = useQuery(
-    ['algoliaPosts', { debouncedValue }],
+    getAlgoliaPostKey(debouncedValue),
     () => getAlgoliaPosts({ query: debouncedValue }).then(posts => posts.filter(post => post.publishedAt)),
     {
       enabled: debouncedValue.length > 0,

@@ -7,7 +7,7 @@ import { getLatestPosts, getPostById, getComments } from '@api'
 import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
 import { getServerTranslations } from '@core/i18n'
 import { buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
-import { getLatestPostsCategoryKey, getPostCommentsKey, getPostKey } from '@utils/constants'
+import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@utils/constants'
 
 const PostPage: NextPage = () => {
   return <PostPageComponent />
@@ -88,7 +88,7 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
   if (post?.categories?.length) {
     try {
       const categoryCode = post.categories[0].code
-      const latestPostsCategoryKey = getLatestPostsCategoryKey(categoryCode)
+      const latestPostsCategoryKey = getLatestPostsKey(categoryCode)
       await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
         getLatestPosts({
           locale: locale as AppLocales,

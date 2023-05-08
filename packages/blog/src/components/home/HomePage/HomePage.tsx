@@ -4,7 +4,7 @@ import { WebPage } from 'schema-dts'
 import { Metadata, HeaderImage } from '@components/common'
 import { useGetData } from '@hooks'
 import { publicUrl } from '@utils'
-import { QUERY_CATEGORIES, QUERY_LATEST_POSTS } from '@utils/constants'
+import { QUERY_CATEGORIES, getLatestPostsKey } from '@utils/constants'
 import { HomeLatestPosts } from '../HomeLatestPosts'
 
 export function HomePage() {
@@ -16,7 +16,7 @@ export function HomePage() {
     url: publicUrl(''),
   }
 
-  const latestPosts = useGetData<Post[]>(QUERY_LATEST_POSTS)
+  const latestPosts = useGetData<Post[]>(getLatestPostsKey('HomePage'))
   const categories = useGetData<Category[]>(QUERY_CATEGORIES, [])
   const headerPost = latestPosts?.[0]
   const totalLatestPosts = latestPosts?.slice(0, 9) ?? []

@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 
 import { Tag } from '@components/common/Tag'
 import { DATE_FORMAT } from '@utils/constants'
-import { getImageUrlFromMedia } from '@utils/image'
+import { getImageUrlFromMedia } from '@utils/image/image'
 import { buildPostPath } from '@utils/urlBuilder'
 
 interface HeaderImageProps {

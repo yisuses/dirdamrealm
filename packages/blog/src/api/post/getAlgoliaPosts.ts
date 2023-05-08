@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 import { getAlgoliaClient } from '@api/algoliaClient'
-import { algoliaPostMapper } from '@api/mapper/postMapper'
+import { algoliaPostMapper } from '@api/mapper/postMapper/postMapper'
 
 const { publicRuntimeConfig } = getConfig()
 

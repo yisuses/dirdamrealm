@@ -2,7 +2,9 @@ import { ServerResponse } from 'http'
 import { GetServerSidePropsResult } from 'next'
 
 import { WithErrorProps } from '@components'
-import { ApiError, NotFoundError } from './index'
+
+export class NotFoundError extends Error {}
+export class ApiError extends Error {}
 
 export const handlePageError = (error: Error, response: ServerResponse): GetServerSidePropsResult<WithErrorProps> => {
   if (error instanceof NotFoundError) {

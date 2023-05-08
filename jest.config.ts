@@ -3,6 +3,7 @@ export default {
   coverageDirectory: '<rootDir>/coverage/',
   collectCoverageFrom: [
     '<rootDir>/packages/**/src/**/*.{ts,tsx}',
+    '!<rootDir>/packages/api/**/*.{ts,tsx}',
     '!<rootDir>/packages/**/src/**/*.mocks.{ts,tsx}',
     '!**/*.d.ts',
     '!**/src/index.tsx',

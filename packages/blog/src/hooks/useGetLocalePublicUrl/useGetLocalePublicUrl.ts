@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { publicUrl } from '@utils/generateUrl'
+import { publicUrl } from '@utils/generateUrl/generateUrl'
 
 export function useGetLocalePublicUrl() {
   const { locale, defaultLocale } = useRouter()
