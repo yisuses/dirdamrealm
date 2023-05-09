@@ -380,7 +380,7 @@ module.exports = {
         populate: ['locale'],
       })
       postTitle = title
-      postUrl = `http://localhost:3000/${locale === 'en' ? 'en/' : ''}post/${params.data.post}/${seoName(
+      postUrl = `https://whemotion.com/${locale === 'en' ? 'en/' : ''}post/${params.data.post}/${seoName(
         postTitle,
       )}#comment-${result.id}`
     } catch (err) {
@@ -389,9 +389,7 @@ module.exports = {
 
     try {
       await strapi.plugins['email'].services.email.send({
-        to: '1956josemadrid@gmail.com',
-        from: '1956josemadrid@gmail.com',
-        replyTo: '1956josemadrid@gmail.com',
+        to: process.env.EMAIL_USER,
         subject: `Emoción Blanca: Nuevo comentario de ${result.author} en "${postTitle}"`,
         html: generateNewCommentEmail(result.author, postUrl),
       })
