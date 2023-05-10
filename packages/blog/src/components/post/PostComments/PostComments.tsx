@@ -80,23 +80,24 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
         {t('postPage.comments')}
       </Heading>
       {(data || comments).length > 0 ? (
-        (data || comments).map(comment => (
+        (data || comments).map(({ id, author, createdAt, text }) => (
           <Box
-            key={comment.id}
+            key={id}
             bg={useColorModeValue('blackAlpha.50', 'whiteAlpha.50')}
             borderRadius="md"
             my={2}
             p={5}
             boxShadow="sm"
+            id={`comment-${id}`}
           >
             <Text fontSize="lg" fontWeight="bold" color={useColorModeValue('blue.600', 'blue.300')}>
-              {comment.author}
+              {author}
             </Text>
             <Text fontWeight="bold" color={useColorModeValue('blackAlpha.500', 'whiteAlpha.500')}>
-              {intlFormatDistance(new Date(comment.createdAt), new Date(), { locale })}
+              {intlFormatDistance(new Date(createdAt), new Date(), { locale })}
             </Text>
             <Text fontWeight="normal" mt={5} mb={2} color={useColorModeValue('black', 'white')}>
-              {comment.text}
+              {text}
             </Text>
           </Box>
         ))

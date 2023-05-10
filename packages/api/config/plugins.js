@@ -13,6 +13,18 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  email: {
+    config: {
+      provider: 'sendgrid',
+      providerOptions: {
+        apiKey: env('SENDGRID_API_KEY'),
+      },
+      settings: {
+        defaultFrom: env('EMAIL_USER'),
+        defaultReplyTo: env('EMAIL_USER'),
+      },
+    },
+  },
   search: {
     enabled: true,
     config: {
