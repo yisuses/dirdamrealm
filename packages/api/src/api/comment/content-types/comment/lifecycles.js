@@ -18,8 +18,8 @@ function generateNewCommentEmail(author, url) {
     <style>
       @media only screen and (max-width: 620px) {
         table.body h1 {
-          font-size: 28px !important;
-          margin-bottom: 10px !important;
+          font-size: 28px;
+          margin-bottom: 10px;
         }
 
         table.body p,
@@ -28,41 +28,41 @@ function generateNewCommentEmail(author, url) {
         table.body td,
         table.body span,
         table.body a {
-          font-size: 16px !important;
+          font-size: 16px;
         }
 
         table.body .wrapper,
         table.body .article {
-          padding: 10px !important;
+          padding: 10px;
         }
 
         table.body .content {
-          padding: 0 !important;
+          padding: 0;
         }
 
         table.body .container {
-          padding: 0 !important;
-          width: 100% !important;
+          padding: 0;
+          width: 100%;
         }
 
         table.body .main {
-          border-left-width: 0 !important;
-          border-radius: 0 !important;
-          border-right-width: 0 !important;
+          border-left-width: 0;
+          border-radius: 0;
+          border-right-width: 0;
         }
 
         table.body .btn table {
-          width: 100% !important;
+          width: 100%;
         }
 
         table.body .btn a {
-          width: 100% !important;
+          width: 100%;
         }
 
         table.body .img-responsive {
-          height: auto !important;
-          max-width: 100% !important;
-          width: auto !important;
+          height: auto;
+          max-width: 100%;
+          width: auto;
         }
       }
       @media all {
@@ -80,12 +80,12 @@ function generateNewCommentEmail(author, url) {
         }
 
         .apple-link a {
-          color: inherit !important;
-          font-family: inherit !important;
-          font-size: inherit !important;
-          font-weight: inherit !important;
-          line-height: inherit !important;
-          text-decoration: none !important;
+          color: inherit;
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+          text-decoration: none;
         }
 
         #MessageViewBody a {
@@ -98,12 +98,12 @@ function generateNewCommentEmail(author, url) {
         }
 
         .btn-primary table td:hover {
-          background-color: #34495e !important;
+          background-color: #34495e;
         }
 
         .btn-primary a:hover {
-          background-color: #34495e !important;
-          border-color: #34495e !important;
+          background-color: #34495e;
+          border-color: #34495e;
         }
       }
     </style>
