@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/yisuses/whemotion/compare/@whe-api@1.1.1...@whe-api@1.1.2) (2023-07-01)
+
+
+### Features
+
+* add email notification on comment ([#102](https://github.com/yisuses/whemotion/issues/102)) ([67c161a](https://github.com/yisuses/whemotion/commit/67c161a0f51e49448e119c2961fa99357ad9d3c7))
+
+
+### Chore
+
+* update dependencies ([#100](https://github.com/yisuses/whemotion/issues/100)) ([424f9a7](https://github.com/yisuses/whemotion/commit/424f9a70785947fa08983dfedeb037d5558dc1b1))
+* update dependencies ([#103](https://github.com/yisuses/whemotion/issues/103)) ([0a10361](https://github.com/yisuses/whemotion/commit/0a10361db17918f8c553399ff700b3fa1206938b))
+
 ### [1.1.1](https://github.com/yisuses/whemotion/compare/@whe-api@1.1.0...@whe-api@1.1.1) (2023-04-01)
 
 

@@ -1,4 +1,5 @@
 import { SimpleGrid, Stack, Text, Box, Container, Link, LinkProps } from '@chakra-ui/layout'
+import { useColorModeValue } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import InstagramLogo from '@iconify/icons-ion/logo-instagram'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
@@ -76,7 +77,7 @@ export function Footer({ categories, about }: FooterProps) {
               <Stack direction="row" spacing={6} paddingBottom="2">
                 {socials.map(({ label, href, icon }, index) => (
                   <SocialButton key={index} label={label} href={href}>
-                    <Icon icon={icon} width={30} height={30} />
+                    <Icon icon={icon} width={30} height={30} color={useColorModeValue('white', 'gray.800')} />
                   </SocialButton>
                 ))}
               </Stack>
