@@ -1,4 +1,4 @@
-FROM strapi/strapi as node
+FROM node:18-alpine as node
 
 WORKDIR /app
 
