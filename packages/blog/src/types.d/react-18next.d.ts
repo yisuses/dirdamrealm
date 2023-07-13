@@ -5,6 +5,7 @@
  * @link https://react.i18next.com/latest/typescript
  */
 import 'i18next'
+
 import categoryPage from '../../public/locales/en/categoryPage.json'
 import common from '../../public/locales/en/common.json'
 import errorPage from '../../public/locales/en/errorPage.json'

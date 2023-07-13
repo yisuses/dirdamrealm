@@ -1,7 +1,7 @@
 import { ServerResponse } from 'http'
 import { GetServerSidePropsResult } from 'next'
 
-import { WithErrorProps } from '@components'
+import { WithErrorProps } from '@blog/components'
 
 export class NotFoundError extends Error {}
 export class ApiError extends Error {}

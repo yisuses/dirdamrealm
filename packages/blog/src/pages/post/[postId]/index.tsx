@@ -1,12 +1,12 @@
-import { ParsedUrlQuery } from 'querystring'
 import * as Sentry from '@sentry/nextjs'
 import { QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
-import { getPostById } from '@api'
-import { withErrorComponent, WithErrorProps } from '@components'
-import { buildPostPath, handlePageError, NotFoundError } from '@utils'
-import { getPostKey } from '@utils/constants'
+import { getPostById } from '@blog/api'
+import { WithErrorProps, withErrorComponent } from '@blog/components'
+import { NotFoundError, buildPostPath, handlePageError } from '@blog/utils'
+import { getPostKey } from '@blog/utils/constants'
 
 export interface UrlParams extends ParsedUrlQuery {
   postId: string

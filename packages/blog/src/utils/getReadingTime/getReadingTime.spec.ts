@@ -1,4 +1,5 @@
-import { DataProp, Block } from 'editorjs-blocks-react-renderer'
+import { Block, DataProp } from 'editorjs-blocks-react-renderer'
+
 import { getReadingTime } from './getReadingTime'
 
 const mockContent: DataProp = {

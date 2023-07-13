@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
+
 import { PostCard, PostCardProps } from './PostCard'
 
 export default {

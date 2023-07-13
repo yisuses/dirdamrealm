@@ -3,7 +3,7 @@ import type { NextPage, NextPageContext } from 'next'
 import NextErrorComponent from 'next/error'
 import type { ErrorProps } from 'next/error'
 
-import { ErrorPage } from '@components'
+import { ErrorPage } from '@blog/components'
 
 const sentryIgnoredStatusCodes: number[] = [404, 410]
 

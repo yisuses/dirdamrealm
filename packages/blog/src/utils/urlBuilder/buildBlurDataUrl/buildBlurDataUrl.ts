@@ -1,4 +1,5 @@
-import { shimmer } from '@components'
+import { shimmer } from '@blog/components'
+
 import { toBase64 } from '../..'
 
 export function buildBlurDataUrl(height: number, width: number) {

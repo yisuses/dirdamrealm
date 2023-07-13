@@ -1,4 +1,5 @@
 import { DataProp } from 'editorjs-blocks-react-renderer'
+
 import { getPlainText } from './getPlainText'
 
 const testData: DataProp = {

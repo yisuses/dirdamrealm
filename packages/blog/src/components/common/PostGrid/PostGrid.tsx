@@ -1,9 +1,9 @@
 import { SimpleGrid } from '@chakra-ui/layout'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
-import { PostCard } from '@components/common'
-import { getImageUrlFromMedia } from '@utils'
+import { PostCard } from '@blog/components/common'
+import { getImageUrlFromMedia } from '@blog/utils'
 
 interface PostGridProps {
   posts: Post[]

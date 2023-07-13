@@ -2,14 +2,15 @@
 import { Box, Text } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import { DATE_FORMAT } from '@utils/constants'
-import { getImageUrlFromMedia } from '@utils/image/image'
-import { buildPostPath } from '@utils/urlBuilder'
+import { DATE_FORMAT } from '@blog/utils/constants'
+import { getImageUrlFromMedia } from '@blog/utils/image/image'
+import { buildPostPath } from '@blog/utils/urlBuilder'
+
 import { Tag } from '../Tag'
 
 type SearchPostItemProps = {

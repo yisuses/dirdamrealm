@@ -1,13 +1,13 @@
-import { ParsedUrlQuery } from 'querystring'
 import * as Sentry from '@sentry/nextjs'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { QueryClient, dehydrate } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
-import { getLatestPosts, getPostById, getComments } from '@api'
-import { withErrorComponent, WithErrorProps, PostPage as PostPageComponent } from '@components'
-import { getServerTranslations } from '@core/i18n'
-import { buildPostPath, handlePageError, NotFoundError, seoName } from '@utils'
-import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@utils/constants'
+import { getComments, getLatestPosts, getPostById } from '@blog/api'
+import { PostPage as PostPageComponent, WithErrorProps, withErrorComponent } from '@blog/components'
+import { getServerTranslations } from '@blog/core/i18n'
+import { NotFoundError, buildPostPath, handlePageError, seoName } from '@blog/utils'
+import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
 const PostPage: NextPage = () => {
   return <PostPageComponent />

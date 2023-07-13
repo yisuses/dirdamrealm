@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { apiUrl } from '@utils'
+
+import { apiUrl } from '@blog/utils'
 
 export interface AddCommentProps {
   postId: number

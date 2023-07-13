@@ -1,17 +1,17 @@
 /* eslint-disable import/no-duplicates */
-import { Box, Text, Flex, Divider, Link, LinkProps } from '@chakra-ui/layout'
+import { Box, Divider, Flex, Link, LinkProps, Text } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
+import { Trans, useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { Trans, useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import { Tag } from '@components/common/Tag'
-import { DATE_FORMAT } from '@utils/constants'
-import { getImageUrlFromMedia } from '@utils/image/image'
-import { buildPostPath } from '@utils/urlBuilder'
+import { Tag } from '@blog/components/common/Tag'
+import { DATE_FORMAT } from '@blog/utils/constants'
+import { getImageUrlFromMedia } from '@blog/utils/image/image'
+import { buildPostPath } from '@blog/utils/urlBuilder'
 
 interface HeaderImageProps {
   post: Post

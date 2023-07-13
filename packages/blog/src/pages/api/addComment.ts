@@ -2,7 +2,8 @@ import * as Sentry from '@sentry/nextjs'
 import axios from 'axios'
 import getConfig from 'next/config'
 import { NextApiRequest, NextApiResponse } from 'next/types'
-import { addComment } from '@api/comment'
+
+import { addComment } from '@blog/api/comment'
 
 const { serverRuntimeConfig } = getConfig()
 

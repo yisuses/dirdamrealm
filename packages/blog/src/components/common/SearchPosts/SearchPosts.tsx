@@ -2,11 +2,12 @@ import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
 import { useQuery } from '@tanstack/react-query'
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 
-import { getAlgoliaPosts } from '@api/post'
-import { useDebounce } from '@hooks/useDebounce'
-import { getAlgoliaPostKey } from '@utils/constants'
+import { getAlgoliaPosts } from '@blog/api/post'
+import { useDebounce } from '@blog/hooks/useDebounce'
+import { getAlgoliaPostKey } from '@blog/utils/constants'
+
 import { SearchPostResultItem } from './SearchPostItem'
 
 type SearchPostsProps = {
@@ -57,9 +58,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
         flexShrink={0}
       >
         <Box pr="17px" boxSizing="content-box" width="100%" height="auto" overflowY="auto">
-          {postResults?.map((post, index) => (
-            <SearchPostResultItem key={index} post={post} />
-          ))}
+          {postResults?.map((post, index) => <SearchPostResultItem key={index} post={post} />)}
         </Box>
       </Box>
     </Box>

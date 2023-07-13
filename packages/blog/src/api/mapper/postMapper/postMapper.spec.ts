@@ -1,4 +1,5 @@
-import { postMock, postResponseEnMock } from '@api/post'
+import { postMock, postResponseEnMock } from '@blog/api/post'
+
 import * as writerMapperModule from '../writterMapper/writerMapper'
 import { postMapper } from './postMapper'
 

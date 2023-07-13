@@ -1,7 +1,8 @@
 /* eslint-disable prefer-rest-params */
 import { ColorModeScript } from '@chakra-ui/color-mode'
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 import Script from 'next/script'
+
 import emotionTheme from '../themes/emotion.theme'
 
 export default class Document extends NextDocument {

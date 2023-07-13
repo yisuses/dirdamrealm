@@ -1,4 +1,5 @@
-import { mediaResponseEntity } from '@api/media'
+import { mediaResponseEntity } from '@blog/api/media'
+
 import { mediaMapper } from './mediaMapper'
 
 describe('mediaMapper', () => {

@@ -1,4 +1,4 @@
-import { categoryMapper, algoliaCategoryMapper } from './categoryMapper'
+import { algoliaCategoryMapper, categoryMapper } from './categoryMapper'
 
 describe('categoryMapper', () => {
   const locale: AppLocales = 'en'

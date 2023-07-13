@@ -1,10 +1,10 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { QueryClient, dehydrate } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 
-import { getLatestPosts } from '@api'
-import { withErrorComponent, HomePage as HomePageComponent } from '@components'
-import { getServerTranslations } from '@core/i18n'
-import { getLatestPostsKey } from '@utils/constants'
+import { getLatestPosts } from '@blog/api'
+import { HomePage as HomePageComponent, withErrorComponent } from '@blog/components'
+import { getServerTranslations } from '@blog/core/i18n'
+import { getLatestPostsKey } from '@blog/utils/constants'
 
 const HomePage: NextPage = () => {
   return <HomePageComponent />

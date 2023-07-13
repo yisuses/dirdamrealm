@@ -1,4 +1,5 @@
-import { getServerTranslations } from '@core/i18n'
+import { getServerTranslations } from '@blog/core/i18n'
+
 import Custom500Page from './500'
 
 function CustomErrorPage() {

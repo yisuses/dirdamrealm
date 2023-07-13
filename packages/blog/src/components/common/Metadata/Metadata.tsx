@@ -1,10 +1,10 @@
+import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 import { BlogPosting, ItemList, WebPage } from 'schema-dts'
 
-import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
+import { useGetLocalePublicUrl } from '@blog/hooks/useGetLocalePublicUrl'
 
 const { publicRuntimeConfig } = getConfig()
 

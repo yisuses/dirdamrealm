@@ -4,10 +4,10 @@ import { useColorModeValue } from '@chakra-ui/color-mode'
 import { useDisclosure } from '@chakra-ui/hooks'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Box, Flex, Text, VStack } from '@chakra-ui/layout'
-import { MenuProps, MenuButtonProps } from '@chakra-ui/menu'
+import { MenuButtonProps, MenuProps } from '@chakra-ui/menu'
 import { Drawer, DrawerContent } from '@chakra-ui/modal'
-import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import NextLink from 'next/link'
 
 type HeaderDropdownProps = Omit<MenuProps, 'children'> & {
   categories: {

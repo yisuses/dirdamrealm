@@ -1,13 +1,13 @@
 import '@fontsource/spartan'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
-import type { AppContext, AppProps } from 'next/app'
+import { QueryClient, dehydrate } from '@tanstack/react-query'
+import { AppProviders } from 'app-providers'
 import { appWithTranslation } from 'next-i18next'
+import type { AppContext, AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 
-import { getCategories, getAbout } from '@api'
-import { MainLayout } from '@components'
-import { QUERY_ABOUT, QUERY_CATEGORIES } from '@utils/constants'
-import { AppProviders } from 'app-providers'
+import { getAbout, getCategories } from '@blog/api'
+import { MainLayout } from '@blog/components'
+import { QUERY_ABOUT, QUERY_CATEGORIES } from '@blog/utils/constants'
 
 function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
   return (

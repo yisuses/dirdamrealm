@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Text, Box, Divider as DividerLine, Flex, Center, Heading, Stack } from '@chakra-ui/layout'
+import { Box, Center, Divider as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/layout'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
@@ -8,23 +8,24 @@ import ShareLogo from '@iconify/icons-ion/share-social-sharp'
 import { Icon, IconifyIcon } from '@iconify/react'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { BlogPosting } from 'schema-dts'
 
-import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@components/common'
-import { useGetData } from '@hooks'
-import { useGetLocalePublicUrl } from '@hooks/useGetLocalePublicUrl'
+import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@blog/components/common'
+import { useGetData } from '@blog/hooks'
+import { useGetLocalePublicUrl } from '@blog/hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
-  publicUrl,
-  getImageUrlFromMedia,
   getImageDataFromMedia,
-  getReadingTime,
+  getImageUrlFromMedia,
   getPlainText,
-} from '@utils'
-import { DATE_FORMAT, getLatestPostsKey, getPostCommentsKey, getPostKey, QUERY_ABOUT } from '@utils/constants'
+  getReadingTime,
+  publicUrl,
+} from '@blog/utils'
+import { DATE_FORMAT, QUERY_ABOUT, getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
+
 import { PostComments } from '../PostComments'
 
 type ShareButtonProps = {
@@ -255,9 +256,7 @@ export function PostPage() {
           </Flex>
           <Flex direction="row">
             <Stack direction="row" spacing={2} mt="40px">
-              {categories?.map(category => (
-                <Tag key={category.code} label={category.localizedName} />
-              ))}
+              {categories?.map(category => <Tag key={category.code} label={category.localizedName} />)}
             </Stack>
             <Stack direction="row" spacing={2} ml="auto" pt={8}>
               {socialButtons}

@@ -5,19 +5,8 @@
     "incremental": true,
     "jsx": "preserve",
     "paths": {
-      "@components/*": ["./components/*"],
-      "@components": ["./components"],
-      "@core/*": ["./core/*"],
-      "@core": ["./core"],
-      "@api/*": ["./api/*"],
-      "@api": ["./api"],
-      "@hooks/*": ["./hooks/*"],
-      "@hooks": ["./hooks"],
-      "@pages/*": ["./pages/*"],
-      "@pages": ["./pages"],
-      "@themes/*": ["./themes/*"],
-      "@utils/*": ["./utils/*"],
-      "@utils": ["./utils"]
+      "@blog": ["./"],
+      "@blog/*": ["./*"]
     }
   },
   "exclude": [".next", "next-env.d.ts"],

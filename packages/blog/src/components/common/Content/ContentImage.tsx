@@ -2,7 +2,7 @@ import { Box, Text } from '@chakra-ui/layout'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import NextImage from 'next/image'
 
-import { buildBlurDataUrl } from '@utils'
+import { buildBlurDataUrl } from '@blog/utils'
 
 interface ContentImageBlockData {
   caption?: string
