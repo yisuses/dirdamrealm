@@ -1,4 +1,4 @@
-import { handlePageError, ApiError, NotFoundError } from './handlePageError'
+import { ApiError, NotFoundError, handlePageError } from './handlePageError'
 
 describe('handlePageError', () => {
   const response = {

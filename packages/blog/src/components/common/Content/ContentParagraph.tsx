@@ -1,6 +1,6 @@
 import { Text } from '@chakra-ui/layout'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
-import HTMLReactParser, { HTMLReactParserOptions, Element, domToReact } from 'html-react-parser'
+import HTMLReactParser, { Element, HTMLReactParserOptions, domToReact } from 'html-react-parser'
 
 export interface ContentParagraphBlockData {
   text: string

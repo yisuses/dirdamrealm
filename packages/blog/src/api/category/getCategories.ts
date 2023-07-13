@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
-import { categoryMapper } from '@api/mapper'
-import { apiUrl } from '@utils'
+import { categoryMapper } from '@blog/api/mapper'
+import { apiUrl } from '@blog/utils'
 
 type GetCategoriesParams = {
   locale: AppLocales

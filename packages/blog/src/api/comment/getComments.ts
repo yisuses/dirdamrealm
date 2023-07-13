@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
-import { commentMapper } from '@api/mapper'
-import { apiUrl } from '@utils'
+import { commentMapper } from '@blog/api/mapper'
+import { apiUrl } from '@blog/utils'
 
 type GetCommentsParams = {
   ids?: number[]

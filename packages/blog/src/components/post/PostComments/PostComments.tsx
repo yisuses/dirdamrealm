@@ -1,19 +1,20 @@
 import { Button } from '@chakra-ui/button'
 import { useColorModeValue } from '@chakra-ui/color-mode'
-import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/form-control'
+import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
-import { Text, Box, Flex, Heading } from '@chakra-ui/layout'
+import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 import { Textarea } from '@chakra-ui/textarea'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
+import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 // eslint-disable-next-line import/no-named-as-default
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
-import { getComments, addCommentValidate } from '@api/comment'
+
+import { addCommentValidate, getComments } from '@blog/api/comment'
 
 const { publicRuntimeConfig } = getConfig()
 

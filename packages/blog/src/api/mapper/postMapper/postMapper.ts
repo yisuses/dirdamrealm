@@ -1,8 +1,9 @@
 import * as Sentry from '@sentry/nextjs'
 import { DataProp } from 'editorjs-blocks-react-renderer'
 
-import { ApiError } from '@utils'
-import { categoryMapper, algoliaCategoryMapper } from '../categorymapper/categoryMapper'
+import { ApiError } from '@blog/utils'
+
+import { algoliaCategoryMapper, categoryMapper } from '../categorymapper/categoryMapper'
 import { mediaMapper } from '../mediaMapper/mediaMapper'
 import { writerMapper } from '../writterMapper/writerMapper'
 

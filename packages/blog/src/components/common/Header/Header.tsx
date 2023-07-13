@@ -3,12 +3,13 @@ import { useDisclosure } from '@chakra-ui/hooks'
 import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
 import { Box, Divider, Flex, HStack, Link, Text } from '@chakra-ui/layout'
 import { useColorMode } from '@chakra-ui/system'
+import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 
-import { Modal, SearchPosts, HeaderLogo } from '@components'
-import { buildCategoryPath } from '@utils/urlBuilder'
+import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
+import { buildCategoryPath } from '@blog/utils/urlBuilder'
+
 import { HeaderMenu } from './HeaderMenu'
 
 export interface HeaderProps {

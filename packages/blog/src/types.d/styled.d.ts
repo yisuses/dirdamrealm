@@ -1,4 +1,5 @@
 import '@emotion/react'
+
 import { Theme as EmotionTheme } from '../themes/emotion.theme'
 
 declare module '@emotion/react' {

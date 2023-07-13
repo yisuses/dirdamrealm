@@ -1,13 +1,13 @@
 import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Flex, Heading, HStack, Text } from '@chakra-ui/layout'
+import { Flex, HStack, Heading, Text } from '@chakra-ui/layout'
 import { useQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-import { getLatestPosts } from '@api'
-import { PostGrid } from '@components/common'
-import { getLatestPostsKey } from '@utils/constants'
+import { getLatestPosts } from '@blog/api'
+import { PostGrid } from '@blog/components/common'
+import { getLatestPostsKey } from '@blog/utils/constants'
 
 interface HomeLatestPostsProps {
   title: string

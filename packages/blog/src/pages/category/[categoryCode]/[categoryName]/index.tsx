@@ -1,12 +1,12 @@
-import { ParsedUrlQuery } from 'querystring'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { QueryClient, dehydrate } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
-import { getCategories, getLatestPosts } from '@api'
-import { withErrorComponent, WithErrorProps, CategoryPage as CategoryPageComponent } from '@components'
-import { getServerTranslations } from '@core/i18n'
-import { buildCategoryPath, handlePageError, NotFoundError, seoName } from '@utils'
-import { getCategoryCodeKey, getLatestPostsKey } from '@utils/constants'
+import { getCategories, getLatestPosts } from '@blog/api'
+import { CategoryPage as CategoryPageComponent, WithErrorProps, withErrorComponent } from '@blog/components'
+import { getServerTranslations } from '@blog/core/i18n'
+import { NotFoundError, buildCategoryPath, handlePageError, seoName } from '@blog/utils'
+import { getCategoryCodeKey, getLatestPostsKey } from '@blog/utils/constants'
 
 const CategoryPage: NextPage = () => {
   return <CategoryPageComponent />

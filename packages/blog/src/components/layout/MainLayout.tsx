@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/layout'
 import { ReactNode } from 'react'
 
-import { GlobalStyles, Footer, Header, CookieBanner } from '@components'
-import { useGetData } from '@hooks'
-import { buildCategoryPath } from '@utils'
-import { QUERY_ABOUT, QUERY_CATEGORIES } from '@utils/constants'
+import { CookieBanner, Footer, GlobalStyles, Header } from '@blog/components'
+import { useGetData } from '@blog/hooks'
+import { buildCategoryPath } from '@blog/utils'
+import { QUERY_ABOUT, QUERY_CATEGORIES } from '@blog/utils/constants'
 
 interface MainLayoutProps {
   children: ReactNode

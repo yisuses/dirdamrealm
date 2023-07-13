@@ -41,13 +41,6 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
-        "alphabetize": { "order": "asc", "caseInsensitive": true }
-      }
-    ],
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -119,6 +112,12 @@
     ]
   },
   "overrides": [
+    {
+      "files": ["*.{ts,tsx}"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "warn"
+      }
+    },
     {
       "files": ["*.js"],
       "rules": {

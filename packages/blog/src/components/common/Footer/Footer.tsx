@@ -1,14 +1,15 @@
-import { SimpleGrid, Stack, Text, Box, Container, Link, LinkProps } from '@chakra-ui/layout'
+import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text } from '@chakra-ui/layout'
 import { useColorModeValue } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import InstagramLogo from '@iconify/icons-ion/logo-instagram'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
-import { IconifyIcon, Icon } from '@iconify/react'
-import getConfig from 'next/config'
+import { Icon, IconifyIcon } from '@iconify/react'
 import { Trans, useTranslation } from 'next-i18next'
+import getConfig from 'next/config'
 
-import { SocialButton } from '@components'
+import { SocialButton } from '@blog/components'
+
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
 

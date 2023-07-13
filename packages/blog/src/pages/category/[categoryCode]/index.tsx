@@ -1,12 +1,12 @@
-import { ParsedUrlQuery } from 'querystring'
 import * as Sentry from '@sentry/nextjs'
 import { QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
-import { getCategories } from '@api'
-import { withErrorComponent, WithErrorProps } from '@components'
-import { buildCategoryPath, handlePageError, NotFoundError } from '@utils'
-import { getCategoryCodeKey } from '@utils/constants'
+import { getCategories } from '@blog/api'
+import { WithErrorProps, withErrorComponent } from '@blog/components'
+import { NotFoundError, buildCategoryPath, handlePageError } from '@blog/utils'
+import { getCategoryCodeKey } from '@blog/utils/constants'
 
 export interface UrlParams extends ParsedUrlQuery {
   categoryCode: string

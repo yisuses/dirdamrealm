@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
-import { postMapper } from '@api/mapper'
-import { apiUrl } from '@utils'
+import { postMapper } from '@blog/api/mapper'
+import { apiUrl } from '@blog/utils'
 
 type GetPostByIdParams = {
   id: number

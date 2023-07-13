@@ -1,5 +1,5 @@
-import { ErrorPage } from '@components'
-import { getServerTranslations } from '@core/i18n'
+import { ErrorPage } from '@blog/components'
+import { getServerTranslations } from '@blog/core/i18n'
 
 function Custom500Page() {
   return <ErrorPage statusCode={500} />

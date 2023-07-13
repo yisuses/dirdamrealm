@@ -1,11 +1,12 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import { ItemList, WebPage } from 'schema-dts'
 
-import { HeaderImage, Metadata } from '@components/common'
-import { useGetData, useGetLocalePublicUrl } from '@hooks'
-import { buildCategoryPath, buildPostPath } from '@utils'
-import { getCategoryCodeKey, getLatestPostsKey } from '@utils/constants'
+import { HeaderImage, Metadata } from '@blog/components/common'
+import { useGetData, useGetLocalePublicUrl } from '@blog/hooks'
+import { buildCategoryPath, buildPostPath } from '@blog/utils'
+import { getCategoryCodeKey, getLatestPostsKey } from '@blog/utils/constants'
+
 import { CategoryLatestPosts } from '../CategoryLatestPosts'
 
 export function CategoryPage() {

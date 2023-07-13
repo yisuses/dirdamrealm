@@ -1,6 +1,6 @@
 import { Flex, Heading } from '@chakra-ui/layout'
 
-import { PostGrid } from '@components/common'
+import { PostGrid } from '@blog/components'
 
 interface CategoryLatestPostsProps {
   title: string

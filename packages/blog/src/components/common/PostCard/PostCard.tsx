@@ -1,15 +1,15 @@
 /* eslint-disable import/no-duplicates */
 import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Text, Box, Flex, Link } from '@chakra-ui/layout'
+import { Box, Flex, Link, Text } from '@chakra-ui/layout'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { Tag } from '@components'
-import { buildBlurDataUrl, buildPostPath } from '@utils'
-import { DATE_FORMAT } from '@utils/constants'
+import { Tag } from '@blog/components'
+import { buildBlurDataUrl, buildPostPath } from '@blog/utils'
+import { DATE_FORMAT } from '@blog/utils/constants'
 
 export type PostCardProps = {
   id: number

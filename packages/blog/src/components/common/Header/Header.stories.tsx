@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
+
 import { Header, HeaderProps } from './Header'
 
 export default {

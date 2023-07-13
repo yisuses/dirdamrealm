@@ -1,10 +1,11 @@
 import { useTranslation } from 'next-i18next'
 import { WebPage } from 'schema-dts'
 
-import { Metadata, HeaderImage } from '@components/common'
-import { useGetData } from '@hooks'
-import { publicUrl } from '@utils'
-import { QUERY_CATEGORIES, getLatestPostsKey } from '@utils/constants'
+import { HeaderImage, Metadata } from '@blog/components/common'
+import { useGetData } from '@blog/hooks'
+import { publicUrl } from '@blog/utils'
+import { QUERY_CATEGORIES, getLatestPostsKey } from '@blog/utils/constants'
+
 import { HomeLatestPosts } from '../HomeLatestPosts'
 
 export function HomePage() {
