@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/yisuses/whemotion/compare/@whe-blog@1.1.2...@whe-blog@1.2.0) (2023-07-22)
+
+
+### Features
+
+* add sitemaps ([af33b4a](https://github.com/yisuses/whemotion/commit/af33b4a7c045a44a61db36140298d928dcb0d6f6))
+* update sitemaps ([b68f128](https://github.com/yisuses/whemotion/commit/b68f128d0ab5063f8c8881cd065d2e53c1caf819))
+
+
+### Bug Fixes
+
+* footer icons color ([03cbdc7](https://github.com/yisuses/whemotion/commit/03cbdc758a7d966265f1bdb65caea08922f5b06c))
+
+
+### Chore
+
+* update dependencies ([c89f65e](https://github.com/yisuses/whemotion/commit/c89f65ee65be60937eecbcc98cc460c4f9bc3ade))
+* update dependencies ([#106](https://github.com/yisuses/whemotion/issues/106)) ([8179f5e](https://github.com/yisuses/whemotion/commit/8179f5ef08f6d2e9c82860e83b5332b8265973fc))
+
 ### [1.1.2](https://github.com/yisuses/whemotion/compare/@whe-blog@1.1.1...@whe-blog@1.1.2) (2023-07-01)
 
 
