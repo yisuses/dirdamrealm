@@ -6,13 +6,10 @@ function generateSiteMap() {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
-      <loc>https://www.whemotion.com/</loc>
-     </url>
-     <url>
       <loc>${publicUrl('/sitemap/page.xml')}</loc>
      </url>
      <url>
-      <loc>${publicUrl('/sitemap/home.xml')}</loc>
+      <loc>${publicUrl('/sitemap/post.xml')}</loc>
      </url>
      <url>
      <loc>${publicUrl('/sitemap/category.xml')}</loc>
