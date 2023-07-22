@@ -102,7 +102,7 @@ const nextConfig = {
   publicRuntimeConfig: {
     version: packageJson.version,
     API_URL: process.env.API_URL ?? 'http://localhost:3003',
-    BASE_URL: process.env.BASE_URL ?? process.env.VERCEL_URL ?? 'http://localhost:3000',
+    BASE_URL: process.env.BASE_URL ?? `https://${process.env.VERCEL_URL}` ?? 'http://localhost:3000',
     ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
     ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
     ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
@@ -112,7 +112,6 @@ const nextConfig = {
   serverRuntimeConfig: {
     // to bypass https://github.com/zeit/next.js/issues/8251
     PROJECT_ROOT: __dirname,
-    BASE_URL: process.env.BASE_URL ?? 'http://localhost:3000',
     RECAPTCHA_SECRET_KEY,
   },
 
