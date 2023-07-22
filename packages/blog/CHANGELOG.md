@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/yisuses/whemotion/compare/@whe-blog@1.2.0...@whe-blog@1.2.1) (2023-07-22)
+
+
+### Features
+
+* update sitemaps ([ff93bae](https://github.com/yisuses/whemotion/commit/ff93bae80b3d272548affd33a7a91182f2884f4d))
+
 ## [1.2.0](https://github.com/yisuses/whemotion/compare/@whe-blog@1.1.2...@whe-blog@1.2.0) (2023-07-22)
 
 
