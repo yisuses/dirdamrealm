@@ -1,7 +1,7 @@
 {
   "name": "@whe/api",
   "private": true,
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "White Emotion CMS",
   "scripts": {
     "develop": "strapi develop",

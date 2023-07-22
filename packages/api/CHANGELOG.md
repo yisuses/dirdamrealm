@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/yisuses/whemotion/compare/@whe-api@1.1.2...@whe-api@1.2.0) (2023-07-22)
+
+
+### Chore
+
+* update dependencies ([c89f65e](https://github.com/yisuses/whemotion/commit/c89f65ee65be60937eecbcc98cc460c4f9bc3ade))
+* update dependencies ([#106](https://github.com/yisuses/whemotion/issues/106)) ([8179f5e](https://github.com/yisuses/whemotion/commit/8179f5ef08f6d2e9c82860e83b5332b8265973fc))
+* upgrade api dockerfile ([#105](https://github.com/yisuses/whemotion/issues/105)) ([0e0d0ae](https://github.com/yisuses/whemotion/commit/0e0d0ae77934d376b7485dfd5b2874cea3d5422d))
+
 ### [1.1.2](https://github.com/yisuses/whemotion/compare/@whe-api@1.1.1...@whe-api@1.1.2) (2023-07-01)
 
 
