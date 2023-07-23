@@ -12,7 +12,7 @@ export async function getAllPosts({ locale }: GetAllPostParams): Promise<Post[] 
   const query = stringify({
     sort: ['updatedAt:desc'],
     publicationState: 'live',
-    populate: ['localizations'],
+    populate: ['localizations', 'coverImage'],
     locale,
   })
 

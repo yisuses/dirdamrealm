@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { getAllPosts } from '@blog/api/post'
+import { getImageUrlFromMedia } from '@blog/utils'
 import { mapLocales, xmlUrlSet } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildPostPath } from '@blog/utils/urlBuilder'
@@ -10,10 +11,16 @@ function generateSiteMap(posts: Post[], defaultLocale: string | undefined) {
     ${xmlUrlSet(
       posts
         .map(
-          ({ id, title, updatedAt, locale, localizations }) => `
+          ({ id, title, updatedAt, locale, localizations, coverImage }) => `
             <url>
             <loc>${publicUrl(`${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`)}</loc>
             <lastmod>${updatedAt}</lastmod>
+            ${
+              coverImage &&
+              `<image:image>
+              <image:loc>${getImageUrlFromMedia({ media: coverImage, format: 'small' })}</image:loc>
+            </image:image>`
+            }
             ${
               localizations && localizations.length > 0
                 ? localizations
