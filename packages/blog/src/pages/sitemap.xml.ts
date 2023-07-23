@@ -1,26 +1,25 @@
 import { GetServerSideProps } from 'next'
 
+import { getCategories } from '@blog/api'
+import { getAllPosts } from '@blog/api/post'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
-function generateSiteMap() {
+function generateSiteMap(lastPostUpdate: string, lastCategoryUpdate: string) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-    http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"   
-  >
-     <url>
+  <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
       <loc>${publicUrl('/sitemap/page.xml')}</loc>
-     </url>
-     <url>
+      <lastmod>${lastPostUpdate}</lastmod>
+    </sitemap>
+    <sitemap>
       <loc>${publicUrl('/sitemap/post.xml')}</loc>
-     </url>
-     <url>
-     <loc>${publicUrl('/sitemap/category.xml')}</loc>
-     </url>
-   </urlset>
+      <lastmod>${lastPostUpdate}</lastmod>
+    </sitemap>
+    <sitemap>
+      <loc>${publicUrl('/sitemap/category.xml')}</loc>
+      <lastmod>${lastCategoryUpdate}</lastmod>
+    </sitemap>
+   </sitemapindex>
  `
 }
 
@@ -30,7 +29,9 @@ function SiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap()
+  const posts = await getAllPosts({})
+  const categories = await getCategories({ sort: ['updatedAt:desc'] })
+  const sitemap = generateSiteMap(categories[0].updatedAt, posts ? posts[0].updatedAt || '' : '')
 
   res.setHeader('Content-Type', 'text/xml')
   // we send the XML to the browser
