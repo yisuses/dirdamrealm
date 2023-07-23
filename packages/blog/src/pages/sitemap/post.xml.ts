@@ -1,56 +1,51 @@
 import { GetServerSideProps } from 'next'
 
 import { getAllPosts } from '@blog/api/post'
+import { getImageUrlFromMedia } from '@blog/utils'
+import { mapLocales, xmlUrlSet } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildPostPath } from '@blog/utils/urlBuilder'
 
-const mapLocales: Record<AppLocales, string> = {
-  en: 'en-US',
-  es: 'es-ES',
-}
-
 function generateSiteMap(posts: Post[], defaultLocale: string | undefined) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-    http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"   
-  >
-     ${posts
-       .map(
-         ({ id, title, updatedAt, locale, localizations }) => `
-       <url>
-        <loc>${publicUrl(`${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`)}</loc>
-        <lastmod>${updatedAt}</lastmod>
-        ${
-          localizations && localizations.length > 0
-            ? localizations
-                .map(
-                  localization =>
-                    `<xhtml:link rel="alternate" hreflang="${mapLocales[localization.locale]}" href="${publicUrl(
-                      `${defaultLocale === localization.locale ? '' : '/' + localization.locale}${buildPostPath(
-                        localization.id,
-                        localization.title,
-                      )}`,
-                    )}"/>`,
-                )
-                .concat([
-                  `<xhtml:link rel="alternate" hreflang="${mapLocales[locale]}" href="${publicUrl(
-                    `${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`,
-                  )}"/>`,
-                ])
-                .join('')
-            : ''
-        }
-       </url>
-
-
-    `,
-       )
-       .join('')}
-   </urlset>
+    ${xmlUrlSet(
+      posts
+        .map(
+          ({ id, title, updatedAt, locale, localizations, coverImage }) => `
+            <url>
+            <loc>${publicUrl(`${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`)}</loc>
+            <lastmod>${updatedAt}</lastmod>
+            ${
+              coverImage &&
+              `<image:image>
+              <image:loc>${getImageUrlFromMedia({ media: coverImage, format: 'small' })}</image:loc>
+            </image:image>`
+            }
+            ${
+              localizations && localizations.length > 0
+                ? localizations
+                    .map(
+                      localization =>
+                        `<xhtml:link rel="alternate" hreflang="${mapLocales[localization.locale]}" href="${publicUrl(
+                          `${defaultLocale === localization.locale ? '' : '/' + localization.locale}${buildPostPath(
+                            localization.id,
+                            localization.title,
+                          )}`,
+                        )}"/>`,
+                    )
+                    .concat([
+                      `<xhtml:link rel="alternate" hreflang="${mapLocales[locale]}" href="${publicUrl(
+                        `${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`,
+                      )}"/>`,
+                    ])
+                    .join('')
+                : ''
+            }
+            </url>
+          `,
+        )
+        .join(''),
+    )}
  `
 }
 

@@ -1,21 +1,23 @@
 import { GetServerSideProps } from 'next'
 
-function generateSiteMap() {
+import { getAllPosts } from '@blog/api/post'
+import { publicUrl } from '@blog/utils'
+import { xmlUrlSet } from '@blog/utils/constants'
+
+function generateSiteMap(lastPostUpdate: string) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-    http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"   
-  >
-     <url>
+  ${xmlUrlSet(`
+    <url>
       <loc>https://www.whemotion.com</loc>
+      <lastmod>${lastPostUpdate}</lastmod>
+      <image:image>
+        <image:loc>${publicUrl('/images/WElogo.png')}</image:loc>
+      </image:image>
       <xhtml:link rel="alternate" hreflang="en-US" href="https://www.whemotion.com/en/"/>
       <xhtml:link rel="alternate" hreflang="es-ES" href="https://www.whemotion.com/"/>
-     </url>
-   </urlset>
- `
+    </url>
+  `)}
+  `
 }
 
 function PageSiteMap() {
@@ -24,7 +26,9 @@ function PageSiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap()
+  const posts = await getAllPosts({})
+
+  const sitemap = generateSiteMap(posts ? posts[0].updatedAt || '' : '')
 
   res.setHeader('Content-Type', 'text/xml')
   // we send the XML to the browser

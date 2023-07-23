@@ -5,15 +5,17 @@ import { categoryMapper } from '@blog/api/mapper'
 import { apiUrl } from '@blog/utils'
 
 type GetCategoriesParams = {
-  locale: AppLocales
+  locale?: AppLocales
   code?: string
+  sort?: string[]
 }
 
-export async function getCategories({ locale = 'en', code }: GetCategoriesParams) {
+export async function getCategories({ locale = 'en', code, sort }: GetCategoriesParams) {
   const query = stringify({
     filters: {
       ...(code && { code }),
     },
+    sort,
   })
   return axios
     .get<CategoryResponse>(apiUrl(`/api/categories?${query}`))
