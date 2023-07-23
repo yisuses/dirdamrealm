@@ -1,4 +1,5 @@
 export * from './getAlgoliaPosts'
+export * from './getAllPosts'
 export * from './getLatestPosts'
 export * from './getPostById'
 export * from './post.mock'
