@@ -5,8 +5,7 @@ import { publicUrl } from '@blog/utils'
 import { xmlUrlSet } from '@blog/utils/constants'
 
 function generateSiteMap(lastPostUpdate: string) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-  ${xmlUrlSet(`
+  return xmlUrlSet(`
     <url>
       <loc>https://www.whemotion.com</loc>
       <lastmod>${lastPostUpdate}</lastmod>
@@ -16,8 +15,7 @@ function generateSiteMap(lastPostUpdate: string) {
       <xhtml:link rel="alternate" hreflang="en-US" href="https://www.whemotion.com/en/"/>
       <xhtml:link rel="alternate" hreflang="es-ES" href="https://www.whemotion.com/"/>
     </url>
-  `)}
-  `
+  `)
 }
 
 function PageSiteMap() {

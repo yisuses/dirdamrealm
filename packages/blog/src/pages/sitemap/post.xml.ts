@@ -7,11 +7,10 @@ import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildPostPath } from '@blog/utils/urlBuilder'
 
 function generateSiteMap(posts: Post[], defaultLocale: string | undefined) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-    ${xmlUrlSet(
-      posts
-        .map(
-          ({ id, title, updatedAt, locale, localizations, coverImage }) => `
+  return xmlUrlSet(
+    posts
+      .map(
+        ({ id, title, updatedAt, locale, localizations, coverImage }) => `
             <url>
             <loc>${publicUrl(`${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`)}</loc>
             <lastmod>${updatedAt}</lastmod>
@@ -43,10 +42,9 @@ function generateSiteMap(posts: Post[], defaultLocale: string | undefined) {
             }
             </url>
           `,
-        )
-        .join(''),
-    )}
- `
+      )
+      .join(''),
+  )
 }
 
 function PostSiteMap() {
