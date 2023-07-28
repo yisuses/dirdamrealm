@@ -8,8 +8,7 @@ import { buildCategoryPath } from '@blog/utils/urlBuilder'
 type CategoryWithLocale = Category & { queryLocale: string }
 
 function generateSiteMap(categories: CategoryWithLocale[], defaultLocale: string | undefined) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-  ${xmlUrlSet(
+  return xmlUrlSet(
     categories
       .map(
         ({ code, updatedAt, queryLocale, localizedName, locale }) => `
@@ -38,8 +37,7 @@ function generateSiteMap(categories: CategoryWithLocale[], defaultLocale: string
         `,
       )
       .join(''),
-  )}
- `
+  )
 }
 
 function CategorySiteMap() {

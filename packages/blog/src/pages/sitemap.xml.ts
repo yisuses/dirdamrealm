@@ -2,10 +2,11 @@ import { GetServerSideProps } from 'next'
 
 import { getCategories } from '@blog/api'
 import { getAllPosts } from '@blog/api/post'
+import { xmlEncoding } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
 function generateSiteMap(lastPostUpdate: string, lastCategoryUpdate: string) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  return `${xmlEncoding}
   <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
       <loc>${publicUrl('/sitemap/page.xml')}</loc>

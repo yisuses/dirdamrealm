@@ -5,4 +5,7 @@
 User-agent: *
 Allow: /
 
+Disallow: /post/[postId]/[postName]
+Disallow: /category/[categoryCode]/[categoryName]
+
 Sitemap: https://www.whemotion.com/sitemap.xml
