@@ -13,12 +13,14 @@ const HomePage: NextPage = () => {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(getLatestPostsKey('HomePage'), () =>
-    getLatestPosts({
-      locale: locale as AppLocales,
-      limit: 18,
-    }),
-  )
+  await queryClient.prefetchQuery({
+    queryKey: getLatestPostsKey('HomePage'),
+    queryFn: () =>
+      getLatestPosts({
+        locale: locale as AppLocales,
+        limit: 18,
+      }),
+  })
 
   return {
     props: {

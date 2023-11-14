@@ -38,7 +38,7 @@
     "start:api:develop": "yarn api develop",
     "start:api": "yarn api start",
     "build:api": "yarn api build",
-    "build:dep:api": "yarn build:api && mkdir -p dist/api && mv packages/api/build/* dist/api",
+    "build:dep:api": "yarn build:api && rm -rf dist/api && mkdir -p dist/api && mv packages/api/dist/* dist/api",
     "release:api": "yarn api release",
     "releaseall": "run-s \"release:* {@}\" --",
     "release": "node scripts/release.mjs",
@@ -53,17 +53,17 @@
     "postInstall": "patch-package"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.7",
-    "@commitlint/config-conventional": "17.6.7",
-    "@testing-library/jest-dom": "5.17.0",
-    "@trivago/prettier-plugin-sort-imports": "4.2.0",
+    "@commitlint/cli": "18.4.1",
+    "@commitlint/config-conventional": "18.4.0",
+    "@testing-library/jest-dom": "6.1.4",
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
     "@types/testing-library__jest-dom": "^5",
     "husky": "8.0.3",
-    "lint-staged": "13.2.3",
-    "npm-check-updates": "16.10.16",
+    "lint-staged": "15.1.0",
+    "npm-check-updates": "16.14.6",
     "npm-run-all": "4.1.5",
-    "patch-package": "7.0.2",
-    "prettier": "3.0.0",
+    "patch-package": "8.0.0",
+    "prettier": "3.1.0",
     "prompts": "2.4.2",
     "standard-version": "9.5.0",
     "ts-node": "10.9.1"
@@ -73,9 +73,5 @@
     "yarn": ">=1.22.0",
     "npm": "please-use-yarn"
   },
-  "packageManager": "yarn@3.5.1",
-  "resolutions": {
-    "@types/react": "18.2.6",
-    "webpack": "5.82.0"
-  }
+  "packageManager": "yarn@3.5.1"
 }

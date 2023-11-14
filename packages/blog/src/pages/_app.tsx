@@ -22,10 +22,14 @@ function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
 
 BlogApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(QUERY_CATEGORIES, () =>
-    getCategories({ locale: appContext.router.locale as AppLocales }),
-  )
-  await queryClient.prefetchQuery(QUERY_ABOUT, getAbout)
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_CATEGORIES,
+    queryFn: () => getCategories({ locale: appContext.router.locale as AppLocales }),
+  })
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_ABOUT,
+    queryFn: getAbout,
+  })
 
   return {
     globalProps: {

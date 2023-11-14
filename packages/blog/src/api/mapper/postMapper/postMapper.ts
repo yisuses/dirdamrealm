@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/nextjs'
+import * as sentry from '@sentry/nextjs'
 import { DataProp } from 'editorjs-blocks-react-renderer'
 
 import { ApiError } from '@blog/utils'
@@ -79,7 +79,7 @@ export const algoliaPostMapper = (postEntity: AlgoliaPostEntity): Post => {
   }
 
   if (errors.length) {
-    Sentry.captureException(errors.join('\n'))
+    sentry.captureException(errors.join('\n'))
   }
 
   return {

@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/provider'
-import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AppProps } from 'next/app'
 import { ReactNode, useState } from 'react'
@@ -19,9 +19,9 @@ export const AppProviders = ({ children, globalProps, pageProps }: AppProvidersP
   return (
     <ChakraProvider theme={emotionTheme}>
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={globalProps?.dehydratedState}>
-          <Hydrate state={pageProps?.dehydratedState}>{children}</Hydrate>
-        </Hydrate>
+        <HydrationBoundary state={globalProps?.dehydratedState}>
+          <HydrationBoundary state={pageProps?.dehydratedState}>{children}</HydrationBoundary>
+        </HydrationBoundary>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ChakraProvider>

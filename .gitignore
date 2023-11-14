@@ -23,6 +23,7 @@ out/
 # production
 build
 dist
+.strapi
 /.next/
 /out/
 /build

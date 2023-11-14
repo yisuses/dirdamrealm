@@ -5,7 +5,7 @@ import { postMapper } from './postMapper'
 
 describe('postMapper', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    jest.restoreAllMocks()
   })
 
   it('should return a valid Post when given valid input', () => {
