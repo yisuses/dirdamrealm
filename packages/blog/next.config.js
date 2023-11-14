@@ -130,7 +130,20 @@ const nextConfig = {
     // https://nextjs.org/docs/api-reference/next/image#caching-behavior
     minimumCacheTTL: 60,
     // Allowed domains for next/image
-    domains: ['source.unsplash.com', 'images.unsplash.com', 'picsum.photos', 'res.cloudinary.com'],
+    remotePatterns: [
+      {
+        hostname: 'source.unsplash.com',
+      },
+      {
+        hostname: 'images.unsplash.com',
+      },
+      {
+        hostname: 'picsum.photos',
+      },
+      {
+        hostname: 'res.cloudinary.com',
+      },
+    ],
   },
 
   typescript: {

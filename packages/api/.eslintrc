@@ -1,6 +1,7 @@
 {
   "parser": "@babel/eslint-parser",
   "extends": "eslint:recommended",
+  "ignorePatterns": ["**/types/*.d.ts"],
   "env": {
     "commonjs": true,
     "es6": true,

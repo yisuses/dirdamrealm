@@ -32,8 +32,11 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
 
     const categoryCode = params.categoryCode
     const categoriesKey = getCategoryCodeKey(categoryCode)
-    queryClient.prefetchQuery(categoriesKey, () => getCategories({ locale: locale as AppLocales, code: categoryCode }))
-    categories = await queryClient.ensureQueryData(categoriesKey)
+    queryClient.prefetchQuery({
+      queryKey: categoriesKey,
+      queryFn: () => getCategories({ locale: locale as AppLocales, code: categoryCode }),
+    })
+    categories = await queryClient.ensureQueryData({ queryKey: categoriesKey })
 
     if (categories.length !== 1) {
       throw new NotFoundError(`Category with code '${params!.categoryCode}' not found, or found multiple`)
@@ -57,12 +60,14 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
   }
 
   const latestPostsCategoryKey = getLatestPostsKey(params.categoryCode)
-  await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
-    getLatestPosts({
-      locale: locale as AppLocales,
-      category: params.categoryCode,
-    }),
-  )
+  await queryClient.prefetchQuery({
+    queryKey: latestPostsCategoryKey,
+    queryFn: () =>
+      getLatestPosts({
+        locale: locale as AppLocales,
+        category: params.categoryCode,
+      }),
+  })
 
   return {
     props: {

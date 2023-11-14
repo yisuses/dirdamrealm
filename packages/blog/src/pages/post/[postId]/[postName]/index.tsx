@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/nextjs'
+import * as sentry from '@sentry/nextjs'
 import { QueryClient, dehydrate } from '@tanstack/react-query'
 import type { GetServerSideProps, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
@@ -35,10 +35,10 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
     const postId = Number(params.postId)
     try {
       const postKey = getPostKey(postId)
-      queryClient.prefetchQuery(postKey, () => getPostById({ id: postId }))
-      post = await queryClient.ensureQueryData(postKey)
+      queryClient.prefetchQuery({ queryKey: postKey, queryFn: () => getPostById({ id: postId }) })
+      post = await queryClient.ensureQueryData({ queryKey: postKey })
     } catch (error) {
-      Sentry.captureException(error)
+      sentry.captureException(error)
     }
 
     let errMessage
@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
       errMessage = `Post with id '${params.postId}' has not been released yet. It is on draft mode.`
     }
     if (!post || errMessage) {
-      Sentry.captureException(errMessage)
+      sentry.captureException(errMessage)
       throw new NotFoundError(errMessage)
     }
 
@@ -81,7 +81,7 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
       }
     }
   } catch (error) {
-    Sentry.captureException(error)
+    sentry.captureException(error)
     return handlePageError(error as Error, res)
   }
 
@@ -89,15 +89,17 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
     try {
       const categoryCode = post.categories[0].code
       const latestPostsCategoryKey = getLatestPostsKey(categoryCode)
-      await queryClient.prefetchQuery(latestPostsCategoryKey, () =>
-        getLatestPosts({
-          locale: locale as AppLocales,
-          category: categoryCode,
-          limit: 8,
-        }),
-      )
+      await queryClient.prefetchQuery({
+        queryKey: latestPostsCategoryKey,
+        queryFn: () =>
+          getLatestPosts({
+            locale: locale as AppLocales,
+            category: categoryCode,
+            limit: 8,
+          }),
+      })
     } catch (error) {
-      Sentry.captureException(error)
+      sentry.captureException(error)
     }
   }
 
@@ -106,9 +108,9 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
       ? [...post.localizations.map(localization => localization.id), post.id]
       : [post.id]
     const postCommentsKey = getPostCommentsKey(postIds)
-    await queryClient.prefetchQuery(postCommentsKey, () => getComments({ ids: postIds }))
+    await queryClient.prefetchQuery({ queryKey: postCommentsKey, queryFn: () => getComments({ ids: postIds }) })
   } catch (error) {
-    Sentry.captureException(error)
+    sentry.captureException(error)
   }
 
   return {

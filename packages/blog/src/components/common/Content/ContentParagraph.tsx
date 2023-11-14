@@ -1,6 +1,6 @@
 import { Text } from '@chakra-ui/layout'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
-import HTMLReactParser, { Element, HTMLReactParserOptions, domToReact } from 'html-react-parser'
+import HTMLReactParser, { DOMNode, Element, HTMLReactParserOptions, domToReact } from 'html-react-parser'
 
 export interface ContentParagraphBlockData {
   text: string
@@ -11,7 +11,7 @@ export const ContentParagraph: RenderFn<ContentParagraphBlockData> = ({ data }) 
     replace: domNode => {
       if (domNode instanceof Element) {
         if (domNode.name === 'b') {
-          return <b>{domToReact(domNode.children)}</b>
+          return <b>{domToReact(domNode.children as DOMNode[])}</b>
         }
       }
     },

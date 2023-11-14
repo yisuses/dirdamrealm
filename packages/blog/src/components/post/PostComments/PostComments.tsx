@@ -51,7 +51,7 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     queryFn: () => getComments({ ids: postIds }),
     enabled: false,
   })
-  const { mutate, isLoading } = useMutation<unknown, unknown, SubmitCommentValues>({
+  const { mutate, isPending } = useMutation<unknown, unknown, SubmitCommentValues>({
     mutationFn: ({ author, text, captcha }) => addCommentValidate({ postId, author, text, captcha }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: postCommentsKey })
@@ -155,7 +155,7 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
           </FormControl>
           <Button
             mt={4}
-            isLoading={isLoading}
+            isLoading={isPending}
             loadingText={t('postPage.newComment.adding')}
             colorScheme="blue"
             type="submit"

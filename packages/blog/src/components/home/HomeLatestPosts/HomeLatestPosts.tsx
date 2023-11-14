@@ -22,20 +22,18 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
   const headerPost = posts[0]
 
-  const { data: queriedPosts } = useQuery(
-    getLatestPostsKey(selectedCategory),
-    () =>
+  const { data: queriedPosts } = useQuery({
+    queryKey: getLatestPostsKey(selectedCategory),
+    queryFn: () =>
       getLatestPosts({
         category: selectedCategory,
         locale: locale as AppLocales,
         limit: 16,
       }),
-    {
-      enabled: selectedCategory !== undefined,
-      refetchOnWindowFocus: false,
-      staleTime: 30000,
-    },
-  )
+    enabled: selectedCategory !== undefined,
+    refetchOnWindowFocus: false,
+    staleTime: 30000,
+  })
 
   useEffect(() => {
     setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== headerPost.id) : renderedPosts)

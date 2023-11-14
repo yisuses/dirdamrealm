@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/nextjs'
+import * as sentry from '@sentry/nextjs'
 import axios from 'axios'
 import getConfig from 'next/config'
 import { NextApiRequest, NextApiResponse } from 'next/types'
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (method === 'POST') {
     if (!postId || !author || !text || !captcha) {
-      Sentry.captureException('AddCommentValidate - Unproccesable request, please provide the required fields')
+      sentry.captureException('AddCommentValidate - Unproccesable request, please provide the required fields')
       return res.status(422).json({
         message: 'Unproccesable request, please provide the required fields',
       })
@@ -35,12 +35,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(200).send('OK')
       }
 
-      Sentry.captureException('Invalid captcha code')
+      sentry.captureException('Invalid captcha code')
       return res.status(422).json({
         message: 'Unproccesable request, Invalid captcha code',
       })
     } catch (error) {
-      Sentry.captureException(error)
+      sentry.captureException(error)
       return res.status(422).json({ message: 'Something went wrong' })
     }
   }

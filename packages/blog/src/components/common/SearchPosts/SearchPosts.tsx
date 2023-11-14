@@ -20,16 +20,14 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
   const debouncedValue = useDebounce<string>(searchValue, 300)
   const searchResultsRef = useRef<HTMLDivElement>(null)
 
-  const { data: postResults } = useQuery(
-    getAlgoliaPostKey(debouncedValue),
-    () => getAlgoliaPosts({ query: debouncedValue }).then(posts => posts.filter(post => post.publishedAt)),
-    {
-      enabled: debouncedValue.length > 0,
-      refetchOnWindowFocus: false,
-      staleTime: 30000,
-      onError: err => console.log(err),
-    },
-  )
+  const { data: postResults } = useQuery({
+    queryKey: getAlgoliaPostKey(debouncedValue),
+    queryFn: () => getAlgoliaPosts({ query: debouncedValue }).then(posts => posts.filter(post => post.publishedAt)),
+    enabled: debouncedValue.length > 0,
+    refetchOnWindowFocus: false,
+    staleTime: 30000,
+    throwOnError: false,
+  })
 
   const searchResultOffset = searchResultsRef.current?.offsetTop
   return (

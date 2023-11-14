@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/nextjs'
+import * as sentry from '@sentry/nextjs'
 import { QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
@@ -24,16 +24,16 @@ export const getServerSideProps: GetServerSideProps<Record<string, never> | With
 
     const postId = Number(params.postId)
     const postKey = getPostKey(postId)
-    queryClient.prefetchQuery(postKey, () => getPostById({ id: postId }))
-    const post = await queryClient.ensureQueryData<Post | undefined>(postKey)
+    queryClient.prefetchQuery({ queryKey: postKey, queryFn: () => getPostById({ id: postId }) })
+    const post = await queryClient.ensureQueryData<Post | undefined>({ queryKey: postKey })
 
     if (!post) {
       const errMessage = `Post with code '${postId}' not found`
-      Sentry.captureException(errMessage)
+      sentry.captureException(errMessage)
       throw new NotFoundError(`Post with code '${postId}' not found`)
     } else if (!post?.publishedAt) {
       const errMessage = `Post with id '${postId}' has not been released yet. It is on draft mode.`
-      Sentry.captureException(errMessage)
+      sentry.captureException(errMessage)
       throw new NotFoundError(errMessage)
     }
 
