@@ -10,7 +10,7 @@ interface PostGridProps {
   limit?: number
 }
 
-export function PostGrid({ posts, limit = 8 }: PostGridProps) {
+export function PostGrid({ posts, limit }: PostGridProps) {
   const { locale } = useRouter()
   const { t } = useTranslation('common')
 
