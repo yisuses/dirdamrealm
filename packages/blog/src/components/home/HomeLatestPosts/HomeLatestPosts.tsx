@@ -81,7 +81,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
           ))}
         </HStack>
       )}
-      <PostGrid posts={renderedPosts} />
+      <PostGrid posts={renderedPosts} limit={8} />
     </Flex>
   )
 }

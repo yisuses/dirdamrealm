@@ -5,6 +5,6 @@
     "noPublishedArticles": "No published articles for this category"
   },
   "latestPosts": {
-    "title": "Latest posts for {{categoryName}}"
+    "title": "More posts for {{categoryName}}"
   }
 }

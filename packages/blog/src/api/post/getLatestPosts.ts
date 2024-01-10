@@ -19,7 +19,7 @@ export async function getLatestPosts({
 }: GetLatestPostParams): Promise<Post[] | undefined> {
   const query = stringify({
     sort: ['publishedAt:desc'],
-    pagination: { pageSize: limit || 17, page: 1 },
+    pagination: { pageSize: limit || 100, page: 1 },
     populate: populate || ['categories', 'coverImage', 'localizations'],
     publicationState: 'live',
     locale: ['en', 'es'],
