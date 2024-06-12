@@ -1,5 +1,6 @@
 import '@fontsource/spartan'
 import { QueryClient, dehydrate } from '@tanstack/react-query'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { AppProviders } from 'app-providers'
 import { appWithTranslation } from 'next-i18next'
 import type { AppContext, AppProps } from 'next/app'
@@ -12,6 +13,7 @@ import { QUERY_ABOUT, QUERY_CATEGORIES } from '@blog/utils/constants'
 function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
   return (
     <AppProviders globalProps={globalProps} pageProps={pageProps}>
+      <SpeedInsights />
       <MainLayout>
         <NextNProgress color="#F6AD55" options={{ showSpinner: false }} />
         <Component {...pageProps} />
