@@ -67,7 +67,7 @@ export function Header({ categories }: HeaderProps) {
     code,
   }))
   const archiveLabel = t('header.archive')
-  const isArchiveActive = router.asPath === '/archive'
+  const isArchiveActive = router.asPath === '/archive/'
 
   const categoryDropdownLinks = categoryHeaderLinks.map(({ url, name, localizedName, code }, index) => {
     const isActive = router.asPath === buildCategoryPath(code, name)
