@@ -4,6 +4,7 @@ export { buildCategoryPath, buildPostPath, buildBlurDataUrl } from './urlBuilder
 export { fixedEncodeURIComponent } from './fixedEncodeURIComponent/fixedEncodeURIComponent'
 export { getImageUrlFromMedia, getImageDataFromMedia } from './image/image'
 export { getPlainText } from './getPlainText/getPlainText'
+export { formatPostDate } from './formatPostDate/formatPostDate'
 export { getReadingTime } from './getReadingTime/getReadingTime'
 export { seoName } from './seoName/seoName'
 export { stripTags } from './stripTags/stripTags'

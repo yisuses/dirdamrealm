@@ -6,7 +6,6 @@ import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import ShareLogo from '@iconify/icons-ion/share-social-sharp'
 import { Icon, IconifyIcon } from '@iconify/react'
-import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
@@ -18,13 +17,14 @@ import { useGetData } from '@blog/hooks'
 import { useGetLocalePublicUrl } from '@blog/hooks/useGetLocalePublicUrl'
 import {
   fixedEncodeURIComponent,
+  formatPostDate,
   getImageDataFromMedia,
   getImageUrlFromMedia,
   getPlainText,
   getReadingTime,
   publicUrl,
 } from '@blog/utils'
-import { DATE_FORMAT, QUERY_ABOUT, getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
+import { QUERY_ABOUT, getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
 import { PostComments } from '../PostComments'
 
@@ -81,11 +81,7 @@ export function PostPage() {
     writer,
   } = post
 
-  const [parsedDate, setParsedDate] = useState<string>(publishedAt.split('T')[0])
-
-  useEffect(() => {
-    setParsedDate(format(parseISO(publishedAt), DATE_FORMAT))
-  }, [publishedAt])
+  const parsedDate = formatPostDate(publishedAt)
 
   const postUrl = generateLocalePublicUrl(asPath)
   const encodedPostUrl = fixedEncodeURIComponent(postUrl)

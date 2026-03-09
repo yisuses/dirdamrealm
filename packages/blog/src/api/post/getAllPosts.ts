@@ -14,6 +14,10 @@ export async function getAllPosts({ locale }: GetAllPostParams): Promise<Post[] 
     publicationState: 'live',
     populate: ['localizations', 'coverImage'],
     locale,
+    pagination: {
+      page: 1,
+      pageSize: 100000,
+    },
   })
 
   return axios
