@@ -4,11 +4,14 @@ import { ChevronDownIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons
 import { Box, Divider, Flex, Text } from '@chakra-ui/layout'
 import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
 import { useColorMode } from '@chakra-ui/system'
+import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import { getCategories } from '@blog/api'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
+import { CATEGORIES_STALE_TIME_MS, getCategoriesKey } from '@blog/utils/constants'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
 
 import { HeaderMenu } from './HeaderMenu'
@@ -26,6 +29,7 @@ export function Header({ categories }: HeaderProps) {
   const router = useRouter()
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
+  const queryClient = useQueryClient()
   const { isOpen: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
 
   const logo = (
@@ -66,6 +70,7 @@ export function Header({ categories }: HeaderProps) {
     localizedName,
     code,
   }))
+
   const archiveLabel = t('header.archive')
   const isArchiveActive = router.asPath === '/archive/'
 
@@ -118,8 +123,16 @@ export function Header({ categories }: HeaderProps) {
         fontFamily="Roboto"
         aria-label={t('header.changeLanguage')}
         bg="transparent"
-        onClick={() => {
-          router.push(router.asPath, undefined, { locale: router.locale === 'es' ? 'en' : 'es' })
+        onClick={async () => {
+          const nextLocale = router.locale === 'es' ? 'en' : 'es'
+
+          await queryClient.prefetchQuery({
+            queryKey: getCategoriesKey(nextLocale as AppLocales),
+            queryFn: () => getCategories({ locale: nextLocale as AppLocales }),
+            staleTime: CATEGORIES_STALE_TIME_MS,
+          })
+
+          router.push(router.asPath, undefined, { locale: nextLocale })
         }}
         color="white"
         _hover={{ backgroundColor: 'transparent' }}

@@ -4,7 +4,8 @@ import { QueryKey } from '@tanstack/react-query'
 export const DATE_FORMAT = 'dd.MM.yyyy'
 
 export const QUERY_ABOUT: QueryKey = ['about']
-export const QUERY_CATEGORIES: QueryKey = ['categories']
+export const CATEGORIES_STALE_TIME_MS = 5 * 60 * 1000
+export const getCategoriesKey = (locale: AppLocales = 'en'): QueryKey => ['categories', locale]
 export const ARCHIVE_POSTS_KEY: QueryKey = ['archivePosts']
 export const getLatestPostsKey = (categoryCode = ''): QueryKey => ['latestPosts', categoryCode]
 export const getCategoryCodeKey = (categoryCode: string): QueryKey => ['category', categoryCode]

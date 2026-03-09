@@ -1,17 +1,19 @@
 import { Box } from '@chakra-ui/layout'
+import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
 import { CookieBanner, Footer, GlobalStyles, Header } from '@blog/components'
 import { useGetData } from '@blog/hooks'
 import { buildCategoryPath } from '@blog/utils'
-import { QUERY_ABOUT, QUERY_CATEGORIES } from '@blog/utils/constants'
+import { QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'
 
 interface MainLayoutProps {
   children: ReactNode
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const categories = useGetData<Category[]>(QUERY_CATEGORIES, [])
+  const { locale } = useRouter()
+  const categories = useGetData<Category[]>(getCategoriesKey((locale as AppLocales) || 'en'), [])
     .filter(category => category.main)
     .map(category => ({
       localizedName: category.localizedName,

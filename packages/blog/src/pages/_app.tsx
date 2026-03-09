@@ -8,7 +8,7 @@ import NextNProgress from 'nextjs-progressbar'
 
 import { getAbout, getCategories } from '@blog/api'
 import { MainLayout } from '@blog/components'
-import { QUERY_ABOUT, QUERY_CATEGORIES } from '@blog/utils/constants'
+import { CATEGORIES_STALE_TIME_MS, QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'
 
 function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
   return (
@@ -24,9 +24,12 @@ function BlogApp({ Component, pageProps, globalProps }: CustomAppProps) {
 
 BlogApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps> => {
   const queryClient = new QueryClient()
+  const locale = (appContext.router.locale || 'en') as AppLocales
+
   await queryClient.prefetchQuery({
-    queryKey: QUERY_CATEGORIES,
-    queryFn: () => getCategories({ locale: appContext.router.locale as AppLocales }),
+    queryKey: getCategoriesKey(locale),
+    queryFn: () => getCategories({ locale }),
+    staleTime: CATEGORIES_STALE_TIME_MS,
   })
   await queryClient.prefetchQuery({
     queryKey: QUERY_ABOUT,
