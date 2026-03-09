@@ -4,6 +4,8 @@ import { stringify } from 'qs'
 import { postMapper } from '@blog/api/mapper'
 import { apiUrl } from '@blog/utils'
 
+import { getLocalizedPosts } from './getLocalizedPosts'
+
 type GetLatestPostParams = {
   locale?: AppLocales
   category?: string
@@ -31,12 +33,13 @@ export async function getLatestPosts({
   return axios
     .get<PostResponse>(apiUrl(`/api/posts?${query}`))
     .then(({ data: response }) => {
-      return response.data.map(postMapper).filter(({ localizations }) => {
-        if (localizations?.length) {
-          return localizations.findIndex(({ locale: postLocale }) => postLocale === locale) < 0
-        }
-        return true
-      })
+      const mappedPosts = response.data.map(postMapper)
+
+      if (!locale) {
+        return mappedPosts
+      }
+
+      return getLocalizedPosts(mappedPosts, locale)
     })
     .catch(err => {
       console.error(err)
