@@ -1,13 +1,17 @@
 import { Button, IconButton } from '@chakra-ui/button'
 import { useDisclosure } from '@chakra-ui/hooks'
-import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Divider, Flex, HStack, Link, Text } from '@chakra-ui/layout'
+import { ChevronDownIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Divider, Flex, Text } from '@chakra-ui/layout'
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
 import { useColorMode } from '@chakra-ui/system'
+import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import { getCategories } from '@blog/api'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
+import { CATEGORIES_STALE_TIME_MS, getCategoriesKey } from '@blog/utils/constants'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
 
 import { HeaderMenu } from './HeaderMenu'
@@ -25,6 +29,7 @@ export function Header({ categories }: HeaderProps) {
   const router = useRouter()
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
+  const queryClient = useQueryClient()
   const { isOpen: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
 
   const logo = (
@@ -59,45 +64,39 @@ export function Header({ categories }: HeaderProps) {
     </NextLink>
   )
 
-  const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }, index) => (
-    <Link
-      as={NextLink}
-      href={url}
-      key={index}
-      px={{ md: 2, lg: 3 }}
-      pt="5px"
-      fontFamily="Roboto"
-      color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
-      display="block"
-      _focus={{
-        boxShadow: 'none',
-      }}
-      _hover={{
-        textDecoration: 'none',
-        '::after': {
-          width: '100%',
-        },
-      }}
-      _active={{
-        '::after': {
-          width: 'calc(100% + 10px)',
-          marginLeft: '-5px',
-          transition: 'none',
-        },
-      }}
-      _after={{
-        content: '""',
-        display: 'block',
-        width: 0,
-        height: '2px',
-        marginTop: '3px',
-        bg: 'orange.300',
-        transition: 'width 0.2s',
-      }}
-    >
-      {localizedName}
-    </Link>
-  ))
+  const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }) => ({
+    url,
+    name,
+    localizedName,
+    code,
+  }))
+
+  const archiveLabel = t('header.archive')
+  const isArchiveActive = router.asPath === '/archive/'
+
+  const categoryDropdownLinks = categoryHeaderLinks.map(({ url, name, localizedName, code }, index) => {
+    const isActive = router.asPath === buildCategoryPath(code, name)
+
+    return (
+      <MenuItem
+        key={index}
+        as={NextLink}
+        href={url}
+        px={4}
+        py={2}
+        bg="blackAlpha.800"
+        color={isActive ? 'orange.300' : 'white'}
+        borderRadius={0}
+        border="none"
+        fontFamily="Roboto"
+        _focus={{ boxShadow: 'none' }}
+        _hover={{ bg: 'blackAlpha.700' }}
+        _active={{ bg: 'transparent' }}
+      >
+        {localizedName}
+      </MenuItem>
+    )
+  })
 
   const actionButtons = (
     <>
@@ -124,8 +123,16 @@ export function Header({ categories }: HeaderProps) {
         fontFamily="Roboto"
         aria-label={t('header.changeLanguage')}
         bg="transparent"
-        onClick={() => {
-          router.push(router.asPath, undefined, { locale: router.locale === 'es' ? 'en' : 'es' })
+        onClick={async () => {
+          const nextLocale = router.locale === 'es' ? 'en' : 'es'
+
+          await queryClient.prefetchQuery({
+            queryKey: getCategoriesKey(nextLocale as AppLocales),
+            queryFn: () => getCategories({ locale: nextLocale as AppLocales }),
+            staleTime: CATEGORIES_STALE_TIME_MS,
+          })
+
+          router.push(router.asPath, undefined, { locale: nextLocale })
         }}
         color="white"
         _hover={{ backgroundColor: 'transparent' }}
@@ -172,9 +179,39 @@ export function Header({ categories }: HeaderProps) {
           display={{ base: 'none', lg: 'flex' }}
           justifyContent={{ lg: 'space-between', xl: 'flex-end' }}
         >
-          <HStack as="nav" spacing={4} py={{ lg: 4, xl: 0 }} alignItems="flex-end">
-            {categoryHeaderLinks}
-          </HStack>
+          <Menu>
+            <MenuButton
+              as={Button}
+              size="sm"
+              color="white"
+              rightIcon={<ChevronDownIcon />}
+              bg="transparent"
+              px={{ md: 2, lg: 3 }}
+              fontFamily="Roboto"
+              _hover={{ background: 'whiteAlpha.200' }}
+              _active={{ background: 'whiteAlpha.300' }}
+              _focus={{ boxShadow: 'none' }}
+            >
+              {t('footer.categories')}
+            </MenuButton>
+            <MenuList bg="white" borderColor="blackAlpha.800" borderRadius={0} minW="160px" py={0}>
+              {categoryDropdownLinks}
+            </MenuList>
+          </Menu>
+          <Button
+            as={NextLink}
+            href="/archive"
+            size="sm"
+            bg="transparent"
+            px={{ md: 2, lg: 3 }}
+            color={isArchiveActive ? 'orange.300' : 'white'}
+            fontFamily="Roboto"
+            _hover={{ textDecoration: 'none', background: 'whiteAlpha.200' }}
+            _active={{ background: 'transparent' }}
+            _focus={{ boxShadow: 'none' }}
+          >
+            {archiveLabel}
+          </Button>
           <Box>{actionButtons}</Box>
         </Flex>
       </Flex>

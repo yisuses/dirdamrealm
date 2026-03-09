@@ -6,6 +6,7 @@
  */
 import 'i18next'
 
+import archivePage from '../../public/locales/en/archivePage.json'
 import categoryPage from '../../public/locales/en/categoryPage.json'
 import common from '../../public/locales/en/common.json'
 import errorPage from '../../public/locales/en/errorPage.json'
@@ -14,6 +15,7 @@ import postPage from '../../public/locales/en/postPage.json'
 
 interface I18nNamespaces {
   common: typeof common
+  archivePage: typeof archivePage
   categoryPage: typeof categoryPage
   homePage: typeof homePage
   errorPage: typeof errorPage

@@ -1,15 +1,12 @@
 /* eslint-disable import/no-duplicates */
 import { Box, Divider, Flex, Link, LinkProps, Text } from '@chakra-ui/layout'
-import format from 'date-fns/format'
-import parseISO from 'date-fns/parseISO'
 import { Trans, useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 
 import { Tag } from '@blog/components/common/Tag'
-import { DATE_FORMAT } from '@blog/utils/constants'
+import { formatPostDate } from '@blog/utils'
 import { getImageUrlFromMedia } from '@blog/utils/image/image'
 import { buildPostPath } from '@blog/utils/urlBuilder'
 
@@ -42,11 +39,7 @@ export function HeaderImage({
   const { locale: appLocale } = useRouter()
   const { t } = useTranslation('common')
   const renderedCategories = categories?.slice(0, 3) || []
-  const [parsedDate, setParsedDate] = useState<string>(publishedAt.split('T')[0])
-
-  useEffect(() => {
-    setParsedDate(format(parseISO(publishedAt), DATE_FORMAT))
-  }, [publishedAt])
+  const parsedDate = formatPostDate(publishedAt)
 
   return (
     <Box>

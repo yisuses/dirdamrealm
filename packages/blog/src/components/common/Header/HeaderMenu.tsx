@@ -29,6 +29,12 @@ export const HeaderMenu = ({ categories }: HeaderDropdownProps) => {
     </NextLink>
   ))
 
+  menuLinks.push(
+    <NextLink href="/archive" key="archive" onClick={onClose} legacyBehavior={false}>
+      {t('header.archive')}
+    </NextLink>,
+  )
+
   return (
     <>
       <Drawer

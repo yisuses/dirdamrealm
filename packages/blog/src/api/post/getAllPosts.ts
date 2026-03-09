@@ -4,6 +4,8 @@ import { stringify } from 'qs'
 import { postMapper } from '@blog/api/mapper'
 import { apiUrl } from '@blog/utils'
 
+import { getLocalizedPosts } from './getLocalizedPosts'
+
 type GetAllPostParams = {
   locale?: AppLocales
 }
@@ -13,19 +15,24 @@ export async function getAllPosts({ locale }: GetAllPostParams): Promise<Post[] 
     sort: ['updatedAt:desc'],
     publicationState: 'live',
     populate: ['localizations', 'coverImage'],
-    locale,
+    locale: ['en', 'es'],
+    pagination: {
+      page: 1,
+      pageSize: 100000,
+    },
   })
 
   return axios
     .get<PostResponse>(apiUrl(`/api/posts?${query}`))
-    .then(({ data: response }) =>
-      response.data.map(postMapper).filter(({ localizations }) => {
-        if (localizations?.length) {
-          return localizations.findIndex(({ locale: postLocale }) => postLocale === locale) < 0
-        }
-        return true
-      }),
-    )
+    .then(({ data: response }) => {
+      const mappedPosts = response.data.map(postMapper)
+
+      if (!locale) {
+        return mappedPosts
+      }
+
+      return getLocalizedPosts(mappedPosts, locale)
+    })
     .catch(err => {
       console.error(err)
       throw new Error('Error retrieving posts.')
