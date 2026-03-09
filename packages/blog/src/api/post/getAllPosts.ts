@@ -2,9 +2,7 @@ import axios from 'axios'
 import { stringify } from 'qs'
 
 import { postMapper } from '@blog/api/mapper'
-import { apiUrl } from '@blog/utils'
-
-import { getLocalizedPosts } from './getLocalizedPosts'
+import { apiUrl, getLocalizedPosts } from '@blog/utils'
 
 type GetAllPostParams = {
   locale?: AppLocales
