@@ -10,10 +10,11 @@ function generateSiteMap(posts: Post[], defaultLocale: string | undefined) {
   return xmlUrlSet(
     posts
       .map(
-        ({ id, title, updatedAt, locale, localizations, coverImage }) => `
+        ({ id, title, publishedAt, updatedAt, locale, localizations, coverImage }) => `
             <url>
             <loc>${publicUrl(`${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`)}</loc>
             <lastmod>${updatedAt}</lastmod>
+            <news:publication_date>${publishedAt}</news:publication_date>
             ${
               coverImage &&
               `<image:image>
@@ -53,11 +54,10 @@ function PostSiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res, defaultLocale }) => {
   // We make an API call to gather the URLs for our site
-  const englishPosts = await getAllPosts({ locale: 'en' })
-  const spanishPosts = await getAllPosts({ locale: 'es' })
+  const posts = await getAllPosts({})
 
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(([] as Post[]).concat(spanishPosts || [], englishPosts || []), defaultLocale)
+  const sitemap = generateSiteMap(posts || [], defaultLocale)
 
   res.setHeader('Content-Type', 'text/xml')
   // we send the XML to the browser
