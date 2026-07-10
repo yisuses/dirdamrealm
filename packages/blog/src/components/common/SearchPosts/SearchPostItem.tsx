@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import NextLink from 'next/link'
 

@@ -12047,7 +12047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hoist-non-react-statics@npm:3, @types/hoist-non-react-statics@npm:^3.3.6":
+"@types/hoist-non-react-statics@npm:3, @types/hoist-non-react-statics@npm:^3.3.7":
   version: 3.3.7
   resolution: "@types/hoist-non-react-statics@npm:3.3.7"
   dependencies:
@@ -13655,7 +13655,7 @@ __metadata:
     jest: 29.7.0
     jest-environment-jsdom: 29.7.0
     next: 16.2.10
-    next-i18next: 15.4.3
+    next-i18next: 16.0.7
     next-secure-headers: 2.2.0
     next-themes: 0.4.6
     nextjs-progressbar: 0.0.16
@@ -17642,13 +17642,6 @@ __metadata:
   version: 3.31.1
   resolution: "core-js-pure@npm:3.31.1"
   checksum: 93c3dd28471755cb81ec4828f5617bd32a7c682295d88671534a6733a0d41dae9e28f8f8000ddd1f1e597a3bec4602db5f906a03c9ba1a360534f7ae2519db7c
-  languageName: node
-  linkType: hard
-
-"core-js@npm:^3":
-  version: 3.31.1
-  resolution: "core-js@npm:3.31.1"
-  checksum: 14519213a63c55cf188bdd2f4dece54583feaf6b90e75d6c65e07f509cd487055bf64898aeda7c97c36029ac1ea2f2ed8e4b02281553f6a257e7143a32a14015
   languageName: node
   linkType: hard
 
@@ -22743,19 +22736,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-fs-backend@npm:^2.6.0":
-  version: 2.6.6
-  resolution: "i18next-fs-backend@npm:2.6.6"
-  checksum: 0055e737379d29bac8230b057325e5d2e9311dd12cfd65ad1053fd78bade0d020d1a16b549de311b20c41106c50013019a22fe70d6e0585e07196f6a11c958ab
-  languageName: node
-  linkType: hard
-
 "i18next-http-backend@npm:2.7.3":
   version: 2.7.3
   resolution: "i18next-http-backend@npm:2.7.3"
   dependencies:
     cross-fetch: 4.0.0
   checksum: 45315b3c8e0a34f02c30805aa5900b164f82ac1a15c68b147a9bb335c8d6136059bdf5339c17302d0bbd95936f8d62d4989f1eceba6178fb309a3d6adaf87759
+  languageName: node
+  linkType: hard
+
+"i18next-resources-to-backend@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "i18next-resources-to-backend@npm:1.2.1"
+  dependencies:
+    "@babel/runtime": ^7.23.2
+  checksum: a2f338c4eec8d5ba09846ae1abdd23afb72086f6395d6160c748d010c82f5c28c30133f6487f0fd3a65e710231d7750b324785f15cac4baf6d24b33227840341
   languageName: node
   linkType: hard
 
@@ -27716,21 +27711,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-i18next@npm:15.4.3":
-  version: 15.4.3
-  resolution: "next-i18next@npm:15.4.3"
+"next-i18next@npm:16.0.7":
+  version: 16.0.7
+  resolution: "next-i18next@npm:16.0.7"
   dependencies:
-    "@babel/runtime": ^7.23.2
-    "@types/hoist-non-react-statics": ^3.3.6
-    core-js: ^3
+    "@types/hoist-non-react-statics": ^3.3.7
     hoist-non-react-statics: ^3.3.2
-    i18next-fs-backend: ^2.6.0
+    i18next-resources-to-backend: ^1.2.1
   peerDependencies:
     i18next: ">= 23.7.13"
-    next: ">= 12.0.0"
-    react: ">= 17.0.2"
-    react-i18next: ">= 13.5.0"
-  checksum: 2597f3426dd2fdd9d24d17b12d3d81ed3e94d88a31f60c2757a09428bdd71fe25770d4606fa208316ad533a1e6fc44eed01c8a8c14b5c6113b0e1865b63ad8cc
+    next: ">= 14.1.0"
+    react: ">= 18.0.0"
+    react-i18next: ">= 14.0.0"
+  checksum: c9d5d60edaf23af786ba6c4105564b3069180417913ee5cc3b38d952b0daf722d86bbba558b73ec4ea2345c9e30296a6315967e97d05e3f7c167aa0a9fc97019
   languageName: node
   linkType: hard
 

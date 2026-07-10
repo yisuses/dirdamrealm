@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import { Box, Flex, Link, LinkProps, Separator, Text } from '@chakra-ui/react'
-import { Trans, useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'

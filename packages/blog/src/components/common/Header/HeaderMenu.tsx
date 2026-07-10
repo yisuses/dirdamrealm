@@ -1,5 +1,5 @@
 import { Box, CloseButton, Flex, IconButton, Text, VStack, useDisclosure } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import NextLink from 'next/link'
 import { LuMenu } from 'react-icons/lu'
 

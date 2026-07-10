@@ -1,5 +1,5 @@
 import { Button, Text } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useRef } from 'react'
 import { CookieConsent } from 'react-cookie-consent'
 

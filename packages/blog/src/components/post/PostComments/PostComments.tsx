@@ -1,7 +1,7 @@
 import { Box, Button, Field, Flex, Heading, Input, Text, Textarea } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 // eslint-disable-next-line import/no-named-as-default

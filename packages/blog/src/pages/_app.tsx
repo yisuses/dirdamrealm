@@ -2,7 +2,7 @@ import '@fontsource/spartan'
 import { QueryClient, dehydrate } from '@tanstack/react-query'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { AppProviders } from 'app-providers'
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation } from 'next-i18next/pages'
 import type { AppContext, AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 

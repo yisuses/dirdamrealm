@@ -4,7 +4,7 @@ import InstagramLogo from '@iconify/icons-ion/logo-instagram'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import { Icon, IconifyIcon } from '@iconify/react'
-import { Trans, useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next/pages'
 
 import { SocialButton } from '@blog/components'
 import { useColorModeValue } from '@blog/components/ui/color-mode'

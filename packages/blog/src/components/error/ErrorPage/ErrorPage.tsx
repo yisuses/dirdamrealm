@@ -1,5 +1,5 @@
 import { Flex, Heading, Link, Text } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import NextLink from 'next/link'
 
 interface ErrorProps {

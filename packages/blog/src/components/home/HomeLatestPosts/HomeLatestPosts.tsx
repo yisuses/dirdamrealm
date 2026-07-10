@@ -1,6 +1,6 @@
 import { Flex, HStack, Heading, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 

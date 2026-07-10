@@ -1,6 +1,6 @@
 import { Box, Button, Flex, IconButton, Separator, Text, useDisclosure } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { LuChevronDown, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
