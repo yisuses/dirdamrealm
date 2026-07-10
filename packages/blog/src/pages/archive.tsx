@@ -12,7 +12,7 @@ import { ItemList, WebPage } from 'schema-dts'
 import { getCategories } from '@blog/api/category'
 import { getAllPosts } from '@blog/api/post'
 import { WithErrorProps, withErrorComponent } from '@blog/components'
-import { CategorySelect, Metadata } from '@blog/components/common'
+import { Metadata, SelectMenu } from '@blog/components/common'
 import { getServerTranslations } from '@blog/core/i18n'
 import { useGetLocalePublicUrl } from '@blog/hooks'
 import { buildPostPath, formatPostDate, handlePageError, setCacheControl } from '@blog/utils'
@@ -40,10 +40,21 @@ const ArchivePage: NextPage = () => {
   const { locale } = useRouter()
   const generateLocalePublicUrl = useGetLocalePublicUrl()
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedYear, setSelectedYear] = useState('')
 
   const { data: categories = [] } = useQuery({
     queryKey: getCategoriesKey((locale as AppLocales) || 'en'),
     queryFn: () => getCategories({ locale: locale as AppLocales }),
+    staleTime: CATEGORIES_STALE_TIME_MS,
+    refetchOnWindowFocus: false,
+  })
+
+  // The whole (unfiltered) post list feeds the year selector, so its options stay stable
+  // regardless of the selected category. It reuses the SSR-prefetched ARCHIVE_POSTS_KEY,
+  // so no extra request is made.
+  const { data: allPosts = [] } = useQuery({
+    queryKey: ARCHIVE_POSTS_KEY,
+    queryFn: () => getAllPosts({ locale: locale as AppLocales }),
     staleTime: CATEGORIES_STALE_TIME_MS,
     refetchOnWindowFocus: false,
   })
@@ -64,12 +75,26 @@ const ArchivePage: NextPage = () => {
     refetchOnWindowFocus: false,
   })
 
+  const years = useMemo(
+    () => Array.from(new Set(allPosts.map(post => parseISO(post.publishedAt).getFullYear()))).sort((a, b) => b - a),
+    [allPosts],
+  )
+
+  // Year filtering is applied client-side on top of the (category-scoped) list already loaded.
+  const filteredPosts = useMemo(
+    () =>
+      selectedYear
+        ? archivePosts.filter(post => parseISO(post.publishedAt).getFullYear() === Number(selectedYear))
+        : archivePosts,
+    [archivePosts, selectedYear],
+  )
+
   const postsByYear = useMemo<ArchiveYear[]>(() => {
-    if (archivePosts.length === 0) {
+    if (filteredPosts.length === 0) {
       return []
     }
 
-    const sortedPosts = [...archivePosts].sort(
+    const sortedPosts = [...filteredPosts].sort(
       (a, b) => parseISO(b.publishedAt).getTime() - parseISO(a.publishedAt).getTime(),
     )
 
@@ -100,7 +125,7 @@ const ArchivePage: NextPage = () => {
             posts: groupedPosts[year]![month] || [],
           })),
       }))
-  }, [archivePosts])
+  }, [filteredPosts])
 
   const archiveLdItems = useMemo<ItemList>(() => {
     let position = 1
@@ -148,15 +173,26 @@ const ArchivePage: NextPage = () => {
             {t('archivePage.title')}
           </Heading>
 
-          <Box mt={6}>
-            <CategorySelect
-              categories={categories}
+          <Flex mt={6} gap={4} flexWrap="wrap">
+            <SelectMenu
               value={selectedCategory}
               onChange={setSelectedCategory}
-              allLabel={t('archivePage.allCategories')}
               label={t('archivePage.filterByCategory')}
+              options={[
+                { value: '', label: t('archivePage.allCategories') },
+                ...categories.map(({ code, localizedName }) => ({ value: code, label: localizedName })),
+              ]}
             />
-          </Box>
+            <SelectMenu
+              value={selectedYear}
+              onChange={setSelectedYear}
+              label={t('archivePage.filterByYear')}
+              options={[
+                { value: '', label: t('archivePage.allYears') },
+                ...years.map(year => ({ value: String(year), label: String(year) })),
+              ]}
+            />
+          </Flex>
 
           {isFetching && postsByYear.length === 0 ? (
             <Flex justifyContent="center" mt={10}>

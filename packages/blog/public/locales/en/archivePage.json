@@ -5,6 +5,8 @@
     "noPosts": "No published posts yet.",
     "filterByCategory": "Filter by category",
     "allCategories": "All categories",
+    "filterByYear": "Filter by year",
+    "allYears": "All years",
     "loading": "Loading posts",
     "months": {
       "0": "January",
