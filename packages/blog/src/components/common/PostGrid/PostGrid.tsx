@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/layout'
+import { SimpleGrid } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 

@@ -1,4 +1,3 @@
-import { useBreakpointValue } from '@chakra-ui/media-query'
 import {
   Modal as ChakraModal,
   ModalBody,
@@ -6,8 +5,9 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/modal'
-import { useColorModeValue } from '@chakra-ui/react'
+  useBreakpointValue,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect } from 'react'
 

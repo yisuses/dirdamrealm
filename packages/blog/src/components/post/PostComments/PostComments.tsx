@@ -1,9 +1,16 @@
-import { Button } from '@chakra-ui/button'
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/form-control'
-import { Input } from '@chakra-ui/input'
-import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
-import { Textarea } from '@chakra-ui/textarea'
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  Text,
+  Textarea,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
 import { useTranslation } from 'next-i18next'

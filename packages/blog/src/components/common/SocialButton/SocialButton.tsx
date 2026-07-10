@@ -1,5 +1,4 @@
-import { Button } from '@chakra-ui/button'
-import { VisuallyHidden } from '@chakra-ui/visually-hidden'
+import { Button, VisuallyHidden } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 interface SocialButtonProps {

@@ -1,9 +1,18 @@
-import { Button, IconButton } from '@chakra-ui/button'
-import { useDisclosure } from '@chakra-ui/hooks'
 import { ChevronDownIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Divider, Flex, Text } from '@chakra-ui/layout'
-import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
-import { useColorMode } from '@chakra-ui/system'
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+  useColorMode,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'

@@ -1,6 +1,4 @@
-import { Button } from '@chakra-ui/button'
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Text } from '@chakra-ui/layout'
+import { Button, Text, useColorModeValue } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import { useRef } from 'react'
 import { CookieConsent } from 'react-cookie-consent'

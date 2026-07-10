@@ -1,5 +1,4 @@
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { chakra } from '@chakra-ui/react'
+import { chakra, useColorModeValue } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import HTMLReactParser from 'html-react-parser'
 

@@ -1,4 +1,4 @@
-import { ListItem, OrderedList, UnorderedList } from '@chakra-ui/layout'
+import { ListItem, OrderedList, UnorderedList } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import HTMLReactParser, { HTMLReactParserOptions } from 'html-react-parser'
 

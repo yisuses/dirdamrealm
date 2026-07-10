@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Box, Center, Divider as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/layout'
+import { useColorModeValue } from '@chakra-ui/react'
+import { Box, Center, Divider as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
@@ -252,7 +252,9 @@ export function PostPage() {
           </Flex>
           <Flex direction="row">
             <Stack direction="row" spacing={2} mt="40px">
-              {categories?.map(category => <Tag key={category.code} label={category.localizedName} />)}
+              {categories?.map(category => (
+                <Tag key={category.code} label={category.localizedName} />
+              ))}
             </Stack>
             <Stack direction="row" spacing={2} ml="auto" pt={8}>
               {socialButtons}

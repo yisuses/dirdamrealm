@@ -1,4 +1,4 @@
-import { Flex, Heading, Link, Text } from '@chakra-ui/layout'
+import { Flex, Heading, Link, Text } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 

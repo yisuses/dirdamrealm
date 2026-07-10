@@ -1,6 +1,4 @@
-import { FormControl, FormLabel } from '@chakra-ui/form-control'
-import { Input } from '@chakra-ui/input'
-import { Box } from '@chakra-ui/layout'
+import { Box, FormControl, FormLabel, Input } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
@@ -56,7 +54,9 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
         flexShrink={0}
       >
         <Box pr="17px" boxSizing="content-box" width="100%" height="auto" overflowY="auto">
-          {postResults?.map((post, index) => <SearchPostResultItem key={index} post={post} />)}
+          {postResults?.map((post, index) => (
+            <SearchPostResultItem key={index} post={post} />
+          ))}
         </Box>
       </Box>
     </Box>

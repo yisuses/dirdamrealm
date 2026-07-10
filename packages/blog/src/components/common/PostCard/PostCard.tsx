@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Box, Flex, Link, Text } from '@chakra-ui/layout'
+import { useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 

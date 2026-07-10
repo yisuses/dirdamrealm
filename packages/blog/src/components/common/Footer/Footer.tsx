@@ -1,5 +1,4 @@
-import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text } from '@chakra-ui/layout'
-import { useColorModeValue } from '@chakra-ui/react'
+import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import InstagramLogo from '@iconify/icons-ion/logo-instagram'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'

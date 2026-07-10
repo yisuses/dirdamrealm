@@ -1,4 +1,4 @@
-import { ConfigColorMode } from '@chakra-ui/color-mode'
+import { ConfigColorMode } from '@chakra-ui/react'
 
 import chakraTheme, { breakpoints } from './chakra.theme'
 

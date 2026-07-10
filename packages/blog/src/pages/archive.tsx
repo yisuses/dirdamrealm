@@ -1,5 +1,4 @@
-import { Box, Flex, Heading, Link, List, ListItem, Text } from '@chakra-ui/layout'
-import { Spinner } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, List, ListItem, Spinner, Text } from '@chakra-ui/react'
 import { QueryClient, dehydrate, keepPreviousData, useQuery } from '@tanstack/react-query'
 import { parseISO } from 'date-fns'
 import type { GetServerSideProps, NextPage } from 'next'

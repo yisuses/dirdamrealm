@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/layout'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import Image from 'next/image'
 import NextLink from 'next/link'
