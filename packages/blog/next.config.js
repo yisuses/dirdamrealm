@@ -30,7 +30,6 @@ if (disableSourceMaps) {
   console.info(`${pc.green('notice')}- Sourcemaps generation have been disabled through NEXT_DISABLE_SOURCEMAPS`)
 }
 
-const NEXTJS_IGNORE_ESLINT = process.env.NEXTJS_IGNORE_ESLINT === '1' || false
 const NEXTJS_IGNORE_TYPECHECK = process.env.NEXTJS_IGNORE_TYPECHECK === '1' || false
 
 // Tell webpack to compile those packages
@@ -77,18 +76,12 @@ const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: !disableSourceMaps,
   i18n,
-  optimizeFonts: false,
 
   httpAgentOptions: {
     // @link https://nextjs.org/blog/next-11-1#builds--data-fetching
     keepAlive: true,
   },
 
-  // @link https://nextjs.org/docs/advanced-features/output-file-tracing
-  outputFileTracing: true,
-
-  // Replace terser by swc
-  swcMinify: true,
   experimental: {
     // Prefer loading of ES Modules over CommonJS
     // @link {https://nextjs.org/blog/next-11-1#es-modules-support|Blog 11.1.0}
@@ -143,11 +136,6 @@ const nextConfig = {
 
   typescript: {
     ignoreBuildErrors: NEXTJS_IGNORE_TYPECHECK,
-  },
-
-  eslint: {
-    ignoreDuringBuilds: NEXTJS_IGNORE_ESLINT,
-    dirs: ['src'],
   },
 
   async headers() {

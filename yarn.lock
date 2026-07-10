@@ -6709,10 +6709,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/env@npm:15.5.20"
-  checksum: b4d2230283b18b7d4cd348e42992a099cc2c7c6eb08d29a05f01f32da782ea802ffb6915352c37f52657c6162f033b390257e258652a7d3bd991dbdb6b591e62
+"@next/env@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/env@npm:16.2.10"
+  checksum: 83efc68aed6a1dfaa96ead9e1d7273cfd50b09418e128fa4effa91bda4bd46adeaab9325fd09bae34d8046e7524a923ed9cb6975445f0820c0de399c41f9c820
   languageName: node
   linkType: hard
 
@@ -6725,58 +6725,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-darwin-arm64@npm:15.5.20"
+"@next/swc-darwin-arm64@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-darwin-arm64@npm:16.2.10"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-darwin-x64@npm:15.5.20"
+"@next/swc-darwin-x64@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-darwin-x64@npm:16.2.10"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-linux-arm64-gnu@npm:15.5.20"
+"@next/swc-linux-arm64-gnu@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-linux-arm64-gnu@npm:16.2.10"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-linux-arm64-musl@npm:15.5.20"
+"@next/swc-linux-arm64-musl@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-linux-arm64-musl@npm:16.2.10"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-linux-x64-gnu@npm:15.5.20"
+"@next/swc-linux-x64-gnu@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-linux-x64-gnu@npm:16.2.10"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-linux-x64-musl@npm:15.5.20"
+"@next/swc-linux-x64-musl@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-linux-x64-musl@npm:16.2.10"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-win32-arm64-msvc@npm:15.5.20"
+"@next/swc-win32-arm64-msvc@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-win32-arm64-msvc@npm:16.2.10"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:15.5.20":
-  version: 15.5.20
-  resolution: "@next/swc-win32-x64-msvc@npm:15.5.20"
+"@next/swc-win32-x64-msvc@npm:16.2.10":
+  version: 16.2.10
+  resolution: "@next/swc-win32-x64-msvc@npm:16.2.10"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -13606,7 +13606,7 @@ __metadata:
     i18next-http-backend: 2.7.3
     jest: 29.7.0
     jest-environment-jsdom: 29.7.0
-    next: 15.5.20
+    next: 16.2.10
     next-i18next: 15.4.3
     next-secure-headers: 2.2.0
     nextjs-progressbar: 0.0.16
@@ -14841,7 +14841,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"baseline-browser-mapping@npm:^2.10.42":
+"baseline-browser-mapping@npm:^2.10.42, baseline-browser-mapping@npm:^2.9.19":
   version: 2.10.42
   resolution: "baseline-browser-mapping@npm:2.10.42"
   bin:
@@ -26971,23 +26971,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:15.5.20":
-  version: 15.5.20
-  resolution: "next@npm:15.5.20"
+"next@npm:16.2.10":
+  version: 16.2.10
+  resolution: "next@npm:16.2.10"
   dependencies:
-    "@next/env": 15.5.20
-    "@next/swc-darwin-arm64": 15.5.20
-    "@next/swc-darwin-x64": 15.5.20
-    "@next/swc-linux-arm64-gnu": 15.5.20
-    "@next/swc-linux-arm64-musl": 15.5.20
-    "@next/swc-linux-x64-gnu": 15.5.20
-    "@next/swc-linux-x64-musl": 15.5.20
-    "@next/swc-win32-arm64-msvc": 15.5.20
-    "@next/swc-win32-x64-msvc": 15.5.20
+    "@next/env": 16.2.10
+    "@next/swc-darwin-arm64": 16.2.10
+    "@next/swc-darwin-x64": 16.2.10
+    "@next/swc-linux-arm64-gnu": 16.2.10
+    "@next/swc-linux-arm64-musl": 16.2.10
+    "@next/swc-linux-x64-gnu": 16.2.10
+    "@next/swc-linux-x64-musl": 16.2.10
+    "@next/swc-win32-arm64-msvc": 16.2.10
+    "@next/swc-win32-x64-msvc": 16.2.10
     "@swc/helpers": 0.5.15
+    baseline-browser-mapping: ^2.9.19
     caniuse-lite: ^1.0.30001579
     postcss: 8.4.31
-    sharp: ^0.34.3
+    sharp: ^0.34.5
     styled-jsx: 5.1.6
   peerDependencies:
     "@opentelemetry/api": ^1.1.0
@@ -27026,7 +27027,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 23dfdae20da6f2234bdd31b4c3b88332f7b780dc1e962f31df971cdab288017d12ef4731beaeb2a116a30d5fb8835160e5ced2c391d209c6e4dfca7415ec0b50
+  checksum: 16ac79da9ff3290cd0aa23cf1e466566feb989b6c11db474b1baae968f02ac70aff7925099b6304f68fda100126b6f2f5eaea90c1a85efa3957cdcb2191a767c
   languageName: node
   linkType: hard
 
@@ -31766,7 +31767,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.34.3":
+"sharp@npm:^0.34.5":
   version: 0.34.5
   resolution: "sharp@npm:0.34.5"
   dependencies:
