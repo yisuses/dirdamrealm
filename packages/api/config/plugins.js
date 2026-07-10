@@ -25,32 +25,24 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  search: {
+  // Strapi v5 replacement for the (v4-only) @mattie-bundle search plugin.
+  // Indexes posts to Algolia; index name stays `whemotion_${NODE_ENV}_post` so the
+  // blog's Algolia search keeps hitting the same index.
+  'strapi-algolia': {
     enabled: true,
     config: {
-      provider: 'algolia',
-      prefix: `whemotion_${env('NODE_ENV')}_`,
-      providerOptions: {
-        apiKey: env('ALGOLIA_PROVIDER_ADMIN_API_KEY'),
-        applicationId: env('ALGOLIA_PROVIDER_APPLICATION_ID'),
-      },
+      apiKey: env('ALGOLIA_PROVIDER_ADMIN_API_KEY'),
+      applicationId: env('ALGOLIA_PROVIDER_APPLICATION_ID'),
+      indexPrefix: `whemotion_${env('NODE_ENV')}_`,
       contentTypes: [
         {
           name: 'api::post.post',
           index: 'post',
-          fields: [
-            'title',
-            'summary',
-            'categories',
-            'content',
-            'createdAt',
-            'publishedAt',
-            'locale',
-            'writer',
-            'coverImage',
-            'imgUrl',
-            'coverImageSourceUrl',
-          ],
+          populate: {
+            categories: true,
+            writer: true,
+            coverImage: true,
+          },
         },
       ],
     },
