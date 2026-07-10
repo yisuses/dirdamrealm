@@ -12,7 +12,7 @@ import { WithErrorProps, withErrorComponent } from '@blog/components'
 import { Metadata } from '@blog/components/common'
 import { getServerTranslations } from '@blog/core/i18n'
 import { useGetData, useGetLocalePublicUrl } from '@blog/hooks'
-import { buildPostPath, formatPostDate, handlePageError } from '@blog/utils'
+import { buildPostPath, formatPostDate, handlePageError, setCacheControl } from '@blog/utils'
 import { ARCHIVE_POSTS_KEY } from '@blog/utils/constants'
 
 type ArchiveMonthNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
@@ -169,6 +169,9 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
       queryKey: ARCHIVE_POSTS_KEY,
       queryFn: () => getAllPosts({ locale: locale as AppLocales }),
     })
+
+    // Cache the SSR response at the edge; the archive changes only when posts are added.
+    setCacheControl(res)
 
     return {
       props: {

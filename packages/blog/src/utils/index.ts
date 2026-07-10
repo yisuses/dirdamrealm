@@ -1,6 +1,7 @@
 export { ApiError, NotFoundError, handlePageError } from './error/handlePageError'
 export { apiUrl, publicUrl } from './generateUrl/generateUrl'
 export { buildCategoryPath, buildPostPath, buildBlurDataUrl } from './urlBuilder'
+export { setCacheControl } from './cacheControl/setCacheControl'
 export { fixedEncodeURIComponent } from './fixedEncodeURIComponent/fixedEncodeURIComponent'
 export { getImageUrlFromMedia, getImageDataFromMedia } from './image/image'
 export { getPlainText } from './getPlainText/getPlainText'

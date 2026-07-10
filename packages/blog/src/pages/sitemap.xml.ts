@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 
 import { getCategories } from '@blog/api'
 import { getAllPosts } from '@blog/api/post'
+import { setCacheControl } from '@blog/utils'
 import { xmlEncoding } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
@@ -35,6 +36,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const sitemap = generateSiteMap(categories[0].updatedAt, posts ? posts[0].updatedAt || '' : '')
 
   res.setHeader('Content-Type', 'text/xml')
+  // Cache at the edge so crawler hits are served by the CDN, not the origin function.
+  setCacheControl(res, { sMaxAge: 3600 })
   // we send the XML to the browser
   res.write(sitemap)
   res.end()
