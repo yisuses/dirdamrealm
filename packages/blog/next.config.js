@@ -8,7 +8,6 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const NEXTJS_DISABLE_SENTRY = trueEnv.includes(process.env?.NEXTJS_DISABLE_SENTRY ?? 'false')
 const NEXTJS_SENTRY_AUTH_TOKEN = process.env?.NEXTJS_SENTRY_AUTH_TOKEN ?? 'auth_token'
-const NEXTJS_SENTRY_DEBUG = trueEnv.includes(process.env?.NEXTJS_SENTRY_DEBUG ?? 'false')
 const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
 const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
 const NEXTJS_SENTRY_RELEASE =
@@ -151,27 +150,6 @@ const nextConfig = {
       },
     ]
   },
-
-  webpack: (config, { webpack, isServer }) => {
-    if (!isServer) {
-      // Swap sentry/node by sentry/browser
-      config.resolve.alias['@sentry/node'] = '@sentry/browser'
-    }
-
-    if (isServer) {
-      // Till undici 4 haven't landed in prisma, we need this for docker/alpine
-      // @see https://github.com/prisma/prisma/issues/6925#issuecomment-905935585
-      config.externals.push('_http_common')
-    }
-
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        __SENTRY_DEBUG__: NEXTJS_SENTRY_DEBUG,
-      }),
-    )
-
-    return config
-  },
 }
 
 let config = nextConfig
@@ -193,21 +171,15 @@ if (process.env.ANALYZE === 'true') {
 }
 
 if (!NEXTJS_DISABLE_SENTRY) {
-  // @ts-ignore because sentry does not match nextjs current definitions
+  // Sentry 10 build options (withSentryConfig). Source maps are only uploaded when an
+  // auth token is present; NEXTJS_SENTRY_UPLOAD_DRY_RUN disables upload (replaces v7 dryRun).
   config = withSentryConfig(config, {
-    // Additional config options for the Sentry Webpack plugin. Keep in mind that
-    // the following options are set automatically, and overriding them is not
-    // recommended:
-    //   release, url, org, project, authToken, configFile, stripPrefix,
-    //   urlPrefix, include, ignore
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options.
-    // silent: isProd, // Suppresses all logs
-    dryRun: NEXTJS_SENTRY_UPLOAD_DRY_RUN,
-    project: NEXTJS_SENTRY_PROJECT,
     org: NEXTJS_SENTRY_ORG,
+    project: NEXTJS_SENTRY_PROJECT,
     authToken: NEXTJS_SENTRY_AUTH_TOKEN,
-    release: NEXTJS_SENTRY_RELEASE,
+    release: { name: NEXTJS_SENTRY_RELEASE },
+    sourcemaps: { disable: NEXTJS_SENTRY_UPLOAD_DRY_RUN },
+    silent: !isProd,
   })
 }
 
