@@ -174,24 +174,28 @@ const ArchivePage: NextPage = () => {
           </Heading>
 
           <Flex mt={6} gap={4} flexWrap="wrap">
-            <SelectMenu
-              value={selectedCategory}
-              onChange={setSelectedCategory}
-              label={t('archivePage.filterByCategory')}
-              options={[
-                { value: '', label: t('archivePage.allCategories') },
-                ...categories.map(({ code, localizedName }) => ({ value: code, label: localizedName })),
-              ]}
-            />
-            <SelectMenu
-              value={selectedYear}
-              onChange={setSelectedYear}
-              label={t('archivePage.filterByYear')}
-              options={[
-                { value: '', label: t('archivePage.allYears') },
-                ...years.map(year => ({ value: String(year), label: String(year) })),
-              ]}
-            />
+            <Box width={{ base: '100%', sm: '260px' }}>
+              <SelectMenu
+                value={selectedCategory}
+                onChange={setSelectedCategory}
+                label={t('archivePage.filterByCategory')}
+                options={[
+                  { value: '', label: t('archivePage.allCategories') },
+                  ...categories.map(({ code, localizedName }) => ({ value: code, label: localizedName })),
+                ]}
+              />
+            </Box>
+            <Box width={{ base: '100%', sm: '200px' }}>
+              <SelectMenu
+                value={selectedYear}
+                onChange={setSelectedYear}
+                label={t('archivePage.filterByYear')}
+                options={[
+                  { value: '', label: t('archivePage.allYears') },
+                  ...years.map(year => ({ value: String(year), label: String(year) })),
+                ]}
+              />
+            </Box>
           </Flex>
 
           {isFetching && postsByYear.length === 0 ? (

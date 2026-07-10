@@ -31,7 +31,6 @@ export function SelectMenu({ options, value, label, onChange }: SelectMenuProps)
         fontFamily="Lora"
         fontWeight={500}
         width="100%"
-        maxW="320px"
         justifyContent="space-between"
         color={restingColor}
         borderColor={borderColor}
@@ -43,7 +42,7 @@ export function SelectMenu({ options, value, label, onChange }: SelectMenuProps)
       >
         {selectedOption?.label}
       </MenuButton>
-      <MenuList maxW="320px" fontFamily="Lora" borderRadius="none">
+      <MenuList fontFamily="Lora" borderRadius="none">
         {options.map(option => (
           <MenuItem
             key={option.value || 'all'}
