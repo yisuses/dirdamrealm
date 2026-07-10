@@ -21,7 +21,7 @@ export async function getLatestPosts({
     sort: ['publishedAt:desc'],
     pagination: { pageSize: limit || 100, page: 1 },
     populate: populate || ['categories', 'coverImage', 'localizations'],
-    publicationState: 'live',
+    status: 'published',
     locale: ['en', 'es'],
     filters: {
       ...(category && { categories: { code: category } }),

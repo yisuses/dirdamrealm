@@ -2,97 +2,73 @@ import { mediaResponseEntity } from '../media'
 
 export const postResponseEsMock: StrapiDataItem<PostResponseEntity> = {
   id: 2,
-  attributes: {
-    title: 'Entrada de test',
-    summary: 'Esta es una entrada de test',
-    content: '{"time":123456789,"version":"","blocks":[]}',
-    locale: 'es',
-    imgUrl: 'https://example.com/test.png',
+  title: 'Entrada de test',
+  summary: 'Esta es una entrada de test',
+  content: '{"time":123456789,"version":"","blocks":[]}',
+  locale: 'es',
+  imgUrl: 'https://example.com/test.png',
+  createdAt: '2022-04-01T00:00:00.000Z',
+  updatedAt: '2022-04-01T00:00:00.000Z',
+  publishedAt: '2022-04-01T00:00:00.000Z',
+  categories: [
+    {
+      id: 1,
+      code: 'test-category',
+      main: true,
+      name: 'Test Category',
+      description: 'This is a test category',
+      createdAt: '2022-04-01T00:00:00.000Z',
+      updatedAt: '2022-04-01T00:00:00.000Z',
+    },
+  ],
+  coverImage: mediaResponseEntity,
+  coverImageAuthor: null,
+  coverImageSourceUrl: null,
+  localizations: undefined,
+  writer: {
+    id: 1,
+    name: 'Test Writer',
     createdAt: '2022-04-01T00:00:00.000Z',
     updatedAt: '2022-04-01T00:00:00.000Z',
-    publishedAt: '2022-04-01T00:00:00.000Z',
-    categories: {
-      data: [
-        {
-          id: 1,
-          attributes: {
-            code: 'test-category',
-            main: true,
-            name: 'Test Category',
-            description: 'This is a test category',
-            createdAt: '2022-04-01T00:00:00.000Z',
-            updatedAt: '2022-04-01T00:00:00.000Z',
-          },
-        },
-      ],
-    },
-    coverImage: {
-      data: mediaResponseEntity,
-    },
-    coverImageAuthor: null,
-    coverImageSourceUrl: null,
-    localizations: undefined,
-    writer: {
-      data: {
-        id: 1,
-        attributes: {
-          name: 'Test Writer',
-          createdAt: '2022-04-01T00:00:00.000Z',
-          updatedAt: '2022-04-01T00:00:00.000Z',
-          avatar: 'https://example.com/test-avatar.png',
-          twitter: 'testwriter',
-          personalUrl: 'https://example.com/test-writer',
-        },
-      },
-    },
+    avatar: 'https://example.com/test-avatar.png',
+    twitter: 'testwriter',
+    personalUrl: 'https://example.com/test-writer',
   },
 }
 
 export const postResponseEnMock: StrapiDataItem<PostResponseEntity> = {
   id: 1,
-  attributes: {
-    title: 'Test Post',
-    summary: 'This is a test post',
-    content: '{"time":123456789,"version":"","blocks":[]}',
-    locale: 'en',
-    imgUrl: 'https://example.com/test.png',
+  title: 'Test Post',
+  summary: 'This is a test post',
+  content: '{"time":123456789,"version":"","blocks":[]}',
+  locale: 'en',
+  imgUrl: 'https://example.com/test.png',
+  createdAt: '2022-04-01T00:00:00.000Z',
+  updatedAt: '2022-04-01T00:00:00.000Z',
+  publishedAt: '2022-04-01T00:00:00.000Z',
+  categories: [
+    {
+      id: 1,
+      code: 'test-category',
+      main: true,
+      name: 'Test Category',
+      description: 'This is a test category',
+      createdAt: '2022-04-01T00:00:00.000Z',
+      updatedAt: '2022-04-01T00:00:00.000Z',
+    },
+  ],
+  coverImage: mediaResponseEntity,
+  coverImageAuthor: null,
+  coverImageSourceUrl: null,
+  localizations: [postResponseEsMock],
+  writer: {
+    id: 1,
+    name: 'Test Writer',
     createdAt: '2022-04-01T00:00:00.000Z',
     updatedAt: '2022-04-01T00:00:00.000Z',
-    publishedAt: '2022-04-01T00:00:00.000Z',
-    categories: {
-      data: [
-        {
-          id: 1,
-          attributes: {
-            code: 'test-category',
-            main: true,
-            name: 'Test Category',
-            description: 'This is a test category',
-            createdAt: '2022-04-01T00:00:00.000Z',
-            updatedAt: '2022-04-01T00:00:00.000Z',
-          },
-        },
-      ],
-    },
-    coverImage: {
-      data: mediaResponseEntity,
-    },
-    coverImageAuthor: null,
-    coverImageSourceUrl: null,
-    localizations: { data: [postResponseEsMock] },
-    writer: {
-      data: {
-        id: 1,
-        attributes: {
-          name: 'Test Writer',
-          createdAt: '2022-04-01T00:00:00.000Z',
-          updatedAt: '2022-04-01T00:00:00.000Z',
-          avatar: 'https://example.com/test-avatar.png',
-          twitter: 'testwriter',
-          personalUrl: 'https://example.com/test-writer',
-        },
-      },
-    },
+    avatar: 'https://example.com/test-avatar.png',
+    twitter: 'testwriter',
+    personalUrl: 'https://example.com/test-writer',
   },
 }
 

@@ -12,7 +12,7 @@ type GetAllPostParams = {
 export async function getAllPosts({ locale, category }: GetAllPostParams): Promise<Post[] | undefined> {
   const query = stringify({
     sort: ['updatedAt:desc'],
-    publicationState: 'live',
+    status: 'published',
     populate: ['localizations', 'coverImage'],
     locale: ['en', 'es'],
     ...(category && { filters: { categories: { code: category } } }),

@@ -26,7 +26,7 @@ describe('postMapper', () => {
     expect(
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, categories: null },
+        categories: null,
       } as unknown as StrapiDataItem<PostResponseEntity>),
     ).toEqual({ ...postMock, categories: null })
   })
@@ -35,7 +35,7 @@ describe('postMapper', () => {
     expect(() => {
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, categories: { potato: 'wadus' } },
+        categories: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
     }).toThrowError()
   })
@@ -44,7 +44,7 @@ describe('postMapper', () => {
     expect(() => {
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, localizations: { potato: 'wadus' } },
+        localizations: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
     }).toThrowError()
   })
@@ -53,7 +53,7 @@ describe('postMapper', () => {
     expect(
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, coverImage: { data: undefined } },
+        coverImage: null,
       } as unknown as StrapiDataItem<PostResponseEntity>),
     ).toEqual({ ...postMock, coverImage: null })
   })
@@ -62,7 +62,7 @@ describe('postMapper', () => {
     expect(() => {
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, coverImage: { data: { potato: 'wadus' } } },
+        coverImage: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
     }).toThrowError()
   })
@@ -71,7 +71,7 @@ describe('postMapper', () => {
     expect(
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, writer: { data: undefined } },
+        writer: null,
       } as unknown as StrapiDataItem<PostResponseEntity>),
     ).toEqual({ ...postMock, writer: null })
   })
@@ -83,7 +83,7 @@ describe('postMapper', () => {
     expect(() => {
       postMapper({
         ...postResponseEnMock,
-        attributes: { ...postResponseEnMock.attributes, writer: { data: { potato: 'wadus' } } },
+        writer: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
     }).toThrowError()
   })

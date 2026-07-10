@@ -6,15 +6,13 @@ describe('categoryMapper', () => {
   it('should map a categoryEntity correctly', () => {
     const categoryEntity: StrapiDataItem<CategoryResponseEntity> = {
       id: 1,
-      attributes: {
-        code: 'category1',
-        main: true,
-        name: 'Category One',
-        locale: { en: 'Category One', es: 'Categoría Uno' },
-        description: 'This is category one',
-        createdAt: '2022-01-01',
-        updatedAt: '2022-01-02',
-      },
+      code: 'category1',
+      main: true,
+      name: 'Category One',
+      locale: { en: 'Category One', es: 'Categoría Uno' },
+      description: 'This is category one',
+      createdAt: '2022-01-01',
+      updatedAt: '2022-01-02',
     }
 
     const expectedCategory: Category = {
@@ -35,15 +33,13 @@ describe('categoryMapper', () => {
   it('should map a categoryEntity with null locale attribute correctly', () => {
     const categoryEntity: StrapiDataItem<CategoryResponseEntity> = {
       id: 2,
-      attributes: {
-        code: 'category2',
-        main: false,
-        name: 'Category Two',
-        locale: null as unknown as Record<AppLocales, string> | undefined,
-        description: 'This is category two',
-        createdAt: '2022-01-01',
-        updatedAt: '2022-01-02',
-      },
+      code: 'category2',
+      main: false,
+      name: 'Category Two',
+      locale: null as unknown as Record<AppLocales, string> | undefined,
+      description: 'This is category two',
+      createdAt: '2022-01-01',
+      updatedAt: '2022-01-02',
     }
 
     const expectedCategory: Category = {

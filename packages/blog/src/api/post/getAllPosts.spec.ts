@@ -22,7 +22,7 @@ describe('getAllPosts', () => {
     expect(posts).toHaveLength(1)
     expect(posts?.[0]).toMatchObject({
       id: postResponseEnMock.id,
-      title: postResponseEnMock.attributes.title,
+      title: postResponseEnMock.title,
     })
   })
 

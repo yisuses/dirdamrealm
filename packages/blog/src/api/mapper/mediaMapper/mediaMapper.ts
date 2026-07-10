@@ -1,18 +1,15 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const mediaMapper = (mediaEntity: StrapiDataItem<MediaResponseEntity>): Media => {
-  const {
-    id,
-    attributes: { provider_metadata, ...mediaEntityAttributes },
-  } = mediaEntity
+  const { provider_metadata, formats, ...mediaEntityAttributes } = mediaEntity
 
   const mappedMediaFormatAttributes = Object.fromEntries<MediaFormat>(
-    Object.entries(mediaEntityAttributes.formats).map(format => {
+    Object.entries(formats).map(format => {
       const [formatType, formatAttributes] = format
       const { provider_metadata, ...tempFormatAttributes } = formatAttributes
       return [formatType, tempFormatAttributes]
     }),
   ) as Record<FormatType, MediaFormat>
 
-  return { id, ...mediaEntityAttributes, formats: mappedMediaFormatAttributes }
+  return { ...mediaEntityAttributes, formats: mappedMediaFormatAttributes }
 }
