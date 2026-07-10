@@ -2,7 +2,7 @@ import type { ServerResponse } from 'http'
 
 import { setCacheControl } from './setCacheControl'
 
-const makeRes = () => ({ setHeader: jest.fn() } as unknown as ServerResponse)
+const makeRes = () => ({ setHeader: jest.fn() }) as unknown as ServerResponse
 
 describe('setCacheControl', () => {
   it('sets a public s-maxage + stale-while-revalidate policy with defaults', () => {
@@ -10,10 +10,7 @@ describe('setCacheControl', () => {
 
     setCacheControl(res)
 
-    expect(res.setHeader).toHaveBeenCalledWith(
-      'Cache-Control',
-      'public, s-maxage=600, stale-while-revalidate=86400',
-    )
+    expect(res.setHeader).toHaveBeenCalledWith('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400')
   })
 
   it('honours custom values', () => {
