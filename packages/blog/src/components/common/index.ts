@@ -1,3 +1,4 @@
+export * from './CategorySelect'
 export * from './Content'
 export * from './CookieBanner'
 export * from './Footer'

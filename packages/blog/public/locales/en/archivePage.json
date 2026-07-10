@@ -3,6 +3,9 @@
     "title": "Archive",
     "description": "History of all published posts.",
     "noPosts": "No published posts yet.",
+    "filterByCategory": "Filter by category",
+    "allCategories": "All categories",
+    "loading": "Loading posts",
     "months": {
       "0": "January",
       "1": "February",

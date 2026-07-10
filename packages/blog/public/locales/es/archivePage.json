@@ -3,6 +3,9 @@
     "title": "Archivo",
     "description": "Historial de todas las entradas publicadas.",
     "noPosts": "Aún no hay entradas publicadas.",
+    "filterByCategory": "Filtrar por categoría",
+    "allCategories": "Todas las categorías",
+    "loading": "Cargando entradas",
     "months": {
       "0": "Enero",
       "1": "Febrero",

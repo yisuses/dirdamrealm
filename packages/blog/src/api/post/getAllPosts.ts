@@ -6,14 +6,16 @@ import { apiUrl, getLocalizedPosts } from '@blog/utils'
 
 type GetAllPostParams = {
   locale?: AppLocales
+  category?: string
 }
 
-export async function getAllPosts({ locale }: GetAllPostParams): Promise<Post[] | undefined> {
+export async function getAllPosts({ locale, category }: GetAllPostParams): Promise<Post[] | undefined> {
   const query = stringify({
     sort: ['updatedAt:desc'],
     publicationState: 'live',
     populate: ['localizations', 'coverImage'],
     locale: ['en', 'es'],
+    ...(category && { filters: { categories: { code: category } } }),
     pagination: {
       page: 1,
       pageSize: 100000,
