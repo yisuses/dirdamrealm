@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { getCategories } from '@blog/api/category'
+import { setCacheControl } from '@blog/utils'
 import { mapLocales, xmlUrlSet } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
@@ -62,6 +63,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res, defaultLocal
   const sitemap = generateSiteMap(categories.concat(spanishCategoriesMod, englishCategoriesMod), defaultLocale)
 
   res.setHeader('Content-Type', 'text/xml')
+  // Cache at the edge so crawler hits are served by the CDN, not the origin function.
+  setCacheControl(res, { sMaxAge: 3600 })
   // we send the XML to the browser
   res.write(sitemap)
   res.end()

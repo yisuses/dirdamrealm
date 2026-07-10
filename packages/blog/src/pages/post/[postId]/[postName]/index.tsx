@@ -6,7 +6,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { getComments, getLatestPosts, getPostById } from '@blog/api'
 import { PostPage as PostPageComponent, WithErrorProps, withErrorComponent } from '@blog/components'
 import { getServerTranslations } from '@blog/core/i18n'
-import { NotFoundError, buildPostPath, handlePageError, seoName } from '@blog/utils'
+import { NotFoundError, buildPostPath, handlePageError, seoName, setCacheControl } from '@blog/utils'
 import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
 const PostPage: NextPage = () => {
@@ -112,6 +112,10 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
   } catch (error) {
     sentry.captureException(error)
   }
+
+  // Published posts change rarely; cache longer at the edge. Comments are re-fetched
+  // client-side by react-query on hydration, so they stay fresh despite the cached shell.
+  setCacheControl(res, { sMaxAge: 3600 })
 
   return {
     props: {

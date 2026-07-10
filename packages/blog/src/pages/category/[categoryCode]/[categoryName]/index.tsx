@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { getCategories, getLatestPosts } from '@blog/api'
 import { CategoryPage as CategoryPageComponent, WithErrorProps, withErrorComponent } from '@blog/components'
 import { getServerTranslations } from '@blog/core/i18n'
-import { NotFoundError, buildCategoryPath, handlePageError, seoName } from '@blog/utils'
+import { NotFoundError, buildCategoryPath, handlePageError, seoName, setCacheControl } from '@blog/utils'
 import { getCategoryCodeKey, getLatestPostsKey } from '@blog/utils/constants'
 
 const CategoryPage: NextPage = () => {
@@ -68,6 +68,9 @@ export const getServerSideProps: GetServerSideProps<Record<string, unknown> | Wi
         category: params.categoryCode,
       }),
   })
+
+  // Cache the SSR response at the edge; category listings change only when posts are added.
+  setCacheControl(res)
 
   return {
     props: {
