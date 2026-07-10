@@ -19,7 +19,7 @@ const ALGOLIA_PROVIDER_SEARCH_API_KEY = process.env?.ALGOLIA_PROVIDER_SEARCH_API
 const ALGOLIA_PROVIDER_INDEX_PREFIX =
   process.env?.ALGOLIA_PROVIDER_INDEX_PREFIX ?? (isProd ? 'whemotion_production' : 'whemotion_development')
 const RECAPTCHA_KEY = process.env?.RECAPTCHA_KEY ?? ''
-const RECAPTCHA_SECRET_KEY = process.env?.RECAPTCHA_SECRET_KEY ?? ''
+// RECAPTCHA_SECRET_KEY is read directly from process.env in the addComment API route (server-only).
 /**
  * A way to allow CI optimization when the build done there is not used
  * to deliver an image or deploy the files.
@@ -99,26 +99,21 @@ const nextConfig = {
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
     externalDir: true,
   },
-  publicRuntimeConfig: {
-    version: packageJson.version,
-    API_URL: process.env.API_URL ?? 'http://localhost:3003',
-    BASE_URL: process.env.BASE_URL ?? `https://${process.env.VERCEL_URL}` ?? 'http://localhost:3000',
-    ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
-    ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
-    ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
-    RECAPTCHA_KEY,
-  },
-
-  serverRuntimeConfig: {
-    // to bypass https://github.com/zeit/next.js/issues/8251
-    PROJECT_ROOT: __dirname,
-    RECAPTCHA_SECRET_KEY,
-  },
-
+  // Next 16 removes next/config (publicRuntimeConfig/serverRuntimeConfig). Public config
+  // is inlined at build time via the `env` block instead (keeps the existing env var
+  // names, so no Vercel changes are needed). RECAPTCHA_SECRET_KEY stays server-only and
+  // is read from process.env directly inside the API route at runtime.
   env: {
     APP_NAME: packageJson.name,
     APP_VERSION: packageJson.version,
     BUILD_TIME: new Date().toISOString(),
+    API_URL: process.env.API_URL ?? 'http://localhost:3003',
+    BASE_URL:
+      process.env.BASE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
+    ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
+    ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
+    ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
+    RECAPTCHA_KEY,
   },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization

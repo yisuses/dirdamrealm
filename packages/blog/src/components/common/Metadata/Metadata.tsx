@@ -1,12 +1,9 @@
 import { useTranslation } from 'next-i18next'
-import getConfig from 'next/config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { BlogPosting, ItemList, WebPage } from 'schema-dts'
 
 import { useGetLocalePublicUrl } from '@blog/hooks/useGetLocalePublicUrl'
-
-const { publicRuntimeConfig } = getConfig()
 
 export function Metadata({
   name,
@@ -22,7 +19,7 @@ export function Metadata({
   const { asPath } = useRouter()
 
   const title = `${t('pageTitle')} - ${name}`
-  const ogImage = imageUrl || `${publicRuntimeConfig.BASE_URL}/images/WElogo.png`
+  const ogImage = imageUrl || `${process.env.BASE_URL}/images/WElogo.png`
 
   return (
     <Head>

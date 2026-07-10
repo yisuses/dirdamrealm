@@ -1,11 +1,8 @@
 import * as sentry from '@sentry/nextjs'
 import axios from 'axios'
-import getConfig from 'next/config'
 import { NextApiRequest, NextApiResponse } from 'next/types'
 
 import { addComment } from '@blog/api/comment'
-
-const { serverRuntimeConfig } = getConfig()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req
@@ -22,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       const captchaValidation = await axios.post(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${serverRuntimeConfig.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
         {
           headers: {
             // eslint-disable-next-line @typescript-eslint/naming-convention

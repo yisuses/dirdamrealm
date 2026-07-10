@@ -5,14 +5,11 @@ import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import { Icon, IconifyIcon } from '@iconify/react'
 import { Trans, useTranslation } from 'next-i18next'
-import getConfig from 'next/config'
 
 import { SocialButton } from '@blog/components'
 
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
-
-const { publicRuntimeConfig } = getConfig()
 
 export interface FooterProps {
   categories: {
@@ -108,7 +105,7 @@ export function Footer({ categories, about }: FooterProps) {
               />
             </Text>
             <Text justifySelf={{ base: 'inherit', md: 'end' }}>
-              {t('footer.version', { versionNumber: publicRuntimeConfig?.version })}
+              {t('footer.version', { versionNumber: process.env.APP_VERSION })}
             </Text>
           </SimpleGrid>
         </Container>

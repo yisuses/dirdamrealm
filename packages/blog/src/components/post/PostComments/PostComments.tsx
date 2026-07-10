@@ -14,7 +14,6 @@ import {
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
 import { useTranslation } from 'next-i18next'
-import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 // eslint-disable-next-line import/no-named-as-default
@@ -22,8 +21,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 
 import { addCommentValidate, getComments } from '@blog/api/comment'
-
-const { publicRuntimeConfig } = getConfig()
 
 interface PostCommentsProps {
   postId: number
@@ -154,7 +151,7 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
             <ReCAPTCHA
               size="normal"
               ref={captchaRef}
-              sitekey={publicRuntimeConfig.RECAPTCHA_KEY}
+              sitekey={process.env.RECAPTCHA_KEY as string}
               hl={locale}
               onChange={value => setValue('captcha', value, { shouldValidate: true })}
             />
