@@ -1,5 +1,5 @@
 /* eslint-disable import/no-duplicates */
-import { Box, Divider, Flex, Link, LinkProps, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, LinkProps, Separator, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -74,12 +74,12 @@ export function HeaderImage({
               {renderedCategories
                 .sort((a, b) => a.name.length - b.name.length)
                 .concat(appLocale !== locale ? ({ code: 'lang', name: t(`localization.${locale}`) } as Category) : [])
-                .map(({ name, locale, code }) => (
+                .map(({ name, translations, code }) => (
                   <Tag
                     mb={{ base: '8px', md: '12px', lg: '16px' }}
                     key={code}
                     size="md"
-                    label={(locale && locale?.[appLocale as AppLocales]) || name}
+                    label={(translations && translations?.[appLocale as AppLocales]) || name}
                   />
                 ))}
             </Flex>
@@ -90,7 +90,7 @@ export function HeaderImage({
               fontSize={{ base: '16px', lg: '32px' }}
               lineHeight={{ base: '20px', lg: '40px' }}
               mb={{ base: '8px', lg: '16px' }}
-              noOfLines={{ base: 1, lg: 2 }}
+              lineClamp={{ base: 1, lg: 2 }}
               _hover={{
                 textDecorationColor: 'white',
                 textDecoration: 'underline',
@@ -108,7 +108,7 @@ export function HeaderImage({
               <Text mb={{ base: 2, lg: 0 }} lineHeight="24px">
                 {parsedDate}
               </Text>
-              <Divider
+              <Separator
                 display={{ base: 'none', lg: 'block' }}
                 orientation="horizontal"
                 w="45px"
@@ -119,7 +119,7 @@ export function HeaderImage({
               />
               <Text
                 fontSize={{ base: '12px', lg: '16px' }}
-                noOfLines={{ base: 2, md: 3, lg: 5 }}
+                lineClamp={{ base: 2, md: 3, lg: 5 }}
                 fontStyle="italic"
                 fontFamily="Roboto"
                 fontWeight={500}

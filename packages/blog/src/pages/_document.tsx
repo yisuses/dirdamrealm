@@ -1,14 +1,12 @@
 /* eslint-disable prefer-rest-params */
-import { ColorModeScript } from '@chakra-ui/react'
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 import Script from 'next/script'
-
-import emotionTheme from '../themes/emotion.theme'
 
 export default class Document extends NextDocument {
   render() {
     return (
-      <Html lang="es">
+      // suppressHydrationWarning: next-themes sets the color-mode class on <html> on the client.
+      <Html lang="es" suppressHydrationWarning>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -28,7 +26,6 @@ export default class Document extends NextDocument {
           />
         </Head>
         <body>
-          <ColorModeScript initialColorMode={emotionTheme.config.initialColorMode} />
           <Main />
           <NextScript />
           <div id="modal-root"></div>

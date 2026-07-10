@@ -1,25 +1,14 @@
-import { ChevronDownIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-  useColorMode,
-  useDisclosure,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, IconButton, Separator, Text, useDisclosure } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import { LuChevronDown, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
 
 import { getCategories } from '@blog/api'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
+import { useColorMode } from '@blog/components/ui/color-mode'
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
 import { CATEGORIES_STALE_TIME_MS, getCategoriesKey } from '@blog/utils/constants'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
 
@@ -39,7 +28,7 @@ export function Header({ categories }: HeaderProps) {
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
   const queryClient = useQueryClient()
-  const { isOpen: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
+  const { open: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
 
   const logo = (
     <NextLink href="/">
@@ -73,60 +62,31 @@ export function Header({ categories }: HeaderProps) {
     </NextLink>
   )
 
-  const categoryHeaderLinks = categories.map(({ url, name, localizedName, code }) => ({
-    url,
-    name,
-    localizedName,
-    code,
-  }))
-
   const archiveLabel = t('header.archive')
   const isArchiveActive = router.asPath === '/archive/'
-
-  const categoryDropdownLinks = categoryHeaderLinks.map(({ url, name, localizedName, code }, index) => {
-    const isActive = router.asPath === buildCategoryPath(code, name)
-
-    return (
-      <MenuItem
-        key={index}
-        as={NextLink}
-        href={url}
-        px={4}
-        py={2}
-        bg="blackAlpha.800"
-        color={isActive ? 'orange.300' : 'white'}
-        borderRadius={0}
-        border="none"
-        fontFamily="Roboto"
-        _focus={{ boxShadow: 'none' }}
-        _hover={{ bg: 'blackAlpha.700' }}
-        _active={{ bg: 'transparent' }}
-      >
-        {localizedName}
-      </MenuItem>
-    )
-  })
 
   const actionButtons = (
     <>
       <IconButton
         size="sm"
-        icon={<SearchIcon color="white" />}
         aria-label="Search"
         bg="transparent"
         onClick={onOpenSearchModal}
         _hover={{ bg: 'whiteAlpha.300' }}
         px={{ base: 2, sm: 4 }}
-      />
+      >
+        <LuSearch color="white" />
+      </IconButton>
       <IconButton
         size="sm"
-        icon={colorMode === 'light' ? <MoonIcon color="white" /> : <SunIcon />}
         aria-label="Toggle theme"
         bg="transparent"
         onClick={toggleColorMode}
         _hover={{ bg: 'whiteAlpha.300' }}
         px={{ base: 2, sm: 4 }}
-      />
+      >
+        {colorMode === 'light' ? <LuMoon color="white" /> : <LuSun color="white" />}
+      </IconButton>
       <Button
         size="sm"
         fontFamily="Roboto"
@@ -144,8 +104,8 @@ export function Header({ categories }: HeaderProps) {
           router.push(router.asPath, undefined, { locale: nextLocale })
         }}
         color="white"
-        _hover={{ backgroundColor: 'transparent' }}
-        _active={{ backgroundColor: 'transparent' }}
+        _hover={{ bg: 'whiteAlpha.300' }}
+        _active={{ bg: 'whiteAlpha.300' }}
         px={{ base: 2, sm: 4 }}
       >
         {router.locale === 'es' ? 'ES' : 'EN'}
@@ -182,34 +142,47 @@ export function Header({ categories }: HeaderProps) {
             {actionButtons}
           </Box>
         </Flex>
-        <Divider orientation="horizontal" w={400} display={{ base: 'none', lg: 'block', xl: 'none' }} />
+        <Separator orientation="horizontal" w={400} display={{ base: 'none', lg: 'block', xl: 'none' }} />
         <Flex
           alignItems="center"
           display={{ base: 'none', lg: 'flex' }}
           justifyContent={{ lg: 'space-between', xl: 'flex-end' }}
         >
-          <Menu>
-            <MenuButton
-              as={Button}
-              size="sm"
-              color="white"
-              rightIcon={<ChevronDownIcon />}
-              bg="transparent"
-              px={{ md: 2, lg: 3 }}
-              fontFamily="Roboto"
-              _hover={{ background: 'whiteAlpha.200' }}
-              _active={{ background: 'whiteAlpha.300' }}
-              _focus={{ boxShadow: 'none' }}
-            >
-              {t('footer.categories')}
-            </MenuButton>
-            <MenuList bg="white" borderColor="blackAlpha.800" borderRadius={0} minW="160px" py={0}>
-              {categoryDropdownLinks}
-            </MenuList>
-          </Menu>
+          <MenuRoot>
+            <MenuTrigger asChild>
+              <Button
+                size="sm"
+                color="white"
+                bg="transparent"
+                px={{ md: 2, lg: 3 }}
+                fontFamily="Roboto"
+                _hover={{ background: 'whiteAlpha.200' }}
+                _active={{ background: 'whiteAlpha.300' }}
+                _focus={{ boxShadow: 'none' }}
+              >
+                {t('footer.categories')}
+                <LuChevronDown />
+              </Button>
+            </MenuTrigger>
+            <MenuContent bg="blackAlpha.900" borderColor="blackAlpha.800" borderRadius={0} minW="160px" p={0}>
+              {categories.map(({ url, name, localizedName, code }) => (
+                <MenuItem
+                  key={code}
+                  value={code}
+                  asChild
+                  bg="transparent"
+                  color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
+                  borderRadius={0}
+                  fontFamily="Roboto"
+                  _hover={{ bg: 'blackAlpha.700' }}
+                >
+                  <NextLink href={url}>{localizedName}</NextLink>
+                </MenuItem>
+              ))}
+            </MenuContent>
+          </MenuRoot>
           <Button
-            as={NextLink}
-            href="/archive"
+            asChild
             size="sm"
             bg="transparent"
             px={{ md: 2, lg: 3 }}
@@ -219,7 +192,7 @@ export function Header({ categories }: HeaderProps) {
             _active={{ background: 'transparent' }}
             _focus={{ boxShadow: 'none' }}
           >
-            {archiveLabel}
+            <NextLink href="/archive">{archiveLabel}</NextLink>
           </Button>
           <Box>{actionButtons}</Box>
         </Flex>

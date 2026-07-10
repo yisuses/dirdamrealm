@@ -1,10 +1,10 @@
 /* eslint-disable import/no-duplicates */
-import { useColorModeValue } from '@chakra-ui/react'
 import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 
 import { Tag } from '@blog/components'
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { buildBlurDataUrl, buildPostPath, formatPostDate } from '@blog/utils'
 
 export type PostCardProps = {
@@ -31,7 +31,7 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
         overflow="hidden"
         borderRadius="4px"
         _hover={{
-          img: {
+          '& img': {
             transform: 'scale(1.1,1.1) rotate(1deg)',
             transition: 'all 1s',
           },
@@ -77,12 +77,12 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
         fontSize="lg"
         color={useColorModeValue('gray.950', 'white')}
         fontWeight={700}
-        noOfLines={2}
+        lineClamp={2}
         title={title}
       >
         {title}
       </Link>
-      <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} noOfLines={3} title={description}>
+      <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} lineClamp={3} title={description}>
         {description}
       </Text>
     </Flex>

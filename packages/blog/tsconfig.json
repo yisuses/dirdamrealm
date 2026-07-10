@@ -4,6 +4,8 @@
     "baseUrl": "src",
     "incremental": true,
     "jsx": "preserve",
+    "moduleResolution": "bundler",
+    "target": "es2020",
     "paths": {
       "@blog": ["./"],
       "@blog/*": ["./*"]

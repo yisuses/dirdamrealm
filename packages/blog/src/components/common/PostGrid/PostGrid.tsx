@@ -20,7 +20,7 @@ export function PostGrid({ posts, limit }: PostGridProps) {
         base: 'repeat(auto-fill, minmax(100%, 1fr))',
         md: 'repeat(auto-fill, minmax(280px, 1fr))',
       }}
-      spacing={8}
+      gap={8}
       mt={8}
       justifyItems="center"
     >

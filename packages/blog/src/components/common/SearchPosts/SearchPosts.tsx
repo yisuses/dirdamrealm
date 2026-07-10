@@ -1,4 +1,4 @@
-import { Box, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { Box, Field, Input } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
@@ -30,8 +30,8 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
   const searchResultOffset = searchResultsRef.current?.offsetTop
   return (
     <Box overflow="hidden" p="8">
-      <FormControl>
-        <FormLabel fontWeight="600">{inputTitle}</FormLabel>
+      <Field.Root>
+        <Field.Label fontWeight="600">{inputTitle}</Field.Label>
         <Input
           variant="outline"
           size="md"
@@ -43,7 +43,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
             fontStyle: 'italic',
           }}
         />
-      </FormControl>
+      </Field.Root>
       <Box
         mt="12px"
         ref={searchResultsRef}

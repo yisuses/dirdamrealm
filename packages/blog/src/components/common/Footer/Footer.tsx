@@ -1,4 +1,4 @@
-import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import InstagramLogo from '@iconify/icons-ion/logo-instagram'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
@@ -7,6 +7,7 @@ import { Icon, IconifyIcon } from '@iconify/react'
 import { Trans, useTranslation } from 'next-i18next'
 
 import { SocialButton } from '@blog/components'
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
@@ -22,7 +23,7 @@ export interface FooterProps {
 }
 
 const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
-  <Link href={href} title={label} target="_blank" rel="noreferrer" {...rest}>
+  <Link href={href} title={label} target="_blank" rel="noreferrer" color="inherit" textDecoration="underline" {...rest}>
     {label}
   </Link>
 )
@@ -40,7 +41,7 @@ export function Footer({ categories, about }: FooterProps) {
   return (
     <Box bg="gray.900" color="gray.50" w="full">
       <Container as={Stack} maxW="8xl" p="1rem">
-        <SimpleGrid columns={{ base: 1, md: about.display ? 3 : 2 }} spacing={8} justifyItems={{ base: 'center' }}>
+        <SimpleGrid columns={{ base: 1, md: about.display ? 3 : 2 }} gap={8} justifyItems={{ base: 'center' }}>
           {about.display && (
             <Stack align={{ base: 'center', md: 'flex-start' }}>
               <FooterListHeader>{t('footer.contact')}</FooterListHeader>
@@ -59,7 +60,7 @@ export function Footer({ categories, about }: FooterProps) {
 
           <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.categories')}</FooterListHeader>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing="8px" justifyItems={{ base: 'center', md: 'normal' }}>
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap="8px" justifyItems={{ base: 'center', md: 'normal' }}>
               {categories.map(({ localizedName, url }, index) => (
                 <FooterListLink key={index} href={url}>
                   {localizedName}
@@ -71,7 +72,7 @@ export function Footer({ categories, about }: FooterProps) {
           <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
             {about.display && socials.length && (
-              <Stack direction="row" spacing={6} paddingBottom="2">
+              <Stack direction="row" gap={6} paddingBottom="2">
                 {socials.map(({ label, href, icon }, index) => (
                   <SocialButton key={index} label={label} href={href}>
                     <Icon icon={icon} width={30} height={30} color={useColorModeValue('white', 'gray.800')} />
@@ -87,7 +88,7 @@ export function Footer({ categories, about }: FooterProps) {
         <Container as={Stack} width="100%" maxW="100%" p={4}>
           <SimpleGrid
             columns={{ base: 1, md: about.display ? 3 : 2 }}
-            spacing={{ base: 2, md: 8 }}
+            gap={{ base: 2, md: 8 }}
             justifyItems={{ base: 'center' }}
             fontSize="sm"
           >

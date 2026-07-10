@@ -2,7 +2,7 @@ interface CategoryResponseEntity {
   code: string
   main: boolean
   name: string
-  locale?: Record<AppLocales, string>
+  translations?: Record<AppLocales, string>
   description: string
   createdAt: string
   updatedAt: string

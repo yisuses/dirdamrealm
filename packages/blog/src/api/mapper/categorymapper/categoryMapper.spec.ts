@@ -9,7 +9,7 @@ describe('categoryMapper', () => {
       code: 'category1',
       main: true,
       name: 'Category One',
-      locale: { en: 'Category One', es: 'Categoría Uno' },
+      translations: { en: 'Category One', es: 'Categoría Uno' },
       description: 'This is category one',
       createdAt: '2022-01-01',
       updatedAt: '2022-01-02',
@@ -20,7 +20,7 @@ describe('categoryMapper', () => {
       code: 'category1',
       main: true,
       name: 'Category One',
-      locale: { en: 'Category One', es: 'Categoría Uno' },
+      translations: { en: 'Category One', es: 'Categoría Uno' },
       description: 'This is category one',
       createdAt: '2022-01-01',
       updatedAt: '2022-01-02',
@@ -36,7 +36,7 @@ describe('categoryMapper', () => {
       code: 'category2',
       main: false,
       name: 'Category Two',
-      locale: null as unknown as Record<AppLocales, string> | undefined,
+      translations: null as unknown as Record<AppLocales, string> | undefined,
       description: 'This is category two',
       createdAt: '2022-01-01',
       updatedAt: '2022-01-02',
@@ -47,7 +47,7 @@ describe('categoryMapper', () => {
       code: 'category2',
       main: false,
       name: 'Category Two',
-      locale: null as unknown as Record<AppLocales, string> | undefined,
+      translations: null as unknown as Record<AppLocales, string> | undefined,
       description: 'This is category two',
       createdAt: '2022-01-01',
       updatedAt: '2022-01-02',
@@ -67,7 +67,7 @@ describe('categoryMapper', () => {
         description: 'This is a test category',
         createdAt: '2022-01-01',
         updatedAt: '2022-01-02',
-        locale: {
+        translations: {
           en: 'Test Category',
           es: 'Categoría de prueba',
         },
@@ -84,7 +84,7 @@ describe('categoryMapper', () => {
         description: 'This is a test category',
         createdAt: '2022-01-01',
         updatedAt: '2022-01-02',
-        locale: {
+        translations: {
           en: 'Test Category',
           es: 'Categoría de prueba',
         },
@@ -101,7 +101,7 @@ describe('categoryMapper', () => {
         description: 'This is a test category',
         createdAt: '2022-01-01',
         updatedAt: '2022-01-02',
-        locale: undefined,
+        translations: undefined,
         localizedName: 'Test Category',
       }
       const locale: AppLocales = 'es'
@@ -115,7 +115,7 @@ describe('categoryMapper', () => {
         updatedAt: '2022-01-02',
         name: 'Test Category',
         description: 'This is a test category',
-        locale: undefined,
+        translations: undefined,
         localizedName: 'Test Category',
       })
     })

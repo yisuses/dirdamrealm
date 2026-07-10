@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Link, List, ListItem, Spinner, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, List, Spinner, Text } from '@chakra-ui/react'
 import { QueryClient, dehydrate, keepPreviousData, useQuery } from '@tanstack/react-query'
 import { parseISO } from 'date-fns'
 import type { GetServerSideProps, NextPage } from 'next'
@@ -199,7 +199,7 @@ const ArchivePage: NextPage = () => {
 
           {isFetching && postsByYear.length === 0 ? (
             <Flex justifyContent="center" mt={10}>
-              <Spinner color="orange.300" size="lg" thickness="3px" label={t('archivePage.loading')} />
+              <Spinner color="orange.300" size="lg" borderWidth="3px" aria-label={t('archivePage.loading')} />
             </Flex>
           ) : postsByYear.length > 0 ? (
             <Box opacity={isPlaceholderData ? 0.5 : 1} transition="opacity 0.2s ease-in-out">
@@ -215,18 +215,18 @@ const ArchivePage: NextPage = () => {
                         {t(`archivePage.months.${month}`)}
                       </Heading>
 
-                      <List mt={3} spacing={2} pl={{ base: '22px', md: '28px' }}>
+                      <List.Root mt={3} gap={2} pl={{ base: '22px', md: '28px' }} listStyleType="none">
                         {posts.map(({ id, publishedAt, title }) => (
-                          <ListItem key={id} display="flex" alignItems="baseline" gap={3}>
+                          <List.Item key={id} display="flex" alignItems="baseline" gap={3}>
                             <Text minW={{ base: '110px', md: '95px' }} fontSize={{ base: 'sm', md: 'md' }}>
                               {formatPostDate(publishedAt)}
                             </Text>
                             <Link as={NextLink} href={buildPostPath(id, title)} _hover={{ color: 'orange.300' }}>
                               {title}
                             </Link>
-                          </ListItem>
+                          </List.Item>
                         ))}
-                      </List>
+                      </List.Root>
                     </Box>
                   ))}
 

@@ -39,7 +39,7 @@ export const ContentLink: RenderFn<ContentLinkBlockData> = ({ data }) => {
           )}
         </Flex>
         {data.meta.description && (
-          <Text as="i" noOfLines={2} mt="4px">
+          <Text as="i" lineClamp={2} mt="4px">
             {data.meta.description}
           </Text>
         )}

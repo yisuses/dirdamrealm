@@ -53,7 +53,7 @@ export function SearchPostResultItem({
           <Text fontSize={{ base: 'sm', md: 'md', lg: 'xl' }} fontWeight={600}>
             {title}
           </Text>
-          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" noOfLines={2}>
+          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" lineClamp={2}>
             {summary}
           </Text>
           <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">

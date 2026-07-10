@@ -12,14 +12,10 @@
     "start:storybook": "storybook dev -p 9000",
     "clean:storybook": "rm -rf ./build",
     "build:storybook": "yarn clean:storybook && yarn storybook build -o build",
-    "gen:theme-typings": "chakra-cli tokens ./src/themes/chakra.theme.ts",
-    "postinstall": "yarn gen:theme-typings",
     "release": "standard-version"
   },
   "dependencies": {
-    "@chakra-ui/icons": "2.2.6",
-    "@chakra-ui/react": "2.10.10",
-    "@chakra-ui/theme-tools": "2.2.10",
+    "@chakra-ui/react": "3.36.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@fontsource/spartan": "4.5.8",
@@ -39,6 +35,7 @@
     "next": "16.2.10",
     "next-i18next": "15.4.3",
     "next-secure-headers": "2.2.0",
+    "next-themes": "0.4.6",
     "nextjs-progressbar": "0.0.16",
     "qs": "6.15.3",
     "react": "19.2.7",
@@ -47,11 +44,11 @@
     "react-google-recaptcha": "3.1.0",
     "react-hook-form": "7.81.0",
     "react-i18next": "15.7.4",
+    "react-icons": "5.7.0",
     "schema-dts": "1.1.5",
     "slugify": "1.6.9"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "2.5.8",
     "@chakra-ui/storybook-addon": "5.2.7",
     "@next/bundle-analyzer": "14.2.35",
     "@storybook/addon-actions": "7.6.24",

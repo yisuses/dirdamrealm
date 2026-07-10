@@ -1,16 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  Text,
-  Textarea,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Button, Field, Flex, Heading, Input, Text, Textarea } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
 import { useTranslation } from 'next-i18next'
@@ -21,6 +9,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 
 import { addCommentValidate, getComments } from '@blog/api/comment'
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 
 interface PostCommentsProps {
   postId: number
@@ -67,6 +56,15 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     register('captcha', { required: t('postPage.newComment.required') })
   }, [register])
 
+  // Hoisted color-mode values — in Chakra v3 useColorModeValue is a hook (next-themes),
+  // so it must not be called inside loops/conditionals (was breaking on theme toggle).
+  const commentBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.50')
+  const authorColor = useColorModeValue('blue.600', 'blue.300')
+  const dateColor = useColorModeValue('blackAlpha.500', 'whiteAlpha.500')
+  const commentTextColor = useColorModeValue('black', 'white')
+  const formBorderColor = useColorModeValue('blue.400', 'blue.200')
+  const inputBg = useColorModeValue('inherit', 'gray.900')
+
   const submitNewComment = (values: SubmitCommentValues) => {
     const captcha = captchaRef?.current?.getValue()
     if (captcha) {
@@ -86,22 +84,14 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
       </Heading>
       {(data || comments).length > 0 ? (
         (data || comments).map(({ id, author, createdAt, text }) => (
-          <Box
-            key={id}
-            bg={useColorModeValue('blackAlpha.50', 'whiteAlpha.50')}
-            borderRadius="md"
-            my={2}
-            p={5}
-            boxShadow="sm"
-            id={`comment-${id}`}
-          >
-            <Text fontSize="lg" fontWeight="bold" color={useColorModeValue('blue.600', 'blue.300')}>
+          <Box key={id} bg={commentBg} borderRadius="md" my={2} p={5} boxShadow="sm" id={`comment-${id}`}>
+            <Text fontSize="lg" fontWeight="bold" color={authorColor}>
               {author}
             </Text>
-            <Text fontWeight="bold" color={useColorModeValue('blackAlpha.500', 'whiteAlpha.500')}>
+            <Text fontWeight="bold" color={dateColor}>
               {intlFormatDistance(new Date(createdAt), new Date(), { locale })}
             </Text>
-            <Text fontWeight="normal" mt={5} mb={2} color={useColorModeValue('black', 'white')}>
+            <Text fontWeight="normal" mt={5} mb={2} color={commentTextColor}>
               {text}
             </Text>
           </Box>
@@ -109,19 +99,13 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
       ) : (
         <Text>{t('postPage.noComments')}</Text>
       )}
-      <Box
-        padding="16px"
-        border="1px solid"
-        borderColor={useColorModeValue('blue.400', 'blue.200')}
-        borderRadius="md"
-        my="8px"
-      >
+      <Box padding="16px" border="1px solid" borderColor={formBorderColor} borderRadius="md" my="8px">
         <form onSubmit={handleSubmit(submitNewComment)}>
-          <FormControl isInvalid={!!errors.author}>
-            <FormLabel>{t('postPage.newComment.name')}</FormLabel>
+          <Field.Root invalid={!!errors.author}>
+            <Field.Label>{t('postPage.newComment.name')}</Field.Label>
             <Input
               type="text"
-              background={useColorModeValue('inherit', 'gray.900')}
+              background={inputBg}
               aria-invalid={errors.author ? 'true' : 'false'}
               {...register('author', {
                 required: t('postPage.newComment.required'),
@@ -129,25 +113,25 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
                 maxLength: { value: 40, message: t('postPage.newComment.maxNameLength') },
               })}
             />
-            {errors?.author?.message && <FormErrorMessage>{`${errors.author.message}`}</FormErrorMessage>}
-          </FormControl>
-          <FormControl isInvalid={!!errors.text} my={4}>
-            <FormLabel>{t('postPage.newComment.comment')}</FormLabel>
+            {errors?.author?.message && <Field.ErrorText>{`${errors.author.message}`}</Field.ErrorText>}
+          </Field.Root>
+          <Field.Root invalid={!!errors.text} my={4}>
+            <Field.Label>{t('postPage.newComment.comment')}</Field.Label>
             <Textarea
               resize="none"
               aria-invalid={errors.text ? 'true' : 'false'}
               size="sm"
               fontSize="md"
-              background={useColorModeValue('inherit', 'gray.900')}
+              background={inputBg}
               borderRadius="md"
               {...register('text', {
                 required: t('postPage.newComment.required'),
                 minLength: { value: 4, message: t('postPage.newComment.minLength') },
               })}
             />
-            {errors?.text?.message && <FormErrorMessage>{`${errors.text.message}`}</FormErrorMessage>}
-          </FormControl>
-          <FormControl isInvalid={!!errors.captcha} my={4}>
+            {errors?.text?.message && <Field.ErrorText>{`${errors.text.message}`}</Field.ErrorText>}
+          </Field.Root>
+          <Field.Root invalid={!!errors.captcha} my={4}>
             <ReCAPTCHA
               size="normal"
               ref={captchaRef}
@@ -155,13 +139,13 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
               hl={locale}
               onChange={value => setValue('captcha', value, { shouldValidate: true })}
             />
-            {errors?.captcha?.message && <FormErrorMessage>{`${errors.captcha.message}`}</FormErrorMessage>}
-          </FormControl>
+            {errors?.captcha?.message && <Field.ErrorText>{`${errors.captcha.message}`}</Field.ErrorText>}
+          </Field.Root>
           <Button
             mt={4}
-            isLoading={isPending}
+            loading={isPending}
             loadingText={t('postPage.newComment.adding')}
-            colorScheme="blue"
+            colorPalette="blue"
             type="submit"
             opacity={isDirty ? 1 : 0.5}
             pointerEvents={isDirty ? 'inherit' : 'none'}

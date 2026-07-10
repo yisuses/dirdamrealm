@@ -503,6 +503,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required
     posts: Schema.Attribute.Relation<'manyToMany', 'api::post.post'>
     publishedAt: Schema.Attribute.DateTime
+    translations: Schema.Attribute.JSON
     updatedAt: Schema.Attribute.DateTime
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
   }

@@ -20,7 +20,7 @@ export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
         placeholder="blur"
         blurDataURL={buildBlurDataUrl(data.file.height, data.file.width)}
       />
-      <Text align="center" fontStyle="italic" fontSize="0.75rem" marginTop="12px">
+      <Text textAlign="center" fontStyle="italic" fontSize="0.75rem" marginTop="12px">
         {data.caption}
       </Text>
     </Box>

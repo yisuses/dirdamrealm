@@ -1,6 +1,5 @@
 /* eslint-disable import/no-duplicates */
-import { useColorModeValue } from '@chakra-ui/react'
-import { Box, Center, Divider as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Box, Center, Separator as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
@@ -13,6 +12,7 @@ import { useEffect, useState } from 'react'
 import { BlogPosting } from 'schema-dts'
 
 import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@blog/components/common'
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useGetData } from '@blog/hooks'
 import { useGetLocalePublicUrl } from '@blog/hooks/useGetLocalePublicUrl'
 import {
@@ -46,6 +46,9 @@ export function PostPage() {
 
   const postKey = getPostKey(Number(postId))
   const post = useGetData<Post>(postKey)
+
+  // Hooks (incl. useColorModeValue → next-themes) must run before any early return.
+  const dividerBorderColor = useColorModeValue('blackAlpha.800', 'white')
 
   if (!post) {
     return null
@@ -184,14 +187,7 @@ export function PostPage() {
     articleBody: getPlainText(content),
   }
 
-  const dividerLine = (
-    <DividerLine
-      orientation="horizontal"
-      w="20px"
-      mx="16px"
-      borderColor={useColorModeValue('blackAlpha.800', 'white')}
-    />
-  )
+  const dividerLine = <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor={dividerBorderColor} />
 
   return (
     <>
@@ -241,7 +237,7 @@ export function PostPage() {
                 <Center h="22px">{dividerLine}</Center>
                 <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
                 <Center h="22px">{dividerLine}</Center>
-                <Stack direction="row" spacing={2} ml={{ base: 0 }}>
+                <Stack direction="row" gap={2} ml={{ base: 0 }}>
                   {socialButtons}
                 </Stack>
               </Flex>
@@ -251,12 +247,12 @@ export function PostPage() {
             <Content content={content} />
           </Flex>
           <Flex direction="row">
-            <Stack direction="row" spacing={2} mt="40px">
+            <Stack direction="row" gap={2} mt="40px">
               {categories?.map(category => (
                 <Tag key={category.code} label={category.localizedName} />
               ))}
             </Stack>
-            <Stack direction="row" spacing={2} ml="auto" pt={8}>
+            <Stack direction="row" gap={2} ml="auto" pt={8}>
               {socialButtons}
             </Stack>
           </Flex>

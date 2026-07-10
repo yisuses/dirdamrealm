@@ -1,4 +1,4 @@
-import { Flex, HStack, Heading, Text, useColorModeValue } from '@chakra-ui/react'
+import { Flex, HStack, Heading, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 import { getLatestPosts } from '@blog/api'
 import { PostGrid } from '@blog/components/common'
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { getLatestPostsKey } from '@blog/utils/constants'
 
 interface HomeLatestPostsProps {
@@ -38,6 +39,9 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
     setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== headerPost.id) : renderedPosts)
   }, [queriedPosts])
 
+  // Hoisted: useColorModeValue is a hook in v3 (next-themes), can't live inside the map/ternary below.
+  const inactiveCategoryColor = useColorModeValue('gray.750', 'gray.50')
+
   const renderedCategories = categories
     ? [{ id: -1, code: '', name: t(`categories.all`) }].concat(
         categories.map(({ id, code, localizedName }) => ({ id, code, name: localizedName })),
@@ -48,7 +52,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
     <Flex flexDir="column" mt={{ base: '60px', md: '130px' }} mb="60px" px="20px">
       <Heading fontFamily="Lora">{title}</Heading>
       {Boolean(renderedCategories.length) && (
-        <HStack spacing="20px" mt="20px" overflow="auto">
+        <HStack gap="20px" mt="20px" overflow="auto">
           {renderedCategories.map(({ id, code, name }) => (
             <Text
               tabIndex={0}
@@ -59,9 +63,7 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
               fontSize="sm"
               fontWeight={700}
               color={
-                (!selectedCategory && id === -1) || selectedCategory === code
-                  ? 'orange.300'
-                  : useColorModeValue('gray.750', 'gray.50')
+                (!selectedCategory && id === -1) || selectedCategory === code ? 'orange.300' : inactiveCategoryColor
               }
               _hover={{ cursor: 'pointer', color: 'orange.300' }}
               _focus={{ color: 'orange.300' }}

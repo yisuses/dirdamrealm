@@ -73,5 +73,9 @@
     "yarn": ">=1.22.0",
     "npm": "please-use-yarn"
   },
+  "resolutions": {
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3"
+  },
   "packageManager": "yarn@3.5.1"
 }

@@ -1,6 +1,4 @@
-import { ConfigColorMode } from '@chakra-ui/react'
-
-import chakraTheme, { breakpoints } from './chakra.theme'
+import { breakpoints } from './chakra.theme'
 
 export function getUpMedia(size: keyof typeof breakpoints): string {
   return `(min-width: ${breakpoints[size]})`
@@ -18,11 +16,10 @@ function getUpMediaQuery(size: keyof typeof breakpoints): string {
   return `@media ${getUpMedia(size)}`
 }
 
+// Emotion theme (separate from the Chakra system). Chakra v3's ChakraProvider no
+// longer feeds emotion's theme context, so this is provided via an emotion
+// ThemeProvider in app-providers for styled-components that read `theme.media`.
 const theme = {
-  ...chakraTheme,
-  config: {
-    initialColorMode: 'light' as ConfigColorMode,
-  },
   media: {
     down: {
       sm: getDownMediaQuery('sm'),

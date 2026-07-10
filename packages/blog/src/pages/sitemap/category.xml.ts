@@ -12,22 +12,22 @@ function generateSiteMap(categories: CategoryWithLocale[], defaultLocale: string
   return xmlUrlSet(
     categories
       .map(
-        ({ code, updatedAt, queryLocale, localizedName, locale }) => `
+        ({ code, updatedAt, queryLocale, localizedName, translations }) => `
           <url>
           <loc>${publicUrl(
             `${defaultLocale === queryLocale ? '' : '/' + queryLocale}${buildCategoryPath(code, localizedName)}`,
           )}</loc>
           <lastmod>${updatedAt}</lastmod>
           ${
-            locale && Object.keys(locale).length > 0
-              ? (Object.keys(locale) as AppLocales[])
+            translations && Object.keys(translations).length > 0
+              ? (Object.keys(translations) as AppLocales[])
                   .filter(key => key !== queryLocale)
                   .map(
                     localeKey =>
                       `<xhtml:link rel="alternate" hreflang="${mapLocales[localeKey]}" href="${publicUrl(
                         `${defaultLocale === localeKey ? '' : '/' + localeKey}${buildCategoryPath(
                           code,
-                          locale[localeKey],
+                          translations[localeKey],
                         )}`,
                       )}"/>`,
                   )
