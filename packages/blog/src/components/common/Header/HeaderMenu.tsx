@@ -7,6 +7,7 @@ import { LuMenu } from 'react-icons/lu'
 
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { DrawerBody, DrawerContent, DrawerRoot } from '@blog/components/ui/drawer'
+import { useLocalizeHref } from '@blog/hooks'
 
 type HeaderDropdownProps = {
   categories: {
@@ -19,6 +20,7 @@ type HeaderDropdownProps = {
 
 export const HeaderMenu = ({ categories }: HeaderDropdownProps) => {
   const { t } = useTranslation('common')
+  const localizeHref = useLocalizeHref()
   const { open, onOpen, onClose } = useDisclosure()
   const panelBg = useColorModeValue('white', 'gray.900')
   const titleColor = useColorModeValue('black', 'white')
@@ -30,7 +32,7 @@ export const HeaderMenu = ({ categories }: HeaderDropdownProps) => {
   ))
 
   menuLinks.push(
-    <NextLink href="/archive" key="archive" onClick={onClose}>
+    <NextLink href={localizeHref('/archive')} key="archive" onClick={onClose}>
       {t('header.archive')}
     </NextLink>,
   )

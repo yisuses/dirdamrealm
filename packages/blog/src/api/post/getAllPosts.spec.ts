@@ -17,6 +17,12 @@ describe('getAllPosts', () => {
   })
 
   it('maps the posts returned by the API', async () => {
+    // getAllPosts fetches each locale separately (Strapi v5 populates `localizations`
+    // only for single-locale queries); mock one locale with the post, the other empty.
+    mockedAxios.get
+      .mockResolvedValueOnce({ data: { data: [postResponseEnMock] } })
+      .mockResolvedValueOnce({ data: { data: [] } })
+
     const posts = await getAllPosts({})
 
     expect(posts).toHaveLength(1)

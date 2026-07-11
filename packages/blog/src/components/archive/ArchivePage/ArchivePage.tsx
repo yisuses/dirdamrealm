@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { getCategories } from '@blog/api/category'
 import { getAllPosts } from '@blog/api/post'
 import { SelectMenu } from '@blog/components/common'
-import { useLocale } from '@blog/hooks'
+import { useLocale, useLocalizeHref } from '@blog/hooks'
 import { buildPostPath, formatPostDate } from '@blog/utils'
 import {
   ARCHIVE_POSTS_KEY,
@@ -34,6 +34,7 @@ type ArchiveYear = {
 export function ArchivePage() {
   const { t } = useTranslation('archivePage')
   const locale = useLocale()
+  const localizeHref = useLocalizeHref()
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
 
@@ -178,7 +179,11 @@ export function ArchivePage() {
                           <Text minW={{ base: '110px', md: '95px' }} fontSize={{ base: 'sm', md: 'md' }}>
                             {formatPostDate(publishedAt)}
                           </Text>
-                          <Link as={NextLink} href={buildPostPath(id, title)} _hover={{ color: 'orange.300' }}>
+                          <Link
+                            as={NextLink}
+                            href={localizeHref(buildPostPath(id, title))}
+                            _hover={{ color: 'orange.300' }}
+                          >
                             {title}
                           </Link>
                         </List.Item>

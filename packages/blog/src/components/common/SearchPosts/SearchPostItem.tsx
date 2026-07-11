@@ -6,6 +6,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { useTranslation } from 'react-i18next'
 
+import { useLocalizeHref } from '@blog/hooks'
 import { formatPostDate } from '@blog/utils'
 import { getImageUrlFromMedia } from '@blog/utils/image/image'
 import { buildPostPath } from '@blog/utils/urlBuilder'
@@ -20,10 +21,11 @@ export function SearchPostResultItem({
   post: { id, title, coverImage, summary, categories, publishedAt },
 }: SearchPostItemProps) {
   const { t } = useTranslation('common')
+  const localizeHref = useLocalizeHref()
   const parsedDate = formatPostDate(publishedAt)
 
   return (
-    <NextLink href={buildPostPath(id, title)}>
+    <NextLink href={localizeHref(buildPostPath(id, title))}>
       <Box display="flex" alignItems="center" py={{ base: '8px', lg: '16px' }} _hover={{ cursor: 'pointer' }}>
         <Box
           position="relative"

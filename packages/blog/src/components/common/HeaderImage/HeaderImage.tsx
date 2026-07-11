@@ -7,7 +7,7 @@ import NextLink from 'next/link'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Tag } from '@blog/components/common/Tag'
-import { useLocale } from '@blog/hooks'
+import { useLocale, useLocalizeHref } from '@blog/hooks'
 import { formatPostDate } from '@blog/utils'
 import { getImageUrlFromMedia } from '@blog/utils/image/image'
 import { buildPostPath } from '@blog/utils/urlBuilder'
@@ -59,6 +59,7 @@ export function HeaderImage({
   showPostInfo,
 }: HeaderImageProps) {
   const appLocale = useLocale()
+  const localizeHref = useLocalizeHref()
   const { t } = useTranslation('common')
   const renderedCategories = categories?.slice(0, 3) || []
   const parsedDate = formatPostDate(publishedAt)
@@ -107,7 +108,7 @@ export function HeaderImage({
             </Flex>
             <Link
               as={NextLink}
-              href={buildPostPath(String(id), title)}
+              href={localizeHref(buildPostPath(String(id), title))}
               fontWeight={700}
               fontSize={{ base: '16px', lg: '32px' }}
               lineHeight={{ base: '20px', lg: '40px' }}

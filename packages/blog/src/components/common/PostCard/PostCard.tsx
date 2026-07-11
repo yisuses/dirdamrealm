@@ -7,6 +7,7 @@ import NextLink from 'next/link'
 
 import { Tag } from '@blog/components'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
+import { useLocalizeHref } from '@blog/hooks'
 import { buildBlurDataUrl, buildPostPath, formatPostDate } from '@blog/utils'
 
 export type PostCardProps = {
@@ -21,7 +22,8 @@ export type PostCardProps = {
 }
 
 export function PostCard({ id, categories, date, description, imageUrl, title, isSameLocale, locale }: PostCardProps) {
-  const postLink = buildPostPath(String(id), title)
+  const localizeHref = useLocalizeHref()
+  const postLink = localizeHref(buildPostPath(String(id), title))
   const parsedDate = formatPostDate(date)
 
   return (

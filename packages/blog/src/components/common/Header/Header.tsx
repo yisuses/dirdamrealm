@@ -12,7 +12,7 @@ import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
 import { useColorMode } from '@blog/components/ui/color-mode'
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
 import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
-import { useLocale, useSwitchLocale } from '@blog/hooks'
+import { useLocale, useLocalizeHref, useSwitchLocale } from '@blog/hooks'
 import { CATEGORIES_STALE_TIME_MS, getCategoriesKey } from '@blog/utils/constants'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
 
@@ -30,6 +30,7 @@ export interface HeaderProps {
 export function Header({ categories }: HeaderProps) {
   const pathname = usePathname() || '/'
   const locale = useLocale()
+  const localizeHref = useLocalizeHref()
   const switchLocale = useSwitchLocale()
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
@@ -44,7 +45,7 @@ export function Header({ categories }: HeaderProps) {
     ) || '/'
 
   const logo = (
-    <NextLink href="/">
+    <NextLink href={localizeHref('/')}>
       <Box
         py={{ base: '1rem', md: 0 }}
         height={{ base: '60px', lg: '80px' }}
@@ -205,7 +206,7 @@ export function Header({ categories }: HeaderProps) {
             _active={{ background: 'transparent' }}
             _focus={{ boxShadow: 'none' }}
           >
-            <NextLink href="/archive">{archiveLabel}</NextLink>
+            <NextLink href={localizeHref('/archive')}>{archiveLabel}</NextLink>
           </Button>
           <Box>{actionButtons}</Box>
         </Flex>

@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 import { CookieBanner, Footer, GlobalStyles, Header } from '@blog/components'
-import { useGetData, useLocale } from '@blog/hooks'
+import { useGetData, useLocale, useLocalizeHref } from '@blog/hooks'
 import { buildCategoryPath } from '@blog/utils'
 import { QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'
 
@@ -14,13 +14,14 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   const locale = useLocale()
+  const localizeHref = useLocalizeHref()
   const categories = useGetData<Category[]>(getCategoriesKey(locale), [])
     .filter(category => category.main)
     .map(category => ({
       localizedName: category.localizedName,
       name: category.name,
       code: category.code,
-      url: buildCategoryPath(category.code, category.localizedName),
+      url: localizeHref(buildCategoryPath(category.code, category.localizedName)),
     }))
   const about = useGetData<About>(QUERY_ABOUT)
 
