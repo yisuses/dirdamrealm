@@ -1,0 +1,1 @@
+export { useSwitchLocale } from './useSwitchLocale'

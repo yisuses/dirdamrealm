@@ -1,3 +1,5 @@
+'use client'
+
 import { Drawer as ChakraDrawer, Portal } from '@chakra-ui/react'
 import * as React from 'react'
 

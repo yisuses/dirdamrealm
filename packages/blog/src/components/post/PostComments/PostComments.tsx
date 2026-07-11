@@ -1,15 +1,17 @@
+'use client'
+
 import { Box, Button, Field, Flex, Heading, Input, Text, Textarea } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import intlFormatDistance from 'date-fns/intlFormatDistance'
-import { useTranslation } from 'next-i18next/pages'
-import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 // eslint-disable-next-line import/no-named-as-default
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { addCommentValidate, getComments } from '@blog/api/comment'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
+import { useLocale } from '@blog/hooks'
 
 interface PostCommentsProps {
   postId: number
@@ -27,7 +29,7 @@ interface SubmitCommentValues {
 export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
   const { t } = useTranslation('postPage')
   const queryClient = useQueryClient()
-  const { locale } = useRouter()
+  const locale = useLocale()
   const {
     handleSubmit,
     register,

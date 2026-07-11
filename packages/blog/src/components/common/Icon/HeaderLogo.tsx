@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 export function HeaderLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {

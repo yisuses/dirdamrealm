@@ -1,1 +1,2 @@
-export * from './get-server-translations'
+export * from './config'
+export * from './i18n-namespaces.type'

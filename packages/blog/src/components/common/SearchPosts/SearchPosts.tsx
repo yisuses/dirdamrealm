@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Field, Input } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'

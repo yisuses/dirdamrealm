@@ -1,14 +1,18 @@
+'use client'
+
 import { Box, Button, Flex, IconButton, Separator, Text, useDisclosure } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
-import { useTranslation } from 'next-i18next/pages'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 import { LuChevronDown, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
 
 import { getCategories } from '@blog/api'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
 import { useColorMode } from '@blog/components/ui/color-mode'
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
+import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
+import { useLocale, useSwitchLocale } from '@blog/hooks'
 import { CATEGORIES_STALE_TIME_MS, getCategoriesKey } from '@blog/utils/constants'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
 
@@ -24,11 +28,20 @@ export interface HeaderProps {
 }
 
 export function Header({ categories }: HeaderProps) {
-  const router = useRouter()
+  const pathname = usePathname() || '/'
+  const locale = useLocale()
+  const switchLocale = useSwitchLocale()
   const { t } = useTranslation('common')
   const { colorMode, toggleColorMode } = useColorMode()
   const queryClient = useQueryClient()
   const { open: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
+
+  // Browser path without the (non-default) locale prefix, for active-link comparisons.
+  const barePath =
+    LOCALES.filter(l => l !== DEFAULT_LOCALE).reduce(
+      (acc, l) => (acc === `/${l}` || acc.startsWith(`/${l}/`) ? acc.slice(l.length + 1) || '/' : acc),
+      pathname,
+    ) || '/'
 
   const logo = (
     <NextLink href="/">
@@ -63,7 +76,7 @@ export function Header({ categories }: HeaderProps) {
   )
 
   const archiveLabel = t('header.archive')
-  const isArchiveActive = router.asPath === '/archive/'
+  const isArchiveActive = barePath === '/archive/'
 
   const actionButtons = (
     <>
@@ -93,22 +106,22 @@ export function Header({ categories }: HeaderProps) {
         aria-label={t('header.changeLanguage')}
         bg="transparent"
         onClick={async () => {
-          const nextLocale = router.locale === 'es' ? 'en' : 'es'
+          const nextLocale: AppLocales = locale === 'es' ? 'en' : 'es'
 
           await queryClient.prefetchQuery({
-            queryKey: getCategoriesKey(nextLocale as AppLocales),
-            queryFn: () => getCategories({ locale: nextLocale as AppLocales }),
+            queryKey: getCategoriesKey(nextLocale),
+            queryFn: () => getCategories({ locale: nextLocale }),
             staleTime: CATEGORIES_STALE_TIME_MS,
           })
 
-          router.push(router.asPath, undefined, { locale: nextLocale })
+          switchLocale(nextLocale)
         }}
         color="white"
         _hover={{ bg: 'whiteAlpha.300' }}
         _active={{ bg: 'whiteAlpha.300' }}
         px={{ base: 2, sm: 4 }}
       >
-        {router.locale === 'es' ? 'ES' : 'EN'}
+        {locale === 'es' ? 'ES' : 'EN'}
       </Button>
     </>
   )
@@ -171,7 +184,7 @@ export function Header({ categories }: HeaderProps) {
                   value={code}
                   asChild
                   bg="transparent"
-                  color={router.asPath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
+                  color={barePath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
                   borderRadius={0}
                   fontFamily="Roboto"
                   _hover={{ bg: 'blackAlpha.700' }}

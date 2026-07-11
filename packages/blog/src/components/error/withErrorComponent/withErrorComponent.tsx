@@ -1,3 +1,5 @@
+'use client'
+
 import { ErrorPage } from '../ErrorPage'
 
 export interface WithErrorProps {

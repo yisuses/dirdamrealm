@@ -1,9 +1,10 @@
+'use client'
+
 import { Box } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
 import { CookieBanner, Footer, GlobalStyles, Header } from '@blog/components'
-import { useGetData } from '@blog/hooks'
+import { useGetData, useLocale } from '@blog/hooks'
 import { buildCategoryPath } from '@blog/utils'
 import { QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'
 
@@ -12,8 +13,8 @@ interface MainLayoutProps {
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const { locale } = useRouter()
-  const categories = useGetData<Category[]>(getCategoriesKey((locale as AppLocales) || 'en'), [])
+  const locale = useLocale()
+  const categories = useGetData<Category[]>(getCategoriesKey(locale), [])
     .filter(category => category.main)
     .map(category => ({
       localizedName: category.localizedName,

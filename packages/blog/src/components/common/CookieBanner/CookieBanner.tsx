@@ -1,7 +1,9 @@
+'use client'
+
 import { Button, Text } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next/pages'
 import { useRef } from 'react'
 import { CookieConsent } from 'react-cookie-consent'
+import { useTranslation } from 'react-i18next'
 
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 

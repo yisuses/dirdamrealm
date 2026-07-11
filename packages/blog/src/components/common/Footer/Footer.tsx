@@ -1,10 +1,12 @@
+'use client'
+
 import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import InstagramLogo from '@iconify/icons-ion/logo-instagram'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import { Icon, IconifyIcon } from '@iconify/react'
-import { Trans, useTranslation } from 'next-i18next/pages'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { SocialButton } from '@blog/components'
 import { useColorModeValue } from '@blog/components/ui/color-mode'

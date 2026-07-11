@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Text } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import NextImage from 'next/image'

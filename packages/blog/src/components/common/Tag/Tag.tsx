@@ -1,3 +1,5 @@
+'use client'
+
 import { Tag as ChakraTag } from '@chakra-ui/react'
 import { ComponentProps } from 'react'
 

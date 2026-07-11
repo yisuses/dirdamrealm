@@ -1,6 +1,8 @@
+'use client'
+
 import { useBreakpointValue } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { ReactNode, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { ReactNode, useEffect, useRef } from 'react'
 
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { DialogBody, DialogCloseTrigger, DialogContent, DialogHeader, DialogRoot } from '@blog/components/ui/dialog'
@@ -13,19 +15,22 @@ export type ModalProps = {
 }
 
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
-  const { events } = useRouter()
+  const pathname = usePathname()
+  const isFirstRender = useRef(true)
   const modalSize = useBreakpointValue<'full' | 'xl'>({
     base: 'full',
     md: 'xl',
   })
   const contentBg = useColorModeValue('white', 'gray.800')
 
+  // Close the modal on client navigation (replaces router.events 'routeChangeStart').
   useEffect(() => {
-    events.on('routeChangeStart', onClose)
-    return () => {
-      events.off('routeChangeStart', onClose)
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
     }
-  }, [])
+    onClose()
+  }, [pathname])
 
   return (
     <DialogRoot

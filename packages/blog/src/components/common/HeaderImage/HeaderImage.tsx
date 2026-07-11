@@ -1,14 +1,36 @@
+'use client'
+
 /* eslint-disable import/no-duplicates */
 import { Box, Flex, Link, LinkProps, Separator, Text } from '@chakra-ui/react'
-import { Trans, useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { Tag } from '@blog/components/common/Tag'
+import { useLocale } from '@blog/hooks'
 import { formatPostDate } from '@blog/utils'
 import { getImageUrlFromMedia } from '@blog/utils/image/image'
 import { buildPostPath } from '@blog/utils/urlBuilder'
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
 
 interface HeaderImageProps {
   post: Post
@@ -36,7 +58,7 @@ export function HeaderImage({
   },
   showPostInfo,
 }: HeaderImageProps) {
-  const { locale: appLocale } = useRouter()
+  const appLocale = useLocale()
   const { t } = useTranslation('common')
   const renderedCategories = categories?.slice(0, 3) || []
   const parsedDate = formatPostDate(publishedAt)

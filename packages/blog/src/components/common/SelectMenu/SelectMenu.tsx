@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@chakra-ui/react'
 import { LuChevronDown } from 'react-icons/lu'
 

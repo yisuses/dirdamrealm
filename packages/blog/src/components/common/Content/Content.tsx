@@ -1,3 +1,5 @@
+'use client'
+
 import Blocks, { DataProp } from 'editorjs-blocks-react-renderer'
 
 import { ContentHeader } from './ContentHeader'

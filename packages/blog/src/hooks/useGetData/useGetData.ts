@@ -1,3 +1,5 @@
+'use client'
+
 import { QueryKey, useQueryClient } from '@tanstack/react-query'
 
 function useGetData<T>(key: QueryKey): T | undefined

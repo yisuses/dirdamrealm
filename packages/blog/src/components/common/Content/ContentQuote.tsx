@@ -1,3 +1,5 @@
+'use client'
+
 import { chakra } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import HTMLReactParser from 'html-react-parser'

@@ -1,8 +1,10 @@
+'use client'
+
 import { SimpleGrid } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next/pages'
-import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 import { PostCard } from '@blog/components/common'
+import { useLocale } from '@blog/hooks'
 import { getImageUrlFromMedia } from '@blog/utils'
 
 interface PostGridProps {
@@ -11,7 +13,7 @@ interface PostGridProps {
 }
 
 export function PostGrid({ posts, limit }: PostGridProps) {
-  const { locale } = useRouter()
+  const locale = useLocale()
   const { t } = useTranslation('common')
 
   return (

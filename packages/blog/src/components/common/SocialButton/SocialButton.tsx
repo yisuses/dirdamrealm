@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, VisuallyHidden } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 

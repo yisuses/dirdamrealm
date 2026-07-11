@@ -1,3 +1,5 @@
+'use client'
+
 import { Dialog as ChakraDialog, Portal } from '@chakra-ui/react'
 import * as React from 'react'
 

@@ -1,12 +1,14 @@
+'use client'
+
 import { Flex, HStack, Heading, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { useTranslation } from 'next-i18next/pages'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { getLatestPosts } from '@blog/api'
 import { PostGrid } from '@blog/components/common'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
+import { useLocale } from '@blog/hooks'
 import { getLatestPostsKey } from '@blog/utils/constants'
 
 interface HomeLatestPostsProps {
@@ -17,7 +19,7 @@ interface HomeLatestPostsProps {
 
 export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsProps) {
   const { t } = useTranslation('common')
-  const { locale } = useRouter()
+  const locale = useLocale()
   const [selectedCategory, setSelectedCategory] = useState<string>()
   const [renderedPosts, setRenderedPosts] = useState(posts.slice(1))
   const headerPost = posts[0]

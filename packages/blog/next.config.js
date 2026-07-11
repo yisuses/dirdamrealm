@@ -1,6 +1,5 @@
 const packageJson = require('./package.json')
 const pc = require('picocolors')
-const { i18n } = require('./next-i18next.config')
 const { withSentryConfig } = require('@sentry/nextjs')
 
 const trueEnv = ['true', '1', 'yes']
@@ -74,7 +73,8 @@ const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   productionBrowserSourceMaps: !disableSourceMaps,
-  i18n,
+  // i18n routing is handled by src/proxy.ts (next-i18next App Router); the next.config
+  // `i18n` key is Pages-Router-only and unsupported with the App Router.
 
   httpAgentOptions: {
     // @link https://nextjs.org/blog/next-11-1#builds--data-fetching
