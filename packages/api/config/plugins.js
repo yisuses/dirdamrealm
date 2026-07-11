@@ -43,6 +43,10 @@ module.exports = ({ env }) => ({
             writer: true,
             coverImage: true,
           },
+          // The editorjs `content` can be tens of KB and would push records past
+          // Algolia's ~10KB record limit (silently dropping long posts from the index).
+          // The blog's search never reads it, so keep it out of the index.
+          hideFields: ['content'],
         },
       ],
     },
