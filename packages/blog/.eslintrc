@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": [".next", "**/.out"],
+  "ignorePatterns": [".next", "**/.out", "next-env.d.ts"],
   "extends": [
     "../../.eslintrc",
     // Add specific rules for react

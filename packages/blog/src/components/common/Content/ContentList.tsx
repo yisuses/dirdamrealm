@@ -1,4 +1,6 @@
-import { ListItem, OrderedList, UnorderedList } from '@chakra-ui/layout'
+'use client'
+
+import { List } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import HTMLReactParser, { HTMLReactParserOptions } from 'html-react-parser'
 
@@ -10,12 +12,11 @@ export interface ContentListBlockData {
 export const ContentList: RenderFn<ContentListBlockData> = ({ data }) => {
   const options: HTMLReactParserOptions = {}
 
-  const listItems = data.items.map((item, index) => <ListItem key={index}>{HTMLReactParser(item, options)}</ListItem>)
-  const ListType = data.style === 'ordered' ? OrderedList : UnorderedList
+  const listItems = data.items.map((item, index) => <List.Item key={index}>{HTMLReactParser(item, options)}</List.Item>)
 
   return (
-    <ListType mb="16px" marginInlineStart="2em">
+    <List.Root as={data.style === 'ordered' ? 'ol' : 'ul'} mb="16px" marginInlineStart="2em">
       {listItems}
-    </ListType>
+    </List.Root>
   )
 }

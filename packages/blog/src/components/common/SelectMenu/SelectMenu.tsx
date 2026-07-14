@@ -1,5 +1,10 @@
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import { Button, Menu, MenuButton, MenuItem, MenuList, useColorModeValue } from '@chakra-ui/react'
+'use client'
+
+import { Button } from '@chakra-ui/react'
+import { LuChevronDown } from 'react-icons/lu'
+
+import { useColorModeValue } from '@blog/components/ui/color-mode'
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
 
 export interface SelectMenuOption {
   value: string
@@ -22,40 +27,40 @@ export function SelectMenu({ options, value, label, onChange }: SelectMenuProps)
   const selectedOption = options.find(option => option.value === value) ?? options[0]
 
   return (
-    <Menu matchWidth>
-      <MenuButton
-        as={Button}
-        aria-label={label}
-        rightIcon={<ChevronDownIcon />}
-        variant="outline"
-        fontFamily="Lora"
-        fontWeight={500}
-        width="100%"
-        justifyContent="space-between"
-        color={restingColor}
-        borderColor={borderColor}
-        borderRadius="none"
-        _hover={{ borderColor: 'orange.300', color: 'orange.300' }}
-        _active={{ borderColor: 'orange.300' }}
-        _expanded={{ borderColor: 'orange.300', color: 'orange.300' }}
-        transition="color 0.2s ease-in-out, border-color 0.2s ease-in-out"
-      >
-        {selectedOption?.label}
-      </MenuButton>
-      <MenuList fontFamily="Lora" borderRadius="none">
+    <MenuRoot>
+      <MenuTrigger asChild>
+        <Button
+          aria-label={label}
+          variant="outline"
+          fontFamily="Lora"
+          fontWeight={500}
+          width="100%"
+          justifyContent="space-between"
+          color={restingColor}
+          borderColor={borderColor}
+          borderRadius="none"
+          _hover={{ borderColor: 'orange.300', color: 'orange.300' }}
+          _open={{ borderColor: 'orange.300', color: 'orange.300' }}
+          transition="color 0.2s ease-in-out, border-color 0.2s ease-in-out"
+        >
+          {selectedOption?.label}
+          <LuChevronDown />
+        </Button>
+      </MenuTrigger>
+      <MenuContent fontFamily="Lora" borderRadius="none">
         {options.map(option => (
           <MenuItem
             key={option.value || 'all'}
+            value={option.value}
             onClick={() => onChange(option.value)}
             fontWeight={option.value === value ? 700 : 400}
             color={option.value === value ? 'orange.300' : undefined}
             _hover={{ color: 'orange.300' }}
-            _focus={{ color: 'orange.300' }}
           >
             {option.label}
           </MenuItem>
         ))}
-      </MenuList>
-    </Menu>
+      </MenuContent>
+    </MenuRoot>
   )
 }

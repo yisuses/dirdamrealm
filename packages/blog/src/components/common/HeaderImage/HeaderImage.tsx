@@ -1,14 +1,36 @@
+'use client'
+
 /* eslint-disable import/no-duplicates */
-import { Box, Divider, Flex, Link, LinkProps, Text } from '@chakra-ui/layout'
-import { Trans, useTranslation } from 'next-i18next'
+import { Box, Flex, Link, LinkProps, Separator, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { Tag } from '@blog/components/common/Tag'
+import { useLocale, useLocalizeHref } from '@blog/hooks'
 import { formatPostDate } from '@blog/utils'
 import { getImageUrlFromMedia } from '@blog/utils/image/image'
 import { buildPostPath } from '@blog/utils/urlBuilder'
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
 
 interface HeaderImageProps {
   post: Post
@@ -36,7 +58,8 @@ export function HeaderImage({
   },
   showPostInfo,
 }: HeaderImageProps) {
-  const { locale: appLocale } = useRouter()
+  const appLocale = useLocale()
+  const localizeHref = useLocalizeHref()
   const { t } = useTranslation('common')
   const renderedCategories = categories?.slice(0, 3) || []
   const parsedDate = formatPostDate(publishedAt)
@@ -74,23 +97,23 @@ export function HeaderImage({
               {renderedCategories
                 .sort((a, b) => a.name.length - b.name.length)
                 .concat(appLocale !== locale ? ({ code: 'lang', name: t(`localization.${locale}`) } as Category) : [])
-                .map(({ name, locale, code }) => (
+                .map(({ name, translations, code }) => (
                   <Tag
                     mb={{ base: '8px', md: '12px', lg: '16px' }}
                     key={code}
                     size="md"
-                    label={(locale && locale?.[appLocale as AppLocales]) || name}
+                    label={(translations && translations?.[appLocale as AppLocales]) || name}
                   />
                 ))}
             </Flex>
             <Link
               as={NextLink}
-              href={buildPostPath(String(id), title)}
+              href={localizeHref(buildPostPath(String(id), title))}
               fontWeight={700}
               fontSize={{ base: '16px', lg: '32px' }}
               lineHeight={{ base: '20px', lg: '40px' }}
               mb={{ base: '8px', lg: '16px' }}
-              noOfLines={{ base: 1, lg: 2 }}
+              lineClamp={{ base: 1, lg: 2 }}
               _hover={{
                 textDecorationColor: 'white',
                 textDecoration: 'underline',
@@ -108,7 +131,7 @@ export function HeaderImage({
               <Text mb={{ base: 2, lg: 0 }} lineHeight="24px">
                 {parsedDate}
               </Text>
-              <Divider
+              <Separator
                 display={{ base: 'none', lg: 'block' }}
                 orientation="horizontal"
                 w="45px"
@@ -119,7 +142,7 @@ export function HeaderImage({
               />
               <Text
                 fontSize={{ base: '12px', lg: '16px' }}
-                noOfLines={{ base: 2, md: 3, lg: 5 }}
+                lineClamp={{ base: 2, md: 3, lg: 5 }}
                 fontStyle="italic"
                 fontFamily="Roboto"
                 fontWeight={500}

@@ -8,20 +8,20 @@ import { mediaMapper } from '../mediaMapper/mediaMapper'
 import { writerMapper } from '../writterMapper/writerMapper'
 
 export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post => {
-  const { id, attributes } = postEntity
+  const { id } = postEntity
   const errors = []
 
   let parsedContent: DataProp = { time: new Date().getTime(), version: '', blocks: [] }
   try {
-    parsedContent = JSON.parse(attributes.content)
+    parsedContent = JSON.parse(postEntity.content)
   } catch (err) {
     errors.push(`Failed to parse content from post ${id}. Cause: ${(err as Error).message}`)
   }
 
   let parsedCategories: Category[] | null = null
   try {
-    parsedCategories = attributes.categories
-      ? attributes.categories.data.map(category => categoryMapper(category, attributes.locale))
+    parsedCategories = postEntity.categories
+      ? postEntity.categories.map(category => categoryMapper(category, postEntity.locale))
       : null
   } catch (err) {
     errors.push(`Failed to parse categories from post ${id}. Cause: ${(err as Error).message}`)
@@ -29,21 +29,21 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
 
   let parsedLocalizations: Post[] | null = null
   try {
-    parsedLocalizations = attributes.localizations ? attributes.localizations.data.map(post => postMapper(post)) : null
+    parsedLocalizations = postEntity.localizations ? postEntity.localizations.map(post => postMapper(post)) : null
   } catch (err) {
     errors.push(`Failed to parse localizations from post ${id}. Cause: ${(err as Error).message}`)
   }
 
   let parsedCoverImage: Media | null = null
   try {
-    parsedCoverImage = attributes.coverImage?.data ? mediaMapper(attributes.coverImage.data) : null
+    parsedCoverImage = postEntity.coverImage ? mediaMapper(postEntity.coverImage) : null
   } catch (err) {
     errors.push(`Failed to parse coverImage from post ${id}. Cause: ${(err as Error).message}`)
   }
 
   let parsedWriter: Writer | null = null
   try {
-    parsedWriter = attributes.writer?.data ? writerMapper(attributes.writer.data) : null
+    parsedWriter = postEntity.writer ? writerMapper(postEntity.writer) : null
   } catch (err) {
     errors.push(`Failed to parse writer from post ${id}. Cause: ${(err as Error).message}`)
   }
@@ -53,13 +53,25 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
   }
 
   return {
-    id,
-    ...attributes,
+    ...postEntity,
     categories: parsedCategories,
     localizations: parsedLocalizations,
     coverImage: parsedCoverImage,
     content: parsedContent,
     writer: parsedWriter,
+  }
+}
+
+/**
+ * List-friendly wrapper around postMapper: a single malformed post (e.g. unparseable
+ * content) is reported and skipped instead of aborting a whole listing / static build.
+ */
+export const safePostMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post | null => {
+  try {
+    return postMapper(postEntity)
+  } catch (err) {
+    sentry.captureException(err)
+    return null
   }
 }
 

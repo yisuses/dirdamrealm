@@ -1,4 +1,4 @@
-import { shimmer } from '@blog/components'
+import { shimmer } from '@blog/components/common/Shimmer'
 
 import { toBase64 } from '../..'
 

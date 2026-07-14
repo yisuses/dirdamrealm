@@ -41,7 +41,7 @@
       "target": "api::post.post",
       "mappedBy": "categories"
     },
-    "locale": {
+    "translations": {
       "type": "json"
     }
   }

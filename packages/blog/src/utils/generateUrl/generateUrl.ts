@@ -1,7 +1,3 @@
-import getConfig from 'next/config'
-
-const { publicRuntimeConfig } = getConfig()
-
 function populateUrl(base: string, path: string, ...params: (Record<string, string | number | boolean> | string)[]) {
   const url = new URL(path, base)
   if (params?.length) {
@@ -29,9 +25,9 @@ function populateUrl(base: string, path: string, ...params: (Record<string, stri
 }
 
 export function apiUrl(path: string, ...params: (Record<string, string | number | boolean> | string)[]) {
-  return populateUrl(publicRuntimeConfig.API_URL, path, ...params)
+  return populateUrl(process.env.API_URL as string, path, ...params)
 }
 
 export function publicUrl(path: string) {
-  return `${publicRuntimeConfig.BASE_URL}${path}`
+  return `${process.env.BASE_URL}${path}`
 }

@@ -1,6 +1,5 @@
 const packageJson = require('./package.json')
 const pc = require('picocolors')
-const { i18n } = require('./next-i18next.config')
 const { withSentryConfig } = require('@sentry/nextjs')
 
 const trueEnv = ['true', '1', 'yes']
@@ -8,7 +7,6 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const NEXTJS_DISABLE_SENTRY = trueEnv.includes(process.env?.NEXTJS_DISABLE_SENTRY ?? 'false')
 const NEXTJS_SENTRY_AUTH_TOKEN = process.env?.NEXTJS_SENTRY_AUTH_TOKEN ?? 'auth_token'
-const NEXTJS_SENTRY_DEBUG = trueEnv.includes(process.env?.NEXTJS_SENTRY_DEBUG ?? 'false')
 const NEXTJS_SENTRY_ORG = process.env?.NEXTJS_SENTRY_ORG ?? 'org_name'
 const NEXTJS_SENTRY_PROJECT = process.env?.NEXTJS_SENTRY_PROJECT ?? 'project-name'
 const NEXTJS_SENTRY_RELEASE =
@@ -19,7 +17,7 @@ const ALGOLIA_PROVIDER_SEARCH_API_KEY = process.env?.ALGOLIA_PROVIDER_SEARCH_API
 const ALGOLIA_PROVIDER_INDEX_PREFIX =
   process.env?.ALGOLIA_PROVIDER_INDEX_PREFIX ?? (isProd ? 'whemotion_production' : 'whemotion_development')
 const RECAPTCHA_KEY = process.env?.RECAPTCHA_KEY ?? ''
-const RECAPTCHA_SECRET_KEY = process.env?.RECAPTCHA_SECRET_KEY ?? ''
+// RECAPTCHA_SECRET_KEY is read directly from process.env in the addComment API route (server-only).
 /**
  * A way to allow CI optimization when the build done there is not used
  * to deliver an image or deploy the files.
@@ -30,7 +28,6 @@ if (disableSourceMaps) {
   console.info(`${pc.green('notice')}- Sourcemaps generation have been disabled through NEXT_DISABLE_SOURCEMAPS`)
 }
 
-const NEXTJS_IGNORE_ESLINT = process.env.NEXTJS_IGNORE_ESLINT === '1' || false
 const NEXTJS_IGNORE_TYPECHECK = process.env.NEXTJS_IGNORE_TYPECHECK === '1' || false
 
 // Tell webpack to compile those packages
@@ -76,19 +73,14 @@ const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   productionBrowserSourceMaps: !disableSourceMaps,
-  i18n,
-  optimizeFonts: false,
+  // i18n routing is handled by src/proxy.ts (next-i18next App Router); the next.config
+  // `i18n` key is Pages-Router-only and unsupported with the App Router.
 
   httpAgentOptions: {
     // @link https://nextjs.org/blog/next-11-1#builds--data-fetching
     keepAlive: true,
   },
 
-  // @link https://nextjs.org/docs/advanced-features/output-file-tracing
-  outputFileTracing: true,
-
-  // Replace terser by swc
-  swcMinify: true,
   experimental: {
     // Prefer loading of ES Modules over CommonJS
     // @link {https://nextjs.org/blog/next-11-1#es-modules-support|Blog 11.1.0}
@@ -99,26 +91,21 @@ const nextConfig = {
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
     externalDir: true,
   },
-  publicRuntimeConfig: {
-    version: packageJson.version,
-    API_URL: process.env.API_URL ?? 'http://localhost:3003',
-    BASE_URL: process.env.BASE_URL ?? `https://${process.env.VERCEL_URL}` ?? 'http://localhost:3000',
-    ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
-    ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
-    ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
-    RECAPTCHA_KEY,
-  },
-
-  serverRuntimeConfig: {
-    // to bypass https://github.com/zeit/next.js/issues/8251
-    PROJECT_ROOT: __dirname,
-    RECAPTCHA_SECRET_KEY,
-  },
-
+  // Next 16 removes next/config (publicRuntimeConfig/serverRuntimeConfig). Public config
+  // is inlined at build time via the `env` block instead (keeps the existing env var
+  // names, so no Vercel changes are needed). RECAPTCHA_SECRET_KEY stays server-only and
+  // is read from process.env directly inside the API route at runtime.
   env: {
     APP_NAME: packageJson.name,
     APP_VERSION: packageJson.version,
     BUILD_TIME: new Date().toISOString(),
+    API_URL: process.env.API_URL ?? 'http://localhost:3003',
+    BASE_URL:
+      process.env.BASE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
+    ALGOLIA_APPLICATION_ID: ALGOLIA_PROVIDER_APPLICATION_ID,
+    ALGOLIA_SEARCH_API_KEY: ALGOLIA_PROVIDER_SEARCH_API_KEY,
+    ALGOLIA_INDEX_PREFIX: ALGOLIA_PROVIDER_INDEX_PREFIX,
+    RECAPTCHA_KEY,
   },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization
@@ -150,11 +137,6 @@ const nextConfig = {
     ignoreBuildErrors: NEXTJS_IGNORE_TYPECHECK,
   },
 
-  eslint: {
-    ignoreDuringBuilds: NEXTJS_IGNORE_ESLINT,
-    dirs: ['src'],
-  },
-
   async headers() {
     return [{ source: '/(.*)', headers: secureHeaders }]
   },
@@ -167,27 +149,6 @@ const nextConfig = {
         destination: '/category/:path*',
       },
     ]
-  },
-
-  webpack: (config, { webpack, isServer }) => {
-    if (!isServer) {
-      // Swap sentry/node by sentry/browser
-      config.resolve.alias['@sentry/node'] = '@sentry/browser'
-    }
-
-    if (isServer) {
-      // Till undici 4 haven't landed in prisma, we need this for docker/alpine
-      // @see https://github.com/prisma/prisma/issues/6925#issuecomment-905935585
-      config.externals.push('_http_common')
-    }
-
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        __SENTRY_DEBUG__: NEXTJS_SENTRY_DEBUG,
-      }),
-    )
-
-    return config
   },
 }
 
@@ -210,21 +171,15 @@ if (process.env.ANALYZE === 'true') {
 }
 
 if (!NEXTJS_DISABLE_SENTRY) {
-  // @ts-ignore because sentry does not match nextjs current definitions
+  // Sentry 10 build options (withSentryConfig). Source maps are only uploaded when an
+  // auth token is present; NEXTJS_SENTRY_UPLOAD_DRY_RUN disables upload (replaces v7 dryRun).
   config = withSentryConfig(config, {
-    // Additional config options for the Sentry Webpack plugin. Keep in mind that
-    // the following options are set automatically, and overriding them is not
-    // recommended:
-    //   release, url, org, project, authToken, configFile, stripPrefix,
-    //   urlPrefix, include, ignore
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options.
-    // silent: isProd, // Suppresses all logs
-    dryRun: NEXTJS_SENTRY_UPLOAD_DRY_RUN,
-    project: NEXTJS_SENTRY_PROJECT,
     org: NEXTJS_SENTRY_ORG,
+    project: NEXTJS_SENTRY_PROJECT,
     authToken: NEXTJS_SENTRY_AUTH_TOKEN,
-    release: NEXTJS_SENTRY_RELEASE,
+    release: { name: NEXTJS_SENTRY_RELEASE },
+    sourcemaps: { disable: NEXTJS_SENTRY_UPLOAD_DRY_RUN },
+    silent: !isProd,
   })
 }
 

@@ -368,27 +368,36 @@ function generateNewCommentEmail(author, url) {
 }
 
 module.exports = {
+  // Comment is a plain collectionType (draftAndPublish: false, no i18n), so a standard
+  // create lifecycle behaves the same under the Strapi v5 document service — the
+  // v4->v5 caveats (unpublish/discardDraft triggering extra delete/create hooks) do not apply.
   async afterCreate(event) {
     const { result, params } = event
+
+    // A relation in `data` may arrive as a plain id or as a connect/set object.
+    const rawPost = params.data.post
+    const postId =
+      rawPost && typeof rawPost === 'object'
+        ? rawPost.id ?? rawPost.connect?.[0]?.id ?? rawPost.set?.[0]?.id
+        : rawPost
 
     let postUrl = ''
     let postTitle = ''
     try {
-      const { title, locale } = await strapi.db.query('api::post.post').findOne({
+      const post = await strapi.db.query('api::post.post').findOne({
         select: ['title', 'locale'],
-        where: { id: params.data.post },
-        populate: ['locale'],
+        where: { id: postId },
       })
-      postTitle = title
-      postUrl = `https://whemotion.com/${locale === 'en' ? 'en/' : ''}post/${params.data.post}/${seoName(
+      postTitle = post.title
+      postUrl = `https://whemotion.com/${post.locale === 'en' ? 'en/' : ''}post/${postId}/${seoName(
         postTitle,
       )}#comment-${result.id}`
     } catch (err) {
-      postUrl = `https://whemotion.com/post/${params.data.post}`
+      postUrl = `https://whemotion.com/post/${postId}`
     }
 
     try {
-      await strapi.plugins['email'].services.email.send({
+      await strapi.plugin('email').service('email').send({
         to: process.env.EMAIL_USER,
         subject: `Emoción Blanca: Nuevo comentario de ${result.author} en "${postTitle}"`,
         html: generateNewCommentEmail(result.author, postUrl),

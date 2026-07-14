@@ -1,32 +1,43 @@
+'use client'
+
 /* eslint-disable import/no-duplicates */
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Box, Center, Divider as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/layout'
+import { Box, Center, Separator as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
 import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import ShareLogo from '@iconify/icons-ion/share-social-sharp'
 import { Icon, IconifyIcon } from '@iconify/react'
-import parseISO from 'date-fns/parseISO'
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
+import { useParams, usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { BlogPosting } from 'schema-dts'
+import { useTranslation } from 'react-i18next'
 
-import { Content, HeaderImage, Metadata, PostGrid, SocialButton, Tag } from '@blog/components/common'
+import { Content, HeaderImage, PostGrid, SocialButton, Tag } from '@blog/components/common'
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useGetData } from '@blog/hooks'
-import { useGetLocalePublicUrl } from '@blog/hooks/useGetLocalePublicUrl'
-import {
-  fixedEncodeURIComponent,
-  formatPostDate,
-  getImageDataFromMedia,
-  getImageUrlFromMedia,
-  getPlainText,
-  getReadingTime,
-  publicUrl,
-} from '@blog/utils'
-import { QUERY_ABOUT, getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
+import { fixedEncodeURIComponent, formatPostDate, getReadingTime, publicUrl } from '@blog/utils'
+import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
 import { PostComments } from '../PostComments'
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
+
+/* eslint-disable import/no-duplicates */
 
 type ShareButtonProps = {
   label: string
@@ -37,15 +48,14 @@ type ShareButtonProps = {
 
 export function PostPage() {
   const { t } = useTranslation('postPage')
-  const {
-    asPath,
-    query: { postId },
-  } = useRouter()
-
-  const about = useGetData<About>(QUERY_ABOUT)
+  const { postId } = useParams<{ postId: string }>()
+  const pathname = usePathname()
 
   const postKey = getPostKey(Number(postId))
   const post = useGetData<Post>(postKey)
+
+  // Hooks (incl. useColorModeValue → next-themes) must run before any early return.
+  const dividerBorderColor = useColorModeValue('blackAlpha.800', 'white')
 
   if (!post) {
     return null
@@ -65,25 +75,12 @@ export function PostPage() {
     setNativeNavigator(navigator)
   }, [])
 
-  const generateLocalePublicUrl = useGetLocalePublicUrl()
-  const {
-    id,
-    title,
-    content,
-    coverImage,
-    imgUrl,
-    locale: postLocale,
-    createdAt,
-    publishedAt,
-    updatedAt,
-    categories,
-    summary,
-    writer,
-  } = post
+  const { id, title, content, publishedAt, categories, writer } = post
 
   const parsedDate = formatPostDate(publishedAt)
 
-  const postUrl = generateLocalePublicUrl(asPath)
+  // usePathname already includes the locale prefix for non-default locales, so no extra prefixing.
+  const postUrl = publicUrl(pathname || '')
   const encodedPostUrl = fixedEncodeURIComponent(postUrl)
   const postSocialTitle = encodeURIComponent(t('postPage.shareTitle', { title }))
 
@@ -119,91 +116,10 @@ export function PostPage() {
     </SocialButton>
   ))
 
-  const extraMetaTags = [
-    { name: 'og:updated_time', content: parsedDate },
-    { name: 'article:published_time', content: publishedAt },
-    { name: 'article:modified_time', content: updatedAt || '' },
-    { name: 'article:section', content: categories?.[0].localizedName || '' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: title },
-    { name: 'twitter:description', content: summary },
-    { name: 'twitter:creator', content: writer?.twitter || about?.twitter || '' },
-    {
-      name: 'twitter:image',
-      content: getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl }),
-    },
-    { name: 'twitter:image:alt', content: coverImage ? coverImage.caption : '' },
-  ]
-
-  const imageData = getImageDataFromMedia({ media: coverImage, format: 'medium' })
-
-  const ldJson: BlogPosting = {
-    '@type': 'BlogPosting',
-    headline: title,
-    name: title,
-    alternativeHeadline: summary,
-    dateCreated: createdAt,
-    datePublished: publishedAt,
-    dateModified: updatedAt,
-    inLanguage: postLocale,
-    isFamilyFriendly: true,
-    copyrightYear: parseISO(publishedAt).getFullYear(),
-    ...(coverImage && {
-      image: {
-        '@type': 'ImageObject',
-        url: getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl }),
-        width: imageData?.width.toString() || '',
-        height: imageData?.height.toString() || '',
-      },
-      thumbnailUrl: getImageUrlFromMedia({ media: coverImage, format: 'small' }),
-    }),
-    author: {
-      '@type': 'Person',
-      name: writer?.name,
-      url: writer?.personalUrl || '',
-    },
-    creator: {
-      '@type': 'Person',
-      name: writer?.name,
-      url: writer?.personalUrl || '',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'White Emotion',
-      url: 'https://whemotion.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: publicUrl('/images/WElogo.png'),
-        width: '500',
-        height: '500',
-      },
-    },
-    mainEntityOfPage: postUrl,
-    // keywords: post.tags?.map(({ name }) => name) || [],
-    articleSection: categories?.[0].localizedName || '',
-    articleBody: getPlainText(content),
-  }
-
-  const dividerLine = (
-    <DividerLine
-      orientation="horizontal"
-      w="20px"
-      mx="16px"
-      borderColor={useColorModeValue('blackAlpha.800', 'white')}
-    />
-  )
+  const dividerLine = <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor={dividerBorderColor} />
 
   return (
     <>
-      <Metadata
-        type="article"
-        name={t('postPage.title', { postName: title })}
-        description={summary}
-        imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl })}
-        extraMetaTags={extraMetaTags}
-        ldJson={[ldJson]}
-      />
-
       <HeaderImage post={post} />
 
       <Flex justifyContent="center" mx="16px" mt={{ base: '40px' }}>
@@ -241,7 +157,7 @@ export function PostPage() {
                 <Center h="22px">{dividerLine}</Center>
                 <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
                 <Center h="22px">{dividerLine}</Center>
-                <Stack direction="row" spacing={2} ml={{ base: 0 }}>
+                <Stack direction="row" gap={2} ml={{ base: 0 }}>
                   {socialButtons}
                 </Stack>
               </Flex>
@@ -251,10 +167,12 @@ export function PostPage() {
             <Content content={content} />
           </Flex>
           <Flex direction="row">
-            <Stack direction="row" spacing={2} mt="40px">
-              {categories?.map(category => <Tag key={category.code} label={category.localizedName} />)}
+            <Stack direction="row" gap={2} mt="40px">
+              {categories?.map(category => (
+                <Tag key={category.code} label={category.localizedName} />
+              ))}
             </Stack>
-            <Stack direction="row" spacing={2} ml="auto" pt={8}>
+            <Stack direction="row" gap={2} ml="auto" pt={8}>
               {socialButtons}
             </Stack>
           </Flex>

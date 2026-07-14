@@ -1,15 +1,11 @@
-import { useBreakpointValue } from '@chakra-ui/media-query'
-import {
-  Modal as ChakraModal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-} from '@chakra-ui/modal'
-import { useColorModeValue } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { ReactNode, useEffect } from 'react'
+'use client'
+
+import { useBreakpointValue } from '@chakra-ui/react'
+import { usePathname } from 'next/navigation'
+import { ReactNode, useEffect, useRef } from 'react'
+
+import { useColorModeValue } from '@blog/components/ui/color-mode'
+import { DialogBody, DialogCloseTrigger, DialogContent, DialogHeader, DialogRoot } from '@blog/components/ui/dialog'
 
 export type ModalProps = {
   onClose: () => void
@@ -19,35 +15,44 @@ export type ModalProps = {
 }
 
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
-  const { events } = useRouter()
-  const modalSize = useBreakpointValue({
+  const pathname = usePathname()
+  const isFirstRender = useRef(true)
+  const modalSize = useBreakpointValue<'full' | 'xl'>({
     base: 'full',
     md: 'xl',
   })
+  const contentBg = useColorModeValue('white', 'gray.800')
 
+  // Close the modal on client navigation (replaces router.events 'routeChangeStart').
   useEffect(() => {
-    events.on('routeChangeStart', onClose)
-    return () => {
-      events.off('routeChangeStart', onClose)
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
     }
-  }, [])
+    onClose()
+  }, [pathname])
 
   return (
-    <ChakraModal isOpen={isOpen} onClose={onClose} size={modalSize}>
-      <ModalOverlay />
-      <ModalContent
-        bg={useColorModeValue('white', 'gray.800')}
+    <DialogRoot
+      open={isOpen}
+      onOpenChange={details => {
+        if (!details.open) onClose()
+      }}
+      size={modalSize}
+    >
+      <DialogContent
+        bg={contentBg}
         minWidth={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
         height={{ md: '700px' }}
       >
         {title && (
-          <ModalHeader p={16} fontSize="2xl" fontWeight="bold" backgroundColor="blackAlpha.800" color="white">
+          <DialogHeader p={16} fontSize="2xl" fontWeight="bold" backgroundColor="blackAlpha.800" color="white">
             {title}
-          </ModalHeader>
+          </DialogHeader>
         )}
-        <ModalCloseButton zIndex={20} onClick={onClose} color="white" />
-        <ModalBody>{children}</ModalBody>
-      </ModalContent>
-    </ChakraModal>
+        <DialogCloseTrigger zIndex={20} color="white" />
+        <DialogBody>{children}</DialogBody>
+      </DialogContent>
+    </DialogRoot>
   )
 }

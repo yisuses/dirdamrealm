@@ -1,5 +1,6 @@
-import { Button } from '@chakra-ui/button'
-import { VisuallyHidden } from '@chakra-ui/visually-hidden'
+'use client'
+
+import { Button, VisuallyHidden } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 interface SocialButtonProps {
@@ -12,9 +13,8 @@ interface SocialButtonProps {
 export const SocialButton = ({ children, label, href, onClick }: SocialButtonProps) => {
   return (
     <Button
-      as="a"
-      href={href}
-      target="_blank"
+      asChild
+      color="inherit"
       bg="whiteAlpha.100"
       rounded="full"
       w={8}
@@ -32,8 +32,10 @@ export const SocialButton = ({ children, label, href, onClick }: SocialButtonPro
       }}
       onClick={onClick}
     >
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
+      <a href={href} target="_blank" rel="noreferrer">
+        <VisuallyHidden>{label}</VisuallyHidden>
+        {children}
+      </a>
     </Button>
   )
 }

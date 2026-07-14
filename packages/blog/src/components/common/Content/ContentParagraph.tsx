@@ -1,4 +1,6 @@
-import { Text } from '@chakra-ui/layout'
+'use client'
+
+import { Text } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import HTMLReactParser, { DOMNode, Element, HTMLReactParserOptions, domToReact } from 'html-react-parser'
 

@@ -1,7 +1,10 @@
-import { useColorModeValue } from '@chakra-ui/color-mode'
+'use client'
+
 import { chakra } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import HTMLReactParser from 'html-react-parser'
+
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 
 export interface ContentQuoteBlockData {
   text: string
@@ -10,18 +13,19 @@ export interface ContentQuoteBlockData {
 }
 
 export const ContentQuote: RenderFn<ContentQuoteBlockData> = ({ data }) => {
+  const quoteColor = useColorModeValue('blackAlpha.700', 'white')
   return (
     <>
-      <QuoteText bgColor="blackAlpha.100" color={useColorModeValue('blackAlpha.700', 'white')}>
+      <QuoteText bgColor="blackAlpha.100" color={quoteColor}>
         {data.text && HTMLReactParser(data.text)}
       </QuoteText>
-      {data.caption && <QuoteFooter color={useColorModeValue('blackAlpha.700', 'white')}>{data.caption}</QuoteFooter>}
+      {data.caption && <QuoteFooter color={quoteColor}>{data.caption}</QuoteFooter>}
     </>
   )
 }
 
 const QuoteText = chakra('blockquote', {
-  baseStyle: {
+  base: {
     borderLeft: '4px solid',
     borderLeftColor: 'orange.300',
     padding: '0.5rem 1rem',
@@ -48,7 +52,7 @@ const QuoteText = chakra('blockquote', {
 })
 
 const QuoteFooter = chakra('footer', {
-  baseStyle: {
+  base: {
     color: 'gray.500',
     fontSize: '0.8rem',
     fontWeight: '500',

@@ -1,4 +1,6 @@
-import { Text } from '@chakra-ui/layout'
+'use client'
+
+import { Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 interface FooterListHeaderProps {

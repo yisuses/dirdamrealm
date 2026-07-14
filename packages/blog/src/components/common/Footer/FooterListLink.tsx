@@ -1,4 +1,6 @@
-import { Link } from '@chakra-ui/layout'
+'use client'
+
+import { Link } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { ReactNode } from 'react'
 

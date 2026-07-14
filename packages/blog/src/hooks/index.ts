@@ -1,3 +1,6 @@
 export * from './useDebounce'
 export * from './useGetData'
 export * from './useGetLocalePublicUrl'
+export * from './useLocale'
+export * from './useLocalizeHref'
+export * from './useSwitchLocale'

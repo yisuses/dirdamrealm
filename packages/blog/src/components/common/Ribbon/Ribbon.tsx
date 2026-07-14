@@ -1,4 +1,6 @@
-import { Box, Text } from '@chakra-ui/layout'
+'use client'
+
+import { Box, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 type RibbonProps = {

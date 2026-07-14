@@ -1,8 +1,10 @@
-import { SimpleGrid } from '@chakra-ui/layout'
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
+'use client'
+
+import { SimpleGrid } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 
 import { PostCard } from '@blog/components/common'
+import { useLocale } from '@blog/hooks'
 import { getImageUrlFromMedia } from '@blog/utils'
 
 interface PostGridProps {
@@ -11,7 +13,7 @@ interface PostGridProps {
 }
 
 export function PostGrid({ posts, limit }: PostGridProps) {
-  const { locale } = useRouter()
+  const locale = useLocale()
   const { t } = useTranslation('common')
 
   return (
@@ -20,7 +22,7 @@ export function PostGrid({ posts, limit }: PostGridProps) {
         base: 'repeat(auto-fill, minmax(100%, 1fr))',
         md: 'repeat(auto-fill, minmax(280px, 1fr))',
       }}
-      spacing={8}
+      gap={8}
       mt={8}
       justifyItems="center"
     >

@@ -1,6 +1,6 @@
-import { FormControl, FormLabel } from '@chakra-ui/form-control'
-import { Input } from '@chakra-ui/input'
-import { Box } from '@chakra-ui/layout'
+'use client'
+
+import { Box, Field, Input } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
@@ -32,8 +32,8 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
   const searchResultOffset = searchResultsRef.current?.offsetTop
   return (
     <Box overflow="hidden" p="8">
-      <FormControl>
-        <FormLabel fontWeight="600">{inputTitle}</FormLabel>
+      <Field.Root>
+        <Field.Label fontWeight="600">{inputTitle}</Field.Label>
         <Input
           variant="outline"
           size="md"
@@ -45,7 +45,7 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
             fontStyle: 'italic',
           }}
         />
-      </FormControl>
+      </Field.Root>
       <Box
         mt="12px"
         ref={searchResultsRef}
@@ -56,7 +56,9 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
         flexShrink={0}
       >
         <Box pr="17px" boxSizing="content-box" width="100%" height="auto" overflowY="auto">
-          {postResults?.map((post, index) => <SearchPostResultItem key={index} post={post} />)}
+          {postResults?.map((post, index) => (
+            <SearchPostResultItem key={index} post={post} />
+          ))}
         </Box>
       </Box>
     </Box>

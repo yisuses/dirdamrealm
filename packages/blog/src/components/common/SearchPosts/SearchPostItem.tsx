@@ -1,9 +1,12 @@
+'use client'
+
 /* eslint-disable import/no-duplicates */
-import { Box, Text } from '@chakra-ui/layout'
-import { useTranslation } from 'next-i18next'
+import { Box, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
+import { useTranslation } from 'react-i18next'
 
+import { useLocalizeHref } from '@blog/hooks'
 import { formatPostDate } from '@blog/utils'
 import { getImageUrlFromMedia } from '@blog/utils/image/image'
 import { buildPostPath } from '@blog/utils/urlBuilder'
@@ -18,10 +21,11 @@ export function SearchPostResultItem({
   post: { id, title, coverImage, summary, categories, publishedAt },
 }: SearchPostItemProps) {
   const { t } = useTranslation('common')
+  const localizeHref = useLocalizeHref()
   const parsedDate = formatPostDate(publishedAt)
 
   return (
-    <NextLink href={buildPostPath(id, title)}>
+    <NextLink href={localizeHref(buildPostPath(id, title))}>
       <Box display="flex" alignItems="center" py={{ base: '8px', lg: '16px' }} _hover={{ cursor: 'pointer' }}>
         <Box
           position="relative"
@@ -53,7 +57,7 @@ export function SearchPostResultItem({
           <Text fontSize={{ base: 'sm', md: 'md', lg: 'xl' }} fontWeight={600}>
             {title}
           </Text>
-          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" noOfLines={2}>
+          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" lineClamp={2}>
             {summary}
           </Text>
           <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">

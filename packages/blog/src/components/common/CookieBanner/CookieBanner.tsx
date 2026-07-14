@@ -1,9 +1,11 @@
-import { Button } from '@chakra-ui/button'
-import { useColorModeValue } from '@chakra-ui/color-mode'
-import { Text } from '@chakra-ui/layout'
-import { useTranslation } from 'next-i18next'
+'use client'
+
+import { Button, Text } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { CookieConsent } from 'react-cookie-consent'
+import { useTranslation } from 'react-i18next'
+
+import { useColorModeValue } from '@blog/components/ui/color-mode'
 
 export function CookieBanner() {
   const { t } = useTranslation('common')

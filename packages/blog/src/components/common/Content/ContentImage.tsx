@@ -1,4 +1,6 @@
-import { Box, Text } from '@chakra-ui/layout'
+'use client'
+
+import { Box, Text } from '@chakra-ui/react'
 import { RenderFn } from 'editorjs-blocks-react-renderer'
 import NextImage from 'next/image'
 
@@ -20,7 +22,7 @@ export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
         placeholder="blur"
         blurDataURL={buildBlurDataUrl(data.file.height, data.file.width)}
       />
-      <Text align="center" fontStyle="italic" fontSize="0.75rem" marginTop="12px">
+      <Text textAlign="center" fontStyle="italic" fontSize="0.75rem" marginTop="12px">
         {data.caption}
       </Text>
     </Box>
