@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/nextjs'
 
 import { Footer, FooterProps } from './Footer'
 

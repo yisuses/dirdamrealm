@@ -1,6 +1,6 @@
 import * as sentry from '@sentry/nextjs'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import parseISO from 'date-fns/parseISO'
+import { parseISO } from 'date-fns'
 import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { cache } from 'react'
