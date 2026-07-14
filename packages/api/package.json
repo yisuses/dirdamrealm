@@ -4,9 +4,9 @@
   "version": "1.2.0",
   "description": "White Emotion CMS",
   "scripts": {
-    "develop": "NODE_OPTIONS='--require ./scripts/polyfill-file.cjs' strapi develop",
-    "start": "NODE_OPTIONS='--require ./scripts/polyfill-file.cjs' strapi start",
-    "build": "NODE_ENV=production NODE_OPTIONS='--require ./scripts/polyfill-file.cjs' strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "NODE_ENV=production strapi build",
     "strapi": "strapi",
     "test": "jest --passWithNoTests",
     "release": "standard-version"
