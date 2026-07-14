@@ -1,6 +1,5 @@
 'use client'
 
-/* eslint-disable import/no-duplicates */
 import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
 import NextLink from 'next/link'

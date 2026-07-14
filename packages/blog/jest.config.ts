@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-
 import path from 'path'
 import { pathsToModuleNameMapper } from 'ts-jest'
+
 import packageJson from './package.json'
 import { compilerOptions } from './tsconfig.json'
 

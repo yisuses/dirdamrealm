@@ -5,6 +5,7 @@ import { ThemeProvider, ThemeProviderProps, useTheme } from 'next-themes'
 // Chakra v3 delegates color mode to next-themes. This snippet re-exposes the v2-style
 // useColorMode/useColorModeValue API so existing components only change their import.
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ColorModeProviderProps extends ThemeProviderProps {}
 
 export function ColorModeProvider(props: ColorModeProviderProps) {

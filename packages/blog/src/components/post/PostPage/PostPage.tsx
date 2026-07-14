@@ -1,6 +1,5 @@
 'use client'
 
-/* eslint-disable import/no-duplicates */
 import { Box, Center, Separator as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import FacebookLogo from '@iconify/icons-ion/logo-facebook'
 import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
@@ -18,26 +17,6 @@ import { fixedEncodeURIComponent, formatPostDate, getReadingTime, publicUrl } fr
 import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
 import { PostComments } from '../PostComments'
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable import/no-duplicates */
 
 type ShareButtonProps = {
   label: string

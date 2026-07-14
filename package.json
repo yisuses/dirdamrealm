@@ -47,17 +47,21 @@
     "test": "yarn workspaces foreach -ptv run test --color",
     "test:watch": "jest --watch",
     "test:ci": "yarn test --silent --ci=true --coverage --coverageReporters=cobertura --coverageReporters=lcov",
-    "lint": "eslint --fix packages/**/*.{ts,tsx}",
+    "lint": "eslint --fix packages",
     "ncu": "ncu --deep",
     "prepare": "husky install",
     "postInstall": "patch-package"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "8.0.1",
     "@commitlint/cli": "21.2.1",
     "@commitlint/config-conventional": "21.2.0",
+    "@eslint/eslintrc": "3.3.6",
+    "@eslint/js": "9.39.5",
     "@testing-library/jest-dom": "6.9.1",
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
     "@types/testing-library__jest-dom": "^5",
+    "globals": "17.7.0",
     "husky": "9.1.7",
     "lint-staged": "17.0.8",
     "npm-check-updates": "22.2.9",
@@ -66,7 +70,8 @@
     "prettier": "3.9.5",
     "prompts": "2.4.2",
     "standard-version": "9.5.0",
-    "ts-node": "10.9.2"
+    "ts-node": "10.9.2",
+    "typescript-eslint": "8.64.0"
   },
   "engines": {
     "node": ">=20.9.0",
