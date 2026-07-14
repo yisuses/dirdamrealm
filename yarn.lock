@@ -3284,7 +3284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.27.6, @babel/runtime@npm:^7.28.4":
+"@babel/runtime@npm:^7.28.4, @babel/runtime@npm:^7.29.2":
   version: 7.29.7
   resolution: "@babel/runtime@npm:7.29.7"
   checksum: bc311855c6dbf5356030979584ca0f8b6cee39fe058175b02e85a73e246fc76ae30248b0d40e70c2652101faeb43279468ed2d086a670673eb9783c1fee1df2b
@@ -12719,9 +12719,9 @@ __metadata:
     eslint-plugin-testing-library: 6.5.0
     framer-motion: 12.42.2
     html-react-parser: 6.1.4
-    i18next: 23.16.8
+    i18next: 26.3.6
     i18next-browser-languagedetector: 8.2.1
-    i18next-http-backend: 2.7.3
+    i18next-http-backend: 4.0.0
     jest: 29.7.0
     jest-environment-jsdom: 29.7.0
     next: 16.2.10
@@ -12738,7 +12738,7 @@ __metadata:
     react-dom: 19.2.7
     react-google-recaptcha: 3.1.0
     react-hook-form: 7.81.0
-    react-i18next: 15.7.4
+    react-i18next: 17.0.9
     react-icons: 5.7.0
     schema-dts: 2.0.0
     slugify: 1.6.9
@@ -16628,15 +16628,6 @@ __metadata:
     cross-env: src/bin/cross-env.js
     cross-env-shell: src/bin/cross-env-shell.js
   checksum: 26f2f3ea2ab32617f57effb70d329c2070d2f5630adc800985d8b30b56e8bf7f5f439dd3a0358b79cee6f930afc23cf8e23515f17ccfb30092c6b62c6b630a79
-  languageName: node
-  linkType: hard
-
-"cross-fetch@npm:4.0.0":
-  version: 4.0.0
-  resolution: "cross-fetch@npm:4.0.0"
-  dependencies:
-    node-fetch: ^2.6.12
-  checksum: ecca4f37ffa0e8283e7a8a590926b66713a7ef7892757aa36c2d20ffa27b0ac5c60dcf453119c809abe5923fc0bae3702a4d896bfb406ef1077b0d0018213e24
   languageName: node
   linkType: hard
 
@@ -21131,12 +21122,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-http-backend@npm:2.7.3":
-  version: 2.7.3
-  resolution: "i18next-http-backend@npm:2.7.3"
-  dependencies:
-    cross-fetch: 4.0.0
-  checksum: 45315b3c8e0a34f02c30805aa5900b164f82ac1a15c68b147a9bb335c8d6136059bdf5339c17302d0bbd95936f8d62d4989f1eceba6178fb309a3d6adaf87759
+"i18next-http-backend@npm:4.0.0":
+  version: 4.0.0
+  resolution: "i18next-http-backend@npm:4.0.0"
+  checksum: 9986ffa9858eec27ac114978517873162e39a20ce93aac8d915a43d3caf26d61b800edc40f610090d63f96615ebf4ef499fdb5673d1c7da61f74e33e61396164
   languageName: node
   linkType: hard
 
@@ -21149,12 +21138,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:23.16.8":
-  version: 23.16.8
-  resolution: "i18next@npm:23.16.8"
-  dependencies:
-    "@babel/runtime": ^7.23.2
-  checksum: 288dab98225d769c6ad7835e9c534a184a2a8fb28485000f35b10c467439478047b367d39015c1920ac9c5cfc33572ffd75ecf1778edcd96536024bf594f4ca9
+"i18next@npm:26.3.6":
+  version: 26.3.6
+  resolution: "i18next@npm:26.3.6"
+  peerDependencies:
+    typescript: ^5 || ^6 || ^7
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 87d6f716bdfbac14d2ec82e6889a3f53bfeb0e5f1bf9b63b9ec1fe5577d08f2c5e638d91648ff6883fc03183ada33bccb3ea36dd209ff23866a6b08d6a81ff65
   languageName: node
   linkType: hard
 
@@ -25298,20 +25290,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.12":
-  version: 2.7.0
-  resolution: "node-fetch@npm:2.7.0"
-  dependencies:
-    whatwg-url: ^5.0.0
-  peerDependencies:
-    encoding: ^0.1.0
-  peerDependenciesMeta:
-    encoding:
-      optional: true
-  checksum: d76d2f5edb451a3f05b15115ec89fc6be39de37c6089f1b6368df03b91e1633fd379a7e01b7ab05089a25034b2023d959b47e59759cb38d88341b2459e89d6e5
-  languageName: node
-  linkType: hard
-
 "node-fetch@npm:^2.6.7":
   version: 2.6.12
   resolution: "node-fetch@npm:2.6.12"
@@ -27662,16 +27640,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:15.7.4":
-  version: 15.7.4
-  resolution: "react-i18next@npm:15.7.4"
+"react-i18next@npm:17.0.9":
+  version: 17.0.9
+  resolution: "react-i18next@npm:17.0.9"
   dependencies:
-    "@babel/runtime": ^7.27.6
+    "@babel/runtime": ^7.29.2
     html-parse-stringify: ^3.0.1
+    use-sync-external-store: ^1.6.0
   peerDependencies:
-    i18next: ">= 23.4.0"
+    i18next: ">= 26.2.0"
     react: ">= 16.8.0"
-    typescript: ^5
+    typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
     react-dom:
       optional: true
@@ -27679,7 +27658,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: d7747443850ad8f7ed144312311b998922be6b35dd4aacd590fdee9b8d275d4b4f7a719dc923a8dd8ed1a8a766439c828c9bc5a78e852ec3a834e36210ca83db
+  checksum: 5674f7d606c9ea0f8a999755090454f189b789a3dc460c355ae06ec68c5d47e79fe05e37525e60b470fc461ae3a546d5732685f2ce35e0d3fce983a9ee32fbd2
   languageName: node
   linkType: hard
 
