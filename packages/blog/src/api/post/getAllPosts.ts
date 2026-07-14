@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { stringify } from 'qs'
 
-import { postMapper } from '@blog/api/mapper'
+import { safePostMapper } from '@blog/api/mapper'
 import { LOCALES } from '@blog/core/i18n/config'
 import { apiUrl, getLocalizedPosts } from '@blog/utils'
 
@@ -28,8 +28,9 @@ export async function getAllPosts({ locale, category }: GetAllPostParams): Promi
       LOCALES.map(loc => axios.get<PostResponse>(apiUrl(`/api/posts?${buildQuery(loc)}`))),
     )
     // Re-sort globally: per-locale fetches are each sorted, but the concatenation is not.
+    // safePostMapper drops (and reports) any single malformed post rather than failing the batch.
     const mappedPosts = responses
-      .flatMap(({ data: response }) => response.data.map(postMapper))
+      .flatMap(({ data: response }) => response.data.map(safePostMapper).filter((p): p is Post => p !== null))
       .sort((a, b) => new Date(b.updatedAt || 0).getTime() - new Date(a.updatedAt || 0).getTime())
 
     if (!locale) {

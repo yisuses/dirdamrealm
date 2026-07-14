@@ -62,6 +62,19 @@ export const postMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post
   }
 }
 
+/**
+ * List-friendly wrapper around postMapper: a single malformed post (e.g. unparseable
+ * content) is reported and skipped instead of aborting a whole listing / static build.
+ */
+export const safePostMapper = (postEntity: StrapiDataItem<PostResponseEntity>): Post | null => {
+  try {
+    return postMapper(postEntity)
+  } catch (err) {
+    sentry.captureException(err)
+    return null
+  }
+}
+
 export const algoliaPostMapper = (postEntity: AlgoliaPostEntity): Post => {
   const parsedContent: DataProp = { time: new Date().getTime(), version: '', blocks: [] }
 
