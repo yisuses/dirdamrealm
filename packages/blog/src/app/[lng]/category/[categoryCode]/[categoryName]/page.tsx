@@ -30,11 +30,15 @@ export async function generateStaticParams() {
   const perLocale = await Promise.all(
     LOCALES.map(async lng => {
       const categories = await getCategories({ locale: lng }).catch(() => [] as Category[])
-      return categories.map(category => ({
-        lng,
-        categoryCode: category.code,
-        categoryName: seoName(category.localizedName),
-      }))
+      return categories
+        .filter(
+          category => category && typeof category.localizedName === 'string' && category.localizedName && category.code,
+        )
+        .map(category => ({
+          lng,
+          categoryCode: category.code,
+          categoryName: seoName(category.localizedName),
+        }))
     }),
   )
   return perLocale.flat()

@@ -45,7 +45,9 @@ export async function generateStaticParams() {
   const perLocale = await Promise.all(
     LOCALES.map(async lng => {
       const posts = (await getAllPosts({ locale: lng }).catch(() => [] as Post[])) || []
-      return posts.map(post => ({ lng, postId: String(post.id), postName: seoName(post.title) }))
+      return posts
+        .filter(post => post && typeof post.title === 'string' && post.title && post.id != null)
+        .map(post => ({ lng, postId: String(post.id), postName: seoName(post.title) }))
     }),
   )
   return perLocale.flat()
