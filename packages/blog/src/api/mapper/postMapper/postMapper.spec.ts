@@ -19,7 +19,7 @@ describe('postMapper', () => {
 
     expect(() => {
       postMapper(postResponseEnMock)
-    }).toThrowError()
+    }).toThrow()
   })
 
   it('should work if there are no categories', () => {
@@ -37,7 +37,7 @@ describe('postMapper', () => {
         ...postResponseEnMock,
         categories: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
-    }).toThrowError()
+    }).toThrow()
   })
 
   it('should return error if localizations are malformed', () => {
@@ -46,7 +46,7 @@ describe('postMapper', () => {
         ...postResponseEnMock,
         localizations: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
-    }).toThrowError()
+    }).toThrow()
   })
 
   it('should work if coverImage data is empty', () => {
@@ -64,7 +64,7 @@ describe('postMapper', () => {
         ...postResponseEnMock,
         coverImage: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
-    }).toThrowError()
+    }).toThrow()
   })
 
   it('should work if writter data is empty', () => {
@@ -85,6 +85,6 @@ describe('postMapper', () => {
         ...postResponseEnMock,
         writer: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
-    }).toThrowError()
+    }).toThrow()
   })
 })

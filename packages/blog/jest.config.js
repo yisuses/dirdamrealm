@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import path from 'path'
-import { pathsToModuleNameMapper } from 'ts-jest'
+const path = require('path')
 
-import packageJson from './package.json'
-import { compilerOptions } from './tsconfig.json'
+const { pathsToModuleNameMapper } = require('ts-jest')
+
+const packageJson = require('./package.json')
+const { compilerOptions } = require('./tsconfig.json')
 
 const getTsConfigBasePaths = () => {
   const tsPaths = compilerOptions.paths
@@ -14,7 +14,7 @@ const getTsConfigBasePaths = () => {
     : {}
 }
 
-export default {
+module.exports = {
   displayName: `${packageJson.name}:unit`,
   testEnvironment: 'jsdom',
   preset: 'ts-jest',
@@ -44,7 +44,7 @@ export default {
     '**/*.{js,jsx,ts,tsx}',
     '!coverage',
     '!*.config.js',
-    '!jest.config.ts',
+    '!jest.config.js',
     '!*.d.ts',
     '!**/pages/*_*.tsx',
     '!.storybook/**',
