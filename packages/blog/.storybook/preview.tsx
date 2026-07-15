@@ -19,6 +19,12 @@ const preview: Preview = {
       },
     },
     layout: 'fullscreen',
+    // App Router: mock next/navigation (useRouter/usePathname/useParams) so components
+    // using useLocale/useSwitchLocale (e.g. Header) render in Storybook.
+    nextjs: {
+      appDirectory: true,
+      navigation: { pathname: '/' },
+    },
   },
   decorators: [
     Story => (
