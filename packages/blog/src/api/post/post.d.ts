@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 type PostResponseEntity = {
   title: string
   summary: string

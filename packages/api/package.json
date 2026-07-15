@@ -12,9 +12,9 @@
     "release": "standard-version"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.23.3",
-    "@types/jest": "29.5.8",
-    "jest": "29.7.0"
+    "@babel/eslint-parser": "8.0.1",
+    "@types/jest": "30.0.0",
+    "jest": "30.4.2"
   },
   "dependencies": {
     "@softkit/strapi-plugin-react-editorjs": "2.0.4",
@@ -23,14 +23,14 @@
     "@strapi/provider-email-sendgrid": "5.50.1",
     "@strapi/provider-upload-cloudinary": "5.50.1",
     "@strapi/strapi": "5.50.1",
-    "pg": "8.11.3",
+    "pg": "8.22.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "^6.27.0",
-    "slugify": "1.6.6",
+    "slugify": "1.6.9",
     "standard-version": "9.5.0",
     "strapi-plugin-strapi-algolia": "2.2.1",
-    "styled-components": "^6.4.0"
+    "styled-components": "^6.4.3"
   },
   "strapi": {
     "uuid": "c6339d1d-43d6-4060-b0be-b227dc61b706"

@@ -2,7 +2,7 @@
 
 import { Box, Button, Field, Flex, Heading, Input, Text, Textarea } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import intlFormatDistance from 'date-fns/intlFormatDistance'
+import { intlFormatDistance } from 'date-fns'
 import { useEffect, useRef } from 'react'
 // eslint-disable-next-line import/no-named-as-default
 import ReCAPTCHA from 'react-google-recaptcha'

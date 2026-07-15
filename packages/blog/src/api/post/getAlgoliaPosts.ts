@@ -6,8 +6,12 @@ export type GetAlgoliaPostProps = {
 }
 
 const indexName = `${process.env.ALGOLIA_INDEX_PREFIX}_post`
-const index = getAlgoliaClient().initIndex(indexName)
 
 export async function getAlgoliaPosts({ query }: GetAlgoliaPostProps) {
-  return index.search<AlgoliaPostEntity>(query).then(({ hits }) => hits.map(algoliaPostMapper))
+  // algoliasearch v5 dropped initIndex(); query the index via searchSingleIndex.
+  const { hits } = await getAlgoliaClient().searchSingleIndex<AlgoliaPostEntity>({
+    indexName,
+    searchParams: { query },
+  })
+  return hits.map(algoliaPostMapper)
 }
