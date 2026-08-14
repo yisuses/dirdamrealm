@@ -4,11 +4,13 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { AppProviders } from 'app-providers'
 import type { Viewport } from 'next'
 import { generateI18nStaticParams } from 'next-i18next/server'
+import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import { ReactNode } from 'react'
 
 import { getAbout, getCategories } from '@blog/api'
 import { MainLayout } from '@blog/components'
+import { isAppLocale } from '@blog/core/i18n/config'
 import { getServerResources, getServerT } from '@blog/core/i18n/server'
 import { getQueryClient } from '@blog/core/query/get-query-client'
 import { CATEGORIES_STALE_TIME_MS, QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'
@@ -26,11 +28,20 @@ export function generateStaticParams() {
 
 interface LocaleLayoutProps {
   children: ReactNode
-  params: Promise<{ lng: AppLocales }>
+  // Not `AppLocales`: the segment can hold arbitrary text (see the check below).
+  params: Promise<{ lng: string }>
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { lng } = await params
+
+  // The proxy matcher skips paths containing a dot, so urls like `/sitemap_index.xml/post/1/x/`
+  // reach this layout with the first segment as `lng`. Anything that is not a supported locale
+  // is not a page of this site: 404 instead of rendering with a bogus locale (which used to blow
+  // up in `Intl` consumers such as intlFormatDistance).
+  if (!isAppLocale(lng)) {
+    notFound()
+  }
 
   // Init server i18n + collect resources (all namespaces/locales are preloaded) for the client provider.
   const { i18n } = await getServerT(lng)
