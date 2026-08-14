@@ -8,6 +8,13 @@ export const LOCALES = ['es', 'en'] as const
 export const DEFAULT_LOCALE = 'es'
 export const NAMESPACES = ['common', 'homePage', 'postPage', 'categoryPage', 'archivePage', 'errorPage'] as const
 
+// The proxy matcher ignores paths containing a dot (static files), so a url like
+// `/sitemap_index.xml/post/1/x/` reaches the `[lng]` routes without a locale rewrite and the
+// segment holds arbitrary text. Never trust it as a locale without checking.
+export function isAppLocale(value: string | undefined): value is AppLocales {
+  return !!value && (LOCALES as readonly string[]).includes(value)
+}
+
 export const i18nConfig: I18nConfig = {
   supportedLngs: [...LOCALES],
   fallbackLng: DEFAULT_LOCALE,
