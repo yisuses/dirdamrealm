@@ -34,7 +34,10 @@ function secretMatches(provided: string | null, expected: string) {
 }
 
 export function POST(request: Request) {
-  const expected = process.env.REVALIDATE_SECRET
+  // Trimmed because a secret pasted through a dashboard commonly picks up a trailing
+  // newline, and HTTP strips whitespace around header values -- so an untrimmed one
+  // could never be matched by any client, leaving the route permanently unreachable.
+  const expected = process.env.REVALIDATE_SECRET?.trim()
 
   // Fail closed: an open endpoint would let anyone expire every page at will, and each
   // regeneration costs an ISR write unit.

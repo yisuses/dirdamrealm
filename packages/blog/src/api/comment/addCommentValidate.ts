@@ -15,7 +15,7 @@ export async function addCommentValidate({ postId, author, text, captcha }: AddC
     captcha,
   }
   return axios
-    .post('/api/addComment', data)
+    .post('/api/addComment/', data)
     .then(() => ({ status: 'OK' }))
     .catch(error => {
       throw new Error('Error validating comment.', error)

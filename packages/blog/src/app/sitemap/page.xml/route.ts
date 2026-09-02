@@ -9,7 +9,7 @@ export const revalidate = 86400
 function generateSiteMap(lastPostUpdate: string) {
   return xmlUrlSet(`
     <url>
-      <loc>https://www.whemotion.com</loc>
+      <loc>https://www.whemotion.com/</loc>
       <lastmod>${lastPostUpdate}</lastmod>
       <image:image>
         <image:loc>${publicUrl('/images/WElogo.png')}</image:loc>

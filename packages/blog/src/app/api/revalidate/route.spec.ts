@@ -41,6 +41,24 @@ describe('POST /api/revalidate', () => {
     expect(mockedRevalidatePath).not.toHaveBeenCalled()
   })
 
+  it('should tolerate whitespace around the configured secret', async () => {
+    process.env.REVALIDATE_SECRET = '  expected-secret\n'
+
+    const response = POST(request('expected-secret'))
+
+    expect(response.status).toBe(200)
+    await expect(response.json()).resolves.toEqual({ revalidated: true, at: expect.any(String) })
+  })
+
+  it('should refuse to run when the configured secret is only whitespace', () => {
+    process.env.REVALIDATE_SECRET = '   '
+
+    const response = POST(request('   '))
+
+    expect(response.status).toBe(503)
+    expect(mockedRevalidatePath).not.toHaveBeenCalled()
+  })
+
   it('should reject a request without the secret header', () => {
     const response = POST(request())
 

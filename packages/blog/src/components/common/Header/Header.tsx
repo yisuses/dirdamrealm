@@ -206,7 +206,7 @@ export function Header({ categories }: HeaderProps) {
             _active={{ background: 'transparent' }}
             _focus={{ boxShadow: 'none' }}
           >
-            <NextLink href={localizeHref('/archive')}>{archiveLabel}</NextLink>
+            <NextLink href={localizeHref('/archive/')}>{archiveLabel}</NextLink>
           </Button>
           <Box>{actionButtons}</Box>
         </Flex>
