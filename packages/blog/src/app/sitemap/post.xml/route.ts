@@ -6,7 +6,8 @@ import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildPostPath } from '@blog/utils/urlBuilder'
 
 export const dynamic = 'force-static'
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 function generateSiteMap(posts: Post[], defaultLocale: string) {
   return xmlUrlSet(

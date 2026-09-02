@@ -12,7 +12,8 @@ import { getQueryClient } from '@blog/core/query/get-query-client'
 import { buildPostPath, publicUrl } from '@blog/utils'
 import { ARCHIVE_POSTS_KEY, getCategoriesKey } from '@blog/utils/constants'
 
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 interface ArchiveProps {
   params: Promise<{ lng: AppLocales }>

@@ -1,0 +1,36 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Crawl-delay: 10
+
+# Commercial SEO/AI-training crawlers. They re-walk the whole site on their own schedule
+# and bring no readers; every url they reach that is not already cached costs an ISR write
+# unit, which is what exhausted this project's quota. Google and Bing are not
+# listed here on purpose: they are the ones worth the budget.
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://whemotion.com/sitemap.xml

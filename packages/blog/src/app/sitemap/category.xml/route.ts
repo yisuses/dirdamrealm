@@ -5,7 +5,8 @@ import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
 
 export const dynamic = 'force-static'
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 type CategoryWithLocale = Category & { queryLocale: string }
 

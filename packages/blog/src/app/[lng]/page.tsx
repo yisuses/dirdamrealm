@@ -12,7 +12,8 @@ import { getLatestPostsKey } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
 // Published content changes rarely; regenerate at most hourly (ISR).
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 interface PageProps {
   params: Promise<{ lng: AppLocales }>

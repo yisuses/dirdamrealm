@@ -23,7 +23,8 @@ import {
 } from '@blog/utils'
 import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 interface PostPageProps {
   params: Promise<{ lng: AppLocales; postId: string; postName: string }>
