@@ -32,7 +32,7 @@ export const HeaderMenu = ({ categories }: HeaderDropdownProps) => {
   ))
 
   menuLinks.push(
-    <NextLink href={localizeHref('/archive')} key="archive" onClick={onClose}>
+    <NextLink href={localizeHref('/archive/')} key="archive" onClick={onClose}>
       {t('header.archive')}
     </NextLink>,
   )

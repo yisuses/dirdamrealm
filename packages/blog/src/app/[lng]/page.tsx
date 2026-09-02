@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     pageTitle: tCommon('pageTitle'),
     name: t('homePage.title'),
     description: t('homePage.description'),
-    path: '',
+    path: '/',
   })
 }
 
@@ -44,7 +44,7 @@ export default async function Page({ params }: PageProps) {
   const ldJson: WebPage = {
     '@type': 'WebPage',
     headline: t('homePage.title'),
-    url: publicUrl(lng === DEFAULT_LOCALE ? '' : `/${lng}`),
+    url: publicUrl(lng === DEFAULT_LOCALE ? '/' : `/${lng}/`),
   }
 
   return (

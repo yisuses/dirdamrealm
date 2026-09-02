@@ -49,7 +49,7 @@ export default async function Page({ params }: ArchiveProps) {
   const ldJsonPage: WebPage = {
     '@type': 'WebPage',
     headline: t('archivePage.title'),
-    url: publicUrl(`${localePrefix(lng)}/archive`),
+    url: publicUrl(`${localePrefix(lng)}/archive/`),
   }
   const ldJsonItems: ItemList = {
     '@type': 'ItemList',
