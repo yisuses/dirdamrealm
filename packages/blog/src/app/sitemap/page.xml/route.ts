@@ -3,7 +3,8 @@ import { publicUrl } from '@blog/utils'
 import { xmlUrlSet } from '@blog/utils/constants'
 
 export const dynamic = 'force-static'
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 function generateSiteMap(lastPostUpdate: string) {
   return xmlUrlSet(`

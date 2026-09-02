@@ -4,7 +4,8 @@ import { xmlEncoding } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
 export const dynamic = 'force-static'
-export const revalidate = 3600
+// Backstop only: Strapi changes reach this cache through /api/revalidate.
+export const revalidate = 86400
 
 function generateSiteMap(lastPostUpdate: string, lastCategoryUpdate: string) {
   return `${xmlEncoding}
