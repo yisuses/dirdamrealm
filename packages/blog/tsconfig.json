@@ -11,6 +11,6 @@
       "@blog/*": ["./*"]
     }
   },
-  "exclude": [".next", "next-env.d.ts"],
+  "exclude": [".next", "build", "coverage", "next-env.d.ts"],
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json"]
 }
