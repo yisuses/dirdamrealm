@@ -8,13 +8,13 @@
     "start": "strapi start",
     "build": "NODE_ENV=production strapi build",
     "strapi": "strapi",
-    "test": "jest --passWithNoTests",
+    "test": "vitest run --passWithNoTests",
     "release": "standard-version"
   },
   "devDependencies": {
     "@babel/eslint-parser": "8.0.1",
-    "@types/jest": "30.0.0",
-    "jest": "30.4.2"
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
   },
   "dependencies": {
     "@softkit/strapi-plugin-react-editorjs": "2.0.4",

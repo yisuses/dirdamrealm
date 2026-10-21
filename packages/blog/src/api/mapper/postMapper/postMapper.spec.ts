@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import { postMock, postResponseEnMock } from '@blog/api/post'
 
 import * as writerMapperModule from '../writterMapper/writerMapper'
@@ -5,7 +7,7 @@ import { postMapper } from './postMapper'
 
 describe('postMapper', () => {
   afterEach(() => {
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   })
 
   it('should return a valid Post when given valid input', () => {
@@ -13,7 +15,7 @@ describe('postMapper', () => {
   })
 
   it('should return error content is malformed', () => {
-    jest.spyOn(JSON, 'parse').mockImplementation(() => {
+    vi.spyOn(JSON, 'parse').mockImplementation(() => {
       throw new Error('This is an error')
     })
 
@@ -77,7 +79,7 @@ describe('postMapper', () => {
   })
 
   it('should return error if writer are malformed', () => {
-    jest.spyOn(writerMapperModule, 'writerMapper').mockImplementation(() => {
+    vi.spyOn(writerMapperModule, 'writerMapper').mockImplementation(() => {
       throw new Error('This is an error')
     })
     expect(() => {

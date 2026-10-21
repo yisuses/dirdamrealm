@@ -1,4 +1,5 @@
 import { Block, DataProp } from 'editorjs-blocks-react-renderer'
+import { describe, expect, it } from 'vitest'
 
 import { getReadingTime } from './getReadingTime'
 

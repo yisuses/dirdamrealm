@@ -18,6 +18,6 @@ jobs:
       - name: Run tests
         run: |
           yarn
-          yarn test:blog --coverage=false
+          yarn test:blog
  
  

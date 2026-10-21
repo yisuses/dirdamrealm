@@ -1,24 +1,19 @@
-/**
- * Route handlers run on the server and use the fetch API globals, which the default
- * jsdom environment does not provide.
- *
- * @jest-environment node
- */
 import { revalidatePath } from 'next/cache'
 import { after } from 'next/server'
+import { type MockedFunction, afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getPostById } from '@blog/api'
 
 import { POST, pathsToWarm } from './route'
 
-jest.mock('next/cache', () => ({ revalidatePath: jest.fn() }))
-jest.mock('next/server', () => ({ after: jest.fn() }))
-jest.mock('@sentry/nextjs', () => ({ captureException: jest.fn() }))
-jest.mock('@blog/api', () => ({ getPostById: jest.fn() }))
+vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }))
+vi.mock('next/server', () => ({ after: vi.fn() }))
+vi.mock('@sentry/nextjs', () => ({ captureException: vi.fn() }))
+vi.mock('@blog/api', () => ({ getPostById: vi.fn() }))
 
-const mockedRevalidatePath = revalidatePath as jest.MockedFunction<typeof revalidatePath>
-const mockedAfter = after as jest.MockedFunction<typeof after>
-const mockedGetPostById = getPostById as jest.MockedFunction<typeof getPostById>
+const mockedRevalidatePath = revalidatePath as MockedFunction<typeof revalidatePath>
+const mockedAfter = after as MockedFunction<typeof after>
+const mockedGetPostById = getPostById as MockedFunction<typeof getPostById>
 
 const request = (secret?: string, body?: unknown) =>
   new Request('https://whemotion.com/api/revalidate', {
@@ -42,7 +37,7 @@ describe('POST /api/revalidate', () => {
   const originalSecret = process.env.REVALIDATE_SECRET
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     process.env.REVALIDATE_SECRET = 'expected-secret'
   })
 
@@ -117,7 +112,7 @@ describe('POST /api/revalidate', () => {
     mockedGetPostById.mockResolvedValue(post('en'))
     const originalBaseUrl = process.env.BASE_URL
     process.env.BASE_URL = 'https://whemotion.com'
-    const fetchSpy = jest
+    const fetchSpy = vi
       .spyOn(global, 'fetch')
       .mockResolvedValueOnce(new Response())
       .mockRejectedValueOnce(new Error('network'))
@@ -171,7 +166,7 @@ describe('pathsToWarm', () => {
   const listings = ['/', '/archive/', '/en/', '/en/archive/']
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('should warm the home and the archive in every locale for any event', async () => {

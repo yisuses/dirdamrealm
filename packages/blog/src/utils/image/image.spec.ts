@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from 'vitest'
+
 import { getImageDataFromMedia, getImageUrlFromMedia } from './image'
 
 const mockMedia: Media = {
@@ -128,7 +130,7 @@ describe('getImageUrlFromMedia', () => {
   })
 
   it('returns fallback when there is an error loading the image and fallback is provided', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => 0)
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => 0)
     const result = getImageUrlFromMedia({
       media: { id: 2 } as unknown as Media,
       fallback: 'http://example.com/fallback.jpg',
@@ -141,7 +143,7 @@ describe('getImageUrlFromMedia', () => {
   })
 
   it('returns fallback when there is an error loading the image and fallback is provided and unsupported format', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => 0)
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => 0)
     const result = getImageUrlFromMedia({ media: 'a' as unknown as Media, fallback: 'http://example.com/fallback.jpg' })
     expect(consoleSpy).toHaveBeenCalledWith(
       'There was an error loading the image ID:"unknown", FORMAT:"large", FALLBACK:"http://example.com/fallback.jpg"',

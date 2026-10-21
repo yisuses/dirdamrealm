@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { toBase64 } from './toBase64'
 
 describe('toBase64', () => {

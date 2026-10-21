@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { type Mocked, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getAllPosts, postResponseEnMock } from '@blog/api/post'
 
-jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>
+vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 const requestedUrl = () => decodeURIComponent(mockedAxios.get.mock.calls[0]![0] as string)
 
@@ -13,7 +14,7 @@ describe('getAllPosts', () => {
   })
 
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('maps the posts returned by the API', async () => {

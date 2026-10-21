@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { algoliaCategoryMapper, categoryMapper } from './categoryMapper'
 
 describe('categoryMapper', () => {
