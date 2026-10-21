@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PostCard > should render the post with links, image and categories sorted by length 1`] = `
+<div
+  class="css-1v10vm4"
+>
+  <div
+    class="css-1pi04bi"
+  >
+    <div
+      class="css-1hspyk4"
+    >
+      <div
+        aria-label="Ingeniería"
+        class="chakra-tag__root css-v5duvn"
+      >
+        <span
+          class="chakra-tag__label css-lgd7le"
+        >
+          Ingeniería
+        </span>
+      </div>
+      <div
+        aria-label="Historia y pensamiento"
+        class="chakra-tag__root css-v5duvn"
+      >
+        <span
+          class="chakra-tag__label css-lgd7le"
+        >
+          Historia y pensamiento
+        </span>
+      </div>
+    </div>
+    <a
+      class="chakra-link css-hvjfuh"
+      href="/post/7/mi-entrada/"
+    >
+      <img
+        alt="Mi entrada image"
+        src="/media/small_test.jpg"
+      />
+    </a>
+  </div>
+  <p
+    class="css-1iks56v"
+  >
+    01.04.2022
+  </p>
+  <a
+    class="chakra-link css-tb9idc"
+    href="/post/7/mi-entrada/"
+    title="Mi entrada"
+  >
+    Mi entrada
+  </a>
+  <p
+    class="css-17a2hvl"
+    title="Resumen de la entrada"
+  >
+    Resumen de la entrada
+  </p>
+</div>
+`;

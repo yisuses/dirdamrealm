@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Drawer > should render inline without a backdrop 1`] = `
+<div
+  class="chakra-drawer__positioner css-v9yzvp"
+  data-part="positioner"
+  data-scope="dialog"
+  dir="ltr"
+  id="dialog:_r_1_:positioner"
+>
+  <div
+    aria-describedby="dialog:_r_1_:description"
+    aria-labelledby="dialog:_r_1_:title"
+    aria-modal="true"
+    class="chakra-drawer__content css-16k0lpb"
+    data-part="content"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog:_r_1_:content"
+    role="dialog"
+    tabindex="-1"
+  >
+    <h2
+      class="chakra-drawer__title css-1m1n021"
+      data-part="title"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog:_r_1_:title"
+    >
+      Inline
+    </h2>
+  </div>
+</div>
+`;

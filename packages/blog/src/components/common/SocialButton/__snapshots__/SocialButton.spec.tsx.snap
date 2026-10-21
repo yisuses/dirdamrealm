@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SocialButton > should render an external link with a hidden label 1`] = `
+<a
+  class="chakra-button css-1rhb4v7"
+  href="https://twitter.com/whemotion"
+  rel="noreferrer"
+  target="_blank"
+  type="button"
+>
+  <span
+    class="css-cfk6a1"
+  >
+    Twitter
+  </span>
+  <svg
+    data-testid="icon"
+  />
+</a>
+`;

@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`JsonLd > should render one ld+json script per item with the schema.org context 1`] = `
+<div>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"WebPage","name":"Home"}
+  </script>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"BlogPosting","headline":"Post"}
+  </script>
+</div>
+`;

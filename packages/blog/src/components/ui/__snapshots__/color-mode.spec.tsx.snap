@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`color-mode > should default to the light theme and toggle between light and dark 1`] = `
+<div
+  data-testid="probe"
+>
+  <span
+    data-testid="mode"
+  >
+    light
+  </span>
+  <span>
+    light value
+  </span>
+  <button>
+    toggle
+  </button>
+  <button>
+    dark
+  </button>
+</div>
+`;
+
+exports[`color-mode > should resolve the dark values when the theme is forced 1`] = `
+<div
+  data-testid="probe"
+>
+  <span
+    data-testid="mode"
+  >
+    dark
+  </span>
+  <span>
+    dark value
+  </span>
+  <button>
+    toggle
+  </button>
+  <button>
+    dark
+  </button>
+</div>
+`;

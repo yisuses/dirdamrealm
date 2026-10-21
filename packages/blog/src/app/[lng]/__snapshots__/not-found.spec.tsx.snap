@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Locale not-found page > should render the 404 page 1`] = `
+<div
+  class="css-100wagp"
+>
+  <h1
+    class="chakra-heading css-5cwrvr"
+  >
+    No encontrado
+  </h1>
+  <p
+    class="css-zashnx"
+  >
+    <a
+      class="chakra-link css-1nqikry"
+      href="/"
+    >
+      Ir a la página de inicio
+    </a>
+  </p>
+  <p
+    class="css-1r4ebq8"
+  >
+    Lo sentimos, el contenido que estás buscando no existe.
+  </p>
+</div>
+`;

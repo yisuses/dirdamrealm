@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Archive page > should build the metadata 1`] = `
+{
+  "description": "Historial de todas las entradas publicadas.",
+  "icons": {
+    "icon": "/favicon.ico",
+  },
+  "keywords": "football,travel,work,life,balance,music,politics,news",
+  "openGraph": {
+    "alternateLocale": [
+      "en_GB",
+    ],
+    "description": "Historial de todas las entradas publicadas.",
+    "images": [
+      "https://example.com/images/WElogo.png",
+    ],
+    "locale": "es_ES",
+    "siteName": "White emotion",
+    "title": "Emoción Blanca - Archivo",
+    "type": "website",
+    "url": "https://example.com/archive/",
+  },
+  "other": {
+    "apple-mobile-web-app-capable": "yes",
+  },
+  "title": "Emoción Blanca - Archivo",
+}
+`;
+
+exports[`Archive page > should prefetch posts and categories and list every post in the JSON-LD 1`] = `
+<div>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"WebPage","headline":"Archivo","url":"https://example.com/archive/"}
+  </script>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://example.com/post/7/hola-mundo/"},{"@type":"ListItem","position":2,"url":"https://example.com/post/8/adios-mundo/"}]}
+  </script>
+  <pre
+    data-testid="archive-page"
+  >
+    [{"queryKey":["archivePosts"],"data":[{"id":7,"title":"Hola Mundo"},{"id":8,"title":"Adiós Mundo"}]},{"queryKey":["categories","es"],"data":[{"id":1,"code":"TRAVEL","localizedName":"Viajes"}]}]
+  </pre>
+</div>
+`;

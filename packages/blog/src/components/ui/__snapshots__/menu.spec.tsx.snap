@@ -1,0 +1,260 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Menu > should render every item flavour inline 1`] = `
+<div
+  class="chakra-menu__positioner"
+  data-part="positioner"
+  data-scope="menu"
+  dir="ltr"
+  id="menu:_r_1_:popper"
+  style="position: absolute; isolation: isolate; min-width: max-content; pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
+>
+  <div
+    aria-labelledby="menu:_r_1_:trigger"
+    class="chakra-menu__content css-1awm0xt"
+    data-part="content"
+    data-scope="menu"
+    data-state="open"
+    dir="ltr"
+    id="menu:_r_1_:content"
+    role="menu"
+    tabindex="0"
+  >
+    <div
+      class="chakra-menu__arrow css-1q0lm2p"
+      data-part="arrow"
+      data-scope="menu"
+      dir="ltr"
+      id="menu:_r_1_:arrow"
+      style="position: absolute; width: var(--arrow-size); height: var(--arrow-size); --arrow-size-half: calc(var(--arrow-size) / 2); --arrow-offset: calc(var(--arrow-size-half) * -1);"
+    >
+      <div
+        class="chakra-menu__arrowTip css-5700va"
+        data-part="arrow-tip"
+        data-scope="menu"
+        dir="ltr"
+        style="background: var(--arrow-background); top: 0px; left: 0px; width: 100%; height: 100%; position: absolute; z-index: inherit;"
+      />
+    </div>
+    <div
+      aria-labelledby="menu:_r_1_:group-label:_r_2_"
+      class="chakra-menu__itemGroup"
+      data-part="item-group"
+      data-scope="menu"
+      dir="ltr"
+      id="menu:_r_1_:group:_r_2_"
+      role="group"
+    >
+      <div
+        class="chakra-menu__itemGroupLabel css-1v8wh7e"
+        data-part="item-group-label"
+        data-scope="menu"
+        dir="ltr"
+        id="menu:_r_1_:group-label:_r_2_"
+      >
+        Vista
+      </div>
+      <div
+        aria-checked="true"
+        class="chakra-menu__item css-1weel8p"
+        data-ownedby="menu:_r_1_:content"
+        data-part="item"
+        data-scope="menu"
+        data-state="checked"
+        data-type="checkbox"
+        data-value="grid"
+        data-valuetext="grid"
+        dir="ltr"
+        id="_r_1_/grid"
+        role="menuitemcheckbox"
+      >
+        <div
+          class="chakra-menu__itemIndicator css-1id19q8"
+          data-part="item-indicator"
+          data-scope="menu"
+          data-state="checked"
+          dir="ltr"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 6 9 17l-5-5"
+            />
+          </svg>
+        </div>
+        Cuadrícula
+      </div>
+    </div>
+    <hr
+      aria-orientation="horizontal"
+      class="chakra-menu__separator css-1uu08lh"
+      data-part="separator"
+      data-scope="menu"
+      dir="ltr"
+      role="separator"
+    />
+    <div
+      aria-labelledby="menu:_r_1_:group-label:_r_3_"
+      class="chakra-menu__itemGroup"
+      data-part="item-group"
+      data-scope="menu"
+      dir="ltr"
+      id="menu:_r_1_:group:_r_3_"
+      role="group"
+    >
+      <div
+        aria-labelledby="menu:_r_1_:group-label:_r_4_"
+        class="chakra-menu__itemGroup"
+        data-part="item-group"
+        data-scope="menu"
+        dir="ltr"
+        id="menu:_r_1_:group:_r_4_"
+        role="group"
+      >
+        <div
+          aria-checked="true"
+          class="chakra-menu__item css-1weel8p"
+          data-ownedby="menu:_r_1_:content"
+          data-part="item"
+          data-scope="menu"
+          data-state="checked"
+          data-type="radio"
+          data-value="es"
+          data-valuetext="es"
+          dir="ltr"
+          id="_r_1_/es"
+          role="menuitemradio"
+        >
+          <div
+            class="chakra-menu__itemIndicator css-1id19q8"
+            data-part="item-indicator"
+            data-scope="menu"
+            data-state="checked"
+            dir="ltr"
+          >
+            <svg
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 6 9 17l-5-5"
+              />
+            </svg>
+          </div>
+          <div
+            class="chakra-menu__itemText css-apustk"
+            data-part="item-text"
+            data-scope="menu"
+            data-state="checked"
+            dir="ltr"
+          >
+            Español
+          </div>
+        </div>
+        <div
+          aria-checked="false"
+          class="chakra-menu__item css-1weel8p"
+          data-ownedby="menu:_r_1_:content"
+          data-part="item"
+          data-scope="menu"
+          data-state="unchecked"
+          data-type="radio"
+          data-value="en"
+          data-valuetext="en"
+          dir="ltr"
+          id="_r_1_/en"
+          role="menuitemradio"
+        >
+          <div
+            class="chakra-menu__itemIndicator css-1id19q8"
+            data-part="item-indicator"
+            data-scope="menu"
+            data-state="unchecked"
+            dir="ltr"
+            hidden=""
+          >
+            <svg
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 6 9 17l-5-5"
+              />
+            </svg>
+          </div>
+          <div
+            class="chakra-menu__itemText css-apustk"
+            data-part="item-text"
+            data-scope="menu"
+            data-state="unchecked"
+            dir="ltr"
+          >
+            Inglés
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-controls="menu:_r_5_:content"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="chakra-menu__item css-u03wm8"
+      data-controls="menu:_r_5_:content"
+      data-ownedby="menu:_r_1_:content"
+      data-part="trigger"
+      data-scope="menu"
+      data-state="closed"
+      data-uid="_r_5_"
+      data-value="menu:_r_5_:trigger"
+      dir="ltr"
+      id="menu:_r_5_:trigger"
+      role="menuitem"
+      type="button"
+      value="more"
+    >
+      <span>
+        *
+      </span>
+      Más
+      <svg
+        fill="none"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m9 18 6-6-6-6"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

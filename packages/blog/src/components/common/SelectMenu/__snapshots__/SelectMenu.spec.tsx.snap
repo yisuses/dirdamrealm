@@ -1,0 +1,86 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SelectMenu > should list the options and report the one picked 1`] = `
+<div
+  aria-labelledby="menu:_r_3_:trigger"
+  class="chakra-menu__content css-jlmklu"
+  data-part="content"
+  data-placement="bottom-start"
+  data-scope="menu"
+  data-side="bottom"
+  data-state="open"
+  dir="ltr"
+  id="menu:_r_3_:content"
+  role="menu"
+  style="--layer-index: 0; --nested-layer-count: 0; pointer-events: auto;"
+  tabindex="0"
+>
+  <div
+    class="chakra-menu__item css-qlas87"
+    data-ownedby="menu:_r_3_:content"
+    data-part="item"
+    data-scope="menu"
+    data-value=""
+    id="_r_3_/"
+    role="menuitem"
+  >
+    Todas
+  </div>
+  <div
+    class="chakra-menu__item css-pues6q"
+    data-ownedby="menu:_r_3_:content"
+    data-part="item"
+    data-scope="menu"
+    data-value="ENG"
+    id="_r_3_/ENG"
+    role="menuitem"
+  >
+    Ingeniería
+  </div>
+  <div
+    class="chakra-menu__item css-qlas87"
+    data-ownedby="menu:_r_3_:content"
+    data-part="item"
+    data-scope="menu"
+    data-value="HIS"
+    id="_r_3_/HIS"
+    role="menuitem"
+  >
+    Historia y pensamiento
+  </div>
+</div>
+`;
+
+exports[`SelectMenu > should show the selected option on the trigger 1`] = `
+<button
+  aria-expanded="false"
+  aria-haspopup="menu"
+  aria-label="Categoría"
+  class="chakra-button chakra-menu__trigger css-1t7roaw"
+  data-controls="menu:_r_0_:content"
+  data-part="trigger"
+  data-scope="menu"
+  data-state="closed"
+  data-uid="_r_0_"
+  dir="ltr"
+  id="menu:_r_0_:trigger"
+  type="button"
+>
+  Ingeniería
+  <svg
+    fill="none"
+    height="1em"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="m6 9 6 6 6-6"
+    />
+  </svg>
+</button>
+`;

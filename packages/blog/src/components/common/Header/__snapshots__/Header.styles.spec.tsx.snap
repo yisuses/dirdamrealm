@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LogoContainer > should show the mobile logo and hide the desktop one below the lg breakpoint 1`] = `
+<div
+  class="css-wt0b4w"
+>
+  <span
+    class="desktop"
+  >
+    desktop
+  </span>
+  <span
+    class="mobile"
+  >
+    mobile
+  </span>
+</div>
+`;

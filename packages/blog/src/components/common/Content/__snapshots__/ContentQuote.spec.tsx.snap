@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContentQuote > should render the quote with its caption 1`] = `
+<div>
+  <blockquote
+    class="css-1l5yy3w"
+  >
+    To be 
+    <i>
+      or not
+    </i>
+  </blockquote>
+  <footer
+    class="css-1slgqn2"
+  >
+    Hamlet
+  </footer>
+</div>
+`;

@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Ribbon > should render its children 1`] = `
+<div
+  class="css-1lhda4z"
+>
+  <span
+    class="css-tko8cl"
+  >
+    New
+  </span>
+</div>
+`;

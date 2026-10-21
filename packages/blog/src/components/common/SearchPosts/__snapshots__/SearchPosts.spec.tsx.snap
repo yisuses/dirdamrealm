@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SearchPosts > should render the search input without results 1`] = `
+<div
+  class="css-za4y1g"
+>
+  <div
+    class="chakra-field__root css-13f87cb"
+    data-part="root"
+    data-scope="field"
+    id="field::_r_0_"
+    role="group"
+  >
+    <label
+      class="chakra-field__label css-oixt3d"
+      data-part="label"
+      data-scope="field"
+      for="_r_0_"
+      id="field::_r_0_::label"
+    >
+      Buscar
+    </label>
+    <input
+      class="chakra-input css-1b8xv99"
+      data-part="input"
+      data-scope="field"
+      id="_r_0_"
+      placeholder="Escribe algo"
+      value=""
+    />
+  </div>
+  <div
+    class="css-14opjei"
+  >
+    <div
+      class="css-ulhsxc"
+    />
+  </div>
+</div>
+`;

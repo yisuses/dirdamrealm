@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GET /sitemap/category.xml > should list the categories of every locale with their alternates 1`] = `
+"
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+      http://www.google.com/schemas/sitemap-image/1.1
+      http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd
+      http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
+  
+          <url>
+          <loc>https://example.com/category/TRAVEL/viajes/</loc>
+          <lastmod>2026-10-01T08:00:00.000Z</lastmod>
+          <xhtml:link rel="alternate" hreflang="en-US" href="https://example.com/en/category/TRAVEL/travel/"/>
+          </url>
+        
+          <url>
+          <loc>https://example.com/category/TRAVEL/musica/</loc>
+          <lastmod>2026-10-01T08:00:00.000Z</lastmod>
+          
+          </url>
+        
+          <url>
+          <loc>https://example.com/en/category/TRAVEL/travel/</loc>
+          <lastmod>2026-10-01T08:00:00.000Z</lastmod>
+          <xhtml:link rel="alternate" hreflang="es-ES" href="https://example.com/category/TRAVEL/viajes/"/>
+          </url>
+        
+          <url>
+          <loc>https://example.com/en/category/TRAVEL/music/</loc>
+          <lastmod>2026-10-01T08:00:00.000Z</lastmod>
+          
+          </url>
+        
+</urlset>
+"
+`;

@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContentLink > should render a link card with image and description 1`] = `
+<a
+  href="https://example.com/"
+>
+  <div
+    class="css-kkkm24"
+  >
+    <div
+      class="css-69i1ev"
+    >
+      <div
+        class="css-zg1vud"
+      >
+        <b
+          class="css-uok8h6"
+        >
+          Example
+        </b>
+      </div>
+      <div
+        class="css-fjzeni"
+      >
+        <img
+          alt="Example"
+          height="65"
+          src="https://example.com/a.png"
+          width="65"
+        />
+      </div>
+    </div>
+    <i
+      class="css-9zijzb"
+    >
+      An example site
+    </i>
+  </div>
+</a>
+`;

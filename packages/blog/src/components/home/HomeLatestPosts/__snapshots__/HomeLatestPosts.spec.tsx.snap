@@ -1,0 +1,176 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomeLatestPosts > should fetch the posts of a category clicked and drop the header post 1`] = `
+<div
+  class="css-4q9b3d"
+>
+  <h2
+    class="chakra-heading css-1v8a6k5"
+  >
+    Últimas entradas
+  </h2>
+  <div
+    class="chakra-stack css-19n1s3x"
+  >
+    <p
+      class="css-1byhqre"
+      role="button"
+      tabindex="0"
+    >
+      Todas
+    </p>
+    <p
+      class="css-1lqjy9j"
+      role="button"
+      tabindex="0"
+    >
+      Test Category
+    </p>
+    <p
+      class="css-1lqjy9j"
+      role="button"
+      tabindex="0"
+    >
+      Música
+    </p>
+  </div>
+  <div
+    class="css-al238s"
+  >
+    <div
+      class="css-1v10vm4"
+    >
+      <div
+        class="css-1pi04bi"
+      >
+        <div
+          class="css-1hspyk4"
+        >
+          <div
+            aria-label="categories.test-category"
+            class="chakra-tag__root css-v5duvn"
+          >
+            <span
+              class="chakra-tag__label css-lgd7le"
+            >
+              categories.test-category
+            </span>
+          </div>
+          <div
+            aria-label="Inglés"
+            class="chakra-tag__root css-v5duvn"
+          >
+            <span
+              class="chakra-tag__label css-lgd7le"
+            >
+              Inglés
+            </span>
+          </div>
+        </div>
+        <a
+          class="chakra-link css-hvjfuh"
+          href="/post/3/otro-post/"
+        >
+          <img
+            alt="Otro post image"
+            src="/media/small_test.jpg"
+          />
+        </a>
+      </div>
+      <p
+        class="css-1iks56v"
+      >
+        01.04.2022
+      </p>
+      <a
+        class="chakra-link css-tb9idc"
+        href="/post/3/otro-post/"
+        title="Otro post"
+      >
+        Otro post
+      </a>
+      <p
+        class="css-17a2hvl"
+        title="This is a test post"
+      >
+        This is a test post
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HomeLatestPosts > should render the posts after the header one without category filters 1`] = `
+<div
+  class="css-4q9b3d"
+>
+  <h2
+    class="chakra-heading css-1v8a6k5"
+  >
+    Últimas entradas
+  </h2>
+  <div
+    class="css-al238s"
+  >
+    <div
+      class="css-1v10vm4"
+    >
+      <div
+        class="css-1pi04bi"
+      >
+        <div
+          class="css-1hspyk4"
+        >
+          <div
+            aria-label="categories.test-category"
+            class="chakra-tag__root css-v5duvn"
+          >
+            <span
+              class="chakra-tag__label css-lgd7le"
+            >
+              categories.test-category
+            </span>
+          </div>
+          <div
+            aria-label="Inglés"
+            class="chakra-tag__root css-v5duvn"
+          >
+            <span
+              class="chakra-tag__label css-lgd7le"
+            >
+              Inglés
+            </span>
+          </div>
+        </div>
+        <a
+          class="chakra-link css-hvjfuh"
+          href="/post/3/otro-post/"
+        >
+          <img
+            alt="Otro post image"
+            src="/media/small_test.jpg"
+          />
+        </a>
+      </div>
+      <p
+        class="css-1iks56v"
+      >
+        01.04.2022
+      </p>
+      <a
+        class="chakra-link css-tb9idc"
+        href="/post/3/otro-post/"
+        title="Otro post"
+      >
+        Otro post
+      </a>
+      <p
+        class="css-17a2hvl"
+        title="This is a test post"
+      >
+        This is a test post
+      </p>
+    </div>
+  </div>
+</div>
+`;
