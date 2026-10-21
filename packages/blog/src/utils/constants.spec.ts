@@ -26,6 +26,10 @@ describe('query keys', () => {
 })
 
 describe('xmlUrlSet', () => {
+  it('should start with the XML declaration, with nothing before it', () => {
+    expect(xmlUrlSet('<url />').startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true)
+  })
+
   it('should wrap the content in a sitemap urlset', () => {
     const xml = xmlUrlSet('<url />')
 
