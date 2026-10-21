@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Home page > should build the metadata for the default locale 1`] = `
+{
+  "description": "Página de inicio de Emoción Blanca",
+  "icons": {
+    "icon": "/favicon.ico",
+  },
+  "keywords": "football,travel,work,life,balance,music,politics,news",
+  "openGraph": {
+    "alternateLocale": [
+      "en_GB",
+    ],
+    "description": "Página de inicio de Emoción Blanca",
+    "images": [
+      "https://example.com/images/WElogo.png",
+    ],
+    "locale": "es_ES",
+    "siteName": "White emotion",
+    "title": "Emoción Blanca - Inicio",
+    "type": "website",
+    "url": "https://example.com/",
+  },
+  "other": {
+    "apple-mobile-web-app-capable": "yes",
+  },
+  "title": "Emoción Blanca - Inicio",
+}
+`;
+
+exports[`Home page > should prefetch the latest posts and render the page with its JSON-LD 1`] = `
+<div>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"WebPage","headline":"Inicio","url":"https://example.com/"}
+  </script>
+  <pre
+    data-testid="home-page"
+  >
+    [{"queryKey":["latestPosts","HomePage"],"data":[{"id":7,"title":"Hola Mundo"}]}]
+  </pre>
+</div>
+`;

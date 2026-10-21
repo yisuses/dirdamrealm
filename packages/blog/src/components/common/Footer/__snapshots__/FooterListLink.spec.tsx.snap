@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FooterListLink > should render a client-side link with its target 1`] = `
+<a
+  class="chakra-link css-17vdyn0"
+  href="/category/music/"
+  target="_blank"
+>
+  Música
+</a>
+`;
+
+exports[`FooterListLink > should render a plain anchor when forced 1`] = `
+<a
+  class="chakra-link css-17vdyn0"
+  href="mailto:hello@example.com"
+>
+  Mail
+</a>
+`;

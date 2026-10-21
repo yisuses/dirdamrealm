@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`emotion theme > should expose up and down media queries for every breakpoint 1`] = `
+{
+  "media": {
+    "down": {
+      "2xl": "@media (max-width: 96em)",
+      "lg": "@media (max-width: 62em)",
+      "md": "@media (max-width: 48em)",
+      "sm": "@media (max-width: 30em)",
+      "xl": "@media (max-width: 80em)",
+    },
+    "up": {
+      "2xl": "@media (min-width: 96em)",
+      "lg": "@media (min-width: 62em)",
+      "md": "@media (min-width: 48em)",
+      "sm": "@media (min-width: 30em)",
+      "xl": "@media (min-width: 80em)",
+    },
+  },
+}
+`;

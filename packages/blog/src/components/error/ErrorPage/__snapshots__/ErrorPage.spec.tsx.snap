@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorPage > should render the generic error with a reload link by default 1`] = `
+<div
+  class="css-100wagp"
+>
+  <h1
+    class="chakra-heading css-5cwrvr"
+  >
+    Error
+  </h1>
+  <p
+    class="css-zashnx"
+  >
+    <a
+      class="chakra-link css-1nqikry"
+      href="/"
+    >
+      Recarga la página
+    </a>
+  </p>
+  <p
+    class="css-1r4ebq8"
+  >
+    Ups, algo no ha ido como debía...
+  </p>
+</div>
+`;
+
+exports[`ErrorPage > should render the not found copy with a localized home link for a 404 1`] = `
+<div
+  class="css-100wagp"
+>
+  <h1
+    class="chakra-heading css-5cwrvr"
+  >
+    Not found
+  </h1>
+  <p
+    class="css-zashnx"
+  >
+    <a
+      class="chakra-link css-1nqikry"
+      href="/en/"
+    >
+      Go to home page
+    </a>
+  </p>
+  <p
+    class="css-1r4ebq8"
+  >
+    Sorry, the content you are looking for could not be found.
+  </p>
+</div>
+`;

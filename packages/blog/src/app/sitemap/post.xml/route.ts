@@ -13,16 +13,16 @@ function generateSiteMap(posts: Post[], defaultLocale: string) {
   return xmlUrlSet(
     posts
       .map(
-        ({ id, title, publishedAt, updatedAt, locale, localizations, coverImage }) => `
+        ({ id, title, updatedAt, locale, localizations, coverImage }) => `
             <url>
             <loc>${publicUrl(`${defaultLocale === locale ? '' : '/' + locale}${buildPostPath(id, title)}`)}</loc>
             <lastmod>${updatedAt}</lastmod>
-            <news:publication_date>${publishedAt}</news:publication_date>
             ${
-              coverImage &&
-              `<image:image>
+              coverImage
+                ? `<image:image>
               <image:loc>${getImageUrlFromMedia({ media: coverImage, format: 'small' })}</image:loc>
             </image:image>`
+                : ''
             }
             ${
               localizations && localizations.length > 0

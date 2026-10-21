@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GET /sitemap.xml > should list the page, post and category sitemaps 1`] = `
+"<?xml version="1.0" encoding="UTF-8"?>
+  <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+      <loc>https://example.com/sitemap/page.xml</loc>
+      <lastmod>2026-10-01T08:00:00.000Z</lastmod>
+    </sitemap>
+    <sitemap>
+      <loc>https://example.com/sitemap/post.xml</loc>
+      <lastmod>2026-10-01T08:00:00.000Z</lastmod>
+    </sitemap>
+    <sitemap>
+      <loc>https://example.com/sitemap/category.xml</loc>
+      <lastmod>2026-10-20T11:30:00.000Z</lastmod>
+    </sitemap>
+   </sitemapindex>
+ "
+`;

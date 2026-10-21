@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContentHeader > should render the html text as a heading 1`] = `
+<h2
+  class="chakra-heading css-1sjay12"
+>
+  Hello 
+  <i>
+    world
+  </i>
+</h2>
+`;

@@ -1,0 +1,47 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dialog > should render inline without a backdrop and with custom close content 1`] = `
+<div
+  class="chakra-dialog__positioner css-ueu1j7"
+  data-part="positioner"
+  data-scope="dialog"
+  dir="ltr"
+  id="dialog:_r_1_:positioner"
+  style="--layer-index: 0; --nested-layer-count: 0; --z-index: auto;"
+>
+  <div
+    aria-labelledby="dialog:_r_1_:title"
+    aria-modal="true"
+    class="chakra-dialog__content css-1n543c7"
+    data-part="content"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog:_r_1_:content"
+    role="dialog"
+    style="--layer-index: 0; --nested-layer-count: 0; pointer-events: auto;"
+    tabindex="-1"
+  >
+    <h2
+      class="chakra-dialog__title css-1ka0vat"
+      data-part="title"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog:_r_1_:title"
+    >
+      Inline
+    </h2>
+    <button
+      aria-label="Cerrar"
+      class="chakra-button chakra-dialog__closeTrigger css-1477vbp"
+      data-part="close-trigger"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog:_r_1_:close"
+      type="button"
+    >
+      x
+    </button>
+  </div>
+</div>
+`;

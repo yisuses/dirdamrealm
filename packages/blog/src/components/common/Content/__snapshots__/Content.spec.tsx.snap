@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Content > should render every block with its own renderer 1`] = `
+<div>
+  <h2
+    class="chakra-heading css-1sjay12"
+  >
+    A heading
+  </h2>
+  <p
+    class="css-yn17xn"
+  >
+    A paragraph
+  </p>
+  <ul
+    class="chakra-list__root css-1y76u1q"
+    role="list"
+  >
+    <li
+      class="chakra-list__item css-11uxivr"
+    >
+      First item
+    </li>
+  </ul>
+  <blockquote
+    class="css-1l5yy3w"
+  >
+    A quote
+  </blockquote>
+  <footer
+    class="css-1slgqn2"
+  >
+    Someone
+  </footer>
+  <div
+    class="css-q0njmb"
+  >
+    <img
+      alt="An image"
+      height="50"
+      src="/media/test.jpg"
+      width="100"
+    />
+    <p
+      class="css-8jvoa7"
+    >
+      An image
+    </p>
+  </div>
+  <a
+    href="https://example.com/"
+  >
+    <div
+      class="css-kkkm24"
+    >
+      <div
+        class="css-69i1ev"
+      >
+        <div
+          class="css-zg1vud"
+        >
+          <b
+            class="css-uok8h6"
+          >
+            A link
+          </b>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+`;

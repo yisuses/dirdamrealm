@@ -3,20 +3,38 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   resolve: {
-    // Mirrors the `@blog/*` paths in tsconfig.json.
-    alias: { '@blog': path.resolve(import.meta.dirname, 'src') },
+    // Mirrors tsconfig.json: the `@blog/*` paths, and `baseUrl: src`, which lets layout.tsx
+    // import `app-providers` bare.
+    alias: {
+      '@blog': path.resolve(import.meta.dirname, 'src'),
+      'app-providers': path.resolve(import.meta.dirname, 'src/app-providers.tsx'),
+    },
   },
+  // tsconfig keeps `jsx: preserve` for Next; tests need it compiled.
+  oxc: { jsx: { runtime: 'automatic' } },
   test: {
-    // Every spec exercises plain functions or route handlers; none renders a component.
-    environment: 'node',
     setupFiles: ['./vitest.setup.ts'],
-    include: ['src/**/*.{spec,test}.{ts,tsx}'],
+    projects: [
+      {
+        extends: true,
+        // Plain functions, mappers and route handlers.
+        test: { name: 'unit', environment: 'node', include: ['src/**/*.spec.ts'] },
+      },
+      {
+        extends: true,
+        // Components, hooks and pages render React, so they need a DOM.
+        test: {
+          name: 'dom',
+          environment: 'jsdom',
+          include: ['src/**/*.spec.tsx'],
+          setupFiles: ['./vitest.setup.dom.tsx'],
+        },
+      },
+    ],
     coverage: {
       provider: 'v8',
-      // The logic layer these unit tests target. Components, hooks and pages are not
-      // unit-tested, so measuring them would only hold the thresholds out of reach.
-      include: ['src/api/**/*.ts', 'src/utils/**/*.ts', 'src/app/api/**/*.ts'],
-      exclude: ['**/*.d.ts', '**/*.mock.ts', '**/index.ts'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['**/*.d.ts', '**/*.stories.tsx', '**/*.mock.ts', '**/index.ts', '**/index.tsx', 'src/test/**'],
       reporter: ['text', 'cobertura', 'lcov'],
       thresholds: { branches: 100, functions: 100, lines: 100, statements: 100 },
     },

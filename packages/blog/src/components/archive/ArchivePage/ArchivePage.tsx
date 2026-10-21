@@ -118,7 +118,7 @@ export function ArchivePage() {
           .sort((a, b) => b - a)
           .map(month => ({
             month,
-            posts: groupedPosts[year]![month] || [],
+            posts: groupedPosts[year]![month],
           })),
       }))
   }, [filteredPosts])

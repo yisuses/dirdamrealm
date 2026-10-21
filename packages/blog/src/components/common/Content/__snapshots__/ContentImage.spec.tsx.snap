@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContentImage > should render the image with its caption 1`] = `
+<div
+  class="css-q0njmb"
+>
+  <img
+    alt="A caption"
+    height="50"
+    src="/media/test.jpg"
+    width="100"
+  />
+  <p
+    class="css-8jvoa7"
+  >
+    A caption
+  </p>
+</div>
+`;

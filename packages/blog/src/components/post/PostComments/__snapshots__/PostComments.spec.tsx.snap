@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PostComments > should list the comments with their relative date and an empty form 1`] = `
+<div
+  class="css-j7qwjs"
+>
+  <h2
+    class="chakra-heading css-1ghp373"
+  >
+    Comments
+  </h2>
+  <div
+    class="css-1wc24re"
+    id="comment-1"
+  >
+    <p
+      class="css-fzu54a"
+    >
+      Ana
+    </p>
+    <p
+      class="css-4s52a9"
+    >
+      2 days ago
+    </p>
+    <p
+      class="css-1k0541e"
+    >
+      Great post!
+    </p>
+  </div>
+  <div
+    class="css-1wc24re"
+    id="comment-2"
+  >
+    <p
+      class="css-fzu54a"
+    >
+      Luis
+    </p>
+    <p
+      class="css-4s52a9"
+    >
+      2 months ago
+    </p>
+    <p
+      class="css-1k0541e"
+    >
+      Thanks for sharing
+    </p>
+  </div>
+  <div
+    class="css-1bkzspj"
+  >
+    <form>
+      <div
+        class="chakra-field__root css-13f87cb"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_0_"
+        role="group"
+      >
+        <label
+          class="chakra-field__label css-65zcwe"
+          data-part="label"
+          data-scope="field"
+          for="_r_0_"
+          id="field::_r_0_::label"
+        >
+          Your name
+        </label>
+        <input
+          aria-invalid="false"
+          class="chakra-input css-9o4fpa"
+          data-part="input"
+          data-scope="field"
+          id="_r_0_"
+          name="author"
+          type="text"
+        />
+      </div>
+      <div
+        class="chakra-field__root css-qy09um"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_1_"
+        role="group"
+      >
+        <label
+          class="chakra-field__label css-65zcwe"
+          data-part="label"
+          data-scope="field"
+          for="_r_1_"
+          id="field::_r_1_::label"
+        >
+          Comment
+        </label>
+        <textarea
+          aria-invalid="false"
+          class="chakra-textarea css-5mgwgq"
+          data-part="textarea"
+          data-scope="field"
+          id="_r_1_"
+          name="text"
+        />
+      </div>
+      <div
+        class="chakra-field__root css-qy09um"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_2_"
+        role="group"
+      >
+        <button
+          type="button"
+        >
+          Solve captcha (
+          en
+          )
+        </button>
+      </div>
+      <button
+        class="chakra-button css-kjvb9f"
+        type="submit"
+      >
+        Add comment
+      </button>
+    </form>
+  </div>
+</div>
+`;

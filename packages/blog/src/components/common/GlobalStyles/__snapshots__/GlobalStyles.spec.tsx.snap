@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GlobalStyles > should inject global styles without rendering markup 1`] = `<div />`;

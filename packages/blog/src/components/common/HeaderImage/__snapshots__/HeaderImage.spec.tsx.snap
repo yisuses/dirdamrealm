@@ -1,0 +1,104 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HeaderImage > should render only the image without post info or credit 1`] = `
+<div>
+  <div
+    class="css-1cb4st4"
+  >
+    <img
+      alt="Imagen de la entrada "Mi entrada""
+      src="https://example.com/test.png"
+    />
+  </div>
+</div>
+`;
+
+exports[`HeaderImage > should render the cover image with the post info and the image credit 1`] = `
+<div>
+  <div
+    class="css-1cb4st4"
+  >
+    <img
+      alt="Imagen de la entrada "Mi entrada""
+      src="/media/large_test.jpg"
+    />
+    <div
+      class="css-ws1zca"
+    >
+      <div
+        class="css-14tqugy"
+      >
+        <div
+          aria-label="Music"
+          class="chakra-tag__root css-cpcb23"
+        >
+          <span
+            class="chakra-tag__label css-lgd7le"
+          >
+            Music
+          </span>
+        </div>
+        <div
+          aria-label="Cine"
+          class="chakra-tag__root css-cpcb23"
+        >
+          <span
+            class="chakra-tag__label css-lgd7le"
+          >
+            Cine
+          </span>
+        </div>
+        <div
+          aria-label="Documentaries"
+          class="chakra-tag__root css-cpcb23"
+        >
+          <span
+            class="chakra-tag__label css-lgd7le"
+          >
+            Documentaries
+          </span>
+        </div>
+      </div>
+      <a
+        class="chakra-link css-1i4f3aj"
+        href="/post/1/mi-entrada/"
+      >
+        Mi entrada
+      </a>
+      <div
+        class="css-p069g"
+      >
+        <p
+          class="css-1jd7gge"
+        >
+          01.04.2022
+        </p>
+        <span
+          aria-orientation="horizontal"
+          class="chakra-separator css-hr9wd4"
+          role="separator"
+        />
+        <p
+          class="css-1j55sjn"
+        >
+          Resumen de la entrada
+        </p>
+      </div>
+    </div>
+  </div>
+  <p
+    class="css-az240g"
+  >
+    Imagen de 
+    <a
+      class="chakra-link css-1nqikry"
+      href="https://unsplash.com/jane"
+      rel="noreferrer"
+      target="_blank"
+      title="Jane Doe"
+    >
+      Jane Doe
+    </a>
+  </p>
+</div>
+`;

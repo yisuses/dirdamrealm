@@ -8,7 +8,7 @@ import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import { Icon, IconifyIcon } from '@iconify/react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { SocialButton } from '@blog/components'
+import { SocialButton } from '@blog/components/common'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 
 import { FooterListHeader } from './FooterListHeader'
@@ -73,7 +73,7 @@ export function Footer({ categories, about }: FooterProps) {
 
           <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
-            {about.display && socials.length && (
+            {about.display && socials.length > 0 && (
               <Stack direction="row" gap={6} paddingBottom="2">
                 {socials.map(({ label, href, icon }, index) => (
                   <SocialButton key={index} label={label} href={href}>

@@ -1,0 +1,59 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Post page > Page > should prefetch comments and related posts and render the page with its JSON-LD 1`] = `
+<div>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"BlogPosting","headline":"Hola Mundo","name":"Hola Mundo","alternativeHeadline":"Un resumen","dateCreated":"2026-10-19T09:00:00.000Z","datePublished":"2026-10-20T11:30:00.000Z","dateModified":"2026-10-21T08:00:00.000Z","inLanguage":"es","isFamilyFriendly":true,"copyrightYear":2026,"image":{"@type":"ImageObject","url":"/media/medium.jpg","width":"750","height":"375"},"thumbnailUrl":"/media/small.jpg","author":{"@type":"Person","name":"Saúl","url":"https://saul.dev"},"creator":{"@type":"Person","name":"Saúl","url":"https://saul.dev"},"publisher":{"@type":"Organization","name":"White Emotion","url":"https://whemotion.com","logo":{"@type":"ImageObject","url":"https://example.com/images/WElogo.png","width":"500","height":"500"}},"mainEntityOfPage":"https://example.com/post/7/hola-mundo/","articleSection":"Viajes","articleBody":"Primer párrafo"}
+  </script>
+  <pre
+    data-testid="post-page"
+  >
+    [{"queryKey":["post",7],"data":{"id":7,"title":"Hola Mundo","summary":"Un resumen","imgUrl":"https://example.com/fallback.png","publishedAt":"2026-10-20T11:30:00.000Z","createdAt":"2026-10-19T09:00:00.000Z","updatedAt":"2026-10-21T08:00:00.000Z","categories":[{"id":1,"code":"TRAVEL","localizedName":"Viajes"}],"content":{"time":1,"version":"","blocks":[{"type":"paragraph","data":{"text":"Primer &lt;b&gt;párrafo&lt;/b&gt;"}},{"type":"header","data":{"text":"Título"}}]},"coverImage":{"caption":"Un atardecer","url":"/media/original.jpg","formats":{"small":{"url":"/media/small.jpg","width":500,"height":250},"medium":{"url":"/media/medium.jpg","width":750,"height":375}}},"coverImageAuthor":null,"coverImageSourceUrl":null,"localizations":[{"id":8,"locale":"en","title":"Hello World"}],"locale":"es","writer":{"name":"Saúl","twitter":"@saul","personalUrl":"https://saul.dev"}}},{"queryKey":["postComments","8,7"],"data":[]},{"queryKey":["latestPosts","TRAVEL"],"data":[{"id":8,"title":"Hello World","summary":"Un resumen","imgUrl":"https://example.com/fallback.png","publishedAt":"2026-10-20T11:30:00.000Z","createdAt":"2026-10-19T09:00:00.000Z","updatedAt":"2026-10-21T08:00:00.000Z","categories":[{"id":1,"code":"TRAVEL","localizedName":"Viajes"}],"content":{"time":1,"version":"","blocks":[{"type":"paragraph","data":{"text":"Primer &lt;b&gt;párrafo&lt;/b&gt;"}},{"type":"header","data":{"text":"Título"}}]},"coverImage":{"caption":"Un atardecer","url":"/media/original.jpg","formats":{"small":{"url":"/media/small.jpg","width":500,"height":250},"medium":{"url":"/media/medium.jpg","width":750,"height":375}}},"coverImageAuthor":null,"coverImageSourceUrl":null,"localizations":[],"locale":"en","writer":{"name":"Saúl","twitter":"@saul","personalUrl":"https://saul.dev"}}]}]
+  </pre>
+</div>
+`;
+
+exports[`Post page > generateMetadata > should build the article metadata 1`] = `
+{
+  "description": "Un resumen",
+  "icons": {
+    "icon": "/favicon.ico",
+  },
+  "keywords": "football,travel,work,life,balance,music,politics,news",
+  "openGraph": {
+    "alternateLocale": [
+      "en_GB",
+    ],
+    "authors": [
+      "Saúl",
+    ],
+    "description": "Un resumen",
+    "images": [
+      "/media/medium.jpg",
+    ],
+    "locale": "es_ES",
+    "modifiedTime": "2026-10-21T08:00:00.000Z",
+    "publishedTime": "2026-10-20T11:30:00.000Z",
+    "section": "Viajes",
+    "siteName": "White emotion",
+    "title": "Emoción Blanca - Hola Mundo",
+    "type": "article",
+    "url": "https://example.com/post/7/hola-mundo/",
+  },
+  "other": {
+    "apple-mobile-web-app-capable": "yes",
+  },
+  "title": "Emoción Blanca - Hola Mundo",
+  "twitter": {
+    "card": "summary_large_image",
+    "creator": "@saul",
+    "description": "Un resumen",
+    "images": [
+      "/media/small.jpg",
+    ],
+    "title": "Hola Mundo",
+  },
+}
+`;

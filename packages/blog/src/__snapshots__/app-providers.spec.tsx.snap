@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AppProviders > should render the children translated in the given locale 1`] = `
+<p>
+  en
+  : 
+  Hello
+</p>
+`;

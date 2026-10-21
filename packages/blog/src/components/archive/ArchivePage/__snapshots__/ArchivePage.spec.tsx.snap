@@ -1,0 +1,316 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ArchivePage > should group the posts by year and month, newest first 1`] = `
+<div
+  class="css-6z51v3"
+>
+  <div
+    class="css-1jwfb6w"
+  >
+    <h1
+      class="chakra-heading css-106fy9k"
+    >
+      Archive
+    </h1>
+    <div
+      class="css-m9y3e5"
+    >
+      <div
+        class="css-uuwceh"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="Filter by category"
+          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          data-controls="menu:_r_4_:content"
+          data-part="trigger"
+          data-scope="menu"
+          data-state="closed"
+          data-uid="_r_4_"
+          dir="ltr"
+          id="menu:_r_4_:trigger"
+          type="button"
+        >
+          All categories
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="css-k35hx0"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="Filter by year"
+          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          data-controls="menu:_r_5_:content"
+          data-part="trigger"
+          data-scope="menu"
+          data-state="closed"
+          data-uid="_r_5_"
+          dir="ltr"
+          id="menu:_r_5_:trigger"
+          type="button"
+        >
+          All years
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="css-193r36g"
+    >
+      <div
+        class="css-6hwxwg"
+      >
+        <h2
+          class="chakra-heading css-okw3ws"
+        >
+          2023
+        </h2>
+        <div
+          class="css-xiipdd"
+        >
+          <h3
+            class="chakra-heading css-sk5d80"
+          >
+            March
+          </h3>
+          <ul
+            class="chakra-list__root css-rtmatx"
+            role="list"
+          >
+            <li
+              class="chakra-list__item css-qt6dpk"
+            >
+              <p
+                class="css-12ydly8"
+              >
+                20.03.2023
+              </p>
+              <a
+                class="chakra-link css-1l69cpg"
+                href="/en/post/11/late-march-post/"
+              >
+                Late March post
+              </a>
+            </li>
+            <li
+              class="chakra-list__item css-qt6dpk"
+            >
+              <p
+                class="css-12ydly8"
+              >
+                10.03.2023
+              </p>
+              <a
+                class="chakra-link css-1l69cpg"
+                href="/en/post/10/march-post/"
+              >
+                March post
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="css-xiipdd"
+        >
+          <h3
+            class="chakra-heading css-sk5d80"
+          >
+            January
+          </h3>
+          <ul
+            class="chakra-list__root css-rtmatx"
+            role="list"
+          >
+            <li
+              class="chakra-list__item css-qt6dpk"
+            >
+              <p
+                class="css-12ydly8"
+              >
+                05.01.2023
+              </p>
+              <a
+                class="chakra-link css-1l69cpg"
+                href="/en/post/12/january-post/"
+              >
+                January post
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="css-1yrb0yy"
+        />
+      </div>
+      <div
+        class="css-6hwxwg"
+      >
+        <h2
+          class="chakra-heading css-okw3ws"
+        >
+          2022
+        </h2>
+        <div
+          class="css-xiipdd"
+        >
+          <h3
+            class="chakra-heading css-sk5d80"
+          >
+            April
+          </h3>
+          <ul
+            class="chakra-list__root css-rtmatx"
+            role="list"
+          >
+            <li
+              class="chakra-list__item css-qt6dpk"
+            >
+              <p
+                class="css-12ydly8"
+              >
+                01.04.2022
+              </p>
+              <a
+                class="chakra-link css-1l69cpg"
+                href="/en/post/13/old-post/"
+              >
+                Old post
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ArchivePage > should show a spinner while the posts load 1`] = `
+<div
+  class="css-6z51v3"
+>
+  <div
+    class="css-1jwfb6w"
+  >
+    <h1
+      class="chakra-heading css-106fy9k"
+    >
+      Archive
+    </h1>
+    <div
+      class="css-m9y3e5"
+    >
+      <div
+        class="css-uuwceh"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="Filter by category"
+          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          data-controls="menu:_r_0_:content"
+          data-part="trigger"
+          data-scope="menu"
+          data-state="closed"
+          data-uid="_r_0_"
+          dir="ltr"
+          id="menu:_r_0_:trigger"
+          type="button"
+        >
+          All categories
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="css-k35hx0"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="Filter by year"
+          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          data-controls="menu:_r_1_:content"
+          data-part="trigger"
+          data-scope="menu"
+          data-state="closed"
+          data-uid="_r_1_"
+          dir="ltr"
+          id="menu:_r_1_:trigger"
+          type="button"
+        >
+          All years
+          <svg
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="css-1mg3xil"
+    >
+      <span
+        aria-label="Loading posts"
+        class="chakra-spinner css-zirp18"
+      />
+    </div>
+  </div>
+</div>
+`;

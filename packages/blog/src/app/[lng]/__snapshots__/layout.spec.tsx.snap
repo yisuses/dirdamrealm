@@ -1,0 +1,126 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Locale layout > should prefetch the header and footer data and render the document 1`] = `
+<html
+  lang="en"
+  suppressHydrationWarning={true}
+>
+  <head>
+    <link
+      href="https://fonts.googleapis.com"
+      rel="preconnect"
+    />
+    <link
+      crossOrigin=""
+      href="https://fonts.gstatic.com"
+      rel="preconnect"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <AppProviders
+      lng="en"
+      resources={
+        {
+          "es": {
+            "common": {
+              "pageTitle": "Emoción Blanca",
+            },
+          },
+        }
+      }
+    >
+      <SpeedInsights />
+      <HydrationBoundary
+        state={
+          {
+            "mutations": [],
+            "queries": [
+              {
+                "dehydratedAt": 1792576800000,
+                "queryHash": "["categories","en"]",
+                "queryKey": [
+                  "categories",
+                  "en",
+                ],
+                "state": {
+                  "data": [
+                    {
+                      "code": "TRAVEL",
+                      "id": 1,
+                      "localizedName": "Viajes",
+                    },
+                  ],
+                  "dataUpdateCount": 1,
+                  "dataUpdatedAt": 1792576800000,
+                  "error": null,
+                  "errorUpdateCount": 0,
+                  "errorUpdatedAt": 0,
+                  "fetchFailureCount": 0,
+                  "fetchFailureReason": null,
+                  "fetchMeta": null,
+                  "fetchStatus": "idle",
+                  "isInvalidated": false,
+                  "status": "success",
+                },
+              },
+              {
+                "dehydratedAt": 1792576800000,
+                "queryHash": "["about"]",
+                "queryKey": [
+                  "about",
+                ],
+                "state": {
+                  "data": {
+                    "id": 1,
+                    "twitter": "@whemotion",
+                  },
+                  "dataUpdateCount": 1,
+                  "dataUpdatedAt": 1792576800000,
+                  "error": null,
+                  "errorUpdateCount": 0,
+                  "errorUpdatedAt": 0,
+                  "fetchFailureCount": 0,
+                  "fetchFailureReason": null,
+                  "fetchMeta": null,
+                  "fetchStatus": "idle",
+                  "isInvalidated": false,
+                  "status": "success",
+                },
+              },
+            ],
+          }
+        }
+      >
+        <MainLayout>
+          <p>
+            Page
+          </p>
+        </MainLayout>
+      </HydrationBoundary>
+    </AppProviders>
+    <div
+      id="modal-root"
+    />
+    <Script
+      async={true}
+      src="https://www.googletagmanager.com/gtag/js?id=G-GZ5NQYF1S9"
+      strategy="afterInteractive"
+    />
+    <Script
+      dangerouslySetInnerHTML={
+        {
+          "__html": "window.dataLayer = window.dataLayer || []
+            function gtag(){window.dataLayer.push(arguments)}
+            gtag('js', new Date()); gtag('config', 'G-GZ5NQYF1S9')",
+        }
+      }
+      id="G-GZ5NQYF1S9"
+      strategy="afterInteractive"
+    />
+  </body>
+</html>
+`;

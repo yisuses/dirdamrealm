@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContentList > should render a legacy unordered list of html strings 1`] = `
+<ul
+  class="chakra-list__root css-1y76u1q"
+  role="list"
+>
+  <li
+    class="chakra-list__item css-11uxivr"
+  >
+    <b>
+      First
+    </b>
+  </li>
+  <li
+    class="chakra-list__item css-11uxivr"
+  >
+    Second
+  </li>
+</ul>
+`;
+
+exports[`ContentList > should render a nested ordered list 1`] = `
+<ol
+  class="chakra-list__root css-1y76u1q"
+  role="list"
+>
+  <li
+    class="chakra-list__item css-11uxivr"
+  >
+    Parent
+    <ol
+      class="chakra-list__root css-1ws3fjk"
+      role="list"
+    >
+      <li
+        class="chakra-list__item css-11uxivr"
+      >
+        Child
+      </li>
+      <li
+        class="chakra-list__item css-11uxivr"
+      >
+        Legacy child
+      </li>
+    </ol>
+  </li>
+  <li
+    class="chakra-list__item css-11uxivr"
+  />
+  <li
+    class="chakra-list__item css-11uxivr"
+  />
+</ol>
+`;

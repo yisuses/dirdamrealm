@@ -88,7 +88,7 @@ export default async function Page({ params }: CategoryPageProps) {
   const ldJsonPage: WebPage = {
     '@type': 'WebPage',
     headline: t('categoryPage.title', { categoryName: category.localizedName }),
-    url: publicUrl(`${localePrefix(lng)}${buildCategoryPath(category.code, category.name)}`),
+    url: publicUrl(`${localePrefix(lng)}${buildCategoryPath(category.code, category.localizedName)}`),
   }
   const ldJsonItems: ItemList = {
     '@type': 'ItemList',

@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GlobalError > should report the error and render its own document 1`] = `
+<body>
+  <h1>
+    Something went wrong
+  </h1>
+</body>
+`;

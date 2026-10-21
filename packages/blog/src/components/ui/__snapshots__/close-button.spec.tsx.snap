@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CloseButton > should render an accessible ghost button with the X icon by default 1`] = `
+<button
+  aria-label="Close"
+  class="chakra-button css-1do5zui"
+  type="button"
+>
+  <svg
+    fill="none"
+    height="1em"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M18 6 6 18"
+    />
+    <path
+      d="m6 6 12 12"
+    />
+  </svg>
+</button>
+`;

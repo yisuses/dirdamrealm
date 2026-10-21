@@ -1,0 +1,165 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomePage > should render the header post and the latest posts with the categories 1`] = `
+<div>
+  <div>
+    <div
+      class="css-1cb4st4"
+    >
+      <img
+        alt="Imagen de la entrada "Test Post""
+        src="/media/large_test.jpg"
+      />
+      <div
+        class="css-ws1zca"
+      >
+        <div
+          class="css-14tqugy"
+        >
+          <div
+            aria-label="Test Category"
+            class="chakra-tag__root css-cpcb23"
+          >
+            <span
+              class="chakra-tag__label css-lgd7le"
+            >
+              Test Category
+            </span>
+          </div>
+          <div
+            aria-label="Inglés"
+            class="chakra-tag__root css-cpcb23"
+          >
+            <span
+              class="chakra-tag__label css-lgd7le"
+            >
+              Inglés
+            </span>
+          </div>
+        </div>
+        <a
+          class="chakra-link css-1i4f3aj"
+          href="/post/1/test-post/"
+        >
+          Test Post
+        </a>
+        <div
+          class="css-p069g"
+        >
+          <p
+            class="css-1jd7gge"
+          >
+            01.04.2022
+          </p>
+          <span
+            aria-orientation="horizontal"
+            class="chakra-separator css-hr9wd4"
+            role="separator"
+          />
+          <p
+            class="css-1j55sjn"
+          >
+            This is a test post
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-4q9b3d"
+  >
+    <h2
+      class="chakra-heading css-1v8a6k5"
+    >
+      Últimas entradas
+    </h2>
+    <div
+      class="chakra-stack css-19n1s3x"
+    >
+      <p
+        class="css-1byhqre"
+        role="button"
+        tabindex="0"
+      >
+        Todas
+      </p>
+      <p
+        class="css-1lqjy9j"
+        role="button"
+        tabindex="0"
+      >
+        Test Category
+      </p>
+    </div>
+    <div
+      class="css-al238s"
+    >
+      <div
+        class="css-1v10vm4"
+      >
+        <div
+          class="css-1pi04bi"
+        >
+          <div
+            class="css-1hspyk4"
+          >
+            <div
+              aria-label="categories.test-category"
+              class="chakra-tag__root css-v5duvn"
+            >
+              <span
+                class="chakra-tag__label css-lgd7le"
+              >
+                categories.test-category
+              </span>
+            </div>
+            <div
+              aria-label="Inglés"
+              class="chakra-tag__root css-v5duvn"
+            >
+              <span
+                class="chakra-tag__label css-lgd7le"
+              >
+                Inglés
+              </span>
+            </div>
+          </div>
+          <a
+            class="chakra-link css-hvjfuh"
+            href="/post/3/otro-post/"
+          >
+            <img
+              alt="Otro post image"
+              src="/media/small_test.jpg"
+            />
+          </a>
+        </div>
+        <p
+          class="css-1iks56v"
+        >
+          01.04.2022
+        </p>
+        <a
+          class="chakra-link css-tb9idc"
+          href="/post/3/otro-post/"
+          title="Otro post"
+        >
+          Otro post
+        </a>
+        <p
+          class="css-17a2hvl"
+          title="This is a test post"
+        >
+          This is a test post
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HomePage > should tell there are no articles when nothing is published 1`] = `
+<div>
+  No hay artículos publicados.
+</div>
+`;

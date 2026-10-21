@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Category page > Page > should prefetch the category and its latest posts and render the page with its JSON-LD 1`] = `
+<div>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"WebPage","headline":"Categoría: Viajes y más","url":"https://example.com/category/TRAVEL/viajes-y-mas/"}
+  </script>
+  <script
+    type="application/ld+json"
+  >
+    {"@context":"https://schema.org/","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://example.com/post/7/hola-mundo/"}]}
+  </script>
+  <pre
+    data-testid="category-page"
+  >
+    [{"queryKey":["category","TRAVEL"],"data":[{"id":1,"code":"TRAVEL","name":"Travel","localizedName":"Viajes y más"}]},{"queryKey":["latestPosts","TRAVEL"],"data":[{"id":7,"title":"Hola Mundo"}]}]
+  </pre>
+</div>
+`;
+
+exports[`Category page > generateMetadata > should build the metadata of the category 1`] = `
+{
+  "description": "Emoción Blanca: Página de la categoría Viajes y más",
+  "icons": {
+    "icon": "/favicon.ico",
+  },
+  "keywords": "football,travel,work,life,balance,music,politics,news",
+  "openGraph": {
+    "alternateLocale": [
+      "en_GB",
+    ],
+    "description": "Emoción Blanca: Página de la categoría Viajes y más",
+    "images": [
+      "https://example.com/images/WElogo.png",
+    ],
+    "locale": "es_ES",
+    "siteName": "White emotion",
+    "title": "Emoción Blanca - Categoría: Viajes y más",
+    "type": "website",
+    "url": "https://example.com/category/TRAVEL/viajes-y-mas/",
+  },
+  "other": {
+    "apple-mobile-web-app-capable": "yes",
+  },
+  "title": "Emoción Blanca - Categoría: Viajes y más",
+}
+`;

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { LuChevronDown, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
 
 import { getCategories } from '@blog/api'
-import { HeaderLogo, Modal, SearchPosts } from '@blog/components'
+import { HeaderLogo, Modal, SearchPosts } from '@blog/components/common'
 import { useColorMode } from '@blog/components/ui/color-mode'
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
 import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
@@ -38,11 +38,10 @@ export function Header({ categories }: HeaderProps) {
   const { open: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
 
   // Browser path without the (non-default) locale prefix, for active-link comparisons.
-  const barePath =
-    LOCALES.filter(l => l !== DEFAULT_LOCALE).reduce(
-      (acc, l) => (acc === `/${l}` || acc.startsWith(`/${l}/`) ? acc.slice(l.length + 1) || '/' : acc),
-      pathname,
-    ) || '/'
+  const barePath = LOCALES.filter(l => l !== DEFAULT_LOCALE).reduce(
+    (acc, l) => (acc === `/${l}` || acc.startsWith(`/${l}/`) ? acc.slice(l.length + 1) || '/' : acc),
+    pathname,
+  )
 
   const logo = (
     <NextLink href={localizeHref('/')}>
