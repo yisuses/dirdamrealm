@@ -146,11 +146,12 @@ describe('Category page', () => {
       expect(container).toMatchSnapshot()
     })
 
-    it('should prefix the urls for other locales', async () => {
+    it('should prefix the urls for other locales, matching the canonical category url', async () => {
       const { container } = renderWithProviders(await Page(params('en')), { lng: 'en' })
 
       const [page, items] = ldJson(container)
-      expect(page.url).toBe('https://example.com/en/category/TRAVEL/travel/')
+      // Built from the localized name, like the canonical url the page redirects to.
+      expect(page.url).toBe('https://example.com/en/category/TRAVEL/viajes-y-mas/')
       expect(items.itemListElement[0].url).toBe('https://example.com/en/post/7/hola-mundo/')
     })
 

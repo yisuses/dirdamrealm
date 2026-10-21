@@ -5,7 +5,7 @@ exports[`Category page > Page > should prefetch the category and its latest post
   <script
     type="application/ld+json"
   >
-    {"@context":"https://schema.org/","@type":"WebPage","headline":"Categoría: Viajes y más","url":"https://example.com/category/TRAVEL/travel/"}
+    {"@context":"https://schema.org/","@type":"WebPage","headline":"Categoría: Viajes y más","url":"https://example.com/category/TRAVEL/viajes-y-mas/"}
   </script>
   <script
     type="application/ld+json"

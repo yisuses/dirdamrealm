@@ -47,6 +47,18 @@ describe('GET /sitemap/post.xml', () => {
     expect(await response.text()).toMatchSnapshot()
   })
 
+  it('should leave out the image of a post without cover and declare every prefix it uses', async () => {
+    mockedGetAllPosts.mockResolvedValue([post(9, 'Solo en español', 'es')])
+
+    const xml = await (await GET()).text()
+
+    expect(xml).not.toContain('null')
+    expect(xml).not.toContain('<image:image>')
+    // An undeclared prefix makes the whole sitemap malformed XML.
+    const usedPrefixes = new Set([...xml.matchAll(/<\/?(\w+):\w+/g)].map(([, prefix]) => prefix))
+    usedPrefixes.forEach(prefix => expect(xml).toContain(`xmlns:${prefix}=`))
+  })
+
   it('should return an empty url set when there are no posts', async () => {
     mockedGetAllPosts.mockResolvedValue(null as unknown as Post[])
 

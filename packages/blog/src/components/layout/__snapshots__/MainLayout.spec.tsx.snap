@@ -352,7 +352,6 @@ exports[`MainLayout > should render the header, the page inside main and the foo
           >
             In other media
           </p>
-          0
         </div>
       </div>
     </div>

@@ -16,7 +16,6 @@ exports[`GET /sitemap/post.xml > should list every post with its cover image and
             <url>
             <loc>https://example.com/post/7/hola-mundo/</loc>
             <lastmod>2026-10-21T08:00:00.000Z</lastmod>
-            <news:publication_date>2026-10-20T11:30:00.000Z</news:publication_date>
             <image:image>
               <image:loc>/media/small.jpg</image:loc>
             </image:image>
@@ -26,16 +25,14 @@ exports[`GET /sitemap/post.xml > should list every post with its cover image and
             <url>
             <loc>https://example.com/en/post/8/hello-world/</loc>
             <lastmod>2026-10-21T08:00:00.000Z</lastmod>
-            <news:publication_date>2026-10-20T11:30:00.000Z</news:publication_date>
-            null
+            
             <xhtml:link rel="alternate" hreflang="es-ES" href="https://example.com/post/7/hola-mundo/"/><xhtml:link rel="alternate" hreflang="en-US" href="https://example.com/en/post/8/hello-world/"/>
             </url>
           
             <url>
             <loc>https://example.com/post/9/solo-en-espanol/</loc>
             <lastmod>2026-10-21T08:00:00.000Z</lastmod>
-            <news:publication_date>2026-10-20T11:30:00.000Z</news:publication_date>
-            null
+            
             
             </url>
           

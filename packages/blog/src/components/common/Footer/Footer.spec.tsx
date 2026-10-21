@@ -107,5 +107,7 @@ describe('Footer', () => {
 
     const otherMedia = screen.getByText('En otros medios').parentElement!
     expect(within(otherMedia).queryByRole('link')).not.toBeInTheDocument()
+    // `socials.length && …` used to render the bare `0`.
+    expect(otherMedia).toHaveTextContent(/^En otros medios$/)
   })
 })

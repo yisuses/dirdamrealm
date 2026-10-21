@@ -73,7 +73,7 @@ export function Footer({ categories, about }: FooterProps) {
 
           <Stack align={{ base: 'center', md: 'flex-start' }}>
             <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
-            {about.display && socials.length && (
+            {about.display && socials.length > 0 && (
               <Stack direction="row" gap={6} paddingBottom="2">
                 {socials.map(({ label, href, icon }, index) => (
                   <SocialButton key={index} label={label} href={href}>
