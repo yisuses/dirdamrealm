@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { toBase64 } from './toBase64'
 
@@ -17,5 +17,18 @@ describe('toBase64', () => {
 
   it('should return an empty string when given an empty string', () => {
     expect(toBase64('')).toBe('')
+  })
+
+  describe('in the browser', () => {
+    afterEach(() => {
+      vi.unstubAllGlobals()
+    })
+
+    it('should encode with btoa, keeping non-latin1 characters', () => {
+      vi.stubGlobal('window', { btoa })
+
+      expect(toBase64('Hello, world!')).toBe('SGVsbG8sIHdvcmxkIQ==')
+      expect(toBase64('¿Cómo estás?')).toBe('wr9Dw7NtbyBlc3TDoXM/')
+    })
   })
 })

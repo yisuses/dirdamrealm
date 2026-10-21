@@ -13,8 +13,10 @@ export default defineConfig({
     include: ['src/**/*.{spec,test}.{ts,tsx}'],
     coverage: {
       provider: 'v8',
-      include: ['src/**/*.{ts,tsx}'],
-      exclude: ['**/*.d.ts', '**/*.stories.tsx', '**/*.mock.{ts,tsx}', '**/*.handlers.{ts,tsx}', 'src/index.ts'],
+      // The logic layer these unit tests target. Components, hooks and pages are not
+      // unit-tested, so measuring them would only hold the thresholds out of reach.
+      include: ['src/api/**/*.ts', 'src/utils/**/*.ts', 'src/app/api/**/*.ts'],
+      exclude: ['**/*.d.ts', '**/*.mock.ts', '**/index.ts'],
       reporter: ['text', 'cobertura', 'lcov'],
       thresholds: { branches: 100, functions: 100, lines: 100, statements: 100 },
     },

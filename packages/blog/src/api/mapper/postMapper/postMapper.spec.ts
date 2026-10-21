@@ -1,9 +1,13 @@
+import * as sentry from '@sentry/nextjs'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { postMock, postResponseEnMock } from '@blog/api/post'
 
+import * as categoryMapperModule from '../categorymapper/categoryMapper'
 import * as writerMapperModule from '../writterMapper/writerMapper'
-import { postMapper } from './postMapper'
+import { algoliaPostMapper, postMapper, safePostMapper } from './postMapper'
+
+vi.mock('@sentry/nextjs', () => ({ captureException: vi.fn() }))
 
 describe('postMapper', () => {
   afterEach(() => {
@@ -88,5 +92,70 @@ describe('postMapper', () => {
         writer: { potato: 'wadus' },
       } as unknown as StrapiDataItem<PostResponseEntity>)
     }).toThrow()
+  })
+})
+
+describe('safePostMapper', () => {
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it('should map a valid post', () => {
+    expect(safePostMapper(postResponseEnMock)).toEqual(postMock)
+  })
+
+  it('should report a malformed post and skip it', () => {
+    vi.spyOn(JSON, 'parse').mockImplementation(() => {
+      throw new Error('This is an error')
+    })
+
+    expect(safePostMapper(postResponseEnMock)).toBeNull()
+    expect(sentry.captureException).toHaveBeenCalled()
+  })
+})
+
+describe('algoliaPostMapper', () => {
+  const hit = {
+    objectID: '7',
+    title: 'Hola',
+    summary: 'Resumen',
+    imgUrl: 'https://example.com/a.png',
+    publishedAt: '2026-10-20T10:00:00.000Z',
+    createdAt: '2026-10-19T10:00:00.000Z',
+    coverImageSourceUrl: '',
+    locale: 'es',
+    categories: [{ id: 1, code: 'ENG', name: 'Ingeniería', translations: { en: 'Engineering' } }],
+  } as unknown as AlgoliaPostEntity
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it('should map a search hit to a post', () => {
+    expect(algoliaPostMapper(hit)).toMatchObject({
+      id: 7,
+      title: 'Hola',
+      imgUrl: 'https://example.com/a.png',
+      localizations: null,
+      categories: [{ code: 'ENG', localizedName: 'Ingeniería' }],
+    })
+  })
+
+  it('should default a missing image and categories', () => {
+    expect(
+      algoliaPostMapper({ ...hit, imgUrl: undefined, categories: undefined } as unknown as AlgoliaPostEntity),
+    ).toMatchObject({
+      imgUrl: '',
+      categories: null,
+    })
+  })
+
+  it('should report malformed categories and fall back to none', () => {
+    vi.spyOn(categoryMapperModule, 'algoliaCategoryMapper').mockImplementation(() => {
+      throw new Error('bad category')
+    })
+
+    expect(algoliaPostMapper(hit).categories).toEqual([])
+    expect(sentry.captureException).toHaveBeenCalledWith(expect.stringContaining('bad category'))
   })
 })

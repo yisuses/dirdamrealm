@@ -75,4 +75,12 @@ describe('getLocalizedPosts', () => {
 
     expect(result).toEqual(cyclicLocalized)
   })
+
+  it('should visit a post listed twice in the same localizations only once', () => {
+    const english = basePost({ id: 1, locale: 'en', title: 'EN' })
+    const spanish = basePost({ id: 2, locale: 'es', title: 'ES' })
+    english.localizations = [spanish, spanish]
+
+    expect(getLocalizedPosts([english], 'es')).toEqual([spanish])
+  })
 })
