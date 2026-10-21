@@ -4,10 +4,11 @@ import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 
-import { Tag } from '@blog/components'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocalizeHref } from '@blog/hooks'
 import { buildBlurDataUrl, buildPostPath, formatPostDate } from '@blog/utils'
+
+import { Tag } from '../Tag'
 
 export type PostCardProps = {
   id: number

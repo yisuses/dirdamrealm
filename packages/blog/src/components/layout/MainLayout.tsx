@@ -3,7 +3,7 @@
 import { Box } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
-import { CookieBanner, Footer, GlobalStyles, Header } from '@blog/components'
+import { CookieBanner, Footer, GlobalStyles, Header } from '@blog/components/common'
 import { useGetData, useLocale, useLocalizeHref } from '@blog/hooks'
 import { buildCategoryPath } from '@blog/utils'
 import { QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'

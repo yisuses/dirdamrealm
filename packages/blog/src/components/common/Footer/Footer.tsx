@@ -8,7 +8,7 @@ import TwitterLogo from '@iconify/icons-ion/logo-twitter'
 import { Icon, IconifyIcon } from '@iconify/react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { SocialButton } from '@blog/components'
+import { SocialButton } from '@blog/components/common'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 
 import { FooterListHeader } from './FooterListHeader'
