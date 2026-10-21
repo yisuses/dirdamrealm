@@ -1,6 +1,11 @@
 import * as sentry from '@sentry/nextjs'
 import { revalidatePath } from 'next/cache'
+import { after } from 'next/server'
 import { timingSafeEqual } from 'node:crypto'
+
+import { getPostById } from '@blog/api'
+import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
+import { buildCategoryPath, buildPostPath, publicUrl } from '@blog/utils'
 
 /**
  * Expires the page caches that Strapi content feeds, so an edit or a new entry shows up
@@ -22,6 +27,68 @@ const dynamicRoutes = [
 
 const staticRoutes = ['/sitemap.xml', '/sitemap/post.xml', '/sitemap/page.xml', '/sitemap/category.xml']
 
+/** The subset of a Strapi webhook body this route reads. */
+interface StrapiWebhookPayload {
+  model?: string
+  entry?: {
+    id?: number
+    publishedAt?: string | null
+    code?: string
+    name?: string
+    translations?: Partial<Record<AppLocales, string>>
+  }
+}
+
+function localePrefix(lng: AppLocales) {
+  return lng === DEFAULT_LOCALE ? '' : `/${lng}`
+}
+
+async function getPublishedPost(id: number) {
+  try {
+    return await getPostById({ id })
+  } catch (error) {
+    sentry.captureException(error)
+    return undefined
+  }
+}
+
+/**
+ * The public urls an edit is most likely to be checked on: the home and the archive in every
+ * locale, plus the post and its categories, or the category, that the event is about.
+ *
+ * A post is looked up in Strapi rather than built from the payload: the webhook does not
+ * carry its categories, and only the published entry has the id its url is built from.
+ */
+export async function pathsToWarm({ model, entry }: StrapiWebhookPayload): Promise<string[]> {
+  const paths = LOCALES.flatMap(lng => [`${localePrefix(lng)}/`, `${localePrefix(lng)}/archive/`])
+
+  if (model === 'post' && entry?.id && entry.publishedAt) {
+    const post = await getPublishedPost(entry.id)
+    if (post) {
+      const prefix = localePrefix(post.locale)
+      paths.push(`${prefix}${buildPostPath(post.id, post.title)}`)
+      post.categories?.forEach(category =>
+        paths.push(`${prefix}${buildCategoryPath(category.code, category.localizedName)}`),
+      )
+    }
+  }
+
+  if (model === 'category' && entry?.code && entry.name) {
+    const { code, name, translations } = entry
+    LOCALES.forEach(lng => paths.push(`${localePrefix(lng)}${buildCategoryPath(code, translations?.[lng] || name)}`))
+  }
+
+  return paths
+}
+
+async function readPayload(request: Request): Promise<StrapiWebhookPayload> {
+  try {
+    return (await request.json()) ?? {}
+  } catch {
+    return {}
+  }
+}
+
 function secretMatches(provided: string | null, expected: string) {
   if (!provided) {
     return false
@@ -33,7 +100,7 @@ function secretMatches(provided: string | null, expected: string) {
   return providedBytes.length === expectedBytes.length && timingSafeEqual(providedBytes, expectedBytes)
 }
 
-export function POST(request: Request) {
+export async function POST(request: Request) {
   // Trimmed because a secret pasted through a dashboard commonly picks up a trailing
   // newline, and HTTP strips whitespace around header values -- so an untrimmed one
   // could never be matched by any client, leaving the route permanently unreachable.
@@ -52,6 +119,16 @@ export function POST(request: Request) {
 
   dynamicRoutes.forEach(route => revalidatePath(route, 'page'))
   staticRoutes.forEach(route => revalidatePath(route))
+
+  // From a Route Handler `revalidatePath` only marks pages stale: the next visit is still
+  // served the old page while it regenerates in the background. Make that visit here, after
+  // the response, so the regeneration starts now and the editor sees the change on their
+  // first look. A handful of pages, so a handful of ISR writes per Strapi save.
+  const payload = await readPayload(request)
+  after(async () => {
+    const paths = await pathsToWarm(payload)
+    await Promise.allSettled(paths.map(path => fetch(publicUrl(path), { cache: 'no-store' })))
+  })
 
   return Response.json({ revalidated: true, at: new Date().toISOString() })
 }
