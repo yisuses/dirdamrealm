@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { seoName } from './seoName'
 
 describe('seoName', () => {
@@ -11,5 +13,10 @@ describe('seoName', () => {
     const input = 'This has special characters: áéíóúñ'
     const expectedOutput = 'this-has-special-characters-aeioun'
     expect(seoName(input)).toEqual(expectedOutput)
+  })
+
+  it('should return an empty string for empty or non-string input', () => {
+    expect(seoName('')).toBe('')
+    expect(seoName(undefined as unknown as string)).toBe('')
   })
 })

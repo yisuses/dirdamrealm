@@ -1,8 +1,9 @@
 import type { ServerResponse } from 'http'
+import { describe, expect, it, vi } from 'vitest'
 
 import { setCacheControl } from './setCacheControl'
 
-const makeRes = () => ({ setHeader: jest.fn() }) as unknown as ServerResponse
+const makeRes = () => ({ setHeader: vi.fn() }) as unknown as ServerResponse
 
 describe('setCacheControl', () => {
   it('sets a public s-maxage + stale-while-revalidate policy with defaults', () => {

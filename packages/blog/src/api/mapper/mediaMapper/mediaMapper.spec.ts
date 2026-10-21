@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { mediaResponseEntity } from '@blog/api/media'
 
 import { mediaMapper } from './mediaMapper'
