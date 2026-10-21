@@ -2,8 +2,6 @@
 
 exports[`Modal > should render the title and content when open 1`] = `
 <div
-  aria-describedby="dialog:_r_0_:description"
-  aria-labelledby="dialog:_r_0_:title"
   aria-modal="true"
   class="chakra-dialog__content css-u3jqp9"
   data-part="content"
@@ -12,6 +10,7 @@ exports[`Modal > should render the title and content when open 1`] = `
   dir="ltr"
   id="dialog:_r_0_:content"
   role="dialog"
+  style="--layer-index: 0; --nested-layer-count: 0; pointer-events: auto;"
   tabindex="-1"
 >
   <div

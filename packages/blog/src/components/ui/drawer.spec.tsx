@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
+import { waitForOverlay } from '@blog/test/overlay'
 import { renderWithProviders } from '@blog/test/render'
 
 import {
@@ -49,7 +50,7 @@ describe('Drawer', () => {
     expect(onOpenChange).toHaveBeenLastCalledWith(expect.objectContaining({ open: false }))
   })
 
-  it('should render inline without a backdrop', () => {
+  it('should render inline without a backdrop', async () => {
     const { container } = renderWithProviders(
       <DrawerRoot open>
         <DrawerContent portalled={false} backdrop={false} offset="4">
@@ -60,6 +61,7 @@ describe('Drawer', () => {
 
     expect(container.querySelector('[data-part="backdrop"]')).not.toBeInTheDocument()
     expect(screen.getByRole('dialog', { name: 'Inline' })).toBeInTheDocument()
+    await waitForOverlay(screen.getByRole('dialog', { name: 'Inline' }))
     expect(container.firstChild).toMatchSnapshot()
   })
 })

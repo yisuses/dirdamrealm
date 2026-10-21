@@ -7,9 +7,9 @@ exports[`Drawer > should render inline without a backdrop 1`] = `
   data-scope="dialog"
   dir="ltr"
   id="dialog:_r_1_:positioner"
+  style="--layer-index: 0; --nested-layer-count: 0; --z-index: auto;"
 >
   <div
-    aria-describedby="dialog:_r_1_:description"
     aria-labelledby="dialog:_r_1_:title"
     aria-modal="true"
     class="chakra-drawer__content css-16k0lpb"
@@ -19,6 +19,7 @@ exports[`Drawer > should render inline without a backdrop 1`] = `
     dir="ltr"
     id="dialog:_r_1_:content"
     role="dialog"
+    style="--layer-index: 0; --nested-layer-count: 0; pointer-events: auto;"
     tabindex="-1"
   >
     <h2

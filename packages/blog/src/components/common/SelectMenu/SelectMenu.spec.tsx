@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
+import { waitForOverlay } from '@blog/test/overlay'
 import { renderWithProviders } from '@blog/test/render'
 
 import { SelectMenu, type SelectMenuOption } from './SelectMenu'
@@ -42,6 +43,7 @@ describe('SelectMenu', () => {
     await user.click(screen.getByRole('button', { name: 'Categoría' }))
     const items = await screen.findAllByRole('menuitem')
     expect(items.map(item => item.textContent)).toEqual(['Todas', 'Ingeniería', 'Historia y pensamiento'])
+    await waitForOverlay(screen.getByRole('menu'))
     expect(screen.getByRole('menu')).toMatchSnapshot()
 
     await user.click(screen.getByRole('menuitem', { name: 'Historia y pensamiento' }))

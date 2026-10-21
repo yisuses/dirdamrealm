@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import type { DrawerRoot as DrawerRootType } from '@blog/components/ui/drawer'
 import { navigation } from '@blog/test/navigation'
+import { waitForOverlay } from '@blog/test/overlay'
 import { renderWithProviders } from '@blog/test/render'
 
 import { HeaderMenu } from './HeaderMenu'
@@ -49,6 +50,7 @@ describe('HeaderMenu', () => {
     expect(screen.getByRole('link', { name: 'Música' })).toHaveAttribute('href', '/category/music/')
     expect(screen.getByRole('link', { name: 'Cine' })).toHaveAttribute('href', '/category/cinema/')
     expect(screen.getByRole('link', { name: 'Archivo' })).toHaveAttribute('href', '/archive/')
+    await waitForOverlay(dialog)
     expect(dialog).toMatchSnapshot()
   })
 

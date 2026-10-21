@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
+import { waitForOverlay } from '@blog/test/overlay'
 import { renderWithProviders } from '@blog/test/render'
 
 import {
@@ -74,6 +75,7 @@ describe('Menu', () => {
     expect(screen.getByRole('menuitemradio', { name: 'Español' })).toBeChecked()
     expect(screen.getByRole('menuitemradio', { name: 'Inglés' })).not.toBeChecked()
     expect(screen.getByRole('menuitem', { name: '*Más' })).toHaveAttribute('aria-haspopup', 'menu')
+    await waitForOverlay(screen.getAllByRole('menu')[0]!)
     expect(container.firstChild?.nextSibling).toMatchSnapshot()
 
     await user.click(screen.getByRole('menuitemcheckbox', { name: 'Cuadrícula' }))

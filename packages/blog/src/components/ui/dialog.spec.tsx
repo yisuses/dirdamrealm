@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
+import { waitForOverlay } from '@blog/test/overlay'
 import { renderWithProviders } from '@blog/test/render'
 
 import {
@@ -50,7 +51,7 @@ describe('Dialog', () => {
     expect(onOpenChange).toHaveBeenLastCalledWith(expect.objectContaining({ open: false }))
   })
 
-  it('should render inline without a backdrop and with custom close content', () => {
+  it('should render inline without a backdrop and with custom close content', async () => {
     const { container } = renderWithProviders(
       <DialogRoot open>
         <DialogContent portalled={false} backdrop={false}>
@@ -62,6 +63,7 @@ describe('Dialog', () => {
 
     expect(container.querySelector('[data-part="backdrop"]')).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Cerrar' })).toHaveTextContent('x')
+    await waitForOverlay(screen.getByRole('dialog'))
     expect(container.firstChild).toMatchSnapshot()
   })
 })

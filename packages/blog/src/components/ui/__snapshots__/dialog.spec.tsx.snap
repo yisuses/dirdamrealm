@@ -7,9 +7,9 @@ exports[`Dialog > should render inline without a backdrop and with custom close 
   data-scope="dialog"
   dir="ltr"
   id="dialog:_r_1_:positioner"
+  style="--layer-index: 0; --nested-layer-count: 0; --z-index: auto;"
 >
   <div
-    aria-describedby="dialog:_r_1_:description"
     aria-labelledby="dialog:_r_1_:title"
     aria-modal="true"
     class="chakra-dialog__content css-1n543c7"
@@ -19,6 +19,7 @@ exports[`Dialog > should render inline without a backdrop and with custom close 
     dir="ltr"
     id="dialog:_r_1_:content"
     role="dialog"
+    style="--layer-index: 0; --nested-layer-count: 0; pointer-events: auto;"
     tabindex="-1"
   >
     <h2

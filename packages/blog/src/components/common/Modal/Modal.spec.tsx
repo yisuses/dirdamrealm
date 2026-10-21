@@ -4,6 +4,7 @@ import type { ComponentProps } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { navigation } from '@blog/test/navigation'
+import { waitForOverlay } from '@blog/test/overlay'
 import { renderWithProviders } from '@blog/test/render'
 
 import { Modal } from './Modal'
@@ -35,6 +36,7 @@ describe('Modal', () => {
     const dialog = await screen.findByRole('dialog')
     expect(screen.getByText('Buscar')).toBeInTheDocument()
     expect(screen.getByText('Contenido')).toBeInTheDocument()
+    await waitForOverlay(dialog)
     expect(dialog).toMatchSnapshot()
   })
 
