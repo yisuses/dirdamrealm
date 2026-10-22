@@ -12,10 +12,10 @@ import { sql } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { readFileSync } from 'node:fs'
 import { parseEnv } from 'node:util'
-import { Client, Pool } from 'pg'
+import { Client, Pool, types } from 'pg'
 
 import * as schema from '../../src/db/schema'
-import { type StrapiData, buildMigration } from './transform'
+import { type StrapiData, buildMigration, parseStrapiTimestamp } from './transform'
 
 function sourceConnectionString() {
   // `railway run` injects the database's own variables; the public TCP proxy is what is
@@ -67,6 +67,7 @@ async function readStrapi(client: Client): Promise<StrapiData> {
 }
 
 async function main() {
+  types.setTypeParser(types.builtins.TIMESTAMP, parseStrapiTimestamp)
   const dryRun = process.argv.includes('--dry-run')
 
   const source = new Client({ connectionString: sourceConnectionString() })

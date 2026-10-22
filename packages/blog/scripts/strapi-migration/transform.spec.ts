@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-import { type StrapiData, buildMigration, newReport, toStoredImage, transformContent } from './transform'
+import {
+  type StrapiData,
+  buildMigration,
+  newReport,
+  parseStrapiTimestamp,
+  toStoredImage,
+  transformContent,
+} from './transform'
 
 const date = new Date('2026-01-01T00:00:00.000Z')
 const content = (blocks: { type: string; data?: object }[]) =>
@@ -149,6 +156,12 @@ describe('transformContent', () => {
     expect(transformContent('not json', newReport())).toBeNull()
     expect(transformContent('{"time":1}', newReport())).toBeNull()
     expect(transformContent('null', newReport())).toBeNull()
+  })
+})
+
+describe('parseStrapiTimestamp', () => {
+  it('should read a timestamp without time zone as UTC, not local time', () => {
+    expect(parseStrapiTimestamp('2026-10-20 19:26:47.963').toISOString()).toBe('2026-10-20T19:26:47.963Z')
   })
 })
 

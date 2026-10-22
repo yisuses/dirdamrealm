@@ -183,6 +183,14 @@ export function transformContent(raw: string | null, report: MigrationReport): E
   return { time: parsed.time ?? 0, version: parsed.version ?? '', blocks }
 }
 
+/**
+ * Strapi stores UTC in `timestamp without time zone` columns, which node-postgres would read as
+ * local time (two hours off in Madrid in summer). Registered as the parser for that type.
+ */
+export function parseStrapiTimestamp(value: string): Date {
+  return new Date(`${value.replace(' ', 'T')}Z`)
+}
+
 export function toStoredImage(file: StrapiFile): StoredImage | null {
   const publicId = file.provider_metadata?.public_id
   if (!publicId || !file.width || !file.height) {
