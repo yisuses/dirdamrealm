@@ -21,6 +21,12 @@ exports[`admin panel > should offer every section except home on the home page 1
   >
     <a
       class="chakra-link css-vsn4ng"
+      href="/admin/imagenes/"
+    >
+      Imágenes
+    </a>
+    <a
+      class="chakra-link css-vsn4ng"
       href="/admin/categorias/"
     >
       Categorías

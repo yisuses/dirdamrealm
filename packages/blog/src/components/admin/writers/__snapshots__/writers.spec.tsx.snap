@@ -51,7 +51,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           required=""
         />
         <span
-          class="chakra-field__helperText css-nyfxvo"
+          class="chakra-field__helperText css-ghvdt6"
           data-part="helper-text"
           data-scope="field"
           id="field::_r_d_::helper-text"
@@ -167,7 +167,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           </div>
         </div>
         <span
-          class="chakra-field__helperText css-nyfxvo"
+          class="chakra-field__helperText css-ghvdt6"
           data-part="helper-text"
           data-scope="field"
           id="field::_r_g_::helper-text"

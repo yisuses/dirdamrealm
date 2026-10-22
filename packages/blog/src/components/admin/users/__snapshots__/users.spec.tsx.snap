@@ -81,7 +81,7 @@ exports[`UserForm > should create a user, requiring a confirmed password 1`] = `
           type="email"
         />
         <span
-          class="chakra-field__helperText css-nyfxvo"
+          class="chakra-field__helperText css-ghvdt6"
           data-part="helper-text"
           data-scope="field"
           id="field::_r_5_::helper-text"
@@ -137,7 +137,7 @@ exports[`UserForm > should create a user, requiring a confirmed password 1`] = `
           </button>
         </div>
         <span
-          class="chakra-field__helperText css-nyfxvo"
+          class="chakra-field__helperText css-ghvdt6"
           data-part="helper-text"
           data-scope="field"
           id="field::_r_6_::helper-text"

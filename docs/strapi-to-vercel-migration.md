@@ -177,8 +177,8 @@ Decisiones:
 
 - **Lista todas las imágenes** de Cloudinary en una cuadrícula con miniaturas, con **búsqueda por nombre** y scroll infinito (Search API de Cloudinary, paginada por cursor).
 - **Subir**: arrastrar y soltar o elegir archivos, **varias a la vez**, con barra de progreso por archivo. Se pide nombre y texto alternativo (se sugiere el nombre del archivo).
-- **Editar**: cambiar el nombre (renombra el `public_id`) y el texto alternativo; ver tamaño, dimensiones y en qué entradas se usa.
-- **Borrar**: con confirmación y **aviso si la imagen está en uso** en alguna entrada.
+- **Editar**: cambiar el nombre y el texto alternativo; ver tamaño, dimensiones y en qué entradas se usa. El nombre se guarda en el `context` de la imagen y **no se renombra el `public_id`**: las entradas guardan la URL de cada imagen, que dejaría de funcionar. Una copia del nombre sin tildes permite buscar sin ellas.
+- **Borrar**: con confirmación, y **solo si ninguna entrada la usa** (portada, texto o borrador sin publicar); si se usa, el panel lista esas entradas. Se borran también las copias que Strapi hizo de ella (`thumbnail_`, `small_`, `medium_`, `large_`), que la biblioteca no muestra.
 
 **En el editor de entradas**, varias formas de añadir una imagen al momento:
 

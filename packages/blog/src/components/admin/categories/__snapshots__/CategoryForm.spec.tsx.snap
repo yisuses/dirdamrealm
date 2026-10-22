@@ -52,7 +52,7 @@ exports[`CategoryForm > should create a category, uppercasing the code, and go b
           required=""
         />
         <span
-          class="chakra-field__helperText css-nyfxvo"
+          class="chakra-field__helperText css-ghvdt6"
           data-part="helper-text"
           data-scope="field"
           id="field::_r_0_::helper-text"

@@ -13025,6 +13025,7 @@ __metadata:
     algoliasearch: 5.55.2
     axios: 1.18.1
     bcryptjs: 3.0.3
+    cloudinary: 2.11.0
     css-loader: 7.1.4
     date-fns: 4.4.0
     drizzle-kit: 0.31.11
@@ -16000,6 +16001,15 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: d06418b7335897209e77bdd430d04f882189582e67bd1f75a04565f3f07f5b3f119a9d670c943b6697d0afb100f03b866b3b8a1f91d4d02d72c4ecf2bb64b5dd
+  languageName: node
+  linkType: hard
+
+"cloudinary@npm:2.11.0":
+  version: 2.11.0
+  resolution: "cloudinary@npm:2.11.0"
+  dependencies:
+    lodash: ^4.17.23
+  checksum: f00316895df057bc9a8f8ed6abe7ae7c8d65758f596b9cfbf3306aa316089ac2bf9ed09621cd028db2914b2eda955abd65f4719cd641f6c8231c9e3da55386f8
   languageName: node
   linkType: hard
 
