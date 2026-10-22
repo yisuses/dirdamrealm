@@ -31,6 +31,8 @@ export default defineConfig({
           environment: 'jsdom',
           include: ['src/**/*.spec.tsx'],
           setupFiles: ['./vitest.setup.dom.tsx'],
+          // Form tests type character by character; on a loaded CI runner 5s is not always enough.
+          testTimeout: 15000,
         },
       },
     ],

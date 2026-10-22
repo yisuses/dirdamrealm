@@ -1,0 +1,187 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CategoryList > should list the categories with their translation, code, usage and actions 1`] = `
+<div
+  class="chakra-stack css-aejenj"
+>
+  <div
+    class="css-1b045v2"
+  >
+    <div
+      class="chakra-stack css-1op6ogi"
+    >
+      <h1
+        class="chakra-heading css-11yxnza"
+      >
+        Categorías
+      </h1>
+      <p
+        class="css-2catvg"
+      >
+        Las que están en el menú principal aparecen arriba en la web.
+      </p>
+    </div>
+    <a
+      class="chakra-button css-5yp0ac"
+      href="/admin/categorias/nueva/"
+      type="button"
+    >
+      Nueva categoría
+    </a>
+  </div>
+  <div
+    class="css-zstoy8"
+  >
+    <table
+      class="chakra-table__root css-1js591h"
+    >
+      <thead
+        class="chakra-table__header"
+      >
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            Nombre
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            En inglés
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            Código
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            Entradas
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-1z119ai"
+            >
+              Acciones
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="chakra-table__body"
+      >
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <div
+              class="css-6foibv"
+            >
+              Viajes
+              <span
+                class="chakra-badge css-vc1353"
+              >
+                Menú principal
+              </span>
+            </div>
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Viajes EN
+          </td>
+          <td
+            class="chakra-table__cell css-1nlputz"
+          >
+            VIA
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            3
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <div
+              class="css-6qcpd9"
+            >
+              <a
+                aria-label="Editar Viajes"
+                class="chakra-link css-1fb8t27"
+                href="/admin/categorias/c1/"
+              >
+                Editar
+              </a>
+              <button
+                aria-label="Borrar Viajes"
+                class="chakra-button css-1iak3fj"
+                type="button"
+              >
+                Borrar
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <div
+              class="css-6foibv"
+            >
+              Cine
+            </div>
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Cine EN
+          </td>
+          <td
+            class="chakra-table__cell css-1nlputz"
+          >
+            CIN
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            0
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <div
+              class="css-6qcpd9"
+            >
+              <a
+                aria-label="Editar Cine"
+                class="chakra-link css-1fb8t27"
+                href="/admin/categorias/c2/"
+              >
+                Editar
+              </a>
+              <button
+                aria-label="Borrar Cine"
+                class="chakra-button css-1iak3fj"
+                type="button"
+              >
+                Borrar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
