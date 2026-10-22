@@ -2,14 +2,14 @@ import { revalidatePath } from 'next/cache'
 import { after } from 'next/server'
 import { type MockedFunction, afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getPostById } from '@blog/api'
+import { getPostById } from '@blog/data'
 
 import { POST, pathsToWarm } from './route'
 
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn() }))
 vi.mock('next/server', () => ({ after: vi.fn() }))
 vi.mock('@sentry/nextjs', () => ({ captureException: vi.fn() }))
-vi.mock('@blog/api', () => ({ getPostById: vi.fn() }))
+vi.mock('@blog/data', () => ({ getPostById: vi.fn() }))
 
 const mockedRevalidatePath = revalidatePath as MockedFunction<typeof revalidatePath>
 const mockedAfter = after as MockedFunction<typeof after>

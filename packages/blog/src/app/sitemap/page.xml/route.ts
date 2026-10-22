@@ -1,4 +1,4 @@
-import { getAllPosts } from '@blog/api/post'
+import { getAllPosts } from '@blog/data'
 import { publicUrl } from '@blog/utils'
 import { xmlUrlSet } from '@blog/utils/constants'
 

@@ -6,13 +6,12 @@ import { notFound, redirect } from 'next/navigation'
 import { cache } from 'react'
 import { BlogPosting } from 'schema-dts'
 
-import { getAbout, getComments, getLatestPosts, getPostById } from '@blog/api'
-import { getAllPosts } from '@blog/api/post'
 import { JsonLd, PostPage } from '@blog/components'
 import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
 import { getServerT } from '@blog/core/i18n/server'
 import { buildPageMetadata } from '@blog/core/metadata/build-metadata'
 import { getQueryClient } from '@blog/core/query/get-query-client'
+import { getAbout, getAllPosts, getComments, getLatestPosts, getPostById } from '@blog/data'
 import {
   buildPostPath,
   getImageDataFromMedia,

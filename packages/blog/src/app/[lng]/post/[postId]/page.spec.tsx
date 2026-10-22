@@ -1,12 +1,12 @@
 import * as sentry from '@sentry/nextjs'
 import { type MockedFunction, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getPostById } from '@blog/api'
+import { getPostById } from '@blog/data'
 
 import Page from './page'
 
 vi.mock('@sentry/nextjs', () => ({ captureException: vi.fn() }))
-vi.mock('@blog/api', () => ({ getPostById: vi.fn() }))
+vi.mock('@blog/data', () => ({ getPostById: vi.fn() }))
 
 const mockedGetPostById = getPostById as MockedFunction<typeof getPostById>
 

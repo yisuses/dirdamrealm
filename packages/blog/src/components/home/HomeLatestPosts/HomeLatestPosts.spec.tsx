@@ -2,16 +2,13 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getLatestPosts } from '@blog/api'
 import { postMock } from '@blog/api/post'
+import { getLatestPosts } from '@blog/api/public'
 import { renderWithProviders } from '@blog/test/render'
 
 import { HomeLatestPosts } from './HomeLatestPosts'
 
-vi.mock('@blog/api', async importOriginal => ({
-  ...(await importOriginal<typeof import('@blog/api')>()),
-  getLatestPosts: vi.fn(),
-}))
+vi.mock('@blog/api/public', () => ({ getLatestPosts: vi.fn() }))
 
 const headerPost = postMock
 const posts = [headerPost, { ...postMock, id: 3, title: 'Otro post' }]

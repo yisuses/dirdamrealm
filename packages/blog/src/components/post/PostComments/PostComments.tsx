@@ -9,7 +9,8 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import { addCommentValidate, getComments } from '@blog/api/comment'
+import { addCommentValidate } from '@blog/api/comment'
+import { getComments } from '@blog/api/public'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocale } from '@blog/hooks'
 

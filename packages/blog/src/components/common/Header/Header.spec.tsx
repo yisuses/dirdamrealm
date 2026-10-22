@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { getCategories } from '@blog/api'
+import { getCategories } from '@blog/api/public'
 import { navigation } from '@blog/test/navigation'
 import { createTestQueryClient, renderWithProviders } from '@blog/test/render'
 
@@ -17,10 +17,7 @@ vi.mock('next-themes', async importOriginal => ({
 }))
 
 // The language switch prefetches the categories of the next locale.
-vi.mock('@blog/api', async importOriginal => ({
-  ...(await importOriginal<typeof import('@blog/api')>()),
-  getCategories: vi.fn(),
-}))
+vi.mock('@blog/api/public', () => ({ getCategories: vi.fn() }))
 
 const categories: HeaderProps['categories'] = [
   { url: '/category/music/musica/', code: 'music', name: 'Música', localizedName: 'Música' },

@@ -8,11 +8,11 @@ import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import { ReactNode } from 'react'
 
-import { getAbout, getCategories } from '@blog/api'
 import { MainLayout } from '@blog/components'
 import { isAppLocale } from '@blog/core/i18n/config'
 import { getServerResources, getServerT } from '@blog/core/i18n/server'
 import { getQueryClient } from '@blog/core/query/get-query-client'
+import { getAbout, getCategories } from '@blog/data'
 import { CATEGORIES_STALE_TIME_MS, QUERY_ABOUT, getCategoriesKey } from '@blog/utils/constants'
 
 export const viewport: Viewport = {

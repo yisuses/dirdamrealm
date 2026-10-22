@@ -1,8 +1,8 @@
 import * as sentry from '@sentry/nextjs'
 import { notFound, redirect } from 'next/navigation'
 
-import { getCategories } from '@blog/api'
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
+import { getCategories } from '@blog/data'
 import { buildCategoryPath } from '@blog/utils'
 
 interface Props {

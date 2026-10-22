@@ -1,5 +1,5 @@
-import { getCategories } from '@blog/api/category'
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
+import { getCategories } from '@blog/data'
 import { mapLocales, xmlUrlSet } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'

@@ -4,12 +4,12 @@ import { notFound, redirect } from 'next/navigation'
 import { cache } from 'react'
 import { ItemList, WebPage } from 'schema-dts'
 
-import { getCategories, getLatestPosts } from '@blog/api'
 import { CategoryPage, JsonLd } from '@blog/components'
 import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
 import { getServerT } from '@blog/core/i18n/server'
 import { buildPageMetadata } from '@blog/core/metadata/build-metadata'
 import { getQueryClient } from '@blog/core/query/get-query-client'
+import { getCategories, getLatestPosts } from '@blog/data'
 import { buildCategoryPath, buildPostPath, publicUrl, seoName } from '@blog/utils'
 import { getCategoryCodeKey, getLatestPostsKey } from '@blog/utils/constants'
 

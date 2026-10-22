@@ -2,19 +2,15 @@ import { act, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getCategories } from '@blog/api/category'
-import { getAllPosts, postMock } from '@blog/api/post'
+import { postMock } from '@blog/api/post'
+import { getAllPosts, getCategories } from '@blog/api/public'
 import { navigation } from '@blog/test/navigation'
 import { createTestQueryClient, renderWithProviders } from '@blog/test/render'
 import { ARCHIVE_POSTS_KEY, getCategoriesKey } from '@blog/utils/constants'
 
 import { ArchivePage } from './ArchivePage'
 
-vi.mock('@blog/api/category', () => ({ getCategories: vi.fn() }))
-vi.mock('@blog/api/post', async importOriginal => ({
-  ...(await importOriginal<typeof import('@blog/api/post')>()),
-  getAllPosts: vi.fn(),
-}))
+vi.mock('@blog/api/public', () => ({ getCategories: vi.fn(), getAllPosts: vi.fn() }))
 
 const buildPost = (id: number, title: string, publishedAt: string): Post => ({ ...postMock, id, title, publishedAt })
 
@@ -56,7 +52,7 @@ describe('ArchivePage', () => {
   })
 
   it('should tell there are no posts when the archive is empty', async () => {
-    vi.mocked(getAllPosts).mockResolvedValue(undefined)
+    vi.mocked(getAllPosts).mockResolvedValue([])
     renderArchive({ seed: false })
 
     expect(await screen.findByText('No published posts yet.')).toBeInTheDocument()

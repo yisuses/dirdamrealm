@@ -1,5 +1,4 @@
-import { getCategories } from '@blog/api'
-import { getAllPosts } from '@blog/api/post'
+import { getAllPosts, getCategories } from '@blog/data'
 import { xmlEncoding } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
