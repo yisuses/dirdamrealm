@@ -1,6 +1,7 @@
 import { createProxy } from 'next-i18next/proxy'
 import { type NextRequest, NextResponse } from 'next/server'
 
+import { guardAdmin, isAdminPath, isLoginAttempt, limitLoginAttempts } from '@blog/core/auth/proxy'
 import { i18nConfig } from '@blog/core/i18n/config'
 // Imported by path rather than through `@blog/utils` so the proxy bundle does not pull in
 // the whole utils barrel.
@@ -11,7 +12,16 @@ import { isServeablePath } from '@blog/utils/isServeablePath/isServeablePath'
 // and sets the `x-i18next-current-language` header for Server Components.
 const i18nProxy = createProxy(i18nConfig)
 
-export default function proxy(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
+  if (isLoginAttempt(req)) {
+    return limitLoginAttempts(req)
+  }
+
+  // The admin panel is not a localized page: it only needs a session.
+  if (isAdminPath(req.nextUrl.pathname)) {
+    return guardAdmin(req)
+  }
+
   // Answer impossible urls here instead of letting them reach the app. `[postName]` and
   // `[categoryName]` are ISR cache keys and `dynamicParams` is on, so rendering one —
   // even only to return a redirect or a 404 — writes a cache entry and burns an ISR
@@ -29,5 +39,9 @@ export const config = {
   // previous `.*\..*` form skipped any path *containing* a dot, so urls such as
   // `/sitemap_index.xml/post/1/junk/` bypassed the proxy and were rendered — and
   // ISR-cached — by the app instead.
-  matcher: ['/((?!api|_next|static|locales|images|favicon|sitemap\\.xml|sitemap/).*)'],
+  // The login callback is the one api route matched, to rate-limit it.
+  matcher: [
+    '/((?!api|_next|static|locales|images|favicon|sitemap\\.xml|sitemap/).*)',
+    '/api/auth/callback/credentials/:path*',
+  ],
 }

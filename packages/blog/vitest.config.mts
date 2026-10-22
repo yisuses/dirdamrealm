@@ -14,6 +14,9 @@ export default defineConfig({
   oxc: { jsx: { runtime: 'automatic' } },
   test: {
     setupFiles: ['./vitest.setup.ts'],
+    // next-auth's ESM build imports `next/server` without an extension, which Node's resolver
+    // rejects; letting Vite process it resolves the import the way Next's bundler does.
+    server: { deps: { inline: ['next-auth'] } },
     projects: [
       {
         extends: true,

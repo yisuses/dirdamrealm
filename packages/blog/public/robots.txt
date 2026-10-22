@@ -3,6 +3,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /admin/
 Crawl-delay: 10
 
 # Commercial SEO/AI-training crawlers. They re-walk the whole site on their own schedule
