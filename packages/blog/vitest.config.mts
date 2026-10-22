@@ -34,7 +34,17 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['**/*.d.ts', '**/*.stories.tsx', '**/*.mock.ts', '**/index.ts', '**/index.tsx', 'src/test/**'],
+      exclude: [
+        '**/*.d.ts',
+        '**/*.stories.tsx',
+        '**/*.mock.ts',
+        '**/index.ts',
+        '**/index.tsx',
+        'src/test/**',
+        // Declarative: table definitions and generated SQL, exercised by the queries' tests.
+        'src/db/schema.ts',
+        'src/db/migrations/**',
+      ],
       reporter: ['text', 'cobertura', 'lcov'],
       thresholds: { branches: 100, functions: 100, lines: 100, statements: 100 },
     },
