@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { AdminPageHeader } from '@blog/components/admin/ui/AdminPageHeader'
+import { ColumnHeader } from '@blog/components/admin/ui/ColumnHeader'
 import { ConfirmDialog } from '@blog/components/admin/ui/ConfirmDialog'
 import { apiErrorMessage } from '@blog/components/admin/ui/apiError'
 import type { AdminCategory } from '@blog/db/queries/admin/categories'
@@ -59,14 +60,21 @@ export function CategoryList({ categories }: { categories: AdminCategory[] }) {
       {categories.length === 0 ? (
         <Text>Todavía no hay categorías.</Text>
       ) : (
-        <Table.ScrollArea borderWidth={1} borderRadius="lg" bg="white">
+        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
           <Table.Root size="lg">
             <Table.Header>
               <Table.Row>
-                <Table.ColumnHeader>Nombre</Table.ColumnHeader>
-                <Table.ColumnHeader>En inglés</Table.ColumnHeader>
-                <Table.ColumnHeader>Código</Table.ColumnHeader>
-                <Table.ColumnHeader>Entradas</Table.ColumnHeader>
+                <ColumnHeader label="Nombre" hint="Cómo se llama la categoría en la web en español." />
+                <ColumnHeader label="En inglés" hint="Cómo se llama en la versión en inglés de la web." />
+                <ColumnHeader
+                  label="Menú principal"
+                  hint="Si pone «Sí», la categoría aparece en el menú de arriba de la web."
+                />
+                <ColumnHeader
+                  label="Código"
+                  hint="Nombre corto en mayúsculas que forma parte de la dirección de la categoría en la web."
+                />
+                <ColumnHeader label="Entradas" hint="Cuántas entradas tienen esta categoría." />
                 <Table.ColumnHeader>
                   <Box srOnly>Acciones</Box>
                 </Table.ColumnHeader>
@@ -75,13 +83,17 @@ export function CategoryList({ categories }: { categories: AdminCategory[] }) {
             <Table.Body>
               {categories.map(category => (
                 <Table.Row key={category.id}>
-                  <Table.Cell>
-                    <Flex gap={2} align="center" wrap="wrap">
-                      {category.es.name}
-                      {category.main && <Badge colorPalette="orange">Menú principal</Badge>}
-                    </Flex>
-                  </Table.Cell>
+                  <Table.Cell>{category.es.name}</Table.Cell>
                   <Table.Cell>{category.en.name}</Table.Cell>
+                  <Table.Cell>
+                    {category.main ? (
+                      <Badge colorPalette="orange" size="lg">
+                        Sí
+                      </Badge>
+                    ) : (
+                      <Text color="gray.700">No</Text>
+                    )}
+                  </Table.Cell>
                   <Table.Cell fontFamily="mono">{category.code}</Table.Cell>
                   <Table.Cell>{category.posts}</Table.Cell>
                   <Table.Cell>

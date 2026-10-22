@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { AdminPageHeader } from '@blog/components/admin/ui/AdminPageHeader'
+import { ColumnHeader } from '@blog/components/admin/ui/ColumnHeader'
 import { ConfirmDialog } from '@blog/components/admin/ui/ConfirmDialog'
 import { apiErrorMessage } from '@blog/components/admin/ui/apiError'
 import type { AdminWriter } from '@blog/db/queries/admin/writers'
@@ -59,13 +60,13 @@ export function WriterList({ writers }: { writers: AdminWriter[] }) {
       {writers.length === 0 ? (
         <Text>Todavía no hay autores.</Text>
       ) : (
-        <Table.ScrollArea borderWidth={1} borderRadius="lg" bg="white">
+        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
           <Table.Root size="lg">
             <Table.Header>
               <Table.Row>
-                <Table.ColumnHeader>Nombre</Table.ColumnHeader>
-                <Table.ColumnHeader>Usuario del panel</Table.ColumnHeader>
-                <Table.ColumnHeader>Entradas</Table.ColumnHeader>
+                <ColumnHeader label="Nombre" hint="La firma que aparece en las entradas de la web." />
+                <ColumnHeader label="Usuario del panel" hint="La persona que entra en este panel con esta firma." />
+                <ColumnHeader label="Entradas" hint="Cuántas entradas firma." />
                 <Table.ColumnHeader>
                   <Box srOnly>Acciones</Box>
                 </Table.ColumnHeader>

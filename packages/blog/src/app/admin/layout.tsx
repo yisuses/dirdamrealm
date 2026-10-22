@@ -13,8 +13,7 @@ export const dynamic = 'force-dynamic'
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    // suppressHydrationWarning: next-themes sets the color-mode class on <html> client-side.
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

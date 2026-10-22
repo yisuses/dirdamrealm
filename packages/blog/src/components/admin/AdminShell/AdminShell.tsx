@@ -110,7 +110,8 @@ export function AdminShell({ userName, dataSource, children }: AdminShellProps) 
             })}
           </Stack>
         </Box>
-        <Box as="main" flex={1} p={{ base: 4, lg: 10 }} maxW="1100px">
+        {/* minW 0: wide content (tables) scrolls inside instead of widening the page on phones. */}
+        <Box as="main" flex={1} minW={0} p={{ base: 4, lg: 10 }} maxW="1100px">
           {children}
         </Box>
       </Flex>

@@ -30,7 +30,7 @@ exports[`CategoryList > should list the categories with their translation, code,
     </a>
   </div>
   <div
-    class="css-zstoy8"
+    class="css-1vjtk30"
   >
     <table
       class="chakra-table__root css-1js591h"
@@ -44,22 +44,222 @@ exports[`CategoryList > should list the categories with their translation, code,
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            Nombre
+            <div
+              class="css-vs34a8"
+            >
+              Nombre
+              <button
+                aria-label="¿Qué es «Nombre»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_0_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_0_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            En inglés
+            <div
+              class="css-vs34a8"
+            >
+              En inglés
+              <button
+                aria-label="¿Qué es «En inglés»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_1_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_1_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            Código
+            <div
+              class="css-vs34a8"
+            >
+              Menú principal
+              <button
+                aria-label="¿Qué es «Menú principal»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_2_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_2_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            Entradas
+            <div
+              class="css-vs34a8"
+            >
+              Código
+              <button
+                aria-label="¿Qué es «Código»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_3_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_3_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Entradas
+              <button
+                aria-label="¿Qué es «Entradas»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_4_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_4_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"
@@ -81,21 +281,21 @@ exports[`CategoryList > should list the categories with their translation, code,
           <td
             class="chakra-table__cell css-1n30cde"
           >
-            <div
-              class="css-6foibv"
-            >
-              Viajes
-              <span
-                class="chakra-badge css-vc1353"
-              >
-                Menú principal
-              </span>
-            </div>
+            Viajes
           </td>
           <td
             class="chakra-table__cell css-1n30cde"
           >
             Viajes EN
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <span
+              class="chakra-badge css-blrrvk"
+            >
+              Sí
+            </span>
           </td>
           <td
             class="chakra-table__cell css-1nlputz"
@@ -136,16 +336,21 @@ exports[`CategoryList > should list the categories with their translation, code,
           <td
             class="chakra-table__cell css-1n30cde"
           >
-            <div
-              class="css-6foibv"
-            >
-              Cine
-            </div>
+            Cine
           </td>
           <td
             class="chakra-table__cell css-1n30cde"
           >
             Cine EN
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <p
+              class="css-2catvg"
+            >
+              No
+            </p>
           </td>
           <td
             class="chakra-table__cell css-1nlputz"

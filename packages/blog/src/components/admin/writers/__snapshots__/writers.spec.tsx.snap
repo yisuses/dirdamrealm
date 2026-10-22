@@ -27,7 +27,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
         class="chakra-field__root css-13f87cb"
         data-part="root"
         data-scope="field"
-        id="field::_r_4_"
+        id="field::_r_d_"
         role="group"
       >
         <label
@@ -35,18 +35,18 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           data-part="label"
           data-required=""
           data-scope="field"
-          for="_r_4_"
-          id="field::_r_4_::label"
+          for="_r_d_"
+          id="field::_r_d_::label"
         >
           Nombre
         </label>
         <input
-          aria-describedby="field::_r_4_::helper-text"
+          aria-describedby="field::_r_d_::helper-text"
           class="chakra-input css-1slcgpf"
           data-part="input"
           data-required=""
           data-scope="field"
-          id="_r_4_"
+          id="_r_d_"
           name="name"
           required=""
         />
@@ -54,7 +54,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           class="chakra-field__helperText css-nyfxvo"
           data-part="helper-text"
           data-scope="field"
-          id="field::_r_4_::helper-text"
+          id="field::_r_d_::helper-text"
         >
           Tal y como aparece en las entradas.
         </span>
@@ -63,15 +63,15 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
         class="chakra-field__root css-13f87cb"
         data-part="root"
         data-scope="field"
-        id="field::_r_5_"
+        id="field::_r_e_"
         role="group"
       >
         <label
           class="chakra-field__label css-sqscs5"
           data-part="label"
           data-scope="field"
-          for="_r_5_"
-          id="field::_r_5_::label"
+          for="_r_e_"
+          id="field::_r_e_::label"
         >
           Usuario de Twitter / X
         </label>
@@ -79,7 +79,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           class="chakra-input css-1slcgpf"
           data-part="input"
           data-scope="field"
-          id="_r_5_"
+          id="_r_e_"
           name="twitter"
           placeholder="@usuario"
         />
@@ -88,15 +88,15 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
         class="chakra-field__root css-13f87cb"
         data-part="root"
         data-scope="field"
-        id="field::_r_6_"
+        id="field::_r_f_"
         role="group"
       >
         <label
           class="chakra-field__label css-sqscs5"
           data-part="label"
           data-scope="field"
-          for="_r_6_"
-          id="field::_r_6_::label"
+          for="_r_f_"
+          id="field::_r_f_::label"
         >
           Web personal
         </label>
@@ -104,7 +104,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           class="chakra-input css-1slcgpf"
           data-part="input"
           data-scope="field"
-          id="_r_6_"
+          id="_r_f_"
           name="personalUrl"
           placeholder="https://"
           type="url"
@@ -114,15 +114,15 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
         class="chakra-field__root css-13f87cb"
         data-part="root"
         data-scope="field"
-        id="field::_r_7_"
+        id="field::_r_g_"
         role="group"
       >
         <label
           class="chakra-field__label css-sqscs5"
           data-part="label"
           data-scope="field"
-          for="_r_7_"
-          id="field::_r_7_::label"
+          for="_r_g_"
+          id="field::_r_g_::label"
         >
           Usuario del panel
         </label>
@@ -130,11 +130,11 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           class="chakra-native-select__root css-2z3u89"
         >
           <select
-            aria-describedby="field::_r_7_::helper-text"
+            aria-describedby="field::_r_g_::helper-text"
             class="chakra-native-select__field css-1b1q62i"
             data-part="select"
             data-scope="field"
-            id="_r_7_"
+            id="_r_g_"
             name="userId"
           >
             <option
@@ -170,7 +170,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
           class="chakra-field__helperText css-nyfxvo"
           data-part="helper-text"
           data-scope="field"
-          id="field::_r_7_::helper-text"
+          id="field::_r_g_::helper-text"
         >
           La persona que entra en el panel con esta firma.
         </span>
@@ -227,7 +227,7 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
     </a>
   </div>
   <div
-    class="css-zstoy8"
+    class="css-1vjtk30"
   >
     <table
       class="chakra-table__root css-1js591h"
@@ -241,17 +241,134 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            Nombre
+            <div
+              class="css-vs34a8"
+            >
+              Nombre
+              <button
+                aria-label="¿Qué es «Nombre»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_0_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_0_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            Usuario del panel
+            <div
+              class="css-vs34a8"
+            >
+              Usuario del panel
+              <button
+                aria-label="¿Qué es «Usuario del panel»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_1_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_1_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"
           >
-            Entradas
+            <div
+              class="css-vs34a8"
+            >
+              Entradas
+              <button
+                aria-label="¿Qué es «Entradas»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_2_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_2_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
           </th>
           <th
             class="chakra-table__columnHeader css-1sq5grx"

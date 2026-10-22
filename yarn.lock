@@ -4233,6 +4233,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/cache@npm:11.14.0, @emotion/cache@npm:^11.14.0":
+  version: 11.14.0
+  resolution: "@emotion/cache@npm:11.14.0"
+  dependencies:
+    "@emotion/memoize": ^0.9.0
+    "@emotion/sheet": ^1.4.0
+    "@emotion/utils": ^1.4.2
+    "@emotion/weak-memoize": ^0.4.0
+    stylis: 4.2.0
+  checksum: 0a81591541ea43bc7851742e6444b7800d72e98006f94e775ae6ea0806662d14e0a86ff940f5f19d33b4bb2c427c882aa65d417e7322a6e0d5f20fe65ed920c9
+  languageName: node
+  linkType: hard
+
 "@emotion/cache@npm:^11.11.0, @emotion/cache@npm:^11.4.0":
   version: 11.11.0
   resolution: "@emotion/cache@npm:11.11.0"
@@ -4243,19 +4256,6 @@ __metadata:
     "@emotion/weak-memoize": ^0.3.1
     stylis: 4.2.0
   checksum: 8eb1dc22beaa20c21a2e04c284d5a2630a018a9d51fb190e52de348c8d27f4e8ca4bbab003d68b4f6cd9cc1c569ca747a997797e0f76d6c734a660dc29decf08
-  languageName: node
-  linkType: hard
-
-"@emotion/cache@npm:^11.14.0":
-  version: 11.14.0
-  resolution: "@emotion/cache@npm:11.14.0"
-  dependencies:
-    "@emotion/memoize": ^0.9.0
-    "@emotion/sheet": ^1.4.0
-    "@emotion/utils": ^1.4.2
-    "@emotion/weak-memoize": ^0.4.0
-    stylis: 4.2.0
-  checksum: 0a81591541ea43bc7851742e6444b7800d72e98006f94e775ae6ea0806662d14e0a86ff940f5f19d33b4bb2c427c882aa65d417e7322a6e0d5f20fe65ed920c9
   languageName: node
   linkType: hard
 
@@ -12981,6 +12981,7 @@ __metadata:
   dependencies:
     "@chakra-ui/react": 3.36.0
     "@electric-sql/pglite": 0.5.11
+    "@emotion/cache": 11.14.0
     "@emotion/react": 11.14.0
     "@emotion/styled": 11.14.1
     "@fontsource/spartan": 4.5.8

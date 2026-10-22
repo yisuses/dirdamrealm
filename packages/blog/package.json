@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "3.36.0",
+    "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@fontsource/spartan": "4.5.8",

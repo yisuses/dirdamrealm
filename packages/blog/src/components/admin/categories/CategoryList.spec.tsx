@@ -34,7 +34,9 @@ describe('CategoryList', () => {
 
     const [, first] = screen.getAllByRole('row')
     expect(within(first!).getByText('Viajes')).toBeInTheDocument()
-    expect(within(first!).getByText('Menú principal')).toBeInTheDocument()
+    expect(within(first!).getByText('Sí')).toBeInTheDocument()
+    expect(within(screen.getAllByRole('row')[2]!).getByText('No')).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Menú principal' })).toBeInTheDocument()
     expect(within(first!).getByText('Viajes EN')).toBeInTheDocument()
     expect(within(first!).getByText('VIA')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Editar Viajes' })).toHaveAttribute('href', '/admin/categorias/c1/')
