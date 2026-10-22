@@ -7,14 +7,14 @@ describe('commentMapper', () => {
     const commentEntity = {
       id: 1,
       text: 'Lorem ipsum',
-      author: true,
+      author: 'Ana',
       createdAt: '2022-04-03T14:21:54.127Z',
       updatedAt: '2022-04-03T14:21:54.127Z',
     }
     const expectedCommentary = {
       id: 1,
       text: 'Lorem ipsum',
-      author: true,
+      author: 'Ana',
       createdAt: '2022-04-03T14:21:54.127Z',
       updatedAt: '2022-04-03T14:21:54.127Z',
     }

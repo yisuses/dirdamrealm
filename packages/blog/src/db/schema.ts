@@ -144,6 +144,8 @@ export const postCategories = pgTable(
     categoryId: uuid('category_id')
       .notNull()
       .references(() => categories.id, { onDelete: 'cascade' }),
+    // Order in which the categories were assigned; the cards show them in this order.
+    position: integer('position').notNull().default(0),
   },
   table => [primaryKey({ columns: [table.postId, table.categoryId] })],
 )

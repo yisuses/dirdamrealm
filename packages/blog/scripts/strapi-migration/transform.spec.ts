@@ -115,8 +115,8 @@ const source = (overrides: Partial<StrapiData> = {}): StrapiData => ({
   },
   postWriters: [{ post_id: 11, writer_id: 2 }],
   postCategories: [
-    { post_id: 10, category_id: 6 },
-    { post_id: 11, category_id: 7 },
+    { post_id: 10, category_id: 6, category_ord: 1 },
+    { post_id: 11, category_id: 7, category_ord: 1 },
   ],
   postCovers: [{ related_id: 11, file_id: 5 }],
   commentPosts: [
@@ -250,7 +250,7 @@ describe('buildMigration', () => {
       coverImageAuthor: 'Autora',
       imgUrl: null,
     })
-    expect(rows.postCategories).toEqual([{ postId: published!.id, categoryId: rows.categories[0]!.id }])
+    expect(rows.postCategories).toEqual([{ postId: published!.id, categoryId: rows.categories[0]!.id, position: 0 }])
   })
 
   it('should map comments to the translation number once and skip orphans', () => {

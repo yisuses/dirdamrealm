@@ -13,6 +13,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:migrate-strapi": "tsx scripts/strapi-migration/run.ts",
+    "db:compare": "tsx --tsconfig tsconfig.json scripts/compare-data-sources.ts",
     "start:storybook": "storybook dev -p 9000",
     "clean:storybook": "rm -rf ./build",
     "build:storybook": "yarn clean:storybook && yarn storybook build -o build",
@@ -53,6 +54,7 @@
     "react-i18next": "17.0.9",
     "react-icons": "5.7.0",
     "schema-dts": "2.0.0",
+    "server-only": "0.0.1",
     "slugify": "1.6.9"
   },
   "devDependencies": {

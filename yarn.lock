@@ -12896,6 +12896,7 @@ __metadata:
     react-i18next: 17.0.9
     react-icons: 5.7.0
     schema-dts: 2.0.0
+    server-only: 0.0.1
     slugify: 1.6.9
     standard-version: 9.5.0
     storybook: 10.5.0
@@ -29164,6 +29165,13 @@ __metadata:
     parseurl: ^1.3.3
     send: ^1.2.0
   checksum: dd71e9a316a7d7f726503973c531168cfa6a6a56a98d5c6b279c4d0d41a83a1bc6900495dc0633712b95d88ccbf9ed4f4a780a4c4c00bf84b496e9e710d68825
+  languageName: node
+  linkType: hard
+
+"server-only@npm:0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
   languageName: node
   linkType: hard
 

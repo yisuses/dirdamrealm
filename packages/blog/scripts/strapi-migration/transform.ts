@@ -98,7 +98,7 @@ export interface StrapiData {
   /** `posts_writer_lnk` */
   postWriters: { post_id: number; writer_id: number }[]
   /** `posts_categories_lnk` */
-  postCategories: { post_id: number; category_id: number }[]
+  postCategories: { post_id: number; category_id: number; category_ord: number | null }[]
   /** `files_related_mph` rows for `api::post.post` / `coverImage` */
   postCovers: { related_id: number; file_id: number }[]
   /** `comments_post_lnk` */
@@ -314,7 +314,7 @@ export function buildMigration(source: StrapiData, uuid: () => string = randomUU
     createdAt: Date
     updatedAt: Date
   }[] = []
-  const postCategories: { postId: string; categoryId: string }[] = []
+  const postCategories: { postId: string; categoryId: string; position: number }[] = []
 
   for (const rows of rowsByDocument.values()) {
     const translationRows = LOCALES.flatMap(locale => {
@@ -377,20 +377,23 @@ export function buildMigration(source: StrapiData, uuid: () => string = randomUU
       })
     }
 
+    // The shared row's links first, in Strapi's order; then any extra links from other rows.
+    const orderedRows = [shared, ...rows.filter(row => row !== shared)]
     const categoryDocuments = new Set(
-      rows.flatMap(row =>
+      orderedRows.flatMap(row =>
         source.postCategories
           .filter(link => link.post_id === row.id)
+          .sort((a, b) => (a.category_ord ?? 0) - (b.category_ord ?? 0))
           .map(link => categoryDocumentByRow.get(link.category_id))
           .filter((document): document is string => Boolean(document)),
       ),
     )
-    for (const document of categoryDocuments) {
+    ;[...categoryDocuments].forEach((document, position) => {
       const categoryId = categoryIdByDocument.get(document)
       if (categoryId) {
-        postCategories.push({ postId, categoryId })
+        postCategories.push({ postId, categoryId, position })
       }
-    }
+    })
   }
 
   // Comments: Strapi links each one to both the draft and the published row of its post; both

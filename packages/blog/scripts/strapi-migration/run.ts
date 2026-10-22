@@ -58,7 +58,7 @@ async function readStrapi(client: Client): Promise<StrapiData> {
     comments: await rows('select id, author, text, created_at from comments order by id'),
     about: about ?? null,
     postWriters: await rows('select post_id, writer_id from posts_writer_lnk'),
-    postCategories: await rows('select post_id, category_id from posts_categories_lnk'),
+    postCategories: await rows('select post_id, category_id, category_ord from posts_categories_lnk order by id'),
     postCovers: await rows(
       "select related_id, file_id from files_related_mph where related_type = 'api::post.post' and field = 'coverImage'",
     ),
