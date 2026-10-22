@@ -29,6 +29,13 @@
       "when": 1792674288759,
       "tag": "0003_published_has_date",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792683670018,
+      "tag": "0004_password_reset_tokens",
+      "breakpoints": true
     }
   ]
 }

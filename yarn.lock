@@ -9672,6 +9672,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stablelib/base64@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "@stablelib/base64@npm:1.0.1"
+  checksum: 3ef4466d1d6889ac3fc67407bc21aa079953981c322eeca3b29f426d05506c63011faab1bfc042d7406e0677a94de6c9d2db2ce079afdd1eccae90031bfb5859
+  languageName: node
+  linkType: hard
+
 "@standard-schema/spec@npm:^1.0.0":
   version: 1.1.0
   resolution: "@standard-schema/spec@npm:1.1.0"
@@ -13060,6 +13067,7 @@ __metadata:
     react-hook-form: 7.81.0
     react-i18next: 17.0.9
     react-icons: 5.7.0
+    resend: 6.34.1
     schema-dts: 2.0.0
     server-only: 0.0.1
     slugify: 1.6.9
@@ -19830,6 +19838,13 @@ __metadata:
   version: 2.1.1
   resolution: "fast-safe-stringify@npm:2.1.1"
   checksum: a851cbddc451745662f8f00ddb622d6766f9bd97642dabfd9a405fb0d646d69fc0b9a1243cbf67f5f18a39f40f6fa821737651ff1bceeba06c9992ca2dc5bd3d
+  languageName: node
+  linkType: hard
+
+"fast-sha256@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "fast-sha256@npm:1.3.0"
+  checksum: 2b0bea7d3a9955e67abd2d3fbef4ce57f7dbb75708fc206d14973bd1d97aaf35b5c0a59c1d65be6f755df43d73b7657b9eac4fb3c2d58e6849966db1ef1fa186
   languageName: node
   linkType: hard
 
@@ -27001,6 +27016,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postal-mime@npm:2.7.6":
+  version: 2.7.6
+  resolution: "postal-mime@npm:2.7.6"
+  checksum: b7d9f8f425dd676c0c8e09087c58c8e79a9e6c4df3c1868434171c43ea8fbfe0d6b117f9d2973d14235c5e285d1f402d3fc509d0905bc1acc1ff28383d914c97
+  languageName: node
+  linkType: hard
+
 "postcss-loader@npm:^8.1.1":
   version: 8.2.1
   resolution: "postcss-loader@npm:8.2.1"
@@ -28648,6 +28670,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resend@npm:6.34.1":
+  version: 6.34.1
+  resolution: "resend@npm:6.34.1"
+  dependencies:
+    postal-mime: 2.7.6
+    standardwebhooks: 1.1.1
+  peerDependencies:
+    "@react-email/render": "*"
+  peerDependenciesMeta:
+    "@react-email/render":
+      optional: true
+  checksum: e6cf8d230615547f46dcb0bb5d977249a6e42f5b68d5dc797a88e0a2efe29a26d43f03c6c2a523a125e612a0f680493eb9d41a1322ac673deddcbac17f76f438
+  languageName: node
+  linkType: hard
+
 "resolve-cwd@npm:3.0.0":
   version: 3.0.0
   resolution: "resolve-cwd@npm:3.0.0"
@@ -30160,6 +30197,16 @@ __metadata:
   bin:
     standard-version: bin/cli.js
   checksum: 55003206f7eca18ee9962566e5222d3930a1fa3c4692615d64e88f08873b9685837d669dc58361831bd3f211b6687c1681ad6a1749edf346b2db3e4564b4933c
+  languageName: node
+  linkType: hard
+
+"standardwebhooks@npm:1.1.1":
+  version: 1.1.1
+  resolution: "standardwebhooks@npm:1.1.1"
+  dependencies:
+    "@stablelib/base64": ^1.0.0
+    fast-sha256: ^1.3.0
+  checksum: 80737c89accc42a501c0456e3313c6eaa19c901cf41ee68bdf0d10644f0c57d344e0c14560d0a65984e878d18e9b00466908f4f1323e54f0403e1dcf6120f08e
   languageName: node
   linkType: hard
 

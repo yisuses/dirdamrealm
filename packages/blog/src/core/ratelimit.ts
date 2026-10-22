@@ -11,3 +11,8 @@ const redis =
 export const loginRatelimit = redis
   ? new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(5, '60 s'), prefix: 'ratelimit:login' })
   : null
+
+/** Password reset requests: 3 per 15 minutes per IP, so the endpoint cannot be used to spam inboxes. */
+export const passwordResetRatelimit = redis
+  ? new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(3, '15 m'), prefix: 'ratelimit:password-reset' })
+  : null

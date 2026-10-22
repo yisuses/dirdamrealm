@@ -1,0 +1,534 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserForm > should create a user, requiring a confirmed password 1`] = `
+<section
+  class="chakra-stack css-1fzt9ki"
+>
+  <div
+    class="css-1b045v2"
+  >
+    <div
+      class="chakra-stack css-1op6ogi"
+    >
+      <h1
+        class="chakra-heading css-11yxnza"
+      >
+        Nuevo usuario
+      </h1>
+    </div>
+  </div>
+  <form
+    novalidate=""
+  >
+    <div
+      class="chakra-stack css-o97adx"
+    >
+      <div
+        class="chakra-field__root css-13f87cb"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_4_"
+        role="group"
+      >
+        <label
+          class="chakra-field__label css-sqscs5"
+          data-part="label"
+          data-required=""
+          data-scope="field"
+          for="_r_4_"
+          id="field::_r_4_::label"
+        >
+          Nombre
+        </label>
+        <input
+          autocomplete="off"
+          class="chakra-input css-1slcgpf"
+          data-part="input"
+          data-required=""
+          data-scope="field"
+          id="_r_4_"
+          name="name"
+          required=""
+        />
+      </div>
+      <div
+        class="chakra-field__root css-13f87cb"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_5_"
+        role="group"
+      >
+        <label
+          class="chakra-field__label css-sqscs5"
+          data-part="label"
+          data-required=""
+          data-scope="field"
+          for="_r_5_"
+          id="field::_r_5_::label"
+        >
+          Email
+        </label>
+        <input
+          aria-describedby="field::_r_5_::helper-text"
+          autocomplete="off"
+          class="chakra-input css-1slcgpf"
+          data-part="input"
+          data-required=""
+          data-scope="field"
+          id="_r_5_"
+          name="email"
+          required=""
+          type="email"
+        />
+        <span
+          class="chakra-field__helperText css-nyfxvo"
+          data-part="helper-text"
+          data-scope="field"
+          id="field::_r_5_::helper-text"
+        >
+          Con el que entrará en el panel.
+        </span>
+      </div>
+      <div
+        class="chakra-field__root css-13f87cb"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_6_"
+        role="group"
+      >
+        <label
+          class="chakra-field__label css-sqscs5"
+          data-part="label"
+          data-required=""
+          data-scope="field"
+          for="_r_6_"
+          id="field::_r_6_::label"
+        >
+          Contraseña
+        </label>
+        <div
+          class="chakra-group css-r8l1zn"
+        >
+          <input
+            aria-describedby="field::_r_6_::helper-text"
+            autocomplete="new-password"
+            class="chakra-input css-1slcgpf"
+            data-first=""
+            data-group-item=""
+            data-part="input"
+            data-required=""
+            data-scope="field"
+            id="_r_6_"
+            name="password"
+            required=""
+            style="--group-count: 2; --group-index: 0;"
+            type="password"
+          />
+          <button
+            aria-label="Mostrar la contraseña"
+            aria-pressed="false"
+            class="chakra-button css-p0j63a"
+            data-group-item=""
+            data-last=""
+            style="--group-count: 2; --group-index: 1;"
+            type="button"
+          >
+            Mostrar
+          </button>
+        </div>
+        <span
+          class="chakra-field__helperText css-nyfxvo"
+          data-part="helper-text"
+          data-scope="field"
+          id="field::_r_6_::helper-text"
+        >
+          Al menos 10 caracteres.
+        </span>
+      </div>
+      <div
+        class="chakra-field__root css-13f87cb"
+        data-part="root"
+        data-scope="field"
+        id="field::_r_7_"
+        role="group"
+      >
+        <label
+          class="chakra-field__label css-sqscs5"
+          data-part="label"
+          data-required=""
+          data-scope="field"
+          for="_r_7_"
+          id="field::_r_7_::label"
+        >
+          Repite la contraseña
+        </label>
+        <div
+          class="chakra-group css-r8l1zn"
+        >
+          <input
+            autocomplete="new-password"
+            class="chakra-input css-1slcgpf"
+            data-first=""
+            data-group-item=""
+            data-part="input"
+            data-required=""
+            data-scope="field"
+            id="_r_7_"
+            name="passwordConfirm"
+            required=""
+            style="--group-count: 2; --group-index: 0;"
+            type="password"
+          />
+          <button
+            aria-label="Mostrar la contraseña"
+            aria-pressed="false"
+            class="chakra-button css-p0j63a"
+            data-group-item=""
+            data-last=""
+            style="--group-count: 2; --group-index: 1;"
+            type="button"
+          >
+            Mostrar
+          </button>
+        </div>
+      </div>
+      <div
+        class="chakra-stack css-13ub2d7"
+      >
+        <button
+          class="chakra-button css-5yp0ac"
+          type="submit"
+        >
+          Guardar
+        </button>
+        <a
+          class="chakra-button css-p0j63a"
+          href="/admin/usuarios/"
+          type="button"
+        >
+          Cancelar
+        </a>
+      </div>
+    </div>
+  </form>
+</section>
+`;
+
+exports[`UserList > should list users with their state and writer card 1`] = `
+<div
+  class="chakra-stack css-aejenj"
+>
+  <div
+    class="css-1b045v2"
+  >
+    <div
+      class="chakra-stack css-1op6ogi"
+    >
+      <h1
+        class="chakra-heading css-11yxnza"
+      >
+        Usuarios
+      </h1>
+      <p
+        class="css-2catvg"
+      >
+        Quién puede entrar en este panel. Todos pueden hacer de todo.
+      </p>
+    </div>
+    <a
+      class="chakra-button css-5yp0ac"
+      href="/admin/usuarios/nuevo/"
+      type="button"
+    >
+      Nuevo usuario
+    </a>
+  </div>
+  <div
+    class="css-1vjtk30"
+  >
+    <table
+      class="chakra-table__root css-1js591h"
+    >
+      <thead
+        class="chakra-table__header"
+      >
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Nombre
+              <button
+                aria-label="¿Qué es «Nombre»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_0_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_0_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Email
+              <button
+                aria-label="¿Qué es «Email»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_1_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_1_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Estado
+              <button
+                aria-label="¿Qué es «Estado»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_2_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_2_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Firma
+              <button
+                aria-label="¿Qué es «Firma»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_3_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_3_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-1z119ai"
+            >
+              Acciones
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="chakra-table__body"
+      >
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Ana
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            ana@example.com
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <span
+              class="chakra-badge css-16e8j7j"
+            >
+              Activo
+            </span>
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <p
+              class="css-2catvg"
+            >
+              —
+            </p>
+          </td>
+          <td
+            class="chakra-table__cell css-p3bsgv"
+          >
+            <a
+              aria-label="Editar a Ana"
+              class="chakra-link css-1fb8t27"
+              href="/admin/usuarios/22222222-2222-4222-8222-222222222222/"
+            >
+              Editar
+            </a>
+          </td>
+        </tr>
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            José
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            jose@example.com
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <span
+              class="chakra-badge css-4005pp"
+            >
+              Desactivado
+            </span>
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            José Madrid
+          </td>
+          <td
+            class="chakra-table__cell css-p3bsgv"
+          >
+            <a
+              aria-label="Editar a José"
+              class="chakra-link css-1fb8t27"
+              href="/admin/usuarios/11111111-1111-4111-8111-111111111111/"
+            >
+              Editar
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

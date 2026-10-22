@@ -1,11 +1,12 @@
 'use client'
 
-import { Box, Button, Field, Heading, Input, Link, Stack, Text } from '@chakra-ui/react'
+import { Button, Field, Input, Link, Stack, Text } from '@chakra-ui/react'
 import { signIn } from 'next-auth/react'
 import NextLink from 'next/link'
 import { type FormEvent, useState } from 'react'
 
-import { HeaderLogo } from '@blog/components/common/Icon/HeaderLogo'
+import { AuthCard } from '@blog/components/admin/auth/AuthCard'
+import { PasswordInput } from '@blog/components/admin/ui/PasswordInput'
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null)
@@ -33,52 +34,34 @@ export function LoginForm() {
   }
 
   return (
-    <Box as="main" minH="100vh" bg="gray.50" display="flex" alignItems="center" justifyContent="center" p={4}>
-      <Box as="section" bg="white" borderRadius="lg" boxShadow="lg" p={{ base: 6, md: 10 }} w="full" maxW="md">
-        <form onSubmit={handleSubmit}>
-          <Stack gap={6}>
-            <Stack align="center" gap={3}>
-              <Box color="gray.900" w="72px" aria-hidden>
-                <HeaderLogo />
-              </Box>
-              <Heading as="h1" size="2xl" fontFamily="Roboto" textAlign="center">
-                Panel de Emoción Blanca
-              </Heading>
-            </Stack>
+    <AuthCard title="Panel de Emoción Blanca">
+      <form onSubmit={handleSubmit}>
+        <Stack gap={6}>
+          <Field.Root required>
+            <Field.Label fontSize="lg">Email</Field.Label>
+            <Input name="email" type="email" autoComplete="email" size="lg" fontSize="lg" />
+          </Field.Root>
 
-            <Field.Root required>
-              <Field.Label fontSize="lg">Email</Field.Label>
-              <Input name="email" type="email" autoComplete="email" size="lg" fontSize="lg" />
-            </Field.Root>
+          <Field.Root required>
+            <Field.Label fontSize="lg">Contraseña</Field.Label>
+            <PasswordInput name="password" autoComplete="current-password" />
+          </Field.Root>
 
-            <Field.Root required>
-              <Field.Label fontSize="lg">Contraseña</Field.Label>
-              <Input name="password" type="password" autoComplete="current-password" size="lg" fontSize="lg" />
-            </Field.Root>
+          {error && (
+            <Text role="alert" color="red.700" fontSize="lg">
+              {error}
+            </Text>
+          )}
 
-            {error && (
-              <Text role="alert" color="red.700" fontSize="lg">
-                {error}
-              </Text>
-            )}
+          <Button type="submit" size="lg" fontSize="lg" colorPalette="orange" loading={loading} loadingText="Entrando…">
+            Entrar
+          </Button>
 
-            <Button
-              type="submit"
-              size="lg"
-              fontSize="lg"
-              colorPalette="orange"
-              loading={loading}
-              loadingText="Entrando…"
-            >
-              Entrar
-            </Button>
-
-            <Link asChild alignSelf="center" fontSize="md" color="gray.700">
-              <NextLink href="/admin/recuperar-contrasena/">¿Has olvidado la contraseña?</NextLink>
-            </Link>
-          </Stack>
-        </form>
-      </Box>
-    </Box>
+          <Link asChild alignSelf="center" fontSize="md" color="gray.700">
+            <NextLink href="/admin/recuperar-contrasena/">¿Has olvidado la contraseña?</NextLink>
+          </Link>
+        </Stack>
+      </form>
+    </AuthCard>
   )
 }
