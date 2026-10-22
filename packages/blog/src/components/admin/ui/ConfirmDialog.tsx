@@ -33,7 +33,8 @@ export function ConfirmDialog({
   onCancel,
 }: ConfirmDialogProps) {
   return (
-    <DialogRoot open={open} onOpenChange={({ open: isOpen }) => !isOpen && onCancel()} role="alertdialog">
+    // Controlled, so it only reports changes the user makes: closing it (Escape, outside click) is cancelling.
+    <DialogRoot open={open} onOpenChange={onCancel} role="alertdialog">
       <DialogContent>
         <DialogHeader>
           <DialogTitle fontFamily="Roboto" fontSize="xl">
