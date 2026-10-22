@@ -107,7 +107,13 @@ export const postTranslations = pgTable(
     previewToken: uuid('preview_token').notNull().unique().defaultRandom(),
     ...timestamps,
   },
-  table => [primaryKey({ columns: [table.postId, table.locale] })],
+  table => [
+    primaryKey({ columns: [table.postId, table.locale] }),
+    check(
+      'post_translations_published_has_date',
+      sql`${table.status} <> 'published' or ${table.publishedAt} is not null`,
+    ),
+  ],
 )
 
 export const categories = pgTable(

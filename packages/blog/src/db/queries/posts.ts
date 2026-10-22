@@ -40,7 +40,8 @@ function toPost({ translation, post }: Row): Post {
     title: translation.title,
     summary: translation.summary,
     imgUrl: post.imgUrl ?? undefined,
-    publishedAt: (translation.publishedAt ?? translation.createdAt).toISOString(),
+    // Only published rows are read, and the schema requires those to have a date.
+    publishedAt: translation.publishedAt!.toISOString(),
     createdAt: translation.createdAt.toISOString(),
     updatedAt: translation.updatedAt.toISOString(),
     content: translation.content,
@@ -85,9 +86,7 @@ async function hydrate(rows: Row[], relations: Relation[]): Promise<Post[]> {
     rows.forEach((row, index) => {
       result[index]!.categories = links
         .filter(link => link.postId === row.post.id)
-        .map(link =>
-          toCategory(link.category, translations, row.translation.locale, numericId.get(link.category.id) ?? 0),
-        )
+        .map(link => toCategory(link.category, translations, row.translation.locale, numericId.get(link.category.id)!))
     })
   }
 

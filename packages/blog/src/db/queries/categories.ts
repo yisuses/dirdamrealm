@@ -27,7 +27,7 @@ export async function getCategoriesFromDb({ locale = 'en', code, sort }: GetCate
   const allIds = await db.select({ id: categories.id }).from(categories).orderBy(asc(categories.createdAt))
   const numericId = new Map(allIds.map(({ id }, index) => [id, index + 1]))
 
-  return rows.map(row => toCategory(row, translations, locale, numericId.get(row.id) ?? 0))
+  return rows.map(row => toCategory(row, translations, locale, numericId.get(row.id)!))
 }
 
 export function toCategory(

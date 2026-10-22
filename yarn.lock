@@ -4089,6 +4089,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@electric-sql/pglite@npm:0.5.11":
+  version: 0.5.11
+  resolution: "@electric-sql/pglite@npm:0.5.11"
+  checksum: 65957bfba781619f95d1cd894c918582c39d743569304e55fd32dc241d2a359bc4397ddf04e507dac08d9595cf7e618baa9f7655e42518852991e3ab3fcf03d2
+  languageName: node
+  linkType: hard
+
 "@emnapi/core@npm:1.10.0":
   version: 1.10.0
   resolution: "@emnapi/core@npm:1.10.0"
@@ -12822,6 +12829,7 @@ __metadata:
   resolution: "@whe/blog@workspace:packages/blog"
   dependencies:
     "@chakra-ui/react": 3.36.0
+    "@electric-sql/pglite": 0.5.11
     "@emotion/react": 11.14.0
     "@emotion/styled": 11.14.1
     "@fontsource/spartan": 4.5.8

@@ -58,6 +58,7 @@
     "slugify": "1.6.9"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.11",
     "@next/bundle-analyzer": "16.2.10",
     "@storybook/addon-docs": "10.5.0",
     "@storybook/addon-links": "10.5.0",
