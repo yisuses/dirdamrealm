@@ -77,6 +77,31 @@ Durante la transición, `DATA_SOURCE=strapi|db` elige la implementación, para c
 - En Strapi 5 el id numérico de una entrada **puede cambiar al republicar**. Con el nuevo modelo es estable.
 - El bloque _About_ se pide sin idioma, así que su descripción en inglés nunca se usa.
 
+### Resultados de la fase 0 (2026-10-22)
+
+Copia de seguridad: `pg_dump` completo de `Postgres-prod` (Railway, PostgreSQL 16) en `~/Backups/whemotion/strapi-prod-20261022-1014.dump` (1,9 MB, 53 tablas, sha256 `d5025813…dc15b4`), y la configuración que solo vive en Strapi en `strapi-settings-20261022.json`. Ambos fuera del repo, con permisos `600`.
+
+| Dato                | Valor                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Entradas publicadas | **118** (107 es, 11 en) de 115 documentos y 240 filas (borradores incluidos)                                     |
+| Categorías          | 6 (`ENG HIS MAC NEW SPO TRA`); nombres traducidos en `translations` (la columna `locale` está vacía y se ignora) |
+| Comentarios         | 328                                                                                                              |
+| Archivos            | 822                                                                                                              |
+| Autores (`writers`) | 2                                                                                                                |
+| Usuarios admin      | 2 (José y Saúl)                                                                                                  |
+| Tags y subscribers  | **0 y 0**: no hay nada que copiar                                                                                |
+| Idiomas             | `en` (por defecto en Strapi) y `es`                                                                              |
+| Webhook             | `revalidate en vercel` → `https://whemotion.com/api/revalidate/`                                                 |
+
+**Confirmado: faltan 7 entradas en la web.** Strapi corta en 100 filas, y hay 107 entradas publicadas en español: el sitemap tiene 111 URLs (100 + 11) en vez de 118. Esas 7 entradas tampoco salen en el archivo ni se generan en el build. La migración lo arregla.
+
+**Agujeros de seguridad encontrados en los permisos (hoy, en producción)**:
+
+- El rol **público** tiene `auth.register`: cualquiera puede registrarse como usuario con `POST /api/auth/local/register`.
+- El rol **autenticado** tiene `comment.update` y `comment.delete` sin comprobar quién es el autor: **cualquiera que se registre puede editar o borrar todos los comentarios**.
+- El rol público tiene `comment.create`: se puede comentar sin pasar por el reCAPTCHA de la web.
+- No hay señales de abuso: un solo usuario registrado, de enero de 2022.
+
 ## 4. Modelo de datos (Drizzle / Postgres)
 
 Sigue el patrón de portfolio-blog: **una tabla con lo común y una tabla de traducciones por idioma** (`(id_padre, locale)` como clave), ids internos ULID y un número propio para las URLs.
