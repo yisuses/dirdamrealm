@@ -18,7 +18,7 @@ export default defineConfig({
       {
         extends: true,
         // Plain functions, mappers and route handlers.
-        test: { name: 'unit', environment: 'node', include: ['src/**/*.spec.ts'] },
+        test: { name: 'unit', environment: 'node', include: ['src/**/*.spec.ts', 'scripts/**/*.spec.ts'] },
       },
       {
         extends: true,
