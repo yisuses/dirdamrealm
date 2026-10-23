@@ -195,6 +195,16 @@ Decisiones:
 
 De portfolio-blog se toman ideas de UX, no el formato (allí es MDX): pestañas por idioma, pestañas de vista previa (entrada, móvil, tarjeta) y modales para insertar. Se evita su `PostEditor.tsx` de 1.560 líneas: el editor se divide en componentes pequeños.
 
+**Cómo quedó (fase 6):**
+
+- **Nada llega a la web hasta pulsar «Publicar».** El editor guarda solo cada pocos segundos. En una versión publicada, los cambios de texto esperan en `post_translations.draft`; mientras la entrada esté en la web, los de portada, firma y categorías (compartidos por los dos idiomas) esperan en `posts.draft`. «Publicar los cambios» los aplica; «Descartar los cambios» los borra. Si los cambios vuelven a lo publicado, no queda nada pendiente.
+- **Vista previa** en `/vista-previa/<número>/<token>/` (y `/en/…`): la página real de la entrada con los cambios aplicados, sin caché, `noindex` y fuera de `robots.txt`.
+- **Programar**: un día (no una hora), por fecha de Madrid; el cron de Vercel (`vercel.json`, `0 6 * * *`, con `CRON_SECRET`) publica lo que toque y, si un día falla, lo recupera al siguiente. Lo que no tiene título o resumen se queda programado.
+- **Bloques de enlace**: la vista previa la pide `/api/admin/link-preview`, solo para el panel y solo a direcciones públicas (nunca a la red interna).
+- **Listas**: solo con puntos o numeradas (sin listas de tareas ni numeraciones especiales, que la web no muestra).
+- **Formato antiguo**: al editar una entrada vieja se pierde el formato que la web ya no mostraba (colores, tamaños y `span` pegados desde Word); negritas, cursivas y enlaces se mantienen.
+- **Extra: importar un documento de Word** (`.docx`, en el navegador con `mammoth`): añade su texto al final como **párrafos** del blog, con negritas, cursivas y enlaces. Títulos, listas y tablas del documento también entran como párrafos; las imágenes no se importan.
+
 ## 6. Login y protección (de portfolio-blog)
 
 - **Auth.js Credentials**: busca el usuario en `users` y compara con **bcrypt**, siempre en tiempo constante (aunque el email no exista). Sesión JWT de 8 horas.

@@ -17,17 +17,20 @@ interface ConfirmDialogProps {
   title: string
   children: ReactNode
   confirmLabel: string
+  // Red for destructive actions, the default; orange for ones that only need a second look.
+  confirmPalette?: 'red' | 'orange'
   loading?: boolean
   onConfirm: () => void
   onCancel: () => void
 }
 
-/** Every destructive action asks first, saying exactly what will happen. */
+/** Every destructive or public action asks first, saying exactly what will happen. */
 export function ConfirmDialog({
   open,
   title,
   children,
   confirmLabel,
+  confirmPalette = 'red',
   loading,
   onConfirm,
   onCancel,
@@ -42,13 +45,15 @@ export function ConfirmDialog({
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
-          <Text fontSize="lg">{children}</Text>
+          <Text fontSize="lg" lineHeight="tall">
+            {children}
+          </Text>
         </DialogBody>
         <DialogFooter>
           <Button variant="outline" size="lg" onClick={onCancel}>
             Cancelar
           </Button>
-          <Button colorPalette="red" size="lg" loading={loading} onClick={onConfirm}>
+          <Button colorPalette={confirmPalette} size="lg" loading={loading} onClick={onConfirm}>
             {confirmLabel}
           </Button>
         </DialogFooter>

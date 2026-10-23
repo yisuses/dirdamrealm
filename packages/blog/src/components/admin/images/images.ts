@@ -42,8 +42,11 @@ export function nameFromFile(file: File) {
     .trim()
 }
 
-/** Asks the server for a signature, then sends the file straight from the browser to Cloudinary. */
-export async function uploadImage(file: File, meta: ImageMetaInput, onProgress: (percent: number) => void) {
+/**
+ * Asks the server for a signature, then sends the file straight from the browser to Cloudinary.
+ * A web address instead of a file makes Cloudinary fetch the image from there.
+ */
+export async function uploadImage(file: File | string, meta: ImageMetaInput, onProgress: (percent: number) => void) {
   const { data: signed } = await axios.post<{ url: string; fields: Record<string, string | number> }>(
     '/api/admin/images/signature/',
     meta,

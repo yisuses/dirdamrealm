@@ -91,6 +91,14 @@ exports[`AdminShell > should show the user, the sections and the page, with the 
         <li>
           <a
             class="chakra-link css-8fy2vp"
+            href="/admin/entradas/"
+          >
+            Entradas
+          </a>
+        </li>
+        <li>
+          <a
+            class="chakra-link css-8fy2vp"
             href="/admin/imagenes/"
           >
             Imágenes

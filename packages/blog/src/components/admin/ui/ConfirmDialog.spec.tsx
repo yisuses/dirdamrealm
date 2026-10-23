@@ -41,4 +41,27 @@ describe('ConfirmDialog', () => {
     await vi.waitFor(() => expect(onCancel).toHaveBeenCalled())
     expect(onConfirm).not.toHaveBeenCalled()
   })
+
+  it('should color the confirmation red by default and orange when asked', async () => {
+    const { rerender } = renderWithProviders(
+      <ConfirmDialog open title="¿Publicar?" confirmLabel="Sí" onConfirm={vi.fn()} onCancel={vi.fn()}>
+        Se verá en la web.
+      </ConfirmDialog>,
+    )
+    const red = (await screen.findByRole('button', { name: 'Sí' })).className
+
+    rerender(
+      <ConfirmDialog
+        open
+        title="¿Publicar?"
+        confirmLabel="Sí"
+        confirmPalette="orange"
+        onConfirm={vi.fn()}
+        onCancel={vi.fn()}
+      >
+        Se verá en la web.
+      </ConfirmDialog>,
+    )
+    expect(screen.getByRole('button', { name: 'Sí' }).className).not.toBe(red)
+  })
 })

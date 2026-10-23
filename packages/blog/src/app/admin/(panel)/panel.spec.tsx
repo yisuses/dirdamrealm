@@ -35,6 +35,7 @@ describe('admin panel', () => {
 
     expect(screen.getByRole('heading', { name: 'Inicio' })).toBeInTheDocument()
     expect(screen.getAllByRole('link').map(link => link.textContent)).toEqual([
+      'Entradas',
       'Imágenes',
       'Categorías',
       'Contacto y redes',

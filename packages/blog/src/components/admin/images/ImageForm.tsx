@@ -85,7 +85,10 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
     ['Tamaño', `${image.width} × ${image.height} píxeles`],
     ['Peso', formatBytes(image.bytes)],
     ['Formato', image.format.toUpperCase()],
-    ['Subida el', new Date(image.createdAt).toLocaleDateString('es-ES', { dateStyle: 'long' })],
+    [
+      'Subida el',
+      new Date(image.createdAt).toLocaleDateString('es-ES', { dateStyle: 'long', timeZone: 'Europe/Madrid' }),
+    ],
   ]
 
   return (

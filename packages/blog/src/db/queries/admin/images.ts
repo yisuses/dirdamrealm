@@ -15,7 +15,8 @@ export interface ImageUsage {
 
 /**
  * The translations of non-deleted posts that use an image, so it is not deleted from under them.
- * Content blocks (published or unpublished edits) hold the image's url, `…/<publicId>.<ext>`, or
+ * Covers count whether published or waiting in the post's draft. Content blocks (published or
+ * unpublished edits) hold the image's url, `…/<publicId>.<ext>`, or
  * its id as a whole JSON string; Strapi's resized copies (`small_<publicId>`) match neither.
  */
 export async function findImageUsage(publicId: string): Promise<ImageUsage[]> {
@@ -24,7 +25,7 @@ export async function findImageUsage(publicId: string): Promise<ImageUsage[]> {
   const mentions = (column: unknown) =>
     sql<boolean>`(strpos(coalesce(${column}::text, ''), ${inUrl}) > 0 or strpos(coalesce(${column}::text, ''), ${asString}) > 0)`
 
-  const cover = sql<boolean>`(${posts.cover}->>'publicId' = ${publicId} or strpos(coalesce(${posts.imgUrl}, ''), ${inUrl}) > 0)`
+  const cover = sql<boolean>`(${posts.cover}->>'publicId' = ${publicId} or ${posts.draft}->'cover'->>'publicId' = ${publicId} or strpos(coalesce(${posts.imgUrl}, ''), ${inUrl}) > 0)`
   const content = sql<boolean>`(${mentions(postTranslations.content)} or ${mentions(postTranslations.draft)})`
 
   return getDb()

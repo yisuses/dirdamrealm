@@ -7,8 +7,14 @@ import type { LibraryImage } from '@blog/core/cloudinary/libraryImage'
 
 import { thumbnailUrl } from './images'
 
+interface ImageGridProps {
+  images: LibraryImage[]
+  /** Choosing mode: each card picks its image instead of opening its page. */
+  onSelect?: (image: LibraryImage) => void
+}
+
 /** Each image as a card that opens its page, where it is renamed, described or deleted. */
-export function ImageGrid({ images }: { images: LibraryImage[] }) {
+export function ImageGrid({ images, onSelect }: ImageGridProps) {
   return (
     <Grid as="ul" listStyleType="none" templateColumns="repeat(auto-fill, minmax(160px, 1fr))" gap={4}>
       {images.map(image => (
@@ -33,8 +39,14 @@ export function ImageGrid({ images }: { images: LibraryImage[] }) {
             />
           </Box>
           <Stack gap={1} p={3}>
-            <LinkOverlay asChild fontWeight="bold" lineClamp={2} wordBreak="break-word">
-              <NextLink href={`/admin/imagenes/${image.publicId}/`}>{image.name}</NextLink>
+            <LinkOverlay asChild fontWeight="bold" lineClamp={2} wordBreak="break-word" textAlign="start">
+              {onSelect ? (
+                <button type="button" onClick={() => onSelect(image)} aria-label={`Elegir ${image.name}`}>
+                  {image.name}
+                </button>
+              ) : (
+                <NextLink href={`/admin/imagenes/${image.publicId}/`}>{image.name}</NextLink>
+              )}
             </LinkOverlay>
             <Text fontSize="sm" color="fg.muted">
               {image.width} × {image.height}

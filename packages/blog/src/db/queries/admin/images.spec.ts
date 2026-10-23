@@ -17,13 +17,23 @@ describe('findImageUsage', () => {
   beforeAll(async () => {
     testDb.current = await createTestDb()
     const { db } = testDb.current
-    const [withCover, withContent, deleted, legacy] = await db
+    const [withCover, withContent, deleted, legacy, pendingCover] = await db
       .insert(posts)
       .values([
         { cover: { publicId: 'portada_1', width: 1, height: 1 } },
         {},
         { deletedAt: new Date(), cover: { publicId: 'portada_1', width: 1, height: 1 } },
         { imgUrl: url('antigua_1') },
+        {
+          draft: {
+            cover: { publicId: 'nueva_portada', width: 1, height: 1 },
+            coverImageAuthor: '',
+            coverImageSourceUrl: '',
+            writerId: '',
+            categoryIds: [],
+            savedAt: '2026-10-22T10:00:00.000Z',
+          },
+        },
       ])
       .returning()
     const translation = (
@@ -44,10 +54,16 @@ describe('findImageUsage', () => {
       translation(withCover!.id, 'en', 11, doc(image('portada_1'))),
       {
         ...translation(withContent!.id, 'es', 20, doc(image('small_dentro_1'))),
-        draft: { title: '', summary: '', content: doc({ type: 'image', data: { publicId: 'dentro_1' } }) },
+        draft: {
+          title: '',
+          summary: '',
+          content: doc({ type: 'image', data: { publicId: 'dentro_1' } }),
+          savedAt: '2026-10-22T10:00:00.000Z',
+        },
       },
       translation(deleted!.id, 'es', 30),
       translation(legacy!.id, 'es', 40),
+      translation(pendingCover!.id, 'es', 50),
     ])
   })
 
@@ -70,5 +86,11 @@ describe('findImageUsage', () => {
   it('should find old posts whose cover is a plain url, and ignore deleted posts', async () => {
     await expect(findImageUsage('antigua_1')).resolves.toEqual([expect.objectContaining({ number: 40, cover: true })])
     await expect(findImageUsage('sin_usar')).resolves.toEqual([])
+  })
+
+  it("should find a cover that waits in a post's draft to be published", async () => {
+    await expect(findImageUsage('nueva_portada')).resolves.toEqual([
+      expect.objectContaining({ number: 50, cover: true }),
+    ])
   })
 })

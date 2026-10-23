@@ -2,8 +2,9 @@
 import { LOCALES } from '@blog/core/i18n/config'
 
 // Top-level sections this site serves under the (optional) locale prefix. `categoria` is
-// the legacy spanish alias rewritten to `category` in next.config.js.
-const SECTIONS: readonly string[] = ['archive', 'category', 'categoria', 'post']
+// the legacy spanish alias rewritten to `category` in next.config.js. `vista-previa` is the
+// panel's secret preview of a post (`/vista-previa/<number>/<token>`), rendered on demand.
+const SECTIONS: readonly string[] = ['archive', 'category', 'categoria', 'post', 'vista-previa']
 
 // `seoName()` slugifies with `{ strict: true, lower: true }`, so a canonical slug is only
 // `[a-z0-9]` groups joined by single hyphens. Anything else can never match one.
@@ -55,7 +56,7 @@ export function isServeablePath(pathname: string): boolean {
     return false
   }
 
-  const idIsValid = section === 'post' ? POST_ID.test(id) : CATEGORY_CODE.test(id)
+  const idIsValid = section === 'category' || section === 'categoria' ? CATEGORY_CODE.test(id) : POST_ID.test(id)
   if (!idIsValid) {
     return false
   }

@@ -59,7 +59,12 @@ function toPost({ translation, post }: Row): Post {
  * Builds `Post`s with the relations each caller used to `populate` from Strapi, so lists and
  * pages receive exactly the shape they always have (e.g. the writer only on the post page).
  */
-async function hydrate(rows: Row[], relations: Relation[]): Promise<Post[]> {
+async function hydrate(
+  rows: Row[],
+  relations: Relation[],
+  // A post's categories in this order instead of its saved ones (a preview of unpublished edits).
+  categoryOverride?: Map<string, string[]>,
+): Promise<Post[]> {
   if (rows.length === 0) {
     return []
   }
@@ -81,12 +86,16 @@ async function hydrate(rows: Row[], relations: Relation[]): Promise<Post[]> {
       .where(inArray(postCategories.postId, postIds))
       .orderBy(asc(postCategories.position), asc(categories.createdAt))
     const translations = await db.select().from(categoryTranslations)
-    const ordered = await db.select({ id: categories.id }).from(categories).orderBy(asc(categories.createdAt))
+    const ordered = await db.select().from(categories).orderBy(asc(categories.createdAt))
     const numericId = new Map(ordered.map(({ id }, index) => [id, index + 1]))
     rows.forEach((row, index) => {
-      result[index]!.categories = links
-        .filter(link => link.postId === row.post.id)
-        .map(link => toCategory(link.category, translations, row.translation.locale, numericId.get(link.category.id)!))
+      const override = categoryOverride?.get(row.post.id)
+      const postCategoryRows = override
+        ? override.map(id => ordered.find(category => category.id === id)).filter(category => category !== undefined)
+        : links.filter(link => link.postId === row.post.id).map(link => link.category)
+      result[index]!.categories = postCategoryRows.map(category =>
+        toCategory(category, translations, row.translation.locale, numericId.get(category.id)!),
+      )
     })
   }
 
@@ -176,4 +185,44 @@ export async function searchPostsFromDb({ query }: { query: string }): Promise<P
   const matches = sql`(unaccent(${postTranslations.title}) ilike unaccent(${pattern}) or unaccent(${postTranslations.summary}) ilike unaccent(${pattern}))`
   const rows = await selectRows(matches, [desc(postTranslations.publishedAt)], 20)
   return hydrate(rows, ['categories', 'coverImage'])
+}
+
+/**
+ * A translation as it will look once its pending edits are published, for the panel's secret
+ * preview link: drafts included, by number and preview token together.
+ */
+export async function getPreviewPostFromDb({ id, token }: { id: number; token: string }): Promise<Post | undefined> {
+  const [row] = await getDb()
+    .select({ translation: postTranslations, post: posts })
+    .from(postTranslations)
+    .innerJoin(posts, eq(posts.id, postTranslations.postId))
+    .where(and(eq(postTranslations.number, id), eq(postTranslations.previewToken, token), isNull(posts.deletedAt)))
+  if (!row) {
+    return undefined
+  }
+  const { translation, post } = row
+  const text = translation.draft ?? translation
+  const fields = post.draft
+  const previewRow: Row = {
+    translation: {
+      ...translation,
+      title: text.title,
+      summary: text.summary,
+      content: text.content,
+      // Not published yet: dated today, as it would be if published now.
+      publishedAt: translation.publishedAt ?? new Date(),
+    },
+    post: fields
+      ? {
+          ...post,
+          cover: fields.cover,
+          coverImageAuthor: fields.coverImageAuthor || null,
+          coverImageSourceUrl: fields.coverImageSourceUrl || null,
+          writerId: fields.writerId || null,
+        }
+      : post,
+  }
+  const override = fields ? new Map([[post.id, fields.categoryIds]]) : undefined
+  const [preview] = await hydrate([previewRow], ['categories', 'coverImage', 'localizations', 'writer'], override)
+  return preview
 }

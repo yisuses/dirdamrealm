@@ -98,7 +98,7 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
           class="chakra-stack css-1sje52g"
         >
           <a
-            class="chakra-linkbox__overlay css-1pymicb"
+            class="chakra-linkbox__overlay css-j5488q"
             href="/admin/imagenes/portada_4/"
           >
             portada 4
@@ -129,7 +129,7 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
           class="chakra-stack css-1sje52g"
         >
           <a
-            class="chakra-linkbox__overlay css-1pymicb"
+            class="chakra-linkbox__overlay css-j5488q"
             href="/admin/imagenes/sin_texto/"
           >
             sin texto

@@ -1,9 +1,16 @@
+import { eq } from 'drizzle-orm'
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { categories, categoryTranslations, postCategories, postTranslations, posts, writers } from '@blog/db/schema'
 import { type TestDb, createTestDb } from '@blog/test/db'
 
-import { getAllPostsFromDb, getLatestPostsFromDb, getPostByIdFromDb, searchPostsFromDb } from './posts'
+import {
+  getAllPostsFromDb,
+  getLatestPostsFromDb,
+  getPostByIdFromDb,
+  getPreviewPostFromDb,
+  searchPostsFromDb,
+} from './posts'
 
 const testDb = vi.hoisted(() => ({ current: undefined as unknown as TestDb }))
 vi.mock('@blog/db/client', () => ({ getDb: () => testDb.current.db }))
@@ -217,6 +224,76 @@ describe('post queries', () => {
 
     it('should not query for an empty search', async () => {
       await expect(searchPostsFromDb({ query: '   ' })).resolves.toEqual([])
+    })
+  })
+
+  describe('getPreviewPostFromDb', () => {
+    const tokenOf = async (number: number) => {
+      const [row] = await testDb.current.db
+        .select({ token: postTranslations.previewToken, postId: postTranslations.postId })
+        .from(postTranslations)
+        .where(eq(postTranslations.number, number))
+      return row!
+    }
+
+    it('should show a draft with every relation, dated now', async () => {
+      const { token } = await tokenOf(300)
+
+      const preview = await getPreviewPostFromDb({ id: 300, token })
+
+      expect(preview).toMatchObject({ id: 300, title: 'Borrador sobre música', coverImage: null, categories: [] })
+      expect(Date.now() - new Date(preview!.publishedAt).getTime()).toBeLessThan(60_000)
+    })
+
+    it('should apply pending text and shared edits, in their category order', async () => {
+      const { db } = testDb.current
+      const { token, postId } = await tokenOf(100)
+      const [travel] = await db.select().from(categories).where(eq(categories.code, 'TRA'))
+      await db
+        .update(postTranslations)
+        .set({ draft: { title: 'Nuevo título', summary: 'Nuevo', content: content('Nuevo'), savedAt: 'x' } })
+        .where(eq(postTranslations.number, 100))
+      const draft = {
+        cover: { publicId: 'cover-b', width: 800, height: 600 },
+        coverImageAuthor: '',
+        coverImageSourceUrl: '',
+        writerId: '',
+        categoryIds: [travel!.id, '00000000-0000-4000-8000-000000000000'],
+        savedAt: 'x',
+      }
+      await db.update(posts).set({ draft }).where(eq(posts.id, postId))
+
+      const preview = await getPreviewPostFromDb({ id: 100, token })
+
+      expect(preview).toMatchObject({
+        title: 'Nuevo título',
+        publishedAt: '2026-03-01T10:00:00.000Z',
+        coverImageAuthor: null,
+        coverImageSourceUrl: null,
+        writer: null,
+      })
+      expect(preview!.coverImage).toMatchObject({ name: 'cover-b' })
+      expect(preview!.categories?.map(category => category.code)).toEqual(['TRA'])
+
+      await db
+        .update(posts)
+        .set({ draft: { ...draft, coverImageAuthor: 'Luis', coverImageSourceUrl: 'https://x.com', categoryIds: [] } })
+        .where(eq(posts.id, postId))
+      await expect(getPreviewPostFromDb({ id: 100, token })).resolves.toMatchObject({
+        coverImageAuthor: 'Luis',
+        coverImageSourceUrl: 'https://x.com',
+        categories: [],
+      })
+      await db.update(posts).set({ draft: null }).where(eq(posts.id, postId))
+      await db.update(postTranslations).set({ draft: null }).where(eq(postTranslations.number, 100))
+    })
+
+    it('should need the right token, and not show deleted posts', async () => {
+      const { token } = await tokenOf(300)
+      const deleted = await tokenOf(400)
+
+      await expect(getPreviewPostFromDb({ id: 100, token })).resolves.toBeUndefined()
+      await expect(getPreviewPostFromDb({ id: 400, token: deleted.token })).resolves.toBeUndefined()
     })
   })
 })

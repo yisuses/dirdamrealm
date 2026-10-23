@@ -6,6 +6,7 @@ import { type DragEvent, type FormEvent, useRef, useState } from 'react'
 
 import { AdminPageHeader } from '@blog/components/admin/ui/AdminPageHeader'
 import { apiErrorMessage } from '@blog/components/admin/ui/apiError'
+import type { LibraryImage } from '@blog/core/cloudinary/libraryImage'
 
 import { ImageGrid } from './ImageGrid'
 import { UploadDialog } from './UploadDialog'
@@ -13,7 +14,12 @@ import { addToLibrary, fetchLibraryPage, libraryQueryKey, libraryStaleTime } fro
 
 const hasFiles = (event: DragEvent) => event.dataTransfer.types.includes('Files')
 
-export function ImageLibrary() {
+interface ImageLibraryProps {
+  /** Choosing mode, inside the picker: no page header, and a click picks the image. */
+  onSelect?: (image: LibraryImage) => void
+}
+
+export function ImageLibrary({ onSelect }: ImageLibraryProps = {}) {
   const queryClient = useQueryClient()
   const fileInput = useRef<HTMLInputElement>(null)
   const [search, setSearch] = useState('')
@@ -50,15 +56,19 @@ export function ImageLibrary() {
 
   return (
     <Stack gap={6}>
-      <AdminPageHeader
-        title="Imágenes"
-        description="Todas las imágenes de la web, guardadas en Cloudinary. Pulsa una para cambiarle el nombre o la descripción, o para borrarla."
-        action={
-          <Button colorPalette="orange" size="lg" onClick={() => fileInput.current?.click()}>
-            Subir imágenes
-          </Button>
-        }
-      />
+      {onSelect ? (
+        <Text fontSize="lg">Pulsa la imagen que quieras usar, o sube una nueva.</Text>
+      ) : (
+        <AdminPageHeader
+          title="Imágenes"
+          description="Todas las imágenes de la web, guardadas en Cloudinary. Pulsa una para cambiarle el nombre o la descripción, o para borrarla."
+          action={
+            <Button colorPalette="orange" size="lg" onClick={() => fileInput.current?.click()}>
+              Subir imágenes
+            </Button>
+          }
+        />
+      )}
       <VisuallyHidden asChild>
         <input
           ref={fileInput}
@@ -153,7 +163,7 @@ export function ImageLibrary() {
           <Text color="fg.muted" aria-live="polite">
             {query ? `${total} ${total === 1 ? 'imagen encontrada' : 'imágenes encontradas'}` : `${total} imágenes`}
           </Text>
-          <ImageGrid images={images} />
+          <ImageGrid images={images} onSelect={onSelect} />
           {library.hasNextPage && (
             <Button
               alignSelf="center"

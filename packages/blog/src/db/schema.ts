@@ -43,11 +43,23 @@ export interface StoredImage {
   caption?: string
 }
 
-/** Unpublished edits of a published translation, applied to the public columns on publish. */
+/** Edits of a published translation's text, applied to the public columns on publish. */
 export interface TranslationDraft {
   title: string
   summary: string
   content: DataProp
+  savedAt: string
+}
+
+/** Edits of what both languages share, while the post is on the site, applied on publish. */
+export interface PostDraft {
+  cover: StoredImage | null
+  coverImageAuthor: string
+  coverImageSourceUrl: string
+  writerId: string
+  // In order: the first is the post's main category.
+  categoryIds: string[]
+  savedAt: string
 }
 
 export const users = pgTable('users', {
@@ -89,6 +101,7 @@ export const posts = pgTable('posts', {
   coverImageAuthor: text('cover_image_author'),
   coverImageSourceUrl: text('cover_image_source_url'),
   imgUrl: text('img_url'),
+  draft: jsonb('draft').$type<PostDraft>(),
   ...timestamps,
   deletedAt: timestamp('deleted_at', { withTimezone: true }),
 })
