@@ -10,6 +10,13 @@ interface Context {
 }
 
 const notFound = () => Response.json({ error: 'La imagen no existe' }, { status: 404 })
+
+// Previews have their own copy of the database but share the real Cloudinary library: changing an
+// image there could break the live site's posts, which that copy does not know about.
+const previewRefusal = () =>
+  process.env.VERCEL_ENV === 'preview'
+    ? Response.json({ error: 'En la versión de prueba no se pueden borrar ni renombrar imágenes.' }, { status: 403 })
+    : undefined
 const cloudinaryFailed = (error: unknown) => {
   sentry.captureException(error)
   return Response.json({ error: 'Cloudinary no responde. Inténtalo de nuevo en un rato.' }, { status: 502 })
@@ -20,6 +27,10 @@ export async function PATCH(request: Request, { params }: Context) {
   const parsed = await parseAuthRequest(request, imageMetaSchema)
   if (!parsed.ok) {
     return parsed.response
+  }
+  const refusal = previewRefusal()
+  if (refusal) {
+    return refusal
   }
   const { publicId } = await params
   try {
@@ -37,6 +48,10 @@ export async function DELETE(_request: Request, { params }: Context) {
   const authResult = await requireAuth()
   if (!authResult.ok) {
     return authResult.response
+  }
+  const refusal = previewRefusal()
+  if (refusal) {
+    return refusal
   }
   const { publicId } = await params
   if (!isPublicId(publicId)) {

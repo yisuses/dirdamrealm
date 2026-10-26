@@ -83,6 +83,22 @@ describe('admin images API', () => {
     expect((await PATCH(json('PATCH', { alt: '' }), context('foto'))).status).toBe(400)
   })
 
+  it('should not change or delete images from a preview, which shares the real library', async () => {
+    vi.stubEnv('VERCEL_ENV', 'preview')
+
+    const renamed = await PATCH(json('PATCH', meta), context('foto'))
+    const deleted = await DELETE(new Request(base), context('foto'))
+
+    expect(renamed.status).toBe(403)
+    expect(deleted.status).toBe(403)
+    await expect(deleted.json()).resolves.toEqual({
+      error: 'En la versión de prueba no se pueden borrar ni renombrar imágenes.',
+    })
+    expect(updateImage).not.toHaveBeenCalled()
+    expect(deleteImage).not.toHaveBeenCalled()
+    vi.unstubAllEnvs()
+  })
+
   it('should delete unused images only', async () => {
     expect((await DELETE(new Request(base), context('foto'))).status).toBe(204)
     expect(deleteImage).toHaveBeenCalledWith('foto')

@@ -30,6 +30,16 @@ describe('admin panel', () => {
     expect(screen.getByRole('button', { name: 'Cerrar sesión' })).toBeInTheDocument()
   })
 
+  it('should tell the shell when it runs on a Vercel preview', async () => {
+    vi.mocked(requireAdminSession).mockResolvedValue({ user: { name: 'José' }, expires: '' } as never)
+    vi.stubEnv('VERCEL_ENV', 'preview')
+
+    renderWithProviders(await PanelLayout({ children: null }))
+
+    expect(screen.getByRole('status')).toHaveTextContent('Versión de prueba')
+    vi.unstubAllEnvs()
+  })
+
   it('should offer every section except home on the home page', () => {
     const { container } = renderWithProviders(<AdminHomePage />)
 

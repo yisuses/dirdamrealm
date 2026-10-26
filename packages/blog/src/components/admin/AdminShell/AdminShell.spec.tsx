@@ -48,4 +48,25 @@ describe('AdminShell', () => {
 
     expect(screen.getByRole('status')).toHaveTextContent('Modo de pruebas')
   })
+
+  it('should say a preview is a test version whose images are the real ones', () => {
+    renderWithProviders(
+      <AdminShell userName="José" dataSource="db" preview>
+        {null}
+      </AdminShell>,
+    )
+
+    expect(screen.getByRole('status')).toHaveTextContent('Versión de prueba')
+    expect(screen.getByRole('status')).toHaveTextContent('no se pueden borrar ni renombrar')
+  })
+
+  it('should show no warning once the live site reads from the database', () => {
+    renderWithProviders(
+      <AdminShell userName="José" dataSource="db">
+        {null}
+      </AdminShell>,
+    )
+
+    expect(screen.queryByRole('status')).not.toBeInTheDocument()
+  })
 })

@@ -13,6 +13,8 @@ interface AdminShellProps {
   userName: string
   /** Where the public site reads from; until the cutover, panel edits are not live. */
   dataSource: 'strapi' | 'db'
+  /** A Vercel preview: its own copy of the database, but the real image library. */
+  preview?: boolean
   children: ReactNode
 }
 
@@ -20,7 +22,7 @@ function isActive(pathname: string, href: string) {
   return href === '/admin/' ? pathname === href || pathname === '/admin' : pathname.startsWith(href)
 }
 
-export function AdminShell({ userName, dataSource, children }: AdminShellProps) {
+export function AdminShell({ userName, dataSource, preview = false, children }: AdminShellProps) {
   const pathname = usePathname()
 
   return (
@@ -64,7 +66,7 @@ export function AdminShell({ userName, dataSource, children }: AdminShellProps) 
         </Flex>
       </Flex>
 
-      {dataSource !== 'db' && (
+      {(preview || dataSource !== 'db') && (
         <Box
           role="status"
           bg="orange.100"
@@ -74,8 +76,17 @@ export function AdminShell({ userName, dataSource, children }: AdminShellProps) 
           borderBottomWidth={1}
           borderColor="orange.300"
         >
-          <strong>Modo de pruebas:</strong> la web todavía lee de Strapi. Lo que cambies aquí no se verá en
-          whemotion.com hasta la migración.
+          {preview ? (
+            <>
+              <strong>Versión de prueba:</strong> pruébalo todo con tranquilidad, nada de lo que hagas aquí llega a
+              whemotion.com. Las imágenes sí son las de verdad, así que aquí no se pueden borrar ni renombrar.
+            </>
+          ) : (
+            <>
+              <strong>Modo de pruebas:</strong> la web todavía lee de Strapi. Lo que cambies aquí no se verá en
+              whemotion.com hasta la migración.
+            </>
+          )}
         </Box>
       )}
 

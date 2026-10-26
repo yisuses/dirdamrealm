@@ -8,7 +8,11 @@ import { dataSource } from '@blog/data'
 export default async function PanelLayout({ children }: { children: ReactNode }) {
   const session = await requireAdminSession()
   return (
-    <AdminShell userName={session.user?.name ?? ''} dataSource={dataSource()}>
+    <AdminShell
+      userName={session.user?.name ?? ''}
+      dataSource={dataSource()}
+      preview={process.env.VERCEL_ENV === 'preview'}
+    >
       {children}
     </AdminShell>
   )
