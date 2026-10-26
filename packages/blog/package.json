@@ -5,7 +5,7 @@
   "description": "White Emotion Next.JS Blog",
   "scripts": {
     "dev": "next dev",
-    "build": "NODE_ENV=production next build",
+    "build": "tsx scripts/migrate-preview.ts && NODE_ENV=production next build",
     "start": "next start",
     "lint": "eslint src",
     "test": "vitest run",

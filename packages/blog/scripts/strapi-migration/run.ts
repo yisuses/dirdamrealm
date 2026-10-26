@@ -92,7 +92,7 @@ async function main() {
   const db = drizzle({ client: pool, schema })
   await db.transaction(async tx => {
     await tx.execute(
-      sql`truncate table comments, post_categories, post_translations, posts, category_translations, categories, writers, users, social_links, site_contact_translations, site_contact restart identity`,
+      sql`truncate table comments, post_categories, post_translations, posts, category_translations, categories, writers, password_reset_tokens, users, social_links, site_contact_translations, site_contact restart identity`,
     )
     if (rows.users.length) await tx.insert(schema.users).values(rows.users)
     if (rows.writers.length) await tx.insert(schema.writers).values(rows.writers)
