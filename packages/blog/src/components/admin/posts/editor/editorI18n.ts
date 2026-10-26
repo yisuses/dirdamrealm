@@ -40,6 +40,7 @@ export const editorMessages: I18nDictionary = {
       'Add row below': 'Añadir fila debajo',
       'Delete row': 'Borrar fila',
     },
+    embed: { 'Enter a caption': 'Pie del vídeo (opcional)' },
     LinkTool: {
       Link: 'Enlace',
       "Couldn't fetch the link data": 'No se ha podido leer esa página',

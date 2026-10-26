@@ -65,7 +65,9 @@ const secureHeaders = createSecureHeaders({
         forceHTTPSRedirect: [true, { maxAge: 60 * 60 * 24 * 4, includeSubDomains: true }],
       }
     : {}),
-  referrerPolicy: 'same-origin',
+  // Other sites see only the domain, never the page. Not `same-origin`: YouTube refuses to play
+  // embedded videos (error 153) when it gets no referrer at all.
+  referrerPolicy: 'strict-origin-when-cross-origin',
 })
 
 /** @type {import('next').NextConfig} */
