@@ -1,7 +1,9 @@
 import 'server-only'
 
 import * as strapi from '@blog/api'
+import { addComment as addCommentToStrapi } from '@blog/api/comment'
 import { getAlgoliaPosts, getAllPosts as getAllPostsFromStrapi } from '@blog/api/post'
+import { addCommentToDb } from '@blog/core/comments/addCommentToDb'
 import { getAboutFromDb } from '@blog/db/queries/about'
 import { getCategoriesFromDb } from '@blog/db/queries/categories'
 import { getCommentsFromDb } from '@blog/db/queries/comments'
@@ -37,3 +39,10 @@ export const getComments = (params: Parameters<typeof strapi.getComments>[0]) =>
 /** The header's quick search: Algolia while on Strapi, Postgres once on Neon. */
 export const searchPosts = (params: { query: string }) =>
   fromDb() ? searchPostsFromDb(params) : getAlgoliaPosts(params)
+
+/**
+ * A visitor's comment: Strapi stores it and sends its own email until the cutover. False when the
+ * post is not published (only known on Neon; Strapi rejects it with an error).
+ */
+export const addComment = async (params: { postId: number; author: string; text: string }) =>
+  fromDb() ? addCommentToDb(params) : addCommentToStrapi(params).then(() => true)

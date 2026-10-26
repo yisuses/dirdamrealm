@@ -1,7 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import * as strapi from '@blog/api'
+import * as strapiComment from '@blog/api/comment'
 import * as strapiPosts from '@blog/api/post'
+import * as dbComment from '@blog/core/comments/addCommentToDb'
 import * as about from '@blog/db/queries/about'
 import * as categories from '@blog/db/queries/categories'
 import * as comments from '@blog/db/queries/comments'
@@ -17,6 +19,8 @@ vi.mock('@blog/api', () => ({
   getPostById: vi.fn(() => 'strapi:post'),
   getComments: vi.fn(() => 'strapi:comments'),
 }))
+vi.mock('@blog/api/comment', () => ({ addComment: vi.fn(async () => ({ data: {} })) }))
+vi.mock('@blog/core/comments/addCommentToDb', () => ({ addCommentToDb: vi.fn(async () => false) }))
 vi.mock('@blog/api/post', () => ({
   getAllPosts: vi.fn(() => 'strapi:all'),
   getAlgoliaPosts: vi.fn(() => 'algolia:search'),
@@ -82,6 +86,17 @@ describe('data source', () => {
     expect(posts.getPostByIdFromDb).toHaveBeenCalledWith({ id: 7 })
     expect(comments.getCommentsFromDb).toHaveBeenCalledWith({ ids: [7] })
     expect(posts.searchPostsFromDb).toHaveBeenCalledWith({ query: 'hola' })
+  })
+
+  it('should send comments to Strapi by default, and to Neon when DATA_SOURCE is db', async () => {
+    const comment = { postId: 7, author: 'Ana', text: 'Hola' }
+
+    await expect(data.addComment(comment)).resolves.toBe(true)
+    expect(strapiComment.addComment).toHaveBeenCalledWith(comment)
+
+    vi.stubEnv('DATA_SOURCE', 'db')
+    await expect(data.addComment(comment)).resolves.toBe(false)
+    expect(dbComment.addCommentToDb).toHaveBeenCalledWith(comment)
   })
 
   it('should treat any other value as Strapi', () => {

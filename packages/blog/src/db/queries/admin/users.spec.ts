@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import { writers } from '@blog/db/schema'
 import { type TestDb, createTestDb } from '@blog/test/db'
 
-import { createUser, getUserForAdmin, isEmailTaken, listUsersForAdmin, updateUser } from './users'
+import { createUser, getUserForAdmin, isEmailTaken, listActiveUserEmails, listUsersForAdmin, updateUser } from './users'
 
 const testDb = vi.hoisted(() => ({ current: undefined as unknown as TestDb }))
 vi.mock('@blog/db/client', () => ({ getDb: () => testDb.current.db }))
@@ -44,5 +44,9 @@ describe('admin user queries', () => {
     await expect(
       updateUser('00000000-0000-0000-0000-000000000000', { name: 'x', email: 'x@x.x', active: true }),
     ).resolves.toBe(false)
+  })
+
+  it('should list the emails of the users who can still sign in', async () => {
+    await expect(listActiveUserEmails()).resolves.toEqual(['jose@example.com'])
   })
 })

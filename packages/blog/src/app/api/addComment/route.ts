@@ -1,36 +1,38 @@
 import * as sentry from '@sentry/nextjs'
-import axios from 'axios'
 
-import { addComment } from '@blog/api/comment'
+import { verifyRecaptcha } from '@blog/core/captcha/recaptcha'
+import { commentRatelimit } from '@blog/core/ratelimit'
+import { commentSchema } from '@blog/core/validation/comment'
+import { addComment } from '@blog/data'
 
+const unprocessable = (message: string) => Response.json({ message }, { status: 422 })
+
+/** The post page's comment form: limits per IP, checks the reCAPTCHA, then saves the comment. */
 export async function POST(request: Request) {
-  const { postId, author, text, captcha } = await request.json().catch(() => ({}))
-
-  if (!postId || !author || !text || !captcha) {
-    sentry.captureException('AddCommentValidate - Unproccesable request, please provide the required fields')
-    return Response.json({ message: 'Unproccesable request, please provide the required fields' }, { status: 422 })
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || undefined
+  if (commentRatelimit) {
+    const { success } = await commentRatelimit.limit(ip ?? 'unknown')
+    if (!success) {
+      return Response.json({ message: 'Too many comments, try again later' }, { status: 429 })
+    }
   }
 
+  const parsed = commentSchema.safeParse(await request.json().catch(() => null))
+  if (!parsed.success) {
+    return unprocessable('Unproccesable request, please provide the required fields')
+  }
+  const { postId, author, text, captcha } = parsed.data
+
   try {
-    const captchaValidation = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
-      {
-        headers: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-        },
-      },
-    )
-
-    if (captchaValidation.data.success) {
-      await addComment({ postId, author, text })
-      return new Response('OK', { status: 200 })
+    if (!(await verifyRecaptcha(captcha, ip))) {
+      return unprocessable('Unproccesable request, Invalid captcha code')
     }
-
-    sentry.captureException('Invalid captcha code')
-    return Response.json({ message: 'Unproccesable request, Invalid captcha code' }, { status: 422 })
+    if (!(await addComment({ postId, author, text }))) {
+      return Response.json({ message: 'Post not found' }, { status: 404 })
+    }
+    return new Response('OK', { status: 200 })
   } catch (error) {
     sentry.captureException(error)
-    return Response.json({ message: 'Something went wrong' }, { status: 422 })
+    return unprocessable('Something went wrong')
   }
 }

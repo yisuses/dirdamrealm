@@ -16,3 +16,8 @@ export const loginRatelimit = redis
 export const passwordResetRatelimit = redis
   ? new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(3, '15 m'), prefix: 'ratelimit:password-reset' })
   : null
+
+/** Comments: 5 per 10 minutes per IP, on top of the reCAPTCHA. */
+export const commentRatelimit = redis
+  ? new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(5, '10 m'), prefix: 'ratelimit:comment' })
+  : null

@@ -1,55 +1,69 @@
 import * as sentry from '@sentry/nextjs'
-import axios from 'axios'
-import { type Mocked, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { addComment } from '@blog/api/comment'
+import { verifyRecaptcha } from '@blog/core/captcha/recaptcha'
+import { addComment } from '@blog/data'
 
 import { POST } from './route'
 
-vi.mock('axios')
+const limiter = vi.hoisted(() => ({ current: null as null | { limit: ReturnType<typeof vi.fn> } }))
+
 vi.mock('@sentry/nextjs', () => ({ captureException: vi.fn() }))
-vi.mock('@blog/api/comment', () => ({ addComment: vi.fn() }))
+vi.mock('@blog/core/captcha/recaptcha', () => ({ verifyRecaptcha: vi.fn(async () => true) }))
+vi.mock('@blog/data', () => ({ addComment: vi.fn(async () => true) }))
+vi.mock('@blog/core/ratelimit', () => ({
+  get commentRatelimit() {
+    return limiter.current
+  },
+}))
 
-const mockedAxios = axios as Mocked<typeof axios>
+const comment = { postId: 1, author: 'Ana María', text: 'Muy bueno', captcha: 'token' }
 
-const comment = { postId: 1, author: 'Ana', text: 'Hola', captcha: 'token' }
-
-const request = (body: unknown) =>
-  new Request('https://whemotion.com/api/addComment/', { method: 'POST', body: JSON.stringify(body) })
+const request = (body: unknown, headers?: HeadersInit) =>
+  new Request('https://whemotion.com/api/addComment/', {
+    method: 'POST',
+    body: typeof body === 'string' ? body : JSON.stringify(body),
+    headers,
+  })
 
 describe('POST /api/addComment', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    process.env.RECAPTCHA_SECRET_KEY = 'secret'
+    limiter.current = null
   })
 
-  it('should save the comment when the captcha is valid', async () => {
-    mockedAxios.post.mockResolvedValue({ data: { success: true } })
-
-    const response = await POST(request(comment))
+  it("should save a valid comment after checking the visitor's captcha", async () => {
+    const response = await POST(request(comment, new Headers([['x-forwarded-for', '1.2.3.4, 10.0.0.1']])))
 
     expect(response.status).toBe(200)
-    expect(mockedAxios.post.mock.calls[0]![0]).toBe(
-      'https://www.google.com/recaptcha/api/siteverify?secret=secret&response=token',
-    )
-    expect(addComment).toHaveBeenCalledWith({ postId: 1, author: 'Ana', text: 'Hola' })
+    expect(verifyRecaptcha).toHaveBeenCalledWith('token', '1.2.3.4')
+    expect(addComment).toHaveBeenCalledWith({ postId: 1, author: 'Ana María', text: 'Muy bueno' })
   })
 
-  it('should reject a request with missing fields', async () => {
-    const response = await POST(request({ ...comment, captcha: '' }))
+  it('should limit comments per address, counting unknown addresses together', async () => {
+    limiter.current = {
+      limit: vi.fn().mockResolvedValueOnce({ success: true }).mockResolvedValueOnce({ success: false }),
+    }
 
-    expect(response.status).toBe(422)
-    expect(mockedAxios.post).not.toHaveBeenCalled()
+    expect((await POST(request(comment))).status).toBe(200)
+    expect(verifyRecaptcha).toHaveBeenCalledWith('token', undefined)
+    const limited = await POST(request(comment, new Headers([['x-forwarded-for', '5.6.7.8']])))
+
+    expect(limited.status).toBe(429)
+    expect(limiter.current.limit.mock.calls).toEqual([['unknown'], ['5.6.7.8']])
+    expect(addComment).toHaveBeenCalledTimes(1)
   })
 
-  it('should reject a body that is not json', async () => {
-    const response = await POST(new Request('https://whemotion.com/api/addComment/', { method: 'POST', body: 'x' }))
-
-    expect(response.status).toBe(422)
+  it('should reject missing or invalid fields and bodies that are not json', async () => {
+    for (const body of [{ ...comment, captcha: '' }, { ...comment, author: 'Ana' }, { postId: 'x' }, 'not json']) {
+      const response = await POST(request(body))
+      expect(response.status).toBe(422)
+    }
+    expect(verifyRecaptcha).not.toHaveBeenCalled()
   })
 
   it('should reject an invalid captcha', async () => {
-    mockedAxios.post.mockResolvedValue({ data: { success: false } })
+    vi.mocked(verifyRecaptcha).mockResolvedValueOnce(false)
 
     const response = await POST(request(comment))
 
@@ -58,14 +72,19 @@ describe('POST /api/addComment', () => {
     expect(addComment).not.toHaveBeenCalled()
   })
 
-  it('should report and reject when saving fails', async () => {
-    const error = new Error('strapi down')
-    mockedAxios.post.mockResolvedValue({ data: { success: true } })
-    vi.mocked(addComment).mockRejectedValue(error)
+  it('should answer 404 for a post that is not published', async () => {
+    vi.mocked(addComment).mockResolvedValueOnce(false)
+
+    expect((await POST(request(comment))).status).toBe(404)
+  })
+
+  it('should report failures', async () => {
+    vi.mocked(addComment).mockRejectedValueOnce(new Error('down'))
 
     const response = await POST(request(comment))
 
     expect(response.status).toBe(422)
-    expect(sentry.captureException).toHaveBeenCalledWith(error)
+    await expect(response.json()).resolves.toEqual({ message: 'Something went wrong' })
+    expect(sentry.captureException).toHaveBeenCalled()
   })
 })

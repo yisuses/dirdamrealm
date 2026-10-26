@@ -44,3 +44,9 @@ export async function updateUser(
   const updated = await getDb().update(users).set(input).where(eq(users.id, id)).returning({ id: users.id })
   return updated.length > 0
 }
+
+/** Who hears about new comments: everyone who can sign in to the panel. */
+export async function listActiveUserEmails() {
+  const rows = await getDb().select({ email: users.email }).from(users).where(eq(users.active, true))
+  return rows.map(row => row.email)
+}

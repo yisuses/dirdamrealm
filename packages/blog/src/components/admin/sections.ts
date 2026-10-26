@@ -2,6 +2,7 @@
 export const adminSections = [
   { href: '/admin/', label: 'Inicio' },
   { href: '/admin/entradas/', label: 'Entradas' },
+  { href: '/admin/comentarios/', label: 'Comentarios' },
   { href: '/admin/imagenes/', label: 'Imágenes' },
   { href: '/admin/categorias/', label: 'Categorías' },
   { href: '/admin/contacto/', label: 'Contacto y redes' },
