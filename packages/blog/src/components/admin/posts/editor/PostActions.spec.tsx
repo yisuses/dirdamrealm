@@ -62,7 +62,7 @@ describe('PostActions', () => {
     const user = userEvent.setup()
     const { flush } = renderActions()
 
-    expect(buttons()).toEqual(['Publicar', 'Programar', 'Vista previa'])
+    expect(buttons()).toEqual(['Publicar', 'Programar', 'Vista previa', 'Vista previa en el móvil'])
     await user.click(screen.getByRole('button', { name: 'Publicar' }))
     const dialog = await screen.findByRole('alertdialog', { name: '¿Publicar la versión en español?' })
     expect(dialog).toHaveTextContent('Se verá en la web en unos segundos, con la fecha de hoy.')
@@ -138,7 +138,13 @@ describe('PostActions', () => {
     const user = userEvent.setup()
     renderActions({ scheduledFor: '2026-11-12', locale: 'en' })
 
-    expect(buttons()).toEqual(['Publicar', 'Cambiar el día', 'Vista previa', 'No programar'])
+    expect(buttons()).toEqual([
+      'Publicar',
+      'Cambiar el día',
+      'Vista previa',
+      'Vista previa en el móvil',
+      'No programar',
+    ])
     expect(screen.getByText(/Se publicará sola el/)).toHaveTextContent(
       'Se publicará sola el 12 de noviembre de 2026 por la mañana.',
     )
@@ -177,7 +183,13 @@ describe('PostActions', () => {
     const user = userEvent.setup()
     renderActions({ status: 'published' }, true)
 
-    expect(buttons()).toEqual(['Publicar los cambios', 'Vista previa', 'Descartar los cambios', 'Despublicar'])
+    expect(buttons()).toEqual([
+      'Publicar los cambios',
+      'Vista previa',
+      'Vista previa en el móvil',
+      'Descartar los cambios',
+      'Despublicar',
+    ])
     await user.click(screen.getByRole('button', { name: 'Publicar los cambios' }))
     const publish = await screen.findByRole('alertdialog', { name: '¿Publicar los cambios?' })
     expect(publish).toHaveTextContent('Los lectores verán la versión en español tal y como está ahora')
@@ -213,5 +225,36 @@ describe('PostActions', () => {
     // A blocked window is simply skipped.
     await user.click(screen.getByRole('button', { name: 'Vista previa' }))
     expect(open).toHaveBeenCalledTimes(2)
+  })
+
+  it('should show the preview inside a phone once everything is saved, and close it', async () => {
+    const user = userEvent.setup()
+    const { flush } = renderActions({ locale: 'en', number: 9 })
+
+    await user.click(screen.getByRole('button', { name: 'Vista previa en el móvil' }))
+
+    const phone = await screen.findByTitle('La entrada en un móvil')
+    expect(flush).toHaveBeenCalled()
+    expect(phone).toHaveAttribute('src', '/en/vista-previa/9/tok/')
+    await user.click(screen.getByRole('button', { name: 'Cerrar la vista previa' }))
+    await waitFor(() => expect(screen.queryByTitle('La entrada en un móvil')).not.toBeInTheDocument(), {
+      timeout: 3000,
+    })
+  })
+
+  it('should close the phone preview with Escape', async () => {
+    const user = userEvent.setup()
+    renderActions()
+
+    await user.click(screen.getByRole('button', { name: 'Vista previa en el móvil' }))
+    await screen.findByRole('dialog', { name: 'Vista previa en el móvil' }, { timeout: 3000 })
+    // Focus waits in the dialog, outside the page, so Escape reaches it.
+    const dialog = screen.getByRole('dialog', { name: 'Vista previa en el móvil' })
+    await waitFor(() => expect(dialog).toContainElement(document.activeElement as HTMLElement), { timeout: 3000 })
+    expect(document.activeElement).not.toBe(screen.getByTitle('La entrada en un móvil'))
+    await user.keyboard('{Escape}')
+    await waitFor(() => expect(screen.queryByTitle('La entrada en un móvil')).not.toBeInTheDocument(), {
+      timeout: 3000,
+    })
   })
 })

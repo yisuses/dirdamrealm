@@ -45,6 +45,8 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
   const [day, setDay] = useState(translation.scheduledFor ?? tomorrow())
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // When the phone preview opened: a new key reloads it with what was just saved.
+  const [phoneOpenedAt, setPhoneOpenedAt] = useState<number | null>(null)
   const { locale, number, status, scheduledFor } = translation
   const published = status === 'published'
   const language = localeNames[locale].toLowerCase()
@@ -76,6 +78,11 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
     if (tab) {
       tab.location.href = previewPath(locale, number, translation.previewToken)
     }
+  }
+
+  async function phonePreview() {
+    await flush()
+    setPhoneOpenedAt(Date.now())
   }
 
   const confirmations: Record<Confirmable, { title: string; body: string; label: string; palette: 'red' | 'orange' }> =
@@ -124,6 +131,11 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
         {(!published || hasUnpublishedChanges) && (
           <Button variant="outline" size="lg" bg="white" onClick={() => void preview()}>
             Vista previa
+          </Button>
+        )}
+        {(!published || hasUnpublishedChanges) && (
+          <Button variant="outline" size="lg" bg="white" onClick={() => void phonePreview()}>
+            Vista previa en el móvil
           </Button>
         )}
         {published && (
@@ -185,6 +197,58 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
       >
         {current?.body}
       </ConfirmDialog>
+
+      <DialogRoot
+        open={phoneOpenedAt !== null}
+        onOpenChange={({ open }) => !open && setPhoneOpenedAt(null)}
+        size="cover"
+        placement="center"
+        lazyMount
+        unmountOnExit
+      >
+        <DialogContent
+          w="auto"
+          h="auto"
+          maxH="calc(100dvh - 32px)"
+          bg="transparent"
+          boxShadow="none"
+          alignItems="center"
+          gap={3}
+        >
+          <DialogTitle srOnly>Vista previa en el móvil</DialogTitle>
+          {/* First, so it takes the focus: inside the page, Escape would never reach the dialog. */}
+          <Button
+            size="lg"
+            bg="white"
+            color="gray.900"
+            _hover={{ bg: 'gray.100' }}
+            onClick={() => setPhoneOpenedAt(null)}
+          >
+            Cerrar la vista previa
+          </Button>
+          {/* The page at a phone's width, so the site lays itself out as on a phone. */}
+          <Box
+            border="12px solid"
+            borderColor="gray.900"
+            borderRadius="40px"
+            overflow="hidden"
+            bg="white"
+            w="calc(390px + 24px)"
+            maxW="calc(100vw - 32px)"
+            h="calc(844px + 24px)"
+            maxH="calc(100dvh - 96px)"
+          >
+            {phoneOpenedAt !== null && (
+              <iframe
+                key={phoneOpenedAt}
+                title="La entrada en un móvil"
+                src={previewPath(locale, number, translation.previewToken)}
+                style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+              />
+            )}
+          </Box>
+        </DialogContent>
+      </DialogRoot>
 
       <DialogRoot open={scheduling} onOpenChange={({ open }) => !open && setScheduling(false)}>
         <DialogContent>
