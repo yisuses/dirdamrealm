@@ -213,6 +213,14 @@ describe('admin post queries', () => {
       await savePost(postId, 'es', input({ title: 'Lisboa en otoño', cover: null, categoryIds: [travel] }))
     })
 
+    it('should keep a new framing of the published cover pending', async () => {
+      const framed = { ...cover, focus: { x: 30, y: 10 }, fit: 'contain' as const }
+
+      await savePost(postId, 'es', input({ cover: framed }))
+
+      expect(await postRow(postId)).toMatchObject({ cover, draft: { cover: framed } })
+    })
+
     it('should let the other, unpublished language write its text in place but not the shared fields', async () => {
       await savePost(postId, 'en', input({ title: 'Lisbon', summary: 'A week', categoryIds: [music] }))
 

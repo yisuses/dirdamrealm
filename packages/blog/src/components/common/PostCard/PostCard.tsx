@@ -1,13 +1,13 @@
 'use client'
 
 import { Box, Flex, Link, Text } from '@chakra-ui/react'
-import NextImage from 'next/image'
 import NextLink from 'next/link'
 
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocalizeHref } from '@blog/hooks'
 import { buildBlurDataUrl, buildPostPath, formatPostDate } from '@blog/utils'
 
+import { FramedImage } from '../FramedImage'
 import { Tag } from '../Tag'
 
 export type PostCardProps = {
@@ -17,11 +17,24 @@ export type PostCardProps = {
   title: string
   description: string
   imageUrl: string
+  imageFocus?: ImageFocus
+  imageFit?: ImageFit
   locale: string
   isSameLocale: boolean
 }
 
-export function PostCard({ id, categories, date, description, imageUrl, title, isSameLocale, locale }: PostCardProps) {
+export function PostCard({
+  id,
+  categories,
+  date,
+  description,
+  imageUrl,
+  imageFocus,
+  imageFit,
+  title,
+  isSameLocale,
+  locale,
+}: PostCardProps) {
   const localizeHref = useLocalizeHref()
   const postLink = localizeHref(buildPostPath(String(id), title))
   const parsedDate = formatPostDate(date)
@@ -59,11 +72,12 @@ export function PostCard({ id, categories, date, description, imageUrl, title, i
             ))}
         </Flex>
         <Link as={NextLink} href={postLink} position="relative" display="block" width="100%" height="100%">
-          <NextImage
+          <FramedImage
             src={imageUrl}
             alt={`${title} image`}
-            fill
-            style={{ transition: 'all .5s', objectFit: 'cover' }}
+            focus={imageFocus}
+            fit={imageFit}
+            style={{ transition: 'all .5s' }}
             placeholder="blur"
             blurDataURL={buildBlurDataUrl(280, 280)}
             sizes="(max-width: 768px) 100vw,

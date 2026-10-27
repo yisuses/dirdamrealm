@@ -38,6 +38,8 @@ const storedImageSchema = z.object({
   width: z.number().int().positive(),
   height: z.number().int().positive(),
   alt: z.string().max(300).optional(),
+  focus: z.object({ x: z.number().min(0).max(100), y: z.number().min(0).max(100) }).optional(),
+  fit: z.enum(['cover', 'contain']).optional(),
 })
 
 /** What both languages of a post share. */

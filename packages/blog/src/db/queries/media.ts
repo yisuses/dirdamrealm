@@ -53,5 +53,7 @@ export function toMedia(image: StoredImage): Media {
     provider: 'cloudinary',
     createdAt: '',
     updatedAt: '',
+    ...(image.focus && { focus: image.focus }),
+    ...(image.fit && { fit: image.fit }),
   }
 }

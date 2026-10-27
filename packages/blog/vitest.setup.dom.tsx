@@ -55,7 +55,7 @@ vi.mock('next/link', () => ({
   ),
 }))
 vi.mock('next/image', () => ({
-  default: ({ src, alt, width, height }: ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src={src as string} alt={alt} width={width} height={height} />
+  default: ({ src, alt, width, height, style, 'aria-hidden': ariaHidden }: ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src={src as string} alt={alt} width={width} height={height} style={style} aria-hidden={ariaHidden} />
   ),
 }))

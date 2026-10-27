@@ -2,12 +2,13 @@
 
 exports[`ContentImage > should render the image with its caption 1`] = `
 <div
-  class="css-q0njmb"
+  class="css-4xmiau"
 >
   <img
     alt="A caption"
     height="50"
     src="/media/test.jpg"
+    style="max-width: 100%; height: auto;"
     width="100"
   />
   <p

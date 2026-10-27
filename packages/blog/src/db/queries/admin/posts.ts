@@ -231,7 +231,7 @@ function sameText(a: { title: string; summary: string; content: DataProp }, b: t
 function sameFields(a: PostFields, b: PostFields) {
   const normal = ({ cover, coverImageAuthor, coverImageSourceUrl, writerId, categoryIds }: PostFields) =>
     JSON.stringify([
-      cover && [cover.publicId, cover.width, cover.height, cover.alt ?? ''],
+      cover && [cover.publicId, cover.width, cover.height, cover.alt ?? '', cover.focus ?? null, cover.fit ?? 'cover'],
       coverImageAuthor,
       coverImageSourceUrl,
       writerId,

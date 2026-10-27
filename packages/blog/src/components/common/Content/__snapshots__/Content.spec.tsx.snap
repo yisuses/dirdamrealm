@@ -33,12 +33,13 @@ exports[`Content > should render every block with its own renderer 1`] = `
     Someone
   </footer>
   <div
-    class="css-q0njmb"
+    class="css-4xmiau"
   >
     <img
       alt="An image"
       height="50"
       src="/media/test.jpg"
+      style="max-width: 100%; height: auto;"
       width="100"
     />
     <p

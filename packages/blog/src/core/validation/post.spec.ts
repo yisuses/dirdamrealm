@@ -28,6 +28,12 @@ describe('post validation', () => {
     expect(publishableSchema.safeParse({ title: 'x', summary: ' ' }).success).toBe(false)
     expect(postSaveSchema.safeParse({ ...save, coverImageSourceUrl: 'ftp://x' }).success).toBe(false)
     expect(postSaveSchema.safeParse({ ...save, categoryIds: ['nope'] }).success).toBe(false)
+    const cover = { publicId: 'portada', width: 800, height: 600 }
+    expect(
+      postSaveSchema.parse({ ...save, cover: { ...cover, focus: { x: 0, y: 100 }, fit: 'contain' } }).cover,
+    ).toEqual({ ...cover, focus: { x: 0, y: 100 }, fit: 'contain' })
+    expect(postSaveSchema.safeParse({ ...save, cover: { ...cover, focus: { x: 101, y: 0 } } }).success).toBe(false)
+    expect(postSaveSchema.safeParse({ ...save, cover: { ...cover, fit: 'stretch' } }).success).toBe(false)
   })
 
   it('should take the actions the editor sends, with a day or none to schedule', () => {

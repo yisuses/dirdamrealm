@@ -41,6 +41,8 @@ export interface StoredImage {
   height: number
   alt?: string
   caption?: string
+  focus?: ImageFocus
+  fit?: ImageFit
 }
 
 /** Edits of a published translation's text, applied to the public columns on publish. */

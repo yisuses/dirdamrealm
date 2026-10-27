@@ -4,11 +4,12 @@ exports[`PostPage > should render the post with share links, tags, comments and 
 <div>
   <div>
     <div
-      class="css-1cb4st4"
+      class="css-1nr4kjm"
     >
       <img
         alt="Image for the "Test Post" post"
         src="/media/large_test.jpg"
+        style="object-fit: cover;"
       />
     </div>
   </div>
@@ -416,6 +417,7 @@ exports[`PostPage > should render the post with share links, tags, comments and 
             <img
               alt="Related post image"
               src="/media/small_test.jpg"
+              style="transition: all .5s; object-fit: cover;"
             />
           </a>
         </div>

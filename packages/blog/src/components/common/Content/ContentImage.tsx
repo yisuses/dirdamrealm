@@ -13,12 +13,13 @@ interface ContentImageBlockData {
 
 export const ContentImage: RenderFn<ContentImageBlockData> = ({ data }) => {
   return (
-    <Box w="100%" position="relative" display="flex" flexDirection="column" justifyContent="center" my="32px">
+    <Box w="100%" position="relative" display="flex" flexDirection="column" alignItems="center" my="32px">
       <NextImage
         src={data.file.url}
         alt={data.caption || 'image caption'}
         height={data.file.height}
         width={data.file.width}
+        style={{ maxWidth: '100%', height: 'auto' }}
         placeholder="blur"
         blurDataURL={buildBlurDataUrl(data.file.height, data.file.width)}
       />

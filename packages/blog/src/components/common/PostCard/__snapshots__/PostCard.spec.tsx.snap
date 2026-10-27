@@ -38,6 +38,7 @@ exports[`PostCard > should render the post with links, image and categories sort
       <img
         alt="Mi entrada image"
         src="/media/small_test.jpg"
+        style="transition: all .5s; object-fit: cover;"
       />
     </a>
   </div>

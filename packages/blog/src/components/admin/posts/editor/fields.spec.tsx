@@ -47,6 +47,63 @@ describe('CoverField', () => {
     expect(onChange).toHaveBeenLastCalledWith(null)
   })
 
+  it('should mark the part of the cover to keep, by pointer or arrow keys, and go back to the centre', async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    const { rerender } = renderWithProviders(<CoverField cover={cover} onChoose={vi.fn()} onChange={onChange} />)
+
+    expect(screen.getByTestId('cover-focus')).toHaveStyle({ left: '50%', top: '50%' })
+    expect(screen.queryByRole('button', { name: 'Volver a centrar' })).not.toBeInTheDocument()
+    const image = screen.getByRole('img', { name: 'El estadio' })
+    image.getBoundingClientRect = () => ({ left: 10, top: 20, width: 200, height: 100 }) as DOMRect
+    fireEvent.click(image, { clientX: 60, clientY: 140 })
+    expect(onChange).toHaveBeenLastCalledWith({ ...cover, focus: { x: 25, y: 100 } })
+
+    const picker = screen.getByRole('group', { name: /Parte más importante/ })
+    fireEvent.keyDown(picker, { key: 'ArrowLeft' })
+    expect(onChange).toHaveBeenLastCalledWith({ ...cover, focus: { x: 45, y: 50 } })
+    onChange.mockClear()
+    fireEvent.keyDown(picker, { key: 'Enter' })
+    expect(onChange).not.toHaveBeenCalled()
+
+    const framed = { ...cover, focus: { x: 100, y: 0 } }
+    rerender(<CoverField cover={framed} onChoose={vi.fn()} onChange={onChange} />)
+    expect(screen.getByTestId('cover-focus')).toHaveStyle({ left: '100%', top: '0%' })
+    fireEvent.keyDown(picker, { key: 'ArrowRight' })
+    fireEvent.keyDown(picker, { key: 'ArrowUp' })
+    expect(onChange).toHaveBeenLastCalledWith({ ...cover, focus: { x: 100, y: 0 } })
+    fireEvent.keyDown(picker, { key: 'ArrowDown' })
+    expect(onChange).toHaveBeenLastCalledWith({ ...cover, focus: { x: 100, y: 5 } })
+    await user.click(screen.getByRole('button', { name: 'Volver a centrar' }))
+    expect(onChange).toHaveBeenLastCalledWith({ ...cover, focus: undefined })
+  })
+
+  it('should preview the cover as the site frames it, and show it whole on request', async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    const framed = { ...cover, focus: { x: 30, y: 10 } }
+    const { rerender } = renderWithProviders(<CoverField cover={framed} onChoose={vi.fn()} onChange={onChange} />)
+
+    for (const name of ['en el ordenador', 'en el móvil', 'en las listas']) {
+      const preview = screen.getByRole('img', { name: `Vista previa de la portada ${name}` })
+      expect(preview).toHaveAttribute(
+        'src',
+        'https://res.cloudinary.com/demo/image/upload/c_limit,w_900,h_900,f_auto,q_auto/portada_1',
+      )
+      expect(preview).toHaveStyle({ objectFit: 'cover', objectPosition: '30% 10%' })
+    }
+
+    await user.click(screen.getByText('Mostrar la foto entera, sin recortar'))
+    expect(onChange).toHaveBeenLastCalledWith({ ...framed, fit: 'contain' })
+
+    rerender(<CoverField cover={{ ...framed, fit: 'contain' }} onChoose={vi.fn()} onChange={onChange} />)
+    expect(screen.getByRole('img', { name: 'Vista previa de la portada en el móvil' })).toHaveStyle({
+      objectFit: 'contain',
+    })
+    await user.click(screen.getByText('Mostrar la foto entera, sin recortar'))
+    expect(onChange).toHaveBeenLastCalledWith({ ...framed, fit: 'cover' })
+  })
+
   it('should show an empty description for a cover without one', () => {
     renderWithProviders(<CoverField cover={{ ...cover, alt: undefined }} onChoose={vi.fn()} onChange={vi.fn()} />)
 

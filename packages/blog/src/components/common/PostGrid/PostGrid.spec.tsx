@@ -57,4 +57,17 @@ describe('PostGrid', () => {
     expect(screen.getAllByRole('img')).toHaveLength(1)
     expect(screen.getByRole('img', { name: 'Entrada en español image' })).toBeInTheDocument()
   })
+
+  it('should frame each card image as its cover asks', () => {
+    const framed = {
+      ...esPost,
+      coverImage: { ...postMock.coverImage!, focus: { x: 10, y: 20 }, fit: 'contain' as const },
+    }
+    renderWithProviders(<PostGrid posts={[framed]} />)
+
+    expect(screen.getByRole('img', { name: 'Entrada en español image' })).toHaveStyle({
+      objectFit: 'contain',
+      objectPosition: '10% 20%',
+    })
+  })
 })

@@ -1,6 +1,7 @@
 export * from './Content'
 export * from './CookieBanner'
 export * from './Footer'
+export * from './FramedImage'
 export * from './GlobalStyles'
 export * from './Header'
 export * from './HeaderImage'

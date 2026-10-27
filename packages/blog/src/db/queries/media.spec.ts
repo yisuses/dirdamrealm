@@ -45,5 +45,13 @@ describe('media', () => {
     expect(Object.keys(media.formats)).toEqual(['thumbnail', 'small'])
     expect(media.alternativeText).toBe('')
     expect(media.caption).toBe('')
+    expect(media).not.toHaveProperty('focus')
+    expect(media).not.toHaveProperty('fit')
+  })
+
+  it('should carry how the image is framed', () => {
+    const media = toMedia({ publicId: 'photo', width: 600, height: 800, focus: { x: 40, y: 15 }, fit: 'contain' })
+
+    expect(media).toMatchObject({ focus: { x: 40, y: 15 }, fit: 'contain' })
   })
 })

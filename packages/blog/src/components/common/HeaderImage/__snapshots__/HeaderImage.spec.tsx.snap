@@ -3,11 +3,12 @@
 exports[`HeaderImage > should render only the image without post info or credit 1`] = `
 <div>
   <div
-    class="css-1cb4st4"
+    class="css-1nr4kjm"
   >
     <img
       alt="Imagen de la entrada "Mi entrada""
       src="https://example.com/test.png"
+      style="object-fit: cover;"
     />
   </div>
 </div>
@@ -16,11 +17,12 @@ exports[`HeaderImage > should render only the image without post info or credit 
 exports[`HeaderImage > should render the cover image with the post info and the image credit 1`] = `
 <div>
   <div
-    class="css-1cb4st4"
+    class="css-1nr4kjm"
   >
     <img
       alt="Imagen de la entrada "Mi entrada""
       src="/media/large_test.jpg"
+      style="object-fit: cover;"
     />
     <div
       class="css-ws1zca"

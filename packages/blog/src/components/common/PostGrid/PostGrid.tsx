@@ -44,6 +44,8 @@ export function PostGrid({ posts, limit }: PostGridProps) {
             }
             date={publishedAt}
             imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl })}
+            imageFocus={coverImage?.focus}
+            imageFit={coverImage?.fit}
             title={title}
             description={summary}
           />
