@@ -7,7 +7,10 @@ import { renderWithProviders } from '@blog/test/render'
 import { WordImportButton } from './WordImportButton'
 import { wordToBlocks } from './wordImport'
 
-vi.mock('./wordImport', () => ({ wordToBlocks: vi.fn() }))
+vi.mock('./wordImport', async importOriginal => ({
+  ...(await importOriginal<typeof import('./wordImport')>()),
+  wordToBlocks: vi.fn(),
+}))
 
 const docx = new File(['docx'], 'cronica.docx')
 const paragraph = (text: string) => ({ type: 'paragraph', data: { text } })
@@ -47,6 +50,18 @@ describe('WordImportButton', () => {
     )
     expect(wordToBlocks).toHaveBeenCalledWith(docx)
     expect(onImport).toHaveBeenCalledWith([paragraph('Uno'), paragraph('Dos')])
+  })
+
+  it('should count the lists too', async () => {
+    const user = userEvent.setup({ applyAccept: false })
+    const numbered = { type: 'list', data: { style: 'ordered', meta: {}, items: [] } }
+    vi.mocked(wordToBlocks).mockResolvedValueOnce([paragraph('Uno'), numbered] as never)
+    renderWithProviders(<WordImportButton onImport={vi.fn(async () => undefined)} />)
+
+    await chooseFile(user)
+    await user.click(screen.getByRole('button', { name: 'Sí, añadirlo' }))
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Añadidos 1 párrafo y 1 lista al final del texto.')
   })
 
   it('should say one paragraph in singular', async () => {

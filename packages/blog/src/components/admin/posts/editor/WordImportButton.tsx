@@ -6,13 +6,13 @@ import { useRef, useState } from 'react'
 
 import { ConfirmDialog } from '@blog/components/admin/ui/ConfirmDialog'
 
-import { wordToBlocks } from './wordImport'
+import { describeBlocks, wordToBlocks } from './wordImport'
 
 interface WordImportButtonProps {
   onImport: (blocks: OutputBlockData[]) => Promise<void>
 }
 
-/** Adds a Word document's text, as paragraphs, at the end of the post. */
+/** Adds a Word document's text, as paragraphs and lists, at the end of the post. */
 export function WordImportButton({ onImport }: WordImportButtonProps) {
   const input = useRef<HTMLInputElement>(null)
   const [file, setFile] = useState<File | null>(null)
@@ -27,7 +27,7 @@ export function WordImportButton({ onImport }: WordImportButtonProps) {
       await onImport(blocks)
       setMessage({
         ok: true,
-        text: `${blocks.length === 1 ? 'Añadido 1 párrafo' : `Añadidos ${blocks.length} párrafos`} al final del texto. Repásalo antes de publicar.`,
+        text: `${blocks.length === 1 ? 'Añadido' : 'Añadidos'} ${describeBlocks(blocks)} al final del texto. Repásalo antes de publicar.`,
       })
     } catch {
       setMessage({ ok: false, text: 'No se ha podido leer el documento. Comprueba que es un archivo de Word (.docx).' })
@@ -80,8 +80,8 @@ export function WordImportButton({ onImport }: WordImportButtonProps) {
         onConfirm={() => void importFile()}
         onCancel={() => setFile(null)}
       >
-        Su texto se añadirá al final de la entrada, en párrafos, con sus negritas, cursivas y enlaces. Las imágenes del
-        documento no se añaden. Lo que ya has escrito no se toca.
+        Su texto se añadirá al final de la entrada, en párrafos y listas, con sus negritas, cursivas y enlaces. Las
+        imágenes del documento no se añaden. Lo que ya has escrito no se toca.
       </ConfirmDialog>
     </Stack>
   )

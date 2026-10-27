@@ -203,7 +203,7 @@ De portfolio-blog se toman ideas de UX, no el formato (allí es MDX): pestañas 
 - **Bloques de enlace**: la vista previa la pide `/api/admin/link-preview`, solo para el panel y solo a direcciones públicas (nunca a la red interna).
 - **Listas**: solo con puntos o numeradas (sin listas de tareas ni numeraciones especiales, que la web no muestra).
 - **Formato antiguo**: al editar una entrada vieja se pierde el formato que la web ya no mostraba (colores, tamaños y `span` pegados desde Word); negritas, cursivas y enlaces se mantienen.
-- **Extra: importar un documento de Word** (`.docx`, en el navegador con `mammoth`): añade su texto al final como **párrafos** del blog, con negritas, cursivas y enlaces. Títulos, listas y tablas del documento también entran como párrafos; las imágenes no se importan.
+- **Extra: importar un documento de Word** (`.docx`, en el navegador con `mammoth`): añade su texto al final como **párrafos** del blog, con negritas, cursivas y enlaces. Las listas (numeradas o con viñetas, hasta 3 niveles) entran como listas; títulos y tablas, como párrafos. Las imágenes no se importan.
 
 ## 6. Login y protección (de portfolio-blog)
 
