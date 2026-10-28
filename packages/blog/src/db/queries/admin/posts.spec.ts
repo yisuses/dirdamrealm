@@ -30,7 +30,14 @@ const testDb = vi.hoisted(() => ({ current: undefined as unknown as TestDb }))
 vi.mock('@blog/db/client', () => ({ getDb: () => testDb.current.db }))
 
 const at = (iso: string) => new Date(iso)
-const doc = (text: string) => ({ time: 1, version: '2', blocks: [{ type: 'paragraph' as const, data: { text } }] })
+const doc = (text: string) => ({
+  time: 1,
+  version: '2',
+  blocks: [
+    { type: 'paragraph' as const, data: { text } },
+    { type: 'list' as const, data: { style: 'unordered', meta: {}, items: [{ content: 'Uno', meta: {}, items: [] }] } },
+  ],
+})
 const cover = { publicId: 'portada_1', width: 1200, height: 800 }
 
 let userId: string
@@ -201,7 +208,12 @@ describe('admin post queries', () => {
       const content = {
         ...published.content,
         time: 99,
-        blocks: published.content.blocks.map(block => ({ ...block, id: 'x' })),
+        // As the editor sends it: its own ids, and keys in its order rather than the database's.
+        blocks: published.content.blocks.map(block => ({
+          id: 'x',
+          type: block.type,
+          data: Object.fromEntries(Object.entries(block.data).reverse()),
+        })),
       }
 
       const saved = await savePost(
