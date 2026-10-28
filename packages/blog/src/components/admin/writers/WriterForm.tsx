@@ -52,7 +52,7 @@ export function WriterForm({ writer, users }: WriterFormProps) {
       <AdminPageHeader title={writer ? `Editar a ${writer.name}` : 'Nuevo autor'} />
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Stack gap={6} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }} maxW="2xl">
+        <Stack gap={6} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
           <Field.Root invalid={Boolean(errors.name)} required>
             <Field.Label fontSize="lg">Nombre</Field.Label>
             <Input {...register('name')} size="lg" fontSize="lg" />

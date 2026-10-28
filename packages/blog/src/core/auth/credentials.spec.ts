@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import { checkBotId } from 'botid/server'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getActiveUserByEmail } from '@blog/db/queries/users'
@@ -6,6 +7,7 @@ import { getActiveUserByEmail } from '@blog/db/queries/users'
 import { authorizeCredentials } from './credentials'
 
 vi.mock('@blog/db/queries/users', () => ({ getActiveUserByEmail: vi.fn() }))
+vi.mock('botid/server', () => ({ checkBotId: vi.fn() }))
 
 // A Strapi-style `$2a$` hash, as migrated: existing passwords must keep working.
 const hash = bcrypt.hashSync('secreta', 4).replace(/^\$2b\$/, '$2a$')
@@ -14,6 +16,15 @@ const user = { id: 'u1', name: 'José', email: 'jose@example.com', passwordHash:
 describe('authorizeCredentials', () => {
   beforeEach(() => {
     vi.mocked(getActiveUserByEmail).mockReset()
+    vi.mocked(checkBotId).mockResolvedValue({ isBot: false } as never)
+  })
+
+  it('should reject a bot even with the right password, without looking the user up', async () => {
+    vi.mocked(checkBotId).mockResolvedValue({ isBot: true } as never)
+    vi.mocked(getActiveUserByEmail).mockResolvedValue(user as never)
+
+    await expect(authorizeCredentials({ email: 'jose@example.com', password: 'secreta' })).resolves.toBeNull()
+    expect(getActiveUserByEmail).not.toHaveBeenCalled()
   })
 
   it('should accept the right password of an active user', async () => {

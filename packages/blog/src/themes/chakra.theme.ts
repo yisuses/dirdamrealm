@@ -1,5 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
-import { fieldAnatomy } from '@chakra-ui/react/anatomy'
+import { fieldAnatomy, tableAnatomy } from '@chakra-ui/react/anatomy'
 
 export const breakpoints = {
   sm: '30em',
@@ -47,6 +47,14 @@ const config = defineConfig({
         base: {
           helperText: { lineHeight: '1.5' },
           errorText: { lineHeight: '1.5' },
+        },
+      },
+      // Chakra sets tables in tabular figures; Lora's tabular spaces and commas open wide gaps
+      // between the words of every title.
+      table: {
+        slots: tableAnatomy.keys(),
+        base: {
+          root: { fontVariantNumeric: 'lining-nums' },
         },
       },
     },

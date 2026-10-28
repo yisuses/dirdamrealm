@@ -21,7 +21,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-o97adx"
+      class="chakra-stack css-1i77084"
     >
       <div
         class="chakra-field__root css-13f87cb"
@@ -230,7 +230,7 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
     class="css-1vjtk30"
   >
     <table
-      class="chakra-table__root css-1js591h"
+      class="chakra-table__root css-q56ggu"
     >
       <thead
         class="chakra-table__header"

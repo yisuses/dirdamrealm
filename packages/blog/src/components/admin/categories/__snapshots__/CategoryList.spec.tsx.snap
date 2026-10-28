@@ -33,7 +33,7 @@ exports[`CategoryList > should list the categories with their translation, code,
     class="css-1vjtk30"
   >
     <table
-      class="chakra-table__root css-1js591h"
+      class="chakra-table__root css-q56ggu"
     >
       <thead
         class="chakra-table__header"

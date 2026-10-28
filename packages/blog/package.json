@@ -47,6 +47,7 @@
     "algoliasearch": "5.55.2",
     "axios": "1.18.1",
     "bcryptjs": "3.0.3",
+    "botid": "1.5.11",
     "cloudinary": "2.11.0",
     "date-fns": "4.4.0",
     "drizzle-orm": "0.45.4",

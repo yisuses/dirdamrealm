@@ -1,6 +1,7 @@
 const packageJson = require('./package.json')
 const pc = require('picocolors')
 const { withSentryConfig } = require('@sentry/nextjs')
+const { withBotId } = require('botid/next/config')
 
 const trueEnv = ['true', '1', 'yes']
 const isProd = process.env.NODE_ENV === 'production'
@@ -142,10 +143,15 @@ const nextConfig = {
   async headers() {
     // The panel shows a post's preview inside a phone frame; nothing else may be framed.
     const framedByPanel = [{ key: 'X-Frame-Options', value: 'SAMEORIGIN' }]
+    // Kept out of search engines by this header rather than robots.txt, which anyone can read
+    // and would list where the panel lives.
+    const hidden = [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }]
     return [
       { source: '/(.*)', headers: secureHeaders },
-      { source: '/vista-previa/:path*', headers: framedByPanel },
-      { source: '/en/vista-previa/:path*', headers: framedByPanel },
+      { source: '/vista-previa/:path*', headers: [...framedByPanel, ...hidden] },
+      { source: '/en/vista-previa/:path*', headers: [...framedByPanel, ...hidden] },
+      { source: '/admin/:path*', headers: hidden },
+      { source: '/api/:path*', headers: hidden },
     ]
   },
 
@@ -177,6 +183,9 @@ if (process.env.ANALYZE === 'true') {
   })
   config = withBundleAnalyzer(config)
 }
+
+// BotID's challenge is served from the site's own domain through these rewrites.
+config = withBotId(config)
 
 if (!NEXTJS_DISABLE_SENTRY) {
   // Sentry 10 build options (withSentryConfig). Source maps are only uploaded when an
