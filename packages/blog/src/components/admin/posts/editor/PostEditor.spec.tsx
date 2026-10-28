@@ -121,7 +121,7 @@ describe('PostEditor', () => {
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(now)
     stubs.content.blocks = []
-    mockedAxios.put.mockResolvedValue({ data: { savedAt: now.toISOString() } })
+    mockedAxios.put.mockResolvedValue({ data: { savedAt: now.toISOString(), hasUnpublishedChanges: false } })
   })
 
   afterEach(() => {
@@ -240,6 +240,7 @@ describe('PostEditor', () => {
     expect(screen.getByText(/son las mismas en los dos idiomas/)).toBeInTheDocument()
     expect(screen.getByText('Obligatorio para publicar.')).toBeInTheDocument()
 
+    mockedAxios.put.mockResolvedValue({ data: { savedAt: now.toISOString(), hasUnpublishedChanges: true } })
     await user.type(screen.getByLabelText('Título'), ' y Oporto')
 
     expect(
@@ -255,6 +256,24 @@ describe('PostEditor', () => {
     expect(
       screen.getByText('Los lectores siguen viendo la versión publicada hasta que publiques los cambios.'),
     ).toBeInTheDocument()
+  })
+
+  it('should offer nothing to publish when the edits are undone by hand', async () => {
+    const user = userEvent.setup()
+    renderEditor(
+      post({
+        live: true,
+        translations: { es: translation({ status: 'published', hasUnpublishedChanges: true }) },
+      }),
+    )
+    expect(screen.getByRole('button', { name: 'Publicar los cambios' })).toBeInTheDocument()
+
+    // The server compares what was saved with what readers see: back to the same, nothing pending.
+    await user.type(screen.getByLabelText('Resumen'), ' ')
+    await user.type(screen.getByLabelText('Resumen'), '{Backspace}')
+    await waitFor(() => expect(mockedAxios.put).toHaveBeenCalled(), { timeout: 4000 })
+    await waitFor(() => expect(screen.queryByRole('button', { name: 'Publicar los cambios' })).not.toBeInTheDocument())
+    expect(screen.getByRole('link', { name: /Español/ })).toHaveTextContent('Publicada')
   })
 
   it('should count saves of an unpublished language as pending when the post is on the site', async () => {

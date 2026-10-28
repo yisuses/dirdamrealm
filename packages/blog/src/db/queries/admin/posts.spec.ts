@@ -125,9 +125,10 @@ describe('admin post queries', () => {
     })
 
     it('should save an unpublished post in place, categories in order', async () => {
-      const savedAt = await savePost(postId, 'es', input(), at('2026-10-20T10:00:00Z'))
+      const saved = await savePost(postId, 'es', input(), at('2026-10-20T10:00:00Z'))
 
-      expect(savedAt).toBe('2026-10-20T10:00:00.000Z')
+      // Nothing is on the site yet, so nothing waits to be published.
+      expect(saved).toEqual({ savedAt: '2026-10-20T10:00:00.000Z', hasUnpublishedChanges: false })
       expect(await translationRow(postId, 'es')).toMatchObject({ title: 'Viaje a Lisboa', draft: null })
       expect(await postRow(postId)).toMatchObject({ cover, coverImageAuthor: 'Ana', writerId, draft: null })
       expect(await categoryIdsOf(postId)).toEqual([music, travel])
@@ -172,13 +173,14 @@ describe('admin post queries', () => {
     it('should keep edits of a published post off the site until publishing them', async () => {
       const before = await translationRow(postId, 'es')
 
-      await savePost(
+      const saved = await savePost(
         postId,
         'es',
         input({ title: 'Lisboa en otoño', cover: null, categoryIds: [travel] }),
         at('2026-10-22T09:00:00Z'),
       )
 
+      expect(saved).toEqual({ savedAt: '2026-10-22T09:00:00.000Z', hasUnpublishedChanges: true })
       const after = await translationRow(postId, 'es')
       expect(after).toMatchObject({ title: 'Viaje a Lisboa', updatedAt: before.updatedAt })
       expect(after.draft).toMatchObject({ title: 'Lisboa en otoño', savedAt: '2026-10-22T09:00:00.000Z' })
@@ -202,12 +204,13 @@ describe('admin post queries', () => {
         blocks: published.content.blocks.map(block => ({ ...block, id: 'x' })),
       }
 
-      await savePost(
+      const saved = await savePost(
         postId,
         'es',
         input({ title: published.title, summary: published.summary, content: content as PostSaveInput['content'] }),
       )
 
+      expect(saved).toMatchObject({ hasUnpublishedChanges: false })
       expect((await translationRow(postId, 'es')).draft).toBeNull()
       expect((await postRow(postId)).draft).toBeNull()
       await savePost(postId, 'es', input({ title: 'Lisboa en otoño', cover: null, categoryIds: [travel] }))
@@ -216,13 +219,19 @@ describe('admin post queries', () => {
     it('should keep a new framing of the published cover pending', async () => {
       const framed = { ...cover, focus: { x: 30, y: 10 }, fit: 'contain' as const }
 
-      await savePost(postId, 'es', input({ cover: framed }))
+      // The text is as published; the cover alone still waits.
+      await expect(savePost(postId, 'es', input({ cover: framed }))).resolves.toMatchObject({
+        hasUnpublishedChanges: true,
+      })
 
       expect(await postRow(postId)).toMatchObject({ cover, draft: { cover: framed } })
     })
 
     it('should let the other, unpublished language write its text in place but not the shared fields', async () => {
-      await savePost(postId, 'en', input({ title: 'Lisbon', summary: 'A week', categoryIds: [music] }))
+      // Not published itself, so it has nothing to publish "again".
+      await expect(
+        savePost(postId, 'en', input({ title: 'Lisbon', summary: 'A week', categoryIds: [music] })),
+      ).resolves.toMatchObject({ hasUnpublishedChanges: false })
 
       expect(await translationRow(postId, 'en')).toMatchObject({ title: 'Lisbon', draft: null })
       expect((await postRow(postId)).draft).toMatchObject({ categoryIds: [music] })
