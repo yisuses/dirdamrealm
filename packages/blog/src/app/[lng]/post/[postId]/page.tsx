@@ -1,8 +1,8 @@
 import * as sentry from '@sentry/nextjs'
 import { notFound, redirect } from 'next/navigation'
 
-import { getPostById } from '@blog/api'
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
+import { getPostById } from '@blog/data'
 import { buildPostPath } from '@blog/utils'
 
 interface Props {

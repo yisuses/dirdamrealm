@@ -1,15 +1,13 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { type MockedFunction, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getCategories } from '@blog/api/category'
-import { getAllPosts } from '@blog/api/post'
 import type { I18nNamespace } from '@blog/core/i18n/i18n-namespaces.type'
+import { getAllPosts, getCategories } from '@blog/data'
 import { renderWithProviders } from '@blog/test/render'
 
 import Page, { generateMetadata, revalidate } from './page'
 
-vi.mock('@blog/api/category', () => ({ getCategories: vi.fn() }))
-vi.mock('@blog/api/post', () => ({ getAllPosts: vi.fn() }))
+vi.mock('@blog/data', () => ({ getCategories: vi.fn(), getAllPosts: vi.fn() }))
 // next-i18next/server pulls in next/headers, which only resolves inside Next; the real
 // locale JSON still backs the translations.
 vi.mock('@blog/core/i18n/server', async () => {

@@ -65,7 +65,9 @@ const secureHeaders = createSecureHeaders({
         forceHTTPSRedirect: [true, { maxAge: 60 * 60 * 24 * 4, includeSubDomains: true }],
       }
     : {}),
-  referrerPolicy: 'same-origin',
+  // Other sites see only the domain, never the page. Not `same-origin`: YouTube refuses to play
+  // embedded videos (error 153) when it gets no referrer at all.
+  referrerPolicy: 'strict-origin-when-cross-origin',
 })
 
 /** @type {import('next').NextConfig} */
@@ -138,7 +140,13 @@ const nextConfig = {
   },
 
   async headers() {
-    return [{ source: '/(.*)', headers: secureHeaders }]
+    // The panel shows a post's preview inside a phone frame; nothing else may be framed.
+    const framedByPanel = [{ key: 'X-Frame-Options', value: 'SAMEORIGIN' }]
+    return [
+      { source: '/(.*)', headers: secureHeaders },
+      { source: '/vista-previa/:path*', headers: framedByPanel },
+      { source: '/en/vista-previa/:path*', headers: framedByPanel },
+    ]
   },
 
   // @link https://nextjs.org/docs/api-reference/next.config.js/rewrites

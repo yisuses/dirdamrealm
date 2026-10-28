@@ -28,6 +28,14 @@ describe('isServeablePath', () => {
     expect(isServeablePath('/categoria/ENG/ingenieria/')).toBe(true)
   })
 
+  it("should accept the panel's preview links, with a numeric id and a token", () => {
+    expect(isServeablePath('/vista-previa/344/993667bb-0d43-4b43-a55f-2eb20c4f8e1d/')).toBe(true)
+    expect(isServeablePath('/en/vista-previa/345/792072fb-c0e3-41d4-b0b9-1d33790a80de/')).toBe(true)
+    expect(isServeablePath('/vista-previa/abc/993667bb-0d43-4b43-a55f-2eb20c4f8e1d/')).toBe(false)
+    expect(isServeablePath('/vista-previa/344/NOT_A_TOKEN/')).toBe(false)
+    expect(isServeablePath('/vista-previa/344/993667bb-0d43-4b43-a55f-2eb20c4f8e1d/extra/')).toBe(false)
+  })
+
   it('should let non-page paths through', () => {
     expect(isServeablePath('/robots.txt')).toBe(true)
     // ...but not urls that merely start with one.

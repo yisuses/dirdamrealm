@@ -1,5 +1,5 @@
-import { getAllPosts } from '@blog/api/post'
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
+import { getAllPosts } from '@blog/data'
 import { getImageUrlFromMedia } from '@blog/utils'
 import { mapLocales, xmlUrlSet } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'

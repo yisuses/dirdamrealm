@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { getLatestPosts } from '@blog/api'
+import { getLatestPosts } from '@blog/api/public'
 import { PostGrid } from '@blog/components/common'
 import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocale } from '@blog/hooks'

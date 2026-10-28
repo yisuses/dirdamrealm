@@ -2,12 +2,12 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import type { Metadata } from 'next'
 import { WebPage } from 'schema-dts'
 
-import { getLatestPosts } from '@blog/api'
 import { HomePage, JsonLd } from '@blog/components'
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
 import { getServerT } from '@blog/core/i18n/server'
 import { buildPageMetadata } from '@blog/core/metadata/build-metadata'
 import { getQueryClient } from '@blog/core/query/get-query-client'
+import { getLatestPosts } from '@blog/data'
 import { getLatestPostsKey } from '@blog/utils/constants'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 

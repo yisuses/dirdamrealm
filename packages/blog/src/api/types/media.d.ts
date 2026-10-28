@@ -41,6 +41,12 @@ type MediaResponseEntity = {
 
 type MediaResponse = StrapiData<MediaResponseEntity>
 
+/** Where a cropped image keeps its subject, as percentages from the top-left corner. */
+type ImageFocus = { x: number; y: number }
+
+/** `cover` fills its box and crops around the focus; `contain` shows the whole image. */
+type ImageFit = 'cover' | 'contain'
+
 type Media = {
   id: number
   name: string
@@ -58,4 +64,6 @@ type Media = {
   provider: string
   createdAt: string
   updatedAt: string
+  focus?: ImageFocus
+  fit?: ImageFit
 }

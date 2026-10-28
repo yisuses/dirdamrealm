@@ -3,8 +3,8 @@ import { revalidatePath } from 'next/cache'
 import { after } from 'next/server'
 import { timingSafeEqual } from 'node:crypto'
 
-import { getPostById } from '@blog/api'
 import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
+import { getPostById } from '@blog/data'
 import { buildCategoryPath, buildPostPath, publicUrl } from '@blog/utils'
 
 /**

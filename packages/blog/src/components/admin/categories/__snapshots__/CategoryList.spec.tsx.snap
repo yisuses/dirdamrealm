@@ -1,0 +1,392 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CategoryList > should list the categories with their translation, code, usage and actions 1`] = `
+<div
+  class="chakra-stack css-aejenj"
+>
+  <div
+    class="css-1b045v2"
+  >
+    <div
+      class="chakra-stack css-1op6ogi"
+    >
+      <h1
+        class="chakra-heading css-11yxnza"
+      >
+        Categorías
+      </h1>
+      <p
+        class="css-2catvg"
+      >
+        Las que están en el menú principal aparecen arriba en la web.
+      </p>
+    </div>
+    <a
+      class="chakra-button css-5yp0ac"
+      href="/admin/categorias/nueva/"
+      type="button"
+    >
+      Nueva categoría
+    </a>
+  </div>
+  <div
+    class="css-1vjtk30"
+  >
+    <table
+      class="chakra-table__root css-1js591h"
+    >
+      <thead
+        class="chakra-table__header"
+      >
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Nombre
+              <button
+                aria-label="¿Qué es «Nombre»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_0_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_0_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              En inglés
+              <button
+                aria-label="¿Qué es «En inglés»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_1_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_1_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Menú principal
+              <button
+                aria-label="¿Qué es «Menú principal»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_2_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_2_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Código
+              <button
+                aria-label="¿Qué es «Código»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_3_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_3_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-vs34a8"
+            >
+              Entradas
+              <button
+                aria-label="¿Qué es «Entradas»?"
+                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                data-ownedby="_r_4_"
+                data-part="trigger"
+                data-scope="tooltip"
+                data-state="closed"
+                dir="ltr"
+                id="tooltip:_r_4_:trigger"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <path
+                    d="M12 16v-4"
+                  />
+                  <path
+                    d="M12 8h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th
+            class="chakra-table__columnHeader css-1sq5grx"
+          >
+            <div
+              class="css-1z119ai"
+            >
+              Acciones
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="chakra-table__body"
+      >
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Viajes
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Viajes EN
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <span
+              class="chakra-badge css-blrrvk"
+            >
+              Sí
+            </span>
+          </td>
+          <td
+            class="chakra-table__cell css-1nlputz"
+          >
+            VIA
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            3
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <div
+              class="css-6qcpd9"
+            >
+              <a
+                aria-label="Editar Viajes"
+                class="chakra-link css-1fb8t27"
+                href="/admin/categorias/c1/"
+              >
+                Editar
+              </a>
+              <button
+                aria-label="Borrar Viajes"
+                class="chakra-button css-1iak3fj"
+                type="button"
+              >
+                Borrar
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="chakra-table__row css-11ot24d"
+        >
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Cine
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            Cine EN
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <p
+              class="css-2catvg"
+            >
+              No
+            </p>
+          </td>
+          <td
+            class="chakra-table__cell css-1nlputz"
+          >
+            CIN
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            0
+          </td>
+          <td
+            class="chakra-table__cell css-1n30cde"
+          >
+            <div
+              class="css-6qcpd9"
+            >
+              <a
+                aria-label="Editar Cine"
+                class="chakra-link css-1fb8t27"
+                href="/admin/categorias/c2/"
+              >
+                Editar
+              </a>
+              <button
+                aria-label="Borrar Cine"
+                class="chakra-button css-1iak3fj"
+                type="button"
+              >
+                Borrar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

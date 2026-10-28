@@ -1,4 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
+import { fieldAnatomy } from '@chakra-ui/react/anatomy'
 
 export const breakpoints = {
   sm: '30em',
@@ -35,6 +36,17 @@ const config = defineConfig({
           800: { value: '#343A40' },
           900: { value: '#212529' },
           950: { value: '#495057' },
+        },
+      },
+    },
+    slotRecipes: {
+      // Chakra sizes field hints and errors with a fixed small line height, which squashes them
+      // when they are set larger or wrap onto a second line.
+      field: {
+        slots: fieldAnatomy.keys(),
+        base: {
+          helperText: { lineHeight: '1.5' },
+          errorText: { lineHeight: '1.5' },
         },
       },
     },

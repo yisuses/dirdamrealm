@@ -1,12 +1,12 @@
 import * as sentry from '@sentry/nextjs'
 import { type MockedFunction, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getCategories } from '@blog/api'
+import { getCategories } from '@blog/data'
 
 import Page from './page'
 
 vi.mock('@sentry/nextjs', () => ({ captureException: vi.fn() }))
-vi.mock('@blog/api', () => ({ getCategories: vi.fn() }))
+vi.mock('@blog/data', () => ({ getCategories: vi.fn() }))
 
 const mockedGetCategories = getCategories as MockedFunction<typeof getCategories>
 

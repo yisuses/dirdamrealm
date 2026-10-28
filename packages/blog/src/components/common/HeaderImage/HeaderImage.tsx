@@ -1,10 +1,10 @@
 'use client'
 
 import { Box, Flex, Link, LinkProps, Separator, Text } from '@chakra-ui/react'
-import Image from 'next/image'
 import NextLink from 'next/link'
 import { Trans, useTranslation } from 'react-i18next'
 
+import { FramedImage } from '@blog/components/common/FramedImage'
 import { Tag } from '@blog/components/common/Tag'
 import { useLocale, useLocalizeHref } from '@blog/hooks'
 import { formatPostDate } from '@blog/utils'
@@ -45,13 +45,13 @@ export function HeaderImage({
 
   return (
     <Box>
-      <Box height={{ base: 350, md: 400, lg: 600 }} position="relative">
-        <Image
+      <Box height={{ base: 350, md: 400, lg: 600 }} position="relative" overflow="hidden">
+        <FramedImage
           src={getImageUrlFromMedia({ media: coverImage, fallback: imgUrl })}
-          fill
           priority
           alt={t('coverImage.imageAlt', { title })}
-          style={{ objectFit: 'cover' }}
+          focus={coverImage?.focus}
+          fit={coverImage?.fit}
         />
         {showPostInfo && (
           <Box

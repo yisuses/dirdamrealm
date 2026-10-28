@@ -1,0 +1,160 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ImageLibrary > should list images, flag missing descriptions and load more 1`] = `
+<div
+  class="chakra-stack css-aejenj"
+>
+  <div
+    class="css-1b045v2"
+  >
+    <div
+      class="chakra-stack css-1op6ogi"
+    >
+      <h1
+        class="chakra-heading css-11yxnza"
+      >
+        Imágenes
+      </h1>
+      <p
+        class="css-2catvg"
+      >
+        Todas las imágenes de la web, guardadas en Cloudinary. Pulsa una para cambiarle el nombre o la descripción, o para borrarla.
+      </p>
+    </div>
+    <button
+      class="chakra-button css-5yp0ac"
+      type="button"
+    >
+      Subir imágenes
+    </button>
+  </div>
+  <input
+    accept="image/*"
+    aria-label="Elegir imágenes para subir"
+    class="css-cfk6a1"
+    multiple=""
+    type="file"
+  />
+  <div
+    class="css-1bu5n6t"
+    data-testid="drop-zone"
+  >
+    <p
+      class="css-uok8h6"
+    >
+      Arrastra aquí las imágenes que quieras subir o 
+      <button
+        class="chakra-button css-1awpk18"
+        type="button"
+      >
+        pulsa para elegirlas
+      </button>
+    </p>
+  </div>
+  <form
+    class="css-hh1fkl"
+    role="search"
+  >
+    <input
+      aria-label="Buscar imágenes por nombre"
+      class="chakra-input css-1dnzmqt"
+      placeholder="Buscar por nombre"
+      type="search"
+      value=""
+    />
+    <button
+      class="chakra-button css-16nblk4"
+      type="submit"
+    >
+      Buscar
+    </button>
+  </form>
+  <div
+    class="chakra-stack css-aejenj"
+  >
+    <p
+      aria-live="polite"
+      class="css-1xrpz2b"
+    >
+      3 imágenes
+    </p>
+    <ul
+      class="css-1fdm34e"
+    >
+      <li
+        class="chakra-linkbox css-ntrl35"
+      >
+        <div
+          class="css-w2iig4"
+        >
+          <img
+            alt="Descripción"
+            class="chakra-image css-18nqvg3"
+            loading="lazy"
+            src="https://res.cloudinary.com/demo/image/upload/c_limit,w_400,h_300,f_auto,q_auto/portada_4"
+          />
+        </div>
+        <div
+          class="chakra-stack css-1sje52g"
+        >
+          <a
+            class="chakra-linkbox__overlay css-j5488q"
+            href="/admin/imagenes/portada_4/"
+          >
+            portada 4
+          </a>
+          <p
+            class="css-ap60qa"
+          >
+            1200
+             × 
+            800
+          </p>
+        </div>
+      </li>
+      <li
+        class="chakra-linkbox css-ntrl35"
+      >
+        <div
+          class="css-w2iig4"
+        >
+          <img
+            alt=""
+            class="chakra-image css-18nqvg3"
+            loading="lazy"
+            src="https://res.cloudinary.com/demo/image/upload/c_limit,w_400,h_300,f_auto,q_auto/sin_texto"
+          />
+        </div>
+        <div
+          class="chakra-stack css-1sje52g"
+        >
+          <a
+            class="chakra-linkbox__overlay css-j5488q"
+            href="/admin/imagenes/sin_texto/"
+          >
+            sin texto
+          </a>
+          <p
+            class="css-ap60qa"
+          >
+            1200
+             × 
+            800
+          </p>
+          <span
+            class="chakra-badge css-1trjqil"
+          >
+            Sin descripción
+          </span>
+        </div>
+      </li>
+    </ul>
+    <button
+      class="chakra-button css-e89re2"
+      type="button"
+    >
+      Cargar más imágenes
+    </button>
+  </div>
+</div>
+`;

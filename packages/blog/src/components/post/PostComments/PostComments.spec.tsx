@@ -2,7 +2,8 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { addCommentValidate, getComments } from '@blog/api/comment'
+import { addCommentValidate } from '@blog/api/comment'
+import { getComments } from '@blog/api/public'
 import { navigation } from '@blog/test/navigation'
 import { createTestQueryClient, renderWithProviders } from '@blog/test/render'
 import { getPostCommentsKey } from '@blog/utils/constants'
@@ -11,7 +12,8 @@ import { PostComments } from './PostComments'
 
 const captcha = vi.hoisted(() => ({ value: 'captcha-token' as string | null, reset: vi.fn() }))
 
-vi.mock('@blog/api/comment', () => ({ addCommentValidate: vi.fn(), getComments: vi.fn() }))
+vi.mock('@blog/api/comment', () => ({ addCommentValidate: vi.fn() }))
+vi.mock('@blog/api/public', () => ({ getComments: vi.fn() }))
 // The real widget loads Google's script; this stub hands the test the token it would produce.
 vi.mock('react-google-recaptcha', async () => {
   const { forwardRef, useImperativeHandle } = await import('react')

@@ -41,6 +41,7 @@ exports[`PostGrid > should render a card per post 1`] = `
         <img
           alt="Entrada en español image"
           src="/media/small_test.jpg"
+          style="transition: all .5s; object-fit: cover;"
         />
       </a>
     </div>
@@ -90,6 +91,7 @@ exports[`PostGrid > should render a card per post 1`] = `
         <img
           alt="Test Post image"
           src="https://example.com/test.png"
+          style="transition: all .5s; object-fit: cover;"
         />
       </a>
     </div>

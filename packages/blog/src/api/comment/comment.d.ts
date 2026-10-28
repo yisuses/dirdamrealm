@@ -1,6 +1,6 @@
 interface CommentResponseEntity {
   text: string
-  author: boolean
+  author: string
   createdAt: string
   updatedAt: string
 }

@@ -49,6 +49,7 @@ exports[`CategoryLatestPosts > should render the title and a card per post 1`] =
           <img
             alt="Test Post image"
             src="/media/small_test.jpg"
+            style="transition: all .5s; object-fit: cover;"
           />
         </a>
       </div>
@@ -108,6 +109,7 @@ exports[`CategoryLatestPosts > should render the title and a card per post 1`] =
           <img
             alt="Otro post image"
             src="/media/small_test.jpg"
+            style="transition: all .5s; object-fit: cover;"
           />
         </a>
       </div>

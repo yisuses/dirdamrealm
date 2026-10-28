@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { LuChevronDown, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
 
-import { getCategories } from '@blog/api'
+import { getCategories } from '@blog/api/public'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components/common'
 import { useColorMode } from '@blog/components/ui/color-mode'
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'

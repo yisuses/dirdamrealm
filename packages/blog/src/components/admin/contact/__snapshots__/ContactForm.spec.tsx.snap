@@ -1,0 +1,595 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContactForm > should show the contact data and one group per network 1`] = `
+<div
+  class="chakra-stack css-1fzt9ki"
+>
+  <div
+    class="css-1b045v2"
+  >
+    <div
+      class="chakra-stack css-1op6ogi"
+    >
+      <h1
+        class="chakra-heading css-11yxnza"
+      >
+        Contacto y redes
+      </h1>
+      <p
+        class="css-2catvg"
+      >
+        Lo que aparece en el pie de todas las páginas de la web.
+      </p>
+    </div>
+  </div>
+  <form
+    novalidate=""
+  >
+    <div
+      class="chakra-stack css-1fzt9ki"
+    >
+      <div
+        class="css-jdzdbb"
+      >
+        <fieldset
+          aria-labelledby="fieldset::_r_0_::legend"
+          class="fieldset__root css-oxxg2u"
+          data-part="root"
+          data-scope="fieldset"
+        >
+          <legend
+            class="fieldset__legend css-1o5wqka"
+            data-part="legend"
+            data-scope="fieldset"
+            id="fieldset::_r_0_::legend"
+          >
+            Datos de contacto
+          </legend>
+          <div
+            class="chakra-stack css-fybcnu"
+          >
+            <label
+              class="chakra-checkbox__root css-58gae7"
+              data-part="root"
+              data-scope="checkbox"
+              data-state="checked"
+              dir="ltr"
+              for="checkbox:_r_1_:input"
+              id="checkbox:_r_1_"
+            >
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:_r_1_:label"
+                checked=""
+                id="checkbox:_r_1_:input"
+                style="border: 0px; clip: rect(0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
+              <div
+                aria-hidden="true"
+                class="chakra-checkbox__control css-1xbdn6w"
+                data-part="control"
+                data-scope="checkbox"
+                data-state="checked"
+                dir="ltr"
+                id="checkbox:_r_1_:control"
+              >
+                <svg
+                  class="css-wuqtn7"
+                  data-state="checked"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline
+                    points="20 6 9 17 4 12"
+                  />
+                </svg>
+              </div>
+              <span
+                class="chakra-checkbox__label css-hr94hy"
+                data-part="label"
+                data-scope="checkbox"
+                data-state="checked"
+                dir="ltr"
+                id="checkbox:_r_1_:label"
+              >
+                Mostrar el contacto y las redes en la web
+              </span>
+            </label>
+            <div
+              class="chakra-field__root css-13f87cb"
+              data-part="root"
+              data-scope="field"
+              id="field::_r_2_"
+              role="group"
+            >
+              <label
+                class="chakra-field__label css-sqscs5"
+                data-part="label"
+                data-scope="field"
+                for="_r_2_"
+                id="field::_r_2_::label"
+              >
+                Nombre
+              </label>
+              <input
+                class="chakra-input css-1slcgpf"
+                data-part="input"
+                data-scope="field"
+                id="_r_2_"
+                name="name"
+              />
+            </div>
+            <div
+              class="chakra-field__root css-13f87cb"
+              data-part="root"
+              data-scope="field"
+              id="field::_r_3_"
+              role="group"
+            >
+              <label
+                class="chakra-field__label css-sqscs5"
+                data-part="label"
+                data-scope="field"
+                for="_r_3_"
+                id="field::_r_3_::label"
+              >
+                Email
+              </label>
+              <input
+                class="chakra-input css-1slcgpf"
+                data-part="input"
+                data-scope="field"
+                id="_r_3_"
+                name="email"
+                type="email"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div
+        class="css-jdzdbb"
+      >
+        <fieldset
+          aria-labelledby="fieldset::_r_4_::legend"
+          class="fieldset__root css-oxxg2u"
+          data-part="root"
+          data-scope="fieldset"
+        >
+          <legend
+            class="fieldset__legend css-1o5wqka"
+            data-part="legend"
+            data-scope="fieldset"
+            id="fieldset::_r_4_::legend"
+          >
+            Redes sociales
+          </legend>
+          <div
+            class="chakra-stack css-aejenj"
+          >
+            <div
+              aria-label="Twitter / X"
+              class="chakra-stack css-2a3a6u"
+              role="group"
+            >
+              <div
+                class="css-12ap7ey"
+              >
+                <div
+                  class="chakra-field__root css-520w8v"
+                  data-part="root"
+                  data-scope="field"
+                  id="field::_r_5_"
+                  role="group"
+                >
+                  <label
+                    class="chakra-field__label css-sqscs5"
+                    data-part="label"
+                    data-scope="field"
+                    for="_r_5_"
+                    id="field::_r_5_::label"
+                  >
+                    Red
+                  </label>
+                  <div
+                    class="chakra-native-select__root css-2z3u89"
+                  >
+                    <select
+                      class="chakra-native-select__field css-1b1q62i"
+                      data-part="select"
+                      data-scope="field"
+                      id="_r_5_"
+                      name="socialLinks.0.network"
+                    >
+                      <option
+                        value="twitter"
+                      >
+                        Twitter / X
+                      </option>
+                      <option
+                        value="facebook"
+                      >
+                        Facebook
+                      </option>
+                      <option
+                        value="instagram"
+                      >
+                        Instagram
+                      </option>
+                      <option
+                        value="linkedin"
+                      >
+                        LinkedIn
+                      </option>
+                    </select>
+                    <div
+                      class="chakra-native-select__indicator css-1d5wz6j"
+                    >
+                      <svg
+                        class="css-s3mb0o"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="m6 9 6 6 6-6"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="chakra-field__root css-520w8v"
+                  data-part="root"
+                  data-scope="field"
+                  id="field::_r_6_"
+                  role="group"
+                >
+                  <label
+                    class="chakra-field__label css-sqscs5"
+                    data-part="label"
+                    data-scope="field"
+                    for="_r_6_"
+                    id="field::_r_6_::label"
+                  >
+                    Usuario
+                  </label>
+                  <input
+                    class="chakra-input css-1slcgpf"
+                    data-part="input"
+                    data-scope="field"
+                    id="_r_6_"
+                    name="socialLinks.0.handle"
+                    placeholder="@usuario"
+                  />
+                </div>
+                <div
+                  class="chakra-field__root css-u30gqd"
+                  data-part="root"
+                  data-scope="field"
+                  id="field::_r_7_"
+                  role="group"
+                >
+                  <label
+                    class="chakra-field__label css-sqscs5"
+                    data-part="label"
+                    data-required=""
+                    data-scope="field"
+                    for="_r_7_"
+                    id="field::_r_7_::label"
+                  >
+                    Dirección
+                  </label>
+                  <input
+                    class="chakra-input css-1slcgpf"
+                    data-part="input"
+                    data-required=""
+                    data-scope="field"
+                    id="_r_7_"
+                    name="socialLinks.0.url"
+                    placeholder="https://"
+                    required=""
+                    type="url"
+                  />
+                </div>
+              </div>
+              <div
+                class="css-8aqvtd"
+              >
+                <label
+                  class="chakra-checkbox__root css-58gae7"
+                  data-part="root"
+                  data-scope="checkbox"
+                  data-state="checked"
+                  dir="ltr"
+                  for="checkbox:_r_8_:input"
+                  id="checkbox:_r_8_"
+                >
+                  <input
+                    aria-invalid="false"
+                    aria-labelledby="checkbox:_r_8_:label"
+                    checked=""
+                    id="checkbox:_r_8_:input"
+                    style="border: 0px; clip: rect(0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                    type="checkbox"
+                    value="on"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="chakra-checkbox__control css-1xbdn6w"
+                    data-part="control"
+                    data-scope="checkbox"
+                    data-state="checked"
+                    dir="ltr"
+                    id="checkbox:_r_8_:control"
+                  >
+                    <svg
+                      class="css-wuqtn7"
+                      data-state="checked"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline
+                        points="20 6 9 17 4 12"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="chakra-checkbox__label css-hr94hy"
+                    data-part="label"
+                    data-scope="checkbox"
+                    data-state="checked"
+                    dir="ltr"
+                    id="checkbox:_r_8_:label"
+                  >
+                    Visible en la web
+                  </span>
+                </label>
+                <div
+                  class="css-2wokl8"
+                >
+                  <button
+                    aria-label="Subir Twitter / X"
+                    class="chakra-button css-1a72x65"
+                    disabled=""
+                    type="button"
+                  >
+                    Subir
+                  </button>
+                  <button
+                    aria-label="Bajar Twitter / X"
+                    class="chakra-button css-1a72x65"
+                    type="button"
+                  >
+                    Bajar
+                  </button>
+                  <button
+                    aria-label="Quitar Twitter / X"
+                    class="chakra-button css-1g3n40o"
+                    type="button"
+                  >
+                    Quitar
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-label="Instagram"
+              class="chakra-stack css-2a3a6u"
+              role="group"
+            >
+              <div
+                class="css-12ap7ey"
+              >
+                <div
+                  class="chakra-field__root css-520w8v"
+                  data-part="root"
+                  data-scope="field"
+                  id="field::_r_9_"
+                  role="group"
+                >
+                  <label
+                    class="chakra-field__label css-sqscs5"
+                    data-part="label"
+                    data-scope="field"
+                    for="_r_9_"
+                    id="field::_r_9_::label"
+                  >
+                    Red
+                  </label>
+                  <div
+                    class="chakra-native-select__root css-2z3u89"
+                  >
+                    <select
+                      class="chakra-native-select__field css-1b1q62i"
+                      data-part="select"
+                      data-scope="field"
+                      id="_r_9_"
+                      name="socialLinks.1.network"
+                    >
+                      <option
+                        value="twitter"
+                      >
+                        Twitter / X
+                      </option>
+                      <option
+                        value="facebook"
+                      >
+                        Facebook
+                      </option>
+                      <option
+                        value="instagram"
+                      >
+                        Instagram
+                      </option>
+                      <option
+                        value="linkedin"
+                      >
+                        LinkedIn
+                      </option>
+                    </select>
+                    <div
+                      class="chakra-native-select__indicator css-1d5wz6j"
+                    >
+                      <svg
+                        class="css-s3mb0o"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="m6 9 6 6 6-6"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="chakra-field__root css-520w8v"
+                  data-part="root"
+                  data-scope="field"
+                  id="field::_r_a_"
+                  role="group"
+                >
+                  <label
+                    class="chakra-field__label css-sqscs5"
+                    data-part="label"
+                    data-scope="field"
+                    for="_r_a_"
+                    id="field::_r_a_::label"
+                  >
+                    Usuario
+                  </label>
+                  <input
+                    class="chakra-input css-1slcgpf"
+                    data-part="input"
+                    data-scope="field"
+                    id="_r_a_"
+                    name="socialLinks.1.handle"
+                    placeholder="@usuario"
+                  />
+                </div>
+                <div
+                  class="chakra-field__root css-u30gqd"
+                  data-part="root"
+                  data-scope="field"
+                  id="field::_r_b_"
+                  role="group"
+                >
+                  <label
+                    class="chakra-field__label css-sqscs5"
+                    data-part="label"
+                    data-required=""
+                    data-scope="field"
+                    for="_r_b_"
+                    id="field::_r_b_::label"
+                  >
+                    Dirección
+                  </label>
+                  <input
+                    class="chakra-input css-1slcgpf"
+                    data-part="input"
+                    data-required=""
+                    data-scope="field"
+                    id="_r_b_"
+                    name="socialLinks.1.url"
+                    placeholder="https://"
+                    required=""
+                    type="url"
+                  />
+                </div>
+              </div>
+              <div
+                class="css-8aqvtd"
+              >
+                <label
+                  class="chakra-checkbox__root css-58gae7"
+                  data-part="root"
+                  data-scope="checkbox"
+                  data-state="checked"
+                  dir="ltr"
+                  for="checkbox:_r_c_:input"
+                  id="checkbox:_r_c_"
+                >
+                  <input
+                    aria-invalid="false"
+                    aria-labelledby="checkbox:_r_c_:label"
+                    checked=""
+                    id="checkbox:_r_c_:input"
+                    style="border: 0px; clip: rect(0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                    type="checkbox"
+                    value="on"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="chakra-checkbox__control css-1xbdn6w"
+                    data-part="control"
+                    data-scope="checkbox"
+                    data-state="checked"
+                    dir="ltr"
+                    id="checkbox:_r_c_:control"
+                  >
+                    <svg
+                      class="css-wuqtn7"
+                      data-state="checked"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline
+                        points="20 6 9 17 4 12"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="chakra-checkbox__label css-hr94hy"
+                    data-part="label"
+                    data-scope="checkbox"
+                    data-state="checked"
+                    dir="ltr"
+                    id="checkbox:_r_c_:label"
+                  >
+                    Visible en la web
+                  </span>
+                </label>
+                <div
+                  class="css-2wokl8"
+                >
+                  <button
+                    aria-label="Subir Instagram"
+                    class="chakra-button css-1a72x65"
+                    type="button"
+                  >
+                    Subir
+                  </button>
+                  <button
+                    aria-label="Bajar Instagram"
+                    class="chakra-button css-1a72x65"
+                    disabled=""
+                    type="button"
+                  >
+                    Bajar
+                  </button>
+                  <button
+                    aria-label="Quitar Instagram"
+                    class="chakra-button css-1g3n40o"
+                    type="button"
+                  >
+                    Quitar
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="chakra-button css-mv3ftd"
+              type="button"
+            >
+              Añadir red
+            </button>
+          </div>
+        </fieldset>
+      </div>
+      <button
+        class="chakra-button css-118gt5l"
+        type="submit"
+      >
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
+`;

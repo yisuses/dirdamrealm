@@ -2,8 +2,8 @@ import { type DehydratedState } from '@tanstack/react-query'
 import type { ReactElement, ReactNode } from 'react'
 import { type MockedFunction, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getAbout, getCategories } from '@blog/api'
 import { getServerT } from '@blog/core/i18n/server'
+import { getAbout, getCategories } from '@blog/data'
 
 import LocaleLayout, { generateStaticParams, viewport } from './layout'
 
@@ -11,7 +11,7 @@ vi.mock('@fontsource/spartan', () => ({}))
 vi.mock('next-i18next/server', () => ({
   generateI18nStaticParams: () => [{ lng: 'es' }, { lng: 'en' }],
 }))
-vi.mock('@blog/api', () => ({ getAbout: vi.fn(), getCategories: vi.fn() }))
+vi.mock('@blog/data', () => ({ getAbout: vi.fn(), getCategories: vi.fn() }))
 vi.mock('@blog/core/i18n/server', () => ({
   getServerT: vi.fn(async () => ({ i18n: { language: 'es' } })),
   getServerResources: () => ({ es: { common: { pageTitle: 'Emoción Blanca' } } }),

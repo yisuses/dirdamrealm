@@ -1,10 +1,10 @@
 import { type MockedFunction, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getCategories } from '@blog/api/category'
+import { getCategories } from '@blog/data'
 
 import { GET, dynamic, revalidate } from './route'
 
-vi.mock('@blog/api/category', () => ({ getCategories: vi.fn() }))
+vi.mock('@blog/data', () => ({ getCategories: vi.fn() }))
 
 const mockedGetCategories = getCategories as MockedFunction<typeof getCategories>
 

@@ -4,11 +4,12 @@ exports[`CategoryPage > should render the latest post as header and the rest in 
 <div>
   <div>
     <div
-      class="css-1cb4st4"
+      class="css-1nr4kjm"
     >
       <img
         alt="Imagen de la entrada "Test Post""
         src="/media/large_test.jpg"
+        style="object-fit: cover;"
       />
       <div
         class="css-ws1zca"
@@ -113,6 +114,7 @@ exports[`CategoryPage > should render the latest post as header and the rest in 
             <img
               alt="Otro post image"
               src="/media/small_test.jpg"
+              style="transition: all .5s; object-fit: cover;"
             />
           </a>
         </div>

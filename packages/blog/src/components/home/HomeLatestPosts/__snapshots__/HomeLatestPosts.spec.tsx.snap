@@ -74,6 +74,7 @@ exports[`HomeLatestPosts > should fetch the posts of a category clicked and drop
           <img
             alt="Otro post image"
             src="/media/small_test.jpg"
+            style="transition: all .5s; object-fit: cover;"
           />
         </a>
       </div>
@@ -149,6 +150,7 @@ exports[`HomeLatestPosts > should render the posts after the header one without 
           <img
             alt="Otro post image"
             src="/media/small_test.jpg"
+            style="transition: all .5s; object-fit: cover;"
           />
         </a>
       </div>
