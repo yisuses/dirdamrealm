@@ -27,6 +27,7 @@ import { apiErrorMessage } from '@blog/components/admin/ui/apiError'
 import type { LibraryImage } from '@blog/core/cloudinary/libraryImage'
 import { type PostSaveInput, postSaveSchema } from '@blog/core/validation/post'
 import type { EditorPost, PostFields } from '@blog/db/queries/admin/posts'
+import { getReadingTime } from '@blog/utils/getReadingTime/getReadingTime'
 import { seoName } from '@blog/utils/seoName/seoName'
 
 import { ImagePickerDialog } from '../../images/ImagePickerDialog'
@@ -88,6 +89,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
   const [summary, setSummary] = useState(translation.summary)
   const [fields, setFields] = useState<PostFields>(post.fields)
   const content = useRef<DataProp>(translation.content)
+  const [readingTime, setReadingTime] = useState(() => getReadingTime(translation.content))
   const editor = useRef<ContentEditorHandle>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [savedChanges, setSavedChanges] = useState(false)
@@ -205,11 +207,26 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
         })}
       </Flex>
 
-      <Stack gap={4} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
+      {/* Stays in view while writing a long post, so the save state and "Publicar" are always at hand.
+          Only from tablets up: on a phone it would cover most of the screen. */}
+      <Stack
+        gap={4}
+        bg="white"
+        borderWidth={1}
+        borderRadius="lg"
+        p={{ base: 4, md: 6 }}
+        position={{ base: 'static', md: 'sticky' }}
+        top={0}
+        zIndex="sticky"
+        boxShadow="sm"
+      >
         <Flex justify="space-between" align="baseline" gap={3} wrap="wrap">
-          <Heading as="h1" size="2xl" fontFamily="Roboto">
-            {title || 'Entrada sin título'}
-          </Heading>
+          <Stack gap={1}>
+            <Heading as="h1" size="2xl" fontFamily="Roboto">
+              {title || 'Entrada sin título'}
+            </Heading>
+            {readingTime > 0 && <Text color="fg.muted">{`${readingTime} min de lectura`}</Text>}
+          </Stack>
           <SaveIndicator status={autosave.status} savedAt={autosave.savedAt} invalid={Object.keys(errors).length > 0} />
         </Flex>
         <PostActions
@@ -319,6 +336,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
           pickImage={pickImage}
           onChange={value => {
             content.current = value
+            setReadingTime(getReadingTime(value))
             queueSave()
           }}
         />

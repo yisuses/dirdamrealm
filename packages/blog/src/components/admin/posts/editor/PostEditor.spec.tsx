@@ -219,6 +219,16 @@ describe('PostEditor', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent('El texto es demasiado largo')
   })
 
+  it('should say how long the text takes to read, and keep it up to date while writing', async () => {
+    const user = userEvent.setup()
+    renderEditor()
+    expect(screen.queryByText(/min de lectura/)).not.toBeInTheDocument()
+
+    stubs.content.blocks = [{ type: 'paragraph', data: { text: 'palabra '.repeat(450) } }]
+    await user.click(screen.getByRole('button', { name: 'Escribir en el editor' }))
+    expect(screen.getByText('3 min de lectura')).toBeInTheDocument()
+  })
+
   it('should warn that publishing changes the address, and mark edits of a published post as pending', async () => {
     const user = userEvent.setup()
     renderEditor(

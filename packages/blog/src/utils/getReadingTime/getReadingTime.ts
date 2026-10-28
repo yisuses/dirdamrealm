@@ -1,12 +1,30 @@
 import { Block, DataProp } from 'editorjs-blocks-react-renderer'
 
+// Older lists keep their items as text; the editor's keep each one with its sublist.
+type ListItem = string | { content: string; items?: ListItem[] }
+
+function countWords(text: string) {
+  return text.split(/\s+/).length
+}
+
+function getWordCountFromItems(items: ListItem[]): number {
+  return items.reduce(
+    (acc, item) =>
+      acc +
+      (typeof item === 'string'
+        ? countWords(item)
+        : countWords(item.content) + getWordCountFromItems(item.items ?? [])),
+    0,
+  )
+}
+
 function getWordCountFromBlock(block: Block): number {
   try {
     switch (block.type) {
       case 'paragraph':
         return block.data.text.split(/\s+/).length
       case 'list':
-        return block.data.items.reduce((acc: number, item: string) => acc + item.split(/\s+/).length, 0)
+        return getWordCountFromItems(block.data.items)
       case 'header':
         return block.data.text.split(/\s+/).length
       case 'image':

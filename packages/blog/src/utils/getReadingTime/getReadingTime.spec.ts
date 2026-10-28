@@ -64,6 +64,24 @@ describe('getReadingTime function', () => {
     expect(readingTime).toEqual(1)
   })
 
+  it('should count the items of the editor lists and their sublists', () => {
+    const item = (content: string, items: unknown[] = []) => ({ content, meta: {}, items })
+    const readingTime = getReadingTime({
+      blocks: [
+        {
+          type: 'list',
+          data: {
+            style: 'unordered',
+            items: [item('uno '.repeat(150), [item('dos '.repeat(100))]), { content: 'tres' }],
+          },
+        },
+      ],
+      time: 0,
+      version: '',
+    })
+    expect(readingTime).toEqual(2)
+  })
+
   it('should return the correct when any block fails', () => {
     const readingTime = getReadingTime({
       ...mockContent,
