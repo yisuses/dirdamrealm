@@ -121,8 +121,8 @@ export function AdminShell({ userName, dataSource, preview = false, children }: 
             })}
           </Stack>
         </Box>
-        {/* minW 0: wide content (tables) scrolls inside instead of widening the page on phones. */}
-        <Box as="main" flex={1} minW={0} p={{ base: 4, lg: 10 }} maxW="1100px">
+        {/* Full width so tables use the space they have; minW 0 makes them scroll inside on phones. */}
+        <Box as="main" flex={1} minW={0} p={{ base: 4, lg: 10 }}>
           {children}
         </Box>
       </Flex>
