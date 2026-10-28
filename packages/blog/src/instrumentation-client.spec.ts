@@ -10,12 +10,16 @@ const sentry = vi.hoisted(() => {
 
 vi.mock('@sentry/nextjs', () => sentry)
 
+const botId = vi.hoisted(() => ({ initBotId: vi.fn() }))
+vi.mock('botid/client/core', () => botId)
+
 type Options = NonNullable<Parameters<typeof init>[0]>
 type BeforeSend = NonNullable<Options['beforeSend']>
 
 describe('instrumentation client', () => {
   // Captured at collection time: init runs on module load, before any test.
   const options: Options = sentry.init.mock.calls[0][0]
+  const botIdOptions = botId.initBotId.mock.calls[0][0]
   const beforeSend = options.beforeSend!
   const event = { message: 'boom' } as Parameters<BeforeSend>[0]
   const hint = { originalException: 'boom' }
@@ -30,6 +34,17 @@ describe('instrumentation client', () => {
       dsn: 'https://dsn.sentry.io/1',
       beforeSend: expect.any(Function),
       ignoreErrors: ['ResizeObserver loop limit exceeded'],
+    })
+  })
+
+  it('should check with BotID that the login and password recovery are used by a person', () => {
+    expect(botIdOptions).toEqual({
+      protect: [
+        { path: '/api/auth/callback/credentials', method: 'POST' },
+        { path: '/api/auth/callback/credentials/', method: 'POST' },
+        { path: '/api/password-reset/request/', method: 'POST' },
+        { path: '/api/password-reset/confirm/', method: 'POST' },
+      ],
     })
   })
 

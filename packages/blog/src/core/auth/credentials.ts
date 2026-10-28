@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import { checkBotId } from 'botid/server'
 
 import { getActiveUserByEmail } from '@blog/db/queries/users'
 
@@ -11,7 +12,7 @@ export async function authorizeCredentials(
 ): Promise<{ id: string; name: string; email: string } | null> {
   const email = typeof credentials?.email === 'string' ? credentials.email : ''
   const password = typeof credentials?.password === 'string' ? credentials.password : ''
-  if (!email || !password) {
+  if (!email || !password || (await checkBotId()).isBot) {
     return null
   }
 

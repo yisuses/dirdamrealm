@@ -1,3 +1,4 @@
+import { checkBotId } from 'botid/server'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createPasswordResetToken, resetPassword } from '@blog/core/auth/passwordReset'
@@ -24,6 +25,7 @@ vi.mock('@blog/core/email/send', async importOriginal => ({
   sendEmail: vi.fn(async () => true),
 }))
 vi.mock('@blog/db/queries/users', () => ({ getActiveUserByEmail: vi.fn() }))
+vi.mock('botid/server', () => ({ checkBotId: vi.fn() }))
 
 const post = (body: unknown, headers?: HeadersInit) =>
   new Request('https://evil.example/api/password-reset/x/', {
@@ -36,6 +38,23 @@ describe('password reset API', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     limiter.current = null
+    vi.mocked(checkBotId).mockResolvedValue({ isBot: false } as never)
+  })
+
+  it.each([
+    ['request', requestReset, { email: 'jose@example.com' }],
+    ['confirm', confirm, { token: 'tok3n', password: 'una-clave-larga-123' }],
+  ])('should refuse a bot on %s, before doing anything', async (_, handler, body) => {
+    vi.mocked(checkBotId).mockResolvedValue({ isBot: true } as never)
+
+    const response = await handler(post(body))
+
+    expect(response.status).toBe(403)
+    expect(await response.json()).toEqual({
+      error: 'No se ha podido comprobar que eres una persona. Recarga la página y vuelve a probar.',
+    })
+    expect(getActiveUserByEmail).not.toHaveBeenCalled()
+    expect(resetPassword).not.toHaveBeenCalled()
   })
 
   it('should email a link built on the site address, not the request host', async () => {

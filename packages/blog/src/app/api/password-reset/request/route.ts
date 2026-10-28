@@ -1,3 +1,5 @@
+import { checkBotId } from 'botid/server'
+
 import { createPasswordResetToken } from '@blog/core/auth/passwordReset'
 import { passwordResetEmail } from '@blog/core/email/passwordResetEmail'
 import { sendEmail } from '@blog/core/email/send'
@@ -10,6 +12,12 @@ import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 const sent = () => Response.json({ ok: true })
 
 export async function POST(request: Request) {
+  if ((await checkBotId()).isBot) {
+    return Response.json(
+      { error: 'No se ha podido comprobar que eres una persona. Recarga la página y vuelve a probar.' },
+      { status: 403 },
+    )
+  }
   if (passwordResetRatelimit) {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
     const { success } = await passwordResetRatelimit.limit(ip)

@@ -1,8 +1,16 @@
+import { checkBotId } from 'botid/server'
+
 import { resetPassword } from '@blog/core/auth/passwordReset'
 import { hashPassword } from '@blog/core/auth/passwords'
 import { passwordResetSchema } from '@blog/core/validation/user'
 
 export async function POST(request: Request) {
+  if ((await checkBotId()).isBot) {
+    return Response.json(
+      { error: 'No se ha podido comprobar que eres una persona. Recarga la página y vuelve a probar.' },
+      { status: 403 },
+    )
+  }
   const body = await request.json().catch(() => null)
   const parsed = passwordResetSchema.safeParse(body)
   if (!parsed.success) {
