@@ -13,7 +13,7 @@ vi.mock('@blog/core/cache/revalidatePublicContent', () => ({ revalidatePublicCon
 vi.mock('@blog/db/queries/admin/posts', () => ({
   createPost: vi.fn(async () => 'new-post'),
   createTranslation: vi.fn(async () => true),
-  savePost: vi.fn(async () => '2026-10-22T10:00:00.000Z'),
+  savePost: vi.fn(async () => ({ savedAt: '2026-10-22T10:00:00.000Z', hasUnpublishedChanges: true })),
   applyPostAction: vi.fn(async () => ({ ok: true, changedSite: true })),
   deletePost: vi.fn(async () => true),
 }))
@@ -81,7 +81,7 @@ describe('admin posts API', () => {
   it('should save without touching the site', async () => {
     const response = await PUT(json('PUT', save), at())
 
-    await expect(response.json()).resolves.toEqual({ savedAt: '2026-10-22T10:00:00.000Z' })
+    await expect(response.json()).resolves.toEqual({ savedAt: '2026-10-22T10:00:00.000Z', hasUnpublishedChanges: true })
     expect(savePost).toHaveBeenCalledWith(postId, 'es', expect.objectContaining({ title: 'Hola' }))
     expect(revalidatePublicContent).not.toHaveBeenCalled()
 

@@ -36,8 +36,8 @@ export async function PUT(request: Request, { params }: Context) {
     return parsed.response
   }
   const found = await target(params)
-  const savedAt = found && (await savePost(found.postId, found.locale, parsed.data))
-  return savedAt ? Response.json({ savedAt }) : notFound()
+  const saved = found && (await savePost(found.postId, found.locale, parsed.data))
+  return saved ? Response.json(saved) : notFound()
 }
 
 /** Publish, unpublish, discard the pending edits, or (un)schedule this language. */

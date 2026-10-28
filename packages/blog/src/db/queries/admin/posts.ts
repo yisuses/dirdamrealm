@@ -171,7 +171,9 @@ async function isLive(tx: Tx, postId: string) {
  * The editor's save, every few seconds while writing. Nothing it saves reaches the site: a
  * published language keeps its edits in its draft, and while any language is published the shared
  * fields wait in the post's draft. Otherwise there is nothing public to protect, so it writes in
- * place. Returns when it saved, or undefined when the post or language does not exist.
+ * place. Returns when it saved and whether this language still differs from what readers see
+ * (edits undone by hand leave nothing to publish), or undefined when the post or language does
+ * not exist.
  */
 export async function savePost(postId: string, locale: Locale, input: PostSaveInput, now = new Date()) {
   const db = getDb()
@@ -188,26 +190,30 @@ export async function savePost(postId: string, locale: Locale, input: PostSaveIn
     const { title, summary, content, ...fields } = input
     const { translation, post } = row
     const where = and(eq(postTranslations.postId, postId), eq(postTranslations.locale, locale))
+    const published = translation.status === 'published'
+    let pendingText = false
+    let pendingFields = false
 
-    if (translation.status === 'published') {
+    if (published) {
       // Back to what readers see: no pending edits. `updatedAt` is the post's public "modified"
       // date: only publishing changes it.
       const draft = sameText({ title, summary, content }, translation) ? null : { title, summary, content, savedAt }
+      pendingText = Boolean(draft)
       await tx.update(postTranslations).set({ draft, updatedAt: translation.updatedAt }).where(where)
     } else {
       await tx.update(postTranslations).set({ title, summary, content, draft: null }).where(where)
     }
 
     if (await isLive(tx, postId)) {
-      const published = publishedFields(post, await loadCategoryIds(tx, postId))
+      pendingFields = !sameFields(fields, publishedFields(post, await loadCategoryIds(tx, postId)))
       await tx
         .update(posts)
-        .set({ draft: sameFields(fields, published) ? null : { ...fields, savedAt } })
+        .set({ draft: pendingFields ? { ...fields, savedAt } : null })
         .where(eq(posts.id, postId))
     } else {
       await writePostFields(tx, postId, fields)
     }
-    return savedAt
+    return { savedAt, hasUnpublishedChanges: published && (pendingText || pendingFields) }
   })
 }
 

@@ -92,17 +92,16 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
   const [readingTime, setReadingTime] = useState(() => getReadingTime(translation.content))
   const editor = useRef<ContentEditorHandle>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [savedChanges, setSavedChanges] = useState(false)
+  // From the server after each save: edits undone by hand leave nothing to publish.
+  const [pending, setPending] = useState(translation.hasUnpublishedChanges)
   const [picker, setPicker] = useState<{ resolve: (image: LibraryImage | null) => void } | null>(null)
   const [deleting, setDeleting] = useState<'confirm' | 'busy' | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const url = `/api/admin/posts/${post.id}/${locale}/`
   const autosave = useAutosave(async (input: PostSaveInput) => {
-    const { data } = await axios.put<{ savedAt: string }>(url, input)
-    if (published || post.live) {
-      setSavedChanges(true)
-    }
+    const { data } = await axios.put<{ savedAt: string; hasUnpublishedChanges: boolean }>(url, input)
+    setPending(data.hasUnpublishedChanges)
     return data.savedAt
   }, translation.savedAt)
 
@@ -160,7 +159,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
     }
   }
 
-  const hasUnpublishedChanges = published && (translation.hasUnpublishedChanges || savedChanges)
+  const hasUnpublishedChanges = published && pending
   const state = stateLabel({ ...translation, hasUnpublishedChanges })
   const newSlug = seoName(title)
   const urlChanges = published && translation.publishedTitle !== null && seoName(translation.publishedTitle) !== newSlug
