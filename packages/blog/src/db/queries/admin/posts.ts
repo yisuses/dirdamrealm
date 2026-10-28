@@ -227,8 +227,20 @@ function publishedFields(post: typeof posts.$inferSelect, categoryIds: string[])
   }
 }
 
+/**
+ * JSON with every object's keys in order. Postgres keeps jsonb keys in its own order, not the
+ * editor's, so a plain stringify finds a saved post different from the same post being edited.
+ */
+function canonical(value: unknown): string {
+  return JSON.stringify(value, (_key, inner: unknown) =>
+    inner && typeof inner === 'object' && !Array.isArray(inner)
+      ? Object.fromEntries(Object.entries(inner).sort(([a], [b]) => (a < b ? -1 : 1)))
+      : inner,
+  )
+}
+
 // Compared by meaning: the editor adds block ids and times that do not change what readers see.
-const blocksOf = (content: DataProp) => JSON.stringify(content.blocks.map(({ type, data }) => ({ type, data })))
+const blocksOf = (content: DataProp) => canonical(content.blocks.map(({ type, data }) => ({ type, data })))
 
 function sameText(a: { title: string; summary: string; content: DataProp }, b: typeof a) {
   return a.title === b.title && a.summary === b.summary && blocksOf(a.content) === blocksOf(b.content)
@@ -236,7 +248,7 @@ function sameText(a: { title: string; summary: string; content: DataProp }, b: t
 
 function sameFields(a: PostFields, b: PostFields) {
   const normal = ({ cover, coverImageAuthor, coverImageSourceUrl, writerId, categoryIds }: PostFields) =>
-    JSON.stringify([
+    canonical([
       cover && [cover.publicId, cover.width, cover.height, cover.alt ?? '', cover.focus ?? null, cover.fit ?? 'cover'],
       coverImageAuthor,
       coverImageSourceUrl,
