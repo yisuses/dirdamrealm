@@ -23,7 +23,13 @@ const fake = vi.hoisted(() => {
       }
       save: ReturnType<typeof import('vitest').vi.fn>
       destroy: ReturnType<typeof import('vitest').vi.fn>
-      blocks: { insert: ReturnType<typeof import('vitest').vi.fn>; getBlocksCount: () => number }
+      blocks: {
+        insert: ReturnType<typeof import('vitest').vi.fn>
+        delete: ReturnType<typeof import('vitest').vi.fn>
+        getBlocksCount: () => number
+        getCurrentBlockIndex: ReturnType<typeof import('vitest').vi.fn>
+        getBlockByIndex: ReturnType<typeof import('vitest').vi.fn>
+      }
       isReady: Promise<void>
     }[],
     ready: Promise.resolve() as Promise<void>,
@@ -38,7 +44,13 @@ vi.mock('@editorjs/editorjs', async () => {
       config: unknown
       save = mocks.fn()
       destroy = mocks.fn()
-      blocks = { insert: mocks.fn(), getBlocksCount: () => 2 }
+      blocks = {
+        insert: mocks.fn(),
+        delete: mocks.fn(),
+        getBlocksCount: () => 2,
+        getCurrentBlockIndex: mocks.fn(() => 0),
+        getBlockByIndex: mocks.fn(() => ({ isEmpty: false })),
+      }
       isReady = fake.ready
       constructor(config: unknown) {
         this.config = config
@@ -141,8 +153,82 @@ describe('ContentEditor', () => {
     )
 
     expect(instance.blocks.insert).toHaveBeenNthCalledWith(1, 'paragraph', { text: 'Uno' }, undefined, 2, false)
-    expect(instance.blocks.insert).toHaveBeenNthCalledWith(2, 'paragraph', { text: 'Dos' }, undefined, 2, false)
+    expect(instance.blocks.insert).toHaveBeenNthCalledWith(2, 'paragraph', { text: 'Dos' }, undefined, 3, false)
+    expect(instance.blocks.delete).not.toHaveBeenCalled()
     expect(onChange).toHaveBeenCalledWith(output('Con Word'))
+  })
+
+  describe('pasting lists copied from Word', () => {
+    const wordList =
+      '<p class=MsoListParagraph style="mso-list:l0 level1 lfo1"><span style="mso-list:Ignore">·&nbsp;&nbsp;</span>Uno</p>' +
+      '<p class=MsoListParagraph style="mso-list:l0 level1 lfo1"><span style="mso-list:Ignore">·&nbsp;&nbsp;</span>Dos</p>'
+    const list = {
+      style: 'unordered',
+      meta: {},
+      items: [
+        { content: 'Uno', meta: {}, items: [] },
+        { content: 'Dos', meta: {}, items: [] },
+      ],
+    }
+
+    async function readyToPaste() {
+      const mounted = await mountEditor()
+      await ready(mounted.instance)
+      mounted.instance.save.mockResolvedValue(output('Con lista'))
+      return mounted
+    }
+
+    function paste(html: string) {
+      const event = new Event('paste', { bubbles: true, cancelable: true })
+      Object.defineProperty(event, 'clipboardData', {
+        value: { getData: (type: string) => (type === 'text/html' ? html : '') },
+      })
+      screen.getByTestId('content-editor').dispatchEvent(event)
+      return event
+    }
+
+    it('should add them as a real list after the block being written', async () => {
+      const { instance, onChange } = await readyToPaste()
+
+      const event = paste(wordList)
+
+      expect(event.defaultPrevented).toBe(true)
+      expect(instance.blocks.insert).toHaveBeenCalledWith('list', list, undefined, 1, false)
+      await waitFor(() => expect(onChange).toHaveBeenCalledWith(output('Con lista')))
+    })
+
+    it('should take the place of the empty block being written', async () => {
+      const { instance } = await readyToPaste()
+      instance.blocks.getBlockByIndex.mockReturnValueOnce({ isEmpty: true }).mockReturnValueOnce({ isEmpty: true })
+
+      paste(wordList)
+
+      expect(instance.blocks.insert).toHaveBeenCalledWith('list', list, undefined, 1, false)
+      expect(instance.blocks.delete).toHaveBeenCalledWith(0)
+    })
+
+    it('should add them at the end when no block is being written', async () => {
+      const { instance } = await readyToPaste()
+      instance.blocks.getCurrentBlockIndex.mockReturnValueOnce(-1)
+
+      paste(wordList)
+
+      expect(instance.blocks.insert).toHaveBeenCalledWith('list', list, undefined, 2, false)
+    })
+
+    it("should leave any other paste to EditorJS, and stop listening once it's gone", async () => {
+      const { instance, unmount } = await readyToPaste()
+
+      expect(paste('<p>Solo texto</p>').defaultPrevented).toBe(false)
+      expect(paste('').defaultPrevented).toBe(false)
+      const holder = screen.getByTestId('content-editor')
+      unmount()
+      const event = new Event('paste', { cancelable: true })
+      Object.defineProperty(event, 'clipboardData', { value: { getData: () => wordList } })
+      holder.dispatchEvent(event)
+      expect(event.defaultPrevented).toBe(false)
+      expect(instance.blocks.insert).not.toHaveBeenCalled()
+    })
   })
 
   it("should open the page's picker and upload pasted images with a name from the file or address", async () => {

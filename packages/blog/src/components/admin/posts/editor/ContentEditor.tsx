@@ -10,6 +10,8 @@ import type { LibraryImage } from '@blog/core/cloudinary/libraryImage'
 
 import { nameFromFile, uploadImage } from '../../images/images'
 import { editorMessages } from './editorI18n'
+import { htmlToBlocks } from './wordImport'
+import { pastedListsToHtml } from './wordPaste'
 
 export interface ContentEditorHandle {
   /** Adds blocks after the last one (the Word import). */
@@ -46,16 +48,47 @@ export function ContentEditor({ initialContent, onChange, pickImage, ref }: Cont
   // undefined while loading; null once edited, when every change counts.
   const baseline = useRef<string | null | undefined>(undefined)
 
+  /** Adds blocks from `index` on; an empty block where they go is replaced by them. */
+  const insertBlocks = async (blocks: OutputBlockData[], index: number) => {
+    const instance = editor.current!
+    const replaced = index < instance.blocks.getBlocksCount() && instance.blocks.getBlockByIndex(index)?.isEmpty
+    const start = replaced ? index + 1 : index
+    blocks.forEach((block, offset) => {
+      instance.blocks.insert(block.type, block.data, undefined, start + offset, false)
+    })
+    if (replaced) {
+      instance.blocks.delete(index)
+    }
+    baseline.current = null
+    callbacks.current.onChange(toContent(await instance.save()))
+  }
+
   useImperativeHandle(ref, () => ({
-    append: async blocks => {
-      const instance = editor.current!
-      for (const block of blocks) {
-        instance.blocks.insert(block.type, block.data, undefined, instance.blocks.getBlocksCount(), false)
-      }
-      baseline.current = null
-      callbacks.current.onChange(toContent(await instance.save()))
-    },
+    append: blocks => insertBlocks(blocks, editor.current!.blocks.getBlocksCount()),
   }))
+
+  // Lists copied from Word reach the editor as paragraphs that start with a typed bullet. Pastes
+  // with lists are turned into blocks here, as the Word import does; any other paste is EditorJS's.
+  useEffect(() => {
+    const element = holder.current!
+    const onPaste = (event: ClipboardEvent) => {
+      const html = event.clipboardData?.getData('text/html')
+      const lists = html && editor.current ? pastedListsToHtml(html) : null
+      if (!lists) {
+        return
+      }
+      event.preventDefault()
+      event.stopPropagation()
+      const { blocks } = editor.current!
+      const current = blocks.getCurrentBlockIndex()
+      // Into the empty block being written in, or after the one with text.
+      const index =
+        current < 0 ? blocks.getBlocksCount() : blocks.getBlockByIndex(current)?.isEmpty ? current : current + 1
+      void insertBlocks(htmlToBlocks(lists), index)
+    }
+    element.addEventListener('paste', onPaste, true)
+    return () => element.removeEventListener('paste', onPaste, true)
+  }, [])
 
   useEffect(() => {
     let cancelled = false
