@@ -6,6 +6,12 @@ import { AdminProviders } from '@blog/components/admin/AdminProviders/AdminProvi
 export const metadata: Metadata = {
   title: 'Panel · Emoción Blanca',
   robots: { index: false, follow: false },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+  },
 }
 
 // Per-request: the panel shows live data and depends on the session, never on the ISR cache.

@@ -66,7 +66,9 @@ describe('proxy', () => {
 
   it('should skip next internals, api routes, sitemaps and public files, but match the login callback', () => {
     const [pages, login] = config.matcher
-    expect(pages).toBe('/((?!api|_next|static|locales|images|favicon|sitemap\\.xml|sitemap/).*)')
+    expect(pages).toBe(
+      '/((?!api|_next|static|locales|images|favicon|icon\\.svg|apple-icon\\.png|manifest\\.webmanifest|sitemap\\.xml|sitemap/).*)',
+    )
     expect(login).toBe('/api/auth/callback/credentials/:path*')
 
     const matcher = new RegExp(`^${pages}$`)
@@ -77,5 +79,7 @@ describe('proxy', () => {
     expect(matcher.test('/_next/static/chunk.js')).toBe(false)
     expect(matcher.test('/locales/es/common.json')).toBe(false)
     expect(matcher.test('/sitemap.xml')).toBe(false)
+    expect(matcher.test('/icon.svg')).toBe(false)
+    expect(matcher.test('/manifest.webmanifest')).toBe(false)
   })
 })

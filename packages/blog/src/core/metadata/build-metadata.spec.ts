@@ -10,7 +10,14 @@ describe('buildPageMetadata', () => {
       title: 'White emotion - Archive',
       description: 'All posts',
       keywords: 'football,travel,work,life,balance,music,politics,news',
-      icons: { icon: '/favicon.ico' },
+      icons: {
+        icon: [
+          { url: '/favicon.ico', sizes: '48x48' },
+          { url: '/icon.svg', type: 'image/svg+xml' },
+        ],
+        apple: '/apple-icon.png',
+      },
+      manifest: '/manifest.webmanifest',
       openGraph: {
         siteName: 'White emotion',
         url: 'https://example.com/archive/',

@@ -19,9 +19,20 @@ exports[`Post page > generateMetadata > should build the article metadata 1`] = 
 {
   "description": "Un resumen",
   "icons": {
-    "icon": "/favicon.ico",
+    "apple": "/apple-icon.png",
+    "icon": [
+      {
+        "sizes": "48x48",
+        "url": "/favicon.ico",
+      },
+      {
+        "type": "image/svg+xml",
+        "url": "/icon.svg",
+      },
+    ],
   },
   "keywords": "football,travel,work,life,balance,music,politics,news",
+  "manifest": "/manifest.webmanifest",
   "openGraph": {
     "alternateLocale": [
       "en_GB",

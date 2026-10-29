@@ -50,7 +50,14 @@ export function buildPageMetadata(opts: BuildMetadataOptions): Metadata {
     title,
     description,
     keywords,
-    icons: { icon: '/favicon.ico' },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: '48x48' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      ],
+      apple: '/apple-icon.png',
+    },
+    manifest: '/manifest.webmanifest',
     openGraph,
     other: { 'apple-mobile-web-app-capable': 'yes' },
   }

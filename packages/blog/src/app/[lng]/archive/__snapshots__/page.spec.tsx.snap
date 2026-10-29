@@ -4,9 +4,20 @@ exports[`Archive page > should build the metadata 1`] = `
 {
   "description": "Historial de todas las entradas publicadas.",
   "icons": {
-    "icon": "/favicon.ico",
+    "apple": "/apple-icon.png",
+    "icon": [
+      {
+        "sizes": "48x48",
+        "url": "/favicon.ico",
+      },
+      {
+        "type": "image/svg+xml",
+        "url": "/icon.svg",
+      },
+    ],
   },
   "keywords": "football,travel,work,life,balance,music,politics,news",
+  "manifest": "/manifest.webmanifest",
   "openGraph": {
     "alternateLocale": [
       "en_GB",
