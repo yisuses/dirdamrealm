@@ -2,9 +2,11 @@
 
 exports[`PostPage > should render the post with share links, tags, comments and posts of the same category 1`] = `
 <div>
-  <div>
+  <div
+    class="css-ec04vx"
+  >
     <div
-      class="css-fsiw2z"
+      class="css-1pqxdaa"
     >
       <img
         alt="Image for the "Test Post" post"

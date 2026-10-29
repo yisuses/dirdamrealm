@@ -67,10 +67,20 @@ export function HeaderImage({
     </Text>
   )
 
+  // The post's cover: as wide as the page, in the photo's own shape (between 4:3 and 2.4:1) so it
+  // shows whole; 16:9 when its size is unknown.
   if (!showPostInfo) {
+    const ratio = coverImage?.width && coverImage.height ? coverImage.width / coverImage.height : 16 / 9
+
     return (
-      <Box>
-        <Box height={{ base: '280px', md: '420px', lg: '560px' }} position="relative" overflow="hidden">
+      <Box maxW="1248px" mx="auto" px={{ base: 0, md: 6 }} pt={{ base: 0, md: 6 }}>
+        <Box
+          position="relative"
+          overflow="hidden"
+          borderRadius={{ base: 0, md: '18px' }}
+          aspectRatio={{ base: 4 / 3, md: Math.min(Math.max(ratio, 4 / 3), 2.4) }}
+          bg="border"
+        >
           {image}
         </Box>
         {credit}
@@ -84,7 +94,7 @@ export function HeaderImage({
         position="relative"
         overflow="hidden"
         borderRadius={{ base: '14px', md: '18px' }}
-        aspectRatio={{ base: 4 / 5, sm: 4 / 3, md: 16 / 9, lg: 21 / 9 }}
+        aspectRatio={{ base: 4 / 5, sm: 4 / 3, md: 16 / 9, lg: 2 / 1 }}
         bg="border"
       >
         {image}

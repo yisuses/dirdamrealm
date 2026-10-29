@@ -1,9 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`HeaderImage > should render only the image without post info or credit 1`] = `
-<div>
+<div
+  class="css-ec04vx"
+>
   <div
-    class="css-fsiw2z"
+    class="css-1bjt8sj"
   >
     <img
       alt="Imagen de la entrada "Mi entrada""
@@ -19,7 +21,7 @@ exports[`HeaderImage > should render the cover image with the post info and the 
   class="css-foljwq"
 >
   <div
-    class="css-1yenhwq"
+    class="css-68spo"
   >
     <img
       alt="Imagen de la entrada "Mi entrada""
