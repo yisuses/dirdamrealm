@@ -17,8 +17,8 @@ interface ConfirmDialogProps {
   title: string
   children: ReactNode
   confirmLabel: string
-  // Red for destructive actions, the default; orange for ones that only need a second look.
-  confirmPalette?: 'red' | 'orange'
+  // Red for destructive actions, the default; gold for ones that only need a second look.
+  confirmPalette?: 'red' | 'gold'
   loading?: boolean
   onConfirm: () => void
   onCancel: () => void
@@ -40,7 +40,7 @@ export function ConfirmDialog({
     <DialogRoot open={open} onOpenChange={onCancel} role="alertdialog">
       <DialogContent>
         <DialogHeader>
-          <DialogTitle fontFamily="Roboto" fontSize="xl">
+          <DialogTitle fontFamily="heading" fontWeight={500} fontSize="xl">
             {title}
           </DialogTitle>
         </DialogHeader>

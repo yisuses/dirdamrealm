@@ -136,7 +136,16 @@ export function ContentEditor({ initialContent, onChange, pickImage, ref }: Cont
   }, [])
 
   return (
-    <Box bg="white" borderWidth={1} borderRadius="lg" px={{ base: 4, md: 16 }} py={6} position="relative" fontSize="lg">
+    <Box
+      bg="bg.panel"
+      borderWidth={1}
+      borderRadius="lg"
+      px={{ base: 4, md: 16 }}
+      py={6}
+      position="relative"
+      fontFamily="body"
+      fontSize="19px"
+    >
       {!ready && <Spinner aria-label="Cargando el editor" position="absolute" top={6} left="50%" />}
       <Box ref={holder} data-testid="content-editor" css={editorStyles} />
     </Box>
@@ -146,7 +155,7 @@ export function ContentEditor({ initialContent, onChange, pickImage, ref }: Cont
 // Chakra's reset strips headings, lists and quotes of their look; give the blocks back one close
 // to the site's, so the text reads as it will be published.
 const editorStyles = {
-  '& .ce-header': { fontFamily: 'Roboto', fontWeight: 'bold', color: 'inherit', lineHeight: 1.3, py: 2 },
+  '& .ce-header': { fontFamily: 'heading', fontWeight: 500, color: 'inherit', lineHeight: 1.3, py: 2 },
   '& h2.ce-header': { fontSize: '1.75rem' },
   '& h3.ce-header': { fontSize: '1.4rem' },
   '& .ce-paragraph': { lineHeight: 1.7 },
@@ -154,13 +163,13 @@ const editorStyles = {
     color: 'inherit',
     fontStyle: 'italic',
     borderLeft: '4px solid',
-    borderColor: 'orange.300',
+    borderColor: 'accent',
     ps: 4,
     minH: 'auto',
   },
   '& .cdx-quote__caption': { fontSize: 'md' },
-  '& a': { color: 'orange.700', textDecoration: 'underline' },
-  '& .ce-block--selected .ce-block__content': { bg: 'orange.50' },
+  '& a': { color: 'gold.600', textDecoration: 'underline' },
+  '& .ce-block--selected .ce-block__content': { bg: 'accent.soft' },
 }
 
 function signature(output: { blocks: OutputBlockData[] }) {

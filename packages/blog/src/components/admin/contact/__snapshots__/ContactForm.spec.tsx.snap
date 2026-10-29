@@ -11,12 +11,12 @@ exports[`ContactForm > should show the contact data and one group per network 1`
       class="chakra-stack css-1op6ogi"
     >
       <h1
-        class="chakra-heading css-11yxnza"
+        class="chakra-heading css-f8vzz3"
       >
         Contacto y redes
       </h1>
       <p
-        class="css-2catvg"
+        class="css-1xrpz2b"
       >
         Lo que aparece en el pie de todas las páginas de la web.
       </p>
@@ -29,7 +29,7 @@ exports[`ContactForm > should show the contact data and one group per network 1`
       class="chakra-stack css-1fzt9ki"
     >
       <div
-        class="css-jdzdbb"
+        class="css-1ndjij5"
       >
         <fieldset
           aria-labelledby="fieldset::_r_0_::legend"
@@ -38,7 +38,7 @@ exports[`ContactForm > should show the contact data and one group per network 1`
           data-scope="fieldset"
         >
           <legend
-            class="fieldset__legend css-1o5wqka"
+            class="fieldset__legend css-1aovcvl"
             data-part="legend"
             data-scope="fieldset"
             id="fieldset::_r_0_::legend"
@@ -149,7 +149,7 @@ exports[`ContactForm > should show the contact data and one group per network 1`
         </fieldset>
       </div>
       <div
-        class="css-jdzdbb"
+        class="css-1ndjij5"
       >
         <fieldset
           aria-labelledby="fieldset::_r_4_::legend"
@@ -158,7 +158,7 @@ exports[`ContactForm > should show the contact data and one group per network 1`
           data-scope="fieldset"
         >
           <legend
-            class="fieldset__legend css-1o5wqka"
+            class="fieldset__legend css-1aovcvl"
             data-part="legend"
             data-scope="fieldset"
             id="fieldset::_r_4_::legend"
@@ -584,7 +584,7 @@ exports[`ContactForm > should show the contact data and one group per network 1`
         </fieldset>
       </div>
       <button
-        class="chakra-button css-118gt5l"
+        class="chakra-button css-cyk9eg"
         type="submit"
       >
         Guardar

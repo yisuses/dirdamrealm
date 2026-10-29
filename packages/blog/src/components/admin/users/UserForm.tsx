@@ -61,7 +61,7 @@ export function UserForm({ user, currentUserId }: UserFormProps) {
       <AdminPageHeader title={user ? `Editar a ${user.name}` : 'Nuevo usuario'} />
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Stack gap={6} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
+        <Stack gap={6} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
           <Field.Root invalid={Boolean(errors.name)} required>
             <Field.Label fontSize="lg">Nombre</Field.Label>
             <Input {...register('name')} size="lg" fontSize="lg" autoComplete="off" />
@@ -123,7 +123,7 @@ export function UserForm({ user, currentUserId }: UserFormProps) {
           )}
 
           <Stack direction={{ base: 'column', sm: 'row' }} gap={4}>
-            <Button type="submit" colorPalette="orange" size="lg" loading={isSubmitting} loadingText="Guardando…">
+            <Button type="submit" colorPalette="gold" size="lg" loading={isSubmitting} loadingText="Guardando…">
               Guardar
             </Button>
             <Button asChild variant="outline" size="lg">

@@ -48,13 +48,13 @@ export function RequestResetForm() {
                 {error}
               </Text>
             )}
-            <Button type="submit" size="lg" colorPalette="orange" loading={loading} loadingText="Enviando…">
+            <Button type="submit" size="lg" colorPalette="gold" loading={loading} loadingText="Enviando…">
               Enviar el enlace
             </Button>
           </Stack>
         </form>
       )}
-      <Link asChild alignSelf="center" fontSize="md" color="gray.700">
+      <Link asChild alignSelf="center" fontSize="md" color="fg.muted">
         <NextLink href="/admin/login/">Volver a entrar</NextLink>
       </Link>
     </AuthCard>

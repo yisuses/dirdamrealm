@@ -39,7 +39,7 @@ export function CategoryList({ categories }: { categories: AdminCategory[] }) {
         title="Categorías"
         description="Las que están en el menú principal aparecen arriba en la web."
         action={
-          <Button asChild colorPalette="orange" size="lg">
+          <Button asChild colorPalette="gold" size="lg">
             <NextLink href="/admin/categorias/nueva/">Nueva categoría</NextLink>
           </Button>
         }
@@ -60,7 +60,7 @@ export function CategoryList({ categories }: { categories: AdminCategory[] }) {
       {categories.length === 0 ? (
         <Text>Todavía no hay categorías.</Text>
       ) : (
-        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
+        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="bg.panel">
           <Table.Root size="lg">
             <Table.Header>
               <Table.Row>
@@ -87,11 +87,11 @@ export function CategoryList({ categories }: { categories: AdminCategory[] }) {
                   <Table.Cell>{category.en.name}</Table.Cell>
                   <Table.Cell>
                     {category.main ? (
-                      <Badge colorPalette="orange" size="lg">
+                      <Badge colorPalette="gold" size="lg">
                         Sí
                       </Badge>
                     ) : (
-                      <Text color="gray.700">No</Text>
+                      <Text color="fg.muted">No</Text>
                     )}
                   </Table.Cell>
                   <Table.Cell fontFamily="mono">{category.code}</Table.Cell>

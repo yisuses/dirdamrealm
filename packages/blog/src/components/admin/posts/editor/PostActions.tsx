@@ -85,61 +85,60 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
     setPhoneOpenedAt(Date.now())
   }
 
-  const confirmations: Record<Confirmable, { title: string; body: string; label: string; palette: 'red' | 'orange' }> =
-    {
-      publish: published
-        ? {
-            title: '¿Publicar los cambios?',
-            body: `Los lectores verán la versión en ${language} tal y como está ahora, en unos segundos.`,
-            label: 'Sí, publicar los cambios',
-            palette: 'orange',
-          }
-        : {
-            title: `¿Publicar la versión en ${language}?`,
-            body: 'Se verá en la web en unos segundos, con la fecha de hoy.',
-            label: 'Sí, publicar',
-            palette: 'orange',
-          },
-      unpublish: {
-        title: `¿Despublicar la versión en ${language}?`,
-        body: 'Dejará de verse en la web, pero no se borra: podrás volver a publicarla cuando quieras.',
-        label: 'Sí, despublicar',
-        palette: 'red',
-      },
-      discard: {
-        title: '¿Descartar los cambios?',
-        body: 'Volverá a quedar como se ve ahora en la web. Los cambios descartados no se pueden recuperar.',
-        label: 'Sí, descartar',
-        palette: 'red',
-      },
-    }
+  const confirmations: Record<Confirmable, { title: string; body: string; label: string; palette: 'red' | 'gold' }> = {
+    publish: published
+      ? {
+          title: '¿Publicar los cambios?',
+          body: `Los lectores verán la versión en ${language} tal y como está ahora, en unos segundos.`,
+          label: 'Sí, publicar los cambios',
+          palette: 'gold',
+        }
+      : {
+          title: `¿Publicar la versión en ${language}?`,
+          body: 'Se verá en la web en unos segundos, con la fecha de hoy.',
+          label: 'Sí, publicar',
+          palette: 'gold',
+        },
+    unpublish: {
+      title: `¿Despublicar la versión en ${language}?`,
+      body: 'Dejará de verse en la web, pero no se borra: podrás volver a publicarla cuando quieras.',
+      label: 'Sí, despublicar',
+      palette: 'red',
+    },
+    discard: {
+      title: '¿Descartar los cambios?',
+      body: 'Volverá a quedar como se ve ahora en la web. Los cambios descartados no se pueden recuperar.',
+      label: 'Sí, descartar',
+      palette: 'red',
+    },
+  }
   const current = confirming && confirmations[confirming]
 
   return (
     <Stack gap={3}>
       <Flex gap={3} wrap="wrap">
         {(!published || hasUnpublishedChanges) && (
-          <Button colorPalette="orange" size="lg" onClick={() => setConfirming('publish')} disabled={busy}>
+          <Button colorPalette="gold" size="lg" onClick={() => setConfirming('publish')} disabled={busy}>
             {published ? 'Publicar los cambios' : 'Publicar'}
           </Button>
         )}
         {!published && (
-          <Button variant="outline" size="lg" bg="white" onClick={() => setScheduling(true)} disabled={busy}>
+          <Button variant="outline" size="lg" bg="bg.panel" onClick={() => setScheduling(true)} disabled={busy}>
             {scheduledFor ? 'Cambiar el día' : 'Programar'}
           </Button>
         )}
         {(!published || hasUnpublishedChanges) && (
-          <Button variant="outline" size="lg" bg="white" onClick={() => void preview()}>
+          <Button variant="outline" size="lg" bg="bg.panel" onClick={() => void preview()}>
             Vista previa
           </Button>
         )}
         {(!published || hasUnpublishedChanges) && (
-          <Button variant="outline" size="lg" bg="white" onClick={() => void phonePreview()}>
+          <Button variant="outline" size="lg" bg="bg.panel" onClick={() => void phonePreview()}>
             Vista previa en el móvil
           </Button>
         )}
         {published && (
-          <Button asChild variant="outline" size="lg" bg="white">
+          <Button asChild variant="outline" size="lg" bg="bg.panel">
             <a href={publicPostPath(locale, number)} target="_blank" rel="noreferrer">
               Ver en la web
             </a>
@@ -217,22 +216,16 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
         >
           <DialogTitle srOnly>Vista previa en el móvil</DialogTitle>
           {/* First, so it takes the focus: inside the page, Escape would never reach the dialog. */}
-          <Button
-            size="lg"
-            bg="white"
-            color="gray.900"
-            _hover={{ bg: 'gray.100' }}
-            onClick={() => setPhoneOpenedAt(null)}
-          >
+          <Button size="lg" bg="bg.panel" color="fg" _hover={{ bg: 'bg.muted' }} onClick={() => setPhoneOpenedAt(null)}>
             Cerrar la vista previa
           </Button>
           {/* The page at a phone's width, so the site lays itself out as on a phone. */}
           <Box
             border="12px solid"
-            borderColor="gray.900"
+            borderColor="fg"
             borderRadius="40px"
             overflow="hidden"
-            bg="white"
+            bg="bg.panel"
             w="calc(390px + 24px)"
             maxW="calc(100vw - 32px)"
             h="calc(844px + 24px)"
@@ -253,7 +246,7 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
       <DialogRoot open={scheduling} onOpenChange={({ open }) => !open && setScheduling(false)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle fontFamily="Roboto" fontSize="xl">
+            <DialogTitle fontFamily="heading" fontWeight={500} fontSize="xl">
               Programar la publicación
             </DialogTitle>
           </DialogHeader>
@@ -280,7 +273,7 @@ export function PostActions({ postId, translation, hasUnpublishedChanges, flush 
               Cancelar
             </Button>
             <Button
-              colorPalette="orange"
+              colorPalette="gold"
               size="lg"
               loading={busy}
               disabled={!day}

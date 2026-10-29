@@ -16,7 +16,7 @@ export function ColumnHeader({ label, hint }: ColumnHeaderProps) {
         {label}
         <Tooltip.Root openDelay={150} positioning={{ placement: 'top' }}>
           <Tooltip.Trigger asChild>
-            <IconButton aria-label={`¿Qué es «${label}»?`} variant="ghost" size="xs" rounded="full" color="gray.700">
+            <IconButton aria-label={`¿Qué es «${label}»?`} variant="ghost" size="xs" rounded="full" color="fg.muted">
               <LuInfo />
             </IconButton>
           </Tooltip.Trigger>

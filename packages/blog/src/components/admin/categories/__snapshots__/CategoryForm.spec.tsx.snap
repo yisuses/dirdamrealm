@@ -11,7 +11,7 @@ exports[`CategoryForm > should create a category, uppercasing the code, and go b
       class="chakra-stack css-1op6ogi"
     >
       <h1
-        class="chakra-heading css-11yxnza"
+        class="chakra-heading css-f8vzz3"
       >
         Nueva categoría
       </h1>
@@ -21,7 +21,7 @@ exports[`CategoryForm > should create a category, uppercasing the code, and go b
     novalidate=""
   >
     <div
-      class="chakra-stack css-1j8g8j3"
+      class="chakra-stack css-g6nn9b"
     >
       <div
         class="chakra-field__root css-13f87cb"
@@ -113,7 +113,7 @@ exports[`CategoryForm > should create a category, uppercasing the code, and go b
           data-scope="fieldset"
         >
           <legend
-            class="fieldset__legend css-1o5wqka"
+            class="fieldset__legend css-1aovcvl"
             data-part="legend"
             data-scope="fieldset"
             id="fieldset::_r_2_::legend"
@@ -184,7 +184,7 @@ exports[`CategoryForm > should create a category, uppercasing the code, and go b
           data-scope="fieldset"
         >
           <legend
-            class="fieldset__legend css-1o5wqka"
+            class="fieldset__legend css-1aovcvl"
             data-part="legend"
             data-scope="fieldset"
             id="fieldset::_r_5_::legend"
@@ -253,7 +253,7 @@ exports[`CategoryForm > should create a category, uppercasing the code, and go b
         class="chakra-stack css-13ub2d7"
       >
         <button
-          class="chakra-button css-5yp0ac"
+          class="chakra-button css-10lvhwc"
           type="submit"
         >
           Guardar

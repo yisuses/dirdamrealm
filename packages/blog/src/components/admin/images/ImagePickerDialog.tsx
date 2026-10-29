@@ -30,7 +30,7 @@ export function ImagePickerDialog({ open, title = 'Elegir una imagen', onSelect,
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle fontFamily="Roboto" fontSize="xl">
+          <DialogTitle fontFamily="heading" fontWeight={500} fontSize="xl">
             {title}
           </DialogTitle>
         </DialogHeader>

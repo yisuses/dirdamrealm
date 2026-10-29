@@ -26,7 +26,7 @@ function UsageItem({ usage }: { usage: ImageUsage }) {
   return (
     <List.Item>
       {usage.status === 'published' ? (
-        <Link asChild color="orange.700" textDecoration="underline">
+        <Link asChild color="gold.600" textDecoration="underline">
           <NextLink href={path} target="_blank">
             {usage.title}
           </NextLink>
@@ -102,7 +102,7 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
 
       <Grid templateColumns={{ base: '1fr', lg: 'minmax(0, 3fr) minmax(0, 2fr)' }} gap={8} alignItems="start">
         <Stack gap={3}>
-          <Box bg="gray.100" borderRadius="lg" overflow="hidden" borderWidth={1}>
+          <Box bg="bg.muted" borderRadius="lg" overflow="hidden" borderWidth={1}>
             <Image
               src={previewUrl(image.publicId)}
               alt={image.alt}
@@ -119,7 +119,7 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
 
         <Stack gap={6}>
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <Stack gap={6} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
+            <Stack gap={6} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
               <Field.Root invalid={Boolean(errors.name)} required>
                 <Field.Label fontSize="lg">Nombre</Field.Label>
                 <Input {...register('name')} size="lg" fontSize="lg" />
@@ -148,7 +148,7 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
               )}
               <Button
                 type="submit"
-                colorPalette="orange"
+                colorPalette="gold"
                 size="lg"
                 alignSelf="flex-start"
                 loading={isSubmitting}
@@ -159,7 +159,7 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
             </Stack>
           </form>
 
-          <Stack as="dl" gap={2} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
+          <Stack as="dl" gap={2} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
             {details.map(([label, value]) => (
               <Grid key={label} templateColumns="8rem 1fr" gap={2}>
                 <Text as="dt" fontWeight="bold">
@@ -170,8 +170,8 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
             ))}
           </Stack>
 
-          <Stack gap={3} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
-            <Heading as="h2" size="lg" fontFamily="Roboto">
+          <Stack gap={3} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
+            <Heading as="h2" size="lg" fontFamily="heading" fontWeight={500}>
               Dónde se usa
             </Heading>
             {usage.length === 0 ? (

@@ -64,7 +64,7 @@ export function CategoryForm({ category }: { category?: AdminCategory }) {
       <AdminPageHeader title={category ? `Editar «${category.es.name}»` : 'Nueva categoría'} />
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Stack gap={8} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
+        <Stack gap={8} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
           <Field.Root invalid={Boolean(errors.code)} required>
             <Field.Label fontSize="lg">Código</Field.Label>
             <Input
@@ -101,7 +101,7 @@ export function CategoryForm({ category }: { category?: AdminCategory }) {
           <SimpleGrid columns={{ base: 1, lg: 2 }} gap={8}>
             {languages.map(({ locale, legend }) => (
               <Fieldset.Root key={locale}>
-                <Fieldset.Legend fontSize="xl" fontFamily="Roboto" fontWeight="bold" mb={4}>
+                <Fieldset.Legend fontSize="xl" fontFamily="heading" fontWeight={500} mb={4}>
                   {legend}
                 </Fieldset.Legend>
                 <Stack gap={5}>
@@ -127,7 +127,7 @@ export function CategoryForm({ category }: { category?: AdminCategory }) {
           )}
 
           <Stack direction={{ base: 'column', sm: 'row' }} gap={4}>
-            <Button type="submit" colorPalette="orange" size="lg" loading={isSubmitting} loadingText="Guardando…">
+            <Button type="submit" colorPalette="gold" size="lg" loading={isSubmitting} loadingText="Guardando…">
               Guardar
             </Button>
             <Button asChild variant="outline" size="lg">

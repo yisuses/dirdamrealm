@@ -11,18 +11,18 @@ exports[`CategoryList > should list the categories with their translation, code,
       class="chakra-stack css-1op6ogi"
     >
       <h1
-        class="chakra-heading css-11yxnza"
+        class="chakra-heading css-f8vzz3"
       >
         Categorías
       </h1>
       <p
-        class="css-2catvg"
+        class="css-1xrpz2b"
       >
         Las que están en el menú principal aparecen arriba en la web.
       </p>
     </div>
     <a
-      class="chakra-button css-5yp0ac"
+      class="chakra-button css-10lvhwc"
       href="/admin/categorias/nueva/"
       type="button"
     >
@@ -30,7 +30,7 @@ exports[`CategoryList > should list the categories with their translation, code,
     </a>
   </div>
   <div
-    class="css-1vjtk30"
+    class="css-7wati4"
   >
     <table
       class="chakra-table__root css-q56ggu"
@@ -50,7 +50,7 @@ exports[`CategoryList > should list the categories with their translation, code,
               Nombre
               <button
                 aria-label="¿Qué es «Nombre»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_0_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -94,7 +94,7 @@ exports[`CategoryList > should list the categories with their translation, code,
               En inglés
               <button
                 aria-label="¿Qué es «En inglés»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_1_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -138,7 +138,7 @@ exports[`CategoryList > should list the categories with their translation, code,
               Menú principal
               <button
                 aria-label="¿Qué es «Menú principal»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_2_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -182,7 +182,7 @@ exports[`CategoryList > should list the categories with their translation, code,
               Código
               <button
                 aria-label="¿Qué es «Código»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_3_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -226,7 +226,7 @@ exports[`CategoryList > should list the categories with their translation, code,
               Entradas
               <button
                 aria-label="¿Qué es «Entradas»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_4_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -292,7 +292,7 @@ exports[`CategoryList > should list the categories with their translation, code,
             class="chakra-table__cell css-1n30cde"
           >
             <span
-              class="chakra-badge css-blrrvk"
+              class="chakra-badge css-lo2nmj"
             >
               Sí
             </span>
@@ -347,7 +347,7 @@ exports[`CategoryList > should list the categories with their translation, code,
             class="chakra-table__cell css-1n30cde"
           >
             <p
-              class="css-2catvg"
+              class="css-1xrpz2b"
             >
               No
             </p>

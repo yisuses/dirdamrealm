@@ -61,9 +61,9 @@ export function ContactForm({ contact }: { contact: ContactInput }) {
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack gap={8}>
-          <Box bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
+          <Box bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
             <Fieldset.Root>
-              <Fieldset.Legend fontSize="xl" fontFamily="Roboto" fontWeight="bold" mb={4}>
+              <Fieldset.Legend fontSize="xl" fontFamily="heading" fontWeight={500} mb={4}>
                 Datos de contacto
               </Fieldset.Legend>
               <Stack gap={5}>
@@ -92,9 +92,9 @@ export function ContactForm({ contact }: { contact: ContactInput }) {
             </Fieldset.Root>
           </Box>
 
-          <Box bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
+          <Box bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 8 }}>
             <Fieldset.Root invalid={Boolean(errors.socialLinks?.root)}>
-              <Fieldset.Legend fontSize="xl" fontFamily="Roboto" fontWeight="bold" mb={4}>
+              <Fieldset.Legend fontSize="xl" fontFamily="heading" fontWeight={500} mb={4}>
                 Redes sociales
               </Fieldset.Legend>
               <Stack gap={6}>
@@ -220,7 +220,7 @@ export function ContactForm({ contact }: { contact: ContactInput }) {
           <Button
             type="submit"
             alignSelf="flex-start"
-            colorPalette="orange"
+            colorPalette="gold"
             size="lg"
             loading={isSubmitting}
             loadingText="Guardando…"

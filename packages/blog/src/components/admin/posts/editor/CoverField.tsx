@@ -151,7 +151,7 @@ export function CoverField({ cover, onChoose, onChange }: CoverFieldProps) {
             <Flex gap={4} direction={{ base: 'column', md: 'row' }}>
               {FRAMES.map(({ label, aspectRatio }) => (
                 <Stack key={label} gap={1} flex={{ md: aspectRatio }} minW={0}>
-                  <Box position="relative" aspectRatio={aspectRatio} overflow="hidden" borderRadius="md" bg="gray.100">
+                  <Box position="relative" aspectRatio={aspectRatio} overflow="hidden" borderRadius="md" bg="bg.muted">
                     <FramedImage
                       src={previewUrl(cover.publicId)}
                       alt={`Vista previa de la portada ${label.toLowerCase()}`}

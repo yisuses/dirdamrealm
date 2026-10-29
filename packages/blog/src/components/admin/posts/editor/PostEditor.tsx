@@ -190,7 +190,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
               fontSize="lg"
               fontWeight={current ? 'bold' : 'normal'}
               borderBottomWidth={current ? 4 : 0}
-              borderColor="orange.500"
+              borderColor="accent"
               mb="-2px"
               textDecoration="none"
               aria-current={current ? 'page' : undefined}
@@ -210,7 +210,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
           Only from tablets up: on a phone it would cover most of the screen. */}
       <Stack
         gap={4}
-        bg="white"
+        bg="bg.panel"
         borderWidth={1}
         borderRadius="lg"
         p={{ base: 4, md: 6 }}
@@ -221,7 +221,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
       >
         <Flex justify="space-between" align="baseline" gap={3} wrap="wrap">
           <Stack gap={1}>
-            <Heading as="h1" size="2xl" fontFamily="Roboto">
+            <Heading as="h1" size="2xl" fontFamily="heading" fontWeight={500}>
               {title || 'Entrada sin título'}
             </Heading>
             {readingTime > 0 && <Text color="fg.muted">{`${readingTime} min de lectura`}</Text>}
@@ -244,12 +244,12 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
         )}
       </Stack>
 
-      <Stack gap={6} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
+      <Stack gap={6} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
         <Field.Root invalid={Boolean(errors.title)}>
           <Field.Label fontSize="lg">Título</Field.Label>
           <Input value={title} onChange={event => setTitle(event.target.value)} size="lg" fontSize="xl" />
           {urlChanges ? (
-            <Field.HelperText fontSize="md" color="orange.800">
+            <Field.HelperText fontSize="md" color="gold.700">
               Al publicar, la dirección de la entrada cambiará a …/post/{translation.number}/{newSlug}/. La antigua
               seguirá funcionando.
             </Field.HelperText>
@@ -268,7 +268,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
         </Field.Root>
       </Stack>
 
-      <Stack gap={6} bg="white" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
+      <Stack gap={6} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
         <CoverField
           cover={fields.cover}
           onChoose={() => void chooseCover()}
@@ -325,7 +325,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
       </Stack>
 
       <Stack gap={3}>
-        <Heading as="h2" size="lg" fontFamily="Roboto">
+        <Heading as="h2" size="lg" fontFamily="heading" fontWeight={500}>
           Texto
         </Heading>
         <WordImportButton onImport={blocks => editor.current!.append(blocks)} />

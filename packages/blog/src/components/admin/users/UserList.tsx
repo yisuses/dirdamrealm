@@ -14,12 +14,12 @@ export function UserList({ users }: { users: AdminUser[] }) {
         title="Usuarios"
         description="Quién puede entrar en este panel. Todos pueden hacer de todo."
         action={
-          <Button asChild colorPalette="orange" size="lg">
+          <Button asChild colorPalette="gold" size="lg">
             <NextLink href="/admin/usuarios/nuevo/">Nuevo usuario</NextLink>
           </Button>
         }
       />
-      <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
+      <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="bg.panel">
         <Table.Root size="lg">
           <Table.Header>
             <Table.Row>
@@ -51,7 +51,7 @@ export function UserList({ users }: { users: AdminUser[] }) {
                     </Badge>
                   )}
                 </Table.Cell>
-                <Table.Cell>{user.writerName ?? <Text color="gray.700">—</Text>}</Table.Cell>
+                <Table.Cell>{user.writerName ?? <Text color="fg.muted">—</Text>}</Table.Cell>
                 <Table.Cell textAlign="right">
                   <Link asChild fontWeight="bold">
                     <NextLink href={`/admin/usuarios/${user.id}/`} aria-label={`Editar a ${user.name}`}>

@@ -21,14 +21,14 @@ export function ImageGrid({ images, onSelect }: ImageGridProps) {
         <LinkBox
           as="li"
           key={image.publicId}
-          bg="white"
+          bg="bg.panel"
           borderWidth={1}
           borderRadius="lg"
           overflow="hidden"
-          _hover={{ borderColor: 'orange.500', shadow: 'md' }}
-          _focusWithin={{ outline: '3px solid', outlineColor: 'orange.500', outlineOffset: '2px' }}
+          _hover={{ borderColor: 'accent', shadow: 'md' }}
+          _focusWithin={{ outline: '3px solid', outlineColor: 'accent', outlineOffset: '2px' }}
         >
-          <Box bg="gray.100" aspectRatio={4 / 3}>
+          <Box bg="bg.muted" aspectRatio={4 / 3}>
             <Image
               src={thumbnailUrl(image.publicId)}
               alt={image.alt}
@@ -52,7 +52,7 @@ export function ImageGrid({ images, onSelect }: ImageGridProps) {
               {image.width} × {image.height}
             </Text>
             {!image.alt && (
-              <Badge colorPalette="orange" alignSelf="flex-start">
+              <Badge colorPalette="gold" alignSelf="flex-start">
                 Sin descripción
               </Badge>
             )}

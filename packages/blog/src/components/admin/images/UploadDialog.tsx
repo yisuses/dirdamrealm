@@ -104,7 +104,7 @@ export function UploadDialog({ files, onUploaded, onClose }: UploadDialogProps) 
     <DialogRoot open onOpenChange={() => !uploading && onClose()} size="lg" scrollBehavior="inside">
       <DialogContent>
         <DialogHeader>
-          <DialogTitle fontFamily="Roboto" fontSize="xl">
+          <DialogTitle fontFamily="heading" fontWeight={500} fontSize="xl">
             Subir imágenes
           </DialogTitle>
         </DialogHeader>
@@ -129,7 +129,7 @@ export function UploadDialog({ files, onUploaded, onClose }: UploadDialogProps) 
                   flexShrink={0}
                   w={{ base: 'full', sm: '140px' }}
                   aspectRatio={4 / 3}
-                  bg="gray.100"
+                  bg="bg.muted"
                   borderRadius="md"
                   overflow="hidden"
                 >
@@ -164,7 +164,7 @@ export function UploadDialog({ files, onUploaded, onClose }: UploadDialogProps) 
                     </>
                   )}
                   {item.status === 'uploading' && (
-                    <Progress.Root value={item.progress} colorPalette="orange" aria-label={`Subiendo ${item.name}`}>
+                    <Progress.Root value={item.progress} colorPalette="gold" aria-label={`Subiendo ${item.name}`}>
                       <Progress.Track>
                         <Progress.Range />
                       </Progress.Track>
@@ -195,7 +195,7 @@ export function UploadDialog({ files, onUploaded, onClose }: UploadDialogProps) 
         </DialogBody>
         <DialogFooter>
           {finished || items.length === 0 ? (
-            <Button colorPalette="orange" size="lg" onClick={onClose}>
+            <Button colorPalette="gold" size="lg" onClick={onClose}>
               Cerrar
             </Button>
           ) : (
@@ -204,7 +204,7 @@ export function UploadDialog({ files, onUploaded, onClose }: UploadDialogProps) 
                 Cancelar
               </Button>
               <Button
-                colorPalette="orange"
+                colorPalette="gold"
                 size="lg"
                 loading={uploading}
                 loadingText="Subiendo…"

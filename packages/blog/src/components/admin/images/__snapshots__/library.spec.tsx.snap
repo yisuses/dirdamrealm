@@ -11,18 +11,18 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
       class="chakra-stack css-1op6ogi"
     >
       <h1
-        class="chakra-heading css-11yxnza"
+        class="chakra-heading css-f8vzz3"
       >
         Imágenes
       </h1>
       <p
-        class="css-2catvg"
+        class="css-1xrpz2b"
       >
         Todas las imágenes de la web, guardadas en Cloudinary. Pulsa una para cambiarle el nombre o la descripción, o para borrarla.
       </p>
     </div>
     <button
-      class="chakra-button css-5yp0ac"
+      class="chakra-button css-10lvhwc"
       type="button"
     >
       Subir imágenes
@@ -36,7 +36,7 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
     type="file"
   />
   <div
-    class="css-1bu5n6t"
+    class="css-1u0d603"
     data-testid="drop-zone"
   >
     <p
@@ -57,13 +57,13 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
   >
     <input
       aria-label="Buscar imágenes por nombre"
-      class="chakra-input css-1dnzmqt"
+      class="chakra-input css-grwi2"
       placeholder="Buscar por nombre"
       type="search"
       value=""
     />
     <button
-      class="chakra-button css-16nblk4"
+      class="chakra-button css-1fookt1"
       type="submit"
     >
       Buscar
@@ -82,10 +82,10 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
       class="css-1fdm34e"
     >
       <li
-        class="chakra-linkbox css-ntrl35"
+        class="chakra-linkbox css-1o08k10"
       >
         <div
-          class="css-w2iig4"
+          class="css-fsq86o"
         >
           <img
             alt="Descripción"
@@ -113,10 +113,10 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
         </div>
       </li>
       <li
-        class="chakra-linkbox css-ntrl35"
+        class="chakra-linkbox css-1o08k10"
       >
         <div
-          class="css-w2iig4"
+          class="css-fsq86o"
         >
           <img
             alt=""
@@ -142,7 +142,7 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
             800
           </p>
           <span
-            class="chakra-badge css-1trjqil"
+            class="chakra-badge css-1ynhicm"
           >
             Sin descripción
           </span>
@@ -150,7 +150,7 @@ exports[`ImageLibrary > should list images, flag missing descriptions and load m
       </li>
     </ul>
     <button
-      class="chakra-button css-e89re2"
+      class="chakra-button css-kxsuvk"
       type="button"
     >
       Cargar más imágenes

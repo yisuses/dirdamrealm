@@ -34,7 +34,7 @@ function pageHref(filters: PostListFilters, page: number) {
 
 const filterSelect = (name: string, label: string, value: string | undefined, options: [string, string][]) => (
   <NativeSelect.Root size="lg" maxW={{ md: '220px' }}>
-    <NativeSelect.Field name={name} defaultValue={value ?? ''} aria-label={label} bg="white">
+    <NativeSelect.Field name={name} defaultValue={value ?? ''} aria-label={label} bg="bg.panel">
       {options.map(([optionValue, optionLabel]) => (
         <option key={optionValue} value={optionValue}>
           {optionLabel}
@@ -71,7 +71,7 @@ export function PostList({ posts, total, filters, categories }: PostListProps) {
         title="Entradas"
         description="Las entradas de la web, en español y en inglés. Las últimas que has tocado salen primero."
         action={
-          <Button colorPalette="orange" size="lg" loading={creating} loadingText="Creando…" onClick={createPost}>
+          <Button colorPalette="gold" size="lg" loading={creating} loadingText="Creando…" onClick={createPost}>
             Nueva entrada
           </Button>
         }
@@ -91,7 +91,7 @@ export function PostList({ posts, total, filters, categories }: PostListProps) {
             placeholder="Buscar por título o número"
             aria-label="Buscar entradas por título o número"
             size="lg"
-            bg="white"
+            bg="bg.panel"
             maxW={{ md: 'sm' }}
           />
           {filterSelect('estado', 'Estado', filters.status, [
@@ -109,7 +109,7 @@ export function PostList({ posts, total, filters, categories }: PostListProps) {
             ['', 'Todas las categorías'],
             ...categories.map(category => [category.id, category.name] as [string, string]),
           ])}
-          <Button type="submit" size="lg" variant="outline" bg="white">
+          <Button type="submit" size="lg" variant="outline" bg="bg.panel">
             Buscar
           </Button>
           {filtered && (
@@ -127,7 +127,7 @@ export function PostList({ posts, total, filters, categories }: PostListProps) {
       {posts.length === 0 ? (
         <Text fontSize="lg">{filtered ? 'Ninguna entrada cumple esos filtros.' : 'Todavía no hay entradas.'}</Text>
       ) : (
-        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
+        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="bg.panel">
           <Table.Root size="lg">
             <Table.Header>
               <Table.Row>
@@ -176,7 +176,7 @@ export function PostList({ posts, total, filters, categories }: PostListProps) {
       {pages > 1 && (
         <Flex as="nav" aria-label="Páginas" gap={3} align="center" justify="center">
           {page > 1 && (
-            <Button asChild variant="outline" bg="white">
+            <Button asChild variant="outline" bg="bg.panel">
               <NextLink href={pageHref(filters, page - 1)}>← Anteriores</NextLink>
             </Button>
           )}
@@ -184,7 +184,7 @@ export function PostList({ posts, total, filters, categories }: PostListProps) {
             Página {page} de {pages}
           </Text>
           {page < pages && (
-            <Button asChild variant="outline" bg="white">
+            <Button asChild variant="outline" bg="bg.panel">
               <NextLink href={pageHref(filters, page + 1)}>Siguientes →</NextLink>
             </Button>
           )}
