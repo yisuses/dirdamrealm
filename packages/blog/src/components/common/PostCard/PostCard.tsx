@@ -1,9 +1,8 @@
 'use client'
 
-import { Box, Flex, Link, Text } from '@chakra-ui/react'
+import { Flex, Link, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
-import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocalizeHref } from '@blog/hooks'
 import { buildBlurDataUrl, buildPostPath, formatPostDate } from '@blog/utils'
 
@@ -38,70 +37,66 @@ export function PostCard({
   const localizeHref = useLocalizeHref()
   const postLink = localizeHref(buildPostPath(String(id), title))
   const parsedDate = formatPostDate(date)
+  const tags = categories
+    .slice()
+    .sort((a, b) => a.label.length - b.label.length)
+    .concat(!isSameLocale ? { key: 'lang', label: locale } : [])
 
   return (
-    <Flex direction="column" w={{ base: '100%', md: '280px' }} h="450px" gap="15px">
-      <Box
-        w="100%"
-        h="280px"
+    <Flex
+      direction="column"
+      w="100%"
+      role="group"
+      css={{
+        '& .post-card-image': { transition: 'transform .5s ease' },
+        '&:hover .post-card-image': { transform: 'scale(1.04)' },
+      }}
+    >
+      <Link
+        asChild
+        display="block"
         position="relative"
         overflow="hidden"
-        borderRadius="4px"
-        _hover={{
-          '& img': {
-            transform: 'scale(1.1,1.1) rotate(1deg)',
-            transition: 'all 1s',
-          },
-        }}
+        borderRadius="12px"
+        aspectRatio={4 / 3}
+        bg="border"
       >
-        <Flex
-          pl="20px"
-          position="absolute"
-          top="20px"
-          right="24px"
-          flexWrap="wrap"
-          gap="10px"
-          justifyContent="flex-end"
-          zIndex={1}
-        >
-          {categories
-            .sort((a, b) => a.label.length - b.label.length)
-            .concat(!isSameLocale ? { key: 'lang', label: locale } : [])
-            .map(({ key, label }) => (
-              <Tag key={key} label={label} />
-            ))}
-        </Flex>
-        <Link as={NextLink} href={postLink} position="relative" display="block" width="100%" height="100%">
+        <NextLink href={postLink} tabIndex={-1}>
           <FramedImage
             src={imageUrl}
             alt={`${title} image`}
             focus={imageFocus}
             fit={imageFit}
-            style={{ transition: 'all .5s' }}
+            className="post-card-image"
             placeholder="blur"
             blurDataURL={buildBlurDataUrl(280, 280)}
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+            sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 400px"
           />
-        </Link>
-      </Box>
-      <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')}>
-        {parsedDate}
-      </Text>
-      <Link
-        as={NextLink}
-        href={postLink}
-        fontSize="lg"
-        color={useColorModeValue('gray.950', 'white')}
-        fontWeight={700}
-        lineClamp={2}
-        title={title}
-      >
-        {title}
+        </NextLink>
       </Link>
-      <Text fontSize="xs" color={useColorModeValue('gray.750', 'gray.50')} lineClamp={3} title={description}>
+      <Flex gap="10px" flexWrap="wrap" mt={4} mb={1.5}>
+        {tags.map(({ key, label }) => (
+          <Tag key={key} label={label} />
+        ))}
+      </Flex>
+      <Link
+        asChild
+        fontSize={{ base: '23px', md: '25px' }}
+        lineHeight="1.2"
+        fontWeight={500}
+        color="fg"
+        lineClamp={3}
+        title={title}
+        _hover={{ color: 'accent', textDecoration: 'none' }}
+        _groupHover={{ color: 'accent' }}
+      >
+        <NextLink href={postLink}>{title}</NextLink>
+      </Link>
+      <Text mt={2} fontSize="17px" lineHeight="1.5" color="fg.muted" lineClamp={3} title={description}>
         {description}
+      </Text>
+      <Text mt={2.5} fontFamily="sans" fontSize="14px" color="fg.muted">
+        {parsedDate}
       </Text>
     </Flex>
   )

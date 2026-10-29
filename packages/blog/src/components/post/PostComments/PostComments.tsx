@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next'
 
 import { addCommentValidate } from '@blog/api/comment'
 import { getComments } from '@blog/api/public'
-import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocale } from '@blog/hooks'
 
 interface PostCommentsProps {
@@ -59,15 +58,6 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     register('captcha', { required: t('postPage.newComment.required') })
   }, [register])
 
-  // Hoisted color-mode values — in Chakra v3 useColorModeValue is a hook (next-themes),
-  // so it must not be called inside loops/conditionals (was breaking on theme toggle).
-  const commentBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.50')
-  const authorColor = useColorModeValue('blue.600', 'blue.300')
-  const dateColor = useColorModeValue('blackAlpha.500', 'whiteAlpha.500')
-  const commentTextColor = useColorModeValue('black', 'white')
-  const formBorderColor = useColorModeValue('blue.400', 'blue.200')
-  const inputBg = useColorModeValue('inherit', 'gray.900')
-
   const submitNewComment = (values: SubmitCommentValues) => {
     const captcha = captchaRef?.current?.getValue()
     if (captcha) {
@@ -80,35 +70,68 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
     }
   }
 
+  const shownComments = data || comments
+  const fieldStyles = {
+    fontFamily: 'sans',
+    fontSize: '15px',
+    bg: 'bg',
+    borderColor: 'border',
+    borderRadius: '10px',
+    _focusVisible: { borderColor: 'accent', outline: '2px solid', outlineColor: 'accent' },
+  } as const
+
   return (
-    <Flex direction="column">
-      <Heading fontFamily="Lora" mb={6}>
+    <Flex as="section" direction="column" mt={14} pt={8} borderTop="1px solid" borderColor="border">
+      <Heading as="h2" fontSize={{ base: '26px', md: '28px' }} fontWeight={500} mb={2}>
         {t('postPage.comments')}
+        {shownComments.length > 0 && ` (${shownComments.length})`}
       </Heading>
-      {(data || comments).length > 0 ? (
-        (data || comments).map(({ id, author, createdAt, text }) => (
-          <Box key={id} bg={commentBg} borderRadius="md" my={2} p={5} boxShadow="sm" id={`comment-${id}`}>
-            <Text fontSize="lg" fontWeight="bold" color={authorColor}>
-              {author}
-            </Text>
-            <Text fontWeight="bold" color={dateColor}>
-              {intlFormatDistance(new Date(createdAt), new Date(), { locale })}
-            </Text>
-            <Text fontWeight="normal" mt={5} mb={2} color={commentTextColor}>
-              {text}
-            </Text>
-          </Box>
+      {shownComments.length > 0 ? (
+        shownComments.map(({ id, author, createdAt, text }) => (
+          <Flex key={id} gap={3.5} py={5} borderBottom="1px solid" borderColor="border" id={`comment-${id}`}>
+            <Flex
+              aria-hidden
+              w={10}
+              h={10}
+              flex="none"
+              borderRadius="full"
+              bg="accent.soft"
+              color="accent"
+              alignItems="center"
+              justifyContent="center"
+              fontFamily="sans"
+              fontWeight={600}
+              textTransform="uppercase"
+            >
+              {author.trim()[0]}
+            </Flex>
+            <Box>
+              <Text fontFamily="sans" fontSize="15px">
+                <Text as="span" fontWeight={600}>
+                  {author}
+                </Text>
+                <Text as="span" color="fg.muted" ms={2}>
+                  {intlFormatDistance(new Date(createdAt), new Date(), { locale })}
+                </Text>
+              </Text>
+              <Text mt={1} fontSize="18px" whiteSpace="pre-line">
+                {text}
+              </Text>
+            </Box>
+          </Flex>
         ))
       ) : (
-        <Text>{t('postPage.noComments')}</Text>
+        <Text color="fg.muted">{t('postPage.noComments')}</Text>
       )}
-      <Box padding="16px" border="1px solid" borderColor={formBorderColor} borderRadius="md" my="8px">
+      <Box mt={7} p={6} bg="bg.panel" border="1px solid" borderColor="border" borderRadius="14px">
         <form onSubmit={handleSubmit(submitNewComment)}>
           <Field.Root invalid={!!errors.author}>
-            <Field.Label>{t('postPage.newComment.name')}</Field.Label>
+            <Field.Label fontFamily="sans" fontWeight={500}>
+              {t('postPage.newComment.name')}
+            </Field.Label>
             <Input
               type="text"
-              background={inputBg}
+              {...fieldStyles}
               aria-invalid={errors.author ? 'true' : 'false'}
               {...register('author', {
                 required: t('postPage.newComment.required'),
@@ -119,14 +142,14 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
             {errors?.author?.message && <Field.ErrorText>{`${errors.author.message}`}</Field.ErrorText>}
           </Field.Root>
           <Field.Root invalid={!!errors.text} my={4}>
-            <Field.Label>{t('postPage.newComment.comment')}</Field.Label>
+            <Field.Label fontFamily="sans" fontWeight={500}>
+              {t('postPage.newComment.comment')}
+            </Field.Label>
             <Textarea
-              resize="none"
+              resize="vertical"
+              rows={3}
               aria-invalid={errors.text ? 'true' : 'false'}
-              size="sm"
-              fontSize="md"
-              background={inputBg}
-              borderRadius="md"
+              {...fieldStyles}
               {...register('text', {
                 required: t('postPage.newComment.required'),
                 minLength: { value: 4, message: t('postPage.newComment.minLength') },
@@ -145,10 +168,13 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
             {errors?.captcha?.message && <Field.ErrorText>{`${errors.captcha.message}`}</Field.ErrorText>}
           </Field.Root>
           <Button
-            mt={4}
+            mt={2}
             loading={isPending}
             loadingText={t('postPage.newComment.adding')}
-            colorPalette="blue"
+            colorPalette="gold"
+            rounded="full"
+            px={6}
+            fontWeight={600}
             type="submit"
             opacity={isDirty ? 1 : 0.5}
             pointerEvents={isDirty ? 'inherit' : 'none'}

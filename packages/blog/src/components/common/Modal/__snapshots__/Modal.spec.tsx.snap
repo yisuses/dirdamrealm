@@ -2,8 +2,9 @@
 
 exports[`Modal > should render the title and content when open 1`] = `
 <div
+  aria-labelledby="dialog:_r_0_:title"
   aria-modal="true"
-  class="chakra-dialog__content css-u3jqp9"
+  class="chakra-dialog__content css-dhup2"
   data-part="content"
   data-scope="dialog"
   data-state="open"
@@ -13,14 +14,18 @@ exports[`Modal > should render the title and content when open 1`] = `
   style="--layer-index: 0; --nested-layer-count: 0; pointer-events: auto;"
   tabindex="-1"
 >
-  <div
-    class="chakra-dialog__header css-6mgb77"
+  <h2
+    class="chakra-dialog__title css-1bngpsk"
+    data-part="title"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog:_r_0_:title"
   >
     Buscar
-  </div>
+  </h2>
   <button
     aria-label="Close"
-    class="chakra-button chakra-dialog__closeTrigger css-tnx24u"
+    class="chakra-button chakra-dialog__closeTrigger css-zoeqbv"
     data-part="close-trigger"
     data-scope="dialog"
     dir="ltr"
@@ -47,7 +52,7 @@ exports[`Modal > should render the title and content when open 1`] = `
     </svg>
   </button>
   <div
-    class="chakra-dialog__body css-aphhdw"
+    class="chakra-dialog__body css-hlc28p"
   >
     <p>
       Contenido

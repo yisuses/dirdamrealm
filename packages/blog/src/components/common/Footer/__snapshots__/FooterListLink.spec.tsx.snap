@@ -2,7 +2,7 @@
 
 exports[`FooterListLink > should render a client-side link with its target 1`] = `
 <a
-  class="chakra-link css-17vdyn0"
+  class="chakra-link css-18gbdrg"
   href="/category/music/"
   target="_blank"
 >
@@ -12,7 +12,7 @@ exports[`FooterListLink > should render a client-side link with its target 1`] =
 
 exports[`FooterListLink > should render a plain anchor when forced 1`] = `
 <a
-  class="chakra-link css-17vdyn0"
+  class="chakra-link css-18gbdrg"
   href="mailto:hello@example.com"
 >
   Mail

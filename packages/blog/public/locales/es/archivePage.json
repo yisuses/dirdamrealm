@@ -1,5 +1,6 @@
 {
   "archivePage": {
+    "kicker": "Todo lo publicado",
     "title": "Archivo",
     "description": "Historial de todas las entradas publicadas.",
     "noPosts": "Aún no hay entradas publicadas.",
@@ -21,6 +22,8 @@
       "9": "Octubre",
       "10": "Noviembre",
       "11": "Diciembre"
-    }
+    },
+    "count_one": "{{count}} entrada",
+    "count_other": "{{count}} entradas"
   }
 }

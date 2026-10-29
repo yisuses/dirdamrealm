@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { renderWithProviders } from '@blog/test/render'
@@ -36,20 +36,23 @@ describe('Footer', () => {
     vi.unstubAllEnvs()
   })
 
-  it('should render contact, categories, socials and credits', () => {
+  it('should render the brand, categories, contact and socials', () => {
     const { container } = renderWithProviders(<Footer categories={categories} about={about} />)
 
+    expect(screen.getByRole('link', { name: 'Logotipo de White Emotion' })).toHaveAttribute('href', '/')
+    expect(
+      screen.getByText('Deporte, música, actualidad y viajes contados con emoción. Escrito por White Emotion.'),
+    ).toBeInTheDocument()
     expect(screen.getByText('Contacto')).toBeInTheDocument()
-    expect(screen.getByText('White Emotion')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Enviar un correo electrónico' })).toHaveAttribute(
       'href',
       'mailto:hello@example.com',
     )
     expect(screen.getByRole('link', { name: 'Música' })).toHaveAttribute('href', '/category/music/')
     expect(screen.getByRole('link', { name: 'Cine' })).toHaveAttribute('href', '/category/cinema/')
-    expect(screen.getByText('En otros medios')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Archivo' })).toHaveAttribute('href', '/archive/')
     for (const [label, href] of [
-      ['Twitter', about.twitterUrl],
+      ['X', about.twitterUrl],
       ['Facebook', about.facebookUrl],
       ['Instagram', about.instagramUrl],
       ['Linkedin', about.linkedinUrl],
@@ -57,19 +60,16 @@ describe('Footer', () => {
       expect(screen.getByRole('link', { name: label })).toHaveAttribute('href', href)
     }
     expect(screen.getByText('© 2024 White Emotion.')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'SimpleSmart' })).toHaveAttribute(
-      'href',
-      'https://www.figma.com/community/file/1036294505314600437',
-    )
     expect(screen.getByText('Versión 1.2.3')).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('should leave out the contact column and socials when about is hidden', () => {
+  it('should leave out the contact column, the signature and socials when about is hidden', () => {
     const { container } = renderWithProviders(<Footer categories={categories} about={{ ...about, display: false }} />)
 
     expect(screen.queryByText('Contacto')).not.toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'Twitter' })).not.toBeInTheDocument()
+    expect(screen.getByText('Deporte, música, actualidad y viajes contados con emoción')).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'X' })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Música' })).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -83,9 +83,9 @@ describe('Footer', () => {
     )
 
     expect(screen.getByText('Contacto')).toBeInTheDocument()
-    expect(screen.queryByText('White Emotion')).not.toBeInTheDocument()
+    expect(screen.getByText('Deporte, música, actualidad y viajes contados con emoción')).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: 'Enviar un correo electrónico' })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Twitter' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'X' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Instagram' })).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: 'Facebook' })).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: 'Linkedin' })).not.toBeInTheDocument()
@@ -105,9 +105,8 @@ describe('Footer', () => {
       />,
     )
 
-    const otherMedia = screen.getByText('En otros medios').parentElement!
-    expect(within(otherMedia).queryByRole('link')).not.toBeInTheDocument()
-    // `socials.length && …` used to render the bare `0`.
-    expect(otherMedia).toHaveTextContent(/^En otros medios$/)
+    for (const label of ['X', 'Facebook', 'Instagram', 'Linkedin']) {
+      expect(screen.queryByRole('link', { name: label })).not.toBeInTheDocument()
+    }
   })
 })

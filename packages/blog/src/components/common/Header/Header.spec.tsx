@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
@@ -24,11 +24,7 @@ const categories: HeaderProps['categories'] = [
   { url: '/category/cinema/cine/', code: 'cinema', name: 'Cine', localizedName: 'Cine' },
 ]
 
-const ORANGE = 'var(--chakra-colors-orange-300)'
-const WHITE = 'var(--chakra-colors-white)'
-
-// The desktop navigation is hidden below the `lg` breakpoint, which is all jsdom has.
-const desktopLink = (name: string) => screen.getByRole('link', { name, hidden: true })
+const navLink = (name: string) => within(screen.getByRole('navigation')).getByRole('link', { name })
 
 describe('Header', () => {
   afterEach(() => {
@@ -37,60 +33,79 @@ describe('Header', () => {
     vi.mocked(getCategories).mockReset()
   })
 
-  it('should render the logo, the navigation and the actions', () => {
+  it('should render the masthead, the navigation and the actions', () => {
     const { container } = renderWithProviders(<Header categories={categories} />)
 
-    const homeLink = screen.getAllByRole('link').find(link => link.textContent === 'WHITE EMOTION')
-    expect(homeLink).toHaveAttribute('href', '/')
-    expect(screen.getByRole('button', { name: 'Categorías', hidden: true })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Logotipo de White Emotion' })).toHaveAttribute('href', '/')
+    expect(screen.getByText('Deporte, música, actualidad y viajes contados con emoción')).toBeInTheDocument()
     expect(
-      screen.getAllByRole('link', { name: 'Archivo', hidden: true }).map(link => link.getAttribute('href')),
-    ).toEqual(['/archive/'])
-    // Mobile and desktop copies of the actions.
-    expect(screen.getAllByRole('button', { name: 'Search', hidden: true })).toHaveLength(2)
-    expect(screen.getAllByRole('button', { name: 'Toggle theme', hidden: true })).toHaveLength(2)
-    expect(screen.getAllByRole('button', { name: 'Cambiar idioma' })[0]).toHaveTextContent('ES')
+      within(screen.getByRole('navigation'))
+        .getAllByRole('link')
+        .map(link => [link.textContent, link.getAttribute('href')]),
+    ).toEqual([
+      ['Inicio', '/'],
+      ['Música', '/category/music/musica/'],
+      ['Cine', '/category/cinema/cine/'],
+      ['Archivo', '/archive/'],
+    ])
+    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Toggle theme' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Cambiar idioma' })).toHaveTextContent('ES')
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('should list the categories in the dropdown, highlighting the current one', async () => {
+  it('should mark the current category as the current page', () => {
     navigation.pathname = '/category/music/musica/'
-    const user = userEvent.setup()
     renderWithProviders(<Header categories={categories} />)
 
-    await user.click(screen.getByRole('button', { name: 'Categorías', hidden: true }))
-
-    expect(await screen.findByRole('menuitem', { name: 'Música', hidden: true })).toHaveAttribute(
-      'href',
-      '/category/music/musica/',
-    )
-    expect(screen.getByRole('menuitem', { name: 'Música', hidden: true })).toHaveStyle({ color: ORANGE })
-    expect(screen.getByRole('menuitem', { name: 'Cine', hidden: true })).toHaveStyle({ color: WHITE })
-    expect(desktopLink('Archivo')).toHaveStyle({ color: WHITE })
+    expect(navLink('Música')).toHaveAttribute('aria-current', 'page')
+    expect(navLink('Cine')).not.toHaveAttribute('aria-current')
+    expect(navLink('Inicio')).not.toHaveAttribute('aria-current')
   })
 
-  it('should highlight the archive link on a localized archive page', () => {
+  it('should mark the archive link on a localized archive page', () => {
     navigation.params = { lng: 'en' }
     navigation.pathname = '/en/archive/'
     renderWithProviders(<Header categories={categories} />, { lng: 'en' })
 
-    expect(desktopLink('Archive')).toHaveAttribute('href', '/en/archive/')
-    expect(desktopLink('Archive')).toHaveStyle({ color: ORANGE })
-    expect(screen.getAllByRole('button', { name: 'Change language' })[0]).toHaveTextContent('EN')
+    expect(navLink('Archive')).toHaveAttribute('href', '/en/archive/')
+    expect(navLink('Archive')).toHaveAttribute('aria-current', 'page')
+    expect(navLink('Home')).toHaveAttribute('href', '/en/')
+    expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('EN')
   })
 
   it.each([['/en'], [null]])('should treat %s as the home page', pathname => {
     navigation.pathname = pathname as string
     renderWithProviders(<Header categories={categories} />)
 
-    expect(desktopLink('Archivo')).toHaveStyle({ color: WHITE })
+    expect(navLink('Inicio')).toHaveAttribute('aria-current', 'page')
+    expect(navLink('Archivo')).not.toHaveAttribute('aria-current')
+  })
+
+  it('should show the small logo in the bar once the masthead scrolls away', () => {
+    let report: IntersectionObserverCallback = () => {}
+    const disconnect = vi.fn()
+    vi.spyOn(window, 'IntersectionObserver').mockImplementation(function (callback) {
+      report = callback
+      return { observe: vi.fn(), disconnect } as unknown as IntersectionObserver
+    })
+    const { unmount } = renderWithProviders(<Header categories={categories} />)
+    const smallLogo = within(screen.getByRole('navigation')).getAllByRole('link', { hidden: true })[0]!
+    expect(smallLogo).toHaveAttribute('aria-hidden', 'true')
+
+    act(() => report([{ isIntersecting: false } as IntersectionObserverEntry], {} as IntersectionObserver))
+
+    expect(smallLogo).not.toHaveAttribute('aria-hidden', 'true')
+    unmount()
+    expect(disconnect).toHaveBeenCalled()
+    vi.restoreAllMocks()
   })
 
   it('should open the search modal', async () => {
     const user = userEvent.setup()
     renderWithProviders(<Header categories={categories} />)
 
-    await user.click(screen.getAllByRole('button', { name: 'Search' })[0])
+    await user.click(screen.getByRole('button', { name: 'Search' }))
 
     expect(await screen.findByRole('dialog')).toHaveTextContent('¿Estás buscando algo en concreto? (título)')
     expect(screen.getByRole('textbox', { name: 'Buscar por entrada' })).toHaveAttribute(
@@ -102,7 +117,7 @@ describe('Header', () => {
   it('should close the search modal', async () => {
     const user = userEvent.setup()
     renderWithProviders(<Header categories={categories} />)
-    await user.click(screen.getAllByRole('button', { name: 'Search' })[0])
+    await user.click(screen.getByRole('button', { name: 'Search' }))
     await screen.findByRole('dialog')
 
     await user.click(screen.getByRole('button', { name: 'Close' }))
@@ -114,7 +129,7 @@ describe('Header', () => {
     const user = userEvent.setup()
     renderWithProviders(<Header categories={categories} />)
 
-    await user.click(screen.getAllByRole('button', { name: 'Toggle theme' })[0])
+    await user.click(screen.getByRole('button', { name: 'Toggle theme' }))
 
     expect(theme.setTheme).toHaveBeenCalledWith('dark')
   })
@@ -124,10 +139,10 @@ describe('Header', () => {
     const user = userEvent.setup()
     const { container } = renderWithProviders(<Header categories={categories} />)
 
-    await user.click(screen.getAllByRole('button', { name: 'Toggle theme' })[0])
+    await user.click(screen.getByRole('button', { name: 'Toggle theme' }))
 
     expect(theme.setTheme).toHaveBeenCalledWith('light')
-    expect(screen.getAllByRole('button', { name: 'Toggle theme' })[0]).toMatchSnapshot()
+    expect(screen.getByRole('button', { name: 'Toggle theme' })).toMatchSnapshot()
     expect(container.firstChild).not.toBeNull()
   })
 
@@ -138,7 +153,7 @@ describe('Header', () => {
     const user = userEvent.setup()
     renderWithProviders(<Header categories={categories} />, { queryClient })
 
-    await user.click(screen.getAllByRole('button', { name: 'Cambiar idioma' })[0])
+    await user.click(screen.getByRole('button', { name: 'Cambiar idioma' }))
 
     await waitFor(() => expect(navigation.router.push).toHaveBeenCalledWith('/en/archive/'))
     expect(getCategories).toHaveBeenCalledWith({ locale: 'en' })
@@ -152,7 +167,7 @@ describe('Header', () => {
     const user = userEvent.setup()
     renderWithProviders(<Header categories={categories} />, { lng: 'en' })
 
-    await user.click(screen.getAllByRole('button', { name: 'Change language' })[0])
+    await user.click(screen.getByRole('button', { name: 'Change language' }))
 
     await waitFor(() => expect(navigation.router.push).toHaveBeenCalledWith('/archive/'))
     expect(getCategories).toHaveBeenCalledWith({ locale: 'es' })

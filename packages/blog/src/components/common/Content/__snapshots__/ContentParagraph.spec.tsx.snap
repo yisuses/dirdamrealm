@@ -2,7 +2,7 @@
 
 exports[`ContentParagraph > should render the html text keeping bold and other tags 1`] = `
 <p
-  class="css-yn17xn"
+  class="css-1t7d3ys"
 >
   Plain 
   <b>

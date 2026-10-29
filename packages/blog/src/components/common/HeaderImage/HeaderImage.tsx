@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Flex, Link, LinkProps, Separator, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, LinkProps, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -13,11 +13,12 @@ import { buildPostPath } from '@blog/utils/urlBuilder'
 
 interface HeaderImageProps {
   post: Post
+  /** The home page's lead story: a rounded card with the title over the photo. */
   showPostInfo?: boolean
 }
 
 const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
-  <Link href={href} title={label} target="_blank" rel="noreferrer" {...rest}>
+  <Link href={href} title={label} target="_blank" rel="noreferrer" color="inherit" {...rest}>
     {label}
   </Link>
 )
@@ -34,6 +35,7 @@ export function HeaderImage({
     coverImageAuthor,
     coverImageSourceUrl,
     locale,
+    writer,
   },
   showPostInfo,
 }: HeaderImageProps) {
@@ -43,105 +45,107 @@ export function HeaderImage({
   const renderedCategories = categories?.slice(0, 3) || []
   const parsedDate = formatPostDate(publishedAt)
 
-  return (
-    <Box>
-      <Box height={{ base: 350, md: 400, lg: 600 }} position="relative" overflow="hidden">
-        <FramedImage
-          src={getImageUrlFromMedia({ media: coverImage, fallback: imgUrl })}
-          priority
-          alt={t('coverImage.imageAlt', { title })}
-          focus={coverImage?.focus}
-          fit={coverImage?.fit}
-        />
-        {showPostInfo && (
-          <Box
-            position="absolute"
-            bottom="30px"
-            left="30px"
-            right={{ base: '30px', lg: 'unset' }}
-            maxWidth={{ base: '100%', lg: '530px' }}
-            p="24px"
-            borderRadius="5px"
-            boxShadow="2px 2px 32px #0007"
-            backgroundColor="whiteAlpha.900"
-            css={{
-              '@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none))': {
-                backdropFilter: 'blur(5px)',
-                backgroundColor: 'rgba(255,255,255,0.8)',
-              },
-            }}
-            color="gray.800"
-          >
-            <Flex gap="10px" justifyContent="end">
-              {renderedCategories
-                .sort((a, b) => a.name.length - b.name.length)
-                .concat(appLocale !== locale ? ({ code: 'lang', name: t(`localization.${locale}`) } as Category) : [])
-                .map(({ name, translations, code }) => (
-                  <Tag
-                    mb={{ base: '8px', md: '12px', lg: '16px' }}
-                    key={code}
-                    size="md"
-                    label={(translations && translations?.[appLocale as AppLocales]) || name}
-                  />
-                ))}
-            </Flex>
-            <Link
-              as={NextLink}
-              href={localizeHref(buildPostPath(String(id), title))}
-              fontWeight={700}
-              fontSize={{ base: '16px', lg: '32px' }}
-              lineHeight={{ base: '20px', lg: '40px' }}
-              mb={{ base: '8px', lg: '16px' }}
-              lineClamp={{ base: 1, lg: 2 }}
-              _hover={{
-                textDecorationColor: 'white',
-                textDecoration: 'underline',
-                textShadow: 'none',
-              }}
-            >
-              {title}
-            </Link>
-            <Flex
-              flexDirection={{ base: 'column', lg: 'row' }}
-              alignItems="flex-start"
-              fontWeight="600"
-              fontSize={{ base: '12px', lg: '14px' }}
-            >
-              <Text mb={{ base: 2, lg: 0 }} lineHeight="24px">
-                {parsedDate}
-              </Text>
-              <Separator
-                display={{ base: 'none', lg: 'block' }}
-                orientation="horizontal"
-                w="45px"
-                pt="12px"
-                m="0 16px"
-                opacity={1}
-                borderColor="currentColor"
-              />
-              <Text
-                fontSize={{ base: '12px', lg: '16px' }}
-                lineClamp={{ base: 2, md: 3, lg: 5 }}
-                fontStyle="italic"
-                fontFamily="Roboto"
-                fontWeight={500}
-              >
-                {summary}
-              </Text>
-            </Flex>
-          </Box>
-        )}
+  const image = (
+    <FramedImage
+      src={getImageUrlFromMedia({ media: coverImage, fallback: imgUrl })}
+      priority
+      alt={t('coverImage.imageAlt', { title })}
+      focus={coverImage?.focus}
+      fit={coverImage?.fit}
+      sizes="(max-width: 1248px) 100vw, 1248px"
+    />
+  )
+
+  const credit = coverImageAuthor && coverImageSourceUrl && (
+    <Text textAlign="center" fontFamily="sans" fontSize="12px" pt="8px" color="fg.muted">
+      <Trans
+        i18nKey="coverImage.author"
+        components={{
+          link: <TransLink href={coverImageSourceUrl} label={coverImageAuthor} />,
+        }}
+      />
+    </Text>
+  )
+
+  if (!showPostInfo) {
+    return (
+      <Box>
+        <Box height={{ base: '280px', md: '420px', lg: '560px' }} position="relative" overflow="hidden">
+          {image}
+        </Box>
+        {credit}
       </Box>
-      {coverImageAuthor && coverImageSourceUrl && (
-        <Text textAlign="center" fontFamily="Roboto" fontSize="12px" pt="8px" fontWeight={500}>
-          <Trans
-            i18nKey="coverImage.author"
-            components={{
-              link: <TransLink href={coverImageSourceUrl} label={coverImageAuthor} />,
-            }}
-          />
-        </Text>
-      )}
+    )
+  }
+
+  return (
+    <Box maxW="1248px" mx="auto" px={{ base: 4, md: 6 }} pt={{ base: 4, md: 6 }}>
+      <Box
+        position="relative"
+        overflow="hidden"
+        borderRadius={{ base: '14px', md: '18px' }}
+        aspectRatio={{ base: 4 / 5, sm: 4 / 3, md: 16 / 9, lg: 21 / 9 }}
+        bg="border"
+      >
+        {image}
+        <Box
+          position="absolute"
+          inset={0}
+          background="linear-gradient(to top, rgba(10,10,12,.88) 0%, rgba(10,10,12,.35) 45%, transparent 70%)"
+        />
+        <Box
+          position="absolute"
+          left={0}
+          right={0}
+          bottom={0}
+          p={{ base: 5, md: 10, lg: 12 }}
+          color="white"
+          maxW="860px"
+        >
+          <Flex gap="8px" flexWrap="wrap">
+            {renderedCategories
+              .slice()
+              .sort((a, b) => a.name.length - b.name.length)
+              .concat(appLocale !== locale ? ({ code: 'lang', name: t(`localization.${locale}`) } as Category) : [])
+              .map(({ name, translations, code }) => (
+                <Tag
+                  key={code}
+                  variant="solid"
+                  label={(translations && translations?.[appLocale as AppLocales]) || name}
+                />
+              ))}
+          </Flex>
+          <Link
+            asChild
+            display="block"
+            color="white"
+            fontWeight={500}
+            fontSize={{ base: '30px', md: '42px', lg: '52px' }}
+            lineHeight="1.08"
+            letterSpacing="-0.01em"
+            mt={{ base: 3, md: 3.5 }}
+            mb={{ base: 2, md: 2.5 }}
+            lineClamp={3}
+            _hover={{ textDecoration: 'underline', textDecorationThickness: '2px', textUnderlineOffset: '6px' }}
+          >
+            <NextLink href={localizeHref(buildPostPath(String(id), title))}>{title}</NextLink>
+          </Link>
+          <Text
+            fontStyle="italic"
+            fontSize={{ base: '17px', md: '20px' }}
+            lineHeight="1.4"
+            opacity={0.9}
+            lineClamp={{ base: 3, md: 2 }}
+            mb={3}
+          >
+            {summary}
+          </Text>
+          <Text fontFamily="sans" fontSize="14px" color="whiteAlpha.800">
+            {[writer?.name, parsedDate].filter(Boolean).join(' · ')}
+          </Text>
+        </Box>
+      </Box>
+      {credit}
     </Box>
   )
 }

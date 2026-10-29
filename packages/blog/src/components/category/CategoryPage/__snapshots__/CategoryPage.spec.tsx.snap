@@ -1,141 +1,136 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CategoryPage > should render the latest post as header and the rest in the grid 1`] = `
+exports[`CategoryPage > should render the category title and every post in the grid 1`] = `
 <div>
-  <div>
+  <div
+    class="css-sble5g"
+  >
     <div
-      class="css-1nr4kjm"
+      class="css-1kzwpp6"
     >
-      <img
-        alt="Imagen de la entrada "Test Post""
-        src="/media/large_test.jpg"
-        style="object-fit: cover;"
-      />
+      <span
+        aria-label="Categoría"
+        class="css-1pma5x8"
+      >
+        Categoría
+      </span>
+      <h1
+        class="chakra-heading css-lod5a6"
+      >
+        Test Category
+      </h1>
+      <p
+        class="css-1gtwqmm"
+      >
+        2 entradas
+      </p>
+    </div>
+    <div
+      class="css-1g2swem"
+    >
       <div
-        class="css-ws1zca"
+        class="css-1jh6iit"
       >
         <div
-          class="css-14tqugy"
+          class="css-28c0u4"
+          role="group"
         >
+          <a
+            class="chakra-link css-fexq5i"
+            href="/post/1/test-post/"
+            tabindex="-1"
+          >
+            <img
+              alt="Test Post image"
+              src="/media/medium_test.jpg"
+              style="object-fit: cover;"
+            />
+          </a>
           <div
-            aria-label="Test Category"
-            class="chakra-tag__root css-cpcb23"
+            class="css-94mkp1"
           >
             <span
-              class="chakra-tag__label css-lgd7le"
+              aria-label="categories.test-category"
+              class="css-1pma5x8"
             >
-              Test Category
+              categories.test-category
             </span>
-          </div>
-          <div
-            aria-label="Inglés"
-            class="chakra-tag__root css-cpcb23"
-          >
             <span
-              class="chakra-tag__label css-lgd7le"
+              aria-label="Inglés"
+              class="css-1pma5x8"
             >
               Inglés
             </span>
           </div>
-        </div>
-        <a
-          class="chakra-link css-1i4f3aj"
-          href="/post/1/test-post/"
-        >
-          Test Post
-        </a>
-        <div
-          class="css-p069g"
-        >
-          <p
-            class="css-1jd7gge"
+          <a
+            class="chakra-link css-1ejne8n"
+            href="/post/1/test-post/"
+            title="Test Post"
           >
-            01.04.2022
-          </p>
-          <span
-            aria-orientation="horizontal"
-            class="chakra-separator css-hr9wd4"
-            role="separator"
-          />
+            Test Post
+          </a>
           <p
-            class="css-1j55sjn"
+            class="css-1k4tq8p"
+            title="This is a test post"
           >
             This is a test post
           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="css-4q9b3d"
-  >
-    <h2
-      class="chakra-heading css-1v8a6k5"
-    >
-      Otras entradas de Test Category
-    </h2>
-    <div
-      class="css-al238s"
-    >
-      <div
-        class="css-1v10vm4"
-      >
-        <div
-          class="css-1pi04bi"
-        >
-          <div
-            class="css-1hspyk4"
+          <p
+            class="css-vo0z1f"
           >
-            <div
-              aria-label="categories.test-category"
-              class="chakra-tag__root css-v5duvn"
-            >
-              <span
-                class="chakra-tag__label css-lgd7le"
-              >
-                categories.test-category
-              </span>
-            </div>
-            <div
-              aria-label="Inglés"
-              class="chakra-tag__root css-v5duvn"
-            >
-              <span
-                class="chakra-tag__label css-lgd7le"
-              >
-                Inglés
-              </span>
-            </div>
-          </div>
+            01.04.2022
+          </p>
+        </div>
+        <div
+          class="css-28c0u4"
+          role="group"
+        >
           <a
-            class="chakra-link css-hvjfuh"
+            class="chakra-link css-fexq5i"
             href="/post/3/otro-post/"
+            tabindex="-1"
           >
             <img
               alt="Otro post image"
-              src="/media/small_test.jpg"
-              style="transition: all .5s; object-fit: cover;"
+              src="/media/medium_test.jpg"
+              style="object-fit: cover;"
             />
           </a>
+          <div
+            class="css-94mkp1"
+          >
+            <span
+              aria-label="categories.test-category"
+              class="css-1pma5x8"
+            >
+              categories.test-category
+            </span>
+            <span
+              aria-label="Inglés"
+              class="css-1pma5x8"
+            >
+              Inglés
+            </span>
+          </div>
+          <a
+            class="chakra-link css-1ejne8n"
+            href="/post/3/otro-post/"
+            title="Otro post"
+          >
+            Otro post
+          </a>
+          <p
+            class="css-1k4tq8p"
+            title="This is a test post"
+          >
+            This is a test post
+          </p>
+          <p
+            class="css-vo0z1f"
+          >
+            01.04.2022
+          </p>
         </div>
-        <p
-          class="css-1iks56v"
-        >
-          01.04.2022
-        </p>
-        <a
-          class="chakra-link css-tb9idc"
-          href="/post/3/otro-post/"
-          title="Otro post"
-        >
-          Otro post
-        </a>
-        <p
-          class="css-17a2hvl"
-          title="This is a test post"
-        >
-          This is a test post
-        </p>
       </div>
     </div>
   </div>
@@ -143,7 +138,32 @@ exports[`CategoryPage > should render the latest post as header and the rest in 
 `;
 
 exports[`CategoryPage > should tell there are no articles when the category has no posts 1`] = `
-<div>
-  No se han publicado artículos para esta categoría
+<div
+  class="css-sble5g"
+>
+  <div
+    class="css-1kzwpp6"
+  >
+    <span
+      aria-label="Categoría"
+      class="css-1pma5x8"
+    >
+      Categoría
+    </span>
+    <h1
+      class="chakra-heading css-lod5a6"
+    >
+      Test Category
+    </h1>
+  </div>
+  <div
+    class="css-1g2swem"
+  >
+    <p
+      class="css-1xrpz2b"
+    >
+      No se han publicado artículos para esta categoría
+    </p>
+  </div>
 </div>
 `;

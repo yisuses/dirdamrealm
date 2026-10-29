@@ -12,7 +12,7 @@ describe('ContentQuote', () => {
     )
 
     expect(container.querySelector('blockquote')).toHaveTextContent('To be or not')
-    expect(screen.getByText('Hamlet').tagName).toBe('FOOTER')
+    expect(screen.getByText('— Hamlet').tagName).toBe('FOOTER')
     expect(container).toMatchSnapshot()
   })
 

@@ -3,15 +3,15 @@
   "footer": {
     "contact": "Contacto",
     "categories": "Categorías",
-    "inOtherMedia": "En otros medios",
-    "subscribe": "Suscribirse",
-    "theme": "Tema de <link></link>",
     "version": "Versión {{versionNumber}}",
     "copyright": "© {{year}} White Emotion.",
-    "sendAMail": "Enviar un correo electrónico"
+    "sendAMail": "Enviar un correo electrónico",
+    "writtenBy": "Escrito por {{name}}."
   },
   "header": {
     "logo": "Logotipo de White Emotion",
+    "home": "Inicio",
+    "tagline": "Deporte, música, actualidad y viajes contados con emoción",
     "weLogo": "Logotipo de White Emotion",
     "menuButtonClosed": "Abrir menú",
     "menuButtonOpened": "Cerrar menú",
@@ -20,7 +20,9 @@
     "search": {
       "title": "¿Estás buscando algo en concreto? (título)",
       "inputTitle": "Buscar por entrada",
-      "inputPlaceholder": "Título de la entrada"
+      "inputPlaceholder": "Título de la entrada",
+      "results_one": "{{count}} entrada",
+      "results_other": "{{count}} entradas"
     }
   },
   "coverImage": {

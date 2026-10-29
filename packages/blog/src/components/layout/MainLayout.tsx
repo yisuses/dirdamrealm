@@ -30,13 +30,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <GlobalStyles />
       <CookieBanner />
       <Header categories={categories} />
-      <Box
-        as="main"
-        minH={{ base: 'calc(100vh - 272px)', md: 'calc(100vh - 250px)' }}
-        p={{ base: 0 }}
-        maxW={{ base: 'full', lg: '1440px' }}
-        margin="0 auto"
-      >
+      <Box as="main" minH="calc(100vh - 380px)">
         {children}
       </Box>
       {about && <Footer categories={categories} about={about} />}

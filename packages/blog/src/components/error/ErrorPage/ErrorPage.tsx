@@ -1,6 +1,6 @@
 'use client'
 
-import { Flex, Heading, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, Heading, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useTranslation } from 'react-i18next'
 
@@ -17,25 +17,34 @@ interface ErrorProps {
 export function ErrorPage({ statusCode = 500 }: ErrorProps) {
   const { t } = useTranslation('errorPage')
   const localizeHref = useLocalizeHref()
+  const notFound = statusCode === 404
+
   return (
-    <Flex direction="column" alignItems="center" justifyContent="center" pt="40" textAlign="center">
-      <Heading as="h1" size="2xl">
-        {t(statusCode === 404 ? 'notFoundPage.title' : 'errorPage.title')}
+    <Flex direction="column" alignItems="center" textAlign="center" px={4} pt={{ base: 12, md: 16 }} pb={8}>
+      <Text
+        fontFamily="heading"
+        fontSize={{ base: '110px', md: '160px' }}
+        lineHeight={1}
+        fontWeight={500}
+        color="accent"
+      >
+        {notFound ? '404' : t('errorPage.code')}
+      </Text>
+      <Heading as="h1" fontSize={{ base: '30px', md: '40px' }} fontWeight={500} mt={2.5} mb={2.5}>
+        {t(notFound ? 'notFoundPage.title' : 'errorPage.title')}
       </Heading>
-      <Text fontSize={{ base: 'xl', md: '2xl' }} mt="2rem">
-        {statusCode !== 404 ? (
-          <Link as={NextLink} href={localizeHref('/')} onClick={() => window.location.reload()}>
-            {t('errorPage.refreshPage')}
-          </Link>
+      <Text fontSize={{ base: '18px', md: '20px' }} color="fg.muted" maxW="520px" mb={6.5}>
+        {t(notFound ? 'notFoundPage.description' : 'errorPage.description')}
+      </Text>
+      <Button asChild colorPalette="gold" rounded="full" px={6} size="lg" fontWeight={600}>
+        {notFound ? (
+          <NextLink href={localizeHref('/')}>{t('errorPage.goToHomePage')}</NextLink>
         ) : (
-          <Link as={NextLink} href={localizeHref('/')}>
-            {t('errorPage.goToHomePage')}
-          </Link>
+          <NextLink href={localizeHref('/')} onClick={() => window.location.reload()}>
+            {t('errorPage.refreshPage')}
+          </NextLink>
         )}
-      </Text>
-      <Text fontSize={{ base: 'lg', md: 'xl' }} mt="1rem">
-        {t(statusCode === 404 ? 'notFoundPage.description' : 'errorPage.description')}
-      </Text>
+      </Button>
     </Flex>
   )
 }

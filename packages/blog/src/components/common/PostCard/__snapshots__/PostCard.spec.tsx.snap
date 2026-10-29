@@ -2,63 +2,53 @@
 
 exports[`PostCard > should render the post with links, image and categories sorted by length 1`] = `
 <div
-  class="css-1v10vm4"
+  class="css-28c0u4"
+  role="group"
 >
-  <div
-    class="css-1pi04bi"
-  >
-    <div
-      class="css-1hspyk4"
-    >
-      <div
-        aria-label="Ingeniería"
-        class="chakra-tag__root css-v5duvn"
-      >
-        <span
-          class="chakra-tag__label css-lgd7le"
-        >
-          Ingeniería
-        </span>
-      </div>
-      <div
-        aria-label="Historia y pensamiento"
-        class="chakra-tag__root css-v5duvn"
-      >
-        <span
-          class="chakra-tag__label css-lgd7le"
-        >
-          Historia y pensamiento
-        </span>
-      </div>
-    </div>
-    <a
-      class="chakra-link css-hvjfuh"
-      href="/post/7/mi-entrada/"
-    >
-      <img
-        alt="Mi entrada image"
-        src="/media/small_test.jpg"
-        style="transition: all .5s; object-fit: cover;"
-      />
-    </a>
-  </div>
-  <p
-    class="css-1iks56v"
-  >
-    01.04.2022
-  </p>
   <a
-    class="chakra-link css-tb9idc"
+    class="chakra-link css-fexq5i"
+    href="/post/7/mi-entrada/"
+    tabindex="-1"
+  >
+    <img
+      alt="Mi entrada image"
+      src="/media/small_test.jpg"
+      style="object-fit: cover;"
+    />
+  </a>
+  <div
+    class="css-94mkp1"
+  >
+    <span
+      aria-label="Ingeniería"
+      class="css-1pma5x8"
+    >
+      Ingeniería
+    </span>
+    <span
+      aria-label="Historia y pensamiento"
+      class="css-1pma5x8"
+    >
+      Historia y pensamiento
+    </span>
+  </div>
+  <a
+    class="chakra-link css-1ejne8n"
     href="/post/7/mi-entrada/"
     title="Mi entrada"
   >
     Mi entrada
   </a>
   <p
-    class="css-17a2hvl"
+    class="css-1k4tq8p"
     title="Resumen de la entrada"
   >
     Resumen de la entrada
+  </p>
+  <p
+    class="css-vo0z1f"
+  >
+    01.04.2022
   </p>
 </div>
 `;

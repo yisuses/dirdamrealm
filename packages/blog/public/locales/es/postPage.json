@@ -2,7 +2,6 @@
   "postPage": {
     "title": "{{postName}}",
     "readingTime": "{{minutes}} min de lectura",
-    "author": "por {{name}}",
     "share": "Compartir en {{socialNetwork}}",
     "shareTitle": "Mira lo que he visto en Emoción Blanca: {{title}}",
     "sameCategoryPosts": "También en esta categoría",
@@ -14,7 +13,7 @@
       "required": "Campo obligatorio.",
       "minLength": "El tamaño mínimo es de 4 caracteres.",
       "maxNameLength": "El tamaño máximo es de 40 caracteres.",
-      "addComment": "Añadir",
+      "addComment": "Publicar comentario",
       "adding": "Añadiendo"
     }
   }

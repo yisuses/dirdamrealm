@@ -3,15 +3,13 @@
 exports[`CookieBanner > should show the consent message until it is accepted 1`] = `
 <div
   class="CookieConsent"
-  style="align-items: baseline; background: rgb(26, 32, 44); color: white; display: flex; flex-wrap: wrap; justify-content: space-between; left: 0px; position: fixed; width: 100%; z-index: 999; font-family: Spartan; bottom: 0px;"
+  style="align-items: flex-start; background: var(--chakra-colors-bg-panel); color: var(--chakra-colors-fg); display: flex; flex-wrap: wrap; justify-content: space-between; left: 16px; position: fixed; width: auto; z-index: 999; bottom: 0px; max-width: min(360px, -32px + 100vw); flex-direction: column; border: 1px solid var(--chakra-colors-border); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.12); font-family: var(--chakra-fonts-sans); font-size: 14px; line-height: 1.5;"
 >
   <div
     class=""
-    style="flex: 1 0 300px; margin: 15px;"
+    style="flex: 0 0 auto; margin: 18px 20px 12px;"
   >
-    <p
-      class="css-79wky"
-    >
+    <p>
       Emoción Blanca utiliza cookies para ofrecerte la mejor experiencia en nuestra web.
     </p>
   </div>
@@ -20,14 +18,10 @@ exports[`CookieBanner > should show the consent message until it is accepted 1`]
   >
     <button
       aria-label="Aceptar cookies"
-      class="chakra-button css-1cs42qu"
+      class="chakra-button css-pouc0e"
       type="button"
     >
-      <p
-        class="css-79wky"
-      >
-        Aceptar
-      </p>
+      Aceptar
     </button>
   </div>
 </div>

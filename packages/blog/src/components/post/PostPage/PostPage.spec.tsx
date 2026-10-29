@@ -61,11 +61,12 @@ describe('PostPage', () => {
     const { container } = renderPostPage({ post: postMock, latestPosts: [postMock, relatedPost] })
 
     expect(screen.getByRole('heading', { level: 1, name: 'Test Post' })).toBeInTheDocument()
-    expect(screen.getByText('by Test Writer')).toBeInTheDocument()
-    expect(within(screen.getByRole('heading', { level: 1 }).parentElement!).getByText('01.04.2022')).toBeInTheDocument()
-    expect(screen.getByLabelText('Test Category')).toBeInTheDocument()
+    expect(screen.getByText('Test Writer')).toBeInTheDocument()
+    expect(screen.getByText(/^01\.04\.2022 · \d+ min reading time$/)).toBeInTheDocument()
+    // Above the title and again next to the share buttons at the end.
+    expect(screen.getAllByLabelText('Test Category')).toHaveLength(2)
     const encodedUrl = encodeURIComponent('https://whemotion.com/en/post/1/test-post/')
-    expect(screen.getAllByRole('link', { name: 'Share on Twitter' })[0]).toHaveAttribute(
+    expect(screen.getAllByRole('link', { name: 'Share on X' })[0]).toHaveAttribute(
       'href',
       `https://twitter.com/intent/tweet?text=${encodeURIComponent('Check this article at White Emotion: Test Post')}&url=${encodedUrl}`,
     )
@@ -73,7 +74,8 @@ describe('PostPage', () => {
       'href',
       `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     )
-    expect(screen.getAllByRole('link', { name: 'Share on Linkedin' })).toHaveLength(2)
+    // The buttons by the byline are hidden on phones (all jsdom has).
+    expect(screen.getAllByRole('link', { name: 'Share on Linkedin', hidden: true })).toHaveLength(2)
     expect(screen.queryByText('Share on ...')).not.toBeInTheDocument()
     // Comments of every localization of the post are shown.
     expect(screen.getByText('Great post!')).toBeInTheDocument()

@@ -1,4 +1,3 @@
-import '@fontsource/spartan'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { AppProviders } from 'app-providers'
@@ -20,6 +19,11 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  // The browser bar on phones takes the page background.
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FAF8F4' },
+    { media: '(prefers-color-scheme: dark)', color: '#121214' },
+  ],
 }
 
 export function generateStaticParams() {
@@ -65,7 +69,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap"
           rel="stylesheet"
         />
       </head>

@@ -1,56 +1,81 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`PostComments > should list the comments with their relative date and an empty form 1`] = `
-<div
-  class="css-j7qwjs"
+<section
+  class="css-10wsyld"
 >
   <h2
-    class="chakra-heading css-1ghp373"
+    class="chakra-heading css-casl5i"
   >
     Comments
+     (2)
   </h2>
   <div
-    class="css-1wc24re"
+    class="css-k0wxtr"
     id="comment-1"
   >
-    <p
-      class="css-fzu54a"
+    <div
+      aria-hidden="true"
+      class="css-12potdc"
     >
-      Ana
-    </p>
-    <p
-      class="css-4s52a9"
-    >
-      2 days ago
-    </p>
-    <p
-      class="css-1k0541e"
-    >
-      Great post!
-    </p>
+      A
+    </div>
+    <div>
+      <p
+        class="css-14w1ums"
+      >
+        <span
+          class="css-35ezg3"
+        >
+          Ana
+        </span>
+        <span
+          class="css-oaua3y"
+        >
+          2 days ago
+        </span>
+      </p>
+      <p
+        class="css-95zae3"
+      >
+        Great post!
+      </p>
+    </div>
   </div>
   <div
-    class="css-1wc24re"
+    class="css-k0wxtr"
     id="comment-2"
   >
-    <p
-      class="css-fzu54a"
+    <div
+      aria-hidden="true"
+      class="css-12potdc"
     >
-      Luis
-    </p>
-    <p
-      class="css-4s52a9"
-    >
-      2 months ago
-    </p>
-    <p
-      class="css-1k0541e"
-    >
-      Thanks for sharing
-    </p>
+      L
+    </div>
+    <div>
+      <p
+        class="css-14w1ums"
+      >
+        <span
+          class="css-35ezg3"
+        >
+          Luis
+        </span>
+        <span
+          class="css-oaua3y"
+        >
+          2 months ago
+        </span>
+      </p>
+      <p
+        class="css-95zae3"
+      >
+        Thanks for sharing
+      </p>
+    </div>
   </div>
   <div
-    class="css-1bkzspj"
+    class="css-176hzis"
   >
     <form>
       <div
@@ -61,7 +86,7 @@ exports[`PostComments > should list the comments with their relative date and an
         role="group"
       >
         <label
-          class="chakra-field__label css-65zcwe"
+          class="chakra-field__label css-bb0mj"
           data-part="label"
           data-scope="field"
           for="_r_0_"
@@ -71,7 +96,7 @@ exports[`PostComments > should list the comments with their relative date and an
         </label>
         <input
           aria-invalid="false"
-          class="chakra-input css-9o4fpa"
+          class="chakra-input css-1iw3lvm"
           data-part="input"
           data-scope="field"
           id="_r_0_"
@@ -87,7 +112,7 @@ exports[`PostComments > should list the comments with their relative date and an
         role="group"
       >
         <label
-          class="chakra-field__label css-65zcwe"
+          class="chakra-field__label css-bb0mj"
           data-part="label"
           data-scope="field"
           for="_r_1_"
@@ -97,11 +122,12 @@ exports[`PostComments > should list the comments with their relative date and an
         </label>
         <textarea
           aria-invalid="false"
-          class="chakra-textarea css-5mgwgq"
+          class="chakra-textarea css-19xfo1l"
           data-part="textarea"
           data-scope="field"
           id="_r_1_"
           name="text"
+          rows="3"
         />
       </div>
       <div
@@ -120,12 +146,12 @@ exports[`PostComments > should list the comments with their relative date and an
         </button>
       </div>
       <button
-        class="chakra-button css-kjvb9f"
+        class="chakra-button css-1rxloex"
         type="submit"
       >
-        Add comment
+        Post comment
       </button>
     </form>
   </div>
-</div>
+</section>
 `;

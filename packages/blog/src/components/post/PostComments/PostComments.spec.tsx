@@ -71,7 +71,7 @@ describe('PostComments', () => {
   it('should list the comments with their relative date and an empty form', () => {
     const { container } = renderComments()
 
-    expect(screen.getByRole('heading', { name: 'Comments' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /^Comments/ })).toBeInTheDocument()
     expect(screen.getByText('Ana')).toBeInTheDocument()
     expect(screen.getByText('Great post!')).toBeInTheDocument()
     expect(screen.getByText('2 days ago')).toBeInTheDocument()
@@ -99,7 +99,7 @@ describe('PostComments', () => {
     const user = userEvent.setup({ pointerEventsCheck: 0 })
     renderComments()
 
-    await user.click(screen.getByRole('button', { name: 'Add comment' }))
+    await user.click(screen.getByRole('button', { name: 'Post comment' }))
 
     expect(await screen.findAllByText('Required field.')).toHaveLength(3)
     expect(screen.getByRole('textbox', { name: 'Your name' })).toHaveAttribute('aria-invalid', 'true')
@@ -112,12 +112,12 @@ describe('PostComments', () => {
     renderComments()
 
     await fillForm(user, 'Ana', 'Hi')
-    await user.click(screen.getByRole('button', { name: 'Add comment' }))
+    await user.click(screen.getByRole('button', { name: 'Post comment' }))
 
     expect(await screen.findAllByText('Minimum length should be 4 characters.')).toHaveLength(2)
 
     await user.type(screen.getByRole('textbox', { name: 'Your name' }), 'x'.repeat(40))
-    await user.click(screen.getByRole('button', { name: 'Add comment' }))
+    await user.click(screen.getByRole('button', { name: 'Post comment' }))
 
     expect(await screen.findByText('Maximun length should be 40 characters.')).toBeInTheDocument()
   })
@@ -129,7 +129,7 @@ describe('PostComments', () => {
     await user.click(screen.getByRole('button', { name: 'Solve captcha (en)' }))
     captcha.value = null
 
-    await user.click(screen.getByRole('button', { name: 'Add comment' }))
+    await user.click(screen.getByRole('button', { name: 'Post comment' }))
 
     await waitFor(() => expect(screen.queryByText('Required field.')).not.toBeInTheDocument())
     expect(addCommentValidate).not.toHaveBeenCalled()
@@ -147,7 +147,7 @@ describe('PostComments', () => {
     await fillForm(user)
     await user.click(screen.getByRole('button', { name: 'Solve captcha (en)' }))
 
-    await user.click(screen.getByRole('button', { name: 'Add comment' }))
+    await user.click(screen.getByRole('button', { name: 'Post comment' }))
 
     expect(addCommentValidate).toHaveBeenCalledWith({
       postId: 1,

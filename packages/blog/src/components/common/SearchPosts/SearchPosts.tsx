@@ -1,8 +1,10 @@
 'use client'
 
-import { Box, Field, Input } from '@chakra-ui/react'
+import { Box, Flex, Input, Text, VisuallyHidden } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { LuSearch } from 'react-icons/lu'
 
 import { searchPosts } from '@blog/api/public'
 import { useDebounce } from '@blog/hooks/useDebounce'
@@ -16,9 +18,9 @@ type SearchPostsProps = {
 }
 
 export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) {
+  const { t } = useTranslation('common')
   const [searchValue, setSearchValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(searchValue, 300)
-  const searchResultsRef = useRef<HTMLDivElement>(null)
 
   const { data: postResults } = useQuery({
     queryKey: getAlgoliaPostKey(debouncedValue),
@@ -29,37 +31,55 @@ export function SearchPosts({ inputTitle, inputPlaceholder }: SearchPostsProps) 
     throwOnError: false,
   })
 
-  const searchResultOffset = searchResultsRef.current?.offsetTop
   return (
-    <Box overflow="hidden" p="8">
-      <Field.Root>
-        <Field.Label fontWeight="600">{inputTitle}</Field.Label>
+    <Box>
+      <Flex
+        as="label"
+        alignItems="center"
+        gap={3}
+        px={3}
+        pt={2}
+        pb={3.5}
+        pr={12}
+        borderBottom="1px solid"
+        borderColor="border"
+      >
+        <Box color="accent" flex="none" fontSize="22px">
+          <LuSearch />
+        </Box>
+        <VisuallyHidden>{inputTitle}</VisuallyHidden>
         <Input
-          variant="outline"
-          size="md"
+          variant="flushed"
+          border={0}
+          fontFamily="heading"
+          fontSize={{ base: '20px', md: '24px' }}
+          px={0}
+          autoFocus
           placeholder={inputPlaceholder}
           onChange={event => setSearchValue(event.target.value)}
           value={searchValue}
-          px="8px"
-          _placeholder={{
-            fontStyle: 'italic',
-          }}
+          _placeholder={{ color: 'fg.muted', fontStyle: 'italic' }}
+          _focusVisible={{ boxShadow: 'none' }}
         />
-      </Field.Root>
-      <Box
-        mt="12px"
-        ref={searchResultsRef}
-        width="100%"
-        height={{ base: `calc(100vh - ${searchResultOffset}px - 12px - 90px)`, md: '400px' }}
-        display="flex"
-        flexDir="column"
-        flexShrink={0}
-      >
-        <Box pr="17px" boxSizing="content-box" width="100%" height="auto" overflowY="auto">
-          {postResults?.map((post, index) => (
-            <SearchPostResultItem key={index} post={post} />
-          ))}
-        </Box>
+      </Flex>
+      {postResults && (
+        <Text
+          fontFamily="sans"
+          fontSize="12px"
+          textTransform="uppercase"
+          letterSpacing="0.08em"
+          color="fg.muted"
+          px={3}
+          pt={3.5}
+          pb={1.5}
+        >
+          {t('header.search.results', { count: postResults.length })}
+        </Text>
+      )}
+      <Box maxH={{ base: 'calc(100vh - 140px)', md: '60vh' }} overflowY="auto">
+        {postResults?.map(post => (
+          <SearchPostResultItem key={post.id} post={post} />
+        ))}
       </Box>
     </Box>
   )

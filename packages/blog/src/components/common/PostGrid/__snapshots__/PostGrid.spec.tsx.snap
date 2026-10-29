@@ -2,116 +2,100 @@
 
 exports[`PostGrid > should render a card per post 1`] = `
 <div
-  class="css-al238s"
+  class="css-1jh6iit"
 >
   <div
-    class="css-1v10vm4"
+    class="css-28c0u4"
+    role="group"
   >
-    <div
-      class="css-1pi04bi"
-    >
-      <div
-        class="css-1hspyk4"
-      >
-        <div
-          aria-label="Ingeniería"
-          class="chakra-tag__root css-v5duvn"
-        >
-          <span
-            class="chakra-tag__label css-lgd7le"
-          >
-            Ingeniería
-          </span>
-        </div>
-        <div
-          aria-label="Sin traducir"
-          class="chakra-tag__root css-v5duvn"
-        >
-          <span
-            class="chakra-tag__label css-lgd7le"
-          >
-            Sin traducir
-          </span>
-        </div>
-      </div>
-      <a
-        class="chakra-link css-hvjfuh"
-        href="/post/2/entrada-en-espanol/"
-      >
-        <img
-          alt="Entrada en español image"
-          src="/media/small_test.jpg"
-          style="transition: all .5s; object-fit: cover;"
-        />
-      </a>
-    </div>
-    <p
-      class="css-1iks56v"
-    >
-      01.04.2022
-    </p>
     <a
-      class="chakra-link css-tb9idc"
+      class="chakra-link css-fexq5i"
+      href="/post/2/entrada-en-espanol/"
+      tabindex="-1"
+    >
+      <img
+        alt="Entrada en español image"
+        src="/media/medium_test.jpg"
+        style="object-fit: cover;"
+      />
+    </a>
+    <div
+      class="css-94mkp1"
+    >
+      <span
+        aria-label="Ingeniería"
+        class="css-1pma5x8"
+      >
+        Ingeniería
+      </span>
+      <span
+        aria-label="Sin traducir"
+        class="css-1pma5x8"
+      >
+        Sin traducir
+      </span>
+    </div>
+    <a
+      class="chakra-link css-1ejne8n"
       href="/post/2/entrada-en-espanol/"
       title="Entrada en español"
     >
       Entrada en español
     </a>
     <p
-      class="css-17a2hvl"
+      class="css-1k4tq8p"
       title="Resumen en español"
     >
       Resumen en español
     </p>
-  </div>
-  <div
-    class="css-1v10vm4"
-  >
-    <div
-      class="css-1pi04bi"
-    >
-      <div
-        class="css-1hspyk4"
-      >
-        <div
-          aria-label="Inglés"
-          class="chakra-tag__root css-v5duvn"
-        >
-          <span
-            class="chakra-tag__label css-lgd7le"
-          >
-            Inglés
-          </span>
-        </div>
-      </div>
-      <a
-        class="chakra-link css-hvjfuh"
-        href="/post/1/test-post/"
-      >
-        <img
-          alt="Test Post image"
-          src="https://example.com/test.png"
-          style="transition: all .5s; object-fit: cover;"
-        />
-      </a>
-    </div>
     <p
-      class="css-1iks56v"
+      class="css-vo0z1f"
     >
       01.04.2022
     </p>
+  </div>
+  <div
+    class="css-28c0u4"
+    role="group"
+  >
     <a
-      class="chakra-link css-tb9idc"
+      class="chakra-link css-fexq5i"
+      href="/post/1/test-post/"
+      tabindex="-1"
+    >
+      <img
+        alt="Test Post image"
+        src="https://example.com/test.png"
+        style="object-fit: cover;"
+      />
+    </a>
+    <div
+      class="css-94mkp1"
+    >
+      <span
+        aria-label="Inglés"
+        class="css-1pma5x8"
+      >
+        Inglés
+      </span>
+    </div>
+    <a
+      class="chakra-link css-1ejne8n"
       href="/post/1/test-post/"
       title="Test Post"
     >
       Test Post
     </a>
     <p
-      class="css-17a2hvl"
+      class="css-1k4tq8p"
       title="This is a test post"
     >
       This is a test post
+    </p>
+    <p
+      class="css-vo0z1f"
+    >
+      01.04.2022
     </p>
   </div>
 </div>

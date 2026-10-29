@@ -2,18 +2,29 @@
 
 exports[`ArchivePage > should group the posts by year and month, newest first 1`] = `
 <div
-  class="css-6z51v3"
+  class="css-mzmp8p"
 >
   <div
-    class="css-1jwfb6w"
+    class="css-1kzwpp6"
   >
+    <span
+      aria-label="Everything published"
+      class="css-1pma5x8"
+    >
+      Everything published
+    </span>
     <h1
-      class="chakra-heading css-106fy9k"
+      class="chakra-heading css-lod5a6"
     >
       Archive
     </h1>
+    <p
+      class="css-1gtwqmm"
+    >
+      4 posts
+    </p>
     <div
-      class="css-m9y3e5"
+      class="css-167flqc"
     >
       <div
         class="css-uuwceh"
@@ -22,7 +33,7 @@ exports[`ArchivePage > should group the posts by year and month, newest first 1`
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Filter by category"
-          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          class="chakra-button chakra-menu__trigger css-1pefu01"
           data-controls="menu:_r_4_:content"
           data-part="trigger"
           data-scope="menu"
@@ -57,7 +68,7 @@ exports[`ArchivePage > should group the posts by year and month, newest first 1`
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Filter by year"
-          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          class="chakra-button chakra-menu__trigger css-1pefu01"
           data-controls="menu:_r_5_:content"
           data-part="trigger"
           data-scope="menu"
@@ -86,151 +97,196 @@ exports[`ArchivePage > should group the posts by year and month, newest first 1`
         </button>
       </div>
     </div>
-    <div
-      class="css-193r36g"
+  </div>
+  <div
+    class="css-193r36g"
+  >
+    <section
+      class="css-1o86zmh"
     >
       <div
-        class="css-6hwxwg"
+        class="css-ekomgg"
       >
         <h2
-          class="chakra-heading css-okw3ws"
+          class="chakra-heading css-180wntq"
         >
           2023
         </h2>
-        <div
-          class="css-xiipdd"
+        <p
+          class="css-1r4j5cj"
         >
-          <h3
-            class="chakra-heading css-sk5d80"
-          >
-            March
-          </h3>
-          <ul
-            class="chakra-list__root css-rtmatx"
-            role="list"
-          >
-            <li
-              class="chakra-list__item css-qt6dpk"
-            >
-              <p
-                class="css-12ydly8"
-              >
-                20.03.2023
-              </p>
-              <a
-                class="chakra-link css-1l69cpg"
-                href="/en/post/11/late-march-post/"
-              >
-                Late March post
-              </a>
-            </li>
-            <li
-              class="chakra-list__item css-qt6dpk"
-            >
-              <p
-                class="css-12ydly8"
-              >
-                10.03.2023
-              </p>
-              <a
-                class="chakra-link css-1l69cpg"
-                href="/en/post/10/march-post/"
-              >
-                March post
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="css-xiipdd"
-        >
-          <h3
-            class="chakra-heading css-sk5d80"
-          >
-            January
-          </h3>
-          <ul
-            class="chakra-list__root css-rtmatx"
-            role="list"
-          >
-            <li
-              class="chakra-list__item css-qt6dpk"
-            >
-              <p
-                class="css-12ydly8"
-              >
-                05.01.2023
-              </p>
-              <a
-                class="chakra-link css-1l69cpg"
-                href="/en/post/12/january-post/"
-              >
-                January post
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="css-1yrb0yy"
-        />
+          3 posts
+        </p>
       </div>
       <div
-        class="css-6hwxwg"
+        class="css-1athr7x"
+      >
+        <h3
+          class="chakra-heading css-1cabplt"
+        >
+          March
+        </h3>
+        <ul
+          class="chakra-list__root css-lun0rk"
+          role="list"
+        >
+          <li
+            class="chakra-list__item css-msxq5t"
+          >
+            <span
+              class="css-1ng2c6a"
+            >
+              20
+            </span>
+            <a
+              class="chakra-link css-sz3ym0"
+              href="/en/post/11/late-march-post/"
+            >
+              Late March post
+            </a>
+            <span
+              aria-label="Test Category"
+              class="css-1pj0gbo"
+            >
+              Test Category
+            </span>
+          </li>
+          <li
+            class="chakra-list__item css-msxq5t"
+          >
+            <span
+              class="css-1ng2c6a"
+            >
+              10
+            </span>
+            <a
+              class="chakra-link css-sz3ym0"
+              href="/en/post/10/march-post/"
+            >
+              March post
+            </a>
+            <span
+              aria-label="Test Category"
+              class="css-1pj0gbo"
+            >
+              Test Category
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="css-1athr7x"
+      >
+        <h3
+          class="chakra-heading css-1cabplt"
+        >
+          January
+        </h3>
+        <ul
+          class="chakra-list__root css-lun0rk"
+          role="list"
+        >
+          <li
+            class="chakra-list__item css-msxq5t"
+          >
+            <span
+              class="css-1ng2c6a"
+            >
+              05
+            </span>
+            <a
+              class="chakra-link css-sz3ym0"
+              href="/en/post/12/january-post/"
+            >
+              January post
+            </a>
+            <span
+              aria-label="Test Category"
+              class="css-1pj0gbo"
+            >
+              Test Category
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section
+      class="css-1o86zmh"
+    >
+      <div
+        class="css-ekomgg"
       >
         <h2
-          class="chakra-heading css-okw3ws"
+          class="chakra-heading css-180wntq"
         >
           2022
         </h2>
-        <div
-          class="css-xiipdd"
+        <p
+          class="css-1r4j5cj"
         >
-          <h3
-            class="chakra-heading css-sk5d80"
-          >
-            April
-          </h3>
-          <ul
-            class="chakra-list__root css-rtmatx"
-            role="list"
-          >
-            <li
-              class="chakra-list__item css-qt6dpk"
-            >
-              <p
-                class="css-12ydly8"
-              >
-                01.04.2022
-              </p>
-              <a
-                class="chakra-link css-1l69cpg"
-                href="/en/post/13/old-post/"
-              >
-                Old post
-              </a>
-            </li>
-          </ul>
-        </div>
+          1 post
+        </p>
       </div>
-    </div>
+      <div
+        class="css-1athr7x"
+      >
+        <h3
+          class="chakra-heading css-1cabplt"
+        >
+          April
+        </h3>
+        <ul
+          class="chakra-list__root css-lun0rk"
+          role="list"
+        >
+          <li
+            class="chakra-list__item css-msxq5t"
+          >
+            <span
+              class="css-1ng2c6a"
+            >
+              01
+            </span>
+            <a
+              class="chakra-link css-sz3ym0"
+              href="/en/post/13/old-post/"
+            >
+              Old post
+            </a>
+            <span
+              aria-label="Test Category"
+              class="css-1pj0gbo"
+            >
+              Test Category
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
   </div>
 </div>
 `;
 
 exports[`ArchivePage > should show a spinner while the posts load 1`] = `
 <div
-  class="css-6z51v3"
+  class="css-mzmp8p"
 >
   <div
-    class="css-1jwfb6w"
+    class="css-1kzwpp6"
   >
+    <span
+      aria-label="Everything published"
+      class="css-1pma5x8"
+    >
+      Everything published
+    </span>
     <h1
-      class="chakra-heading css-106fy9k"
+      class="chakra-heading css-lod5a6"
     >
       Archive
     </h1>
     <div
-      class="css-m9y3e5"
+      class="css-167flqc"
     >
       <div
         class="css-uuwceh"
@@ -239,7 +295,7 @@ exports[`ArchivePage > should show a spinner while the posts load 1`] = `
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Filter by category"
-          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          class="chakra-button chakra-menu__trigger css-1pefu01"
           data-controls="menu:_r_0_:content"
           data-part="trigger"
           data-scope="menu"
@@ -274,7 +330,7 @@ exports[`ArchivePage > should show a spinner while the posts load 1`] = `
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="Filter by year"
-          class="chakra-button chakra-menu__trigger css-1t7roaw"
+          class="chakra-button chakra-menu__trigger css-1pefu01"
           data-controls="menu:_r_1_:content"
           data-part="trigger"
           data-scope="menu"
@@ -303,14 +359,14 @@ exports[`ArchivePage > should show a spinner while the posts load 1`] = `
         </button>
       </div>
     </div>
-    <div
-      class="css-1mg3xil"
-    >
-      <span
-        aria-label="Loading posts"
-        class="chakra-spinner css-zirp18"
-      />
-    </div>
+  </div>
+  <div
+    class="css-1mg3xil"
+  >
+    <span
+      aria-label="Loading posts"
+      class="chakra-spinner css-ibin16"
+    />
   </div>
 </div>
 `;

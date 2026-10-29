@@ -3,7 +3,7 @@
 exports[`HeaderImage > should render only the image without post info or credit 1`] = `
 <div>
   <div
-    class="css-1nr4kjm"
+    class="css-fsiw2z"
   >
     <img
       alt="Imagen de la entrada "Mi entrada""
@@ -15,9 +15,11 @@ exports[`HeaderImage > should render only the image without post info or credit 
 `;
 
 exports[`HeaderImage > should render the cover image with the post info and the image credit 1`] = `
-<div>
+<div
+  class="css-foljwq"
+>
   <div
-    class="css-1nr4kjm"
+    class="css-1yenhwq"
   >
     <img
       alt="Imagen de la entrada "Mi entrada""
@@ -25,75 +27,57 @@ exports[`HeaderImage > should render the cover image with the post info and the 
       style="object-fit: cover;"
     />
     <div
-      class="css-ws1zca"
+      class="css-1ktc0fd"
+    />
+    <div
+      class="css-13978ko"
     >
       <div
-        class="css-14tqugy"
+        class="css-1mcghfl"
       >
-        <div
+        <span
           aria-label="Music"
-          class="chakra-tag__root css-cpcb23"
+          class="css-sg6bka"
         >
-          <span
-            class="chakra-tag__label css-lgd7le"
-          >
-            Music
-          </span>
-        </div>
-        <div
+          Music
+        </span>
+        <span
           aria-label="Cine"
-          class="chakra-tag__root css-cpcb23"
+          class="css-sg6bka"
         >
-          <span
-            class="chakra-tag__label css-lgd7le"
-          >
-            Cine
-          </span>
-        </div>
-        <div
+          Cine
+        </span>
+        <span
           aria-label="Documentaries"
-          class="chakra-tag__root css-cpcb23"
+          class="css-sg6bka"
         >
-          <span
-            class="chakra-tag__label css-lgd7le"
-          >
-            Documentaries
-          </span>
-        </div>
+          Documentaries
+        </span>
       </div>
       <a
-        class="chakra-link css-1i4f3aj"
+        class="chakra-link css-1oh6g5l"
         href="/post/1/mi-entrada/"
       >
         Mi entrada
       </a>
-      <div
-        class="css-p069g"
+      <p
+        class="css-1ok2gdy"
       >
-        <p
-          class="css-1jd7gge"
-        >
-          01.04.2022
-        </p>
-        <span
-          aria-orientation="horizontal"
-          class="chakra-separator css-hr9wd4"
-          role="separator"
-        />
-        <p
-          class="css-1j55sjn"
-        >
-          Resumen de la entrada
-        </p>
-      </div>
+        Resumen de la entrada
+      </p>
+      <p
+        class="css-y12y3z"
+      >
+        Test Writer · 01.04.2022
+      </p>
     </div>
   </div>
   <p
-    class="css-az240g"
+    class="css-1h4p7sg"
   >
     Imagen de 
     <a
-      class="chakra-link css-1nqikry"
+      class="chakra-link css-1h34xcs"
       href="https://unsplash.com/jane"
       rel="noreferrer"
       target="_blank"

@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useTranslation } from 'react-i18next'
@@ -24,17 +24,9 @@ export function SearchPostResultItem({
   const parsedDate = formatPostDate(publishedAt)
 
   return (
-    <NextLink href={localizeHref(buildPostPath(id, title))}>
-      <Box display="flex" alignItems="center" py={{ base: '8px', lg: '16px' }} _hover={{ cursor: 'pointer' }}>
-        <Box
-          position="relative"
-          height={{ base: '80px', lg: '120px' }}
-          borderRadius="4px"
-          overflow="hidden"
-          flexGrow={1}
-          maxW={{ base: '100px', lg: '200px' }}
-          minW={{ base: '100px', lg: '200px' }}
-        >
+    <Flex asChild gap={4} alignItems="center" px={3} py={2.5} borderRadius="10px" _hover={{ bg: 'accent.soft' }}>
+      <NextLink href={localizeHref(buildPostPath(id, title))}>
+        <Box position="relative" width="84px" height="60px" borderRadius="8px" overflow="hidden" flex="none">
           <Image
             src={getImageUrlFromMedia({
               media: coverImage,
@@ -42,38 +34,27 @@ export function SearchPostResultItem({
             })}
             alt={t('postSearch.imageAlt', { title })}
             fill
-            priority
+            sizes="84px"
+            style={{ objectFit: 'cover' }}
           />
         </Box>
-        <Box
-          marginLeft="20px"
-          display="flex"
-          flexDir="column"
-          height={{ base: '80px', lg: '120px' }}
-          flexGrow={1}
-          pt={{ base: 0, lg: '8px' }}
-        >
-          <Text fontSize={{ base: 'sm', md: 'md', lg: 'xl' }} fontWeight={600}>
+        <Box minW={0}>
+          <Flex gap={2.5} flexWrap="wrap">
+            {categories?.map(({ code, localizedName }) => (
+              <Tag key={code} label={t(`categories.${code as PostCategoryCodes}`) || localizedName} />
+            ))}
+          </Flex>
+          <Text fontSize="19px" fontWeight={500} lineHeight="1.3">
             {title}
           </Text>
-          <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} fontStyle="italic" lineClamp={2}>
+          <Text fontSize="15px" fontStyle="italic" color="fg.muted" lineClamp={1}>
             {summary}
           </Text>
-          <Box marginTop="auto" display="flex" justifyContent="space-between" alignItems="center">
-            <Text fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}>{parsedDate}</Text>
-            <Box display={{ base: 'none', lg: 'flex' }}>
-              {categories?.map(({ code, localizedName }) => (
-                <Tag
-                  size="sm"
-                  key={code}
-                  mr={2}
-                  label={t(`categories.${code as PostCategoryCodes}`) || localizedName}
-                />
-              ))}
-            </Box>
-          </Box>
+          <Text fontFamily="sans" fontSize="13px" color="fg.muted">
+            {parsedDate}
+          </Text>
         </Box>
-      </Box>
-    </NextLink>
+      </NextLink>
+    </Flex>
   )
 }

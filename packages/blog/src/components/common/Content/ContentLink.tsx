@@ -20,28 +20,29 @@ export const ContentLink: RenderFn<ContentLinkBlockData> = ({ data }) => {
   return (
     <NextLink href={data.link}>
       <Box
-        borderRadius="4px"
-        p="12px"
-        boxShadow="0 0px 3px rgba(0,0,0,.1)"
-        transition="all 0.1s ease-in"
-        _hover={{
-          boxShadow: '0 0 3px rgba(241, 130, 19, .7)',
-        }}
+        my={6}
+        p={4}
+        bg="bg.panel"
+        border="1px solid"
+        borderColor="border"
+        borderRadius="12px"
+        transition="border-color .2s"
+        _hover={{ borderColor: 'accent' }}
       >
         <Flex justifyContent="space-between" alignItems="center">
           <Flex direction="column" justifyContent="center">
-            <Text as="b" fontSize="lg">
+            <Text fontWeight={600} fontSize="lg" lineHeight="1.3">
               {data.meta.title}
             </Text>
           </Flex>
           {data.meta.image?.url && (
-            <Flex width={65} height={65} minW={65} borderRadius={4} overflow="hidden" marginLeft="12px">
+            <Flex width={65} height={65} minW={65} borderRadius="8px" overflow="hidden" marginLeft="12px">
               <Image src={data.meta.image.url} alt={data.meta.title} width={65} height={65} />
             </Flex>
           )}
         </Flex>
         {data.meta.description && (
-          <Text as="i" lineClamp={2} mt="4px">
+          <Text fontSize="16px" color="fg.muted" lineClamp={2} mt="4px">
             {data.meta.description}
           </Text>
         )}

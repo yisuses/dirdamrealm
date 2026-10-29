@@ -1,14 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Tag > should render the label 1`] = `
-<div
+<span
   aria-label="Música"
-  class="chakra-tag__root css-v5duvn"
+  class="css-1pma5x8"
 >
-  <span
-    class="chakra-tag__label css-lgd7le"
-  >
-    Música
-  </span>
-</div>
+  Música
+</span>
 `;

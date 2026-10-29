@@ -117,7 +117,7 @@ describe('ArchivePage', () => {
     expect(getAllPosts).toHaveBeenCalledWith({ locale: 'en', category: 'music' })
     expect(screen.getByRole('button', { name: 'Filter by category' })).toHaveTextContent('Music')
     // Previous results stay visible (dimmed) while the category loads.
-    const results = () => screen.getAllByRole('heading', { level: 2 })[0]!.parentElement!.parentElement!
+    const results = () => screen.getAllByRole('heading', { level: 2 })[0]!.closest('section')!.parentElement!
     expect(screen.getByRole('link', { name: 'Old post' })).toBeInTheDocument()
     expect(results()).toHaveStyle({ opacity: '0.5' })
 
@@ -126,7 +126,7 @@ describe('ArchivePage', () => {
     expect(await screen.findByRole('link', { name: 'Music post' })).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: 'Old post' })).not.toBeInTheDocument()
     expect(results()).toHaveStyle({ opacity: '1' })
-    const year = screen.getByRole('heading', { level: 2 }).parentElement!
+    const year = screen.getByRole('heading', { level: 2 }).closest('section')!
     expect(within(year).getByRole('heading', { level: 3 })).toHaveTextContent('June')
     // The year selector keeps listing every year of the unfiltered archive.
     await user.click(screen.getByRole('button', { name: 'Filter by year' }))

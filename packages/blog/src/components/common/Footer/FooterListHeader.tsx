@@ -9,7 +9,15 @@ interface FooterListHeaderProps {
 
 export const FooterListHeader = ({ children }: FooterListHeaderProps) => {
   return (
-    <Text fontWeight="700" fontSize="lg" mb={2} color="white">
+    <Text
+      fontFamily="sans"
+      fontWeight={600}
+      fontSize="13px"
+      textTransform="uppercase"
+      letterSpacing="0.1em"
+      color="fg.muted"
+      mb={3.5}
+    >
       {children}
     </Text>
   )

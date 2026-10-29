@@ -2,66 +2,52 @@
 
 exports[`SearchPostResultItem > should link to the post and show its thumbnail, summary and categories 1`] = `
 <a
+  class="css-12f6lsa"
   href="/post/5/mi-entrada/"
 >
   <div
-    class="css-15gju7i"
+    class="css-17opm27"
+  >
+    <img
+      alt="Imagen de la entrada "Mi entrada""
+      src="/media/thumbnail_test.jpg"
+      style="object-fit: cover;"
+    />
+  </div>
+  <div
+    class="css-31l7gp"
   >
     <div
-      class="css-17lk5co"
+      class="css-1qgcne3"
     >
-      <img
-        alt="Imagen de la entrada "Mi entrada""
-        src="/media/thumbnail_test.jpg"
-      />
+      <span
+        aria-label="Ingeniería"
+        class="css-1pma5x8"
+      >
+        Ingeniería
+      </span>
+      <span
+        aria-label="Sin traducir"
+        class="css-1pma5x8"
+      >
+        Sin traducir
+      </span>
     </div>
-    <div
-      class="css-zf16dg"
+    <p
+      class="css-dllerq"
     >
-      <p
-        class="css-6zm9o6"
-      >
-        Mi entrada
-      </p>
-      <p
-        class="css-vhj31h"
-      >
-        Resumen de la entrada
-      </p>
-      <div
-        class="css-3udxz1"
-      >
-        <p
-          class="css-1mzshad"
-        >
-          01.04.2022
-        </p>
-        <div
-          class="css-7yay19"
-        >
-          <div
-            aria-label="Ingeniería"
-            class="chakra-tag__root css-1wm4rjm"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              Ingeniería
-            </span>
-          </div>
-          <div
-            aria-label="Sin traducir"
-            class="chakra-tag__root css-1wm4rjm"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              Sin traducir
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+      Mi entrada
+    </p>
+    <p
+      class="css-1uel8rr"
+    >
+      Resumen de la entrada
+    </p>
+    <p
+      class="css-125lwp6"
+    >
+      01.04.2022
+    </p>
   </div>
 </a>
 `;

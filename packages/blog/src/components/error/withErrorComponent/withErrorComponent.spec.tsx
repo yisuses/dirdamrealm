@@ -23,14 +23,14 @@ describe('withErrorComponent', () => {
     const { container } = renderWithProviders(<GreetingWithError name="Saúl" error statusCode={404} />)
 
     expect(screen.queryByText('Hello Saúl')).not.toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('No encontrado')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Esta página se ha ido a la grada')
     expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should default to a 500 error page when no status code is given', () => {
     renderWithProviders(<GreetingWithError name="Saúl" error />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Error')
-    expect(screen.getByRole('link', { name: 'Recarga la página' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Algo no ha ido bien')
+    expect(screen.getByRole('link', { name: 'Recargar la página' })).toBeInTheDocument()
   })
 })

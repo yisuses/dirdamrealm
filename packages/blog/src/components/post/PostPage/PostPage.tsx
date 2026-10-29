@@ -1,17 +1,14 @@
 'use client'
 
-import { Box, Center, Separator as DividerLine, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import FacebookLogo from '@iconify/icons-ion/logo-facebook'
-import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
-import TwitterLogo from '@iconify/icons-ion/logo-twitter'
-import ShareLogo from '@iconify/icons-ion/share-social-sharp'
-import { Icon, IconifyIcon } from '@iconify/react'
+import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { useParams, usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { IconType } from 'react-icons'
+import { FaFacebookF, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
+import { LuShare2 } from 'react-icons/lu'
 
 import { Content, HeaderImage, PostGrid, SocialButton, Tag } from '@blog/components/common'
-import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useGetData } from '@blog/hooks'
 import { fixedEncodeURIComponent, formatPostDate, getReadingTime, publicUrl } from '@blog/utils'
 import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
@@ -20,7 +17,7 @@ import { PostComments } from '../PostComments'
 
 type ShareButtonProps = {
   label: string
-  icon: IconifyIcon
+  icon: IconType
   href?: string
   onClick?: () => void
 }
@@ -32,9 +29,6 @@ export function PostPage() {
 
   const postKey = getPostKey(Number(postId))
   const post = useGetData<Post>(postKey)
-
-  // Hooks (incl. useColorModeValue → next-themes) must run before any early return.
-  const dividerBorderColor = useColorModeValue('blackAlpha.800', 'white')
 
   if (!post) {
     return null
@@ -54,7 +48,7 @@ export function PostPage() {
     setNativeNavigator(navigator)
   }, [])
 
-  const { id, title, content, publishedAt, categories, writer } = post
+  const { id, title, summary, content, publishedAt, categories, writer } = post
 
   const parsedDate = formatPostDate(publishedAt)
 
@@ -65,109 +59,118 @@ export function PostPage() {
 
   const shareButtonsData: ShareButtonProps[] = [
     {
-      label: t('postPage.share', { socialNetwork: 'Twitter' }),
+      label: t('postPage.share', { socialNetwork: 'X' }),
       href: `https://twitter.com/intent/tweet?text=${postSocialTitle}&url=${encodedPostUrl}`,
-      icon: TwitterLogo,
+      icon: FaXTwitter,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Facebook' }),
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl}`,
-      icon: FacebookLogo,
+      icon: FaFacebookF,
     },
     {
       label: t('postPage.share', { socialNetwork: 'Linkedin' }),
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedPostUrl}`,
-      icon: LinkedinLogo,
+      icon: FaLinkedinIn,
     },
   ]
 
   if (nativeNavigator && nativeNavigator.share !== undefined) {
     shareButtonsData.push({
       label: t('postPage.share', { socialNetwork: '...' }),
-      icon: ShareLogo,
+      icon: LuShare2,
       onClick: () => nativeNavigator.share({ url: postUrl }),
     })
   }
 
-  const socialButtons = shareButtonsData.map(({ label, href, icon, onClick }, index) => (
-    <SocialButton key={index} label={label} href={href} onClick={onClick}>
-      <Icon icon={icon} width={24} height={24} />
+  const socialButtons = shareButtonsData.map(({ label, href, icon: ShareIcon, onClick }) => (
+    <SocialButton key={label} label={label} href={href} onClick={onClick}>
+      <ShareIcon size={15} />
     </SocialButton>
   ))
 
-  const dividerLine = <DividerLine orientation="horizontal" w="20px" mx="16px" borderColor={dividerBorderColor} />
+  const mainCategory = categories?.[0]
+  const initials = (writer?.name ?? '')
+    .split(' ')
+    .slice(0, 2)
+    .map(word => word[0])
+    .join('')
 
   return (
     <>
       <HeaderImage post={post} />
-
-      <Flex justifyContent="center" mx="16px" mt={{ base: '40px' }}>
-        <Flex direction="column" justifyContent="flex-start" width="100%" maxW="65ch">
-          <Box>
-            <Heading
-              as="h1"
-              fontSize={{ base: '32px', md: '52px' }}
-              lineHeight={{ base: '44px', md: '64px' }}
-              textAlign={{ base: 'center', md: 'left' }}
-              fontFamily="Lora"
-            >
-              {title}
-            </Heading>
+      <Box as="article" maxW="748px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 8, md: 12 }}>
+        {mainCategory && <Tag label={mainCategory.localizedName} />}
+        <Heading
+          as="h1"
+          fontSize={{ base: '36px', md: '50px' }}
+          lineHeight="1.1"
+          fontWeight={500}
+          letterSpacing="-0.01em"
+          mt={3}
+          mb={3.5}
+        >
+          {title}
+        </Heading>
+        {summary && (
+          <Text fontSize={{ base: '20px', md: '23px' }} lineHeight="1.5" fontStyle="italic" color="fg.muted" mb={5.5}>
+            {summary}
+          </Text>
+        )}
+        <Flex alignItems="center" gap={3} py={4} borderY="1px solid" borderColor="border" flexWrap="wrap">
+          {initials && (
             <Flex
-              fontSize="14px"
-              direction={{ base: 'column', md: 'row' }}
-              mt={6}
-              alignItems={{ base: 'flex-start', md: 'center' }}
+              aria-hidden
+              w={10}
+              h={10}
+              borderRadius="full"
+              bg="accent.soft"
+              color="accent"
+              alignItems="center"
+              justifyContent="center"
+              fontFamily="sans"
+              fontWeight={600}
+              flex="none"
             >
-              <Flex
-                mt={{ base: '8px', md: 0 }}
-                height="fit-content"
-                width={{ base: '100%', md: 'auto' }}
-                grow={1}
-                wrap="wrap"
-                direction={{ base: 'column', md: 'row' }}
-                alignItems={{ base: 'center' }}
-              >
-                <Text as="i" display="block">
-                  {t('postPage.author', { name: writer?.name })}
-                </Text>
-                <Center h="22px">{dividerLine}</Center>
-                <Text>{parsedDate}</Text>
-                <Center h="22px">{dividerLine}</Center>
-                <Text>{t('postPage.readingTime', { minutes: getReadingTime(content) })}</Text>
-                <Center h="22px">{dividerLine}</Center>
-                <Stack direction="row" gap={2} ml={{ base: 0 }}>
-                  {socialButtons}
-                </Stack>
-              </Flex>
+              {initials}
             </Flex>
+          )}
+          <Box fontFamily="sans">
+            {writer?.name && (
+              <Text fontSize="15px" fontWeight={500}>
+                {writer.name}
+              </Text>
+            )}
+            <Text fontSize="14px" color="fg.muted">
+              {parsedDate} · {t('postPage.readingTime', { minutes: getReadingTime(content) })}
+            </Text>
           </Box>
-          <Flex direction="column" width="100%" justifyContent="center" mt="52px">
-            <Content content={content} />
-          </Flex>
-          <Flex direction="row">
-            <Stack direction="row" gap={2} mt="40px">
-              {categories?.map(category => (
-                <Tag key={category.code} label={category.localizedName} />
-              ))}
-            </Stack>
-            <Stack direction="row" gap={2} ml="auto" pt={8}>
-              {socialButtons}
-            </Stack>
-          </Flex>
-          <Center height="80px">
-            <DividerLine orientation="horizontal" w="90%" borderColor="blackAlpha.500" />
-          </Center>
-
-          <PostComments postId={id} comments={comments} postIds={postCommentIds} />
+          <Stack direction="row" gap={2} ml="auto" display={{ base: 'none', sm: 'flex' }}>
+            {socialButtons}
+          </Stack>
         </Flex>
-      </Flex>
-
+        <Box mt={{ base: 8, md: 10 }} fontSize={{ base: '18px', md: '19px' }} lineHeight="1.7">
+          <Content content={content} />
+        </Box>
+        <Flex alignItems="center" gap={3} mt={10} pt={6} borderTop="1px solid" borderColor="border" flexWrap="wrap">
+          <Flex gap={4} flexWrap="wrap">
+            {categories?.map(category => (
+              <Tag key={category.code} label={category.localizedName} />
+            ))}
+          </Flex>
+          <Stack direction="row" gap={2} ml="auto">
+            {socialButtons}
+          </Stack>
+        </Flex>
+        <PostComments postId={id} comments={comments} postIds={postCommentIds} />
+      </Box>
       {sameCategoryPosts && sameCategoryPosts?.length > 0 && (
-        <Flex flexDir="column" mt={{ base: '60px' }} mb="60px" px="20px">
-          <Heading fontFamily="Lora">{t('postPage.sameCategoryPosts')}</Heading>
-          <PostGrid posts={sameCategoryPosts} limit={4} />
-        </Flex>
+        <Box as="section" maxW="1248px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 16, md: 24 }}>
+          <Heading as="h2" fontSize={{ base: '26px', md: '30px' }} fontWeight={500} mb={6}>
+            {t('postPage.sameCategoryPosts')}
+          </Heading>
+          <PostGrid posts={sameCategoryPosts} limit={3} />
+        </Box>
       )}
     </>
   )

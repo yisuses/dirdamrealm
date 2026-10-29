@@ -2,27 +2,29 @@
 
 exports[`Locale error boundary > should report the error and render the 500 page 1`] = `
 <div
-  class="css-100wagp"
+  class="css-1t29f2g"
 >
-  <h1
-    class="chakra-heading css-5cwrvr"
+  <p
+    class="css-1x4bkz5"
   >
-    Error
+    Ups
+  </p>
+  <h1
+    class="chakra-heading css-117ngx5"
+  >
+    Algo no ha ido bien
   </h1>
   <p
-    class="css-zashnx"
+    class="css-1ymw25l"
   >
-    <a
-      class="chakra-link css-1nqikry"
-      href="/"
-    >
-      Recarga la página
-    </a>
+    Ha habido un problema al cargar esta página. Prueba a recargarla dentro de un momento.
   </p>
-  <p
-    class="css-1r4ebq8"
+  <a
+    class="chakra-button css-dwuubz"
+    href="/"
+    type="button"
   >
-    Ups, algo no ha ido como debía...
-  </p>
+    Recargar la página
+  </a>
 </div>
 `;

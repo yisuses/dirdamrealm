@@ -4,15 +4,15 @@
   "footer": {
     "contact": "Contact",
     "categories": "Categories",
-    "inOtherMedia": "In other media",
-    "subscribe": "Subscribe",
-    "theme": "Theme by <link></link>",
     "version": "Version {{versionNumber}}",
     "copyright": "© {{year}} White Emotion.",
-    "sendAMail": "Send an e-mail"
+    "sendAMail": "Send an e-mail",
+    "writtenBy": "Written by {{name}}."
   },
   "header": {
     "logo": "White Emotion logo",
+    "home": "Home",
+    "tagline": "Sport, music, current affairs and travel, told with emotion",
     "weLogo": "White Emotion logo",
     "menuButtonClosed": "Open menu",
     "menuButtonOpened": "Close menu",
@@ -21,7 +21,9 @@
     "search": {
       "title": "Are you looking for something specific? (title)",
       "inputTitle": "Search by post",
-      "inputPlaceholder": "Post title"
+      "inputPlaceholder": "Post title",
+      "results_one": "{{count}} post",
+      "results_other": "{{count}} posts"
     }
   },
   "coverImage": {

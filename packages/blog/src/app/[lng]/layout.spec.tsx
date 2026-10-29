@@ -7,7 +7,6 @@ import { getAbout, getCategories } from '@blog/data'
 
 import LocaleLayout, { generateStaticParams, viewport } from './layout'
 
-vi.mock('@fontsource/spartan', () => ({}))
 vi.mock('next-i18next/server', () => ({
   generateI18nStaticParams: () => [{ lng: 'es' }, { lng: 'en' }],
 }))
@@ -61,7 +60,11 @@ describe('Locale layout', () => {
   })
 
   it('should lock the viewport scale', () => {
-    expect(viewport).toEqual({ width: 'device-width', initialScale: 1, maximumScale: 1, userScalable: false })
+    expect(viewport).toMatchObject({ width: 'device-width', initialScale: 1, maximumScale: 1, userScalable: false })
+    expect(viewport.themeColor).toEqual([
+      { media: '(prefers-color-scheme: light)', color: '#FAF8F4' },
+      { media: '(prefers-color-scheme: dark)', color: '#121214' },
+    ])
   })
 
   it('should prerender every locale', () => {

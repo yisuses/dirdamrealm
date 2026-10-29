@@ -11,14 +11,22 @@ interface FooterListLinkProps {
   forceAnchor?: boolean
 }
 
+const linkStyles = {
+  fontFamily: 'sans',
+  fontSize: '15px',
+  color: 'fg',
+  width: 'fit-content',
+  _hover: { color: 'accent', textDecoration: 'none' },
+} as const
+
 export const FooterListLink = ({ href, children, target, forceAnchor }: FooterListLinkProps) => {
   return forceAnchor ? (
-    <Link href={href} fontWeight="400" fontSize="xs" color="gray.50">
+    <Link href={href} {...linkStyles}>
       {children}
     </Link>
   ) : (
-    <Link as={NextLink} href={href} target={target} fontWeight="400" fontSize="xs" color="gray.50">
-      {children}
+    <Link asChild target={target} {...linkStyles}>
+      <NextLink href={href}>{children}</NextLink>
     </Link>
   )
 }
