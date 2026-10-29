@@ -472,8 +472,18 @@ export async function listPostsForAdmin({ query, locale, status, categoryId, pag
   }
 
   const ids = found.map(post => post.id)
+  // Only what the table shows: the texts and drafts are most of a translation's size.
   const translations = await db
-    .select()
+    .select({
+      postId: postTranslations.postId,
+      locale: postTranslations.locale,
+      number: postTranslations.number,
+      status: postTranslations.status,
+      scheduledFor: postTranslations.scheduledFor,
+      title: postTranslations.title,
+      draftTitle: sql<string | null>`${postTranslations.draft}->>'title'`,
+      hasDraft: sql<boolean>`${postTranslations.draft} is not null`,
+    })
     .from(postTranslations)
     .where(inArray(postTranslations.postId, ids))
     .orderBy(asc(postTranslations.locale))
@@ -490,7 +500,9 @@ export async function listPostsForAdmin({ query, locale, status, categoryId, pag
 
   const rows = found.map(post => {
     const own = translations.filter(translation => translation.postId === post.id)
-    const titled = own.map(translation => (translation.draft ?? translation).title).find(Boolean)
+    const titled = own
+      .map(translation => (translation.hasDraft ? translation.draftTitle : translation.title))
+      .find(Boolean)
     return {
       id: post.id,
       title: titled ?? '',
@@ -501,7 +513,7 @@ export async function listPostsForAdmin({ query, locale, status, categoryId, pag
         number: translation.number,
         status: translation.status,
         scheduledFor: translation.scheduledFor,
-        hasUnpublishedChanges: translation.status === 'published' && Boolean(translation.draft || post.draft),
+        hasUnpublishedChanges: translation.status === 'published' && (translation.hasDraft || Boolean(post.draft)),
       })),
     }
   })

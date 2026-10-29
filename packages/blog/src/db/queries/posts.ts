@@ -1,4 +1,4 @@
-import { type SQL, and, asc, desc, eq, exists, inArray, isNull, sql } from 'drizzle-orm'
+import { type SQL, and, asc, desc, eq, exists, getTableColumns, inArray, isNull, sql } from 'drizzle-orm'
 
 import { LOCALES } from '@blog/core/i18n/config'
 import { getLocalizedPosts } from '@blog/utils/getLocalizedPosts/getLocalizedPosts'
@@ -9,7 +9,25 @@ import { toCategory } from './categories'
 import { toMedia } from './media'
 
 type Relation = 'categories' | 'coverImage' | 'localizations' | 'writer'
-type Row = { translation: typeof postTranslations.$inferSelect; post: typeof posts.$inferSelect }
+type Translation = typeof postTranslations.$inferSelect
+type PostRow = typeof posts.$inferSelect
+// Lists read neither the text nor the pending drafts: a post's text is most of its size, and the
+// lists, built for every page of every build, used to fetch it whole for each post they show.
+type Row = {
+  translation: Omit<Translation, 'content' | 'draft'> & Partial<Pick<Translation, 'content'>>
+  post: Omit<PostRow, 'draft'>
+}
+
+/* eslint-disable @typescript-eslint/no-unused-vars -- the drafts are left out of every select */
+const {
+  content: translationContent,
+  draft: _translationDraft,
+  ...listTranslationColumns
+} = getTableColumns(postTranslations)
+const { draft: _postDraft, ...listPostColumns } = getTableColumns(posts)
+/* eslint-enable @typescript-eslint/no-unused-vars */
+// What a list reads in place of a text it doesn't show.
+const noContent = { time: 0, version: '', blocks: [] } as unknown as Post['content']
 
 const isPublished = and(eq(postTranslations.status, 'published'), isNull(posts.deletedAt))
 
@@ -24,9 +42,10 @@ function inCategory(code: string) {
   )
 }
 
-function selectRows(where: SQL | undefined, orderBy: SQL[], limit?: number) {
+function selectRows(where: SQL | undefined, orderBy: SQL[], limit?: number, withContent = false) {
+  const translation = withContent ? { ...listTranslationColumns, content: translationContent } : listTranslationColumns
   const query = getDb()
-    .select({ translation: postTranslations, post: posts })
+    .select({ translation, post: listPostColumns })
     .from(postTranslations)
     .innerJoin(posts, eq(posts.id, postTranslations.postId))
     .where(and(isPublished, where))
@@ -44,7 +63,7 @@ function toPost({ translation, post }: Row): Post {
     publishedAt: translation.publishedAt!.toISOString(),
     createdAt: translation.createdAt.toISOString(),
     updatedAt: translation.updatedAt.toISOString(),
-    content: translation.content,
+    content: translation.content ?? noContent,
     coverImage: null,
     coverImageAuthor: post.coverImageAuthor,
     coverImageSourceUrl: post.coverImageSourceUrl,
@@ -167,7 +186,7 @@ export async function getAllPostsFromDb({ locale, category }: { locale?: AppLoca
 
 /** Same contract as the Strapi `getPostById`: a published translation by its public number. */
 export async function getPostByIdFromDb({ id }: { id: number }): Promise<Post | undefined> {
-  const rows = await selectRows(eq(postTranslations.number, id), [], 1)
+  const rows = await selectRows(eq(postTranslations.number, id), [], 1, true)
   const [post] = await hydrate(rows, ['categories', 'coverImage', 'localizations', 'writer'])
   return post
 }

@@ -118,7 +118,8 @@ describe('post queries', () => {
         coverImageSourceUrl: 'https://unsplash.com/a',
         imgUrl: undefined,
         writer: null,
-        content: content('Música en Madrid'),
+        // Lists leave the text out; only a single post reads it.
+        content: { time: 0, version: '', blocks: [] },
       })
       expect(spanish.coverImage).toMatchObject({ name: 'cover-a', alternativeText: 'Portada', width: 1200 })
       expect(spanish.categories?.map(c => [c.code, c.localizedName])).toEqual([
@@ -184,8 +185,11 @@ describe('post queries', () => {
         id: 101,
         locale: 'en',
         writer: { name: 'José Madrid', twitter: '@jose', personalUrl: null, avatar: null },
+        content: content('Music in Madrid'),
         localizations: [{ id: 100, locale: 'es' }],
       })
+      // The other language comes without its text.
+      expect(post?.localizations?.[0]?.content).toEqual({ time: 0, version: '', blocks: [] })
       expect(post?.categories?.map(c => c.localizedName)).toEqual(['Music and cinema', 'Travel'])
     })
 
