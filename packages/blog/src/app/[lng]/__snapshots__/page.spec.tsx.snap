@@ -4,9 +4,20 @@ exports[`Home page > should build the metadata for the default locale 1`] = `
 {
   "description": "Página de inicio de Emoción Blanca",
   "icons": {
-    "icon": "/favicon.ico",
+    "apple": "/apple-icon.png",
+    "icon": [
+      {
+        "sizes": "48x48",
+        "url": "/favicon.ico",
+      },
+      {
+        "type": "image/svg+xml",
+        "url": "/icon.svg",
+      },
+    ],
   },
   "keywords": "football,travel,work,life,balance,music,politics,news",
+  "manifest": "/manifest.webmanifest",
   "openGraph": {
     "alternateLocale": [
       "en_GB",

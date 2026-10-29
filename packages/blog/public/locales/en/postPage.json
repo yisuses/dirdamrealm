@@ -2,7 +2,6 @@
   "postPage": {
     "title": "{{postName}}",
     "readingTime": "{{minutes}} min reading time",
-    "author": "by {{name}}",
     "share": "Share on {{socialNetwork}}",
     "shareTitle": "Check this article at White Emotion: {{title}}",
     "sameCategoryPosts": "Also in this category",
@@ -14,7 +13,7 @@
       "required": "Required field.",
       "minLength": "Minimum length should be 4 characters.",
       "maxNameLength": "Maximun length should be 40 characters.",
-      "addComment": "Add comment",
+      "addComment": "Post comment",
       "adding": "Adding"
     }
   }

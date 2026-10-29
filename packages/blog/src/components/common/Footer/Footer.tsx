@@ -1,15 +1,13 @@
 'use client'
 
-import { Box, Container, Link, LinkProps, SimpleGrid, Stack, Text } from '@chakra-ui/react'
-import FacebookLogo from '@iconify/icons-ion/logo-facebook'
-import InstagramLogo from '@iconify/icons-ion/logo-instagram'
-import LinkedinLogo from '@iconify/icons-ion/logo-linkedin'
-import TwitterLogo from '@iconify/icons-ion/logo-twitter'
-import { Icon, IconifyIcon } from '@iconify/react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Box, Flex, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { useTranslation } from 'react-i18next'
+import { IconType } from 'react-icons'
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
 
-import { SocialButton } from '@blog/components/common'
-import { useColorModeValue } from '@blog/components/ui/color-mode'
+import { HeaderLogo, SocialButton } from '@blog/components/common'
+import { useLocalizeHref } from '@blog/hooks'
 
 import { FooterListHeader } from './FooterListHeader'
 import { FooterListLink } from './FooterListLink'
@@ -24,95 +22,92 @@ export interface FooterProps {
   about: About
 }
 
-const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
-  <Link href={href} title={label} target="_blank" rel="noreferrer" color="inherit" textDecoration="underline" {...rest}>
-    {label}
-  </Link>
-)
-
 export function Footer({ categories, about }: FooterProps) {
   const { t } = useTranslation('common')
+  const localizeHref = useLocalizeHref()
 
-  const socials: { label: string; href: string; icon: IconifyIcon }[] = []
-
-  if (about.twitterUrl) socials.push({ label: 'Twitter', href: about.twitterUrl, icon: TwitterLogo })
-  if (about.facebookUrl) socials.push({ label: 'Facebook', href: about.facebookUrl, icon: FacebookLogo })
-  if (about.instagramUrl) socials.push({ label: 'Instagram', href: about.instagramUrl, icon: InstagramLogo })
-  if (about.linkedinUrl) socials.push({ label: 'Linkedin', href: about.linkedinUrl, icon: LinkedinLogo })
+  const socials: { label: string; href: string; icon: IconType }[] = []
+  if (about.twitterUrl) socials.push({ label: 'X', href: about.twitterUrl, icon: FaXTwitter })
+  if (about.facebookUrl) socials.push({ label: 'Facebook', href: about.facebookUrl, icon: FaFacebookF })
+  if (about.instagramUrl) socials.push({ label: 'Instagram', href: about.instagramUrl, icon: FaInstagram })
+  if (about.linkedinUrl) socials.push({ label: 'Linkedin', href: about.linkedinUrl, icon: FaLinkedinIn })
 
   return (
-    <Box bg="gray.900" color="gray.50" w="full">
-      <Container as={Stack} maxW="8xl" p="1rem">
-        <SimpleGrid columns={{ base: 1, md: about.display ? 3 : 2 }} gap={8} justifyItems={{ base: 'center' }}>
-          {about.display && (
-            <Stack align={{ base: 'center', md: 'flex-start' }}>
-              <FooterListHeader>{t('footer.contact')}</FooterListHeader>
-              {about.name && (
-                <Text fontWeight="400" fontSize="xs" mb={2} color="gray.50">
-                  {about.name}
-                </Text>
-              )}
-              {about.email && (
-                <FooterListLink href={`mailto:${about.email}`} forceAnchor>
-                  {t('footer.sendAMail')}
-                </FooterListLink>
-              )}
+    <Box as="footer" mt={{ base: 20, md: 28 }} bg="bg.panel" borderTop="1px solid" borderColor="border" w="full">
+      <SimpleGrid
+        maxW="1248px"
+        mx="auto"
+        px={{ base: 4, md: 6 }}
+        pt={12}
+        pb={8}
+        columns={{ base: 1, md: about.display ? 3 : 2 }}
+        templateColumns={{ md: about.display ? '2fr 1fr 1fr' : '2fr 1fr' }}
+        gap={10}
+      >
+        <Stack gap={4}>
+          <Flex asChild alignItems="center" gap="12px" width="fit-content">
+            <NextLink href={localizeHref('/')} aria-label={t('header.logo')}>
+              <Box color="accent" width="24px">
+                <HeaderLogo width="100%" />
+              </Box>
+              <Text fontFamily="sans" fontWeight={500} fontSize="15px" letterSpacing="0.28em">
+                WHITE EMOTION
+              </Text>
+            </NextLink>
+          </Flex>
+          <Text color="fg.muted" fontSize="17px" maxW="360px">
+            {t('header.tagline')}
+            {about.display && about.name && `. ${t('footer.writtenBy', { name: about.name })}`}
+          </Text>
+          {about.display && socials.length > 0 && (
+            <Stack direction="row" gap={2}>
+              {socials.map(({ label, href, icon: SocialIcon }) => (
+                <SocialButton key={label} label={label} href={href}>
+                  <SocialIcon size={15} />
+                </SocialButton>
+              ))}
             </Stack>
           )}
-
-          <Stack align={{ base: 'center', md: 'flex-start' }}>
-            <FooterListHeader>{t('footer.categories')}</FooterListHeader>
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap="8px" justifyItems={{ base: 'center', md: 'normal' }}>
-              {categories.map(({ localizedName, url }, index) => (
-                <FooterListLink key={index} href={url}>
-                  {localizedName}
-                </FooterListLink>
-              ))}
-            </SimpleGrid>
+        </Stack>
+        <Stack gap={0}>
+          <FooterListHeader>{t('footer.categories')}</FooterListHeader>
+          <Stack gap={2}>
+            {categories.map(({ localizedName, url }) => (
+              <FooterListLink key={url} href={url}>
+                {localizedName}
+              </FooterListLink>
+            ))}
+            <FooterListLink href={localizeHref('/archive/')}>{t('header.archive')}</FooterListLink>
           </Stack>
-
-          <Stack align={{ base: 'center', md: 'flex-start' }}>
-            <FooterListHeader>{t('footer.inOtherMedia')}</FooterListHeader>
-            {about.display && socials.length > 0 && (
-              <Stack direction="row" gap={6} paddingBottom="2">
-                {socials.map(({ label, href, icon }, index) => (
-                  <SocialButton key={index} label={label} href={href}>
-                    <Icon icon={icon} width={30} height={30} color={useColorModeValue('white', 'gray.800')} />
-                  </SocialButton>
-                ))}
-              </Stack>
+        </Stack>
+        {about.display && (
+          <Stack gap={0}>
+            <FooterListHeader>{t('footer.contact')}</FooterListHeader>
+            {about.email && (
+              <FooterListLink href={`mailto:${about.email}`} forceAnchor>
+                {t('footer.sendAMail')}
+              </FooterListLink>
             )}
-            {/* TODO: suscriptions: <FooterListLink href="#">{t('footer.subscribe')}</FooterListLink> */}
           </Stack>
-        </SimpleGrid>
-      </Container>
-      <Box bg="gray.800" color="gray.50">
-        <Container as={Stack} width="100%" maxW="100%" p={4}>
-          <SimpleGrid
-            columns={{ base: 1, md: about.display ? 3 : 2 }}
-            gap={{ base: 2, md: 8 }}
-            justifyItems={{ base: 'center' }}
-            fontSize="sm"
-          >
-            <Text justifySelf={{ base: 'inherit', md: 'start' }}>
-              {t('footer.copyright', { year: new Date().getFullYear() })}
-            </Text>
-            <Text>
-              <Trans
-                i18nKey="footer.theme"
-                components={{
-                  link: (
-                    <TransLink href="https://www.figma.com/community/file/1036294505314600437" label="SimpleSmart" />
-                  ),
-                }}
-              />
-            </Text>
-            <Text justifySelf={{ base: 'inherit', md: 'end' }}>
-              {t('footer.version', { versionNumber: process.env.APP_VERSION })}
-            </Text>
-          </SimpleGrid>
-        </Container>
-      </Box>
+        )}
+      </SimpleGrid>
+      <Flex
+        borderTop="1px solid"
+        borderColor="border"
+        maxW="1248px"
+        mx="auto"
+        px={{ base: 4, md: 6 }}
+        py={4}
+        direction={{ base: 'column', sm: 'row' }}
+        justifyContent="space-between"
+        gap={1}
+        fontFamily="sans"
+        fontSize="13px"
+        color="fg.muted"
+      >
+        <Text>{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
+        <Text>{t('footer.version', { versionNumber: process.env.APP_VERSION })}</Text>
+      </Flex>
     </Box>
   )
 }

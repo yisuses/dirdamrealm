@@ -3,17 +3,18 @@
 exports[`ContentQuote > should render the quote with its caption 1`] = `
 <div>
   <blockquote
-    class="css-1l5yy3w"
+    class="css-1j8dlme"
   >
     To be 
     <i>
       or not
     </i>
+    <footer
+      class="css-qx1fta"
+    >
+      — 
+      Hamlet
+    </footer>
   </blockquote>
-  <footer
-    class="css-1slgqn2"
-  >
-    Hamlet
-  </footer>
 </div>
 `;

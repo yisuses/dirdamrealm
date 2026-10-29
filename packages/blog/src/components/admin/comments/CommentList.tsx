@@ -72,10 +72,10 @@ export function CommentList({ comments, total, query, page }: CommentListProps) 
             placeholder="Buscar por autor o texto"
             aria-label="Buscar comentarios por autor o texto"
             size="lg"
-            bg="white"
+            bg="bg.panel"
             maxW={{ md: 'sm' }}
           />
-          <Button type="submit" size="lg" variant="outline" bg="white">
+          <Button type="submit" size="lg" variant="outline" bg="bg.panel">
             Buscar
           </Button>
           {query && (
@@ -105,7 +105,7 @@ export function CommentList({ comments, total, query, page }: CommentListProps) 
           {query ? 'Ningún comentario coincide con la búsqueda.' : 'Todavía no hay comentarios.'}
         </Text>
       ) : (
-        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
+        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="bg.panel">
           <Table.Root size="lg">
             <Table.Header>
               <Table.Row>
@@ -162,7 +162,7 @@ export function CommentList({ comments, total, query, page }: CommentListProps) 
       {pages > 1 && (
         <Flex as="nav" aria-label="Páginas" gap={3} align="center" justify="center">
           {page > 1 && (
-            <Button asChild variant="outline" bg="white">
+            <Button asChild variant="outline" bg="bg.panel">
               <NextLink href={pageHref(query, page - 1)}>← Más nuevos</NextLink>
             </Button>
           )}
@@ -170,7 +170,7 @@ export function CommentList({ comments, total, query, page }: CommentListProps) 
             Página {page} de {pages}
           </Text>
           {page < pages && (
-            <Button asChild variant="outline" bg="white">
+            <Button asChild variant="outline" bg="bg.panel">
               <NextLink href={pageHref(query, page + 1)}>Más antiguos →</NextLink>
             </Button>
           )}

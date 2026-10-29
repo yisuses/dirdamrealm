@@ -11,7 +11,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
       class="chakra-stack css-1op6ogi"
     >
       <h1
-        class="chakra-heading css-11yxnza"
+        class="chakra-heading css-f8vzz3"
       >
         Nuevo autor
       </h1>
@@ -21,7 +21,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-1i77084"
+      class="chakra-stack css-p12w9w"
     >
       <div
         class="chakra-field__root css-13f87cb"
@@ -179,7 +179,7 @@ exports[`WriterForm > should create a writer linked to a user 1`] = `
         class="chakra-stack css-13ub2d7"
       >
         <button
-          class="chakra-button css-5yp0ac"
+          class="chakra-button css-10lvhwc"
           type="submit"
         >
           Guardar
@@ -208,18 +208,18 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
       class="chakra-stack css-1op6ogi"
     >
       <h1
-        class="chakra-heading css-11yxnza"
+        class="chakra-heading css-f8vzz3"
       >
         Autores
       </h1>
       <p
-        class="css-2catvg"
+        class="css-1xrpz2b"
       >
         Quién firma las entradas. El nombre aparece en cada entrada de la web.
       </p>
     </div>
     <a
-      class="chakra-button css-5yp0ac"
+      class="chakra-button css-10lvhwc"
       href="/admin/autores/nuevo/"
       type="button"
     >
@@ -227,7 +227,7 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
     </a>
   </div>
   <div
-    class="css-1vjtk30"
+    class="css-7wati4"
   >
     <table
       class="chakra-table__root css-q56ggu"
@@ -247,7 +247,7 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
               Nombre
               <button
                 aria-label="¿Qué es «Nombre»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_0_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -291,7 +291,7 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
               Usuario del panel
               <button
                 aria-label="¿Qué es «Usuario del panel»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_1_"
                 data-part="trigger"
                 data-scope="tooltip"
@@ -335,7 +335,7 @@ exports[`WriterList > should list writers with their panel user and posts 1`] = 
               Entradas
               <button
                 aria-label="¿Qué es «Entradas»?"
-                class="chakra-button chakra-tooltip__trigger css-8z4kv6"
+                class="chakra-button chakra-tooltip__trigger css-afp5h6"
                 data-ownedby="_r_2_"
                 data-part="trigger"
                 data-scope="tooltip"

@@ -3,7 +3,7 @@
 exports[`SelectMenu > should list the options and report the one picked 1`] = `
 <div
   aria-labelledby="menu:_r_3_:trigger"
-  class="chakra-menu__content css-jlmklu"
+  class="chakra-menu__content css-2p0oij"
   data-part="content"
   data-placement="bottom-start"
   data-scope="menu"
@@ -16,7 +16,7 @@ exports[`SelectMenu > should list the options and report the one picked 1`] = `
   tabindex="0"
 >
   <div
-    class="chakra-menu__item css-qlas87"
+    class="chakra-menu__item css-syusj6"
     data-ownedby="menu:_r_3_:content"
     data-part="item"
     data-scope="menu"
@@ -27,7 +27,7 @@ exports[`SelectMenu > should list the options and report the one picked 1`] = `
     Todas
   </div>
   <div
-    class="chakra-menu__item css-pues6q"
+    class="chakra-menu__item css-fxrjn6"
     data-ownedby="menu:_r_3_:content"
     data-part="item"
     data-scope="menu"
@@ -38,7 +38,7 @@ exports[`SelectMenu > should list the options and report the one picked 1`] = `
     Ingeniería
   </div>
   <div
-    class="chakra-menu__item css-qlas87"
+    class="chakra-menu__item css-syusj6"
     data-ownedby="menu:_r_3_:content"
     data-part="item"
     data-scope="menu"
@@ -56,7 +56,7 @@ exports[`SelectMenu > should show the selected option on the trigger 1`] = `
   aria-expanded="false"
   aria-haspopup="menu"
   aria-label="Categoría"
-  class="chakra-button chakra-menu__trigger css-1t7roaw"
+  class="chakra-button chakra-menu__trigger css-1pefu01"
   data-controls="menu:_r_0_:content"
   data-part="trigger"
   data-scope="menu"

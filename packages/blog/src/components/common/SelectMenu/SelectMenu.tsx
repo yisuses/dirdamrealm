@@ -3,7 +3,6 @@
 import { Button } from '@chakra-ui/react'
 import { LuChevronDown } from 'react-icons/lu'
 
-import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
 
 export interface SelectMenuOption {
@@ -21,9 +20,6 @@ interface SelectMenuProps {
 }
 
 export function SelectMenu({ options, value, label, onChange }: SelectMenuProps) {
-  const restingColor = useColorModeValue('gray.900', 'gray.50')
-  const borderColor = useColorModeValue('gray.750', 'gray.50')
-
   const selectedOption = options.find(option => option.value === value) ?? options[0]
 
   return (
@@ -32,30 +28,30 @@ export function SelectMenu({ options, value, label, onChange }: SelectMenuProps)
         <Button
           aria-label={label}
           variant="outline"
-          fontFamily="Lora"
           fontWeight={500}
           width="100%"
           justifyContent="space-between"
-          color={restingColor}
-          borderColor={borderColor}
-          borderRadius="none"
-          _hover={{ borderColor: 'orange.300', color: 'orange.300' }}
-          _open={{ borderColor: 'orange.300', color: 'orange.300' }}
+          color="fg"
+          bg="bg.panel"
+          borderColor="border"
+          borderRadius="10px"
+          _hover={{ borderColor: 'accent', bg: 'bg.panel' }}
+          _open={{ borderColor: 'accent', color: 'accent' }}
           transition="color 0.2s ease-in-out, border-color 0.2s ease-in-out"
         >
           {selectedOption?.label}
           <LuChevronDown />
         </Button>
       </MenuTrigger>
-      <MenuContent fontFamily="Lora" borderRadius="none">
+      <MenuContent fontFamily="sans" borderRadius="10px">
         {options.map(option => (
           <MenuItem
             key={option.value || 'all'}
             value={option.value}
             onClick={() => onChange(option.value)}
-            fontWeight={option.value === value ? 700 : 400}
-            color={option.value === value ? 'orange.300' : undefined}
-            _hover={{ color: 'orange.300' }}
+            fontWeight={option.value === value ? 600 : 400}
+            color={option.value === value ? 'accent' : undefined}
+            _hover={{ color: 'accent' }}
           >
             {option.label}
           </MenuItem>

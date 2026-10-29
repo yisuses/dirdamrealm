@@ -53,11 +53,11 @@ export function LoginForm() {
             </Text>
           )}
 
-          <Button type="submit" size="lg" fontSize="lg" colorPalette="orange" loading={loading} loadingText="Entrando…">
+          <Button type="submit" size="lg" fontSize="lg" colorPalette="gold" loading={loading} loadingText="Entrando…">
             Entrar
           </Button>
 
-          <Link asChild alignSelf="center" fontSize="md" color="gray.700">
+          <Link asChild alignSelf="center" fontSize="md" color="fg.muted">
             <NextLink href="/admin/recuperar-contrasena/">¿Has olvidado la contraseña?</NextLink>
           </Link>
         </Stack>

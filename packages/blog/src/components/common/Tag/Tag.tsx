@@ -1,25 +1,31 @@
 'use client'
 
-import { Tag as ChakraTag } from '@chakra-ui/react'
-import { ComponentProps } from 'react'
+import { Text, TextProps } from '@chakra-ui/react'
 
-interface TagProps extends ComponentProps<typeof ChakraTag.Root> {
+interface TagProps extends TextProps {
   label: string
+  /** `solid` sits on a photo as a gold label; `text` is the plain gold kicker above a title. */
+  variant?: 'text' | 'solid'
 }
 
-export function Tag({ label, size, ...rest }: TagProps) {
+export function Tag({ label, variant = 'text', ...rest }: TagProps) {
   return (
-    <ChakraTag.Root
+    <Text
+      as="span"
       aria-label={label}
-      size={size}
+      display="inline-block"
+      fontFamily="sans"
+      fontSize="12px"
+      fontWeight={600}
+      letterSpacing="0.08em"
+      lineHeight="1.4"
+      textTransform="uppercase"
+      {...(variant === 'solid'
+        ? { bg: 'accent', color: 'accent.contrast', px: '10px', py: '4px', borderRadius: '4px' }
+        : { color: 'accent' })}
       {...rest}
-      variant="outline"
-      boxShadow="none"
-      bgColor="blackAlpha.500"
     >
-      <ChakraTag.Label fontFamily="Roboto" textTransform="uppercase" color="white" fontSize={12} fontWeight={500}>
-        {label}
-      </ChakraTag.Label>
-    </ChakraTag.Root>
+      {label}
+    </Text>
   )
 }

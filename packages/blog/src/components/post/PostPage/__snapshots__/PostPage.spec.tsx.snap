@@ -2,9 +2,11 @@
 
 exports[`PostPage > should render the post with share links, tags, comments and posts of the same category 1`] = `
 <div>
-  <div>
+  <div
+    class="css-ec04vx"
+  >
     <div
-      class="css-1nr4kjm"
+      class="css-1pqxdaa"
     >
       <img
         alt="Image for the "Test Post" post"
@@ -13,434 +15,406 @@ exports[`PostPage > should render the post with share links, tags, comments and 
       />
     </div>
   </div>
-  <div
-    class="css-lg0jf4"
+  <article
+    class="css-1rfppbf"
   >
-    <div
-      class="css-1rmr50u"
+    <span
+      aria-label="Test Category"
+      class="css-1pma5x8"
     >
-      <div>
-        <h1
-          class="chakra-heading css-17wai8i"
-        >
-          Test Post
-        </h1>
-        <div
-          class="css-j7tzh3"
-        >
-          <div
-            class="css-164gwtb"
-          >
-            <i
-              class="css-13o7eu2"
-            >
-              by Test Writer
-            </i>
-            <div
-              class="css-byg25r"
-            >
-              <span
-                aria-orientation="horizontal"
-                class="chakra-separator css-19jg3oc"
-                role="separator"
-              />
-            </div>
-            <p>
-              01.04.2022
-            </p>
-            <div
-              class="css-byg25r"
-            >
-              <span
-                aria-orientation="horizontal"
-                class="chakra-separator css-19jg3oc"
-                role="separator"
-              />
-            </div>
-            <p>
-              0 min reading time
-            </p>
-            <div
-              class="css-byg25r"
-            >
-              <span
-                aria-orientation="horizontal"
-                class="chakra-separator css-19jg3oc"
-                role="separator"
-              />
-            </div>
-            <div
-              class="chakra-stack css-12nxlzr"
-            >
-              <a
-                class="chakra-button css-1rhb4v7"
-                href="https://twitter.com/intent/tweet?text=Check%20this%20article%20at%20White%20Emotion%3A%20Test%20Post&url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
-                rel="noreferrer"
-                target="_blank"
-                type="button"
-              >
-                <span
-                  class="css-cfk6a1"
-                >
-                  Share on Twitter
-                </span>
-                <svg
-                  aria-hidden="true"
-                  height="24"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <path
-                    d="M496 109.5a201.8 201.8 0 0 1-56.55 15.3a97.51 97.51 0 0 0 43.33-53.6a197.74 197.74 0 0 1-62.56 23.5A99.14 99.14 0 0 0 348.31 64c-54.42 0-98.46 43.4-98.46 96.9a93.21 93.21 0 0 0 2.54 22.1a280.7 280.7 0 0 1-203-101.3A95.69 95.69 0 0 0 36 130.4c0 33.6 17.53 63.3 44 80.7A97.5 97.5 0 0 1 35.22 199v1.2c0 47 34 86.1 79 95a100.76 100.76 0 0 1-25.94 3.4a94.38 94.38 0 0 1-18.51-1.8c12.51 38.5 48.92 66.5 92.05 67.3A199.59 199.59 0 0 1 39.5 405.6a203 203 0 0 1-23.5-1.4A278.68 278.68 0 0 0 166.74 448c181.36 0 280.44-147.7 280.44-275.8c0-4.2-.11-8.4-.31-12.5A198.48 198.48 0 0 0 496 109.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </a>
-              <a
-                class="chakra-button css-1rhb4v7"
-                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
-                rel="noreferrer"
-                target="_blank"
-                type="button"
-              >
-                <span
-                  class="css-cfk6a1"
-                >
-                  Share on Facebook
-                </span>
-                <svg
-                  aria-hidden="true"
-                  height="24"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <path
-                    d="M480 257.35c0-123.7-100.3-224-224-224s-224 100.3-224 224c0 111.8 81.9 204.47 189 221.29V322.12h-56.89v-64.77H221V208c0-56.13 33.45-87.16 84.61-87.16c24.51 0 50.15 4.38 50.15 4.38v55.13H327.5c-27.81 0-36.51 17.26-36.51 35v42h62.12l-9.92 64.77H291v156.54c107.1-16.81 189-109.48 189-221.31Z"
-                    fill="currentColor"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </a>
-              <a
-                class="chakra-button css-1rhb4v7"
-                href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
-                rel="noreferrer"
-                target="_blank"
-                type="button"
-              >
-                <span
-                  class="css-cfk6a1"
-                >
-                  Share on Linkedin
-                </span>
-                <svg
-                  aria-hidden="true"
-                  height="24"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <path
-                    d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32Zm-273.3 373.43h-64.18V205.88h64.18ZM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43c0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c-.01 19.14-13.31 34.43-34.66 34.43Zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44c-17.74 0-28.24 12-32.91 23.69c-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44c42.13 0 74 27.77 74 87.64Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      Test Category
+    </span>
+    <h1
+      class="chakra-heading css-35ablc"
+    >
+      Test Post
+    </h1>
+    <p
+      class="css-j34sg6"
+    >
+      This is a test post
+    </p>
+    <div
+      class="css-ymdb4e"
+    >
       <div
-        class="css-gq3iix"
-      />
-      <div
-        class="css-1xhj18k"
+        aria-hidden="true"
+        class="css-gveekz"
       >
-        <div
-          class="chakra-stack css-vkkjq4"
-        >
-          <div
-            aria-label="Test Category"
-            class="chakra-tag__root css-v5duvn"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              Test Category
-            </span>
-          </div>
-        </div>
-        <div
-          class="chakra-stack css-1mtqmkf"
-        >
-          <a
-            class="chakra-button css-1rhb4v7"
-            href="https://twitter.com/intent/tweet?text=Check%20this%20article%20at%20White%20Emotion%3A%20Test%20Post&url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
-            rel="noreferrer"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="css-cfk6a1"
-            >
-              Share on Twitter
-            </span>
-            <svg
-              aria-hidden="true"
-              height="24"
-              role="img"
-              viewBox="0 0 512 512"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M496 109.5a201.8 201.8 0 0 1-56.55 15.3a97.51 97.51 0 0 0 43.33-53.6a197.74 197.74 0 0 1-62.56 23.5A99.14 99.14 0 0 0 348.31 64c-54.42 0-98.46 43.4-98.46 96.9a93.21 93.21 0 0 0 2.54 22.1a280.7 280.7 0 0 1-203-101.3A95.69 95.69 0 0 0 36 130.4c0 33.6 17.53 63.3 44 80.7A97.5 97.5 0 0 1 35.22 199v1.2c0 47 34 86.1 79 95a100.76 100.76 0 0 1-25.94 3.4a94.38 94.38 0 0 1-18.51-1.8c12.51 38.5 48.92 66.5 92.05 67.3A199.59 199.59 0 0 1 39.5 405.6a203 203 0 0 1-23.5-1.4A278.68 278.68 0 0 0 166.74 448c181.36 0 280.44-147.7 280.44-275.8c0-4.2-.11-8.4-.31-12.5A198.48 198.48 0 0 0 496 109.5Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-          <a
-            class="chakra-button css-1rhb4v7"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
-            rel="noreferrer"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="css-cfk6a1"
-            >
-              Share on Facebook
-            </span>
-            <svg
-              aria-hidden="true"
-              height="24"
-              role="img"
-              viewBox="0 0 512 512"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M480 257.35c0-123.7-100.3-224-224-224s-224 100.3-224 224c0 111.8 81.9 204.47 189 221.29V322.12h-56.89v-64.77H221V208c0-56.13 33.45-87.16 84.61-87.16c24.51 0 50.15 4.38 50.15 4.38v55.13H327.5c-27.81 0-36.51 17.26-36.51 35v42h62.12l-9.92 64.77H291v156.54c107.1-16.81 189-109.48 189-221.31Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            class="chakra-button css-1rhb4v7"
-            href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
-            rel="noreferrer"
-            target="_blank"
-            type="button"
-          >
-            <span
-              class="css-cfk6a1"
-            >
-              Share on Linkedin
-            </span>
-            <svg
-              aria-hidden="true"
-              height="24"
-              role="img"
-              viewBox="0 0 512 512"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32Zm-273.3 373.43h-64.18V205.88h64.18ZM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43c0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c-.01 19.14-13.31 34.43-34.66 34.43Zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44c-17.74 0-28.24 12-32.91 23.69c-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44c42.13 0 74 27.77 74 87.64Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div>
+        TW
       </div>
       <div
-        class="css-ogfrxi"
+        class="css-1ckjier"
+      >
+        <p
+          class="css-peh7tb"
+        >
+          Test Writer
+        </p>
+        <p
+          class="css-1sq31v5"
+        >
+          01.04.2022
+           · 
+          0 min reading time
+        </p>
+      </div>
+      <div
+        class="chakra-stack css-1tkstxn"
+      >
+        <a
+          class="chakra-button css-10rae86"
+          href="https://twitter.com/intent/tweet?text=Check%20this%20article%20at%20White%20Emotion%3A%20Test%20Post&url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on X
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+            />
+          </svg>
+        </a>
+        <a
+          class="chakra-button css-10rae86"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on Facebook
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 320 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+            />
+          </svg>
+        </a>
+        <a
+          class="chakra-button css-10rae86"
+          href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on Linkedin
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div
+      class="css-108kupn"
+    />
+    <div
+      class="css-h0cfog"
+    >
+      <div
+        class="css-1pn9bkd"
       >
         <span
-          aria-orientation="horizontal"
-          class="chakra-separator css-1772gfd"
-          role="separator"
-        />
+          aria-label="Test Category"
+          class="css-1pma5x8"
+        >
+          Test Category
+        </span>
       </div>
       <div
-        class="css-j7qwjs"
+        class="chakra-stack css-1844nhy"
       >
-        <h2
-          class="chakra-heading css-1ghp373"
+        <a
+          class="chakra-button css-10rae86"
+          href="https://twitter.com/intent/tweet?text=Check%20this%20article%20at%20White%20Emotion%3A%20Test%20Post&url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
         >
-          Comments
-        </h2>
+          <span
+            class="css-cfk6a1"
+          >
+            Share on X
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+            />
+          </svg>
+        </a>
+        <a
+          class="chakra-button css-10rae86"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on Facebook
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 320 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+            />
+          </svg>
+        </a>
+        <a
+          class="chakra-button css-10rae86"
+          href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on Linkedin
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <section
+      class="css-10wsyld"
+    >
+      <h2
+        class="chakra-heading css-casl5i"
+      >
+        Comments
+         (1)
+      </h2>
+      <div
+        class="css-k0wxtr"
+        id="comment-9"
+      >
         <div
-          class="css-1wc24re"
-          id="comment-9"
+          aria-hidden="true"
+          class="css-12potdc"
         >
+          A
+        </div>
+        <div>
           <p
-            class="css-fzu54a"
+            class="css-14w1ums"
           >
-            Ana
+            <span
+              class="css-35ezg3"
+            >
+              Ana
+            </span>
+            <span
+              class="css-oaua3y"
+            >
+              2 days ago
+            </span>
           </p>
           <p
-            class="css-4s52a9"
-          >
-            2 days ago
-          </p>
-          <p
-            class="css-1k0541e"
+            class="css-95zae3"
           >
             Great post!
           </p>
         </div>
-        <div
-          class="css-1bkzspj"
-        >
-          <form>
-            <div
-              class="chakra-field__root css-13f87cb"
-              data-part="root"
-              data-scope="field"
-              id="field::_r_0_"
-              role="group"
-            >
-              <label
-                class="chakra-field__label css-65zcwe"
-                data-part="label"
-                data-scope="field"
-                for="_r_0_"
-                id="field::_r_0_::label"
-              >
-                Your name
-              </label>
-              <input
-                aria-invalid="false"
-                class="chakra-input css-9o4fpa"
-                data-part="input"
-                data-scope="field"
-                id="_r_0_"
-                name="author"
-                type="text"
-              />
-            </div>
-            <div
-              class="chakra-field__root css-qy09um"
-              data-part="root"
-              data-scope="field"
-              id="field::_r_1_"
-              role="group"
-            >
-              <label
-                class="chakra-field__label css-65zcwe"
-                data-part="label"
-                data-scope="field"
-                for="_r_1_"
-                id="field::_r_1_::label"
-              >
-                Comment
-              </label>
-              <textarea
-                aria-invalid="false"
-                class="chakra-textarea css-5mgwgq"
-                data-part="textarea"
-                data-scope="field"
-                id="_r_1_"
-                name="text"
-              />
-            </div>
-            <div
-              class="chakra-field__root css-qy09um"
-              data-part="root"
-              data-scope="field"
-              id="field::_r_2_"
-              role="group"
-            >
-              <div
-                data-testid="recaptcha"
-              />
-            </div>
-            <button
-              class="chakra-button css-kjvb9f"
-              type="submit"
-            >
-              Add comment
-            </button>
-          </form>
-        </div>
       </div>
-    </div>
-  </div>
-  <div
-    class="css-7c4p73"
+      <div
+        class="css-176hzis"
+      >
+        <form>
+          <div
+            class="chakra-field__root css-13f87cb"
+            data-part="root"
+            data-scope="field"
+            id="field::_r_0_"
+            role="group"
+          >
+            <label
+              class="chakra-field__label css-bb0mj"
+              data-part="label"
+              data-scope="field"
+              for="_r_0_"
+              id="field::_r_0_::label"
+            >
+              Your name
+            </label>
+            <input
+              aria-invalid="false"
+              class="chakra-input css-1iw3lvm"
+              data-part="input"
+              data-scope="field"
+              id="_r_0_"
+              name="author"
+              type="text"
+            />
+          </div>
+          <div
+            class="chakra-field__root css-qy09um"
+            data-part="root"
+            data-scope="field"
+            id="field::_r_1_"
+            role="group"
+          >
+            <label
+              class="chakra-field__label css-bb0mj"
+              data-part="label"
+              data-scope="field"
+              for="_r_1_"
+              id="field::_r_1_::label"
+            >
+              Comment
+            </label>
+            <textarea
+              aria-invalid="false"
+              class="chakra-textarea css-19xfo1l"
+              data-part="textarea"
+              data-scope="field"
+              id="_r_1_"
+              name="text"
+              rows="3"
+            />
+          </div>
+          <div
+            class="chakra-field__root css-qy09um"
+            data-part="root"
+            data-scope="field"
+            id="field::_r_2_"
+            role="group"
+          >
+            <div
+              data-testid="recaptcha"
+            />
+          </div>
+          <button
+            class="chakra-button css-1rxloex"
+            type="submit"
+          >
+            Post comment
+          </button>
+        </form>
+      </div>
+    </section>
+  </article>
+  <section
+    class="css-1yri9px"
   >
     <h2
-      class="chakra-heading css-1v8a6k5"
+      class="chakra-heading css-6kf83r"
     >
       Also in this category
     </h2>
     <div
-      class="css-al238s"
+      class="css-1jh6iit"
     >
       <div
-        class="css-1v10vm4"
+        class="css-28c0u4"
+        role="group"
       >
-        <div
-          class="css-1pi04bi"
-        >
-          <div
-            class="css-1hspyk4"
-          >
-            <div
-              aria-label="categories.test-category"
-              class="chakra-tag__root css-v5duvn"
-            >
-              <span
-                class="chakra-tag__label css-lgd7le"
-              >
-                categories.test-category
-              </span>
-            </div>
-          </div>
-          <a
-            class="chakra-link css-hvjfuh"
-            href="/en/post/5/related-post/"
-          >
-            <img
-              alt="Related post image"
-              src="/media/small_test.jpg"
-              style="transition: all .5s; object-fit: cover;"
-            />
-          </a>
-        </div>
-        <p
-          class="css-1iks56v"
-        >
-          01.04.2022
-        </p>
         <a
-          class="chakra-link css-tb9idc"
+          class="chakra-link css-fexq5i"
+          href="/en/post/5/related-post/"
+          tabindex="-1"
+        >
+          <img
+            alt="Related post image"
+            src="/media/medium_test.jpg"
+            style="object-fit: cover;"
+          />
+        </a>
+        <div
+          class="css-94mkp1"
+        >
+          <span
+            aria-label="categories.test-category"
+            class="css-1pma5x8"
+          >
+            categories.test-category
+          </span>
+        </div>
+        <a
+          class="chakra-link css-1ejne8n"
           href="/en/post/5/related-post/"
           title="Related post"
         >
           Related post
         </a>
         <p
-          class="css-17a2hvl"
+          class="css-1k4tq8p"
           title="This is a test post"
         >
           This is a test post
         </p>
+        <p
+          class="css-vo0z1f"
+        >
+          01.04.2022
+        </p>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 `;

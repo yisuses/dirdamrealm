@@ -35,13 +35,13 @@ export default async function proxy(req: NextRequest) {
 
 export const config = {
   // Skip Next internals, api routes, the sitemap routes and everything in `public/`
-  // (favicon.ico, images/, locales/). These are prefix exclusions on purpose: the
+  // (favicon.ico, the icons and manifest, images/, locales/). These are prefix exclusions on purpose: the
   // previous `.*\..*` form skipped any path *containing* a dot, so urls such as
   // `/sitemap_index.xml/post/1/junk/` bypassed the proxy and were rendered — and
   // ISR-cached — by the app instead.
   // The login callback is the one api route matched, to rate-limit it.
   matcher: [
-    '/((?!api|_next|static|locales|images|favicon|sitemap\\.xml|sitemap/).*)',
+    '/((?!api|_next|static|locales|images|favicon|icon\\.svg|apple-icon\\.png|manifest\\.webmanifest|sitemap\\.xml|sitemap/).*)',
     '/api/auth/callback/credentials/:path*',
   ],
 }

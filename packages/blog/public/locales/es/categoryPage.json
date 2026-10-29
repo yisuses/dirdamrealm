@@ -1,10 +1,10 @@
 {
   "categoryPage": {
+    "kicker": "Categoría",
     "title": "Categoría: {{categoryName}}",
     "description": "Emoción Blanca: Página de la categoría {{categoryName}}",
-    "noPublishedArticles": "No se han publicado artículos para esta categoría"
-  },
-  "latestPosts": {
-    "title": "Otras entradas de {{categoryName}}"
+    "noPublishedArticles": "No se han publicado artículos para esta categoría",
+    "count_one": "{{count}} entrada",
+    "count_other": "{{count}} entradas"
   }
 }

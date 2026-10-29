@@ -2,7 +2,7 @@
 
 exports[`ContentHeader > should render the html text as a heading 1`] = `
 <h2
-  class="chakra-heading css-1sjay12"
+  class="chakra-heading css-1blicjd"
 >
   Hello 
   <i>

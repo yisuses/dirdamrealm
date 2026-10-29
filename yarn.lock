@@ -5735,13 +5735,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/spartan@npm:4.5.8":
-  version: 4.5.8
-  resolution: "@fontsource/spartan@npm:4.5.8"
-  checksum: 301c550122c03c0d409458a6911907e1264e5dbd6379f985c6ee525c7f360de6b5ef774d17640fd8b5d8ab7b2e36ba388bcd2d9e61b201bc16f6236ed282b72e
-  languageName: node
-  linkType: hard
-
 "@formatjs/ecma402-abstract@npm:1.18.2":
   version: 1.18.2
   resolution: "@formatjs/ecma402-abstract@npm:1.18.2"
@@ -13030,7 +13023,6 @@ __metadata:
     "@emotion/cache": 11.14.0
     "@emotion/react": 11.14.0
     "@emotion/styled": 11.14.1
-    "@fontsource/spartan": 4.5.8
     "@hookform/resolvers": 6.0.0
     "@iconify/icons-ion": 1.2.10
     "@iconify/react": 6.0.2

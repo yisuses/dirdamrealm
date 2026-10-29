@@ -19,9 +19,5 @@ export const ContentParagraph: RenderFn<ContentParagraphBlockData> = ({ data }) 
     },
   }
 
-  return (
-    <Text mb="16px" textAlign="justify">
-      {data.text && HTMLReactParser(data.text, options)}
-    </Text>
-  )
+  return <Text mb="1.15em">{data.text && HTMLReactParser(data.text, options)}</Text>
 }

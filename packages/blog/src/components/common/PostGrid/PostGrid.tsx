@@ -17,15 +17,7 @@ export function PostGrid({ posts, limit }: PostGridProps) {
   const { t } = useTranslation('common')
 
   return (
-    <SimpleGrid
-      gridTemplateColumns={{
-        base: 'repeat(auto-fill, minmax(100%, 1fr))',
-        md: 'repeat(auto-fill, minmax(280px, 1fr))',
-      }}
-      gap={8}
-      mt={8}
-      justifyItems="center"
-    >
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} columnGap={8} rowGap={{ base: 9, md: 11 }}>
       {posts
         .slice(0, limit)
         .map(({ id, categories, publishedAt, coverImage, title, summary, imgUrl, locale: postLocale }) => (
@@ -43,7 +35,7 @@ export function PostGrid({ posts, limit }: PostGridProps) {
                 : []
             }
             date={publishedAt}
-            imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl })}
+            imageUrl={getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl })}
             imageFocus={coverImage?.focus}
             imageFit={coverImage?.fit}
             title={title}

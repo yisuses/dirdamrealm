@@ -1,178 +1,166 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`HomeLatestPosts > should fetch the posts of a category clicked and drop the header post 1`] = `
-<div
-  class="css-4q9b3d"
+<section
+  class="css-1qqzse8"
 >
-  <h2
-    class="chakra-heading css-1v8a6k5"
-  >
-    Últimas entradas
-  </h2>
   <div
-    class="chakra-stack css-19n1s3x"
+    class="css-1hr73yh"
   >
-    <p
-      class="css-1byhqre"
-      role="button"
-      tabindex="0"
+    <h2
+      class="chakra-heading css-fkdb6s"
     >
-      Todas
-    </p>
-    <p
-      class="css-1lqjy9j"
-      role="button"
-      tabindex="0"
+      Últimas entradas
+    </h2>
+    <div
+      class="css-1d8xnl3"
     >
-      Test Category
-    </p>
-    <p
-      class="css-1lqjy9j"
-      role="button"
-      tabindex="0"
-    >
-      Música
-    </p>
+      <button
+        aria-pressed="true"
+        class="chakra-button css-h1flvh"
+        type="button"
+      >
+        Todas
+      </button>
+      <button
+        aria-pressed="false"
+        class="chakra-button css-jedzxd"
+        type="button"
+      >
+        Test Category
+      </button>
+      <button
+        aria-pressed="false"
+        class="chakra-button css-jedzxd"
+        type="button"
+      >
+        Música
+      </button>
+    </div>
   </div>
   <div
-    class="css-al238s"
+    class="css-1jh6iit"
   >
     <div
-      class="css-1v10vm4"
+      class="css-28c0u4"
+      role="group"
     >
-      <div
-        class="css-1pi04bi"
-      >
-        <div
-          class="css-1hspyk4"
-        >
-          <div
-            aria-label="categories.test-category"
-            class="chakra-tag__root css-v5duvn"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              categories.test-category
-            </span>
-          </div>
-          <div
-            aria-label="Inglés"
-            class="chakra-tag__root css-v5duvn"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              Inglés
-            </span>
-          </div>
-        </div>
-        <a
-          class="chakra-link css-hvjfuh"
-          href="/post/3/otro-post/"
-        >
-          <img
-            alt="Otro post image"
-            src="/media/small_test.jpg"
-            style="transition: all .5s; object-fit: cover;"
-          />
-        </a>
-      </div>
-      <p
-        class="css-1iks56v"
-      >
-        01.04.2022
-      </p>
       <a
-        class="chakra-link css-tb9idc"
+        class="chakra-link css-fexq5i"
+        href="/post/3/otro-post/"
+        tabindex="-1"
+      >
+        <img
+          alt="Otro post image"
+          src="/media/medium_test.jpg"
+          style="object-fit: cover;"
+        />
+      </a>
+      <div
+        class="css-94mkp1"
+      >
+        <span
+          aria-label="categories.test-category"
+          class="css-1pma5x8"
+        >
+          categories.test-category
+        </span>
+        <span
+          aria-label="Inglés"
+          class="css-1pma5x8"
+        >
+          Inglés
+        </span>
+      </div>
+      <a
+        class="chakra-link css-1ejne8n"
         href="/post/3/otro-post/"
         title="Otro post"
       >
         Otro post
       </a>
       <p
-        class="css-17a2hvl"
+        class="css-1k4tq8p"
         title="This is a test post"
       >
         This is a test post
       </p>
+      <p
+        class="css-vo0z1f"
+      >
+        01.04.2022
+      </p>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`HomeLatestPosts > should render the posts after the header one without category filters 1`] = `
-<div
-  class="css-4q9b3d"
+<section
+  class="css-1qqzse8"
 >
-  <h2
-    class="chakra-heading css-1v8a6k5"
-  >
-    Últimas entradas
-  </h2>
   <div
-    class="css-al238s"
+    class="css-1hr73yh"
+  >
+    <h2
+      class="chakra-heading css-fkdb6s"
+    >
+      Últimas entradas
+    </h2>
+  </div>
+  <div
+    class="css-1jh6iit"
   >
     <div
-      class="css-1v10vm4"
+      class="css-28c0u4"
+      role="group"
     >
-      <div
-        class="css-1pi04bi"
-      >
-        <div
-          class="css-1hspyk4"
-        >
-          <div
-            aria-label="categories.test-category"
-            class="chakra-tag__root css-v5duvn"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              categories.test-category
-            </span>
-          </div>
-          <div
-            aria-label="Inglés"
-            class="chakra-tag__root css-v5duvn"
-          >
-            <span
-              class="chakra-tag__label css-lgd7le"
-            >
-              Inglés
-            </span>
-          </div>
-        </div>
-        <a
-          class="chakra-link css-hvjfuh"
-          href="/post/3/otro-post/"
-        >
-          <img
-            alt="Otro post image"
-            src="/media/small_test.jpg"
-            style="transition: all .5s; object-fit: cover;"
-          />
-        </a>
-      </div>
-      <p
-        class="css-1iks56v"
-      >
-        01.04.2022
-      </p>
       <a
-        class="chakra-link css-tb9idc"
+        class="chakra-link css-fexq5i"
+        href="/post/3/otro-post/"
+        tabindex="-1"
+      >
+        <img
+          alt="Otro post image"
+          src="/media/medium_test.jpg"
+          style="object-fit: cover;"
+        />
+      </a>
+      <div
+        class="css-94mkp1"
+      >
+        <span
+          aria-label="categories.test-category"
+          class="css-1pma5x8"
+        >
+          categories.test-category
+        </span>
+        <span
+          aria-label="Inglés"
+          class="css-1pma5x8"
+        >
+          Inglés
+        </span>
+      </div>
+      <a
+        class="chakra-link css-1ejne8n"
         href="/post/3/otro-post/"
         title="Otro post"
       >
         Otro post
       </a>
       <p
-        class="css-17a2hvl"
+        class="css-1k4tq8p"
         title="This is a test post"
       >
         This is a test post
       </p>
+      <p
+        class="css-vo0z1f"
+      >
+        01.04.2022
+      </p>
     </div>
   </div>
-</div>
+</section>
 `;

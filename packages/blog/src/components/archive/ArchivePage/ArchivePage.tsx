@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Flex, Heading, Link, List, Spinner, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, Heading, Link, List, Spinner, Text } from '@chakra-ui/react'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { parseISO } from 'date-fns'
 import NextLink from 'next/link'
@@ -8,7 +8,7 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { getAllPosts, getCategories } from '@blog/api/public'
-import { SelectMenu } from '@blog/components/common'
+import { PageHeading, SelectMenu, Tag } from '@blog/components/common'
 import { useLocale, useLocalizeHref } from '@blog/hooks'
 import { buildPostPath, formatPostDate } from '@blog/utils'
 import {
@@ -123,13 +123,13 @@ export function ArchivePage() {
   }, [filteredPosts])
 
   return (
-    <Flex justifyContent="center" mx="16px" mt={{ base: '40px', md: '72px' }}>
-      <Box maxW="65ch" width="100%" marginBottom={20}>
-        <Heading as="h1" fontSize={{ base: '52px', md: '64px' }} fontFamily="spartan" letterSpacing="4px">
-          {t('archivePage.title')}
-        </Heading>
-
-        <Flex mt={6} gap={4} flexWrap="wrap">
+    <Box maxW="948px" mx="auto" px={{ base: 4, md: 6 }} mb={20}>
+      <PageHeading
+        kicker={t('archivePage.kicker')}
+        title={t('archivePage.title')}
+        description={allPosts.length ? t('archivePage.count', { count: allPosts.length }) : undefined}
+      >
+        <Flex mt={6} gap={3} flexWrap="wrap">
           <Box width={{ base: '100%', sm: '260px' }}>
             <SelectMenu
               value={selectedCategory}
@@ -153,54 +153,94 @@ export function ArchivePage() {
             />
           </Box>
         </Flex>
-
-        {isFetching && postsByYear.length === 0 ? (
-          <Flex justifyContent="center" mt={10}>
-            <Spinner color="orange.300" size="lg" borderWidth="3px" aria-label={t('archivePage.loading')} />
-          </Flex>
-        ) : postsByYear.length > 0 ? (
-          <Box opacity={isPlaceholderData ? 0.5 : 1} transition="opacity 0.2s ease-in-out">
-            {postsByYear.map(({ year, months }, index) => (
-              <Box key={year} mt={10}>
-                <Heading as="h2" fontSize={{ base: '38px', md: '46px' }} fontFamily="Lora">
+      </PageHeading>
+      {isFetching && postsByYear.length === 0 ? (
+        <Flex justifyContent="center" mt={10}>
+          <Spinner color="accent" size="lg" borderWidth="3px" aria-label={t('archivePage.loading')} />
+        </Flex>
+      ) : postsByYear.length > 0 ? (
+        <Box opacity={isPlaceholderData ? 0.5 : 1} transition="opacity 0.2s ease-in-out">
+          {postsByYear.map(({ year, months }) => (
+            <Box as="section" key={year} mt={12}>
+              <Flex alignItems="baseline" gap={3.5} pb={2.5} borderBottom="1px solid" borderColor="fg">
+                <Heading as="h2" fontSize={{ base: '38px', md: '44px' }} fontWeight={500} lineHeight={1}>
                   {year}
                 </Heading>
-
-                {months.map(({ month, posts }) => (
-                  <Box key={month} mt={4} pl={3}>
-                    <Heading as="h3" fontSize={{ base: '22px', md: '28px' }} fontFamily="Roboto" color="orange.300">
-                      {t(`archivePage.months.${month}`)}
-                    </Heading>
-
-                    <List.Root mt={3} gap={2} pl={{ base: '22px', md: '28px' }} listStyleType="none">
-                      {posts.map(({ id, publishedAt, title }) => (
-                        <List.Item key={id} display="flex" alignItems="baseline" gap={3}>
-                          <Text minW={{ base: '110px', md: '95px' }} fontSize={{ base: 'sm', md: 'md' }}>
-                            {formatPostDate(publishedAt)}
-                          </Text>
-                          <Link
-                            as={NextLink}
-                            href={localizeHref(buildPostPath(id, title))}
-                            _hover={{ color: 'orange.300' }}
-                          >
-                            {title}
-                          </Link>
-                        </List.Item>
-                      ))}
-                    </List.Root>
-                  </Box>
-                ))}
-
-                {index !== postsByYear.length - 1 && (
-                  <Box mt={8} mb={8} h="1px" width="100%" bg="gray.300" maxW="100%" />
-                )}
-              </Box>
-            ))}
-          </Box>
-        ) : (
-          <Text mt={6}>{t('archivePage.noPosts')}</Text>
-        )}
-      </Box>
-    </Flex>
+                <Text fontFamily="sans" fontSize="14px" color="fg.muted">
+                  {t('archivePage.count', { count: months.reduce((total, { posts }) => total + posts.length, 0) })}
+                </Text>
+              </Flex>
+              {months.map(({ month, posts }) => (
+                <Grid
+                  key={month}
+                  templateColumns={{ base: '1fr', md: '140px 1fr' }}
+                  gap={{ base: 1.5, md: 4 }}
+                  py={4.5}
+                  borderBottom="1px solid"
+                  borderColor="border"
+                >
+                  <Heading
+                    as="h3"
+                    fontFamily="sans"
+                    fontSize="13px"
+                    fontWeight={600}
+                    textTransform="uppercase"
+                    letterSpacing="0.08em"
+                    color="accent"
+                    pt={{ md: 1.5 }}
+                  >
+                    {t(`archivePage.months.${month}`)}
+                  </Heading>
+                  <List.Root listStyleType="none" gap={1}>
+                    {posts.map(({ id, publishedAt, title, categories: postCategories }) => (
+                      <List.Item
+                        key={id}
+                        display="grid"
+                        gridTemplateColumns={{ base: '44px 1fr', md: '56px 1fr auto' }}
+                        gap={4}
+                        alignItems="baseline"
+                        py={1}
+                      >
+                        <Text
+                          as="span"
+                          fontFamily="sans"
+                          fontSize="14px"
+                          color="fg.muted"
+                          fontVariantNumeric="tabular-nums"
+                        >
+                          {formatPostDate(publishedAt).slice(0, 2)}
+                        </Text>
+                        <Link
+                          asChild
+                          fontSize={{ base: '18px', md: '19px' }}
+                          lineHeight="1.35"
+                          color="fg"
+                          _hover={{ color: 'accent', textDecoration: 'none' }}
+                        >
+                          <NextLink href={localizeHref(buildPostPath(id, title))}>{title}</NextLink>
+                        </Link>
+                        {postCategories?.[0] && (
+                          <Tag
+                            display={{ base: 'none', md: 'inline' }}
+                            label={postCategories[0].localizedName}
+                            color="fg.muted"
+                            fontSize="11px"
+                            fontWeight={500}
+                          />
+                        )}
+                      </List.Item>
+                    ))}
+                  </List.Root>
+                </Grid>
+              ))}
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        <Text mt={6} color="fg.muted">
+          {t('archivePage.noPosts')}
+        </Text>
+      )}
+    </Box>
   )
 }

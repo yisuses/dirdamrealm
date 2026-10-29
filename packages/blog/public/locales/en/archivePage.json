@@ -1,5 +1,6 @@
 {
   "archivePage": {
+    "kicker": "Everything published",
     "title": "Archive",
     "description": "History of all published posts.",
     "noPosts": "No published posts yet.",
@@ -21,6 +22,8 @@
       "9": "October",
       "10": "November",
       "11": "December"
-    }
+    },
+    "count_one": "{{count}} post",
+    "count_other": "{{count}} posts"
   }
 }

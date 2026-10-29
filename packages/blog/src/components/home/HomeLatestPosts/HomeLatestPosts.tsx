@@ -1,13 +1,12 @@
 'use client'
 
-import { Flex, HStack, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { getLatestPosts } from '@blog/api/public'
 import { PostGrid } from '@blog/components/common'
-import { useColorModeValue } from '@blog/components/ui/color-mode'
 import { useLocale } from '@blog/hooks'
 import { getLatestPostsKey } from '@blog/utils/constants'
 
@@ -41,9 +40,6 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
     setRenderedPosts(queriedPosts ? queriedPosts.filter(post => post.id !== headerPost.id) : renderedPosts)
   }, [queriedPosts])
 
-  // Hoisted: useColorModeValue is a hook in v3 (next-themes), can't live inside the map/ternary below.
-  const inactiveCategoryColor = useColorModeValue('gray.750', 'gray.50')
-
   const renderedCategories = categories
     ? [{ id: -1, code: '', name: t(`categories.all`) }].concat(
         categories.map(({ id, code, localizedName }) => ({ id, code, name: localizedName })),
@@ -51,40 +47,52 @@ export function HomeLatestPosts({ title, categories, posts }: HomeLatestPostsPro
     : []
 
   return (
-    <Flex flexDir="column" mt={{ base: '60px', md: '130px' }} mb="60px" px="20px">
-      <Heading fontFamily="Lora">{title}</Heading>
-      {Boolean(renderedCategories.length) && (
-        <HStack gap="20px" mt="20px" overflow="auto">
-          {renderedCategories.map(({ id, code, name }) => (
-            <Text
-              tabIndex={0}
-              role="button"
-              py={1}
-              key={id}
-              fontFamily="Lora"
-              fontSize="sm"
-              fontWeight={700}
-              color={
-                (!selectedCategory && id === -1) || selectedCategory === code ? 'orange.300' : inactiveCategoryColor
-              }
-              _hover={{ cursor: 'pointer', color: 'orange.300' }}
-              _focus={{ color: 'orange.300' }}
-              _focusWithin={{ outline: 'none' }}
-              transition="color 0.2s ease-in-out"
-              whiteSpace="nowrap"
-              onClick={() => setSelectedCategory(code)}
-              onKeyDown={e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  setSelectedCategory(code)
-                }
-              }}
-            >
-              {name}
-            </Text>
-          ))}
-        </HStack>
-      )}
-      <PostGrid posts={renderedPosts} limit={8} />
-    </Flex>
+    <Box as="section" maxW="1248px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 10, md: 14 }}>
+      <Flex
+        alignItems={{ base: 'flex-start', md: 'baseline' }}
+        direction={{ base: 'column', md: 'row' }}
+        gap={{ base: 4, md: 2 }}
+        mb={6}
+      >
+        <Heading as="h2" fontSize={{ base: '26px', md: '30px' }} fontWeight={500} mr="auto" whiteSpace="nowrap">
+          {title}
+        </Heading>
+        {Boolean(renderedCategories.length) && (
+          <Flex
+            gap={2}
+            overflowX="auto"
+            maxW="100%"
+            mx={{ base: -4, md: 0 }}
+            px={{ base: 4, md: 0 }}
+            css={{ scrollbarWidth: 'none' }}
+          >
+            {renderedCategories.map(({ id, code, name }) => {
+              const selected = (!selectedCategory && id === -1) || selectedCategory === code
+              return (
+                <Button
+                  key={id}
+                  size="sm"
+                  rounded="full"
+                  variant={selected ? 'solid' : 'outline'}
+                  bg={selected ? 'fg' : 'transparent'}
+                  color={selected ? 'bg' : 'fg.muted'}
+                  borderColor={selected ? 'fg' : 'border'}
+                  fontWeight={500}
+                  fontSize="14px"
+                  px={3.5}
+                  flex="none"
+                  aria-pressed={selected}
+                  _hover={selected ? undefined : { color: 'fg', borderColor: 'fg.muted', bg: 'transparent' }}
+                  onClick={() => setSelectedCategory(code)}
+                >
+                  {name}
+                </Button>
+              )
+            })}
+          </Flex>
+        )}
+      </Flex>
+      <PostGrid posts={renderedPosts} limit={9} />
+    </Box>
   )
 }

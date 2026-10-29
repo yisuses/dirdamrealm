@@ -1,22 +1,20 @@
 'use client'
 
-import { Box, Button, Flex, IconButton, Separator, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LuChevronDown, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
+import { LuArchive, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
 
 import { getCategories } from '@blog/api/public'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components/common'
 import { useColorMode } from '@blog/components/ui/color-mode'
-import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@blog/components/ui/menu'
 import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
 import { useLocale, useLocalizeHref, useSwitchLocale } from '@blog/hooks'
 import { CATEGORIES_STALE_TIME_MS, getCategoriesKey } from '@blog/utils/constants'
 import { buildCategoryPath } from '@blog/utils/urlBuilder'
-
-import { HeaderMenu } from './HeaderMenu'
 
 export interface HeaderProps {
   categories: {
@@ -27,15 +25,41 @@ export interface HeaderProps {
   }[]
 }
 
+interface NavLink {
+  key: string
+  label: string
+  href: string
+  active: boolean
+  icon?: boolean
+}
+
+const toolProps = {
+  size: 'sm',
+  variant: 'ghost',
+  color: 'fg',
+  fontFamily: 'sans',
+  minW: 9,
+  _hover: { bg: 'bg.muted', color: 'accent' },
+} as const
+
 export function Header({ categories }: HeaderProps) {
   const pathname = usePathname() || '/'
   const locale = useLocale()
   const localizeHref = useLocalizeHref()
   const switchLocale = useSwitchLocale()
   const { t } = useTranslation('common')
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { toggleColorMode } = useColorMode()
   const queryClient = useQueryClient()
   const { open: isSearchModalOpen, onOpen: onOpenSearchModal, onClose: onCloseSearchModal } = useDisclosure()
+  // Once the masthead scrolls away, the sticky bar shows a small logo of its own.
+  const mastheadRef = useRef<HTMLAnchorElement>(null)
+  const [stuck, setStuck] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setStuck(!entry.isIntersecting))
+    observer.observe(mastheadRef.current!)
+    return () => observer.disconnect()
+  }, [])
 
   // Browser path without the (non-default) locale prefix, for active-link comparisons.
   const barePath = LOCALES.filter(l => l !== DEFAULT_LOCALE).reduce(
@@ -43,91 +67,40 @@ export function Header({ categories }: HeaderProps) {
     pathname,
   )
 
-  const logo = (
-    <NextLink href={localizeHref('/')}>
-      <Box
-        py={{ base: '1rem', md: 0 }}
-        height={{ base: '60px', lg: '80px' }}
-        cursor="pointer"
-        display="flex"
-        alignItems="center"
-      >
-        <Box
-          position="relative"
-          width={{ base: '20px', md: '32px', lg: '40px' }}
-          height={{ base: '25px', md: '40px', lg: '50px' }}
-          mr={{ base: '10px', md: '20px' }}
-        >
-          <HeaderLogo color="#fafafa" />
-        </Box>
-        <Text
-          fontFamily="spartan"
-          fontWeight="700"
-          color="white"
-          fontSize={{ md: '18px', lg: '24px' }}
-          height={{ base: '22px', lg: '60px' }}
-          lineHeight={{ base: '30px', md: '30px', lg: '70px' }}
-          letterSpacing={{ base: '0px', lg: '4px' }}
-        >
-          <span>WHITE EMOTION</span>
-        </Text>
-      </Box>
-    </NextLink>
-  )
+  // Home, the categories and the archive as three groups, so the archive doesn't read as one more category.
+  const linkGroups: NavLink[][] = [
+    [{ key: 'home', label: t('header.home'), href: localizeHref('/'), active: barePath === '/' }],
+    categories.map(({ url, code, name, localizedName }) => ({
+      key: code,
+      label: localizedName,
+      href: url,
+      active: barePath === buildCategoryPath(code, name),
+    })),
+    [
+      {
+        key: 'archive',
+        label: t('header.archive'),
+        href: localizeHref('/archive/'),
+        active: barePath === '/archive/',
+        icon: true,
+      },
+    ],
+  ].filter(group => group.length > 0)
 
-  const archiveLabel = t('header.archive')
-  const isArchiveActive = barePath === '/archive/'
+  const switchLanguage = async () => {
+    const nextLocale: AppLocales = locale === 'es' ? 'en' : 'es'
 
-  const actionButtons = (
-    <>
-      <IconButton
-        size="sm"
-        aria-label="Search"
-        bg="transparent"
-        onClick={onOpenSearchModal}
-        _hover={{ bg: 'whiteAlpha.300' }}
-        px={{ base: 2, sm: 4 }}
-      >
-        <LuSearch color="white" />
-      </IconButton>
-      <IconButton
-        size="sm"
-        aria-label="Toggle theme"
-        bg="transparent"
-        onClick={toggleColorMode}
-        _hover={{ bg: 'whiteAlpha.300' }}
-        px={{ base: 2, sm: 4 }}
-      >
-        {colorMode === 'light' ? <LuMoon color="white" /> : <LuSun color="white" />}
-      </IconButton>
-      <Button
-        size="sm"
-        fontFamily="Roboto"
-        aria-label={t('header.changeLanguage')}
-        bg="transparent"
-        onClick={async () => {
-          const nextLocale: AppLocales = locale === 'es' ? 'en' : 'es'
+    await queryClient.prefetchQuery({
+      queryKey: getCategoriesKey(nextLocale),
+      queryFn: () => getCategories({ locale: nextLocale }),
+      staleTime: CATEGORIES_STALE_TIME_MS,
+    })
 
-          await queryClient.prefetchQuery({
-            queryKey: getCategoriesKey(nextLocale),
-            queryFn: () => getCategories({ locale: nextLocale }),
-            staleTime: CATEGORIES_STALE_TIME_MS,
-          })
-
-          switchLocale(nextLocale)
-        }}
-        color="white"
-        _hover={{ bg: 'whiteAlpha.300' }}
-        _active={{ bg: 'whiteAlpha.300' }}
-        px={{ base: 2, sm: 4 }}
-      >
-        {locale === 'es' ? 'ES' : 'EN'}
-      </Button>
-    </>
-  )
+    switchLocale(nextLocale)
+  }
 
   return (
-    <Flex width="100%" bg="blackAlpha.800" pr={{ base: 4, lg: 8 }} pl={{ base: 2, lg: 8 }} justifyContent="center">
+    <>
       <Modal title={t('header.search.title')} isOpen={isSearchModalOpen} onClose={onCloseSearchModal}>
         <SearchPosts
           inputTitle={t('header.search.inputTitle')}
@@ -135,81 +108,139 @@ export function Header({ categories }: HeaderProps) {
         />
       </Modal>
 
-      <Flex
-        h="full"
-        alignItems="center"
-        justifyContent="space-between"
-        w={{ base: '100%', lg: '1440px' }}
-        maxW={{ base: '100%', lg: '1440px' }}
-        direction={{ base: 'column', xl: 'row' }}
+      <Box as="header" borderTop="4px solid" borderColor="accent">
+        <Flex
+          asChild
+          justifyContent="center"
+          alignItems="center"
+          gap={{ base: '10px', md: '14px' }}
+          py={{ base: 3, md: 4 }}
+          px={4}
+          width="fit-content"
+          mx="auto"
+        >
+          <NextLink href={localizeHref('/')} ref={mastheadRef} aria-label={t('header.logo')}>
+            <Box color="accent" width={{ base: '26px', md: '32px' }} flex="none">
+              <HeaderLogo width="100%" />
+            </Box>
+            <Box>
+              <Text
+                fontFamily="heading"
+                fontSize={{ base: '26px', md: '32px' }}
+                lineHeight="1.1"
+                fontWeight={500}
+                letterSpacing="0.02em"
+                color="fg"
+              >
+                White Emotion
+              </Text>
+              <Text fontStyle="italic" fontSize={{ base: '12.5px', md: '15px' }} lineHeight="1.3" color="fg.muted">
+                {t('header.tagline')}
+              </Text>
+            </Box>
+          </NextLink>
+        </Flex>
+      </Box>
+
+      <Box
+        as="nav"
+        position="sticky"
+        top={0}
+        zIndex="sticky"
+        borderTop="1px solid"
+        borderTopColor="fg"
+        borderBottom="1px solid"
+        borderBottomColor="border"
+        bg="color-mix(in srgb, var(--chakra-colors-bg) 92%, transparent)"
+        backdropFilter="blur(10px)"
+        boxShadow={stuck ? '0 6px 20px rgba(0,0,0,.08)' : 'none'}
+        transition="box-shadow .2s"
       >
         <Flex
-          h="full"
+          maxW="1248px"
+          mx="auto"
+          px={{ base: 4, md: 6 }}
+          height="46px"
           alignItems="center"
-          justifyContent={{ base: 'space-between', lg: 'center' }}
-          width={{ base: '100%', lg: 'fit-content' }}
+          gap={{ base: 3, md: 6 }}
         >
-          <HeaderMenu categories={categories} />
-          {logo}
-          <Box display={{ base: 'block', lg: 'none' }} height="26px">
-            {actionButtons}
-          </Box>
-        </Flex>
-        <Separator orientation="horizontal" w={400} display={{ base: 'none', lg: 'block', xl: 'none' }} />
-        <Flex
-          alignItems="center"
-          display={{ base: 'none', lg: 'flex' }}
-          justifyContent={{ lg: 'space-between', xl: 'flex-end' }}
-        >
-          <MenuRoot>
-            <MenuTrigger asChild>
-              <Button
-                size="sm"
-                color="white"
-                bg="transparent"
-                px={{ md: 2, lg: 3 }}
-                fontFamily="Roboto"
-                _hover={{ background: 'whiteAlpha.200' }}
-                _active={{ background: 'whiteAlpha.300' }}
-                _focus={{ boxShadow: 'none' }}
-              >
-                {t('footer.categories')}
-                <LuChevronDown />
-              </Button>
-            </MenuTrigger>
-            <MenuContent bg="blackAlpha.900" borderColor="blackAlpha.800" borderRadius={0} minW="160px" p={0}>
-              {categories.map(({ url, name, localizedName, code }) => (
-                <MenuItem
-                  key={code}
-                  value={code}
-                  asChild
-                  bg="transparent"
-                  color={barePath === buildCategoryPath(code, name) ? 'orange.300' : 'white'}
-                  borderRadius={0}
-                  fontFamily="Roboto"
-                  _hover={{ bg: 'blackAlpha.700' }}
-                >
-                  <NextLink href={url}>{localizedName}</NextLink>
-                </MenuItem>
-              ))}
-            </MenuContent>
-          </MenuRoot>
-          <Button
+          <Box
             asChild
-            size="sm"
-            bg="transparent"
-            px={{ md: 2, lg: 3 }}
-            color={isArchiveActive ? 'orange.300' : 'white'}
-            fontFamily="Roboto"
-            _hover={{ textDecoration: 'none', background: 'whiteAlpha.200' }}
-            _active={{ background: 'transparent' }}
-            _focus={{ boxShadow: 'none' }}
+            color="accent"
+            flex="none"
+            width={stuck ? '20px' : 0}
+            opacity={stuck ? 1 : 0}
+            overflow="hidden"
+            transition="width .25s, opacity .25s"
           >
-            <NextLink href={localizeHref('/archive/')}>{archiveLabel}</NextLink>
-          </Button>
-          <Box>{actionButtons}</Box>
+            <NextLink href={localizeHref('/')} aria-hidden={!stuck} tabIndex={stuck ? undefined : -1}>
+              <HeaderLogo width="20px" />
+            </NextLink>
+          </Box>
+          <Flex
+            flex={1}
+            gap={{ base: 5, md: 6 }}
+            justifyContent={{ base: 'flex-start', lg: 'center' }}
+            overflowX="auto"
+            fontFamily="sans"
+            fontSize="15px"
+            fontWeight={500}
+            css={{
+              scrollbarWidth: 'none',
+              maskImage: { base: 'linear-gradient(to right, #000 85%, transparent)', lg: 'none' },
+            }}
+          >
+            {linkGroups.map((group, index) => (
+              <Fragment key={group[0]!.key}>
+                {index > 0 && <Box aria-hidden flex="none" alignSelf="center" w="1px" h="18px" bg="border" />}
+                {group.map(({ key, label, href, active, icon }) => (
+                  <Box
+                    asChild
+                    key={key}
+                    display="inline-flex"
+                    alignItems="center"
+                    gap={1.5}
+                    whiteSpace="nowrap"
+                    pt="11px"
+                    pb="9px"
+                    borderBottom="2px solid"
+                    borderBottomColor={active ? 'accent' : 'transparent'}
+                    color="fg"
+                    _hover={{ color: 'accent' }}
+                  >
+                    <NextLink href={href} aria-current={active ? 'page' : undefined}>
+                      {icon && <LuArchive aria-hidden />}
+                      {label}
+                    </NextLink>
+                  </Box>
+                ))}
+              </Fragment>
+            ))}
+          </Flex>
+          <Flex flex="none" alignItems="center">
+            <IconButton {...toolProps} aria-label="Search" onClick={onOpenSearchModal}>
+              <LuSearch />
+            </IconButton>
+            <IconButton {...toolProps} aria-label="Toggle theme" onClick={toggleColorMode}>
+              {/* Both icons, picked by CSS: the server can't know the saved theme. */}
+              <Box asChild _dark={{ display: 'none' }}>
+                <LuMoon />
+              </Box>
+              <Box asChild display="none" _dark={{ display: 'inline' }}>
+                <LuSun />
+              </Box>
+            </IconButton>
+            <IconButton
+              {...toolProps}
+              aria-label={t('header.changeLanguage')}
+              fontWeight={600}
+              onClick={switchLanguage}
+            >
+              {locale === 'es' ? 'ES' : 'EN'}
+            </IconButton>
+          </Flex>
         </Flex>
-      </Flex>
-    </Flex>
+      </Box>
+    </>
   )
 }

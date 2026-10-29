@@ -1,13 +1,14 @@
 {
   "errorPage": {
-    "title": "Error",
-    "description": "Ooops, something went wrong...",
-    "goToHomePage": "Go to home page",
-    "refreshPage": "Refresh page"
+    "code": "Oops",
+    "title": "Something went wrong",
+    "description": "There was a problem loading this page. Try reloading it in a moment.",
+    "goToHomePage": "Back to the home page",
+    "refreshPage": "Reload the page"
   },
   "notFoundPage": {
-    "title": "Not found",
-    "description": "Sorry, the content you are looking for could not be found.",
-    "goToHomePage": "Go to Homepage"
+    "title": "This page has left the pitch",
+    "description": "The post may have moved, or the link may be mistyped.",
+    "goToHomePage": "Back to the home page"
   }
 }

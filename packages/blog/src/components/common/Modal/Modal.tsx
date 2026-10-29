@@ -1,11 +1,10 @@
 'use client'
 
-import { useBreakpointValue } from '@chakra-ui/react'
+import { VisuallyHidden, useBreakpointValue } from '@chakra-ui/react'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useEffect, useRef } from 'react'
 
-import { useColorModeValue } from '@blog/components/ui/color-mode'
-import { DialogBody, DialogCloseTrigger, DialogContent, DialogHeader, DialogRoot } from '@blog/components/ui/dialog'
+import { DialogBody, DialogCloseTrigger, DialogContent, DialogRoot, DialogTitle } from '@blog/components/ui/dialog'
 
 export type ModalProps = {
   onClose: () => void
@@ -17,11 +16,10 @@ export type ModalProps = {
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
   const pathname = usePathname()
   const isFirstRender = useRef(true)
-  const modalSize = useBreakpointValue<'full' | 'xl'>({
+  const modalSize = useBreakpointValue<'full' | 'lg'>({
     base: 'full',
-    md: 'xl',
+    md: 'lg',
   })
-  const contentBg = useColorModeValue('white', 'gray.800')
 
   // Close the modal on client navigation (replaces router.events 'routeChangeStart').
   useEffect(() => {
@@ -39,19 +37,22 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
         if (!details.open) onClose()
       }}
       size={modalSize}
+      placement="top"
     >
       <DialogContent
-        bg={contentBg}
-        minWidth={{ base: '100%', md: '700px', lg: '800px', xl: '900px' }}
-        height={{ md: '700px' }}
+        bg="bg.panel"
+        borderRadius={{ base: 0, md: '16px' }}
+        mt={{ md: '12vh' }}
+        boxShadow="0 30px 80px rgba(0,0,0,.3)"
+        css={{ '--dialog-backdrop-bg': 'rgba(10,10,12,.5)' }}
       >
         {title && (
-          <DialogHeader p={16} fontSize="2xl" fontWeight="bold" backgroundColor="blackAlpha.800" color="white">
-            {title}
-          </DialogHeader>
+          <VisuallyHidden asChild>
+            <DialogTitle>{title}</DialogTitle>
+          </VisuallyHidden>
         )}
-        <DialogCloseTrigger zIndex={20} color="white" />
-        <DialogBody>{children}</DialogBody>
+        <DialogCloseTrigger zIndex={20} top={4} insetEnd={4} />
+        <DialogBody p={2.5}>{children}</DialogBody>
       </DialogContent>
     </DialogRoot>
   )

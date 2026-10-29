@@ -2,17 +2,17 @@
 
 exports[`AdminShell > should show the user, the sections and the page, with the current section marked 1`] = `
 <div
-  class="css-sg6f4e"
+  class="css-7cr7f6"
 >
-  <header
-    class="css-tpjuc0"
+  <aside
+    class="css-1shoo9n"
   >
     <div
-      class="css-3y4j69"
+      class="css-h1n5vh"
     >
       <div
         aria-hidden="true"
-        class="css-tpzevj"
+        class="css-ta34s5"
       >
         <svg
           fill="currentColor"
@@ -36,119 +36,393 @@ exports[`AdminShell > should show the user, the sections and the page, with the 
           />
         </svg>
       </div>
-      <p
-        class="css-7pm0g7"
+      <div
+        class="css-ews8ha"
       >
-        Panel de Emoción Blanca
-      </p>
-    </div>
-    <div
-      class="css-u36hqm"
-    >
-      <p
-        class="css-hk7m0v"
-      >
-        José Madrid
-      </p>
-      <a
-        class="chakra-link css-vfsu0l"
-        href="/"
-        rel="noopener"
-        target="_blank"
-      >
-        Ver la web
-      </a>
-      <form
-        action="javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')"
-      >
-        <button
-          class="chakra-button css-1exvblw"
-          type="submit"
+        <p
+          class="css-5tyon"
         >
-          Cerrar sesión
-        </button>
-      </form>
+          Panel de Emoción Blanca
+        </p>
+      </div>
     </div>
-  </header>
-  <div
-    class="css-1etrj9s"
-  >
     <nav
       aria-label="Secciones del panel"
-      class="css-1ovw924"
+      class="css-1x18yy0"
     >
       <ul
-        class="chakra-stack css-lw2a3w"
+        class="chakra-stack css-g22hek"
       >
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"
+              />
+              <path
+                d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+              />
+            </svg>
             Inicio
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/entradas/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+              />
+              <path
+                d="M14 2v4a2 2 0 0 0 2 2h4"
+              />
+              <path
+                d="M10 9H8"
+              />
+              <path
+                d="M16 13H8"
+              />
+              <path
+                d="M16 17H8"
+              />
+            </svg>
             Entradas
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/comentarios/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+            </svg>
             Comentarios
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/imagenes/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                height="18"
+                rx="2"
+                ry="2"
+                width="18"
+                x="3"
+                y="3"
+              />
+              <circle
+                cx="9"
+                cy="9"
+                r="2"
+              />
+              <path
+                d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"
+              />
+            </svg>
             Imágenes
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
             aria-current="page"
-            class="chakra-link css-15qcdnd"
+            class="chakra-link css-1pk2fqz"
             href="/admin/categorias/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+              />
+            </svg>
             Categorías
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/contacto/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                height="16"
+                rx="2"
+                width="20"
+                x="2"
+                y="4"
+              />
+              <path
+                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+              />
+            </svg>
             Contacto y redes
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/autores/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+              />
+              <circle
+                cx="12"
+                cy="7"
+                r="4"
+              />
+            </svg>
             Autores
           </a>
         </li>
-        <li>
+        <li
+          class="css-me3p27"
+        >
           <a
-            class="chakra-link css-8fy2vp"
+            class="chakra-link css-raepb7"
             href="/admin/usuarios/"
           >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+              />
+              <circle
+                cx="9"
+                cy="7"
+                r="4"
+              />
+              <path
+                d="M22 21v-2a4 4 0 0 0-3-3.87"
+              />
+              <path
+                d="M16 3.13a4 4 0 0 1 0 7.75"
+              />
+            </svg>
             Usuarios
           </a>
         </li>
       </ul>
     </nav>
+    <div
+      class="css-11qwkdg"
+    >
+      <form
+        action="javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')"
+      >
+        <button
+          class="chakra-button css-35jbe7"
+          type="submit"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+            />
+            <polyline
+              points="16 17 21 12 16 7"
+            />
+            <line
+              x1="21"
+              x2="9"
+              y1="12"
+              y2="12"
+            />
+          </svg>
+          Cerrar sesión
+        </button>
+      </form>
+    </div>
+  </aside>
+  <div
+    class="css-11dfn0q"
+  >
+    <header
+      class="css-itqhtw"
+    >
+      <a
+        class="chakra-link css-10a8h2j"
+        href="/"
+        rel="noopener"
+        target="_blank"
+      >
+        Ver la web
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 3h6v6"
+          />
+          <path
+            d="M10 14 21 3"
+          />
+          <path
+            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+          />
+        </svg>
+      </a>
+      <div
+        class="css-13qixdb"
+      >
+        <div
+          aria-hidden="true"
+          class="css-2up0yr"
+        >
+          JM
+        </div>
+        <p
+          class="css-10rvbm3"
+        >
+          José Madrid
+        </p>
+      </div>
+      <div
+        class="css-jl85b3"
+      >
+        <form
+          action="javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')"
+        >
+          <button
+            class="chakra-button css-jturr5"
+            type="submit"
+          >
+            Cerrar sesión
+          </button>
+        </form>
+      </div>
+    </header>
     <main
-      class="css-11qctmd"
+      class="css-5zufyy"
     >
       <p>
         Contenido

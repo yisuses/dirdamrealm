@@ -2,10 +2,10 @@
 
 exports[`RequestResetForm > should ask for the email and say the same whether or not it has an account 1`] = `
 <main
-  class="css-dq1enq"
+  class="css-sr8c71"
 >
   <section
-    class="css-1ipodba"
+    class="css-1hxtp4r"
   >
     <div
       class="chakra-stack css-aejenj"
@@ -15,7 +15,7 @@ exports[`RequestResetForm > should ask for the email and say the same whether or
       >
         <div
           aria-hidden="true"
-          class="css-3y6r4"
+          class="css-1902ilm"
         >
           <svg
             fill="currentColor"
@@ -40,7 +40,7 @@ exports[`RequestResetForm > should ask for the email and say the same whether or
           </svg>
         </div>
         <h1
-          class="chakra-heading css-1ap9idd"
+          class="chakra-heading css-3u3tdb"
         >
           Recuperar la contraseña
         </h1>
@@ -84,7 +84,7 @@ exports[`RequestResetForm > should ask for the email and say the same whether or
             />
           </div>
           <button
-            class="chakra-button css-5yp0ac"
+            class="chakra-button css-10lvhwc"
             type="submit"
           >
             Enviar el enlace
@@ -92,7 +92,7 @@ exports[`RequestResetForm > should ask for the email and say the same whether or
         </div>
       </form>
       <a
-        class="chakra-link css-f267zk"
+        class="chakra-link css-1prj55g"
         href="/admin/login/"
       >
         Volver a entrar
@@ -104,10 +104,10 @@ exports[`RequestResetForm > should ask for the email and say the same whether or
 
 exports[`ResetPasswordForm > should set the new password and then offer to sign in 1`] = `
 <main
-  class="css-dq1enq"
+  class="css-sr8c71"
 >
   <section
-    class="css-1ipodba"
+    class="css-1hxtp4r"
   >
     <div
       class="chakra-stack css-aejenj"
@@ -117,7 +117,7 @@ exports[`ResetPasswordForm > should set the new password and then offer to sign 
       >
         <div
           aria-hidden="true"
-          class="css-3y6r4"
+          class="css-1902ilm"
         >
           <svg
             fill="currentColor"
@@ -142,7 +142,7 @@ exports[`ResetPasswordForm > should set the new password and then offer to sign 
           </svg>
         </div>
         <h1
-          class="chakra-heading css-1ap9idd"
+          class="chakra-heading css-3u3tdb"
         >
           Nueva contraseña
         </h1>
@@ -257,7 +257,7 @@ exports[`ResetPasswordForm > should set the new password and then offer to sign 
             </div>
           </div>
           <button
-            class="chakra-button css-5yp0ac"
+            class="chakra-button css-10lvhwc"
             type="submit"
           >
             Guardar la contraseña

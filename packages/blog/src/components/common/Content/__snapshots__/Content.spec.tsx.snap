@@ -3,56 +3,57 @@
 exports[`Content > should render every block with its own renderer 1`] = `
 <div>
   <h2
-    class="chakra-heading css-1sjay12"
+    class="chakra-heading css-1blicjd"
   >
     A heading
   </h2>
   <p
-    class="css-yn17xn"
+    class="css-1t7d3ys"
   >
     A paragraph
   </p>
   <ul
-    class="chakra-list__root css-1y76u1q"
+    class="chakra-list__root css-1qhcl6s"
     role="list"
   >
     <li
-      class="chakra-list__item css-11uxivr"
+      class="chakra-list__item css-snf3gy"
     >
       First item
     </li>
   </ul>
   <blockquote
-    class="css-1l5yy3w"
+    class="css-1j8dlme"
   >
     A quote
+    <footer
+      class="css-qx1fta"
+    >
+      — 
+      Someone
+    </footer>
   </blockquote>
-  <footer
-    class="css-1slgqn2"
-  >
-    Someone
-  </footer>
-  <div
-    class="css-4xmiau"
+  <figure
+    class="css-pjw8ff"
   >
     <img
       alt="An image"
       height="50"
       src="/media/test.jpg"
-      style="max-width: 100%; height: auto;"
+      style="max-width: 100%; height: auto; border-radius: 12px;"
       width="100"
     />
-    <p
-      class="css-8jvoa7"
+    <figcaption
+      class="css-150jgpn"
     >
       An image
-    </p>
-  </div>
+    </figcaption>
+  </figure>
   <a
     href="https://example.com/"
   >
     <div
-      class="css-kkkm24"
+      class="css-uf0pou"
     >
       <div
         class="css-69i1ev"
@@ -60,11 +61,11 @@ exports[`Content > should render every block with its own renderer 1`] = `
         <div
           class="css-zg1vud"
         >
-          <b
-            class="css-uok8h6"
+          <p
+            class="css-1jj2bxd"
           >
             A link
-          </b>
+          </p>
         </div>
       </div>
     </div>

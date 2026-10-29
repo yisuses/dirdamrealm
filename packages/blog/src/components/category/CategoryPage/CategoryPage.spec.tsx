@@ -25,11 +25,13 @@ describe('CategoryPage', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('should render the latest post as header and the rest in the grid', () => {
+  it('should render the category title and every post in the grid', () => {
     const posts = [postMock, { ...postMock, id: 3, title: 'Otro post' }]
     const { container } = renderCategoryPage({ posts, categories: [category] })
 
-    expect(screen.getByRole('heading', { name: 'Otras entradas de Test Category' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1, name: 'Test Category' })).toBeInTheDocument()
+    expect(screen.getByText('2 entradas')).toBeInTheDocument()
+    expect(screen.getByText('Test Post')).toBeInTheDocument()
     expect(screen.getByText('Otro post')).toBeInTheDocument()
     expect(screen.queryByText('No se han publicado artículos para esta categoría')).not.toBeInTheDocument()
     expect(container).toMatchSnapshot()

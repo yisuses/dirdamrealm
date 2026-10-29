@@ -24,10 +24,10 @@ function renderItems(items: ContentListItem[], style: ContentListBlockData['styl
     const nestedItems = typeof item === 'string' ? [] : (item?.items ?? [])
 
     return (
-      <List.Item key={index}>
+      <List.Item key={index} mb={1.5} ps={1} _marker={{ color: 'accent' }}>
         {HTMLReactParser(content, options)}
         {nestedItems.length > 0 && (
-          <List.Root as={style === 'ordered' ? 'ol' : 'ul'} marginInlineStart="2em">
+          <List.Root as={style === 'ordered' ? 'ol' : 'ul'} mt={1.5} marginInlineStart="1.3em">
             {renderItems(nestedItems, style)}
           </List.Root>
         )}
@@ -38,7 +38,7 @@ function renderItems(items: ContentListItem[], style: ContentListBlockData['styl
 
 export const ContentList: RenderFn<ContentListBlockData> = ({ data }) => {
   return (
-    <List.Root as={data.style === 'ordered' ? 'ol' : 'ul'} mb="16px" marginInlineStart="2em">
+    <List.Root as={data.style === 'ordered' ? 'ol' : 'ul'} mb="1.15em" marginInlineStart="1.3em">
       {renderItems(data.items ?? [], data.style)}
     </List.Root>
   )

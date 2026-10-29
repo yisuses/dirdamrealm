@@ -8,8 +8,10 @@ describe('chakra theme', () => {
   })
 
   it('should register the custom fonts and colors as tokens', () => {
-    expect(system.token('fonts.body')).toBe('Lora, sans-serif')
-    expect(system.token('fonts.heading')).toBe('Roboto, sans-serif')
+    expect(system.token('fonts.body')).toBe("'Newsreader', Georgia, serif")
+    expect(system.token('fonts.heading')).toBe("'Newsreader', Georgia, serif")
+    expect(system.token('fonts.sans')).toBe("'Inter', system-ui, sans-serif")
+    expect(system.token('colors.gold.500')).toBe('#9A7424')
     expect(system.token('colors.gray.750')).toBe('#6C757D')
     expect(system.token('colors.transparent.500')).toBe('rgba(0,0,0,0.5)')
   })

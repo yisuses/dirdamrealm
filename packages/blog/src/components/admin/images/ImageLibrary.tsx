@@ -63,7 +63,7 @@ export function ImageLibrary({ onSelect }: ImageLibraryProps = {}) {
           title="Imágenes"
           description="Todas las imágenes de la web, guardadas en Cloudinary. Pulsa una para cambiarle el nombre o la descripción, o para borrarla."
           action={
-            <Button colorPalette="orange" size="lg" onClick={() => fileInput.current?.click()}>
+            <Button colorPalette="gold" size="lg" onClick={() => fileInput.current?.click()}>
               Subir imágenes
             </Button>
           }
@@ -87,8 +87,8 @@ export function ImageLibrary({ onSelect }: ImageLibraryProps = {}) {
         data-testid="drop-zone"
         borderWidth={2}
         borderStyle="dashed"
-        borderColor={dragging ? 'orange.500' : 'gray.400'}
-        bg={dragging ? 'orange.50' : 'white'}
+        borderColor={dragging ? 'accent' : 'border'}
+        bg={dragging ? 'accent.soft' : 'white'}
         borderRadius="lg"
         p={6}
         textAlign="center"
@@ -126,10 +126,10 @@ export function ImageLibrary({ onSelect }: ImageLibraryProps = {}) {
           placeholder="Buscar por nombre"
           aria-label="Buscar imágenes por nombre"
           size="lg"
-          bg="white"
+          bg="bg.panel"
           maxW={{ sm: 'md' }}
         />
-        <Button type="submit" size="lg" variant="outline" bg="white">
+        <Button type="submit" size="lg" variant="outline" bg="bg.panel">
           Buscar
         </Button>
         {query && (
@@ -169,7 +169,7 @@ export function ImageLibrary({ onSelect }: ImageLibraryProps = {}) {
               alignSelf="center"
               size="lg"
               variant="outline"
-              bg="white"
+              bg="bg.panel"
               loading={library.isFetchingNextPage}
               loadingText="Cargando…"
               onClick={() => library.fetchNextPage()}

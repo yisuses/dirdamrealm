@@ -2,10 +2,10 @@
 
 exports[`LoginForm > should render the form with the site logo 1`] = `
 <main
-  class="css-dq1enq"
+  class="css-sr8c71"
 >
   <section
-    class="css-1ipodba"
+    class="css-1hxtp4r"
   >
     <div
       class="chakra-stack css-aejenj"
@@ -15,7 +15,7 @@ exports[`LoginForm > should render the form with the site logo 1`] = `
       >
         <div
           aria-hidden="true"
-          class="css-3y6r4"
+          class="css-1902ilm"
         >
           <svg
             fill="currentColor"
@@ -40,7 +40,7 @@ exports[`LoginForm > should render the form with the site logo 1`] = `
           </svg>
         </div>
         <h1
-          class="chakra-heading css-1ap9idd"
+          class="chakra-heading css-3u3tdb"
         >
           Panel de Emoción Blanca
         </h1>
@@ -126,13 +126,13 @@ exports[`LoginForm > should render the form with the site logo 1`] = `
             </div>
           </div>
           <button
-            class="chakra-button css-q7uw5v"
+            class="chakra-button css-csoc1y"
             type="submit"
           >
             Entrar
           </button>
           <a
-            class="chakra-link css-f267zk"
+            class="chakra-link css-1prj55g"
             href="/admin/recuperar-contrasena/"
           >
             ¿Has olvidado la contraseña?

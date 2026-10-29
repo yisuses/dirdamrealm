@@ -44,7 +44,7 @@ describe('PostGrid', () => {
     expect(screen.getByLabelText('Sin traducir')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Entrada en español image' })).toHaveAttribute(
       'src',
-      '/media/small_test.jpg',
+      '/media/medium_test.jpg',
     )
     expect(screen.getByRole('img', { name: `${postMock.title} image` })).toHaveAttribute('src', postMock.imgUrl)
     expect(screen.getAllByLabelText('Inglés')).toHaveLength(1)

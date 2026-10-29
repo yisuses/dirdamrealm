@@ -11,9 +11,9 @@ describe('ErrorPage', () => {
   it('should render the generic error with a reload link by default', () => {
     const { container } = renderWithProviders(<ErrorPage />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Error')
-    expect(screen.getByRole('link', { name: 'Recarga la página' })).toHaveAttribute('href', '/')
-    expect(screen.getByText('Ups, algo no ha ido como debía...')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Algo no ha ido bien')
+    expect(screen.getByRole('link', { name: 'Recargar la página' })).toHaveAttribute('href', '/')
+    expect(screen.getByText(/Ha habido un problema al cargar esta página/)).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })
 
@@ -24,7 +24,7 @@ describe('ErrorPage', () => {
     vi.spyOn(window, 'location', 'get').mockReturnValue({ ...location, reload })
     renderWithProviders(<ErrorPage statusCode={500} />)
 
-    await user.click(screen.getByRole('link', { name: 'Recarga la página' }))
+    await user.click(screen.getByRole('link', { name: 'Recargar la página' }))
 
     vi.restoreAllMocks()
     expect(reload).toHaveBeenCalledTimes(1)
@@ -34,8 +34,8 @@ describe('ErrorPage', () => {
     navigation.params = { lng: 'en' }
     const { container } = renderWithProviders(<ErrorPage statusCode={404} />, { lng: 'en' })
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Not found')
-    expect(screen.getByRole('link', { name: 'Go to home page' })).toHaveAttribute('href', '/en/')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('This page has left the pitch')
+    expect(screen.getByRole('link', { name: 'Back to the home page' })).toHaveAttribute('href', '/en/')
     expect(container.firstChild).toMatchSnapshot()
   })
 })

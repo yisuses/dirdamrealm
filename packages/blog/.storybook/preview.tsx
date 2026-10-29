@@ -4,7 +4,6 @@ import type { Preview } from '@storybook/nextjs'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { Suspense } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import '@fontsource/spartan'
 
 import { ColorModeProvider } from '../src/components/ui/color-mode'
 import system from '../src/themes/chakra.theme'

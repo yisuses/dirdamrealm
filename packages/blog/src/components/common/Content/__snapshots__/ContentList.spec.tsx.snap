@@ -2,18 +2,18 @@
 
 exports[`ContentList > should render a legacy unordered list of html strings 1`] = `
 <ul
-  class="chakra-list__root css-1y76u1q"
+  class="chakra-list__root css-1qhcl6s"
   role="list"
 >
   <li
-    class="chakra-list__item css-11uxivr"
+    class="chakra-list__item css-snf3gy"
   >
     <b>
       First
     </b>
   </li>
   <li
-    class="chakra-list__item css-11uxivr"
+    class="chakra-list__item css-snf3gy"
   >
     Second
   </li>
@@ -22,34 +22,34 @@ exports[`ContentList > should render a legacy unordered list of html strings 1`]
 
 exports[`ContentList > should render a nested ordered list 1`] = `
 <ol
-  class="chakra-list__root css-1y76u1q"
+  class="chakra-list__root css-1qhcl6s"
   role="list"
 >
   <li
-    class="chakra-list__item css-11uxivr"
+    class="chakra-list__item css-snf3gy"
   >
     Parent
     <ol
-      class="chakra-list__root css-1ws3fjk"
+      class="chakra-list__root css-c40n8v"
       role="list"
     >
       <li
-        class="chakra-list__item css-11uxivr"
+        class="chakra-list__item css-snf3gy"
       >
         Child
       </li>
       <li
-        class="chakra-list__item css-11uxivr"
+        class="chakra-list__item css-snf3gy"
       >
         Legacy child
       </li>
     </ol>
   </li>
   <li
-    class="chakra-list__item css-11uxivr"
+    class="chakra-list__item css-snf3gy"
   />
   <li
-    class="chakra-list__item css-11uxivr"
+    class="chakra-list__item css-snf3gy"
   />
 </ol>
 `;

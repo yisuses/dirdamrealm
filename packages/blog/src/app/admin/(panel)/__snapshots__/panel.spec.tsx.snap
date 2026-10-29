@@ -8,57 +8,247 @@ exports[`admin panel > should offer every section except home on the home page 1
     class="chakra-stack css-1op6ogi"
   >
     <h1
-      class="chakra-heading css-11yxnza"
+      class="chakra-heading css-1ffrxwe"
     >
       Inicio
     </h1>
-    <p>
+    <p
+      class="css-1xrpz2b"
+    >
       ¿Qué quieres hacer hoy?
     </p>
   </div>
   <div
-    class="css-1fcurs5"
+    class="css-1n7inta"
   >
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/entradas/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+          />
+          <path
+            d="M14 2v4a2 2 0 0 0 2 2h4"
+          />
+          <path
+            d="M10 9H8"
+          />
+          <path
+            d="M16 13H8"
+          />
+          <path
+            d="M16 17H8"
+          />
+        </svg>
+      </span>
       Entradas
     </a>
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/comentarios/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+      </span>
       Comentarios
     </a>
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/imagenes/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="18"
+            rx="2"
+            ry="2"
+            width="18"
+            x="3"
+            y="3"
+          />
+          <circle
+            cx="9"
+            cy="9"
+            r="2"
+          />
+          <path
+            d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"
+          />
+        </svg>
+      </span>
       Imágenes
     </a>
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/categorias/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+          />
+        </svg>
+      </span>
       Categorías
     </a>
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/contacto/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="16"
+            rx="2"
+            width="20"
+            x="2"
+            y="4"
+          />
+          <path
+            d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+          />
+        </svg>
+      </span>
       Contacto y redes
     </a>
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/autores/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+          />
+          <circle
+            cx="12"
+            cy="7"
+            r="4"
+          />
+        </svg>
+      </span>
       Autores
     </a>
     <a
-      class="chakra-link css-vsn4ng"
+      class="chakra-link css-u9uuqx"
       href="/admin/usuarios/"
     >
+      <span
+        aria-hidden="true"
+        class="css-zlg0b5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+          />
+          <circle
+            cx="9"
+            cy="7"
+            r="4"
+          />
+          <path
+            d="M22 21v-2a4 4 0 0 0-3-3.87"
+          />
+          <path
+            d="M16 3.13a4 4 0 0 1 0 7.75"
+          />
+        </svg>
+      </span>
       Usuarios
     </a>
   </div>

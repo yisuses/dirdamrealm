@@ -39,7 +39,7 @@ export function WriterList({ writers }: { writers: AdminWriter[] }) {
         title="Autores"
         description="Quién firma las entradas. El nombre aparece en cada entrada de la web."
         action={
-          <Button asChild colorPalette="orange" size="lg">
+          <Button asChild colorPalette="gold" size="lg">
             <NextLink href="/admin/autores/nuevo/">Nuevo autor</NextLink>
           </Button>
         }
@@ -60,7 +60,7 @@ export function WriterList({ writers }: { writers: AdminWriter[] }) {
       {writers.length === 0 ? (
         <Text>Todavía no hay autores.</Text>
       ) : (
-        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="white">
+        <Table.ScrollArea position="relative" borderWidth={1} borderRadius="lg" bg="bg.panel">
           <Table.Root size="lg">
             <Table.Header>
               <Table.Row>

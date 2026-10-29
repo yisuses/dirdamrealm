@@ -39,7 +39,7 @@ export function ResetPasswordForm({ token }: { token?: string }) {
     return (
       <AuthCard title="Nueva contraseña">
         <Text fontSize="lg">Este enlace no está completo. Pide uno nuevo.</Text>
-        <Button asChild size="lg" colorPalette="orange">
+        <Button asChild size="lg" colorPalette="gold">
           <NextLink href="/admin/recuperar-contrasena/">Pedir un enlace nuevo</NextLink>
         </Button>
       </AuthCard>
@@ -53,7 +53,7 @@ export function ResetPasswordForm({ token }: { token?: string }) {
           <Box role="status" bg="green.50" color="green.900" p={4} borderRadius="md" fontSize="lg">
             Listo: ya puedes entrar con tu contraseña nueva.
           </Box>
-          <Button asChild size="lg" colorPalette="orange">
+          <Button asChild size="lg" colorPalette="gold">
             <NextLink href="/admin/login/">Entrar</NextLink>
           </Button>
         </>
@@ -76,7 +76,7 @@ export function ResetPasswordForm({ token }: { token?: string }) {
                 {error}
               </Text>
             )}
-            <Button type="submit" size="lg" colorPalette="orange" loading={isSubmitting} loadingText="Guardando…">
+            <Button type="submit" size="lg" colorPalette="gold" loading={isSubmitting} loadingText="Guardando…">
               Guardar la contraseña
             </Button>
           </Stack>

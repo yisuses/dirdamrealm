@@ -53,7 +53,7 @@ export function WordImportButton({ onImport }: WordImportButtonProps) {
       </VisuallyHidden>
       <Button
         variant="outline"
-        bg="white"
+        bg="bg.panel"
         alignSelf="flex-start"
         loading={busy}
         loadingText="Importando…"
@@ -76,7 +76,7 @@ export function WordImportButton({ onImport }: WordImportButtonProps) {
         open={Boolean(file) && !busy}
         title={`¿Añadir «${file?.name ?? ''}»?`}
         confirmLabel="Sí, añadirlo"
-        confirmPalette="orange"
+        confirmPalette="gold"
         onConfirm={() => void importFile()}
         onCancel={() => setFile(null)}
       >

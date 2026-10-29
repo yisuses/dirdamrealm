@@ -2,7 +2,7 @@
 
 exports[`SocialButton > should render an external link with a hidden label 1`] = `
 <a
-  class="chakra-button css-1rhb4v7"
+  class="chakra-button css-10rae86"
   href="https://twitter.com/whemotion"
   rel="noreferrer"
   target="_blank"

@@ -5,7 +5,7 @@ exports[`ContentLink > should render a link card with image and description 1`] 
   href="https://example.com/"
 >
   <div
-    class="css-kkkm24"
+    class="css-uf0pou"
   >
     <div
       class="css-69i1ev"
@@ -13,14 +13,14 @@ exports[`ContentLink > should render a link card with image and description 1`] 
       <div
         class="css-zg1vud"
       >
-        <b
-          class="css-uok8h6"
+        <p
+          class="css-1jj2bxd"
         >
           Example
-        </b>
+        </p>
       </div>
       <div
-        class="css-fjzeni"
+        class="css-1aphzjk"
       >
         <img
           alt="Example"
@@ -30,11 +30,11 @@ exports[`ContentLink > should render a link card with image and description 1`] 
         />
       </div>
     </div>
-    <i
-      class="css-9zijzb"
+    <p
+      class="css-w94eng"
     >
       An example site
-    </i>
+    </p>
   </div>
 </a>
 `;

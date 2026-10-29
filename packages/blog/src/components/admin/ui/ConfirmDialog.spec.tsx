@@ -42,7 +42,7 @@ describe('ConfirmDialog', () => {
     expect(onConfirm).not.toHaveBeenCalled()
   })
 
-  it('should color the confirmation red by default and orange when asked', async () => {
+  it('should color the confirmation red by default and gold when asked', async () => {
     const { rerender } = renderWithProviders(
       <ConfirmDialog open title="¿Publicar?" confirmLabel="Sí" onConfirm={vi.fn()} onCancel={vi.fn()}>
         Se verá en la web.
@@ -55,7 +55,7 @@ describe('ConfirmDialog', () => {
         open
         title="¿Publicar?"
         confirmLabel="Sí"
-        confirmPalette="orange"
+        confirmPalette="gold"
         onConfirm={vi.fn()}
         onCancel={vi.fn()}
       >

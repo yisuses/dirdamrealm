@@ -2,54 +2,58 @@
 
 exports[`ErrorPage > should render the generic error with a reload link by default 1`] = `
 <div
-  class="css-100wagp"
+  class="css-1t29f2g"
 >
-  <h1
-    class="chakra-heading css-5cwrvr"
+  <p
+    class="css-1x4bkz5"
   >
-    Error
+    Ups
+  </p>
+  <h1
+    class="chakra-heading css-117ngx5"
+  >
+    Algo no ha ido bien
   </h1>
   <p
-    class="css-zashnx"
+    class="css-1ymw25l"
   >
-    <a
-      class="chakra-link css-1nqikry"
-      href="/"
-    >
-      Recarga la página
-    </a>
+    Ha habido un problema al cargar esta página. Prueba a recargarla dentro de un momento.
   </p>
-  <p
-    class="css-1r4ebq8"
+  <a
+    class="chakra-button css-dwuubz"
+    href="/"
+    type="button"
   >
-    Ups, algo no ha ido como debía...
-  </p>
+    Recargar la página
+  </a>
 </div>
 `;
 
 exports[`ErrorPage > should render the not found copy with a localized home link for a 404 1`] = `
 <div
-  class="css-100wagp"
+  class="css-1t29f2g"
 >
-  <h1
-    class="chakra-heading css-5cwrvr"
+  <p
+    class="css-1x4bkz5"
   >
-    Not found
+    404
+  </p>
+  <h1
+    class="chakra-heading css-117ngx5"
+  >
+    This page has left the pitch
   </h1>
   <p
-    class="css-zashnx"
+    class="css-1ymw25l"
   >
-    <a
-      class="chakra-link css-1nqikry"
-      href="/en/"
-    >
-      Go to home page
-    </a>
+    The post may have moved, or the link may be mistyped.
   </p>
-  <p
-    class="css-1r4ebq8"
+  <a
+    class="chakra-button css-dwuubz"
+    href="/en/"
+    type="button"
   >
-    Sorry, the content you are looking for could not be found.
-  </p>
+    Back to the home page
+  </a>
 </div>
 `;

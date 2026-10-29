@@ -33,7 +33,7 @@ describe('HeaderImage', () => {
       '/media/large_test.jpg',
     )
     expect(screen.getByRole('link', { name: 'Mi entrada' })).toHaveAttribute('href', '/post/1/mi-entrada/')
-    expect(screen.getByText('01.04.2022')).toBeInTheDocument()
+    expect(screen.getByText('Test Writer · 01.04.2022')).toBeInTheDocument()
     expect(screen.getByText('Resumen de la entrada')).toBeInTheDocument()
     // Only the first three categories, shortest first, translated when possible.
     expect(screen.getByLabelText('Music')).toBeInTheDocument()

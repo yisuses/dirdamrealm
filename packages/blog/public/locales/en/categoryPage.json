@@ -1,10 +1,10 @@
 {
   "categoryPage": {
+    "kicker": "Category",
     "title": "{{categoryName}} category",
     "description": "White Emotion {{categoryName}} page",
-    "noPublishedArticles": "No published articles for this category"
-  },
-  "latestPosts": {
-    "title": "More posts for {{categoryName}}"
+    "noPublishedArticles": "No published articles for this category",
+    "count_one": "{{count}} post",
+    "count_other": "{{count}} posts"
   }
 }

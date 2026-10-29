@@ -28,6 +28,16 @@ describe('AdminShell', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
+  it('should build the initials from the words of the name that start with a letter', () => {
+    renderWithProviders(
+      <AdminShell userName="Prueba (temporal)" dataSource="db">
+        {null}
+      </AdminShell>,
+    )
+
+    expect(screen.getByText('Prueba (temporal)').previousElementSibling).toHaveTextContent(/^P$/)
+  })
+
   it('should mark home only on the home page, with or without the trailing slash', () => {
     navigation.pathname = '/admin'
     renderWithProviders(

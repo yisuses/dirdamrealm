@@ -15,7 +15,7 @@ export function HomePage() {
   const latestPosts = useGetData<Post[]>(getLatestPostsKey('HomePage'))
   const categories = useGetData<Category[]>(getCategoriesKey(locale), [])
   const headerPost = latestPosts?.[0]
-  const totalLatestPosts = latestPosts?.slice(0, 9) ?? []
+  const totalLatestPosts = latestPosts?.slice(0, 10) ?? []
 
   return (
     <>

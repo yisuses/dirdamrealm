@@ -53,10 +53,11 @@ describe('MainLayout', () => {
 
     expect(within(screen.getByRole('main')).getByText('Page content')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Send an e-mail' })).toHaveAttribute('href', 'mailto:hello@example.com')
-    expect(screen.getByRole('link', { name: 'Test Category' })).toHaveAttribute(
-      'href',
+    // In the header bar and in the footer.
+    expect(screen.getAllByRole('link', { name: 'Test Category' }).map(link => link.getAttribute('href'))).toEqual([
       '/en/category/test-category/test-category/',
-    )
+      '/en/category/test-category/test-category/',
+    ])
     expect(screen.queryByText('Oculta')).not.toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
