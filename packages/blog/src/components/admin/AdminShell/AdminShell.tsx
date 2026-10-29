@@ -27,6 +27,8 @@ export function AdminShell({ userName, dataSource, preview = false, children }: 
   const pathname = usePathname()
   const initials = userName
     .split(' ')
+    // Skip words such as "(temporal)" that don't start with a letter.
+    .filter(word => /^\p{L}/u.test(word))
     .slice(0, 2)
     .map(word => word[0])
     .join('')
@@ -121,7 +123,8 @@ export function AdminShell({ userName, dataSource, preview = false, children }: 
           justify="flex-end"
           gap={5}
           px={{ base: 4, lg: 8 }}
-          h="64px"
+          minH="64px"
+          py={2}
           bg="bg.panel"
           borderBottomWidth={1}
           borderColor="border"

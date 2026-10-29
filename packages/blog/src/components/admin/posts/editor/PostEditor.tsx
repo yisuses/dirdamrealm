@@ -325,7 +325,7 @@ export function PostEditor({ post, locale, writers, categories }: PostEditorProp
       </Stack>
 
       <Stack gap={3}>
-        <Heading as="h2" size="lg" fontFamily="heading" fontWeight={500}>
+        <Heading as="h2" size="2xl" fontFamily="heading" fontWeight={500}>
           Texto
         </Heading>
         <WordImportButton onImport={blocks => editor.current!.append(blocks)} />

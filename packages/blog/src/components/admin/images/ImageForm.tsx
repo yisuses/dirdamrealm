@@ -171,7 +171,7 @@ export function ImageForm({ image, usage }: { image: LibraryImage; usage: ImageU
           </Stack>
 
           <Stack gap={3} bg="bg.panel" borderWidth={1} borderRadius="lg" p={{ base: 4, md: 6 }}>
-            <Heading as="h2" size="lg" fontFamily="heading" fontWeight={500}>
+            <Heading as="h2" size="xl" fontFamily="heading" fontWeight={500}>
               Dónde se usa
             </Heading>
             {usage.length === 0 ? (

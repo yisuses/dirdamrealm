@@ -92,6 +92,8 @@ export function PostPage() {
   const mainCategory = categories?.[0]
   const initials = (writer?.name ?? '')
     .split(' ')
+    // Skip words such as "(temporal)" that don't start with a letter.
+    .filter(word => /^\p{L}/u.test(word))
     .slice(0, 2)
     .map(word => word[0])
     .join('')
