@@ -114,21 +114,55 @@ exports[`MainLayout > should render the header, the page inside main and the foo
       >
         <a
           aria-current="page"
-          class="css-19m0gt7"
+          class="css-1i78goi"
           href="/en/"
         >
           Home
         </a>
+        <div
+          aria-hidden="true"
+          class="css-1lgbt78"
+        />
         <a
-          class="css-1xcoq7v"
+          class="css-8g967h"
           href="/en/category/test-category/test-category/"
         >
           Test Category
         </a>
+        <div
+          aria-hidden="true"
+          class="css-1lgbt78"
+        />
         <a
-          class="css-1xcoq7v"
+          class="css-8g967h"
           href="/en/archive/"
         >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="5"
+              rx="1"
+              width="20"
+              x="2"
+              y="3"
+            />
+            <path
+              d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"
+            />
+            <path
+              d="M10 12h4"
+            />
+          </svg>
           Archive
         </a>
       </div>

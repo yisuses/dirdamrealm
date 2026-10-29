@@ -4,9 +4,9 @@ import { Box, Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LuMoon, LuSearch, LuSun } from 'react-icons/lu'
+import { LuArchive, LuMoon, LuSearch, LuSun } from 'react-icons/lu'
 
 import { getCategories } from '@blog/api/public'
 import { HeaderLogo, Modal, SearchPosts } from '@blog/components/common'
@@ -23,6 +23,14 @@ export interface HeaderProps {
     name: string
     localizedName: string
   }[]
+}
+
+interface NavLink {
+  key: string
+  label: string
+  href: string
+  active: boolean
+  icon?: boolean
 }
 
 const toolProps = {
@@ -59,21 +67,25 @@ export function Header({ categories }: HeaderProps) {
     pathname,
   )
 
-  const links = [
-    { key: 'home', label: t('header.home'), href: localizeHref('/'), active: barePath === '/' },
-    ...categories.map(({ url, code, name, localizedName }) => ({
+  // Home, the categories and the archive as three groups, so the archive doesn't read as one more category.
+  const linkGroups: NavLink[][] = [
+    [{ key: 'home', label: t('header.home'), href: localizeHref('/'), active: barePath === '/' }],
+    categories.map(({ url, code, name, localizedName }) => ({
       key: code,
       label: localizedName,
       href: url,
       active: barePath === buildCategoryPath(code, name),
     })),
-    {
-      key: 'archive',
-      label: t('header.archive'),
-      href: localizeHref('/archive/'),
-      active: barePath === '/archive/',
-    },
-  ]
+    [
+      {
+        key: 'archive',
+        label: t('header.archive'),
+        href: localizeHref('/archive/'),
+        active: barePath === '/archive/',
+        icon: true,
+      },
+    ],
+  ].filter(group => group.length > 0)
 
   const switchLanguage = async () => {
     const nextLocale: AppLocales = locale === 'es' ? 'en' : 'es'
@@ -178,22 +190,31 @@ export function Header({ categories }: HeaderProps) {
               maskImage: { base: 'linear-gradient(to right, #000 85%, transparent)', lg: 'none' },
             }}
           >
-            {links.map(({ key, label, href, active }) => (
-              <Box
-                asChild
-                key={key}
-                whiteSpace="nowrap"
-                pt="11px"
-                pb="9px"
-                borderBottom="2px solid"
-                borderBottomColor={active ? 'accent' : 'transparent'}
-                color="fg"
-                _hover={{ color: 'accent' }}
-              >
-                <NextLink href={href} aria-current={active ? 'page' : undefined}>
-                  {label}
-                </NextLink>
-              </Box>
+            {linkGroups.map((group, index) => (
+              <Fragment key={group[0]!.key}>
+                {index > 0 && <Box aria-hidden flex="none" alignSelf="center" w="1px" h="18px" bg="border" />}
+                {group.map(({ key, label, href, active, icon }) => (
+                  <Box
+                    asChild
+                    key={key}
+                    display="inline-flex"
+                    alignItems="center"
+                    gap={1.5}
+                    whiteSpace="nowrap"
+                    pt="11px"
+                    pb="9px"
+                    borderBottom="2px solid"
+                    borderBottomColor={active ? 'accent' : 'transparent'}
+                    color="fg"
+                    _hover={{ color: 'accent' }}
+                  >
+                    <NextLink href={href} aria-current={active ? 'page' : undefined}>
+                      {icon && <LuArchive aria-hidden />}
+                      {label}
+                    </NextLink>
+                  </Box>
+                ))}
+              </Fragment>
             ))}
           </Flex>
           <Flex flex="none" alignItems="center">
