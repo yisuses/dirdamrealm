@@ -50,7 +50,8 @@ export function PostPage() {
   }, [])
 
   const bylineRef = useRef<HTMLDivElement>(null)
-  const articleRef = useRef<HTMLDivElement>(null)
+  // The post's text alone, so the reading progress fills when the text ends, not after the comments.
+  const textRef = useRef<HTMLDivElement>(null)
 
   const { id, title, summary, content, publishedAt, categories, writer } = post
 
@@ -104,11 +105,11 @@ export function PostPage() {
 
   return (
     <>
-      <PostShareBar title={title} trigger={bylineRef} article={articleRef}>
+      <PostShareBar title={title} trigger={bylineRef} article={textRef}>
         {socialButtons}
       </PostShareBar>
       <HeaderImage post={post} />
-      <Box as="article" ref={articleRef} maxW="748px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 8, md: 12 }}>
+      <Box as="article" maxW="748px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 8, md: 12 }}>
         {mainCategory && <Tag label={mainCategory.localizedName} />}
         <Heading
           as="h1"
@@ -166,7 +167,7 @@ export function PostPage() {
             {socialButtons}
           </Stack>
         </Flex>
-        <Box mt={{ base: 8, md: 10 }} fontSize={{ base: '18px', md: '19px' }} lineHeight="1.7">
+        <Box ref={textRef} mt={{ base: 8, md: 10 }} fontSize={{ base: '18px', md: '19px' }} lineHeight="1.7">
           <Content content={content} />
         </Box>
         <Flex alignItems="center" gap={3} mt={10} pt={6} borderTop="1px solid" borderColor="border" flexWrap="wrap">

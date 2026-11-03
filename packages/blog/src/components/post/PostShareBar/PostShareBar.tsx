@@ -13,7 +13,7 @@ interface PostShareBarProps {
   children: ReactNode
   /** The bar shows once this element (the byline) has scrolled up under the menu bar. */
   trigger: RefObject<HTMLElement | null>
-  /** The text being read, for the progress line. */
+  /** The post's text, for the progress line: full when its end comes into view. */
   article: RefObject<HTMLElement | null>
 }
 
