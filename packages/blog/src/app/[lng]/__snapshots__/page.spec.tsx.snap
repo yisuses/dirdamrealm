@@ -2,6 +2,13 @@
 
 exports[`Home page > should build the metadata for the default locale 1`] = `
 {
+  "alternates": {
+    "canonical": "https://example.com/",
+    "languages": {
+      "en": "https://example.com/en/",
+      "es": "https://example.com/",
+    },
+  },
   "description": "Deporte, música, actualidad y viajes contados con emoción.",
   "icons": {
     "apple": "/apple-icon.png",

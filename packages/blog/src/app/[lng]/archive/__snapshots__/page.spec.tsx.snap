@@ -2,6 +2,13 @@
 
 exports[`Archive page > should build the metadata 1`] = `
 {
+  "alternates": {
+    "canonical": "https://example.com/archive/",
+    "languages": {
+      "en": "https://example.com/en/archive/",
+      "es": "https://example.com/archive/",
+    },
+  },
   "description": "Historial de todas las entradas publicadas.",
   "icons": {
     "apple": "/apple-icon.png",

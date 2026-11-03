@@ -33,4 +33,4 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
-Sitemap: https://whemotion.com/sitemap.xml
+Sitemap: https://www.whemotion.com/sitemap.xml

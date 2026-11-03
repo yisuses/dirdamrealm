@@ -28,7 +28,8 @@ function generateSiteMap(lastPostUpdate: string, lastCategoryUpdate: string) {
 export async function GET() {
   const posts = await getAllPosts({})
   const categories = await getCategories({ sort: ['updatedAt:desc'] })
-  const sitemap = generateSiteMap(categories[0].updatedAt, posts ? posts[0].updatedAt || '' : '')
+  // Most recent change first: the newest post dates the pages and posts sitemaps.
+  const sitemap = generateSiteMap(posts?.[0]?.updatedAt || '', categories[0].updatedAt)
 
   const headers = new Headers()
   headers.set('Content-Type', 'text/xml')

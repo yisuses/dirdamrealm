@@ -18,6 +18,10 @@ describe('buildPageMetadata', () => {
         apple: '/apple-icon.png',
       },
       manifest: '/manifest.webmanifest',
+      alternates: {
+        canonical: 'https://example.com/archive/',
+        languages: { es: 'https://example.com/archive/', en: 'https://example.com/en/archive/' },
+      },
       openGraph: {
         siteName: 'White Emotion',
         url: 'https://example.com/archive/',
@@ -31,6 +35,23 @@ describe('buildPageMetadata', () => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       other: { 'apple-mobile-web-app-capable': 'yes' },
     })
+  })
+
+  it('should point a page read under another language at its own address and list its translations', () => {
+    // A Spanish post with no English version, opened under /en/.
+    const metadata = buildPageMetadata({
+      ...base,
+      lng: 'en',
+      path: '/post/74/ejecuciones/',
+      canonicalLng: 'es',
+      languages: { es: '/post/74/ejecuciones/' },
+    })
+
+    expect(metadata.alternates).toEqual({
+      canonical: 'https://example.com/post/74/ejecuciones/',
+      languages: { es: 'https://example.com/post/74/ejecuciones/' },
+    })
+    expect(metadata.openGraph?.url).toBe('https://example.com/post/74/ejecuciones/')
   })
 
   it('should prefix the url and swap the og locales for a non-default locale', () => {

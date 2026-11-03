@@ -12,6 +12,7 @@ import { getServerT } from '@blog/core/i18n/server'
 import { buildPageMetadata } from '@blog/core/metadata/build-metadata'
 import { getQueryClient } from '@blog/core/query/get-query-client'
 import { getAbout, getAllPosts, getComments, getLatestPosts, getPostById } from '@blog/data'
+import { cloudinaryUrl } from '@blog/db/queries/media'
 import {
   buildPostPath,
   getImageDataFromMedia,
@@ -65,15 +66,36 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   ])
   if (!post) return {}
 
-  const { title, summary, coverImage, imgUrl, publishedAt, updatedAt, categories, writer } = post
+  const { title, summary, coverImage, imgUrl, publishedAt, updatedAt, categories, writer, localizations } = post
+  // Link previews want a 1200x630 JPEG: Cloudinary's automatic format can hand WebP or AVIF
+  // to a crawler, and the 750px variant is below what the large cards ask for.
+  const shareImage = coverImage
+    ? {
+        url: cloudinaryUrl(coverImage.name, 'c_fill,g_auto,w_1200,h_630,f_jpg,q_auto'),
+        width: 1200,
+        height: 630,
+        alt: coverImage.alternativeText || title,
+      }
+    : imgUrl
+  const path = buildPostPath(String(post.id), title)
   return buildPageMetadata({
     lng,
     pageTitle: tCommon('pageTitle'),
     name: t('postPage.title', { postName: title }),
     description: summary,
-    path: buildPostPath(String(post.id), title),
+    path,
+    canonicalLng: post.locale,
+    languages: {
+      [post.locale]: path,
+      ...Object.fromEntries(
+        (localizations ?? []).map(localization => [
+          localization.locale,
+          buildPostPath(String(localization.id), localization.title),
+        ]),
+      ),
+    },
     type: 'article',
-    imageUrl: getImageUrlFromMedia({ media: coverImage, format: 'medium', fallback: imgUrl }),
+    imageUrl: shareImage,
     article: {
       publishedTime: publishedAt,
       modifiedTime: updatedAt || undefined,
@@ -83,7 +105,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
     twitter: {
       title,
       description: summary,
-      image: getImageUrlFromMedia({ media: coverImage, format: 'small', fallback: imgUrl }),
+      image: typeof shareImage === 'string' ? shareImage : shareImage?.url,
       imageAlt: coverImage ? coverImage.caption : '',
       creator: writer?.twitter || about?.twitter || undefined,
     },

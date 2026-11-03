@@ -17,6 +17,13 @@ exports[`Post page > Page > should prefetch comments and related posts and rende
 
 exports[`Post page > generateMetadata > should build the article metadata 1`] = `
 {
+  "alternates": {
+    "canonical": "https://example.com/post/7/hola-mundo/",
+    "languages": {
+      "en": "https://example.com/en/post/8/hello-world/",
+      "es": "https://example.com/post/7/hola-mundo/",
+    },
+  },
   "description": "Un resumen",
   "icons": {
     "apple": "/apple-icon.png",
@@ -42,7 +49,12 @@ exports[`Post page > generateMetadata > should build the article metadata 1`] = 
     ],
     "description": "Un resumen",
     "images": [
-      "/media/medium.jpg",
+      {
+        "alt": "Hola Mundo",
+        "height": 630,
+        "url": "https://res.cloudinary.com/undefined/image/upload/c_fill,g_auto,w_1200,h_630,f_jpg,q_auto/undefined",
+        "width": 1200,
+      },
     ],
     "locale": "es_ES",
     "modifiedTime": "2026-10-21T08:00:00.000Z",
@@ -62,7 +74,7 @@ exports[`Post page > generateMetadata > should build the article metadata 1`] = 
     "creator": "@saul",
     "description": "Un resumen",
     "images": [
-      "/media/small.jpg",
+      "https://res.cloudinary.com/undefined/image/upload/c_fill,g_auto,w_1200,h_630,f_jpg,q_auto/undefined",
     ],
     "title": "Hola Mundo",
   },
