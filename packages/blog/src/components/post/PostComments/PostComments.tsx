@@ -110,7 +110,8 @@ export function PostComments({ postId, comments, postIds }: PostCommentsProps) {
                 <Text as="span" fontWeight={600}>
                   {author}
                 </Text>
-                <Text as="span" color="fg.muted" ms={2}>
+                {/* Relative to now: the cached page and the reader's clock can name a different day. */}
+                <Text as="span" color="fg.muted" ms={2} suppressHydrationWarning>
                   {intlFormatDistance(new Date(createdAt), new Date(), { locale })}
                 </Text>
               </Text>

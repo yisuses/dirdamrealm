@@ -176,7 +176,7 @@ export default async function Page({ params }: PostPageProps) {
       '@type': 'Organization',
       name: 'White Emotion',
       url: 'https://whemotion.com',
-      logo: { '@type': 'ImageObject', url: publicUrl('/images/WElogo.png'), width: '500', height: '500' },
+      logo: { '@type': 'ImageObject', url: publicUrl('/images/logo.png'), width: '512', height: '512' },
     },
     mainEntityOfPage: publicUrl(`${localePrefix(lng)}${buildPostPath(String(post.id), title)}`),
     articleSection: categories?.[0]?.localizedName || '',

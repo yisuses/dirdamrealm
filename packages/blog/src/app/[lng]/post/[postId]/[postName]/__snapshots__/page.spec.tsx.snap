@@ -5,7 +5,7 @@ exports[`Post page > Page > should prefetch comments and related posts and rende
   <script
     type="application/ld+json"
   >
-    {"@context":"https://schema.org/","@type":"BlogPosting","headline":"Hola Mundo","name":"Hola Mundo","alternativeHeadline":"Un resumen","dateCreated":"2026-10-19T09:00:00.000Z","datePublished":"2026-10-20T11:30:00.000Z","dateModified":"2026-10-21T08:00:00.000Z","inLanguage":"es","isFamilyFriendly":true,"copyrightYear":2026,"image":{"@type":"ImageObject","url":"/media/medium.jpg","width":"750","height":"375"},"thumbnailUrl":"/media/small.jpg","author":{"@type":"Person","name":"Saúl","url":"https://saul.dev"},"creator":{"@type":"Person","name":"Saúl","url":"https://saul.dev"},"publisher":{"@type":"Organization","name":"White Emotion","url":"https://whemotion.com","logo":{"@type":"ImageObject","url":"https://example.com/images/WElogo.png","width":"500","height":"500"}},"mainEntityOfPage":"https://example.com/post/7/hola-mundo/","articleSection":"Viajes","articleBody":"Primer párrafo"}
+    {"@context":"https://schema.org/","@type":"BlogPosting","headline":"Hola Mundo","name":"Hola Mundo","alternativeHeadline":"Un resumen","dateCreated":"2026-10-19T09:00:00.000Z","datePublished":"2026-10-20T11:30:00.000Z","dateModified":"2026-10-21T08:00:00.000Z","inLanguage":"es","isFamilyFriendly":true,"copyrightYear":2026,"image":{"@type":"ImageObject","url":"/media/medium.jpg","width":"750","height":"375"},"thumbnailUrl":"/media/small.jpg","author":{"@type":"Person","name":"Saúl","url":"https://saul.dev"},"creator":{"@type":"Person","name":"Saúl","url":"https://saul.dev"},"publisher":{"@type":"Organization","name":"White Emotion","url":"https://whemotion.com","logo":{"@type":"ImageObject","url":"https://example.com/images/logo.png","width":"512","height":"512"}},"mainEntityOfPage":"https://example.com/post/7/hola-mundo/","articleSection":"Viajes","articleBody":"Primer párrafo"}
   </script>
   <pre
     data-testid="post-page"
@@ -48,7 +48,7 @@ exports[`Post page > generateMetadata > should build the article metadata 1`] = 
     "modifiedTime": "2026-10-21T08:00:00.000Z",
     "publishedTime": "2026-10-20T11:30:00.000Z",
     "section": "Viajes",
-    "siteName": "White emotion",
+    "siteName": "White Emotion",
     "title": "Emoción Blanca - Hola Mundo",
     "type": "article",
     "url": "https://example.com/post/7/hola-mundo/",

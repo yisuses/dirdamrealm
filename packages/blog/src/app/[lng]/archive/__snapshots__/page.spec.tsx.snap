@@ -24,10 +24,14 @@ exports[`Archive page > should build the metadata 1`] = `
     ],
     "description": "Historial de todas las entradas publicadas.",
     "images": [
-      "https://example.com/images/WElogo.png",
+      {
+        "height": 630,
+        "url": "https://example.com/images/og-default.png",
+        "width": 1200,
+      },
     ],
     "locale": "es_ES",
-    "siteName": "White emotion",
+    "siteName": "White Emotion",
     "title": "Emoción Blanca - Archivo",
     "type": "website",
     "url": "https://example.com/archive/",

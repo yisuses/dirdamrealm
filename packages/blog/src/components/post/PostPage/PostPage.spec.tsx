@@ -74,8 +74,8 @@ describe('PostPage', () => {
       'href',
       `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     )
-    // The buttons by the byline are hidden on phones (all jsdom has).
-    expect(screen.getAllByRole('link', { name: 'Share on Linkedin', hidden: true })).toHaveLength(2)
+    // By the byline (hidden on phones, all jsdom has), at the end, and in the sticky bar (hidden until scrolling).
+    expect(screen.getAllByRole('link', { name: 'Share on Linkedin', hidden: true })).toHaveLength(3)
     expect(screen.queryByText('Share on ...')).not.toBeInTheDocument()
     // Comments of every localization of the post are shown.
     expect(screen.getByText('Great post!')).toBeInTheDocument()

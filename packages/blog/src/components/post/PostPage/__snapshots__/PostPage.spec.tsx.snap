@@ -3,6 +3,111 @@
 exports[`PostPage > should render the post with share links, tags, comments and posts of the same category 1`] = `
 <div>
   <div
+    aria-hidden="false"
+    class="css-br7b9h"
+    data-testid="post-share-bar"
+  >
+    <div
+      class="css-9o7sfq"
+    >
+      <p
+        class="css-d2yutg"
+      >
+        Test Post
+      </p>
+      <div
+        class="chakra-stack css-4zmsfw"
+      >
+        <a
+          class="chakra-button css-10rae86"
+          href="https://twitter.com/intent/tweet?text=Check%20this%20article%20at%20White%20Emotion%3A%20Test%20Post&url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on X
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+            />
+          </svg>
+        </a>
+        <a
+          class="chakra-button css-10rae86"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on Facebook
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 320 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+            />
+          </svg>
+        </a>
+        <a
+          class="chakra-button css-10rae86"
+          href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwhemotion.com%2Fen%2Fpost%2F1%2Ftest-post%2F"
+          rel="noreferrer"
+          target="_blank"
+          type="button"
+        >
+          <span
+            class="css-cfk6a1"
+          >
+            Share on Linkedin
+          </span>
+          <svg
+            fill="currentColor"
+            height="15"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div
+      aria-label="Reading progress"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="100"
+      class="css-ivouvk"
+      role="progressbar"
+    />
+  </div>
+  <div
     class="css-ec04vx"
   >
     <div

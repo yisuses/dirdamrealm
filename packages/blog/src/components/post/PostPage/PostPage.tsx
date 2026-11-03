@@ -2,7 +2,7 @@
 
 import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { useParams, usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
 import { FaFacebookF, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
@@ -14,6 +14,7 @@ import { fixedEncodeURIComponent, formatPostDate, getReadingTime, publicUrl } fr
 import { getLatestPostsKey, getPostCommentsKey, getPostKey } from '@blog/utils/constants'
 
 import { PostComments } from '../PostComments'
+import { PostShareBar } from '../PostShareBar'
 
 type ShareButtonProps = {
   label: string
@@ -47,6 +48,9 @@ export function PostPage() {
   useEffect(() => {
     setNativeNavigator(navigator)
   }, [])
+
+  const bylineRef = useRef<HTMLDivElement>(null)
+  const articleRef = useRef<HTMLDivElement>(null)
 
   const { id, title, summary, content, publishedAt, categories, writer } = post
 
@@ -100,8 +104,11 @@ export function PostPage() {
 
   return (
     <>
+      <PostShareBar title={title} trigger={bylineRef} article={articleRef}>
+        {socialButtons}
+      </PostShareBar>
       <HeaderImage post={post} />
-      <Box as="article" maxW="748px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 8, md: 12 }}>
+      <Box as="article" ref={articleRef} maxW="748px" mx="auto" px={{ base: 4, md: 6 }} mt={{ base: 8, md: 12 }}>
         {mainCategory && <Tag label={mainCategory.localizedName} />}
         <Heading
           as="h1"
@@ -119,7 +126,15 @@ export function PostPage() {
             {summary}
           </Text>
         )}
-        <Flex alignItems="center" gap={3} py={4} borderY="1px solid" borderColor="border" flexWrap="wrap">
+        <Flex
+          ref={bylineRef}
+          alignItems="center"
+          gap={3}
+          py={4}
+          borderY="1px solid"
+          borderColor="border"
+          flexWrap="wrap"
+        >
           {initials && (
             <Flex
               aria-hidden

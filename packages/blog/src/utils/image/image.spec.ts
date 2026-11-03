@@ -103,12 +103,12 @@ describe('getImageUrlFromMedia', () => {
 
   it('returns fallback when media is null and no fallback is provided', () => {
     const result = getImageUrlFromMedia({ media: null })
-    expect(result).toEqual('/images/WElogo.png')
+    expect(result).toEqual('/images/og-default.png')
   })
 
   it('returns default fallback when media is null and fallback is not provided', () => {
     const result = getImageUrlFromMedia({ media: null })
-    expect(result).toEqual('/images/WElogo.png')
+    expect(result).toEqual('/images/og-default.png')
   })
 
   it('returns url of the preferred format when available', () => {
@@ -138,7 +138,7 @@ describe('getImageUrlFromMedia', () => {
     expect(consoleSpy).toHaveBeenCalledWith(
       'There was an error loading the image ID:"2", FORMAT:"large", FALLBACK:"http://example.com/fallback.jpg"',
     )
-    expect(result).toEqual('/images/WElogo.png')
+    expect(result).toEqual('/images/og-default.png')
     consoleSpy.mockRestore()
   })
 
@@ -148,14 +148,14 @@ describe('getImageUrlFromMedia', () => {
     expect(consoleSpy).toHaveBeenCalledWith(
       'There was an error loading the image ID:"unknown", FORMAT:"large", FALLBACK:"http://example.com/fallback.jpg"',
     )
-    expect(result).toEqual('/images/WElogo.png')
+    expect(result).toEqual('/images/og-default.png')
     consoleSpy.mockRestore()
   })
 
   it('returns default fallback when there is an error loading the image and fallback is not provided', () => {
     const result = getImageUrlFromMedia({ media: null })
 
-    expect(result).toBe('/images/WElogo.png')
+    expect(result).toBe('/images/og-default.png')
   })
 
   it('returns preferred format url when available', () => {

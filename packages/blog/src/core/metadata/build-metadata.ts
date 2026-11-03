@@ -33,10 +33,15 @@ export function buildPageMetadata(opts: BuildMetadataOptions): Metadata {
   const title = `${pageTitle} - ${name}`
   const localePrefix = lng === DEFAULT_LOCALE ? '' : `/${lng}`
   const url = publicUrl(`${localePrefix}${path}`)
-  const ogImage = imageUrl || publicUrl('/images/WElogo.png')
+  // Pages without a photo of their own share the site's card, with the tagline in their language.
+  const ogImage = imageUrl || {
+    url: publicUrl(lng === 'en' ? '/images/og-default-en.png' : '/images/og-default.png'),
+    width: 1200,
+    height: 630,
+  }
 
   const openGraph: NonNullable<Metadata['openGraph']> = {
-    siteName: 'White emotion',
+    siteName: 'White Emotion',
     url,
     title,
     description,

@@ -44,10 +44,14 @@ exports[`Category page > generateMetadata > should build the metadata of the cat
     ],
     "description": "Emoción Blanca: Página de la categoría Viajes y más",
     "images": [
-      "https://example.com/images/WElogo.png",
+      {
+        "height": 630,
+        "url": "https://example.com/images/og-default.png",
+        "width": 1200,
+      },
     ],
     "locale": "es_ES",
-    "siteName": "White emotion",
+    "siteName": "White Emotion",
     "title": "Emoción Blanca - Categoría: Viajes y más",
     "type": "website",
     "url": "https://example.com/category/TRAVEL/viajes-y-mas/",

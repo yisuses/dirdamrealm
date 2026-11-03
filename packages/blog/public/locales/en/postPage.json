@@ -15,6 +15,7 @@
       "maxNameLength": "Maximun length should be 40 characters.",
       "addComment": "Post comment",
       "adding": "Adding"
-    }
+    },
+    "readingProgress": "Reading progress"
   }
 }

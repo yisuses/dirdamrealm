@@ -19,11 +19,11 @@ describe('buildPageMetadata', () => {
       },
       manifest: '/manifest.webmanifest',
       openGraph: {
-        siteName: 'White emotion',
+        siteName: 'White Emotion',
         url: 'https://example.com/archive/',
         title: 'White emotion - Archive',
         description: 'All posts',
-        images: ['https://example.com/images/WElogo.png'],
+        images: [{ url: 'https://example.com/images/og-default.png', width: 1200, height: 630 }],
         locale: 'es_ES',
         alternateLocale: ['en_GB'],
         type: 'website',
@@ -40,6 +40,8 @@ describe('buildPageMetadata', () => {
       url: 'https://example.com/en/archive/',
       locale: 'en_GB',
       alternateLocale: ['es_ES'],
+      // The site's card with its English tagline.
+      images: [{ url: 'https://example.com/images/og-default-en.png', width: 1200, height: 630 }],
     })
   })
 
