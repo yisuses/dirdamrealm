@@ -16,7 +16,7 @@ exports[`GET /sitemap/page.xml > should list the home page dated by the latest p
       <loc>https://www.whemotion.com/</loc>
       <lastmod>2026-10-20T11:30:00.000Z</lastmod>
       <image:image>
-        <image:loc>https://example.com/images/WElogo.png</image:loc>
+        <image:loc>https://example.com/images/og-default.png</image:loc>
       </image:image>
       <xhtml:link rel="alternate" hreflang="en-US" href="https://www.whemotion.com/en/"/>
       <xhtml:link rel="alternate" hreflang="es-ES" href="https://www.whemotion.com/"/>

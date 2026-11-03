@@ -28,7 +28,14 @@ describe('GET /sitemap.xml', () => {
     expect(response.headers.get('Content-Type')).toBe('text/xml')
     expect(mockedGetAllPosts).toHaveBeenCalledWith({})
     expect(mockedGetCategories).toHaveBeenCalledWith({ sort: ['updatedAt:desc'] })
-    expect(await response.text()).toMatchSnapshot()
+    const xml = await response.text()
+    // Pages and posts are dated by the newest post, categories by the newest category.
+    expect(xml.match(/<lastmod>[^<]*<\/lastmod>/g)).toEqual([
+      '<lastmod>2026-10-20T11:30:00.000Z</lastmod>',
+      '<lastmod>2026-10-20T11:30:00.000Z</lastmod>',
+      '<lastmod>2026-10-01T08:00:00.000Z</lastmod>',
+    ])
+    expect(xml).toMatchSnapshot()
   })
 
   it('should leave the post dates empty when the latest post has no update date', async () => {
@@ -37,9 +44,9 @@ describe('GET /sitemap.xml', () => {
     const xml = await (await GET()).text()
 
     expect(xml.match(/<lastmod>[^<]*<\/lastmod>/g)).toEqual([
-      '<lastmod>2026-10-01T08:00:00.000Z</lastmod>',
-      '<lastmod>2026-10-01T08:00:00.000Z</lastmod>',
       '<lastmod></lastmod>',
+      '<lastmod></lastmod>',
+      '<lastmod>2026-10-01T08:00:00.000Z</lastmod>',
     ])
   })
 

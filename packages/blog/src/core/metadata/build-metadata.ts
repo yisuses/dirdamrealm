@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { Metadata } from 'next'
 
-import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
+import { DEFAULT_LOCALE, LOCALES } from '@blog/core/i18n/config'
 import { publicUrl } from '@blog/utils/generateUrl/generateUrl'
 
 const OG_LOCALE: Record<AppLocales, string> = { es: 'es_ES', en: 'en_GB' }
@@ -16,7 +16,12 @@ type BuildMetadataOptions = {
   description: string
   /** Path WITHOUT the locale prefix, e.g. '' (home), '/archive/'. */
   path: string
-  imageUrl?: string
+  /** The page's own picture for link previews; the site's card when absent. */
+  imageUrl?: string | { url: string; width: number; height: number; alt?: string }
+  /** The language the page is written in, when it differs from the url's (a post with no translation). */
+  canonicalLng?: AppLocales
+  /** The page's path (without locale prefix) in each language it exists in; every language by default. */
+  languages?: Partial<Record<AppLocales, string>>
   type?: 'website' | 'article'
   keywords?: string
   article?: { publishedTime?: string; modifiedTime?: string; section?: string; authors?: string[] }
@@ -31,12 +36,26 @@ export function buildPageMetadata(opts: BuildMetadataOptions): Metadata {
   const { lng, pageTitle, name, description, path, imageUrl, type = 'website', keywords = DEFAULT_KEYWORDS } = opts
 
   const title = `${pageTitle} - ${name}`
-  const localePrefix = lng === DEFAULT_LOCALE ? '' : `/${lng}`
-  const url = publicUrl(`${localePrefix}${path}`)
-  const ogImage = imageUrl || publicUrl('/images/WElogo.png')
+  const prefix = (locale: AppLocales) => (locale === DEFAULT_LOCALE ? '' : `/${locale}`)
+  // The page's one address, which Google is told to index: a post read under the other
+  // language's prefix points at its own.
+  const url = publicUrl(`${prefix(opts.canonicalLng ?? lng)}${path}`)
+  const languagePaths = opts.languages ?? Object.fromEntries(LOCALES.map(locale => [locale, path]))
+  const languages = Object.fromEntries(
+    Object.entries(languagePaths).map(([locale, localePath]) => [
+      locale,
+      publicUrl(`${prefix(locale as AppLocales)}${localePath}`),
+    ]),
+  )
+  // Pages without a photo of their own share the site's card, with the tagline in their language.
+  const ogImage = imageUrl || {
+    url: publicUrl(lng === 'en' ? '/images/og-default-en.png' : '/images/og-default.png'),
+    width: 1200,
+    height: 630,
+  }
 
   const openGraph: NonNullable<Metadata['openGraph']> = {
-    siteName: 'White emotion',
+    siteName: 'White Emotion',
     url,
     title,
     description,
@@ -58,6 +77,7 @@ export function buildPageMetadata(opts: BuildMetadataOptions): Metadata {
       apple: '/apple-icon.png',
     },
     manifest: '/manifest.webmanifest',
+    alternates: { canonical: url, languages },
     openGraph,
     other: { 'apple-mobile-web-app-capable': 'yes' },
   }

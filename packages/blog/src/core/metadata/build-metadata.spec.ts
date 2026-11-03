@@ -18,12 +18,16 @@ describe('buildPageMetadata', () => {
         apple: '/apple-icon.png',
       },
       manifest: '/manifest.webmanifest',
+      alternates: {
+        canonical: 'https://example.com/archive/',
+        languages: { es: 'https://example.com/archive/', en: 'https://example.com/en/archive/' },
+      },
       openGraph: {
-        siteName: 'White emotion',
+        siteName: 'White Emotion',
         url: 'https://example.com/archive/',
         title: 'White emotion - Archive',
         description: 'All posts',
-        images: ['https://example.com/images/WElogo.png'],
+        images: [{ url: 'https://example.com/images/og-default.png', width: 1200, height: 630 }],
         locale: 'es_ES',
         alternateLocale: ['en_GB'],
         type: 'website',
@@ -33,6 +37,23 @@ describe('buildPageMetadata', () => {
     })
   })
 
+  it('should point a page read under another language at its own address and list its translations', () => {
+    // A Spanish post with no English version, opened under /en/.
+    const metadata = buildPageMetadata({
+      ...base,
+      lng: 'en',
+      path: '/post/74/ejecuciones/',
+      canonicalLng: 'es',
+      languages: { es: '/post/74/ejecuciones/' },
+    })
+
+    expect(metadata.alternates).toEqual({
+      canonical: 'https://example.com/post/74/ejecuciones/',
+      languages: { es: 'https://example.com/post/74/ejecuciones/' },
+    })
+    expect(metadata.openGraph?.url).toBe('https://example.com/post/74/ejecuciones/')
+  })
+
   it('should prefix the url and swap the og locales for a non-default locale', () => {
     const { openGraph } = buildPageMetadata({ ...base, lng: 'en' })
 
@@ -40,6 +61,8 @@ describe('buildPageMetadata', () => {
       url: 'https://example.com/en/archive/',
       locale: 'en_GB',
       alternateLocale: ['es_ES'],
+      // The site's card with its English tagline.
+      images: [{ url: 'https://example.com/images/og-default-en.png', width: 1200, height: 630 }],
     })
   })
 

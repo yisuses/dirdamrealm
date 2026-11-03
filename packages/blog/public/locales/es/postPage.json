@@ -15,6 +15,7 @@
       "maxNameLength": "El tamaño máximo es de 40 caracteres.",
       "addComment": "Publicar comentario",
       "adding": "Añadiendo"
-    }
+    },
+    "readingProgress": "Cuánto llevas leído"
   }
 }

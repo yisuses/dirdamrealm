@@ -140,6 +140,19 @@ const nextConfig = {
     ignoreBuildErrors: NEXTJS_IGNORE_TYPECHECK,
   },
 
+  // One address per page: the bare domain served the same pages as www, which Google saw as
+  // duplicates. www is the one the sitemaps, canonicals and Search Console already use.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'whemotion.com' }],
+        destination: 'https://www.whemotion.com/:path*',
+        permanent: true,
+      },
+    ]
+  },
+
   async headers() {
     // The panel shows a post's preview inside a phone frame; nothing else may be framed.
     const framedByPanel = [{ key: 'X-Frame-Options', value: 'SAMEORIGIN' }]

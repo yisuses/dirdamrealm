@@ -18,7 +18,7 @@ export type GetImageUrlFromMediaParams = GetImageDataFromMediaParams & {
 export function getImageUrlFromMedia({
   media,
   format = 'large',
-  fallback = '/images/WElogo.png',
+  fallback = '/images/og-default.png',
 }: GetImageUrlFromMediaParams) {
   try {
     if (!media) return fallback
@@ -39,6 +39,6 @@ export function getImageUrlFromMedia({
         media && typeof media === 'object' && 'id' in media ? media.id : 'unknown'
       }", FORMAT:"${format}", FALLBACK:"${fallback}"`,
     )
-    return '/images/WElogo.png'
+    return '/images/og-default.png'
   }
 }

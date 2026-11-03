@@ -12,7 +12,7 @@ function generateSiteMap(lastPostUpdate: string) {
       <loc>https://www.whemotion.com/</loc>
       <lastmod>${lastPostUpdate}</lastmod>
       <image:image>
-        <image:loc>${publicUrl('/images/WElogo.png')}</image:loc>
+        <image:loc>${publicUrl('/images/og-default.png')}</image:loc>
       </image:image>
       <xhtml:link rel="alternate" hreflang="en-US" href="https://www.whemotion.com/en/"/>
       <xhtml:link rel="alternate" hreflang="es-ES" href="https://www.whemotion.com/"/>
