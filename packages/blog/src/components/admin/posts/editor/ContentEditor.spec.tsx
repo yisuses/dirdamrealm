@@ -231,6 +231,88 @@ describe('ContentEditor', () => {
     })
   })
 
+  describe('pasting bold and italics marked in ways EditorJS drops', () => {
+    // jsdom has no clipboard events: these keep what they are given.
+    class FakeTransfer {
+      data: Record<string, string> = {}
+      files = []
+      setData(type: string, value: string) {
+        this.data[type] = value
+      }
+      getData(type: string) {
+        return this.data[type] ?? ''
+      }
+    }
+    class FakeClipboardEvent extends Event {
+      clipboardData: FakeTransfer
+      constructor(type: string, init: EventInit & { clipboardData: FakeTransfer }) {
+        super(type, init)
+        this.clipboardData = init.clipboardData
+      }
+    }
+
+    beforeEach(() => {
+      vi.stubGlobal('DataTransfer', FakeTransfer)
+      vi.stubGlobal('ClipboardEvent', FakeClipboardEvent)
+      return () => vi.unstubAllGlobals()
+    })
+
+    async function pasteInto(html: string, files: unknown[] = []) {
+      const { instance } = await mountEditor()
+      await ready(instance)
+      instance.save.mockResolvedValue(output('Pegado'))
+      const holder = screen.getByTestId('content-editor')
+      const block = holder.appendChild(document.createElement('div'))
+      const reachedEditorJS: Event[] = []
+      holder.addEventListener('paste', event => reachedEditorJS.push(event))
+      const clipboard = new FakeTransfer()
+      clipboard.setData('text/html', html)
+      clipboard.setData('text/plain', 'cursiva')
+      Object.assign(clipboard, { files })
+      const event = new FakeClipboardEvent('paste', { clipboardData: clipboard, bubbles: true, cancelable: true })
+      block.dispatchEvent(event)
+      return { event, reachedEditorJS, instance }
+    }
+
+    it('should hand EditorJS the paste again, where it was made, with them as <b> and <i>', async () => {
+      const { event, reachedEditorJS, instance } = await pasteInto(
+        '<p><span style="font-style:italic">cursiva</span></p>',
+      )
+
+      expect(event.defaultPrevented).toBe(true)
+      expect(reachedEditorJS).toHaveLength(1)
+      const [retold] = reachedEditorJS as FakeClipboardEvent[]
+      expect(retold.defaultPrevented).toBe(false)
+      expect(retold.clipboardData.getData('text/html')).toBe(
+        '<p><span style="font-style:italic"><i>cursiva</i></span></p>',
+      )
+      expect(retold.clipboardData.getData('text/plain')).toBe('cursiva')
+      expect(instance.blocks.insert).not.toHaveBeenCalled()
+    })
+
+    it('should leave pastes with files to EditorJS as they come', async () => {
+      const { event, reachedEditorJS } = await pasteInto('<p><em>cursiva</em></p>', [new File([], 'a.png')])
+
+      expect(event.defaultPrevented).toBe(false)
+      expect(reachedEditorJS).toEqual([event])
+    })
+
+    it('should keep them in a pasted list', async () => {
+      const { event, instance } = await pasteInto(
+        '<p style="mso-list:l0 level1 lfo1"><span style="mso-list:Ignore">·&nbsp;</span><em>Uno</em></p>',
+      )
+
+      expect(event.defaultPrevented).toBe(true)
+      expect(instance.blocks.insert).toHaveBeenCalledWith(
+        'list',
+        { style: 'unordered', meta: {}, items: [{ content: '<i>Uno</i>', meta: {}, items: [] }] },
+        undefined,
+        1,
+        false,
+      )
+    })
+  })
+
   it("should open the page's picker and upload pasted images with a name from the file or address", async () => {
     const pickImage = vi.fn(async () => null)
     await mountEditor({ pickImage })
