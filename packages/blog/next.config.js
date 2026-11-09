@@ -165,6 +165,10 @@ const nextConfig = {
       { source: '/en/vista-previa/:path*', headers: [...framedByPanel, ...hidden] },
       { source: '/admin/:path*', headers: hidden },
       { source: '/api/:path*', headers: hidden },
+      // The site's scripts: Google downloads them to render the pages, and without this lists
+      // every one (one per deploy) among the pages it chose not to index. Not robots.txt: blocked,
+      // Google could not render the posts. `noindex` alone, so it still fetches them.
+      { source: '/_next/static/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }] },
     ]
   },
 
