@@ -1,6 +1,6 @@
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import type { Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { cache } from 'react'
 import { ItemList, WebPage } from 'schema-dts'
 
@@ -74,7 +74,7 @@ export default async function Page({ params }: CategoryPageProps) {
   if (!category) notFound()
 
   if (categoryName !== seoName(category.localizedName)) {
-    redirect(`${localePrefix(lng)}${buildCategoryPath(category.code, category.localizedName)}`)
+    permanentRedirect(`${localePrefix(lng)}${buildCategoryPath(category.code, category.localizedName)}`)
   }
 
   const queryClient = getQueryClient()

@@ -2,7 +2,7 @@ import * as sentry from '@sentry/nextjs'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { parseISO } from 'date-fns'
 import type { Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { cache } from 'react'
 import { BlogPosting } from 'schema-dts'
 
@@ -125,13 +125,13 @@ export default async function Page({ params }: PostPageProps) {
     const localizedId = post.localizations?.find(localization => localization.locale === lng)?.id
     if (localizedId) {
       const localized = await getPost(Number(localizedId))
-      if (localized) redirect(`${localePrefix(lng)}${buildPostPath(String(localized.id), localized.title)}`)
+      if (localized) permanentRedirect(`${localePrefix(lng)}${buildPostPath(String(localized.id), localized.title)}`)
     }
   }
 
   // Canonicalize the slug.
   if (postName !== seoName(post.title)) {
-    redirect(`${localePrefix(lng)}${buildPostPath(String(post.id), post.title)}`)
+    permanentRedirect(`${localePrefix(lng)}${buildPostPath(String(post.id), post.title)}`)
   }
 
   const queryClient = getQueryClient()

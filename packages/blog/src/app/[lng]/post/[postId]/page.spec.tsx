@@ -15,7 +15,7 @@ const post = { id: 7, title: 'Hola Mundo', publishedAt: '2026-10-20T11:30:00.000
 const params = (lng: AppLocales, postId: string) => ({ params: Promise.resolve({ lng, postId }) })
 
 const notFound = { digest: expect.stringMatching(/^NEXT_HTTP_ERROR_FALLBACK;404/) }
-const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};`) })
+const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};308;`) })
 
 describe('Post id page', () => {
   beforeEach(() => {

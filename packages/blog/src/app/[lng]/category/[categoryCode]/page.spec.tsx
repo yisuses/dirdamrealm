@@ -15,7 +15,7 @@ const category = { id: 1, code: 'TRAVEL', localizedName: 'Viajes y más' } as Ca
 const params = (lng: AppLocales, categoryCode: string) => ({ params: Promise.resolve({ lng, categoryCode }) })
 
 const notFound = { digest: expect.stringMatching(/^NEXT_HTTP_ERROR_FALLBACK;404/) }
-const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};`) })
+const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};308;`) })
 
 describe('Category code page', () => {
   beforeEach(() => {

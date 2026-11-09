@@ -1,5 +1,5 @@
 import * as sentry from '@sentry/nextjs'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
 import { getCategories } from '@blog/data'
@@ -25,5 +25,5 @@ export default async function Page({ params }: Props) {
   }
 
   const prefix = lng === DEFAULT_LOCALE ? '' : `/${lng}`
-  redirect(`${prefix}${buildCategoryPath(categoryCode, categories[0].localizedName)}`)
+  permanentRedirect(`${prefix}${buildCategoryPath(categoryCode, categories[0].localizedName)}`)
 }

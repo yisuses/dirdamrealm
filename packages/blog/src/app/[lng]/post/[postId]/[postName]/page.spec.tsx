@@ -97,7 +97,7 @@ const params = (lng: AppLocales, postId = '7', postName = 'hola-mundo') => ({
 })
 
 const notFound = { digest: expect.stringMatching(/^NEXT_HTTP_ERROR_FALLBACK;404/) }
-const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};`) })
+const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};308;`) })
 
 const ldJson = (container: HTMLElement) => JSON.parse(container.querySelector('script')!.innerHTML)
 

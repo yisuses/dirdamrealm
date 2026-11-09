@@ -23,6 +23,18 @@ const TransLink = ({ href, label, ...rest }: LinkProps & { label: string }) => (
   </Link>
 )
 
+/**
+ * The cover's source as a web address. Posts brought from Strapi may hold it without `https://`
+ * ("es.pngfree.com"), which a link reads as a page of this site: Google found it missing.
+ * Null when it is not an address at all.
+ */
+export function sourceHref(value: string) {
+  if (/^https?:\/\//i.test(value)) {
+    return value
+  }
+  return /^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(value.trim()) ? `https://${value.trim()}` : null
+}
+
 export function HeaderImage({
   post: {
     id,
@@ -56,12 +68,13 @@ export function HeaderImage({
     />
   )
 
-  const credit = coverImageAuthor && coverImageSourceUrl && (
+  const sourceUrl = coverImageSourceUrl && sourceHref(coverImageSourceUrl)
+  const credit = coverImageAuthor && sourceUrl && (
     <Text textAlign="center" fontFamily="sans" fontSize="12px" pt="8px" color="fg.muted">
       <Trans
         i18nKey="coverImage.author"
         components={{
-          link: <TransLink href={coverImageSourceUrl} label={coverImageAuthor} />,
+          link: <TransLink href={sourceUrl} label={coverImageAuthor} />,
         }}
       />
     </Text>
