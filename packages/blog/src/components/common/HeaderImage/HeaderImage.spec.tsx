@@ -5,7 +5,7 @@ import { postMock } from '@blog/api/post/post.mock'
 import { navigation } from '@blog/test/navigation'
 import { renderWithProviders } from '@blog/test/render'
 
-import { HeaderImage } from './HeaderImage'
+import { HeaderImage, sourceHref } from './HeaderImage'
 
 const category = postMock.categories![0]
 
@@ -62,5 +62,32 @@ describe('HeaderImage', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', postMock.imgUrl)
     expect(screen.queryByRole('link')).not.toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
+  })
+})
+
+describe('sourceHref', () => {
+  it('should keep web addresses, and complete those written without https://', () => {
+    expect(sourceHref('http://unsplash.com/jane')).toBe('http://unsplash.com/jane')
+    expect(sourceHref(' es.pngfree.com ')).toBe('https://es.pngfree.com')
+    expect(sourceHref('www.pexels.com/es-es/foto/1')).toBe('https://www.pexels.com/es-es/foto/1')
+  })
+
+  it('should give no link for what is not an address', () => {
+    expect(sourceHref('Pixabay')).toBeNull()
+    expect(sourceHref('foto de Ana')).toBeNull()
+  })
+})
+
+describe('HeaderImage credit without https://', () => {
+  it('should link the source as a site of its own, not a page of the blog', () => {
+    renderWithProviders(<HeaderImage post={{ ...post, coverImageSourceUrl: 'es.pngfree.com' }} />)
+
+    expect(screen.getByRole('link', { name: 'Jane Doe' })).toHaveAttribute('href', 'https://es.pngfree.com')
+  })
+
+  it('should leave the credit out when the source is not an address', () => {
+    renderWithProviders(<HeaderImage post={{ ...post, coverImageSourceUrl: 'Pixabay' }} />)
+
+    expect(screen.queryByRole('link', { name: 'Jane Doe' })).not.toBeInTheDocument()
   })
 })

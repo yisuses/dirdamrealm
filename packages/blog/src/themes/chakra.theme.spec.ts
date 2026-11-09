@@ -15,4 +15,8 @@ describe('chakra theme', () => {
     expect(system.token('colors.gray.750')).toBe('#6C757D')
     expect(system.token('colors.transparent.500')).toBe('rgba(0,0,0,0.5)')
   })
+
+  it("should give italics back after Chakra's reset, as it does for bold", () => {
+    expect(system._config.globalCss?.['i, em']).toEqual({ fontStyle: 'italic' })
+  })
 })

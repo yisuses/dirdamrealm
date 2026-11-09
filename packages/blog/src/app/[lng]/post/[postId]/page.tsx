@@ -1,5 +1,5 @@
 import * as sentry from '@sentry/nextjs'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 
 import { DEFAULT_LOCALE } from '@blog/core/i18n/config'
 import { getPostById } from '@blog/data'
@@ -24,5 +24,5 @@ export default async function Page({ params }: Props) {
   if (!post || !post.publishedAt) notFound()
 
   const prefix = lng === DEFAULT_LOCALE ? '' : `/${lng}`
-  redirect(`${prefix}${buildPostPath(String(post.id), post.title)}`)
+  permanentRedirect(`${prefix}${buildPostPath(String(post.id), post.title)}`)
 }

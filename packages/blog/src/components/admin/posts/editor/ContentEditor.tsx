@@ -11,7 +11,7 @@ import type { LibraryImage } from '@blog/core/cloudinary/libraryImage'
 import { nameFromFile, uploadImage } from '../../images/images'
 import { editorMessages } from './editorI18n'
 import { htmlToBlocks } from './wordImport'
-import { pastedListsToHtml } from './wordPaste'
+import { pastedFormattingToTags, pastedListsToHtml } from './wordPaste'
 
 export interface ContentEditorHandle {
   /** Adds blocks after the last one (the Word import). */
@@ -68,13 +68,31 @@ export function ContentEditor({ initialContent, onChange, pickImage, ref }: Cont
   }))
 
   // Lists copied from Word reach the editor as paragraphs that start with a typed bullet. Pastes
-  // with lists are turned into blocks here, as the Word import does; any other paste is EditorJS's.
+  // with lists are turned into blocks here, as the Word import does. Pastes with bold or italics
+  // EditorJS would drop are handed back to it with them as `<b>` and `<i>`; any other is its own.
   useEffect(() => {
     const element = holder.current!
+    const retold = new WeakSet<Event>()
     const onPaste = (event: ClipboardEvent) => {
-      const html = event.clipboardData?.getData('text/html')
-      const lists = html && editor.current ? pastedListsToHtml(html) : null
+      const clipboard = event.clipboardData
+      const html = clipboard?.getData('text/html')
+      if (!html || !editor.current || retold.has(event)) {
+        return
+      }
+      const formatted = pastedFormattingToTags(html)
+      const lists = pastedListsToHtml(formatted ?? html)
       if (!lists) {
+        // Images pasted as files are EditorJS's as they come.
+        if (formatted && !clipboard!.files?.length) {
+          event.preventDefault()
+          event.stopPropagation()
+          const transfer = new DataTransfer()
+          transfer.setData('text/html', formatted)
+          transfer.setData('text/plain', clipboard!.getData('text/plain'))
+          const retelling = new ClipboardEvent('paste', { clipboardData: transfer, bubbles: true, cancelable: true })
+          retold.add(retelling)
+          event.target!.dispatchEvent(retelling)
+        }
         return
       }
       event.preventDefault()

@@ -14,6 +14,9 @@ const config = defineConfig({
   // Reading text is set in the serif; controls and small print in the sans.
   globalCss: {
     'button, input, select, textarea, .chakra-button': { fontFamily: 'sans' },
+    // Chakra's reset sets every element's font to its parent's, and gives bold back but not
+    // italics: without this, a post's italics are lost once published (the editor shows them).
+    'i, em': { fontStyle: 'italic' },
   },
   theme: {
     breakpoints,

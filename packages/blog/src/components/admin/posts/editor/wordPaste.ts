@@ -7,6 +7,51 @@ const typedBullet = /^\s*[·•▪◦§]\s+/
 // "1.", "a)", "iv." mark a numbered list; anything else is a bullet.
 const numberMarker = /^\s*[0-9a-z]{1,4}[.)]\s*$/i
 
+const italicStyle = /font-style:\s*(italic|oblique)/i
+const uprightStyle = /font-style:\s*normal/i
+const boldStyle = /font-weight:\s*(bold|bolder|[6-9]00)\b/i
+const regularWeight = /font-weight:\s*(normal|[1-4]00)\b/i
+
+/**
+ * The clipboard's bold and italics as the only tags the editor keeps, `<b>` and `<i>`: Word on the
+ * web, Google Docs and web pages mark them with `<strong>`, `<em>` or a style, which it drops.
+ * Null when there is nothing to change.
+ */
+export function pastedFormattingToTags(html: string): string | null {
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  let changed = false
+  const wrapContent = (element: Element, tag: string) => {
+    const wrapper = doc.createElement(tag)
+    wrapper.append(...Array.from(element.childNodes))
+    element.append(wrapper)
+    changed = true
+  }
+  for (const element of Array.from(doc.body.querySelectorAll('*'))) {
+    const style = element.getAttribute('style') ?? ''
+    const tag = element.tagName
+    const emphasis = tag === 'I' || tag === 'EM'
+    const strong = tag === 'B' || tag === 'STRONG'
+    if ((emphasis && uprightStyle.test(style)) || (strong && regularWeight.test(style))) {
+      // Google Docs wraps its whole copy in a `<b>` set back to the regular weight.
+      element.replaceWith(...Array.from(element.childNodes))
+      changed = true
+    } else if (tag === 'EM' || tag === 'STRONG') {
+      const replacement = doc.createElement(emphasis ? 'i' : 'b')
+      replacement.append(...Array.from(element.childNodes))
+      element.replaceWith(replacement)
+      changed = true
+    } else if (!emphasis && !strong) {
+      if (boldStyle.test(style)) {
+        wrapContent(element, 'b')
+      }
+      if (italicStyle.test(style)) {
+        wrapContent(element, 'i')
+      }
+    }
+  }
+  return changed ? doc.body.innerHTML : null
+}
+
 interface Item {
   element: Element
   level: number

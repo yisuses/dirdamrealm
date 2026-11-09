@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { htmlToBlocks } from './wordImport'
-import { pastedListsToHtml } from './wordPaste'
+import { pastedFormattingToTags, pastedListsToHtml } from './wordPaste'
 
 // How Word puts a list item on the clipboard: the bullet is text in a span it marks to ignore.
 const item = (text: string, level = 1, marker = '·') =>
@@ -71,5 +71,43 @@ describe('pastedListsToHtml', () => {
     expect(pastedListsToHtml(clipboard('<p class=MsoNormal>Un párrafo</p><h2>Un título</h2>'))).toBeNull()
     // A dash starts dialogue, and a bullet with no space after it is just text.
     expect(pastedListsToHtml('<p>- Hola, dijo.</p><p>·dato</p><ul><li>Ya es lista</li></ul>')).toBeNull()
+  })
+})
+
+describe('pastedFormattingToTags', () => {
+  it('should turn <em> and <strong> into the <i> and <b> the editor keeps', () => {
+    expect(pastedFormattingToTags('<p>Uno <em>cursiva</em> y <strong>negrita</strong></p>')).toBe(
+      '<p>Uno <i>cursiva</i> y <b>negrita</b></p>',
+    )
+  })
+
+  it('should read italics and bold from a style, as Word on the web and Google Docs mark them', () => {
+    const html =
+      '<meta charset="utf-8"><b style="font-weight:normal;" id="docs-internal-guid-1"><p dir="ltr">' +
+      '<span style="font-weight:400;font-style:italic;">cursiva</span><span style="font-weight:400;"> y </span>' +
+      '<span style="font-weight:700;">negrita</span> <span style="font-style: oblique; font-weight: bold">ambas</span>' +
+      '</p></b><p style="font-style:italic"><i style="font-style:normal">recta</i> resto</p>'
+
+    expect(pastedFormattingToTags(html)).toBe(
+      '<p dir="ltr">' +
+        '<span style="font-weight:400;font-style:italic;"><i>cursiva</i></span><span style="font-weight:400;"> y </span>' +
+        '<span style="font-weight:700;"><b>negrita</b></span> <span style="font-style: oblique; font-weight: bold"><i><b>ambas</b></i></span>' +
+        '</p><p style="font-style:italic"><i>recta resto</i></p>',
+    )
+  })
+
+  it('should leave alone what holds only <i>, <b> and plain text, as Word on the desktop copies', () => {
+    expect(
+      pastedFormattingToTags(clipboard(`<p class=MsoNormal>Hola <i><span>cursiva</span></i> <b>fin</b></p>`)),
+    ).toBeNull()
+    expect(pastedFormattingToTags('Solo texto')).toBeNull()
+  })
+
+  it('should keep the italics of list items for the list paste', () => {
+    const html = pastedFormattingToTags(clipboard(item('Hay que <span style="font-style:italic">meterles</span> 6-2')))!
+
+    expect(blocksOf(html)).toEqual([
+      { type: 'list', data: { style: 'unordered', meta: {}, items: [entry('Hay que <i>meterles</i> 6-2')] } },
+    ])
   })
 })

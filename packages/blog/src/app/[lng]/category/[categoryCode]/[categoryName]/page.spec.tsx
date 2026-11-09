@@ -44,7 +44,7 @@ const params = (lng: AppLocales, categoryCode = 'TRAVEL', categoryName = 'viajes
 })
 
 const notFound = { digest: expect.stringMatching(/^NEXT_HTTP_ERROR_FALLBACK;404/) }
-const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};`) })
+const redirectTo = (url: string) => ({ digest: expect.stringContaining(`NEXT_REDIRECT;replace;${url};308;`) })
 
 const ldJson = (container: HTMLElement) =>
   Array.from(container.querySelectorAll('script')).map(script => JSON.parse(script.innerHTML))
